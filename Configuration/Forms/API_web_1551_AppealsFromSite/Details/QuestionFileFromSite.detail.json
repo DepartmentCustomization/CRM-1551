@@ -1,0 +1,15 @@
+{
+  "ModelType": "Detail",
+  "Code": "QuestionFileFromSite",
+  "Name": "QuestionFileFromSite",
+  "SelectRowsQueryCode": "api_QuestionFileFromSiteSelectRows",
+  "SectionCode": "",
+  "Position": 1,
+  "IsExpand": true,
+  "QueryParameters": [
+    {
+      "FormFieldName": "appeal_id",
+      "ParameterCode": "@appeal_id"
+    }
+  ]
+}

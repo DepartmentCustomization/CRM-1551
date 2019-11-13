@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "Applicants_More_Address",
+  "Name": "Інші адреси заявника",
+  "ConnectionCode": "Default"
+}

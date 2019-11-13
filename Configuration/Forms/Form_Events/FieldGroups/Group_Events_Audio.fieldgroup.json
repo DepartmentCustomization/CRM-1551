@@ -1,0 +1,71 @@
+{
+  "Code": "Group_Events_Audio",
+  "Name": "Аудіоінформатор",
+  "Position": 2,
+  "IsExpanded": false,
+  "Fields": [
+    {
+      "Code": "audio_on",
+      "Name": "Активувати",
+      "FieldType": "checkbox",
+      "Position": 1,
+      "Width": "30%"
+    },
+    {
+      "Code": "audio_start_date",
+      "Name": "Дата початку програвання",
+      "FieldType": "date-time",
+      "Position": 2,
+      "Width": "25%"
+    },
+    {
+      "Code": "audio_end_date",
+      "Name": "Дата закінчення програвання",
+      "FieldType": "date-time",
+      "Position": 3,
+      "Width": "25%"
+    },
+    {
+      "Code": "say_plan_end_date",
+      "Name": "Дата закінчення робіт",
+      "FieldType": "checkbox",
+      "Position": 3,
+      "Width": "30%"
+    },
+    {
+      "Code": "say_liveAddress_id",
+      "Name": "Персональна адреса",
+      "FieldType": "checkbox",
+      "Position": 5,
+      "Width": "100%"
+    },
+    {
+      "Code": "say_organization_id",
+      "Name": "Організація, що проводить роботи",
+      "FieldType": "checkbox",
+      "Position": 7,
+      "Width": "100%"
+    },
+    {
+      "Code": "say_phone_for_information",
+      "Name": "Телефон для довідок",
+      "FieldType": "checkbox",
+      "Position": 7
+    },
+    {
+      "Code": "phone_for_information",
+      "Name": "Телефон для довідок",
+      "FieldType": "text",
+      "Position": 8
+    },
+    {
+      "Code": "file",
+      "Name": "Аудіо-файл",
+      "FieldType": "button",
+      "Position": 122,
+      "IsHidden": true,
+      "Width": "20%",
+      "Icon": "volume_up"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "ModelType": "Query",
+  "Code": "assigm_executor_organization",
+  "Name": "assigm_executor_organization",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "short_name",
+      "Name": "short_name",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "short_name",
+      "FilterParameterCode": "@short_name"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@user_Id",
+      "Name": "user_Id",
+      "ParameterType": "CurrentUserId"
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

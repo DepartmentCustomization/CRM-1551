@@ -1,0 +1,14 @@
+{
+  "ModelType": "Query",
+  "Code": "DepartmentUGL_NeVKompetentsii",
+  "Name": "DepartmentUGL_NeVKompetentsii",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    }
+  ]
+}

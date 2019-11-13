@@ -1,0 +1,22 @@
+{
+  "ModelType": "Query",
+  "Code": "CreateAppeal_SelectRow",
+  "Name": "CreateAppeal_SelectRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

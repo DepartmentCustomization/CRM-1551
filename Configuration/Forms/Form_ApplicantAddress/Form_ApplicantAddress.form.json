@@ -1,0 +1,19 @@
+{
+  "ModelType": "Form",
+  "Code": "Form_ApplicantAddress",
+  "Name": "Адреса заявника",
+  "IsPrintable": false,
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\Information.fieldgroup.json"
+    ],
+    "DefaultFields": [
+      {
+        "Code": "applicant_id",
+        "ParentFormFieldCodeForKeyValue": "Id",
+        "ParentFormFieldCodeForDisplayValue": "Id"
+      }
+    ]
+  }
+}

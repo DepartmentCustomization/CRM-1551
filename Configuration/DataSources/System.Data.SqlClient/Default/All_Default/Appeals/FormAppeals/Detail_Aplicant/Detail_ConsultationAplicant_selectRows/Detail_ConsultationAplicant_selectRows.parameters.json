@@ -1,0 +1,32 @@
+[
+  {
+    "Code": "@appeal_id",
+    "Name": "appeal_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@phone_number",
+    "Name": "phone_number"
+  },
+  {
+    "Code": "@pageLimitRows",
+    "Name": "pageLimitRows",
+    "ParameterType": "Integer",
+    "IsPageLimitRows": true
+  },
+  {
+    "Code": "@type",
+    "Name": "type"
+  },
+  {
+    "Code": "@pageOffsetRows",
+    "Name": "pageOffsetRows",
+    "ParameterType": "Integer",
+    "IsPageOffsetRows": true
+  },
+  {
+    "Code": "@applicant_id",
+    "Name": "applicant_id",
+    "ParameterType": "Integer"
+  }
+]

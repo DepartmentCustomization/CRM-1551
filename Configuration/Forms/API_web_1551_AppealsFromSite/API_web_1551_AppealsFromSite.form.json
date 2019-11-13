@@ -1,0 +1,20 @@
+{
+  "ModelType": "Form",
+  "Code": "API_web_1551_AppealsFromSite",
+  "Name": "API_web_1551_AppealsFromSite",
+  "Details": [
+    "string:Details\\onCheck.detail.json",
+    "string:Details\\Question1Files.detail.json",
+    "string:Details\\AppealsFromSite.detail.json",
+    "string:Details\\Close.detail.json",
+    "string:Details\\QuestionFileFromSite.detail.json",
+    "string:Details\\Vroboti.detail.json",
+    "string:Details\\detfiles.detail.json"
+  ],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\main.fieldgroup.json"
+    ],
+    "DefaultFields": []
+  }
+}

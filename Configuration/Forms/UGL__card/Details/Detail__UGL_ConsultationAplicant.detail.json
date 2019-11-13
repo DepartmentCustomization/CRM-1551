@@ -1,0 +1,10 @@
+{
+  "ModelType": "Detail",
+  "Code": "Detail__UGL_ConsultationAplicant",
+  "Name": "Консультації заявника",
+  "SelectRowsQueryCode": "Detail_ConsultationAplicant_selectRows",
+  "SectionCode": "",
+  "Position": 5,
+  "IsExpand": true,
+  "QueryParameters": []
+}

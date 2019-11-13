@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "dir_ObjectTypes_Insert"
+  },
+  "ModelType": "Section",
+  "Code": "dir_ObjectTypes",
+  "Name": "Довідник: Типи об'єктів",
+  "FormCode": "Form_dictionary_universal",
+  "SelectRowsQueryCode": "dir_ObjectTypes_SelectRows",
+  "SelectRowQueryCode": "dir_ObjectTypes_SelectRow",
+  "UpdateQueryCode": "dir_ObjectTypes_Update",
+  "DeleteQueryCode": "dir_ObjectTypes_Delete"
+}

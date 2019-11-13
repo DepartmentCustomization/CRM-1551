@@ -1,0 +1,12 @@
+{
+  "ModelType": "Form",
+  "Code": "ExecutorEvaluations",
+  "Name": "ExecutorEvaluations",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\Group1.fieldgroup.json"
+    ],
+    "DefaultFields": []
+  }
+}

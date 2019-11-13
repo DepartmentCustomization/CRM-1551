@@ -1,0 +1,15 @@
+{
+  "ModelType": "Detail",
+  "Code": "UrbioStreet",
+  "Name": "Вулиця в Urbio",
+  "SelectRowsQueryCode": "SelectUrbioStreet",
+  "SectionCode": "",
+  "Position": 1,
+  "IsExpand": true,
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@Id"
+    }
+  ]
+}

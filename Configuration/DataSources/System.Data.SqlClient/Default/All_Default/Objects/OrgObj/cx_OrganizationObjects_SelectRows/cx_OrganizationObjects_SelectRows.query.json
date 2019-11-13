@@ -1,0 +1,51 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_OrganizationObjects_SelectRows",
+  "Name": "cx_OrganizationObjects_SelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "conn_type_name",
+      "Name": "Тип зв`язку з об`єктом",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "short_name",
+      "Name": "Повна назва організації",
+      "Position": 3,
+      "IsPrintable": false,
+      "ReferenceKeyCode": "Id",
+      "ReferenceSectionCode": "Organizations"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

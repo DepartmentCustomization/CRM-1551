@@ -1,0 +1,19 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_UpdateApplicantPrivilegeRow",
+  "Name": "ak_UpdateApplicantPrivilegeRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@name",
+      "Name": "name"
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

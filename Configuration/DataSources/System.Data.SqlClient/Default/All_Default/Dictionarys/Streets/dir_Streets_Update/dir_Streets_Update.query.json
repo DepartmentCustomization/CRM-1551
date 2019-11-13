@@ -1,0 +1,24 @@
+{
+  "ModelType": "Query",
+  "Code": "dir_Streets_Update",
+  "Name": "dir_Streets_Update",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@name",
+      "Name": "name"
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    },
+    {
+      "Code": "@streetTypeId",
+      "Name": "streetTypeId",
+      "ParameterType": "Integer"
+    }
+  ]
+}

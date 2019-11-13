@@ -1,0 +1,70 @@
+{
+    "ModelType": "Query",
+    "Code": "AppealUGL_Info",
+    "Name": "AppealUGL_Info",
+	"ConnectionCode":"Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [ 
+      {
+      "Code": "incomNum",
+      "Name": "incomNum",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "phone",
+      "Name": "phone",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "incomDate",
+      "Name": "incomDate",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "full_phone",
+      "Name": "full_phone",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Applicant_PIB",
+      "Name": "Applicant_PIB",
+      "Position": 4,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Question_Content",
+      "Name": "Question_Content",
+      "Position": 5,
+      "IsPrintable": false
+    },
+    {
+      "Code": "ApplicantUGL",
+      "Name": "ApplicantUGL",
+      "Position": 6,
+      "IsPrintable": false
+    },
+    {
+      "Code": "uglId",
+      "Name": "uglId",
+      "Position": 7,
+      "IsPrintable": false
+    },
+    {
+      "Code": "appealNum",
+      "Name": "appealNum",
+      "Position": 8,
+      "IsPrintable": false
+    }
+    ],
+    "Parameters": [
+      {
+        "Code": "@Id",
+        "Name": "Id",
+        "ParameterType": "Integer"
+      }
+    ]
+  }

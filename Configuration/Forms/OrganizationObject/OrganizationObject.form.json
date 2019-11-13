@@ -1,0 +1,23 @@
+{
+  "ModelType": "Form",
+  "Code": "OrganizationObject",
+  "Name": "Об'єкти Організації",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\main.fieldgroup.json"
+    ],
+    "DefaultFields": [
+      {
+        "Code": "Id",
+        "ParentFormFieldCodeForKeyValue": "OrganizationObjectsId",
+        "ParentFormFieldCodeForDisplayValue": "OrganizationObjectsId"
+      },
+      {
+        "Code": "organization_id",
+        "ParentFormFieldCodeForKeyValue": "Id",
+        "ParentFormFieldCodeForDisplayValue": "short_name"
+      }
+    ]
+  }
+}

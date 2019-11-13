@@ -1,0 +1,47 @@
+{
+  "Code": "doc",
+  "Name": "Документи для доручень",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "appeal_from_site_id",
+      "Name": "appeal_from_site_id",
+      "FieldType": "number",
+      "Position": 1
+    },
+    {
+      "Code": "name",
+      "Name": "Назва",
+      "FieldType": "text",
+      "Position": 1
+    },
+    {
+      "Code": "receipt_date",
+      "Name": "receipt_date",
+      "FieldType": "date",
+      "IsRequired": true,
+      "Position": 1
+    },
+    {
+      "Code": "appeal_content",
+      "Name": "appeal_content",
+      "FieldType": "text",
+      "IsRequired": true,
+      "Position": 1
+    },
+    {
+      "Code": "site_appeals_result_id",
+      "Name": "site_appeals_result_id",
+      "FieldType": "number",
+      "IsRequired": true,
+      "Position": 1
+    },
+    {
+      "Code": "processing_date",
+      "Name": "processing_date",
+      "FieldType": "date",
+      "IsRequired": true,
+      "Position": 1
+    }
+  ]
+}

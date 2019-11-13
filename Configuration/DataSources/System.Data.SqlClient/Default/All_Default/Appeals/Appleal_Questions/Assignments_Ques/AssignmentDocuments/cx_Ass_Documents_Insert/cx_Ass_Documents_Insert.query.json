@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_Ass_Documents_Insert",
+  "Name": "cx_Ass_Documents_Insert",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

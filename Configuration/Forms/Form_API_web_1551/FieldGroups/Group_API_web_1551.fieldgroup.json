@@ -1,0 +1,140 @@
+{
+  "Code": "Group_API_web_1551",
+  "Name": "Group_API_web_1551",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "district_id",
+      "Name": "district_id",
+      "FieldType": "select",
+      "Position": 1,
+      "Width": "51%",
+      "QueryCode": "api_Districts",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "streets_id",
+      "Name": "streets_id",
+      "FieldType": "select",
+      "Position": 2,
+      "Width": "51%",
+      "QueryCode": "api_Streets",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "building_id",
+      "Name": "building_id",
+      "FieldType": "select",
+      "Position": 3,
+      "Width": "51%",
+      "QueryCode": "api_Buildings",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "socialState_id",
+      "Name": "socialState_id",
+      "FieldType": "select",
+      "Position": 4,
+      "Width": "51%",
+      "QueryCode": "api_SocialStates",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "applicantPrivilege_id",
+      "Name": "applicantPrivilege_id",
+      "FieldType": "select",
+      "Position": 5,
+      "Width": "51%",
+      "QueryCode": "api_ApplicantPrivilege",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "contactType_id",
+      "Name": "contactType_id",
+      "FieldType": "select",
+      "Position": 6,
+      "Width": "51%",
+      "QueryCode": "api_ContactType",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "addressType_id",
+      "Name": "addressType_id",
+      "FieldType": "select",
+      "Position": 7,
+      "Width": "51%",
+      "QueryCode": "api_AddressType",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "documentType_id",
+      "Name": "documentType_id",
+      "FieldType": "select",
+      "Position": 8,
+      "Width": "51%",
+      "QueryCode": "api_DocumentType",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "ApplicantObjects",
+      "Name": "ApplicantObjects",
+      "FieldType": "select",
+      "Position": 9,
+      "QueryCode": "api_ApplicantObjects",
+      "KeyColumnCode": "ObjectId",
+      "DisplayColumnCode": "ObjectName",
+      "QueryParameters": [
+        {
+          "ParentFormFieldCode": "ApplicantId",
+          "ParameterCode": "@ApplicantId"
+        }
+      ]
+    },
+    {
+      "Code": "Objects",
+      "Name": "Objects",
+      "FieldType": "select",
+      "Position": 10,
+      "QueryCode": "api_Objects",
+      "KeyColumnCode": "ObjectId",
+      "DisplayColumnCode": "ObjectName",
+      "QueryParameters": []
+    },
+    {
+      "Code": "Objects2",
+      "Name": "Objects2",
+      "FieldType": "select",
+      "Position": 10,
+      "QueryCode": "api_Objects2",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "WorkDirectionTypes",
+      "Name": "WorkDirectionTypes",
+      "FieldType": "select",
+      "Position": 12,
+      "QueryCode": "api_WorkDirectionTypes",
+      "KeyColumnCode": "id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    }
+  ]
+}

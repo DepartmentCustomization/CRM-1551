@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "cx_Appeals_2_Insert"
+  },
+  "ModelType": "Section",
+  "Code": "Appeals_2",
+  "Name": "Appeals_2",
+  "FormCode": "Form_Appeals_2",
+  "SelectRowsQueryCode": "cx_Appeals_SelectsRows",
+  "SelectRowQueryCode": "cx_Appeals_2_SelectsRow",
+  "UpdateQueryCode": "cx_Appeals_2_Update",
+  "IsVisible": false
+}

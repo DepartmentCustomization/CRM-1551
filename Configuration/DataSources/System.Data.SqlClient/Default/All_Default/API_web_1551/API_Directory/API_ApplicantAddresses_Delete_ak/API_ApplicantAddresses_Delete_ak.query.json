@@ -1,0 +1,41 @@
+{
+  "ModelType": "Query",
+  "Code": "API_ApplicantAddresses_Delete_ak",
+  "Name": "API_ApplicantAddresses_Delete_ak",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "result",
+      "Name": "result",
+      "Position": 0,
+      "IsPrintable": false,
+      "SqlName": "Result",
+      "FilterParameterCode": "@Result"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@object_id",
+      "Name": "object_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@applicant_id",
+      "Name": "applicant_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

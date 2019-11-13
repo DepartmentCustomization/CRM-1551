@@ -1,0 +1,135 @@
+{
+  "Code": "Group_Assigments_info",
+  "Name": "Загальна інформація",
+  "Position": 1,
+  "IsExpanded": false,
+  "Fields": [
+    {
+      "Code": "registration_number",
+      "Name": "Номер питання",
+      "FieldType": "text",
+      "Position": 1,
+      "Width": "33%",
+      "Icon": "arrow_forward",
+      "IconHint": "Перейти до питання"
+    },
+    {
+      "Code": "is_aktiv_true",
+      "Name": "is_aktiv_true",
+      "FieldType": "number",
+      "Position": 1,
+      "IsHidden": true
+    },
+    {
+      "Code": "receipt_source_id",
+      "Name": "Джерело надходження",
+      "FieldType": "select",
+      "Position": 2,
+      "Width": "33%",
+      "QueryCode": "dir_ReceiptSources_SelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "que_reg_date",
+      "Name": "Дата та час реєстрації питання",
+      "FieldType": "date-time",
+      "Position": 4,
+      "Width": "33%"
+    },
+    {
+      "Code": "full_name",
+      "Name": "ПІБ заявника",
+      "FieldType": "text",
+      "Position": 5,
+      "Width": "60%",
+      "Icon": "perm_identity"
+    },
+    {
+      "Code": "phones",
+      "Name": "Телефони",
+      "FieldType": "text",
+      "Position": 5,
+      "Width": "40%"
+    },
+    {
+      "Code": "LiveAddress",
+      "Name": "Адреса проживання заявника",
+      "FieldType": "text",
+      "Position": 6,
+      "Icon": "home"
+    },
+    {
+      "Code": "object_name",
+      "Name": "Об'єкт питання",
+      "FieldType": "text",
+      "Position": 7
+    },
+    {
+      "Code": "bal_name",
+      "Name": "Балансоутримувач",
+      "FieldType": "text",
+      "Position": 7,
+      "Width": "100%"
+    },
+    {
+      "Code": "organization_id",
+      "Name": "Організація",
+      "FieldType": "select",
+      "IsRequired": true,
+      "Position": 8,
+      "QueryCode": "list_select_organization",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "short_name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "address_problem",
+      "Name": "Адреса проблеми",
+      "FieldType": "text",
+      "Position": 9,
+      "IsHidden": true
+    },
+    {
+      "Code": "obj_type_id",
+      "Name": "Тип питання",
+      "FieldType": "text",
+      "Position": 10,
+      "Icon": "turned_in"
+    },
+    {
+      "Code": "question_content",
+      "Name": "Зміст",
+      "FieldType": "textarea",
+      "Position": 12,
+      "Width": "100%"
+    },
+    {
+      "Code": "control_date",
+      "Name": "Дата контролю питання",
+      "FieldType": "date-time",
+      "Position": 13
+    },
+    {
+      "Code": "answer",
+      "Name": "Відповідь",
+      "FieldType": "text",
+      "Position": 14
+    },
+    {
+      "Code": "question_id",
+      "Name": "question_id",
+      "FieldType": "number",
+      "Position": 155,
+      "IsHidden": true
+    },
+    {
+      "Code": "object_id",
+      "Name": "object_id",
+      "FieldType": "number",
+      "Position": 199,
+      "IsHidden": true
+    }
+  ]
+}

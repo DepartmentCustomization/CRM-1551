@@ -1,0 +1,155 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 1,
+    "IsPrimaryKey": true,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "full_name",
+    "Name": "ПІБ",
+    "Position": 2,
+    "IsPrintable": false,
+    "SqlName": "[Applicants].full_name",
+    "FilterParameterCode": "@full_name"
+  },
+  {
+    "Code": "phone_number",
+    "Name": "Номер телефона",
+    "Position": 3,
+    "IsPrintable": false,
+    "SqlName": "[ApplicantPhonesMain].phone_number_norm",
+    "FilterParameterCode": "@phone_number"
+  },
+  {
+    "Code": "PhoneType",
+    "Name": "Тип телефону",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "phone_number2",
+    "Name": "Додатковий телефон",
+    "Position": 5,
+    "SqlName": "[ApplicantPhonesNotMain].phone_number_norm",
+    "FilterParameterCode": "@phone_number2"
+  },
+  {
+    "Code": "PhoneType2",
+    "Name": "Тип додаткового телефону",
+    "Position": 6
+  },
+  {
+    "Code": "DistrictsName",
+    "Name": "Район",
+    "Position": 7,
+    "IsPrintable": false,
+    "SqlName": "[Districts].name",
+    "FilterParameterCode": "@Name2"
+  },
+  {
+    "Code": "Street",
+    "Name": "Вулиця",
+    "Position": 8,
+    "SqlName": "[Streets].[name]",
+    "FilterParameterCode": "@Street"
+  },
+  {
+    "Code": "BuildNumber",
+    "Name": "Будинок",
+    "Position": 9,
+    "IsPrintable": false,
+    "SqlName": "concat(StreetTypes.shortname,' '+ [Streets].[name], ', буд. '+ ltrim(Buildings.number), '' + Buildings.letter)",
+    "FilterParameterCode": "@BuildNumber"
+  },
+  {
+    "Code": "house_block",
+    "Name": "Корпус",
+    "Position": 10,
+    "IsPrintable": false,
+    "SqlName": "[LiveAddress].house_block",
+    "FilterParameterCode": "@block"
+  },
+  {
+    "Code": "entrance",
+    "Name": "Під'їзд",
+    "Position": 11,
+    "IsPrintable": false,
+    "SqlName": "[LiveAddress].entrance",
+    "FilterParameterCode": "@entrance"
+  },
+  {
+    "Code": "flat",
+    "Name": "Кв.",
+    "Position": 12,
+    "IsPrintable": false,
+    "SqlName": "[LiveAddress].flat",
+    "FilterParameterCode": "@flats"
+  },
+  {
+    "Code": "mail",
+    "Name": "Е-mail",
+    "Position": 13,
+    "IsPrintable": false,
+    "SqlName": "[Applicants].mail",
+    "FilterParameterCode": "@mail"
+  },
+  {
+    "Code": "ApplicantType",
+    "Name": "ApplicantType",
+    "Position": 14,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "Category",
+    "Name": "Category",
+    "Position": 15,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "Privilege",
+    "Name": "Privilege",
+    "Position": 16,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "SocialStates",
+    "Name": "SocialStates",
+    "Position": 17,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "sex",
+    "Name": "sex",
+    "Position": 18,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "birth_date",
+    "Name": "birth_date",
+    "Position": 19,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "age",
+    "Name": "age",
+    "Position": 20,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "comment",
+    "Name": "comment",
+    "Position": 21,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  }
+]

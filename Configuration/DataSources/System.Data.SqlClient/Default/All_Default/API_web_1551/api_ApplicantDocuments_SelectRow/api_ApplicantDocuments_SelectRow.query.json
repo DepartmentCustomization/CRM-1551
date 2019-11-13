@@ -1,0 +1,64 @@
+{
+  "ModelType": "Query",
+  "Code": "api_ApplicantDocuments_SelectRow",
+  "Name": "api_ApplicantDocuments_SelectRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "applicant_id",
+      "Name": "applicant_id",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "documenttype_id",
+      "Name": "documenttype_id",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "series",
+      "Name": "series",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "documentnumber",
+      "Name": "documentnumber",
+      "Position": 4,
+      "IsPrintable": false
+    },
+    {
+      "Code": "issuedate",
+      "Name": "issuedate",
+      "Position": 5,
+      "IsPrintable": false
+    },
+    {
+      "Code": "validity",
+      "Name": "validity",
+      "Position": 6,
+      "IsPrintable": false
+    },
+    {
+      "Code": "issued_by",
+      "Name": "issued_by",
+      "Position": 7,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@applicant_id",
+      "Name": "applicant_id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

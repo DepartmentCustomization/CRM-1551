@@ -1,0 +1,37 @@
+{
+  "ModelType": "Query",
+  "Code": "zayavnyk_social_state",
+  "Name": "zayavnyk_social_state",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "name",
+      "Name": "name",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "name",
+      "FilterParameterCode": "@social_state"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

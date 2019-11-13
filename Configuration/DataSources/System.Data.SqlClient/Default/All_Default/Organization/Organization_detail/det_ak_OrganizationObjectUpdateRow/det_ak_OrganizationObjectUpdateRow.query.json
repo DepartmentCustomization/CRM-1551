@@ -1,0 +1,30 @@
+{
+  "ModelType": "Query",
+  "Code": "det_ak_OrganizationObjectUpdateRow",
+  "Name": "det_ak_OrganizationObjectUpdateRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@building_id",
+      "Name": "building_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@executor_role_id",
+      "Name": "executor_role_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@organization_id",
+      "Name": "organization_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

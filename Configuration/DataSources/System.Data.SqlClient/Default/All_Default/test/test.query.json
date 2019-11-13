@@ -1,0 +1,33 @@
+{
+  "ModelType": "Query",
+  "Code": "test",
+  "Name": "test",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "priority",
+      "Name": "priority",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "main",
+      "Name": "main",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "executor_role_level_id",
+      "Name": "executor_role_level_id",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "priocessing_kind_id",
+      "Name": "priocessing_kind_id",
+      "Position": 3,
+      "IsPrintable": false
+    }
+  ]
+}

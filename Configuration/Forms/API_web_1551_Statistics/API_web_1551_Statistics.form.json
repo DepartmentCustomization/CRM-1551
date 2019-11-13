@@ -1,0 +1,12 @@
+{
+  "ModelType": "Form",
+  "Code": "API_web_1551_Statistics",
+  "Name": "API_web_1551_Statistics",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\main.fieldgroup.json"
+    ],
+    "DefaultFields": []
+  }
+}

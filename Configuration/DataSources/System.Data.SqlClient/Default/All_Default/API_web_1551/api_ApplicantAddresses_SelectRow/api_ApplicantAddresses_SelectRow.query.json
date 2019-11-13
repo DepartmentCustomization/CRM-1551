@@ -1,0 +1,14 @@
+{
+  "ModelType": "Query",
+  "Code": "api_ApplicantAddresses_SelectRow",
+  "Name": "api_ApplicantAddresses_SelectRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@applicant_id",
+      "Name": "applicant_id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

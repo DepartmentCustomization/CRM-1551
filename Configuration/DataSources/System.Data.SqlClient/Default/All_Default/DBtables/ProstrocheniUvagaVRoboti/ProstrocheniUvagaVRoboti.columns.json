@@ -1,0 +1,82 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 1,
+    "IsPrintable": false
+  },
+  {
+    "Code": "navigation",
+    "Name": "navigation",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "registration_number",
+    "Name": "registration_number",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "QuestionType",
+    "Name": "QuestionType",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "zayavnyk",
+    "Name": "zayavnyk",
+    "Position": 5,
+    "IsPrintable": false
+  },
+  {
+    "Code": "adress",
+    "Name": "adress",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "vykonavets",
+    "Name": "vykonavets",
+    "Position": 7,
+    "IsPrintable": false
+  },
+  {
+    "Code": "control_date",
+    "Name": "control_date",
+    "Position": 8,
+    "IsPrintable": false
+  },
+  {
+    "Code": "zayavnykId",
+    "Name": "zayavnykId",
+    "Position": 9,
+    "IsPrintable": false
+  },
+  {
+    "Code": "QuestionId",
+    "Name": "QuestionId",
+    "Position": 10,
+    "IsPrintable": false
+  },
+  {
+    "Code": "zayavnyk_adress",
+    "Name": "zayavnyk_adress",
+    "Position": 11
+  },
+  {
+    "Code": "zayavnyk_zmist",
+    "Name": "zayavnyk_zmist",
+    "Position": 12
+  },
+  {
+    "Code": "balans_name",
+    "Name": "balans_name",
+    "Position": 13
+  },
+  {
+    "Code": "receipt_date",
+    "Name": "receipt_date",
+    "Position": 14
+  }
+]

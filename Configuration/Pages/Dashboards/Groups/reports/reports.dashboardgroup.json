@@ -1,0 +1,8 @@
+{
+  "Icon": "list",
+  "Position": 50,
+  "IconColor": "blue",
+  "ModelType": "DashboardGroup",
+  "Code": "reports",
+  "Name": "Звiти"
+}

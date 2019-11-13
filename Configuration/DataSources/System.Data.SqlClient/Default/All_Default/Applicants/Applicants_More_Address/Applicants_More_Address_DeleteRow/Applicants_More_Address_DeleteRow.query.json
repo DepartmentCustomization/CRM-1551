@@ -1,0 +1,16 @@
+{
+  "ModelType": "Query",
+  "Code": "Applicants_More_Address_DeleteRow",
+  "Name": "Applicants_More_Address_DeleteRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Sql": " delete from LiveAddress where Id = @Id",
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

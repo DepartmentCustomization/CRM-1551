@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "RootGroup_CRM_1551_Analitics_Replication",
+  "Name": "All",
+  "ConnectionCode": "CRM_1551_Analitics_Replication"
+}

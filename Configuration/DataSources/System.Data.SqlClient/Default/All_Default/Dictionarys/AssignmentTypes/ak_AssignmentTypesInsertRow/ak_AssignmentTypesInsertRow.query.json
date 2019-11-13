@@ -1,0 +1,13 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_AssignmentTypesInsertRow",
+  "Name": "ak_AssignmentTypesInsertRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@name",
+      "Name": "name"
+    }
+  ]
+}

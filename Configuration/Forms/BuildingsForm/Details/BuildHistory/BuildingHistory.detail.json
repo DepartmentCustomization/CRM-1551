@@ -1,0 +1,15 @@
+{
+  "ModelType": "Detail",
+  "Code": "BuildingHistory",
+  "Name": "Історія змін",
+  "SelectRowsQueryCode": "det_1_BuildingHistory",
+  "SectionCode": "",
+  "Position": 4,
+  "IsExpand": true,
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@building_id"
+    }
+  ]
+}

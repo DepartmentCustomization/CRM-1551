@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "det_OrganizationWorkers_insert",
+  "Name": "det_OrganizationWorkers_insert",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

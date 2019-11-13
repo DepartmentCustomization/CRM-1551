@@ -1,0 +1,68 @@
+{
+  "ModelType": "Query",
+  "Code": "det_ConsultationApplication",
+  "Name": "det_ConsultationApplication",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "ConsultationsId",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "phone_number",
+      "Name": "Номер телефону",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "ConsultationType",
+      "Name": "Тип консультації",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "EventId",
+      "Name": "EventId",
+      "Position": 4,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "EventsName",
+      "Name": "Номер Заходу/заявки Городок/статті БЗ",
+      "Position": 5,
+      "IsPrintable": false
+    },
+    {
+      "Code": "registration_date",
+      "Name": "Дата реєстрації",
+      "Position": 6,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@ApplicantsId",
+      "Name": "ApplicantsId",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

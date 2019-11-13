@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "cx_Que_Documents_Insert"
+  },
+  "ModelType": "Section",
+  "Code": "Que_Documents",
+  "Name": "Документи питання",
+  "FormCode": "Form_Que_Documents",
+  "SelectRowsQueryCode": "cx_Que_Documents_SelectRows",
+  "SelectRowQueryCode": "cx_Que_Documents_SelectRow",
+  "UpdateQueryCode": "cx_Que_Documents_Update",
+  "IsVisible": false
+}

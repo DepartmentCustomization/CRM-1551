@@ -1,0 +1,39 @@
+{
+  "ModelType": "Query",
+  "Code": "list_building",
+  "Name": "list_building",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "name",
+      "Name": "name",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "concat(StreetTypes.shortname, N' ', Streets.name, N' ', Buildings.number,isnull(Buildings.letter, null))",
+      "FilterParameterCode": "@name"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

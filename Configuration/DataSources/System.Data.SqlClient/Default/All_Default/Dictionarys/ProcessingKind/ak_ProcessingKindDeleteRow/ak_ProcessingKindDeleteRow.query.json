@@ -1,0 +1,15 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_ProcessingKindDeleteRow",
+  "Name": "ak_ProcessingKindDeleteRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@id",
+      "Name": "id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

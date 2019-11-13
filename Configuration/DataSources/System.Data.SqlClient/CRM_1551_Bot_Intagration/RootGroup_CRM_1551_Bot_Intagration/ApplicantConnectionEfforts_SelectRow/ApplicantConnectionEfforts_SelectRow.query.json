@@ -1,0 +1,15 @@
+{
+  "ModelType": "Query",
+  "Code": "ApplicantConnectionEfforts_SelectRow",
+  "Name": "ApplicantConnectionEfforts_SelectRow",
+  "ConnectionCode": "CRM_1551_Bot_Intagration",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

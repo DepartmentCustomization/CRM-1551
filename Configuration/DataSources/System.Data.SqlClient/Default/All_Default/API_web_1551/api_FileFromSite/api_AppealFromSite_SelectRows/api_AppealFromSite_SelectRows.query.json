@@ -1,0 +1,54 @@
+{
+  "ModelType": "Query",
+  "Code": "api_AppealFromSite_SelectRows",
+  "Name": "api_AppealFromSite_SelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "id",
+      "Name": "id",
+      "Position": 0,
+      "IsPrimaryKey": true,
+      "IsPrintable": false
+    },
+    {
+      "Code": "receipt_date",
+      "Name": "receipt_date",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "appeal_content",
+      "Name": "appeal_content",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "site_appeals_result_id",
+      "Name": "site_appeals_result_id",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "processing_date",
+      "Name": "processing_date",
+      "Position": 4,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

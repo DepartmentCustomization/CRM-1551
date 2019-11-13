@@ -1,0 +1,13 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_InsertApplicantPrivilegeRow",
+  "Name": "ak_InsertApplicantPrivilegeRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@name",
+      "Name": "name"
+    }
+  ]
+}

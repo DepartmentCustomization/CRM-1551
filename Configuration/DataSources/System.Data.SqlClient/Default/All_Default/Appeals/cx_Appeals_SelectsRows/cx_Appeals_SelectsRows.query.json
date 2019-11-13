@@ -1,0 +1,97 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_Appeals_SelectsRows",
+  "Name": "cx_Appeals_SelectsRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "registration_number",
+      "Name": "Реєстраційний номер звернення",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "[Appeals].[registration_number]",
+      "FilterParameterCode": "@registration_number"
+    },
+    {
+      "Code": "full_name",
+      "Name": "Заявник",
+      "Position": 3,
+      "IsPrintable": false,
+      "SqlName": "[Applicants].[full_name]",
+      "FilterParameterCode": "@name"
+    },
+    {
+      "Code": "receipt_source_name",
+      "Name": "Джерело надходження",
+      "Position": 4,
+      "IsPrintable": false,
+      "SqlName": "ReceiptSources.Name",
+      "FilterParameterCode": "@name_param"
+    },
+    {
+      "Code": "phone_number",
+      "Name": "Номер телефону",
+      "Position": 5,
+      "IsPrintable": false,
+      "SqlName": "[Appeals].[phone_number]",
+      "FilterParameterCode": "@Number"
+    },
+    {
+      "Code": "mail",
+      "Name": "E-mail",
+      "Position": 6,
+      "ViewState": "Hidden",
+      "IsPrintable": false,
+      "SqlName": "[Appeals].[mail]",
+      "FilterParameterCode": "@mail"
+    },
+    {
+      "Code": "enter_number",
+      "Name": "Номер УГЛ",
+      "Position": 7,
+      "ViewState": "Hidden",
+      "IsPrintable": false,
+      "SqlName": "[Appeals].[enter_number]",
+      "FilterParameterCode": "@enter_number"
+    },
+    {
+      "Code": "receipt_date",
+      "Name": "Дата надходження звернення",
+      "Position": 8,
+      "IsPrintable": false,
+      "SqlName": "[Appeals].[receipt_date]",
+      "FilterParameterCode": "@date"
+    },
+    {
+      "Code": "user_name",
+      "Name": "Оператор",
+      "Position": 9,
+      "IsPrintable": false,
+      "SqlName": "Workers.name",
+      "FilterParameterCode": "@Workers"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

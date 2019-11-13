@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "table_poshuk",
+  "Name": "Розширений пошук",
+  "ConnectionCode": "Default"
+}

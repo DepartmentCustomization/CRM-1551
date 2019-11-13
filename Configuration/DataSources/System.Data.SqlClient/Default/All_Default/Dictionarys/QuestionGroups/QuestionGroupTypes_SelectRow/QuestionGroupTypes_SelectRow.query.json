@@ -1,0 +1,36 @@
+{
+  "ModelType": "Query",
+  "Code": "QuestionGroupTypes_SelectRow",
+  "Name": "QuestionGroupTypes_SelectRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Sql": "select * from QGroupIncludeQTypes where Id = @Id;",
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "group_question_id",
+      "Name": "group_question_id",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "type_question_id",
+      "Name": "type_question_id",
+      "Position": 2,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

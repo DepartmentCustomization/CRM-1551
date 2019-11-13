@@ -1,0 +1,21 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_GorodokClaims_SelectRows",
+  "Name": "cx_GorodokClaims_SelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

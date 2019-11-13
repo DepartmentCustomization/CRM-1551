@@ -1,0 +1,61 @@
+{
+  "Code": "Group1",
+  "Name": "Group1",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "task_for_bot_id",
+      "Name": "task_for_bot_id",
+      "FieldType": "number",
+      "Position": 1
+    },
+    {
+      "Code": "phone_number",
+      "Name": "phone_number",
+      "FieldType": "text",
+      "Position": 2
+    },
+    {
+      "Code": "chanel_id",
+      "Name": "chanel_id",
+      "FieldType": "number",
+      "Position": 3
+    },
+    {
+      "Code": "chat_id",
+      "Name": "chat_id",
+      "FieldType": "number",
+      "Position": 4
+    },
+    {
+      "Code": "sent_date",
+      "Name": "sent_date",
+      "FieldType": "date-time",
+      "Position": 5
+    },
+    {
+      "Code": "answer_id",
+      "Name": "answer_id",
+      "FieldType": "number",
+      "Position": 6
+    },
+    {
+      "Code": "answer_date",
+      "Name": "answer_date",
+      "FieldType": "date-time",
+      "Position": 7
+    },
+    {
+      "Code": "callstatistic_id",
+      "Name": "callstatistic_id",
+      "FieldType": "number",
+      "Position": 8
+    },
+    {
+      "Code": "is_finish_cycle",
+      "Name": "is_finish_cycle",
+      "FieldType": "checkbox",
+      "Position": 9
+    }
+  ]
+}

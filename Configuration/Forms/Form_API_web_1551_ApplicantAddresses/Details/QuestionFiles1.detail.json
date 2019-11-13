@@ -1,0 +1,14 @@
+{
+  "ModelType": "Detail",
+  "Code": "QuestionFiles1",
+  "Name": "QuestionFiles1",
+  "SelectRowsQueryCode": "api_QuestionFilesSelectRows",
+  "SectionCode": "",
+  "Position": 1,
+  "QueryParameters": [
+    {
+      "FormFieldName": "applicant_id",
+      "ParameterCode": "@appeal_id"
+    }
+  ]
+}

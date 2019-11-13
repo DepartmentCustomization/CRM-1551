@@ -1,0 +1,55 @@
+{
+  "ModelType": "Query",
+  "Code": "events",
+  "Name": "events",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "type",
+      "Name": "type",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Прострочені",
+      "Name": "Прострочені",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Не активні",
+      "Name": "Не активні",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "В роботі",
+      "Name": "В роботі",
+      "Position": 4,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@organization_id",
+      "Name": "organization_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    },
+    {
+      "Code": "@organizationName",
+      "Name": "organizationName"
+    }
+  ]
+}

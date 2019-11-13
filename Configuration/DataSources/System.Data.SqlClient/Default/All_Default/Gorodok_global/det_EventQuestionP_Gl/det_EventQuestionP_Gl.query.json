@@ -1,0 +1,36 @@
+{
+    "ModelType": "Query",
+    "Code": "det_EventQuestionP_Gl",
+    "Name": "det_EventQuestionP_Gl",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [{
+            "Code": "Id",
+            "Name": "Id",
+            "Position": 0,
+            "IsPrimaryKey": true,
+            "ViewState": "Hidden",
+            "IsPrintable": false
+        },
+        {
+            "Code": "registration_number",
+            "Name": "Номер питання",
+            "Position": 1,
+            "IsPrintable": false,
+            "ReferenceKeyCode": "Id",
+            "ReferenceSectionCode": "Questions"
+        },
+        {
+            "Code": "registration_date",
+            "Name": "Дата та час реєстрації",
+            "Position": 2,
+            "IsPrintable": false
+        },
+        {
+            "Code": "org_name",
+            "Name": "Виконавець",
+            "Position": 3,
+            "IsPrintable": false
+        }
+    ]
+}

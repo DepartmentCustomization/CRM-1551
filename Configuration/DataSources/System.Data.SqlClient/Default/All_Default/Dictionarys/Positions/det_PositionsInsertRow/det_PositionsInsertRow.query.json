@@ -1,0 +1,24 @@
+{
+  "ModelType": "Query",
+  "Code": "det_PositionsInsertRow",
+  "Name": "det_PositionsInsertRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@organization_id",
+      "Name": "organization_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    },
+    {
+      "Code": "@position_id",
+      "Name": "position_id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

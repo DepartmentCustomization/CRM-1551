@@ -1,0 +1,10 @@
+{
+  "ModelType": "Detail",
+  "Code": "Detail__UGL_QuestionBuildingAplicant",
+  "Name": "Питання по будинку заявника",
+  "SelectRowsQueryCode": "Detail_QuestionBuildingAplicant_selectRows",
+  "SectionCode": "",
+  "Position": 8,
+  "IsExpand": true,
+  "QueryParameters": []
+}

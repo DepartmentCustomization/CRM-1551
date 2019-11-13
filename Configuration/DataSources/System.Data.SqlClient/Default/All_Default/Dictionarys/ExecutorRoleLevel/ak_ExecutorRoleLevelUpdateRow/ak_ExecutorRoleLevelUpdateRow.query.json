@@ -1,0 +1,19 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_ExecutorRoleLevelUpdateRow",
+  "Name": "ak_ExecutorRoleLevelUpdateRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@name",
+      "Name": "name"
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

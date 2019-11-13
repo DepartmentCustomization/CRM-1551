@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_Ass_Documents_Update",
+  "Name": "cx_Ass_Documents_Update",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

@@ -1,0 +1,26 @@
+{
+  "Code": "main",
+  "Name": "додати документ",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "appeal_from_site_id",
+      "Name": "appeal_from_site_id",
+      "FieldType": "number",
+      "Position": 1
+    },
+    {
+      "Code": "name",
+      "Name": "Назва",
+      "FieldType": "text",
+      "Position": 1
+    },
+    {
+      "Code": "file",
+      "Name": "Файл",
+      "FieldType": "file",
+      "Position": 1,
+      "FileNameColumnCode": "name"
+    }
+  ]
+}

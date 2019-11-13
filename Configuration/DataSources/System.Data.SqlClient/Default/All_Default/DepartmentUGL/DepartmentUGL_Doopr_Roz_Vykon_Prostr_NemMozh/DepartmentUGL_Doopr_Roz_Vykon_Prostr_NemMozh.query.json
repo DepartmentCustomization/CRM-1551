@@ -1,0 +1,18 @@
+{
+  "ModelType": "Query",
+  "Code": "DepartmentUGL_Doopr_Roz_Vykon_Prostr_NemMozh",
+  "Name": "DepartmentUGL_Doopr_Roz_Vykon_Prostr_NemMozh",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@column",
+      "Name": "column"
+    },
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    }
+  ]
+}

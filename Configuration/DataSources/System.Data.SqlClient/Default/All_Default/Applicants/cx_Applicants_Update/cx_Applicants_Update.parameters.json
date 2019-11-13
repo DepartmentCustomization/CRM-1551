@@ -1,0 +1,105 @@
+[
+  {
+    "Code": "@phone_type_id2",
+    "Name": "phone_type_id2",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@entrance",
+    "Name": "entrance",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@full_name",
+    "Name": "full_name"
+  },
+  {
+    "Code": "@comment",
+    "Name": "comment"
+  },
+  {
+    "Code": "@mail",
+    "Name": "mail"
+  },
+  {
+    "Code": "@age",
+    "Name": "age",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@sex",
+    "Name": "sex",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@birth_date",
+    "Name": "birth_date",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@applicant_privilage_id",
+    "Name": "applicant_privilage_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@birth_year",
+    "Name": "birth_year",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@day_month",
+    "Name": "day_month"
+  },
+  {
+    "Code": "@category_type_id",
+    "Name": "category_type_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@applicant_type_id",
+    "Name": "applicant_type_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@phone_type_id",
+    "Name": "phone_type_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@phone_number",
+    "Name": "phone_number"
+  },
+  {
+    "Code": "@building_id",
+    "Name": "building_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@user_id",
+    "Name": "user_id",
+    "ParameterType": "CurrentUserId"
+  },
+  {
+    "Code": "@house_block",
+    "Name": "house_block"
+  },
+  {
+    "Code": "@applicant_id",
+    "Name": "applicant_id",
+    "ParameterType": "Integer",
+    "IsPrimaryKey": true
+  },
+  {
+    "Code": "@flat",
+    "Name": "flat"
+  },
+  {
+    "Code": "@phone_number2",
+    "Name": "phone_number2"
+  },
+  {
+    "Code": "@social_state_id",
+    "Name": "social_state_id",
+    "ParameterType": "Integer"
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "Add": {
+    "InsertQueryCode": "ak_RatingInsertRow"
+  },
+  "ModelType": "Section",
+  "Code": "Rating",
+  "Name": "Довідник: Рейтинги",
+  "FormCode": "Rating",
+  "SelectRowsQueryCode": "ak_RatingSelectRows",
+  "SelectRowQueryCode": "ak_RatingSelectRow",
+  "UpdateQueryCode": "ak_RatingUpdateRow"
+}

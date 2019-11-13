@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "dir_EventTypes_Insert"
+  },
+  "ModelType": "Section",
+  "Code": "dir_EventTypes",
+  "Name": "Довідник: Типи заходів",
+  "FormCode": "Form_dictionary_universal",
+  "SelectRowsQueryCode": "dir_EventTypes_SelectRows",
+  "SelectRowQueryCode": "dir_EventTypes_SelectRow",
+  "UpdateQueryCode": "dir_EventTypes_Update",
+  "DeleteQueryCode": "dir_EventTypes_Delete"
+}

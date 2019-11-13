@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "ak_CityInsertRow"
+  },
+  "ModelType": "Section",
+  "Code": "City",
+  "Name": "Довідник: Місто",
+  "FormCode": "City",
+  "SelectRowsQueryCode": "ak_CitySelectRows",
+  "SelectRowQueryCode": "ak_CitySelectRow",
+  "UpdateQueryCode": "ak_CityUpdateRow",
+  "DeleteQueryCode": "ak_CityDeleteRow"
+}

@@ -1,0 +1,22 @@
+{
+  "ModelType": "Detail",
+  "Code": "Detail_EventClass_QuestionType",
+  "Name": "Типи питань",
+  "FormCode": "Detail_ClassEvent_QuestionType",
+  "SelectRowsQueryCode": "SelectEventClass_QuestionTypes",
+  "SelectRowQueryCode": "SelectEventClassQuestionType",
+  "UpdateQueryCode": "UpdateEventClassQuestionType",
+  "SectionCode": "",
+  "DeleteQueryCode": "DeleteEventClassQuestionType",
+  "Position": 1,
+  "IsExpand": true,
+  "Add": {
+    "InsertQueryCode": "InsertEventClassQuestionType"
+  },
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@Id"
+    }
+  ]
+}

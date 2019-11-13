@@ -1,0 +1,19 @@
+{
+  "ModelType": "Form",
+  "Code": "Detail_ClassEvent_QuestionType",
+  "Name": "Класи заходів та типи питань",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\QuestionType_Detail.fieldgroup.json"
+    ],
+    "DefaultFields": [
+      {
+        "Code": "name",
+        "ParentFormFieldCodeForKeyValue": "Id",
+        "ParentFormFieldCodeForDisplayValue": "name"
+      }
+    ],
+    "Script": "string:Detail_ClassEvent_QuestionType.form.js"
+  }
+}

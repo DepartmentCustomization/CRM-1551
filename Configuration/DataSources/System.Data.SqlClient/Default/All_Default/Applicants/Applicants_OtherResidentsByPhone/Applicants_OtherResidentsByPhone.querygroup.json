@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "Applicants_OtherResidentsByPhone",
+  "Name": "Мешканці за телефоном",
+  "ConnectionCode": "Default"
+}

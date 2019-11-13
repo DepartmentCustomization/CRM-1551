@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "ReceiptSources",
+  "Name": "Джерела надхоження",
+  "ConnectionCode": "Default"
+}

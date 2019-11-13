@@ -1,0 +1,136 @@
+{
+    "ModelType": "Query",
+    "Code": "Applicant_Info",
+    "Name": "Applicant_Info",
+	"ConnectionCode":"Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [ 
+      {
+      "Code": "Applicant_PIB",
+      "Name": "Applicant_PIB",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "buildingId",
+      "Name": "buildingId",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "buildingName",
+      "Name": "buildingName",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Applicant_HouseBlock",
+      "Name": "Applicant_HouseBlock",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Applicant_Entrance",
+      "Name": "Applicant_Entrance",
+      "Position": 4,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Applicant_Flat",
+      "Name": "Applicant_Flat",
+      "Position": 5,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Applicant_District",
+      "Name": "Applicant_District",
+      "Position": 6,
+      "IsPrintable": false
+    },
+    {
+      "Code": "privilegeId",
+      "Name": "privilegeId",
+      "Position": 7,
+      "IsPrintable": false
+    },
+    {
+      "Code": "privilegeName",
+      "Name": "privilegeName",
+      "Position": 8,
+      "IsPrintable": false
+    },
+    {
+      "Code": "socialId",
+      "Name": "socialId",
+      "Position": 9,
+      "IsPrintable": false
+    },
+    {
+      "Code": "socialName",
+      "Name": "socialName",
+      "Position": 10,
+      "IsPrintable": false
+    },
+    {
+      "Code": "applicantTypeId",
+      "Name": "applicantTypeId",
+      "Position": 11,
+      "IsPrintable": false
+    },
+    {
+      "Code": "applicantTypeName",
+      "Name": "applicantTypeName",
+      "Position": 12,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Applicant_Sex",
+      "Name": "Applicant_Sex",
+      "Position": 13,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Applicant_BirthDate",
+      "Name": "Applicant_BirthDate",
+      "Position": 14,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Applicant_Email",
+      "Name": "Applicant_Email",
+      "Position": 15,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Applicant_Comment",
+      "Name": "Applicant_Comment",
+      "Position": 16,
+      "IsPrintable": false
+    },
+    {
+      "Code": "ApplicantId",
+      "Name": "ApplicantId",
+      "Position": 17,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Applicant_Age",
+      "Name": "Applicant_Age",
+      "Position": 18,
+      "IsPrintable": false
+    },
+    {
+      "Code": "execOrg",
+      "Name": "execOrg",
+      "Position": 19,
+      "IsPrintable": false
+    }
+    ],
+    "Parameters": [
+      {
+        "Code": "@applicantId",
+        "Name": "applicantId",
+        "ParameterType": "Integer"
+      }
+    ]
+  }

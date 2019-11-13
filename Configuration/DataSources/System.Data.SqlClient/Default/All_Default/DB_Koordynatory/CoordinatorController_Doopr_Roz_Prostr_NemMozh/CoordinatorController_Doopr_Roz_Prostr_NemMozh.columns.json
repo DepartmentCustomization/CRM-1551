@@ -1,0 +1,85 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 1,
+    "IsPrintable": false
+  },
+  {
+    "Code": "registration_number",
+    "Name": "registration_number",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "zayavnykName",
+    "Name": "zayavnykName",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "control_date",
+    "Name": "control_date",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "zayavnykId",
+    "Name": "zayavnykId",
+    "Position": 5,
+    "IsPrintable": false
+  },
+  {
+    "Code": "QuestionType",
+    "Name": "QuestionType",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "adress",
+    "Name": "adress",
+    "Position": 7,
+    "IsPrintable": false
+  },
+  {
+    "Code": "QuestionId",
+    "Name": "QuestionId",
+    "Position": 8,
+    "IsPrintable": false
+  },
+  {
+    "Code": "OrganizationsName",
+    "Name": "OrganizationsName",
+    "Position": 9
+  },
+  {
+    "Code": "rework_counter",
+    "Name": "rework_counter",
+    "Position": 10
+  },
+  {
+    "Code": "short_answer",
+    "Name": "short_answer",
+    "Position": 11
+  },
+  {
+    "Code": "question_content",
+    "Name": "question_content",
+    "Position": 12
+  },
+  {
+    "Code": "adressZ",
+    "Name": "adressZ",
+    "Position": 13
+  },
+  {
+    "Code": "transfer_to_organization_id",
+    "Name": "transfer_to_organization_id",
+    "Position": 14
+  },
+  {
+    "Code": "transfer_to_organization_name",
+    "Name": "transfer_to_organization_name",
+    "Position": 15
+  }
+]

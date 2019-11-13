@@ -1,0 +1,31 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_BotPolltemUpdateRow",
+  "Name": "ak_BotPolltemUpdateRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer"
+    },{
+      "Code": "@poll_item_direction_id",
+      "Name": "poll_item_direction_id",
+      "ParameterType": "Integer"
+    }
+    ,{
+      "Code": "@role_id",
+      "Name": "role_id",
+      "ParameterType": "Integer"
+    },{
+      "Code": "@active",
+      "Name": "active",
+      "ParameterType": "Boolean"
+    },{
+      "Code": "@name",
+      "Name": "name"
+    }
+
+  ]
+}

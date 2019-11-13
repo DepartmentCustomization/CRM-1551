@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "Event_Prew_Btn_Consultation_InsertRow",
+  "Name": "Event_Prew_Btn_Consultation_InsertRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

@@ -1,0 +1,29 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_AppealsFromSite_Update",
+  "Name": "cx_AppealsFromSite_Update",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@state_id",
+      "Name": "state_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@user_edit_id",
+      "Name": "user_edit_id",
+      "ParameterType": "CurrentUserId"
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    },
+    {
+      "Code": "@comment_moderator",
+      "Name": "comment_moderator"
+    }
+  ]
+}

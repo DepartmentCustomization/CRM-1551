@@ -1,0 +1,19 @@
+{
+  "ModelType": "Query",
+  "Code": "dir_AssignmentStates_Update",
+  "Name": "dir_AssignmentStates_Update",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@name",
+      "Name": "name"
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "ModelType": "Form",
+  "Code": "Form_Ass_Documents_ReadOnly",
+  "Name": "Документи доручень для перегляду",
+  "Details": [
+    "string:Details\\Detail_Ass_Doc_File_ReadOnly.detail.json"
+  ],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\Group_Ass_Doc_ROnly.fieldgroup.json"
+    ],
+    "DefaultFields": [],
+    "Script": "string:Form_Ass_Documents_ReadOnly.form.js"
+  }
+}

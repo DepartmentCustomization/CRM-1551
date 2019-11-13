@@ -1,0 +1,14 @@
+{
+  "ModelType": "Query",
+  "Code": "GetDistrictForBuilding",
+  "Name": "GetDistrictForBuilding",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@building_id",
+      "Name": "building_id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

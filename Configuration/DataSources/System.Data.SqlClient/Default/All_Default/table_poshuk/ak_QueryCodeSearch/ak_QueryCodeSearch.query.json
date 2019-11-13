@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_QueryCodeSearch",
+  "Name": "ak_QueryCodeSearch",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

@@ -1,0 +1,13 @@
+{
+  "ModelType": "Form",
+  "Code": "Form_dictionary_universal",
+  "Name": "Довідники",
+  "IsPrintable": false,
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\Group_dictionary_universal.fieldgroup.json"
+    ],
+    "DefaultFields": []
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "ModelType": "Query",
+  "Code": "api_Districts",
+  "Name": "api_Districts",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrimaryKey": true,
+      "IsPrintable": false,
+      "SqlName": "Id",
+      "FilterParameterCode": "@Id"
+    },
+    {
+      "Code": "name",
+      "Name": "name",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "name",
+      "FilterParameterCode": "@name"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

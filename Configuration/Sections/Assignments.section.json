@@ -1,0 +1,10 @@
+{
+  "Add": {},
+  "ModelType": "Section",
+  "Code": "Assignments",
+  "Name": "2.2. Доручення",
+  "FormCode": "Form_Assignments",
+  "SelectRowsQueryCode": "cx_App_Que_Assignments_SelectRows",
+  "SelectRowQueryCode": "cx_App_Que_Assignments_SelectRow",
+  "UpdateQueryCode": "cx_App_Que_Assignments_Update"
+}

@@ -1,0 +1,32 @@
+{
+  "ModelType": "Query",
+  "Code": "Site_SearchApplicant",
+  "Name": "Site_SearchApplicant",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "TypeSearch",
+      "Name": "Тип пошуку",
+      "Position": 1,
+      "IsPrintable": false,
+      "Hint": "\"О\" - знайденний по об'єкту | \"Т\" -  знайденний по телефону"
+    },
+    {
+      "Code": "PIB",
+      "Name": "ПІБ",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "PIB",
+      "FilterParameterCode": "@PIB"
+    }
+  ]
+}

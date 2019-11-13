@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_CloseEvent",
+  "Name": "ak_CloseEvent",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

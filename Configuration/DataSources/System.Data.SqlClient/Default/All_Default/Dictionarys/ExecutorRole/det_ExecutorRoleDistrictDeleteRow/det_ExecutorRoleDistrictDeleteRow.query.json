@@ -1,0 +1,15 @@
+{
+  "ModelType": "Query",
+  "Code": "det_ExecutorRoleDistrictDeleteRow",
+  "Name": "det_ExecutorRoleDistrictDeleteRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "ModelType": "Query",
+  "Code": "API_ApplicantAddresses_Insert_ak",
+  "Name": "API_ApplicantAddresses_Insert_ak",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@applicant_id",
+      "Name": "applicant_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    },
+    {
+      "Code": "@addresstype_id",
+      "Name": "addresstype_id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

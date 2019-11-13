@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "GorodokClaims",
+  "Name": "Заявки Городок",
+  "ConnectionCode": "Default"
+}

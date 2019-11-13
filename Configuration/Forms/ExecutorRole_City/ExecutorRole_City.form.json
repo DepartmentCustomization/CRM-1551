@@ -1,0 +1,19 @@
+{
+  "ModelType": "Form",
+  "Code": "ExecutorRole_City",
+  "Name": "Роль виконавця: Місто",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\main.fieldgroup.json"
+    ],
+    "DefaultFields": [
+      {
+        "Code": "executor_role_id",
+        "ParentFormFieldCodeForKeyValue": "id",
+        "ParentFormFieldCodeForDisplayValue": "name"
+      }
+    ],
+    "Script": "string:ExecutorRole_City.form.js"
+  }
+}

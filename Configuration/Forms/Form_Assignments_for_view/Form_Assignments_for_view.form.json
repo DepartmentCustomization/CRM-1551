@@ -1,0 +1,15 @@
+{
+  "ModelType": "Form",
+  "Code": "Form_Assignments_for_view",
+  "Name": "Доручення для перегляду",
+  "Details": [
+    "string:Details\\Detail_Assignments_for_view_FILE.detail.json"
+  ],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\Group_Assigments_Assigments.fieldgroup.json"
+    ],
+    "DefaultFields": [],
+    "Script": "string:Form_Assignments_for_view.form.js"
+  }
+}

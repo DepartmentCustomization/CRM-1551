@@ -1,0 +1,46 @@
+{
+  "ModelType": "Query",
+  "Code": "api_QuestionFileFromSiteSelectRows",
+  "Name": "api_QuestionFileFromSiteSelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "QuestionFileId",
+      "Name": "QuestionFileId",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "QuestionFile",
+      "Name": "QuestionFile",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "QuestionFileName",
+      "Name": "QuestionFileName",
+      "Position": 2
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@appeal_id",
+      "Name": "appeal_id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "ModelType": "Query",
+  "Code": "db_Report_7_5",
+  "Name": "db_Report_7_5",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@dateTo",
+      "Name": "dateTo",
+      "ParameterType": "DateTime"
+    },
+    {
+      "Code": "@dateFrom",
+      "Name": "dateFrom",
+      "ParameterType": "DateTime"
+    }
+  ]
+}

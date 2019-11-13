@@ -1,0 +1,10 @@
+{
+  "ModelType": "Detail",
+  "Code": "Detail__UGL_Event",
+  "Name": "Заходи",
+  "SelectRowsQueryCode": "Detail_Event_selectRows",
+  "SectionCode": "",
+  "Position": 11,
+  "IsExpand": true,
+  "QueryParameters": []
+}

@@ -1,0 +1,16 @@
+{
+  "DetailType": "Section",
+  "ModelType": "Detail",
+  "Code": "det_Organization",
+  "Name": "Підпорядковані організації",
+  "SelectRowsQueryCode": "det_OrganizationOrganization",
+  "SectionCode": "Organizations",
+  "Position": 2,
+  "IsExpand": true,
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@OrganisationId"
+    }
+  ]
+}

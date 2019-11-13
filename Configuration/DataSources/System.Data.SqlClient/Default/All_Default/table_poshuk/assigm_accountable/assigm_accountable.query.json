@@ -1,0 +1,42 @@
+{
+  "ModelType": "Query",
+  "Code": "assigm_accountable",
+  "Name": "assigm_accountable",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "name",
+      "Name": "name",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "name",
+      "FilterParameterCode": "@short_name"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@user_Id",
+      "Name": "user_Id",
+      "ParameterType": "CurrentUserId"
+    }
+  ]
+}

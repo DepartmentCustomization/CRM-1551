@@ -1,0 +1,43 @@
+{
+  "ModelType": "Query",
+  "Code": "list_fullName_Object",
+  "Name": "list_fullName_Object",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden"
+    },
+    {
+      "Code": "object_name",
+      "Name": "Назва",
+      "Position": 2,
+      "SqlName": "[Objects].name",
+      "FilterParameterCode": "@object_name"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@ObjectTypesId",
+      "Name": "ObjectTypesId",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

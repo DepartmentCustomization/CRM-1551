@@ -1,0 +1,6 @@
+{
+    "ModelType": "QueryGroup",
+    "Code": "BuildingHistory",
+    "Name": "Історія будинків",
+    "ConnectionCode": "Default"
+  }

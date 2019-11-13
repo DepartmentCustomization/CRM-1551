@@ -1,0 +1,12 @@
+{
+  "Add": {
+    "InsertQueryCode": "cx_AppealsFromSite_Insert"
+  },
+  "ModelType": "Section",
+  "Code": "Appeals_from_Site",
+  "Name": "4. Звернення з сайту",
+  "FormCode": "Form_Appeals_from_Site",
+  "SelectRowsQueryCode": "cx_AppealsFromSite_SelectRows",
+  "SelectRowQueryCode": "cx_AppealsFromSite_SelectRow",
+  "UpdateQueryCode": "cx_AppealsFromSite_Update"
+}

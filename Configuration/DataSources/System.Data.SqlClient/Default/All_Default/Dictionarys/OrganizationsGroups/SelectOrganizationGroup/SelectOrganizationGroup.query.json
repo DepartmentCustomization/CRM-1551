@@ -1,0 +1,35 @@
+{
+  "ModelType": "Query",
+  "Code": "SelectOrganizationGroup",
+  "Name": "SelectOrganizationGroup",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "groupId",
+      "Name": "groupId",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "name",
+      "Name": "name",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 2,
+      "IsPrimaryKey": true
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

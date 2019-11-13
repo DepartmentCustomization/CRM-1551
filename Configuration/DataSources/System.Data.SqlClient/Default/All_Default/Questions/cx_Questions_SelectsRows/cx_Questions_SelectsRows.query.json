@@ -1,0 +1,86 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_Questions_SelectsRows",
+  "Name": "cx_Questions_SelectsRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "reg_number_appeal",
+      "Name": "reg_number_appeal",
+      "Position": 2,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "registration_number",
+      "Name": "Номер питання",
+      "Position": 3,
+      "IsPrintable": false,
+      "SqlName": "[Questions].[registration_number]",
+      "FilterParameterCode": "@registration_number"
+    },
+    {
+      "Code": "registration_date",
+      "Name": "Дата реєстрації",
+      "Position": 4,
+      "IsPrintable": false,
+      "SqlName": "[Questions].[registration_date]",
+      "FilterParameterCode": "@registration_date"
+    },
+    {
+      "Code": "question_state_name",
+      "Name": "Стан",
+      "Position": 5,
+      "IsPrintable": false,
+      "SqlName": "QuestionStates.name",
+      "FilterParameterCode": "@question_state_name"
+    },
+    {
+      "Code": "control_date",
+      "Name": "Дата контролю",
+      "Position": 6,
+      "IsPrintable": false,
+      "SqlName": "[Questions].[control_date]",
+      "FilterParameterCode": "@control_date"
+    },
+    {
+      "Code": "question_type_name",
+      "Name": "Тип питання",
+      "Position": 7,
+      "IsPrintable": false,
+      "SqlName": "QuestionTypes.name",
+      "FilterParameterCode": "@question_type_name"
+    },
+    {
+      "Code": "question_content",
+      "Name": "Зміст",
+      "Position": 8,
+      "IsPrintable": false,
+      "SqlName": "[Questions].[question_content]",
+      "FilterParameterCode": "@question_content"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

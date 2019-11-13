@@ -1,0 +1,61 @@
+{
+  "Code": "Group_Ass_Doc",
+  "Name": "Документи до доручення",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "name",
+      "Name": "Назва документу",
+      "FieldType": "text",
+      "IsRequired": true,
+      "Position": 1
+    },
+    {
+      "Code": "doc_type_id",
+      "Name": "Тип документу",
+      "FieldType": "select",
+      "IsRequired": true,
+      "Position": 2,
+      "QueryCode": "dir_DocumentTypes_SelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    },
+    {
+      "Maxlength": 3000,
+      "Code": "content",
+      "Name": "Коментар",
+      "FieldType": "textarea",
+      "IsRequired": true,
+      "Position": 3,
+      "Rows": 29
+    },
+    {
+      "Code": "add_date",
+      "Name": "Дата створення",
+      "FieldType": "date-time",
+      "Position": 4
+    },
+    {
+      "Code": "assignment_сons_id",
+      "Name": "assignment_сons_id",
+      "FieldType": "number",
+      "Position": 123,
+      "IsHidden": true
+    },
+    {
+      "Code": "ass_status",
+      "Name": "ass_status",
+      "FieldType": "number",
+      "Position": 1222,
+      "IsHidden": true
+    },
+    {
+      "Code": "is_view",
+      "Name": "is_view",
+      "FieldType": "number",
+      "Position": 1333,
+      "IsHidden": true
+    }
+  ]
+}

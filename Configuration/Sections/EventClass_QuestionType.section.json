@@ -1,0 +1,10 @@
+{
+  "Add": {},
+  "ModelType": "Section",
+  "Code": "EventClass_QuestionType",
+  "Name": "Класи заходів та типи питань",
+  "FormCode": "EventClass_QuestionType_Form",
+  "SelectRowsQueryCode": "SelectAllEventClass",
+  "SelectRowQueryCode": "SelectEventClass",
+  "UpdateQueryCode": "UpdateEventClass"
+}

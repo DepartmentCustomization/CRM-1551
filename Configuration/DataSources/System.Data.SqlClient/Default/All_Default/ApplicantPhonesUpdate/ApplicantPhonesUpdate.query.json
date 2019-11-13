@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "ApplicantPhonesUpdate",
+  "Name": "ApplicantPhonesUpdate",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

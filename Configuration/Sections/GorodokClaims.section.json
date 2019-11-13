@@ -1,0 +1,11 @@
+{
+  "Add": {
+    "InsertQueryCode": "cx_GorodokClaims_Insert"
+  },
+  "ModelType": "Section",
+  "Code": "GorodokClaims",
+  "Name": "5. Заявки \"Городок\"",
+  "FormCode": "Form_ClaimsGorodok",
+  "SelectRowsQueryCode": "cx_GorodokClaims_SelectRows",
+  "SelectRowQueryCode": "cx_GorodokClaims_SelectRow"
+}

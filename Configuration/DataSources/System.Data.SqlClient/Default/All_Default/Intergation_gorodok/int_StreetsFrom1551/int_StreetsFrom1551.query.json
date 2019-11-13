@@ -1,0 +1,39 @@
+{
+  "ModelType": "Query",
+  "Code": "int_StreetsFrom1551",
+  "Name": "int_StreetsFrom1551",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "id_str_gor",
+      "Name": "id_str_gor",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "name_str_gor",
+      "Name": "name_str_gor",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "id_str_1551",
+      "Name": "id_str_1551",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "name_str_1551",
+      "Name": "name_str_1551",
+      "Position": 4,
+      "IsPrintable": false
+    }
+  ]
+}

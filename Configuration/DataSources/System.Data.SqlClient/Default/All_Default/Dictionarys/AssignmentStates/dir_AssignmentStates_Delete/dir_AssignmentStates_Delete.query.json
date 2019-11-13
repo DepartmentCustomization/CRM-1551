@@ -1,0 +1,16 @@
+{
+  "ModelType": "Query",
+  "Code": "dir_AssignmentStates_Delete",
+  "Name": "dir_AssignmentStates_Delete",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Sql": "D--ELETE FROM [dbo].[AssignmentStates] WHERE Id = @Id",
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

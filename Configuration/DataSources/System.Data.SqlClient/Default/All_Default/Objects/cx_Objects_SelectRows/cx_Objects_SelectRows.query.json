@@ -1,0 +1,70 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_Objects_SelectRows",
+  "Name": "cx_Objects_SelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "obj_type_name",
+      "Name": "Тип об'єкта",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "ObjectTypes.name",
+      "FilterParameterCode": "@obj_type_name"
+    },
+    {
+      "Code": "object_name",
+      "Name": "Назва об'єкта",
+      "Position": 3,
+      "IsPrintable": false,
+      "SqlName": "IIF(Objects.name is null,  \t\tconcat(Streets.name, ' ', Buildings.number,Buildings.letter), \t\tconcat(Streets.name, ' ', Buildings.number,Buildings.letter,' ( ',Objects.name,' )') \t\t )",
+      "FilterParameterCode": "@name"
+    },
+    {
+      "Code": "district_name",
+      "Name": "Район",
+      "Position": 4,
+      "IsPrintable": false,
+      "SqlName": "Districts.name",
+      "FilterParameterCode": "@district"
+    },
+    {
+      "Code": "street_id",
+      "Name": "street_id",
+      "Position": 5,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "build_name",
+      "Name": "Будинок",
+      "Position": 6,
+      "IsPrintable": false,
+      "SqlName": "concat(Streets.name, ' ', Buildings.number,Buildings.letter)",
+      "FilterParameterCode": "@Name"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

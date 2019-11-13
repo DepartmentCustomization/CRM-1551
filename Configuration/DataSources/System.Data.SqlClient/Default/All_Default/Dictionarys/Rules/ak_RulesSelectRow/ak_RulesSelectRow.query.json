@@ -1,0 +1,41 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_RulesSelectRow",
+  "Name": "ak_RulesSelectRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "name",
+      "Name": "name",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "RulesId",
+      "Name": "RulesId",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Idname",
+      "Name": "Idname",
+      "Position": 3,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

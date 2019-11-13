@@ -1,0 +1,10 @@
+{
+  "Add": {},
+  "ModelType": "Section",
+  "Code": "MyFirstTable_FILESTREAM",
+  "Name": "MyFirstTable_FILESTREAM",
+  "FormCode": "MyFirstTable_FILESTREAM",
+  "SelectRowsQueryCode": "ak_AssignmentTypesSelectRows",
+  "SelectRowQueryCode": "ak_AssignmentTypesSelectRow",
+  "UpdateQueryCode": "ak_AssignmentTypesSelectRows"
+}

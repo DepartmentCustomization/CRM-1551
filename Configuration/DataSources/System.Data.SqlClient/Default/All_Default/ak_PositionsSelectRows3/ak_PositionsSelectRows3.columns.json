@@ -1,0 +1,68 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 0,
+    "IsPrintable": false
+  },
+  {
+    "Code": "parent_id",
+    "Name": "parent_id",
+    "Position": 1,
+    "IsPrintable": false
+  },
+  {
+    "Code": "position_code",
+    "Name": "position_code",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "position",
+    "Name": "position",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "phone_number",
+    "Name": "phone_number",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "address",
+    "Name": "address",
+    "Position": 5,
+    "IsPrintable": false
+  },
+  {
+    "Code": "name",
+    "Name": "name",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "active",
+    "Name": "active",
+    "Position": 7,
+    "IsPrintable": false
+  },
+  {
+    "Code": "user_id",
+    "Name": "user_id",
+    "Position": 8,
+    "IsPrintable": false
+  },
+  {
+    "Code": "edit_date",
+    "Name": "edit_date",
+    "Position": 9,
+    "IsPrintable": false
+  },
+  {
+    "Code": "user_edit_id",
+    "Name": "user_edit_id",
+    "Position": 10,
+    "IsPrintable": false
+  }
+]

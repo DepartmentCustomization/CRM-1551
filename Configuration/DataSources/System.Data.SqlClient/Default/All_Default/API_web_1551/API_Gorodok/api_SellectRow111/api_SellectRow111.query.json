@@ -1,0 +1,16 @@
+{
+  "ModelType": "Query",
+  "Code": "api_SellectRow111",
+  "Name": "api_SellectRow111",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Sql": "select @Id iId",
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

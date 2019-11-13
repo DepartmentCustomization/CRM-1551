@@ -1,0 +1,64 @@
+[
+  {
+    "Code": "@problem_place",
+    "Name": "problem_place"
+  },
+  {
+    "Code": "@phone_number",
+    "Name": "phone_number"
+  },
+  {
+    "Code": "@user_edit_id",
+    "Name": "user_edit_id",
+    "ParameterType": "CurrentUserId"
+  },
+  {
+    "Code": "@comment_moderator",
+    "Name": "comment_moderator"
+  },
+  {
+    "Code": "@appeal_id",
+    "Name": "appeal_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@aditional_Information",
+    "Name": "aditional_Information"
+  },
+  {
+    "Code": "@mail",
+    "Name": "mail"
+  },
+  {
+    "Code": "@Id",
+    "Name": "Id",
+    "ParameterType": "Integer",
+    "IsPrimaryKey": true
+  },
+  {
+    "Code": "@question_direction",
+    "Name": "question_direction"
+  },
+  {
+    "Code": "@applicant_adrress",
+    "Name": "applicant_adrress"
+  },
+  {
+    "Code": "@name",
+    "Name": "name"
+  },
+  {
+    "Code": "@user_id",
+    "Name": "user_id",
+    "ParameterType": "CurrentUserId"
+  },
+  {
+    "Code": "@appeal_content",
+    "Name": "appeal_content"
+  },
+  {
+    "Code": "@state_id",
+    "Name": "state_id",
+    "ParameterType": "Integer"
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "Code": "MainGroup",
+  "Name": "MainGroup",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "Doc",
+      "Name": "Doc",
+      "FieldType": "text",
+      "Position": 1
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "ModelType": "Query",
+  "Code": "ForSite_Question_Btn_Add_InsertRow",
+  "Name": "ForSite_Question_Btn_Add_InsertRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "AppealFromSiteResultId",
+      "Name": "AppealFromSiteResultId",
+      "Position": 0
+    },
+    {
+      "Code": "AppealFromSiteResultName",
+      "Name": "AppealFromSiteResultName",
+      "Position": 1
+    },
+    {
+      "Code": "Applicant_Id",
+      "Name": "Applicant_Id",
+      "Position": 2
+    },
+    {
+      "Code": "AppealId",
+      "Name": "AppealId",
+      "Position": 3
+    }
+  ]
+}

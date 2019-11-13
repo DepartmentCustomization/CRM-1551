@@ -1,0 +1,8 @@
+{
+  "DashboardGroupCode": "StartPage",
+  "Description": "",
+  "DescriptionUrl": "",
+  "ModelType": "Dashboard",
+  "Code": "import_appeals_ugl",
+  "Name": "Завантаження звернень УГЛ"
+}

@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_Complains_Update",
+  "Name": "cx_Complains_Update",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

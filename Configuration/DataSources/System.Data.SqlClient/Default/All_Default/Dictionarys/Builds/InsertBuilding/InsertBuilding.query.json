@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "InsertBuilding",
+  "Name": "InsertBuilding",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

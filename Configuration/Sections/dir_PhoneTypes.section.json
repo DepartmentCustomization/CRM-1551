@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "dir_PhoneTypes_Insert"
+  },
+  "ModelType": "Section",
+  "Code": "dir_PhoneTypes",
+  "Name": "Довідник: Типи номерів телефонів",
+  "FormCode": "Form_dictionary_universal",
+  "SelectRowsQueryCode": "dir_PhoneTypes_SelectRows",
+  "SelectRowQueryCode": "dir_PhoneTypes_SelectRow",
+  "UpdateQueryCode": "dir_PhoneTypes_Update",
+  "DeleteQueryCode": "dir_PhoneTypes_Delete"
+}

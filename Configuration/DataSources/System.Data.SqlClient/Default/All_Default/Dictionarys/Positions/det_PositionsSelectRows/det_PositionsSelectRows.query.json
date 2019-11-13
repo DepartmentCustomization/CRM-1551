@@ -1,0 +1,53 @@
+{
+  "ModelType": "Query",
+  "Code": "det_PositionsSelectRows",
+  "Name": "det_PositionsSelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "address",
+      "Name": "Адреса",
+      "Position": 1,
+      "ViewState": "Hidden",
+      "IsPrintable": false,
+      "SqlName": "[Organizations].address",
+      "FilterParameterCode": "@address"
+    },
+    {
+      "Code": "short_name",
+      "Name": "Організація",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "[Organizations].short_name",
+      "FilterParameterCode": "@short_name"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@position_id",
+      "Name": "position_id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

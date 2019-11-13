@@ -1,0 +1,19 @@
+{
+  "DetailType": "Section",
+  "ModelType": "Detail",
+  "Code": "Detail_Assignments_for_view_FILE",
+  "Name": "Файли та листи",
+  "FormCode": "Form_Ass_Documents",
+  "SelectRowsQueryCode": "cx_Ass_Documents_ReadOnly_SelectRows",
+  "SelectRowQueryCode": "cx_Ass_Documents_ReadOnly_SelectRow",
+  "UpdateQueryCode": "cx_Ass_Documents_ReadOnly_SelectRow",
+  "SectionCode": "Ass_Documents_ReadOnly",
+  "Position": 1,
+  "IsExpand": true,
+  "QueryParameters": [
+    {
+      "FormFieldName": "assignmentConsiderations_id",
+      "ParameterCode": "@Id"
+    }
+  ]
+}

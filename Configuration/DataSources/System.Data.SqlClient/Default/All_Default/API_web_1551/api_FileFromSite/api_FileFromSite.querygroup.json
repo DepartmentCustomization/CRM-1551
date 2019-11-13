@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "api_FileFromSite",
+  "Name": "api_FileFromSite",
+  "ConnectionCode": "Default"
+}

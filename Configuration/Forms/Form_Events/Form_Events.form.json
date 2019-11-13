@@ -1,0 +1,29 @@
+{
+  "ModelType": "Form",
+  "Code": "Form_Events",
+  "Name": "Заходи",
+  "Details": [
+    "string:Details\\Files.detail.json",
+    "string:Details\\EventHistory.detail.json",
+    "string:Details\\Detail_Event_Questions.detail.json",
+    "string:Details\\EventHistory_Details.detail.json",
+    "string:Details\\P_Question.detail.json",
+    "string:Details\\Detail_Events_Objects.detail.json",
+    "string:Details\\Detail_EventQuestionsTypes_create.detail.json",
+    "string:Details\\Detail_EventQuestionsTypes.detail.json"
+  ],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\Group_Events_Main.fieldgroup.json",
+      "string:FieldGroups\\Group_Events_Audio.fieldgroup.json"
+    ],
+    "DefaultFields": [
+      {
+        "Code": "event_id",
+        "ParentFormFieldCodeForKeyValue": "event_id",
+        "ParentFormFieldCodeForDisplayValue": "event_id"
+      }
+    ],
+    "Script": "string:Form_Events.form.js"
+  }
+}

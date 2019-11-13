@@ -1,0 +1,20 @@
+{
+  "ModelType": "Detail",
+  "Code": "Detail_Appeals_OtherByPhone",
+  "Name": "Мешканці за телефоном",
+  "FormCode": "Form_New_Applicant",
+  "SelectRowsQueryCode": "cx_Applicants_OtherResidentsByPhone_SelectRows",
+  "SelectRowQueryCode": "cx_New_Applicant_SelectRow",
+  "SectionCode": "",
+  "Position": 3,
+  "IsExpand": true,
+  "Add": {
+    "InsertQueryCode": "cx_New_Applicant_Insert"
+  },
+  "QueryParameters": [
+    {
+      "FormFieldName": "phone_number",
+      "ParameterCode": "@phone"
+    }
+  ]
+}

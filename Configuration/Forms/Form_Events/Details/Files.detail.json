@@ -1,0 +1,23 @@
+{
+  "DetailType": "File",
+  "ModelType": "Detail",
+  "Code": "Files",
+  "Name": "Аудіо-файл",
+  "FormCode": "AudioFiles",
+  "SelectRowsQueryCode": "cx_FilesSelectRows",
+  "SelectRowQueryCode": "cx_FilesSelectRow",
+  "SectionCode": "",
+  "DeleteQueryCode": "cx_FilesDeleteRow",
+  "Position": 4,
+  "IsExpand": true,
+  "PrintType": "None",
+  "Add": {
+    "InsertQueryCode": "cx_FilesUpdateRow"
+  },
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@id"
+    }
+  ]
+}

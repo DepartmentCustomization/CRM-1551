@@ -1,0 +1,14 @@
+{
+  "ModelType": "Form",
+  "Code": "api_Gorodok",
+  "Name": "api_Gorodok",
+  "Details": [
+    "string:Details\\api_GorodokBuildSelectRows1.detail.json"
+  ],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\main.fieldgroup.json"
+    ],
+    "DefaultFields": []
+  }
+}

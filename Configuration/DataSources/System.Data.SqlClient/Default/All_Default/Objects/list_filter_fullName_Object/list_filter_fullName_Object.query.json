@@ -1,0 +1,31 @@
+{
+  "ModelType": "Query",
+  "Code": "list_filter_fullName_Object",
+  "Name": "list_filter_fullName_Object",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "IsPrintable": false
+    },
+    {
+      "Code": "object_name",
+      "Name": "object_name",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "[Objects].name",
+      "FilterParameterCode": "@Objectsname"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@buil_id",
+      "Name": "buil_id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_QuestionTypes_SelectRow",
+  "Name": "cx_QuestionTypes_SelectRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

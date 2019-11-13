@@ -1,0 +1,61 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 1,
+    "IsPrimaryKey": true,
+    "IsPrintable": false
+  },
+  {
+    "Code": "obj_type_id",
+    "Name": "obj_type_id",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "object_name",
+    "Name": "object_name",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "district_id",
+    "Name": "district_id",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "street_id",
+    "Name": "street_id",
+    "Position": 5,
+    "IsPrintable": false
+  },
+  {
+    "Code": "obj_type_name",
+    "Name": "obj_type_name",
+    "Position": 6,
+    "ReferenceKeyCode": "obj_type_id"
+  },
+  {
+    "Code": "district_name",
+    "Name": "district_name",
+    "Position": 7,
+    "ReferenceKeyCode": "district_id"
+  },
+  {
+    "Code": "builbing_id",
+    "Name": "builbing_id",
+    "Position": 8
+  },
+  {
+    "Code": "build_name",
+    "Name": "build_name",
+    "Position": 9,
+    "ReferenceKeyCode": "builbing_id"
+  },
+  {
+    "Code": "is_active",
+    "Name": "is_active",
+    "Position": 10
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "ModelType": "Query",
+  "Code": "api_FileFromSite_SelectRow",
+  "Name": "api_FileFromSite_SelectRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrimaryKey": true,
+      "IsPrintable": false
+    },
+    {
+      "Code": "AppealFromSiteId",
+      "Name": "AppealFromSiteId",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "File",
+      "Name": "File",
+      "Position": 2,
+      "IsFileContent": true,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Name",
+      "Name": "Name",
+      "Position": 3,
+      "IsFileName": true,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

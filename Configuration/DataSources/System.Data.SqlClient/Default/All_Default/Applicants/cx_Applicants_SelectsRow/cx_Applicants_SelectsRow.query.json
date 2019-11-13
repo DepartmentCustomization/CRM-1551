@@ -1,0 +1,15 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_Applicants_SelectsRow",
+  "Name": "cx_Applicants_SelectsRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@applicant_id",
+      "Name": "applicant_id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

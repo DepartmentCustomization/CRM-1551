@@ -1,0 +1,27 @@
+{
+  "ModelType": "Query",
+  "Code": "ys_report_list",
+  "Name": "ys_report_list",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Code",
+      "Name": "Code",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Name",
+      "Name": "Name",
+      "Position": 2,
+      "IsPrintable": false
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "Code": "@pageOffsetRows",
+    "Name": "pageOffsetRows",
+    "ParameterType": "Integer",
+    "IsPageOffsetRows": true
+  },
+  {
+    "Code": "@res_id",
+    "Name": "res_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@programuser_id",
+    "Name": "programuser_id",
+    "ParameterType": "CurrentUserId"
+  },
+  {
+    "Code": "@pageLimitRows",
+    "Name": "pageLimitRows",
+    "ParameterType": "Integer",
+    "IsPageLimitRows": true
+  },
+  {
+    "Code": "@AssignmentId",
+    "Name": "AssignmentId",
+    "ParameterType": "Integer"
+  }
+]

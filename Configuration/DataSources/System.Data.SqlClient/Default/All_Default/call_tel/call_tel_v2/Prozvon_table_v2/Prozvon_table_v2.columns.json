@@ -1,0 +1,120 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 0,
+    "IsPrintable": false
+  },
+  {
+    "Code": "registration_number",
+    "Name": "registration_number",
+    "Position": 1,
+    "IsPrintable": false
+  },
+  {
+    "Code": "QuestionType",
+    "Name": "QuestionType",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "full_name",
+    "Name": "full_name",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "phone_number",
+    "Name": "phone_number",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "District",
+    "Name": "District",
+    "Position": 5,
+    "IsPrintable": false,
+    "SqlName": "",
+    "FilterParameterCode": ""
+  },
+  {
+    "Code": "house",
+    "Name": "house",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "place_problem",
+    "Name": "place_problem",
+    "Position": 7,
+    "IsPrintable": false
+  },
+  {
+    "Code": "vykon",
+    "Name": "vykon",
+    "Position": 8,
+    "IsPrintable": false
+  },
+  {
+    "Code": "zmist",
+    "Name": "zmist",
+    "Position": 9,
+    "IsPrintable": false
+  },
+  {
+    "Code": "comment",
+    "Name": "comment",
+    "Position": 10,
+    "IsPrintable": false
+  },
+  {
+    "Code": "history",
+    "Name": "history",
+    "Position": 11
+  },
+  {
+    "Code": "ApplicantsId",
+    "Name": "ApplicantsId",
+    "Position": 12
+  },
+  {
+    "Code": "BuildingId",
+    "Name": "BuildingId",
+    "Position": 13
+  },
+  {
+    "Code": "Organizations_Id",
+    "Name": "Organizations_Id",
+    "Position": 14
+  },
+  {
+    "Code": "cc_nedozvon",
+    "Name": "cc_nedozvon",
+    "Position": 15
+  },
+  {
+    "Code": "entrance",
+    "Name": "entrance",
+    "Position": 16
+  },
+  {
+    "Code": "edit_date",
+    "Name": "edit_date",
+    "Position": 17
+  },
+  {
+    "Code": "control_comment",
+    "Name": "control_comment",
+    "Position": 18
+  },
+  {
+    "Code": "rn",
+    "Name": " rn",
+    "Position": 19
+  },
+  {
+    "Code": "registration_date",
+    "Name": " registration_date",
+    "Position": 20
+  }
+]

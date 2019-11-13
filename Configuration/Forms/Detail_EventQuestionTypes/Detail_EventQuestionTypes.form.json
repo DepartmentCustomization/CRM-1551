@@ -1,0 +1,18 @@
+{
+  "ModelType": "Form",
+  "Code": "Detail_EventQuestionTypes",
+  "Name": "Форма деталі: Заходи - типи питань",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\EventClassType.fieldgroup.json"
+    ],
+    "DefaultFields": [
+      {
+        "Code": "event_id",
+        "ParentFormFieldCodeForKeyValue": "event_id",
+        "ParentFormFieldCodeForDisplayValue": "event_id"
+      }
+    ]
+  }
+}

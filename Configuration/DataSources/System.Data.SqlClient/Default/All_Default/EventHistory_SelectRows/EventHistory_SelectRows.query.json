@@ -1,0 +1,60 @@
+{
+  "ModelType": "Query",
+  "Code": "EventHistory_SelectRows",
+  "Name": "EventHistory_SelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "Log_Date",
+      "Name": "Дата операції",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "Log_Date",
+      "FilterParameterCode": "@Log_Date"
+    },
+    {
+      "Code": "Log_User_FIO",
+      "Name": "Виконав",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "@Log_User_FIO",
+      "FilterParameterCode": "Log_User_FIO"
+    },
+    {
+      "Code": "Log_Activity",
+      "Name": "Операція",
+      "Position": 3,
+      "IsPrintable": false,
+      "SqlName": "Log_Activity",
+      "FilterParameterCode": "@Log_Activity"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@event_id",
+      "Name": "event_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

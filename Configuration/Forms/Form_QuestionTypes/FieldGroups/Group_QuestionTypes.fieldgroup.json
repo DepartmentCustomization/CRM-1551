@@ -1,0 +1,170 @@
+{
+  "Code": "Group_QuestionTypes",
+  "Name": "Тип питання",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "name",
+      "Name": "Тип питання",
+      "FieldType": "text",
+      "Position": 1,
+      "Width": "100%"
+    },
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "FieldType": "number",
+      "Position": 2,
+      "IsHidden": true,
+      "Width": "20%"
+    },
+    {
+      "Code": "active",
+      "Name": "Активне",
+      "FieldType": "checkbox",
+      "Position": 3,
+      "Width": "20%"
+    },
+    {
+      "Code": "emergency",
+      "Name": "Аварійне",
+      "FieldType": "checkbox",
+      "Position": 5,
+      "Width": "20%"
+    },
+    {
+      "Code": "parent_organization_is",
+      "Name": "Батьківська організація",
+      "FieldType": "checkbox",
+      "Position": 6,
+      "Width": "25%"
+    },
+    {
+      "Code": "rule_id",
+      "Name": "Правило вибору",
+      "FieldType": "lookup",
+      "Position": 7,
+      "QueryCode": "list_QuestionTypes_SelectRows1",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name0",
+      "QueryParameters": []
+    },
+    {
+      "Code": "btn_changeRule",
+      "Name": "Змінити правило",
+      "FieldType": "button",
+      "Position": 8,
+      "IsHidden": true,
+      "Width": "30%"
+    },
+    {
+      "Code": "Attention_term_hours",
+      "Name": "Термін Увага",
+      "FieldType": "text",
+      "IsRequired": true,
+      "Position": 9,
+      "Width": "20%",
+      "Icon": "schedule"
+    },
+    {
+      "Code": "execution_term",
+      "Name": "Термін Контролю",
+      "FieldType": "text",
+      "IsRequired": true,
+      "Position": 10,
+      "Width": "20%",
+      "Icon": "schedule"
+    },
+    {
+      "Code": "question_type_id",
+      "Name": "Батьківський тип питання",
+      "FieldType": "select",
+      "Position": 11,
+      "Width": "100%",
+      "Icon": "dns",
+      "QueryCode": "cx_dir_parentName_QuestionTypes_SelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "comments",
+      "Name": "Нотатки",
+      "FieldType": "textarea",
+      "Position": 12,
+      "Width": "100%",
+      "Icon": "speaker_notes",
+      "Rows": 2
+    },
+    {
+      "Code": "Object_is",
+      "Name": "               Об'єкт",
+      "FieldType": "checkbox",
+      "Position": 12,
+      "Width": "26%"
+    },
+    {
+      "Code": "Organization_is",
+      "Name": "Організація",
+      "FieldType": "checkbox",
+      "Position": 14,
+      "Width": "26%"
+    },
+    {
+      "Code": "www",
+      "Name": "Відноситься до рейтингу",
+      "FieldType": "radio",
+      "Position": 16,
+      "IsHidden": true,
+      "Items": [
+        {
+          "Code": "1",
+          "Name": "ЖКГ"
+        },
+        {
+          "Code": "2",
+          "Name": "Благоустрій"
+        },
+        {
+          "Code": "3",
+          "Name": "Життєдіяльність"
+        }
+      ]
+    },
+    {
+      "Code": "qwerty",
+      "Name": "Відноситься:",
+      "FieldType": "text",
+      "Position": 19,
+      "Width": "100%"
+    },
+    {
+      "Code": "zhkg",
+      "Name": "ЖКГ",
+      "FieldType": "checkbox",
+      "Position": 20,
+      "Width": "25%"
+    },
+    {
+      "Code": "blag",
+      "Name": "Благоустрій",
+      "FieldType": "checkbox",
+      "Position": 21,
+      "Width": "25%"
+    },
+    {
+      "Code": "zhytraion",
+      "Name": "Життєдіяльність району",
+      "FieldType": "checkbox",
+      "Position": 22,
+      "Width": "40%"
+    },
+    {
+      "Code": "index",
+      "Name": "index",
+      "FieldType": "text",
+      "Position": 123,
+      "IsHidden": true
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "ModelType":"Section",
+  "Code":"demo",
+  "Name":"demo",
+  "SelectRowsQueryCode":"selectrows",
+  "Add":
+  {
+    "AddType":"General",
+    "InsertQueryCode":"insertrow",
+    "ImportCsv":
+    {
+      "ImportCsvType":"ByRow",
+      "TableName":"[dbo].[УГЛ]",
+      "BatchSize":50
+    }
+  }
+}

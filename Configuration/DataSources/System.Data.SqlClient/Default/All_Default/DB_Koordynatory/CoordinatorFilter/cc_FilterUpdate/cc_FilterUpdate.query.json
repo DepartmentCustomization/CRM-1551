@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "cc_FilterUpdate",
+  "Name": "cc_FilterUpdate",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

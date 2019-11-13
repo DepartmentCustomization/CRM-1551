@@ -1,0 +1,23 @@
+{
+  "ModelType": "Query",
+  "Code": "InsertEventClassQuestionType",
+  "Name": "InsertEventClassQuestionType",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@is_hard_connection",
+      "Name": "Признак поз'язаності",
+      "ParameterType": "Boolean"
+    },
+    {
+      "Code": "@questionTypeId",
+      "Name": "questionTypeId",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@name",
+      "Name": "Назва"
+    }
+  ]
+}

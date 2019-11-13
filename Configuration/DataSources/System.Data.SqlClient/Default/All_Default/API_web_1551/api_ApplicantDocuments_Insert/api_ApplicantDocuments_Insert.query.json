@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "api_ApplicantDocuments_Insert",
+  "Name": "api_ApplicantDocuments_Insert",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

@@ -1,0 +1,76 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 1,
+    "IsPrimaryKey": true,
+    "IsPrintable": false
+  },
+  {
+    "Code": "districts_name",
+    "Name": "districts_name",
+    "Position": 2,
+    "IsPrintable": false,
+    "ReferenceKeyCode": "districts_id"
+  },
+  {
+    "Code": "districts_id",
+    "Name": "districts_id",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "buildings_name",
+    "Name": "buildings_name",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "building_address",
+    "Name": "building_address",
+    "Position": 5,
+    "IsPrintable": false
+  },
+  {
+    "Code": "flat",
+    "Name": "flat",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "house_block",
+    "Name": "house_block",
+    "Position": 7,
+    "IsPrintable": false
+  },
+  {
+    "Code": "entrance",
+    "Name": "entrance",
+    "Position": 8,
+    "IsPrintable": false
+  },
+  {
+    "Code": "main",
+    "Name": "main",
+    "Position": 9,
+    "IsPrintable": false
+  },
+  {
+    "Code": "active",
+    "Name": "active",
+    "Position": 10,
+    "IsPrintable": false
+  },
+  {
+    "Code": "applicant_id",
+    "Name": "applicant_id",
+    "Position": 11
+  },
+  {
+    "Code": "building_address_name",
+    "Name": "building_address_name",
+    "Position": 12,
+    "IsPrintable": false,
+    "ReferenceKeyCode": "building_address"
+  }
+]

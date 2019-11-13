@@ -1,0 +1,15 @@
+{
+  "ModelType": "Query",
+  "Code": "cc_FilterDelete",
+  "Name": "cc_FilterDelete",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@id",
+      "Name": "id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

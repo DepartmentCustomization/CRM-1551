@@ -1,0 +1,21 @@
+{
+  "ModelType": "Query",
+  "Code": "cc_FilterQuestionTypes",
+  "Name": "cc_FilterQuestionTypes",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "name",
+      "Name": "name",
+      "Position": 1,
+      "IsPrintable": false
+    }
+  ]
+}

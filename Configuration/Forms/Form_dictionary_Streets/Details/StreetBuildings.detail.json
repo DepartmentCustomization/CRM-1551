@@ -1,0 +1,15 @@
+{
+  "ModelType": "Detail",
+  "Code": "StreetBuildings",
+  "Name": "Житлові будинки",
+  "SelectRowsQueryCode": "SelectStreetBuildings",
+  "SectionCode": "",
+  "Position": 2,
+  "IsExpand": true,
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@Id"
+    }
+  ]
+}

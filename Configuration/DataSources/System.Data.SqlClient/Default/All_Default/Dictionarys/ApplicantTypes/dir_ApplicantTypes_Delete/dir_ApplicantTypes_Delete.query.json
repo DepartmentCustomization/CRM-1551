@@ -1,0 +1,16 @@
+{
+  "ModelType": "Query",
+  "Code": "dir_ApplicantTypes_Delete",
+  "Name": "dir_ApplicantTypes_Delete",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Sql": "DELETE FROM [dbo].[ApplicantTypes] WHERE Id = @Id",
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

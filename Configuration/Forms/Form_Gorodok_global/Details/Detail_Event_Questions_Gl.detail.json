@@ -1,0 +1,13 @@
+{
+    "ModelType": "Detail",
+    "Code": "Detail_Event_Questions_Gl",
+    "Name": "Пов'язані питання",
+    "SelectRowsQueryCode": "list_Related_question_gl",
+    "SectionCode": "",
+    "Position": 2,
+    "IsExpand": true,
+    "QueryParameters": [{
+        "FormFieldName": "Id",
+        "ParameterCode": "@Id"
+    }]
+}

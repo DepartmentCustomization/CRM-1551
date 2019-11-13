@@ -1,0 +1,27 @@
+{
+  "Code": "Group_File_Que",
+  "Name": "Файл",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "Name",
+      "Name": "Назва файла",
+      "FieldType": "text",
+      "Position": 1
+    },
+    {
+      "Code": "File",
+      "Name": "Файл",
+      "FieldType": "file",
+      "Position": 2,
+      "Width": "100%",
+      "FileNameColumnCode": "Name"
+    },
+    {
+      "Code": "question_doc_id",
+      "Name": "question_doc_id",
+      "FieldType": "number",
+      "Position": 22
+    }
+  ]
+}

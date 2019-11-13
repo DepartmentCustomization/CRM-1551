@@ -1,0 +1,15 @@
+{
+  "ModelType": "Detail",
+  "Code": "AppealsFromSite",
+  "Name": "Доручення відкореговане заявником",
+  "SelectRowsQueryCode": "api_AppealsFromSiteSelectRows",
+  "SectionCode": "",
+  "Position": 1,
+  "IsExpand": true,
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@AppealFromSiteId"
+    }
+  ]
+}

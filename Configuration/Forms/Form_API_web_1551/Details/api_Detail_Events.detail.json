@@ -1,0 +1,15 @@
+{
+  "ModelType": "Detail",
+  "Code": "api_Detail_Events",
+  "Name": "api_Detail_Events",
+  "SelectRowsQueryCode": "api_Detail_Events",
+  "SectionCode": "",
+  "Position": 1,
+  "IsExpand": true,
+  "QueryParameters": [
+    {
+      "FormFieldName": "district_id",
+      "ParameterCode": "@ApplicantId"
+    }
+  ]
+}

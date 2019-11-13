@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_PositionsUpdateRow",
+  "Name": "ak_PositionsUpdateRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

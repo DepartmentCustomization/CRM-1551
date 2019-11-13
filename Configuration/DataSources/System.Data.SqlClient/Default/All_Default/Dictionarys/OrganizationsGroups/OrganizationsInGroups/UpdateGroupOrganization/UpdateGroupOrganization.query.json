@@ -1,0 +1,20 @@
+{
+  "ModelType": "Query",
+  "Code": "UpdateGroupOrganization",
+  "Name": "UpdateGroupOrganization",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@org",
+      "Name": "org",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

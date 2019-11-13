@@ -1,0 +1,12 @@
+{
+  "ModelType": "Form",
+  "Code": "ApplicantPrivilege",
+  "Name": "Форма довідника: Пільги",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\ApplicantPrivilege.fieldgroup.json"
+    ],
+    "DefaultFields": []
+  }
+}

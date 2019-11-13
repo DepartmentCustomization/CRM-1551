@@ -1,0 +1,38 @@
+{
+  "ModelType": "Query",
+  "Code": "List_Buildings_SelectRows",
+  "Name": "List_Buildings_SelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Name",
+      "Name": "Name",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "isnull([StreetTypes].shortname,N'')+N' '+isnull([Streets].name,N'')+N' '+isnull([Buildings].name,N'')",
+      "FilterParameterCode": "@Name"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

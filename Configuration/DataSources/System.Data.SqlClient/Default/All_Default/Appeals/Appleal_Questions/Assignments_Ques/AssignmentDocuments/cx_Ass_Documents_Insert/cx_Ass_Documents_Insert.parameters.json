@@ -1,0 +1,36 @@
+[
+  {
+    "Code": "@assignment_сons_id",
+    "Name": "assignment_сons_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@content",
+    "Name": "content"
+  },
+  {
+    "Code": "@user_edit_id",
+    "Name": "user_edit_id",
+    "ParameterType": "CurrentUserId"
+  },
+  {
+    "Code": "@Id",
+    "Name": "Id",
+    "ParameterType": "Integer",
+    "IsPrimaryKey": true
+  },
+  {
+    "Code": "@user_id",
+    "Name": "user_id",
+    "ParameterType": "CurrentUserId"
+  },
+  {
+    "Code": "@name",
+    "Name": "name"
+  },
+  {
+    "Code": "@doc_type_id",
+    "Name": "doc_type_id",
+    "ParameterType": "Integer"
+  }
+]

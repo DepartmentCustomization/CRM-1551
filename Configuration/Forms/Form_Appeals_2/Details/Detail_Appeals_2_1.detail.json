@@ -1,0 +1,10 @@
+{
+  "ModelType": "Detail",
+  "Code": "Detail_Appeals_2_1",
+  "Name": "Test",
+  "SelectRowsQueryCode": "Gag",
+  "SectionCode": "",
+  "Position": 1,
+  "IsExpand": true,
+  "QueryParameters": []
+}

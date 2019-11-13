@@ -1,0 +1,19 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_AssignmentTypesUpdateRow",
+  "Name": "ak_AssignmentTypesUpdateRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    },
+    {
+      "Code": "@name",
+      "Name": "name"
+    }
+  ]
+}

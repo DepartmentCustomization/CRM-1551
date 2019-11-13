@@ -1,0 +1,15 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_ComplainTypesDeleteRow",
+  "Name": "ak_ComplainTypesDeleteRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@id",
+      "Name": "id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

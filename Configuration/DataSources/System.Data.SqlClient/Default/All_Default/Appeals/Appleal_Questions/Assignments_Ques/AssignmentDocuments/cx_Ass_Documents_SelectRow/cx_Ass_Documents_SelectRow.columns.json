@@ -1,0 +1,59 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 1,
+    "IsPrimaryKey": true,
+    "IsPrintable": false
+  },
+  {
+    "Code": "assignment_сons_id",
+    "Name": "assignment_сons_id",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "doc_type_id",
+    "Name": "doc_type_id",
+    "Position": 3
+  },
+  {
+    "Code": "name",
+    "Name": "name",
+    "Position": 5
+  },
+  {
+    "Code": "content",
+    "Name": "content",
+    "Position": 6
+  },
+  {
+    "Code": "add_date",
+    "Name": "add_date",
+    "Position": 7
+  },
+  {
+    "Code": "user_id",
+    "Name": "user_id",
+    "Position": 8,
+    "IsPrintable": false
+  },
+  {
+    "Code": "edit_date",
+    "Name": "edit_date",
+    "Position": 9,
+    "IsPrintable": false
+  },
+  {
+    "Code": "user_edit_id",
+    "Name": "user_edit_id",
+    "Position": 10,
+    "IsPrintable": false
+  },
+  {
+    "Code": "doc_type_name",
+    "Name": "doc_type_name",
+    "Position": 11,
+    "ReferenceKeyCode": "doc_type_id"
+  }
+]

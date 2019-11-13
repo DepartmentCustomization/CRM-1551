@@ -1,0 +1,11 @@
+{
+  "Add": {
+    "InsertQueryCode": "api_ApplicantBasicInformation_Insert"
+  },
+  "ModelType": "Section",
+  "Code": "API_web_1551_Applicant",
+  "Name": "API_web_1551_Applicant",
+  "FormCode": "Form_API_web_1551_Applicant",
+  "SelectRowsQueryCode": "api_ApplicantBasicInformation_SelectRows",
+  "SelectRowQueryCode": "api_ApplicantBasicInformation_SelectRow"
+}

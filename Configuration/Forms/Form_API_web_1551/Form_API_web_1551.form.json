@@ -1,0 +1,16 @@
+{
+  "ModelType": "Form",
+  "Code": "Form_API_web_1551",
+  "Name": "Form_API_web_1551",
+  "Details": [
+    "string:Details\\files0.detail.json",
+    "string:Details\\api_Detail_Events.detail.json"
+  ],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\Group_API_web_1551.fieldgroup.json"
+    ],
+    "DefaultFields": [],
+    "Script": "string:Form_API_web_1551.form.js"
+  }
+}

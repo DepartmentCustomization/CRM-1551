@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "QuestionTypes",
+  "Name": "Класифікатор типів питань",
+  "ConnectionCode": "Default"
+}

@@ -1,0 +1,58 @@
+{
+  "ModelType": "Query",
+  "Code": "SelectBuildingsHistory",
+  "Name": "SelectBuildingsHistory",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "user_id",
+      "Name": "Користувач",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "field",
+      "Name": "Поле",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "before",
+      "Name": "Було",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "after",
+      "Name": "Стало",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "change_datetime",
+      "Name": "Дата та час зміни",
+      "Position": 4,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

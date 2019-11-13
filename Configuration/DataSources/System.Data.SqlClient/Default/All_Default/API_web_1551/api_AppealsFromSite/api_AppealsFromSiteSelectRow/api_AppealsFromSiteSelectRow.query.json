@@ -1,0 +1,73 @@
+{
+  "ModelType": "Query",
+  "Code": "api_AppealsFromSiteSelectRow",
+  "Name": "api_AppealsFromSiteSelectRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "AppealFromSiteId",
+      "Name": "AppealFromSiteId",
+      "Position": 0,
+      "IsPrintable": false,
+      "SqlName": "",
+      "FilterParameterCode": ""
+    },
+    {
+      "Code": "receipt_date",
+      "Name": "receipt_date",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Result",
+      "Name": "Result",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Object",
+      "Name": "Object",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "WorkDirectionTypes",
+      "Name": "WorkDirectionTypes",
+      "Position": 4,
+      "IsPrintable": false
+    },
+    {
+      "Code": "appeal_content",
+      "Name": "appeal_content",
+      "Position": 5,
+      "IsPrintable": false
+    },
+    {
+      "Code": "comment_moderator",
+      "Name": "comment_moderator",
+      "Position": 6,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@ApplicantFromSiteId",
+      "Name": "ApplicantFromSiteId",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

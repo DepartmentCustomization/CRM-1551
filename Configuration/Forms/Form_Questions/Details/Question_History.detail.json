@@ -1,0 +1,15 @@
+{
+  "ModelType": "Detail",
+  "Code": "Question_History",
+  "Name": "Детальна історія",
+  "SelectRowsQueryCode": "QestionHistory_Detail_SelectRows",
+  "SectionCode": "",
+  "Position": 45,
+  "IsWithClosing": true,
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@history_id"
+    }
+  ]
+}

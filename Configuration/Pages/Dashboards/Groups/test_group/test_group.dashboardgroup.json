@@ -1,0 +1,8 @@
+{
+  "Icon": "dashboard",
+  "Position": 1,
+  "IconColor": "#cddc39",
+  "ModelType": "DashboardGroup",
+  "Code": "test_group",
+  "Name": "Тестова группа"
+}

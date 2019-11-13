@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "ApplicantConnectionEfforts_InsertRow",
+  "Name": "ApplicantConnectionEfforts_InsertRow",
+  "ConnectionCode": "CRM_1551_Bot_Intagration",
+  "IsUsedForRightsFilter": false
+}

@@ -1,0 +1,206 @@
+{
+  "Code": "UGL_Group_Aplicant",
+  "Name": "Заявник",
+  "Position": 2,
+  "Fields": [
+    {
+      "Code": "Applicant_PIB",
+      "Name": "Прізвище, Ім'я та По батькові*",
+      "FieldType": "text",
+      "Position": 1,
+      "Width": "100%"
+    },
+    {
+      "Code": "CardPhone",
+      "Name": "Номер телефону",
+      "FieldType": "text",
+      "Position": 2,
+      "Width": "100%"
+    },
+    {
+      "Code": "ApplicantUGL",
+      "Name": "Заявник з УГЛ",
+      "FieldType": "textarea",
+      "Position": 4,
+      "Width": "100%"
+    },
+    {
+      "Code": "Applicant_Building",
+      "Name": "Будинок*",
+      "FieldType": "select",
+      "Position": 4,
+      "Width": "75%",
+      "QueryCode": "list_houses_number2",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "number",
+      "QueryParameters": []
+    },
+    {
+      "Maxlength": 10,
+      "Code": "Applicant_HouseBlock",
+      "Name": "Корпус",
+      "FieldType": "text",
+      "Position": 5,
+      "IsHidden": true,
+      "Width": "33%"
+    },
+    {
+      "Code": "Applicant_Entrance",
+      "Name": "П",
+      "FieldType": "number",
+      "Position": 6,
+      "Width": "10%"
+    },
+    {
+      "Maxlength": 15,
+      "Code": "Applicant_Flat",
+      "Name": "Кв",
+      "FieldType": "text",
+      "Position": 7,
+      "Width": "15%"
+    },
+    {
+      "Code": "Applicant_District",
+      "Name": "Район",
+      "FieldType": "text",
+      "Position": 8
+    },
+    {
+      "Code": "ExecutorInRoleForObject",
+      "Name": "Балансоутримувач",
+      "FieldType": "text",
+      "Position": 9
+    },
+    {
+      "Code": "Applicant_Privilege",
+      "Name": "Пільги",
+      "FieldType": "select",
+      "Position": 10,
+      "Width": "100%",
+      "QueryCode": "List_ApplicantPrivilege_SelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "Applicant_SocialStates",
+      "Name": "Соціальний стан",
+      "FieldType": "select",
+      "Position": 11,
+      "QueryCode": "List_SocialStates_SelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "Applicant_CategoryType",
+      "Name": "Категорія заявника",
+      "FieldType": "select",
+      "Position": 12,
+      "IsHidden": true,
+      "QueryCode": "List_CategoryType_SelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "Applicant_Type",
+      "Name": "Тип заявника",
+      "FieldType": "select",
+      "Position": 13,
+      "QueryCode": "dir_ApplicantTypes_SelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "Applicant_Sex",
+      "Name": "Стать",
+      "FieldType": "radio",
+      "Position": 14,
+      "Width": "35%",
+      "Items": [
+        {
+          "Code": "2",
+          "Name": "Чоловік"
+        },
+        {
+          "Code": "1",
+          "Name": "Жінка"
+        }
+      ]
+    },
+    {
+      "Code": "Applicant_BirthDate",
+      "Name": "Дата народження",
+      "FieldType": "date",
+      "Position": 15,
+      "Width": "45%"
+    },
+    {
+      "Code": "Applicant_Age",
+      "Name": "Вік",
+      "FieldType": "number",
+      "Position": 16,
+      "Width": "15%"
+    },
+    {
+      "Code": "Applicant_Email",
+      "Name": "E-mail",
+      "FieldType": "text",
+      "Position": 17
+    },
+    {
+      "Maxlength": 50,
+      "Code": "Applicant_Comment",
+      "Name": "Нотатки",
+      "FieldType": "text",
+      "Position": 18
+    },
+    {
+      "Code": "Applicant_Btn_Clear",
+      "Name": "Очистити",
+      "FieldType": "button",
+      "Position": 997,
+      "Width": "25%",
+      "Icon": "cached",
+      "IconHint": "Очистити інформацію по Заявнику"
+    },
+    {
+      "Code": "Applicant_Btn_Add",
+      "Name": "Зберегти",
+      "FieldType": "button",
+      "Position": 998,
+      "Width": "25%",
+      "Icon": ""
+    },
+    {
+      "Code": "Question_Aplicant_Btn_Add",
+      "Name": "Додати питання",
+      "FieldType": "button",
+      "Position": 999,
+      "Icon": "note_add"
+    },
+    {
+      "Code": "Adress_for_answer",
+      "Name": "Adress  (скрите поле)",
+      "FieldType": "text",
+      "Position": 1445,
+      "IsHidden": true
+    },
+    {
+      "Code": "Applicant_Id",
+      "Name": "Applicant_Id  (скрите поле)",
+      "FieldType": "number",
+      "Position": 1999,
+      "IsHidden": true
+    },
+    {
+      "Code": "Applicant_Phone_Hide",
+      "Name": "Applicant_Phone_Hide",
+      "FieldType": "text",
+      "Position": 2000,
+      "IsHidden": true
+    }
+  ]
+}

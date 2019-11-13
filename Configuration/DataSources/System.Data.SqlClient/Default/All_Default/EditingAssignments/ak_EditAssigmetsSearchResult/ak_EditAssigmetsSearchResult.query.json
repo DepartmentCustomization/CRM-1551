@@ -1,0 +1,25 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_EditAssigmetsSearchResult",
+  "Name": "ak_EditAssigmetsSearchResult",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@appealNum",
+      "Name": "appealNum"
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

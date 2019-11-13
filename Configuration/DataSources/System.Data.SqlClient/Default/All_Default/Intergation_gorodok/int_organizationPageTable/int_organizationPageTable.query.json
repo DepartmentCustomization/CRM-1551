@@ -1,0 +1,78 @@
+{
+  "ModelType": "Query",
+  "Code": "int_organizationPageTable",
+  "Name": "int_organizationPageTable",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "operation",
+      "Name": "operation",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "become",
+      "Name": "become",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "it_was",
+      "Name": "it_was",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "name_1551",
+      "Name": "name_1551",
+      "Position": 4,
+      "IsPrintable": false,
+      "ReferenceKeyCode": "id_1551"
+    },
+    {
+      "Code": "id_1551",
+      "Name": "id_1551",
+      "Position": 5,
+      "IsPrintable": false
+    },
+    {
+      "Code": "is_done",
+      "Name": "is_done",
+      "Position": 6,
+      "IsPrintable": false
+    },
+    {
+      "Code": "comment",
+      "Name": "comment",
+      "Position": 7,
+      "IsPrintable": false
+    },
+    {
+      "Code": "cat_id",
+      "Name": "cat_id",
+      "Position": 8,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

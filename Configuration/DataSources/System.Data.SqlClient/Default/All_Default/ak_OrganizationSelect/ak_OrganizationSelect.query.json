@@ -1,0 +1,50 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_OrganizationSelect",
+  "Name": "ak_OrganizationSelect",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "id",
+      "Name": "id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "name",
+      "Name": "name",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "name",
+      "FilterParameterCode": "@name"
+    },
+    {
+      "Code": "short_name",
+      "Name": "short_name",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "concat([short_name], ' ( ' + address + ')')",
+      "FilterParameterCode": "@short_name"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@organization_id",
+      "Name": "organization_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

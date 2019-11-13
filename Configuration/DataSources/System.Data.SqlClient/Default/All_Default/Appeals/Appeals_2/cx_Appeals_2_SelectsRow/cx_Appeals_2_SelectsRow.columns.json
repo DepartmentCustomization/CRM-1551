@@ -1,0 +1,218 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 1,
+    "IsPrimaryKey": true,
+    "IsPrintable": false
+  },
+  {
+    "Code": "registration_number",
+    "Name": "registration_number",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "phone_number",
+    "Name": "phone_number",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "receipt_date",
+    "Name": "receipt_date",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "full_name",
+    "Name": "full_name",
+    "Position": 5,
+    "IsPrintable": false
+  },
+  {
+    "Code": "applicant_category_id",
+    "Name": "applicant_category_id",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "social_state_id",
+    "Name": "social_state_id",
+    "Position": 7,
+    "IsPrintable": false
+  },
+  {
+    "Code": "question_state_name",
+    "Name": "question_state_name",
+    "Position": 8,
+    "IsPrintable": false,
+    "ReferenceKeyCode": "question_state_id"
+  },
+  {
+    "Code": "question_state_id",
+    "Name": "question_state_id",
+    "Position": 9,
+    "IsPrintable": false
+  },
+  {
+    "Code": "question_type_id",
+    "Name": "question_type_id",
+    "Position": 10,
+    "IsPrintable": false
+  },
+  {
+    "Code": "question_type_name",
+    "Name": "question_type_name",
+    "Position": 11,
+    "IsPrintable": false,
+    "ReferenceKeyCode": "question_type_id"
+  },
+  {
+    "Code": "control_date",
+    "Name": "control_date",
+    "Position": 12,
+    "IsPrintable": false
+  },
+  {
+    "Code": "question_content",
+    "Name": "question_content",
+    "Position": 13,
+    "IsPrintable": false
+  },
+  {
+    "Code": "object_id",
+    "Name": "object_id",
+    "Position": 14,
+    "IsPrintable": false
+  },
+  {
+    "Code": "object_name",
+    "Name": "object_name",
+    "Position": 15,
+    "IsPrintable": false,
+    "ReferenceKeyCode": "object_id"
+  },
+  {
+    "Code": "object_type_name",
+    "Name": "object_type_name",
+    "Position": 16,
+    "IsPrintable": false,
+    "ReferenceKeyCode": "object_type_id"
+  },
+  {
+    "Code": "districts_name",
+    "Name": "districts_name",
+    "Position": 17,
+    "IsPrintable": false,
+    "ReferenceKeyCode": "districts_id"
+  },
+  {
+    "Code": "object_comment",
+    "Name": "object_comment",
+    "Position": 18,
+    "IsPrintable": false
+  },
+  {
+    "Code": "application_town_id",
+    "Name": "application_town_id",
+    "Position": 19,
+    "IsPrintable": false
+  },
+  {
+    "Code": "organization_id",
+    "Name": "organization_id",
+    "Position": 20,
+    "IsPrintable": false
+  },
+  {
+    "Code": "organization_name",
+    "Name": "organization_name",
+    "Position": 21,
+    "IsPrintable": false,
+    "ReferenceKeyCode": "organization_id"
+  },
+  {
+    "Code": "answer_type_id",
+    "Name": "answer_type_id",
+    "Position": 22,
+    "IsPrintable": false
+  },
+  {
+    "Code": "answer_type_name",
+    "Name": "answer_type_name",
+    "Position": 23,
+    "IsPrintable": false,
+    "ReferenceKeyCode": "answer_type_id"
+  },
+  {
+    "Code": "answer_phone",
+    "Name": "answer_phone",
+    "Position": 24,
+    "IsPrintable": false
+  },
+  {
+    "Code": "answer_post",
+    "Name": "answer_post",
+    "Position": 25,
+    "IsPrintable": false
+  },
+  {
+    "Code": "answer_mail",
+    "Name": "answer_mail",
+    "Position": 26,
+    "IsPrintable": false
+  },
+  {
+    "Code": "event_id",
+    "Name": "event_id",
+    "Position": 27,
+    "IsPrintable": false
+  },
+  {
+    "Code": "event_name",
+    "Name": "event_name",
+    "Position": 28,
+    "IsPrintable": false,
+    "ReferenceKeyCode": "event_id"
+  },
+  {
+    "Code": "user_id",
+    "Name": "user_id",
+    "Position": 29,
+    "IsPrintable": false
+  },
+  {
+    "Code": "edit_date",
+    "Name": "edit_date",
+    "Position": 30,
+    "IsPrintable": false
+  },
+  {
+    "Code": "user_edit_id",
+    "Name": "user_edit_id",
+    "Position": 31,
+    "IsPrintable": false
+  },
+  {
+    "Code": "districts_id",
+    "Name": "districts_id",
+    "Position": 32
+  },
+  {
+    "Code": "object_type_id",
+    "Name": "object_type_id",
+    "Position": 33
+  },
+  {
+    "Code": "receipt_source_id",
+    "Name": "receipt_source_id",
+    "Position": 34
+  },
+  {
+    "Code": "receipt_source_name",
+    "Name": "receipt_source_name",
+    "Position": 35,
+    "ReferenceKeyCode": "receipt_source_id"
+  }
+]

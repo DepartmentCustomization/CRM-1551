@@ -1,0 +1,15 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_Que_Doc_File_DeleteRow",
+  "Name": "cx_Que_Doc_File_DeleteRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

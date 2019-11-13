@@ -1,0 +1,36 @@
+[
+  {
+    "Code": "@doc_type_id",
+    "Name": "doc_type_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@Id",
+    "Name": "Id",
+    "ParameterType": "Integer",
+    "IsPrimaryKey": true
+  },
+  {
+    "Code": "@question_id",
+    "Name": "question_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@name",
+    "Name": "name"
+  },
+  {
+    "Code": "@add_user_id",
+    "Name": "add_user_id",
+    "ParameterType": "CurrentUserId"
+  },
+  {
+    "Code": "@edit_user_id",
+    "Name": "edit_user_id",
+    "ParameterType": "CurrentUserId"
+  },
+  {
+    "Code": "@content",
+    "Name": "content"
+  }
+]

@@ -1,0 +1,45 @@
+{
+  "ModelType": "Query",
+  "Code": "test_code",
+  "Name": "test_code",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "b",
+      "Name": "b",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "a",
+      "Name": "a",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "c",
+      "Name": "c",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "12",
+      "Name": "12",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "a1",
+      "Name": "a1",
+      "Position": 4,
+      "IsPrintable": false
+    },
+    {
+      "Code": "2b",
+      "Name": "2b",
+      "Position": 5,
+      "IsPrintable": false
+    }
+  ]
+}

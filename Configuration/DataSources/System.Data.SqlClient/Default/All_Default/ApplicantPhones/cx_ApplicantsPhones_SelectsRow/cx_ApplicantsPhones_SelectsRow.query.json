@@ -1,0 +1,36 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_ApplicantsPhones_SelectsRow",
+  "Name": "cx_ApplicantsPhones_SelectsRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "IsPrintable": false
+    },
+    {
+      "Code": "phone_type_id",
+      "Name": "phone_type_id",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "phone_number",
+      "Name": "phone_number",
+      "Position": 3,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

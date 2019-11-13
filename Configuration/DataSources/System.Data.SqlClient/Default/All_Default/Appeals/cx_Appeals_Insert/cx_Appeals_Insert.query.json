@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_Appeals_Insert",
+  "Name": "cx_Appeals_Insert",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

@@ -1,0 +1,10 @@
+{
+  "Add": {},
+  "ModelType": "Section",
+  "Code": "Ass_Documents_ReadOnly",
+  "Name": "Документи доручень тільки перегляд",
+  "FormCode": "Form_Ass_Documents_ReadOnly",
+  "SelectRowsQueryCode": "cx_Ass_Documents_ReadOnly_SelectRows",
+  "SelectRowQueryCode": "cx_Ass_Documents_ReadOnly_SelectRow",
+  "IsVisible": false
+}

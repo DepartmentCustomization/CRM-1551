@@ -1,0 +1,60 @@
+{
+  "ModelType": "Query",
+  "Code": "Detail_Consultation_selectRows",
+  "Name": "Detail_Consultation_selectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "Тип",
+      "Name": "Тип",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "[Тип]",
+      "FilterParameterCode": "@col1"
+    },
+    {
+      "Code": "Зареєстровано",
+      "Name": "З",
+      "Position": 3,
+      "IsPrintable": false,
+      "Hint": "Зареєстровано"
+    },
+    {
+      "Code": "В роботі",
+      "Name": "Р",
+      "Position": 4,
+      "IsPrintable": false,
+      "Hint": "В роботі"
+    },
+    {
+      "Code": "Просрочено",
+      "Name": "П",
+      "Position": 5,
+      "IsPrintable": false,
+      "Hint": "Просрочено"
+    },
+    {
+      "Code": "Виконано",
+      "Name": "В",
+      "Position": 6,
+      "IsPrintable": false,
+      "Hint": "Виконано"
+    },
+    {
+      "Code": "Доопрацювання",
+      "Name": "Д",
+      "Position": 7,
+      "IsPrintable": false,
+      "Hint": "Доопрацювання"
+    }
+  ]
+}

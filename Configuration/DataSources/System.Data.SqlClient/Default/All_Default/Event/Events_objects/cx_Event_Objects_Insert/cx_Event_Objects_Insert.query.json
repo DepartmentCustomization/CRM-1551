@@ -1,0 +1,19 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_Event_Objects_Insert",
+  "Name": "cx_Event_Objects_Insert",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@object_id",
+      "Name": "object_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@event_id",
+      "Name": "event_id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "ModelType": "Detail",
+  "Code": "BuildingApplicants",
+  "Name": "Заявники",
+  "SelectRowsQueryCode": "SelectAllBuidingApplicants",
+  "SectionCode": "",
+  "Position": 2,
+  "IsExpand": true,
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@Id"
+    }
+  ]
+}

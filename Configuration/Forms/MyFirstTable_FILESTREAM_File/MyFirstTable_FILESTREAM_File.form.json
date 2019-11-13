@@ -1,0 +1,12 @@
+{
+  "ModelType": "Form",
+  "Code": "MyFirstTable_FILESTREAM_File",
+  "Name": "MyFirstTable_FILESTREAM_File",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\MainGroup.fieldgroup.json"
+    ],
+    "DefaultFields": []
+  }
+}

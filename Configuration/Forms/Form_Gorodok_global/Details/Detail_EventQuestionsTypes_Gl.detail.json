@@ -1,0 +1,14 @@
+{
+    "ModelType": "Detail",
+    "Code": "Detail_EventQuestionsTypes_Gl",
+    "Name": "Типи питань",
+    "SelectRowsQueryCode": "Events_QuestionType_Gl",
+    "SectionCode": "",
+    "Position": 1,
+    "IsExpand": true,
+    "IsWithClosing": true,
+    "QueryParameters": [{
+        "FormFieldName": "Id",
+        "ParameterCode": "@Id"
+    }]
+}

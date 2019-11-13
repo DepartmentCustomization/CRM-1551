@@ -1,0 +1,31 @@
+[
+  {
+    "Code": "@Id",
+    "Name": "Id",
+    "ParameterType": "Integer",
+    "IsPrimaryKey": true
+  },
+  {
+    "Code": "@ass_status",
+    "Name": "ass_status",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@name",
+    "Name": "name"
+  },
+  {
+    "Code": "@content",
+    "Name": "content"
+  },
+  {
+    "Code": "@user_edit_id",
+    "Name": "user_edit_id",
+    "ParameterType": "CurrentUserId"
+  },
+  {
+    "Code": "@doc_type_id",
+    "Name": "doc_type_id",
+    "ParameterType": "Integer"
+  }
+]

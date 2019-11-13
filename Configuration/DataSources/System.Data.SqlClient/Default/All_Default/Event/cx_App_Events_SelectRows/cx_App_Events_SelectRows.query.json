@@ -1,0 +1,38 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_App_Events_SelectRows",
+  "Name": "cx_App_Events_SelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Номер Заходу",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "ReferenceKeyCode": "Id",
+      "ReferenceSectionCode": "Events"
+    },
+    {
+      "Code": "start_date",
+      "Name": "Дата та час початку",
+      "Position": 2,
+      "SqlName": "[Events].[start_date]",
+      "FilterParameterCode": "@start_date"
+    },
+    {
+      "Code": "EventType",
+      "Name": "Тип",
+      "Position": 3,
+      "SqlName": "EventTypes.name",
+      "FilterParameterCode": "@EventType"
+    },
+    {
+      "Code": "plan_end_date",
+      "Name": "Планова дата завершення",
+      "Position": 6,
+      "SqlName": "[Events].[plan_end_date]",
+      "FilterParameterCode": "@plan_end_date"
+    }
+  ]
+}

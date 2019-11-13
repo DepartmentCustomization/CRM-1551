@@ -1,0 +1,60 @@
+{
+  "ModelType": "Query",
+  "Code": "api_ApplicantObjects",
+  "Name": "api_ApplicantObjects",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "ObjectId",
+      "Name": "ид об'єкта",
+      "Position": 0,
+      "IsPrintable": false,
+      "SqlName": "[Objects].[Id]",
+      "FilterParameterCode": "@ObjectId"
+    },
+    {
+      "Code": "ObjectName",
+      "Name": "назва об\"єкта",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "[Objects].[name]",
+      "FilterParameterCode": "@ObjectName"
+    },
+    {
+      "Code": "ObjectTypeName",
+      "Name": "тип об\"єкта",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "[ObjectTypes].[name]",
+      "FilterParameterCode": "@ObjectTypeName"
+    },
+    {
+      "Code": "ObjectIsMain",
+      "Name": "основний?",
+      "Position": 3,
+      "IsPrintable": false,
+      "SqlName": "[LiveAddress].[main]",
+      "FilterParameterCode": "@ObjectIsMain"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@ApplicantId",
+      "Name": "ApplicantId",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

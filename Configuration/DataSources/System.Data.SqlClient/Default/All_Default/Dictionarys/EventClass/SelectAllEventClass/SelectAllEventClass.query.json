@@ -1,0 +1,53 @@
+{
+  "ModelType": "Query",
+  "Code": "SelectAllEventClass",
+  "Name": "SelectAllEventClass",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "name",
+      "Name": "Назва",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "name",
+      "FilterParameterCode": "@name"
+    },
+    {
+      "Code": "global_id",
+      "Name": "global_id",
+      "Position": 2,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "eventClassType",
+      "Name": "Тип заходу",
+      "Position": 3,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

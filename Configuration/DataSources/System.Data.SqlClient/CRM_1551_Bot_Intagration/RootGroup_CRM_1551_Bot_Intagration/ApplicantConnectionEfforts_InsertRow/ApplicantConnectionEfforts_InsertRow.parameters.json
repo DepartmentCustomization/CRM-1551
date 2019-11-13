@@ -1,0 +1,47 @@
+[
+  {
+    "Code": "@chat_id",
+    "Name": "chat_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@task_for_bot_id",
+    "Name": "task_for_bot_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@is_finish_cycle",
+    "Name": "is_finish_cycle",
+    "ParameterType": "Boolean"
+  },
+  {
+    "Code": "@phone_number",
+    "Name": "phone_number"
+  },
+  {
+    "Code": "@answer_id",
+    "Name": "answer_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@sent_date",
+    "Name": "sent_date",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@Id",
+    "Name": "Id",
+    "ParameterType": "Integer",
+    "IsPrimaryKey": true
+  },
+  {
+    "Code": "@answer_date",
+    "Name": "answer_date",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@chanel_id",
+    "Name": "chanel_id",
+    "ParameterType": "Integer"
+  }
+]

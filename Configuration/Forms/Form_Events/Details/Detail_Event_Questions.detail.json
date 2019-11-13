@@ -1,0 +1,10 @@
+{
+  "ModelType": "Detail",
+  "Code": "Detail_Event_Questions",
+  "Name": "Пов'язані питання",
+  "SelectRowsQueryCode": "list_Related_question",
+  "SectionCode": "",
+  "Position": 2,
+  "IsExpand": true,
+  "QueryParameters": []
+}

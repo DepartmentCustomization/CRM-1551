@@ -1,0 +1,12 @@
+{
+  "ModelType": "Form",
+  "Code": "ProcessingKind",
+  "Name": "Форма довідника. Вид обробки",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\ProcessingKind.fieldgroup.json"
+    ],
+    "DefaultFields": []
+  }
+}

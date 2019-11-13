@@ -1,0 +1,18 @@
+{
+  "ModelType": "Form",
+  "Code": "Form_Que_Doc_File_NEW",
+  "Name": "Файли",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\Group_File_Que_NEW.fieldgroup.json"
+    ],
+    "DefaultFields": [
+      {
+        "Code": "question_id",
+        "ParentFormFieldCodeForKeyValue": "question_id",
+        "ParentFormFieldCodeForDisplayValue": "question_id"
+      }
+    ]
+  }
+}

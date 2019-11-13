@@ -1,0 +1,49 @@
+{
+  "Code": "Group_Complains",
+  "Name": "Інформація",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "registration_date",
+      "Name": "Дата реєстрації скарги",
+      "FieldType": "date-time",
+      "Position": 1,
+      "Width": "20%"
+    },
+    {
+      "Code": "complain_type_name",
+      "Name": "Тип скарги",
+      "FieldType": "text",
+      "Position": 2,
+      "Width": "40%",
+      "Icon": "turned_in"
+    },
+    {
+      "Code": "culpritname",
+      "Name": "Скаржник",
+      "FieldType": "text",
+      "Position": 3,
+      "Width": "40%",
+      "Icon": "sentiment_dissatisfied"
+    },
+    {
+      "Code": "guilty_name",
+      "Name": "Винуватець",
+      "FieldType": "text",
+      "Position": 5
+    },
+    {
+      "Code": "text",
+      "Name": "Коментар",
+      "FieldType": "textarea",
+      "Position": 6,
+      "Width": "100%"
+    },
+    {
+      "Code": "user_name",
+      "Name": "Хто зареєстрував скаргу",
+      "FieldType": "text",
+      "Position": 5
+    }
+  ]
+}

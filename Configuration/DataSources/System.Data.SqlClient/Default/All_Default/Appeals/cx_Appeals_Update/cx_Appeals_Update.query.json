@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_Appeals_Update",
+  "Name": "cx_Appeals_Update",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

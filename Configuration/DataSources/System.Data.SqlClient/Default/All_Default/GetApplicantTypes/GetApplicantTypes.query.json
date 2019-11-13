@@ -1,0 +1,14 @@
+{
+  "ModelType": "Query",
+  "Code": "GetApplicantTypes",
+  "Name": "GetApplicantTypes",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

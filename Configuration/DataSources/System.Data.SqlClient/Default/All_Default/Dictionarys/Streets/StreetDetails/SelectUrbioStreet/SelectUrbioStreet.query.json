@@ -1,0 +1,46 @@
+{
+  "ModelType": "Query",
+  "Code": "SelectUrbioStreet",
+  "Name": "SelectUrbioStreet",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "district",
+      "Name": "Район",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "streetType",
+      "Name": "Тип",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "streetName",
+      "Name": "Назва",
+      "Position": 2,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

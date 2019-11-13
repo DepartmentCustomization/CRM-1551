@@ -1,0 +1,19 @@
+{
+  "ModelType": "Form",
+  "Code": "Form_Objects_Organization",
+  "Name": "Організації, пов'язані з об'єктом",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\Group_Obj_Organ.fieldgroup.json"
+    ],
+    "DefaultFields": [
+      {
+        "Code": "object_id",
+        "ParentFormFieldCodeForKeyValue": "Id",
+        "ParentFormFieldCodeForDisplayValue": "Id"
+      }
+    ],
+    "Script": "string:Form_Objects_Organization.form.js"
+  }
+}

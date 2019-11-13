@@ -1,0 +1,155 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 1,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "appeal_id",
+    "Name": "appeal_id",
+    "Position": 2,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "registration_number",
+    "Name": "Номер питання",
+    "Position": 3,
+    "IsPrintable": false,
+    "SqlName": "t1.[registration_number] ",
+    "FilterParameterCode": "@Questi_number",
+    "ReferenceKeyCode": "Id",
+    "ReferenceSectionCode": "Questions"
+  },
+  {
+    "Code": "Тип питання",
+    "Name": "Тип питання",
+    "Position": 4,
+    "IsPrintable": false,
+    "SqlName": "t1.[Тип питання]",
+    "FilterParameterCode": "@QuestionTypesname"
+  },
+  {
+    "Code": "Виконавець",
+    "Name": "Виконавець",
+    "Position": 5,
+    "IsPrintable": false,
+    "SqlName": "t1.[Виконавець]",
+    "FilterParameterCode": "@perfomshort_name"
+  },
+  {
+    "Code": "Дата контролю",
+    "Name": "Дата контролю",
+    "Position": 6,
+    "IsPrintable": false,
+    "SqlName": "t1.[Дата контролю]",
+    "FilterParameterCode": "@Questionscontrol_date"
+  },
+  {
+    "Code": "QuestionTypesName",
+    "Name": "QuestionTypesName",
+    "Position": 7,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "ObjectId",
+    "Name": "ObjectId",
+    "Position": 8,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "ObjectName",
+    "Name": "ObjectName",
+    "Position": 9,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "organization_id",
+    "Name": "organization_id",
+    "Position": 10,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "organization_name",
+    "Name": "organization_name",
+    "Position": 11,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "question_content",
+    "Name": "question_content",
+    "Position": 12,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "question_type_id",
+    "Name": "question_type_id",
+    "Position": 13,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "last_assignment_for_execution_id",
+    "Name": "last_assignment_for_execution_id",
+    "Position": 14,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "last_assignment_for_execution_name",
+    "Name": "last_assignment_for_execution_name",
+    "Position": 15,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "question_state_id",
+    "Name": "question_state_id",
+    "Position": 16,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "question_state_name",
+    "Name": "question_state_name",
+    "Position": 17,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "result",
+    "Name": "result",
+    "Position": 18,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "last_assignment_for_execution_comment",
+    "Name": "last_assignment_for_execution_comment",
+    "Position": 19,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "AssignmentResolution",
+    "Name": "AssignmentResolution",
+    "Position": 20,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "ВиконавецьID",
+    "Name": "ВиконавецьID",
+    "Position": 21,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  }
+]

@@ -1,0 +1,65 @@
+{
+  "ModelType": "Query",
+  "Code": "api_SiteStatistics_30days",
+  "Name": "api_SiteStatistics_30days",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "vroboti",
+      "Name": "vroboti",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "obrobleni",
+      "Name": "obrobleni",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "vykonani",
+      "Name": "vykonani",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "nadoopratsiyvanni",
+      "Name": "nadoopratsiyvanni",
+      "Position": 4,
+      "IsPrintable": false
+    },
+    {
+      "Code": "prostrocheni",
+      "Name": "prostrocheni",
+      "Position": 5,
+      "IsPrintable": false
+    },
+    {
+      "Code": "NotCloseEvents",
+      "Name": "NotCloseEvents",
+      "Position": 6,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

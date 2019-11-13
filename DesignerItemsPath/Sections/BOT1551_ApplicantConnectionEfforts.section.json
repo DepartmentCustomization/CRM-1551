@@ -1,0 +1,11 @@
+{
+  "Add": {
+    "InsertQueryCode": "ApplicantConnectionEfforts_InsertRow"
+  },
+  "ModelType": "Section",
+  "Code": "BOT1551_ApplicantConnectionEfforts",
+  "Name": "BOT1551_ApplicantConnectionEfforts",
+  "FormCode": "ApplicantConnectionEfforts",
+  "SelectRowsQueryCode": "ApplicantConnectionEfforts_SelectRows",
+  "SelectRowQueryCode": "ApplicantConnectionEfforts_SelectRow"
+}

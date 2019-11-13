@@ -1,0 +1,35 @@
+[
+  {
+    "Code": "@validity",
+    "Name": "validity",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@documentnumber",
+    "Name": "documentnumber",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@series",
+    "Name": "series"
+  },
+  {
+    "Code": "@issuedate",
+    "Name": "issuedate",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@issued_by",
+    "Name": "issued_by"
+  },
+  {
+    "Code": "@documenttype_id",
+    "Name": "documenttype_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@applicant_id",
+    "Name": "applicant_id",
+    "ParameterType": "Integer"
+  }
+]

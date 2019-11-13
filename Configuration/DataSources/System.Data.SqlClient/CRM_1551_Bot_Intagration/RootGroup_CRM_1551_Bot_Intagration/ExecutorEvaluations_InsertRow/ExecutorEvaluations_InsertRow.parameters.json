@@ -1,0 +1,33 @@
+[
+  {
+    "Code": "@grade",
+    "Name": "grade",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@bot_poll_item_id",
+    "Name": "bot_poll_item_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@answer_date",
+    "Name": "answer_date",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@bot_poll_number",
+    "Name": "bot_poll_number",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@applicant_connection_effort_id",
+    "Name": "applicant_connection_effort_id",
+    "ParameterType": "Boolean"
+  },
+  {
+    "Code": "@Id",
+    "Name": "Id",
+    "ParameterType": "Boolean",
+    "IsPrimaryKey": true
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "ModelType": "Query",
+  "Code": "api_TestNotification_ChangedStatus",
+  "Name": "api_TestNotification_ChangedStatus",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "ResponseText",
+      "Name": "ResponseText",
+      "Position": 0
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@appeal_from_site_id",
+      "Name": "appeal_from_site_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@QuestionStateId",
+      "Name": "QuestionStateId",
+      "ParameterType": "Integer"
+    }
+  ]
+}

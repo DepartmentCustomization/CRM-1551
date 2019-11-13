@@ -1,0 +1,14 @@
+{
+  "ModelType": "Query",
+  "Code": "RightsFilter_HideAndDisableColumns",
+  "Name": "RightsFilter_HideAndDisableColumns",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@programuser_id",
+      "Name": "programuser_id",
+      "ParameterType": "CurrentUserId"
+    }
+  ]
+}

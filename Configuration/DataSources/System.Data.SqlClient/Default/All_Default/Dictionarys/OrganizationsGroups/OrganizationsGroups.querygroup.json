@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "OrganizationsGroups",
+  "Name": "Групи організацій",
+  "ConnectionCode": "Default"
+}

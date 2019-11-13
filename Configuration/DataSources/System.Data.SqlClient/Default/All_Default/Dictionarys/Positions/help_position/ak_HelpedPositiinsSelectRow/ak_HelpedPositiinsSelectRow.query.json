@@ -1,0 +1,73 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_HelpedPositiinsSelectRow",
+  "Name": "ak_HelpedPositiinsSelectRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrimaryKey": true,
+      "IsPrintable": false
+    },
+    {
+      "Code": "main_position_id",
+      "Name": "main_position_id",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "main_position_name",
+      "Name": "main_position_name",
+      "Position": 2,
+      "IsPrintable": false,
+      "ReferenceKeyCode": "main_position_id"
+    },
+    {
+      "Code": "helper_position_id",
+      "Name": "helper_position_id",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "helper_position_name",
+      "Name": "helper_position_name",
+      "Position": 4,
+      "IsPrintable": false,
+      "ReferenceKeyCode": "helper_position_id"
+    },
+    {
+      "Code": "type_id",
+      "Name": "type_id",
+      "Position": 5,
+      "IsPrintable": false
+    },
+    {
+      "Code": "type_name",
+      "Name": "type_name",
+      "Position": 6,
+      "IsPrintable": false,
+      "ReferenceKeyCode": "type_id"
+    },
+    {
+      "Code": "edit_date",
+      "Name": "edit_date",
+      "Position": 7
+    },
+    {
+      "Code": "UserName",
+      "Name": "UserName",
+      "Position": 8
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@id",
+      "Name": "id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

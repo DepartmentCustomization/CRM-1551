@@ -1,0 +1,23 @@
+{
+  "ModelType": "Query",
+  "Code": "Poshuk",
+  "Name": "Poshuk",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@organization_id",
+      "Name": "organization_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@appealNum",
+      "Name": "appealNum"
+    },
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    }
+  ]
+}

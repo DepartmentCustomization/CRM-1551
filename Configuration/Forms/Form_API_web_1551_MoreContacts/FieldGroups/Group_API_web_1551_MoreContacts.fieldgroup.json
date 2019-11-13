@@ -1,0 +1,35 @@
+{
+  "Code": "Group_API_web_1551_MoreContacts",
+  "Name": "Group_API_web_1551_MoreContacts",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "сontacttype_id",
+      "Name": "сontacttype_id",
+      "FieldType": "number",
+      "Position": 1,
+      "Width": "51%"
+    },
+    {
+      "Code": "phonenumber",
+      "Name": "phonenumber",
+      "FieldType": "text",
+      "Position": 2,
+      "Width": "51%"
+    },
+    {
+      "Code": "mail",
+      "Name": "mail",
+      "FieldType": "text",
+      "Position": 3,
+      "Width": "51%"
+    },
+    {
+      "Code": "applicant_id",
+      "Name": "applicant_id",
+      "FieldType": "number",
+      "Position": 1,
+      "Width": "51%"
+    }
+  ]
+}

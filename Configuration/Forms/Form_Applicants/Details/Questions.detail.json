@@ -1,0 +1,15 @@
+{
+  "ModelType": "Detail",
+  "Code": "Questions",
+  "Name": "Питання заявника",
+  "SelectRowsQueryCode": "det_QuestionsApplicants",
+  "SectionCode": "",
+  "Position": 1,
+  "IsExpand": true,
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@ApplicantsId"
+    }
+  ]
+}

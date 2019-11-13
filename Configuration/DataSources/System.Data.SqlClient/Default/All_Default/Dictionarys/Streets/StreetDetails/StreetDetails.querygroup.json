@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "StreetDetails",
+  "Name": "Деталі вулиці",
+  "ConnectionCode": "Default"
+}

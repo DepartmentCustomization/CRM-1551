@@ -1,0 +1,12 @@
+{
+  "ModelType": "Form",
+  "Code": "ApplicantConnectionEfforts",
+  "Name": "ApplicantConnectionEfforts",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\Group1.fieldgroup.json"
+    ],
+    "DefaultFields": []
+  }
+}

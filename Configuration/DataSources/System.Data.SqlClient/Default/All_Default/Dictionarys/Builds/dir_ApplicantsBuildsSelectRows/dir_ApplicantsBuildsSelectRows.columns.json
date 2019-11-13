@@ -1,0 +1,75 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 1,
+    "IsPrimaryKey": true,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "district_id",
+    "Name": "DistrictId",
+    "Position": 2,
+    "ViewState": "Hidden",
+    "IsPrintable": false,
+    "SqlName": "",
+    "FilterParameterCode": ""
+  },
+  {
+    "Code": "DistrictName",
+    "Name": "Район",
+    "Position": 3,
+    "IsPrintable": false,
+    "SqlName": "[Districts].name",
+    "FilterParameterCode": "@DistrictName"
+  },
+  {
+    "Code": "street_id",
+    "Name": "StreetId",
+    "Position": 4,
+    "ViewState": "Hidden",
+    "IsPrintable": false
+  },
+  {
+    "Code": "StreetName",
+    "Name": "Вулиця",
+    "Position": 5,
+    "IsPrintable": false,
+    "SqlName": "Streets.name",
+    "FilterParameterCode": "@StreetName"
+  },
+  {
+    "Code": "number",
+    "Name": "Номер",
+    "Position": 6,
+    "IsPrintable": false,
+    "SqlName": "[Buildings].number",
+    "FilterParameterCode": "@number"
+  },
+  {
+    "Code": "letter",
+    "Name": "Літера",
+    "Position": 7,
+    "IsPrintable": false,
+    "SqlName": "[Buildings].letter",
+    "FilterParameterCode": "@letter"
+  },
+  {
+    "Code": "bsecondname",
+    "Name": "Корпус",
+    "Position": 8
+  },
+  {
+    "Code": "full_name",
+    "Name": "Назва",
+    "Position": 10,
+    "SqlName": "[Streets].name+N', '+[Buildings].name",
+    "FilterParameterCode": "@full_name"
+  },
+  {
+    "Code": "index",
+    "Name": "Поштовий індекс",
+    "Position": 10
+  }
+]

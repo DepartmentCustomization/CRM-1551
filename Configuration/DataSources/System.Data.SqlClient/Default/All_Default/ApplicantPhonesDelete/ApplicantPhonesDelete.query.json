@@ -1,0 +1,14 @@
+{
+  "ModelType": "Query",
+  "Code": "ApplicantPhonesDelete",
+  "Name": "ApplicantPhonesDelete",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@PhoneId",
+      "Name": "PhoneId",
+      "ParameterType": "Integer"
+    }
+  ]
+}

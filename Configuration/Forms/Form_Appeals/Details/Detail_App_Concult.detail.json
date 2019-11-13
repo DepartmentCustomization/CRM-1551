@@ -1,0 +1,15 @@
+{
+  "ModelType": "Detail",
+  "Code": "Detail_App_Concult",
+  "Name": "Консультації Звернення",
+  "SelectRowsQueryCode": "cx_Appeals_Consult_SelectRows",
+  "SectionCode": "",
+  "Position": 2,
+  "IsExpand": true,
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@id"
+    }
+  ]
+}

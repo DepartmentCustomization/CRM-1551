@@ -1,0 +1,18 @@
+{
+  "ModelType": "Detail",
+  "Code": "Rules",
+  "Name": "Правило вибору",
+  "FormCode": "Rules",
+  "SelectRowsQueryCode": "det_QuestionTypesRulesSelectRows",
+  "SelectRowQueryCode": "det_QuestionTypesRulesSelectRow",
+  "UpdateQueryCode": "det_QuestionTypesRulesUpdateRow",
+  "SectionCode": "",
+  "Position": 3,
+  "IsExpand": true,
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@questionType_Id"
+    }
+  ]
+}

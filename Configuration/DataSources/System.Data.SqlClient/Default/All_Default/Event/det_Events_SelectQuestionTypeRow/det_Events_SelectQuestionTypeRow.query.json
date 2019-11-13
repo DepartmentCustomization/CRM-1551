@@ -1,0 +1,44 @@
+{
+  "ModelType": "Query",
+  "Code": "det_Events_SelectQuestionTypeRow",
+  "Name": "det_Events_SelectQuestionTypeRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "is_hard_connection",
+      "Name": "is_hard_connection",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "qt_id",
+      "Name": "qt_id",
+      "Position": 3
+    },
+    {
+      "Code": "qt_name",
+      "Name": "qt_name",
+      "Position": 4,
+      "SqlName": "qt.name",
+      "FilterParameterCode": "@name",
+      "ReferenceKeyCode": "qt_id"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

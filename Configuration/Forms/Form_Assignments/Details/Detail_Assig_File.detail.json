@@ -1,0 +1,17 @@
+{
+  "DetailType": "Section",
+  "ModelType": "Detail",
+  "Code": "Detail_Assig_File",
+  "Name": "Файли та листи",
+  "SelectRowsQueryCode": "cx_Ass_Documents_SelectRows",
+  "SectionCode": "Ass_Documents",
+  "Position": 30,
+  "IsExpand": true,
+  "PrintType": "None",
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@Id"
+    }
+  ]
+}

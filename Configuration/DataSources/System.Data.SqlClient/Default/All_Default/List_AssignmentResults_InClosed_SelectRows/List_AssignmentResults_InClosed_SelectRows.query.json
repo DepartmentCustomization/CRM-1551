@@ -1,0 +1,40 @@
+{
+  "ModelType": "Query",
+  "Code": "List_AssignmentResults_InClosed_SelectRows",
+  "Name": "List_AssignmentResults_InClosed_SelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Name",
+      "Name": "Name",
+      "Position": 1,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@QuestionId",
+      "Name": "QuestionId",
+      "ParameterType": "Integer"
+    }
+  ]
+}

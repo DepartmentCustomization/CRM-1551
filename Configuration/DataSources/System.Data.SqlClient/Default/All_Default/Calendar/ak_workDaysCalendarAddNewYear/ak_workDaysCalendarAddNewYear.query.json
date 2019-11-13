@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_workDaysCalendarAddNewYear",
+  "Name": "ak_workDaysCalendarAddNewYear",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

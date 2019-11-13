@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "dir_AssignmentStates_Insert"
+  },
+  "ModelType": "Section",
+  "Code": "dir_AssignmentStates",
+  "Name": "Довідник: Стани доручень",
+  "FormCode": "Form_dictionary_universal",
+  "SelectRowsQueryCode": "dir_AssignmentStates_SelectRows",
+  "SelectRowQueryCode": "dir_AssignmentStates_SelectRow",
+  "UpdateQueryCode": "dir_AssignmentStates_Update",
+  "DeleteQueryCode": "dir_AssignmentStates_Delete"
+}

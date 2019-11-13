@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "ak_RulesInsertRow"
+  },
+  "ModelType": "Section",
+  "Code": "Rules",
+  "Name": "Довідник: Правила вибору",
+  "FormCode": "Rules",
+  "SelectRowsQueryCode": "ak_RulesSelectRows",
+  "SelectRowQueryCode": "ak_RulesSelectRow",
+  "UpdateQueryCode": "ak_RulesUpdateRow",
+  "DeleteQueryCode": "ak_RulesDeleteRow"
+}

@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "Applicants_More_Phones",
+  "Name": "Дадаткові телефони заявника",
+  "ConnectionCode": "Default"
+}

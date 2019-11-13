@@ -1,0 +1,7 @@
+{
+  "ModelType": "Connection",
+  "Code": "CRM_1551_Bot_Intagration",
+  "Name": "CRM_1551_Bot_Intagration",
+  "ProviderCode": "System.Data.SqlClient",
+  "ConnectionString": "ConnectionString"
+}

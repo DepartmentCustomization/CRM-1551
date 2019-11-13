@@ -1,0 +1,48 @@
+{
+  "Code": "Group_Ass_Doc_ROnly",
+  "Name": "Документи до доручення для перегляду",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "name",
+      "Name": "Назва документу",
+      "FieldType": "text",
+      "IsRequired": true,
+      "Position": 1
+    },
+    {
+      "Code": "doc_type_id",
+      "Name": "Тип документу",
+      "FieldType": "select",
+      "IsRequired": true,
+      "Position": 2,
+      "QueryCode": "dir_DocumentTypes_SelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "content",
+      "Name": "Коментар",
+      "FieldType": "textarea",
+      "IsRequired": true,
+      "Position": 3,
+      "Width": "100%",
+      "Rows": 29
+    },
+    {
+      "Code": "add_date",
+      "Name": "Дата створення",
+      "FieldType": "date-time",
+      "Position": 4,
+      "Width": "40%"
+    },
+    {
+      "Code": "assignment_сons_id",
+      "Name": "assignment_сons_id",
+      "FieldType": "number",
+      "Position": 232,
+      "IsHidden": true
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "ModelType": "Form",
+  "Code": "ExecutorRole_Build",
+  "Name": "Роль виконавця: Будинок",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\main.fieldgroup.json"
+    ],
+    "DefaultFields": [
+      {
+        "Code": "executor_role_id",
+        "ParentFormFieldCodeForKeyValue": "Id",
+        "ParentFormFieldCodeForDisplayValue": "name"
+      }
+    ],
+    "Script": "string:ExecutorRole_Build.form.js"
+  }
+}

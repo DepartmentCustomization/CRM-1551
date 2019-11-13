@@ -1,0 +1,15 @@
+{
+  "ModelType": "Query",
+  "Code": "test_perevirka",
+  "Name": "test_perevirka",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Sql": "select @user_Id",
+  "Parameters": [
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    }
+  ]
+}

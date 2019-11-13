@@ -1,0 +1,88 @@
+{
+  "ModelType": "Query",
+  "Code": "det_ExecutorRoleCitySelectRows",
+  "Name": "det_ExecutorRoleCitySelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "executor_role_id",
+      "Name": "executor_role_id",
+      "Position": 1,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "ExecutorRole",
+      "Name": "Роль виконавця",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "[ExecutorRole].name ",
+      "FilterParameterCode": "@ExecutorRole"
+    },
+    {
+      "Code": "CityId",
+      "Name": "CityId",
+      "Position": 3,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "City",
+      "Name": "Місто",
+      "Position": 4,
+      "IsPrintable": false,
+      "SqlName": "[City].name ",
+      "FilterParameterCode": "@City"
+    },
+    {
+      "Code": "executor_id",
+      "Name": "executor_id",
+      "Position": 5,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "OrganizationsId",
+      "Name": "OrganizationsId",
+      "Position": 6,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "OrganizationsName",
+      "Name": "Виконавець",
+      "Position": 7,
+      "IsPrintable": false,
+      "SqlName": "[Organizations].[short_name] ",
+      "FilterParameterCode": "@OrganizationsName"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@executor_role_id",
+      "Name": "executor_role_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

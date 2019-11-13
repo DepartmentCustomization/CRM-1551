@@ -1,0 +1,22 @@
+{
+  "ModelType": "Query",
+  "Code": "Prozvon_House",
+  "Name": "Prozvon_House",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@sort",
+      "Name": "sort"
+    },
+    {
+      "Code": "@buildId",
+      "Name": "buildId",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@filter",
+      "Name": "filter"
+    }
+  ]
+}

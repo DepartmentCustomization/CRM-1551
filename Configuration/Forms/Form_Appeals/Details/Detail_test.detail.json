@@ -1,0 +1,22 @@
+{
+  "ModelType": "Detail",
+  "Code": "Detail_test",
+  "Name": "Detail_test",
+  "FormCode": "Form_Phone",
+  "SelectRowsQueryCode": "cx_Applicants_More_Phones_SelectRows",
+  "SelectRowQueryCode": "cx_Applicants_More_Phones_SelectRow",
+  "UpdateQueryCode": "cx_Applicants_More_Phones_Update",
+  "SectionCode": "",
+  "DeleteQueryCode": "cx_Applicants_More_Phones_Delete",
+  "Position": 6,
+  "IsExpand": true,
+  "Add": {
+    "InsertQueryCode": "cx_Applicants_More_Phones_Insert"
+  },
+  "QueryParameters": [
+    {
+      "FormFieldName": "applicant_id",
+      "ParameterCode": "@app_info"
+    }
+  ]
+}

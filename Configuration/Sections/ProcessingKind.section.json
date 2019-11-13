@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "ak_ProcessingKindInsertRow"
+  },
+  "ModelType": "Section",
+  "Code": "ProcessingKind",
+  "Name": "Довідник: Вид обробки",
+  "FormCode": "ProcessingKind",
+  "SelectRowsQueryCode": "ak_ProcessingKindSelectRows",
+  "SelectRowQueryCode": "ak_ProcessingKindSelectRow",
+  "UpdateQueryCode": "ak_ProcessingKindUpdateRow",
+  "DeleteQueryCode": "ak_ProcessingKindDeleteRow"
+}

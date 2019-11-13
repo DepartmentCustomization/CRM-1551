@@ -1,0 +1,59 @@
+{
+  "css": "n.dx-datagrid-export-button{\n    background-color: rgba(21, 189, 244, 1)!important;\n    color: #fff!important;\n    padding: 0 8px!important;\n}\n.dx-icon-export-excel-button{\n    color: #fff!important;\n    margin-right: 9px!important;\n}\n.dx-header-row>td>.dx-datagrid-text-content {\n    text-transform: uppercase;\n    text-align: center;\n}\n \n.dx-button-default{\n    background-color: rgba(21, 189, 244, 1)!important;\n}\n",
+  "rootContainer": {
+    "width": "calc( 100% - 10px )",
+    "margin": "0 5px 10px",
+    "flexWrap": "wrap",
+    "flexDirection": "row",
+    "order": 1,
+    "flexGrow": 1,
+    "alignSelf": "auto",
+    "border": "none",
+    "children": [
+      {
+        "width": "calc( 100% - 10px )",
+        "margin": "0 5px",
+        "flexWrap": "wrap",
+        "flexDirection": "column",
+        "order": 1,
+        "flexGrow": 1,
+        "alignSelf": "flex-start",
+        "border": "none",
+        "children": [
+          {
+            "width": "calc(100% - 10px)",
+            "margin": "0 5px 10px",
+            "flexWrap": "wrap",
+            "flexDirection": "row",
+            "order": 1,
+            "flexGrow": 1,
+            "alignSelf": "auto",
+            "border": "none",
+            "children": [
+              {
+                "code": "rating_NativeDataGridWidget",
+                "type": "NativeDataGridWidgetComponent",
+                "name": "ratings"
+              }
+            ],
+            "id": "Container-1",
+            "height": "calc(100% - 10px)",
+            "minHeight": "100px",
+            "minWidth": "calc(100% - 10px)",
+            "backgroundColor": "white"
+          }
+        ],
+        "id": "Container-0",
+        "height": "calc( 100% - 10px )",
+        "minHeight": "100px",
+        "minWidth": "100px",
+        "backgroundColor": "white"
+      }
+    ],
+    "id": "Container-0",
+    "height": "100%",
+    "minHeight": "100%",
+    "minWidth": "100%",
+    "backgroundColor": "white"
+  }
+}

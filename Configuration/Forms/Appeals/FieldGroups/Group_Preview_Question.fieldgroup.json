@@ -1,0 +1,154 @@
+{
+  "Code": "Group_Preview_Question",
+  "Name": "Перегляд питання",
+  "Position": 4,
+  "IsWithClosing": true,
+  "Fields": [
+    {
+      "Code": "Question_Prew_ApplicantPIB",
+      "Name": "Заявник",
+      "FieldType": "text",
+      "Width": "100%"
+    },
+    {
+      "Code": "Question_Prew_ApplicantAdress",
+      "Name": "Адреса заявника",
+      "FieldType": "text",
+      "Width": "100%"
+    },
+    {
+      "Code": "Question_Prew_Content",
+      "Name": "Зміст",
+      "FieldType": "textarea",
+      "Position": 1,
+      "Width": "100%"
+    },
+    {
+      "Code": "Question_Prew_Building",
+      "Name": "Об'єкт",
+      "FieldType": "select",
+      "Position": 2,
+      "QueryCode": "List_Buildings_SelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "Question_Prew_Organization",
+      "Name": "Організація, на яку скаржиться заявник",
+      "FieldType": "lookup",
+      "Position": 2,
+      "QueryCode": "List_Organizations_SelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Name",
+      "QueryParameters": [],
+      "LookupType": "tree",
+      "ParentColumnCode": "ParentId",
+      "PathColumnCode": "Path",
+      "SearchQueryCode": "List_Organizations_SelectRows_Search",
+      "SearchKeyColumnCode": "Id",
+      "SearchDisplayColumnCode": "Name"
+    },
+    {
+      "Code": "Question_Prew_TypeId",
+      "Name": "Тип питання",
+      "FieldType": "lookup",
+      "Position": 4,
+      "QueryCode": "List_QuestionTypes_SelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Name",
+      "QueryParameters": [],
+      "LookupType": "tree",
+      "ParentColumnCode": "ParentId",
+      "PathColumnCode": "Path",
+      "SearchQueryCode": "List_QuestionTypes_SelectRows_Search",
+      "SearchKeyColumnCode": "Id",
+      "SearchDisplayColumnCode": "Name"
+    },
+    {
+      "Code": "Question_Prew_OrganizationId",
+      "Name": "Виконавець",
+      "FieldType": "text",
+      "Position": 6
+    },
+    {
+      "Code": "Question_Prew_ControlDate",
+      "Name": "Дата Контролю",
+      "FieldType": "date-time",
+      "Position": 6
+    },
+    {
+      "Code": "Question_Prew_States",
+      "Name": "Стан питання",
+      "FieldType": "select",
+      "Position": 7,
+      "QueryCode": "List_QuestionStates_SelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "Question_Prew_ResultText",
+      "Name": "Результат",
+      "FieldType": "text",
+      "Position": 8,
+      "IsHidden": true
+    },
+    {
+      "Code": "Question_Prew_AssignmentResolution",
+      "Name": "Резолюція",
+      "FieldType": "text",
+      "Position": 8,
+      "IsHidden": true
+    },
+    {
+      "Code": "Question_Prew_CommentExecutor",
+      "Name": "Коментар виконавця",
+      "FieldType": "text",
+      "Position": 9,
+      "Width": "100%"
+    },
+    {
+      "Code": "Question_Prew_Btn_Consultation",
+      "Name": "Консультація за питанням",
+      "FieldType": "button",
+      "Position": 10,
+      "Width": "25%"
+    },
+    {
+      "Code": "Question_Prew_Btn_Close",
+      "Name": "Закрити питання",
+      "FieldType": "button",
+      "Position": 11,
+      "Width": "25%"
+    },
+    {
+      "Code": "Question_Prew_Btn_Add",
+      "Name": "Додати питання",
+      "FieldType": "button",
+      "Position": 17,
+      "Width": "25%"
+    },
+    {
+      "Code": "Question_Btn_work_with",
+      "Name": "Робота з питанням",
+      "FieldType": "button",
+      "Position": 28,
+      "Width": "25%"
+    },
+    {
+      "Code": "Question_Prew_Id",
+      "Name": "Question_Prew_Id",
+      "FieldType": "number",
+      "Position": 999,
+      "IsHidden": true
+    },
+    {
+      "Code": "AssignmentId",
+      "Name": "AssignmentId",
+      "FieldType": "number",
+      "Position": 1999,
+      "IsHidden": true
+    }
+  ]
+}
