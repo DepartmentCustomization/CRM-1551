@@ -3,5 +3,5 @@
   "Code": "CRM_1551_Analitics_Replication",
   "Name": "CRM_1551_Analitics_Replication",
   "ProviderCode": "System.Data.SqlClient",
-  "ConnectionString": "ConnectionString"
+  "ConnectionString": "Data Source={DataSource};Initial Catalog={InitialCatalog};User Id={UserId};Password={Password};Persist Security Info=true;"
 }
