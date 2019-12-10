@@ -1,0 +1,19 @@
+[{
+        "Code": "@Name",
+        "Name": "Name"
+    },
+    {
+        "Code": "@File",
+        "Name": "File"
+    },
+    {
+        "Code": "@event_id",
+        "Name": "event_id",
+        "ParameterType": "Integer"
+    },
+    {
+        "Code": "@user",
+        "Name": "user",
+        "ParameterType": "CurrentUserId"
+    }
+]

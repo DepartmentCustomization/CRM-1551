@@ -24,6 +24,11 @@
         "Code": "ass_status",
         "ParentFormFieldCodeForKeyValue": "ass_state_id",
         "ParentFormFieldCodeForDisplayValue": "ass_state_id"
+      },
+      {
+        "Code": "assignment_id",
+        "ParentFormFieldCodeForKeyValue": "Id",
+        "ParentFormFieldCodeForDisplayValue": "Id"
       }
     ],
     "Script": "string:Form_Ass_Documents.form.js"

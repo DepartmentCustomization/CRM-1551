@@ -1,0 +1,53 @@
+{
+  "ModelType": "Query",
+  "Code": "AssDoc_SelectRow",
+  "Name": "AssDoc_SelectRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrimaryKey": true,
+      "IsPrintable": false
+    },
+    {
+      "Code": "doc_type_id",
+      "Name": "doc_type_id",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "add_date",
+      "Name": "add_date",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "name",
+      "Name": "name",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "doc_type_name",
+      "Name": "doc_type_name",
+      "Position": 4,
+      "ReferenceKeyCode": "doc_type_id"
+    },
+    {
+      "Code": "content",
+      "Name": "content",
+      "Position": 5
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

@@ -94,6 +94,17 @@
             "Width": "100%"
         },
         {
+            "Code": "executor_person_id",
+            "Name": "Виконавець в організації",
+            "FieldType": "select",
+            "Position": 10,
+            "QueryCode": "cx_list_executor_person",
+            "KeyColumnCode": "Id",
+            "DisplayColumnCode": "executor_person",
+            "QueryParameters": [],
+            "Width": "100%"
+        },
+        {
             "Code": "control_comment",
             "Name": "Коментар перевіряючого",
             "FieldType": "textarea",

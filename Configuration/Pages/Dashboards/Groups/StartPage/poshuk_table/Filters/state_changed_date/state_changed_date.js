@@ -1,7 +1,7 @@
 (function () {
   return {
     showTime: true,   
-    placeholder: 'Розглянуто',
+    placeholder: 'Дата Розглянуто',
     onItemSelect: function(date) {
         this.yourFunctionName(date);
     },

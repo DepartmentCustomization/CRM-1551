@@ -1,5 +1,5 @@
 select Id, [name]
-  from [Bot_Intagration].[dbo].[BotPollItem]
+  from [CRM_1551_Bot_Integration].[dbo].[BotPollItem]
   where 
   #filter_columns#
   #sort_columns#

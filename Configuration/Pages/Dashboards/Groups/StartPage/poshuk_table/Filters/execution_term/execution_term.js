@@ -1,6 +1,6 @@
 (function () {
   return {
-    placeholder: 'Контроль',
+    placeholder: 'Дата Контроль',
     onItemSelect: function(date) {
         this.yourFunctionName(date);
     },

@@ -29,5 +29,10 @@
     "Code": "@result",
     "Name": "result",
     "ParameterType": "Integer"
+  },
+  {
+    "Code": "@user_id",
+    "Name": "user_id",
+    "ParameterType": "CurrentUserId"
   }
 ]

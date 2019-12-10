@@ -2,6 +2,6 @@
   "ModelType": "Query",
   "Code": "ExecutorEvaluations_InsertRow",
   "Name": "ExecutorEvaluations_InsertRow",
-  "ConnectionCode": "CRM_1551_Bot_Intagration",
+  "ConnectionCode": "CRM_1551_Bot_Integration",
   "IsUsedForRightsFilter": false
 }

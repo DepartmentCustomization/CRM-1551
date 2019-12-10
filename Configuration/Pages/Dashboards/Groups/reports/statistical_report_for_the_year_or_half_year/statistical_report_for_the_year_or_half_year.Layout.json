@@ -3,7 +3,7 @@
   "rootContainer": {
     "width": "auto",
     "margin": "0 5px 10px",
-    "flexWrap": "wrap",
+    "flexWrap": "nowrap",
     "flexDirection": "row",
     "order": 1,
     "flexGrow": 1,
@@ -13,7 +13,7 @@
       {
         "width": "auto",
         "margin": "0 5px 10px",
-        "flexWrap": "wrap",
+        "flexWrap": "nowrap",
         "flexDirection": "column",
         "order": 1,
         "flexGrow": 1,
@@ -23,7 +23,7 @@
           {
             "width": "calc(100% - 10px)",
             "margin": "0 5px",
-            "flexWrap": "wrap",
+            "flexWrap": "nowrap",
             "flexDirection": "row",
             "order": 1,
             "flexGrow": 1,

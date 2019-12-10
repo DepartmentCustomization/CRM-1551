@@ -1,6 +1,6 @@
 (function () {
   return {
-    placeholder: 'Вулиці',
+    placeholder: 'Вулиця',
     keyValue: 'Id',
     displayValue: 'name',
     baseQueryOptions: {

@@ -1,4 +1,5 @@
 {
   "Type": "MultiSelectFilterComponent",
-  "Owner": "assigm_user_reviewed"
+  "Owner": "assigm_user_reviewed",
+  "Position": 33
 }

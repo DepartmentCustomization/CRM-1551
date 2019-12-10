@@ -10,6 +10,8 @@ insert into [CRM_1551_Site_Integration].[dbo].[AppealsFromSite]
       ,[AppealFromSiteResultId]
       ,[ProcessingDate]
       ,[EditByDate]
+      ,[geolocation_lat]
+      ,[geolocation_lon]
   )
 output [inserted].[Id] into @output (Id)
 
@@ -22,5 +24,7 @@ output [inserted].[Id] into @output (Id)
       ,1
       ,GETUTCDATE()
       ,GETUTCDATE()
+      ,@geolocation_lat
+      ,@geolocation_lon
       
 select Id from @output

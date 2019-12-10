@@ -1,95 +1,99 @@
-[
-  {
-    "Code": "@ass_type_id",
-    "Name": "ass_type_id",
-    "ParameterType": "Integer"
-  },
-  {
-    "Code": "@user_id",
-    "Name": "user_id"
-  },
-  {
-    "Code": "@ass_state_id",
-    "Name": "ass_state_id",
-    "ParameterType": "Integer"
-  },
-  {
-    "Code": "@rework_counter",
-    "Name": "rework_counter",
-    "ParameterType": "Integer"
-  },
-  {
-    "Code": "@current_consid",
-    "Name": "current_consid",
-    "ParameterType": "Integer"
-  },
-  {
-    "Code": "@main_executor",
-    "Name": "main_executor",
-    "ParameterType": "Boolean"
-  },
-  {
-    "Code": "@transfer_date",
-    "Name": "transfer_date",
-    "ParameterType": "DateTime"
-  },
-  {
-    "Code": "@short_answer",
-    "Name": "short_answer"
-  },
-  {
-    "Code": "@user_edit_id",
-    "Name": "user_edit_id",
-    "ParameterType": "CurrentUserId"
-  },
-  {
-    "Code": "@result_id",
-    "Name": "result_id",
-    "ParameterType": "Integer"
-  },
-  {
-    "Code": "@Id",
-    "Name": "Id",
-    "ParameterType": "Integer",
-    "IsPrimaryKey": true
-  },
-  {
-    "Code": "@resolution_id",
-    "Name": "resolution_id",
-    "ParameterType": "Integer"
-  },
-  {
-    "Code": "@transfer_to_organization_id",
-    "Name": "transfer_to_organization_id",
-    "ParameterType": "Integer"
-  },
-  {
-    "Code": "@question_id",
-    "Name": "question_id",
-    "ParameterType": "Integer"
-  },
-  {
-    "Code": "@control_comment",
-    "Name": "control_comment"
-  },
-  {
-    "Code": "@date_in_form",
-    "Name": "date_in_form",
-    "ParameterType": "DateTime"
-  },
-  {
-    "Code": "@close_date",
-    "Name": "close_date",
-    "ParameterType": "DateTime"
-  },
-  {
-    "Code": "@execution_date",
-    "Name": "execution_date",
-    "ParameterType": "DateTime"
-  },
-  {
-    "Code": "@performer_id",
-    "Name": "performer_id",
-    "ParameterType": "Integer"
-  }
+[{
+        "Code": "@ass_type_id",
+        "Name": "ass_type_id",
+        "ParameterType": "Integer"
+    },
+    {
+        "Code": "@user_id",
+        "Name": "user_id"
+    },
+    {
+        "Code": "@ass_state_id",
+        "Name": "ass_state_id",
+        "ParameterType": "Integer"
+    },
+    {
+        "Code": "@rework_counter",
+        "Name": "rework_counter",
+        "ParameterType": "Integer"
+    },
+    {
+        "Code": "@current_consid",
+        "Name": "current_consid",
+        "ParameterType": "Integer"
+    },
+    {
+        "Code": "@main_executor",
+        "Name": "main_executor",
+        "ParameterType": "Boolean"
+    },
+    {
+        "Code": "@transfer_date",
+        "Name": "transfer_date",
+        "ParameterType": "DateTime"
+    },
+    {
+        "Code": "@short_answer",
+        "Name": "short_answer"
+    },
+    {
+        "Code": "@user_edit_id",
+        "Name": "user_edit_id",
+        "ParameterType": "CurrentUserId"
+    },
+    {
+        "Code": "@result_id",
+        "Name": "result_id",
+        "ParameterType": "Integer"
+    },
+    {
+        "Code": "@Id",
+        "Name": "Id",
+        "ParameterType": "Integer",
+        "IsPrimaryKey": true
+    },
+    {
+        "Code": "@resolution_id",
+        "Name": "resolution_id",
+        "ParameterType": "Integer"
+    },
+    {
+        "Code": "@transfer_to_organization_id",
+        "Name": "transfer_to_organization_id",
+        "ParameterType": "Integer"
+    },
+    {
+        "Code": "@question_id",
+        "Name": "question_id",
+        "ParameterType": "Integer"
+    },
+    {
+        "Code": "@control_comment",
+        "Name": "control_comment"
+    },
+    {
+        "Code": "@date_in_form",
+        "Name": "date_in_form",
+        "ParameterType": "DateTime"
+    },
+    {
+        "Code": "@close_date",
+        "Name": "close_date",
+        "ParameterType": "DateTime"
+    },
+    {
+        "Code": "@execution_date",
+        "Name": "execution_date",
+        "ParameterType": "DateTime"
+    },
+    {
+        "Code": "@performer_id",
+        "Name": "performer_id",
+        "ParameterType": "Integer"
+    },
+    {
+        "Code": "@executor_person_id",
+        "Name": "executor_person_id",
+        "ParameterType": "Integer"
+    }
 ]

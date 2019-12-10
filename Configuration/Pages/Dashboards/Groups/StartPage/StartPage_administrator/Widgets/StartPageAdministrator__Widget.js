@@ -98,7 +98,7 @@
                         <div class="border-right"></div>
                       </div>
                       
-                       <div class="group" tabindex="0" onclick="javascript:window.location='`+location.origin + localStorage.getItem('VirtualPath')+ `/dashboard/page/reports_list'">
+                       <div class="group" tabindex="0" onclick="javascript:window.location='`+location.origin + localStorage.getItem('VirtualPath')+ `/dashboard/page/analytics_reports_list'">
                         <div class="icon">
                           <i class="material-icons elementIcon" style="color:#ff7961;"> list </i>
                         </div>

@@ -1,0 +1,22 @@
+{
+  "ModelType": "Detail",
+  "Code": "det_PersonExecutorChooseQT",
+  "Name": "Типи питань",
+  "FormCode": "Form_PersonExecutorChooseQT",
+  "SelectRowsQueryCode": "ak_PersonExecutorChooseQTSelectRows_det",
+  "SelectRowQueryCode": "ak_PersonExecutorChooseQTSelectRow",
+  "DeleteQueryCode": "ak_PersonExecutorChooseQTDeleteRow",
+  "UpdateQueryCode": "ak_PersonExecutorChooseQTUpdateRow",
+  "SectionCode": "",
+  "Add": {
+    "InsertQueryCode": "ak_PersonExecutorChooseQTInsertRow"
+  },
+  "Position": 1,
+  "IsExpand": true,
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@person_executor_choose_id"
+    }
+  ]
+}

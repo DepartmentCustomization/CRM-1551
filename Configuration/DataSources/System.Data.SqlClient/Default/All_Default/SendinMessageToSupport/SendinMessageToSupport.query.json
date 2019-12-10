@@ -1,0 +1,13 @@
+{
+  "ModelType": "Query",
+  "Code": "SendinMessageToSupport",
+  "Name": "SendinMessageToSupport",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@textHTML",
+      "Name": "textHTML"
+    }
+  ]
+}

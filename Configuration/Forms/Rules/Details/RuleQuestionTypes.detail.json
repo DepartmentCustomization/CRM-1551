@@ -1,0 +1,22 @@
+{
+    "ModelType": "Detail",
+    "Code": "RuleQuestionTypes",
+    "Name": "Типи питань",
+  //  "FormCode": "RulesForExecutorRole",
+    "SelectRowsQueryCode": "RuleQuestionTypes",
+   // "SelectRowQueryCode": "det_Ruses_RulesForExecutorRoleRow",
+ //   "UpdateQueryCode": "ak_Ruses_RulesForExecutorRoleUpdate",
+    "SectionCode": "",
+  //  "DeleteQueryCode": "ak_Ruses_RulesForExecutorRoleDelete",
+    "Position": 2,
+    "IsExpand": true,
+    "Add": {
+ //     "InsertQueryCode": "ak_RulesForExecutorRoleInsert"
+    },
+    "QueryParameters": [
+      {
+        "FormFieldName": "Id",
+        "ParameterCode": "@rules_id"
+      }
+    ]
+  }

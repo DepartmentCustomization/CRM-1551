@@ -1,0 +1,15 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_PersonExecutorChooseDeleteRow",
+    "Name": "ak_PersonExecutorChooseDeleteRow",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Parameters": [
+      {
+        "Code": "@Id",
+        "Name": "Id",
+        "ParameterType": "Integer",
+        "IsPrimaryKey": true
+      }
+    ]
+  }

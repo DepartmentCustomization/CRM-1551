@@ -1,0 +1,81 @@
+{
+  "css": "",
+  "rootContainer": {
+    "width": "auto",
+    "margin": "0 5px 10px",
+    "flexWrap": "wrap",
+    "flexDirection": "row",
+    "order": 1,
+    "flexGrow": 1,
+    "alignSelf": "auto",
+    "border": "none",
+    "children": [
+      {
+        "width": "auto",
+        "margin": "0 5px 10px",
+        "flexWrap": "wrap",
+        "flexDirection": "row",
+        "order": 1,
+        "flexGrow": 1,
+        "alignSelf": "flex-start",
+        "border": "none",
+        "children": [
+          {
+            "width": "calc(30% - 10px)",
+            "margin": "47px 5px 10px",
+            "flexWrap": "wrap",
+            "flexDirection": "row",
+            "order": 1,
+            "flexGrow": 1,
+            "alignSelf": "auto",
+            "border": "none",
+            "children": [
+              {
+                "code": "numbers__NativeDataGridWidget",
+                "type": "NativeDataGridWidgetComponent",
+                "name": "numbers"
+              }
+            ],
+            "id": "Container-1",
+            "height": "calc(100% - 57px)",
+            "minHeight": "100px",
+            "minWidth": "100px",
+            "backgroundColor": "white"
+          },
+          {
+            "width": "calc(70% - 10px)",
+            "margin": "0 5px 10px",
+            "flexWrap": "wrap",
+            "flexDirection": "row",
+            "order": 1,
+            "flexGrow": "1",
+            "alignSelf": "auto",
+            "border": "none",
+            "children": [
+              {
+                "code": "combining__NativeDataGridWidget",
+                "type": "NativeDataGridWidgetComponent",
+                "name": "combining_the_duplicate"
+              }
+            ],
+            "id": "Container-1",
+            "height": "calc(100% - 10px)",
+            "minHeight": "100px",
+            "minWidth": "100px",
+            "backgroundColor": "white"
+          }
+        ],
+        "id": "Container-0",
+        "height": "calc(100% - 10px)",
+        "minHeight": "100px",
+        "minWidth": "100px",
+        "backgroundColor": "white"
+      }
+    ],
+    "id": "Container-0",
+    "height": "100%",
+    "minHeight": "100%",
+    "minWidth": "100%",
+    "backgroundColor": "white"
+  }
+}

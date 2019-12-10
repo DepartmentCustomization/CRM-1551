@@ -58,13 +58,15 @@
       "Name": "Адреса проживання заявника",
       "FieldType": "text",
       "Position": 6,
-      "Icon": "home"
+      "Icon": "home",
+      "Width": "100%"
     },
     {
       "Code": "object_name",
       "Name": "Об'єкт питання",
       "FieldType": "text",
-      "Position": 7
+      "Position": 7,
+      "Width": "100%"
     },
     {
       "Code": "bal_name",
@@ -82,7 +84,8 @@
       "QueryCode": "list_select_organization",
       "KeyColumnCode": "Id",
       "DisplayColumnCode": "short_name",
-      "QueryParameters": []
+      "QueryParameters": [],
+      "Width": "100%"
     },
     {
       "Code": "address_problem",
@@ -96,7 +99,8 @@
       "Name": "Тип питання",
       "FieldType": "text",
       "Position": 10,
-      "Icon": "turned_in"
+      "Icon": "turned_in",
+      "Width": "100%"
     },
     {
       "Code": "question_content",
@@ -109,13 +113,15 @@
       "Code": "control_date",
       "Name": "Дата контролю питання",
       "FieldType": "date-time",
-      "Position": 13
+      "Position": 13,
+      "Width": "50%"
     },
     {
       "Code": "answer",
       "Name": "Відповідь",
       "FieldType": "text",
-      "Position": 14
+      "Position": 14,
+      "Width": "50%"
     },
     {
       "Code": "question_id",

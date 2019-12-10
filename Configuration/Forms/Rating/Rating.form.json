@@ -2,7 +2,9 @@
   "ModelType": "Form",
   "Code": "Rating",
   "Name": "Форма: довідник рейтинги",
-  "Details": [],
+  "Details": [
+    "string:Details\\det_QuestionTypes.detail.json"
+  ],
   "Config": {
     "FieldGroups": [
       "string:FieldGroups\\name.fieldgroup.json"

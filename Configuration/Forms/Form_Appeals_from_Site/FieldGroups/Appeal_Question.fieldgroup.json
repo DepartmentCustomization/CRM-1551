@@ -21,6 +21,7 @@
       "QueryCode": "List_QuestionTypes_SelectRows",
       "KeyColumnCode": "Id",
       "DisplayColumnCode": "Name",
+      "HasChildrenColumnCode": "has_child",
       "QueryParameters": [],
       "LookupType": "tree",
       "ParentColumnCode": "ParentId",

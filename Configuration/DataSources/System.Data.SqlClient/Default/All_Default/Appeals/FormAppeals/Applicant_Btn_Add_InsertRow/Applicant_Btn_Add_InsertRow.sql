@@ -28,32 +28,10 @@
 		insert into [dbo].[LiveAddress] (applicant_id, building_id, house_block, entrance, flat, main, active)
 		values (@Applicant_Id, @Applicant_Building, @Applicant_HouseBlock, @Applicant_Entrance, @Applicant_Flat, 1, 1)
 
-		   --арт
-  update [CRM_1551_Analitics].[dbo].[Applicants]
-  set [ApplicantAdress]=(select distinct
-  isnull([Districts].name+N' р-н., ', N'')+
-  isnull([StreetTypes].shortname+N' ',N'')+
-  isnull([Streets].name+N' ',N'')+
-  isnull([Buildings].name+N', ',N'')+
-  isnull(N'п. '+ltrim([LiveAddress].[entrance])+N', ', N'')+
-  isnull(N'кв. '+ltrim([LiveAddress].flat)+N', ', N'')+
-  N'телефони: '+isnull(stuff((select N', '+lower(SUBSTRING([PhoneTypes].name, 1, 3))+N'.: '+[ApplicantPhones].phone_number
-  from [CRM_1551_Analitics].[dbo].[ApplicantPhones]
-  left join [CRM_1551_Analitics].[dbo].[PhoneTypes] on [ApplicantPhones].phone_type_id=[PhoneTypes].Id
-  where [ApplicantPhones].applicant_id=[LiveAddress].applicant_id
-  for xml path('')), 1, 2,N''), N'') phone
-  from [CRM_1551_Analitics].[dbo].[LiveAddress] 
-  left join [CRM_1551_Analitics].[dbo].[Buildings] on [LiveAddress].building_id=[Buildings].Id
-  left join [CRM_1551_Analitics].[dbo].[Streets] on [Buildings].street_id=[Streets].Id
-  left join [CRM_1551_Analitics].[dbo].[StreetTypes] on [Streets].street_type_id=[StreetTypes].Id
-  left join [CRM_1551_Analitics].[dbo].[Districts] on [Buildings].district_id=[Districts].Id
-  where applicant_id=@Applicant_Id)
-  where Id=@Applicant_Id
-  --арт
-
 		 update [dbo].[Appeals] set [applicant_id] = @Applicant_Id
 		 where [Id] = @AppealId
 
+		/*
 		if (select count(1) from [dbo].[ApplicantPhones] where applicant_id = @Applicant_Id and phone_number = @Applicant_Phone and IsMain = 1) = 0
 		begin
 			insert into [dbo].[ApplicantPhones]  (applicant_id, phone_type_id, phone_number, IsMain, CreatedAt)
@@ -66,8 +44,13 @@
 		                                        phone_type_id = isnull(@Applicant_TypePhone,1)
 		      where applicant_id = @Applicant_Id and IsMain = 1
 		end
+		*/
 
-	    select @Applicant_Id as ApplicantId 
+
+
+
+
+	    select @Applicant_Id as ApplicantId  
 	end
 	else 
 	begin
@@ -102,26 +85,29 @@
 				   ,@Applicant_Email
 				   ,@Applicant_Type
 				   )
-				   		
+				   
+			
 			set @app_id = (select top 1 Id from @output)
 
-			declare @is_phoneSaved bit;
-			set @is_phoneSaved = case when 
-			(select Id from ApplicantPhones where applicant_id = @app_id and phone_number = @Applicant_Phone) is null then 0
-			else 1 end
-
-			if(@is_phoneSaved = 0)
-			begin
+			
 			insert into [dbo].[ApplicantPhones]  (applicant_id, phone_type_id, phone_number, IsMain, CreatedAt)
 			values (@app_id, isnull(@Applicant_TypePhone,1), replace(replace(REPLACE(@Applicant_Phone, N'(', ''), N')', N''), N'-', N''), 1, getutcdate())
-			end
+			
 
-			if(@Applicant_Building is not null)
-			begin
+
 			insert into [dbo].[LiveAddress] (applicant_id, building_id, house_block, entrance, flat, main, active)
 			values (@app_id, @Applicant_Building, @Applicant_HouseBlock, @Applicant_Entrance, @Applicant_Flat, 1, 1)
 			
-			   --арт
+			  update [dbo].[Appeals] 
+			  set [applicant_id] = @app_id
+			  ,[edit_date]=getutcdate()
+			  where [Id] = @AppealId
+			  
+			select @app_id as ApplicantId  
+	
+  end
+  
+  --арт
   update [CRM_1551_Analitics].[dbo].[Applicants]
   set [ApplicantAdress]=(select distinct
   isnull([Districts].name+N' р-н., ', N'')+
@@ -143,10 +129,4 @@
   where applicant_id=@app_id)
   where Id=@app_id
   --арт
-              end
-			  update [dbo].[Appeals] set [applicant_id] = @app_id
-			  where [Id] = @AppealId
-			  
-			select @app_id as ApplicantId  
-
-  end
+  

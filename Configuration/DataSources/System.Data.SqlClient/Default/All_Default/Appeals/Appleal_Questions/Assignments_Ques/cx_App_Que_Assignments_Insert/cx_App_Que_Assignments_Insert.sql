@@ -74,7 +74,10 @@ insert into dbo.AssignmentConsiderations
            
            
 set @con_id = (select top 1 [Id_c] from @output);
-update Assignments set [current_assignment_consideration_id] = @con_id where Id = @ass_id
+update Assignments 
+set [current_assignment_consideration_id] = @con_id
+,[edit_date]=getutcdate()
+where Id = @ass_id
            
 select  @ass_id as Id
 return;

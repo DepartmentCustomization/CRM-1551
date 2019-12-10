@@ -1,0 +1,17 @@
+{
+  "ModelType": "Form",
+  "Code": "Form_QuestionTypeTemplates",
+  "Name": "Шаблони: Типи питання",
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\main.fieldgroup.json"
+    ],
+    "DefaultFields": [
+      {
+        "Code": "template_Id",
+        "ParentFormFieldCodeForKeyValue": "Id",
+        "ParentFormFieldCodeForDisplayValue": "Id"
+      }
+    ]
+  }
+}

@@ -1,5 +1,7 @@
 (function () {
     return {
+        is_obj: undefined,
+        is_org: undefined,
 
         init: function () {
 
@@ -40,6 +42,7 @@
             }
             else { // state != create
                 this.form.setControlValue('AppealId', this.id);
+                this.form.setControlValue('ReceiptSources', { key: 3, value: 'УГЛ' });
 
                 document.getElementsByClassName('float_r')[0].children[1].style.display = 'none';
                 document.getElementById('Question_Btn_Add').disabled = true;
@@ -56,10 +59,13 @@
                 this.form.disableControl('Question_OrganizationId');
                 this.form.disableControl('Question_ControlDate');
 
-                this.form.setControlValue('ReceiptSources', { key: 3, value: 'УГЛ' });
-                this.form.onControlValueChanged('Question_AnswerType', this.onChangedQuestion_AnswerType.bind(this));
-
+                // Убрать видимость до выяснения обстоятельств
+                this.form.setControlVisibility('Question_Building', false);
+                this.form.setControlVisibility('entrance', false);
+                this.form.setControlVisibility('flat', false);
+                this.form.setControlVisibility('Question_Organization', false);
                 this.details.setVisibility('Detail_UGL_QuestionNumberAppeal', false);
+
                 // Если Applicant_Id в форме не задан то создавать Questions еще рано (заявителя нету)
                 if (this.form.getControlValue('Applicant_Id') == null) {
                     document.getElementById('Question_Aplicant_Btn_Add').disabled = true;
@@ -69,9 +75,16 @@
 
                 if (this.form.getControlValue('Applicant_PIB') == null) { document.getElementById('Applicant_Btn_Add').disabled = true; };
 
+                this.form.onControlValueChanged('Applicant_Building', this.getDistrictAndExecutor);
+                this.form.onControlValueChanged('Applicant_Building', this.checkApplicantSaveAvailable);
                 this.form.onControlValueChanged('Applicant_PIB', this.checkApplicantSaveAvailable);
                 this.form.onControlValueChanged('Question_TypeId', this.onChanged_Question_TypeId);
+                this.form.onControlValueChanged('Question_TypeId', this.questionObjectOrg);
                 this.form.onControlValueChanged('Question_Content', this.checkQuestionRegistrationAvailable);
+                this.form.onControlValueChanged('Question_AnswerType', this.onChangedQuestion_AnswerType.bind(this));
+                this.form.onControlValueChanged('Question_Building', this.checkQuestionRegistrationAvailable);
+                this.form.onControlValueChanged('Question_Organization', this.checkQuestionRegistrationAvailable);
+
                 // Заполнение полей "Загальна інформація"          
                 const AppealUGL = {
                     queryCode: 'AppealUGL_Info',
@@ -93,6 +106,7 @@
                     this.form.setControlValue('Question_Content', data.rows[0].values[5]);
                     this.form.setControlValue('ApplicantUGL', data.rows[0].values[6]);
                     this.form.setControlValue('AppealNumber', data.rows[0].values[8]);
+                    this.form.setControlValue('applicantAddress', data.rows[0].values[9]);
 
                     // Загрузка заявителей по телефону в деталь
                     const parameters = [
@@ -105,117 +119,124 @@
 
                 //Кнопка "Зберегти" в группе "Заявник"
                 document.getElementById('Applicant_Btn_Add').addEventListener("click", function (event) {
-                    const queryForGetValue2 = {
-                        queryCode: 'Applicant_Btn_Add_InsertRow',
-                        parameterValues: [
-                            {
-                                key: '@Applicant_Id',
-                                value: this.form.getControlValue('Applicant_Id')
-                            },
-                            {
-                                key: '@Applicant_PIB',
-                                value: this.form.getControlValue('Applicant_PIB')
-                            },
-                            {
-                                key: '@Applicant_Privilege',
-                                value: this.form.getControlValue('Applicant_Privilege')
-                            },
-                            {
-                                key: '@Applicant_SocialStates',
-                                value: this.form.getControlValue('Applicant_SocialStates')
-                            },
-                            {
-                                key: '@Applicant_CategoryType',
-                                value: this.form.getControlValue('Applicant_CategoryType')
-                            },
-                            {
-                                key: '@Applicant_Type',
-                                value: this.form.getControlValue('Applicant_Type')
-                            },
-                            {
-                                key: '@Applicant_Sex',
-                                value: this.form.getControlValue('Applicant_Sex')
-                            },
-                            {
-                                key: '@Application_BirthDate',
-                                value: this.form.getControlValue('Applicant_BirthDate')
-                            },
-                            {
-                                key: '@Applicant_Age',
-                                value: this.form.getControlValue('Applicant_Age')
-                            },
-                            {
-                                key: '@Applicant_Comment',
-                                value: this.form.getControlValue('Applicant_Comment')
-                            },
-                            {
-                                key: '@Applicant_Building',
-                                value: this.form.getControlValue('Applicant_Building')
-                            },
-                            {
-                                key: '@Applicant_HouseBlock',
-                                value: this.form.getControlValue('Applicant_HouseBlock')
-                            },
-                            {
-                                key: '@Applicant_Entrance',
-                                value: this.form.getControlValue('Applicant_Entrance')
-                            },
-                            {
-                                key: '@Applicant_Flat',
-                                value: this.form.getControlValue('Applicant_Flat')
-                            },
-                            {
-                                key: '@AppealId',
-                                value: this.form.getControlValue('AppealId')
-                            },
-                            {
-                                key: '@Applicant_Phone',
-                                value: this.form.getControlValue('Phone')
-                            },
-                            {
-                                key: '@Applicant_Email',
-                                value: this.form.getControlValue('Applicant_Email')
-                            },
-                            {
-                                key: '@Applicant_TypePhone',
-                                value: 1
-                            }
-                        ]
-                    };
-
-                    this.queryExecutor.getValues(queryForGetValue2).subscribe(data => {
-
-                        this.form.setControlValue('Applicant_Id', data.rows[0].values[0]);
-                        const queryForGetValue3 = {
-                            queryCode: 'Appeals_SelectRow',
+                    let entrance = this.form.getControlValue('Applicant_Entrance');
+                    if (entrance != null && entrance < 1) {
+                        this.openPopUpInfoDialog('Номер під`їзду не може бути менше 1');
+                    }
+                    else {
+                        const queryForGetValue2 = {
+                            queryCode: 'Applicant_Btn_Add_InsertRow',
                             parameterValues: [
                                 {
-                                    key: '@Id',
-                                    value: this.id
+                                    key: '@Applicant_Id',
+                                    value: this.form.getControlValue('Applicant_Id')
+                                },
+                                {
+                                    key: '@Applicant_PIB',
+                                    value: this.form.getControlValue('Applicant_PIB')
+                                },
+                                {
+                                    key: '@Applicant_Privilege',
+                                    value: this.form.getControlValue('Applicant_Privilege')
+                                },
+                                {
+                                    key: '@Applicant_SocialStates',
+                                    value: this.form.getControlValue('Applicant_SocialStates')
+                                },
+                                {
+                                    key: '@Applicant_CategoryType',
+                                    value: this.form.getControlValue('Applicant_CategoryType')
+                                },
+                                {
+                                    key: '@Applicant_Type',
+                                    value: this.form.getControlValue('Applicant_Type')
+                                },
+                                {
+                                    key: '@Applicant_Sex',
+                                    value: this.form.getControlValue('Applicant_Sex')
+                                },
+                                {
+                                    key: '@Application_BirthDate',
+                                    value: this.form.getControlValue('Applicant_BirthDate')
+                                },
+                                {
+                                    key: '@Applicant_Age',
+                                    value: this.form.getControlValue('Applicant_Age')
+                                },
+                                {
+                                    key: '@Applicant_Comment',
+                                    value: this.form.getControlValue('Applicant_Comment')
+                                },
+                                {
+                                    key: '@Applicant_Building',
+                                    value: this.form.getControlValue('Applicant_Building')
+                                },
+                                {
+                                    key: '@Applicant_HouseBlock',
+                                    value: this.form.getControlValue('Applicant_HouseBlock')
+                                },
+                                {
+                                    key: '@Applicant_Entrance',
+                                    value: this.form.getControlValue('Applicant_Entrance')
+                                },
+                                {
+                                    key: '@Applicant_Flat',
+                                    value: this.form.getControlValue('Applicant_Flat')
+                                },
+                                {
+                                    key: '@AppealId',
+                                    value: this.form.getControlValue('AppealId')
+                                },
+                                {
+                                    key: '@Applicant_Phone',
+                                    value: this.form.getControlValue('Phone')
+                                },
+                                {
+                                    key: '@Applicant_Email',
+                                    value: this.form.getControlValue('Applicant_Email')
+                                },
+                                {
+                                    key: '@Applicant_TypePhone',
+                                    value: 1
                                 }
                             ]
                         };
 
-                        this.queryExecutor.getValues(queryForGetValue3).subscribe(data => {
 
-                            //LoadDetail Detail_UGL_Aplicant
-                            const parameters = [
-                                { key: '@phone_number', value: this.form.getControlValue('Phone') }
-                            ];
-                            this.details.loadData('Detail_UGL_Aplicant', parameters);
+                        this.queryExecutor.getValues(queryForGetValue2).subscribe(data => {
 
-                            //Detail_UGL_QuestionRegistration
-                            const parameters2 = [
-                                { key: '@appealId', value: data.rows[0].values[0] }
-                            ];
-                            this.details.loadData('Detail_UGL_QuestionRegistration', parameters2);
+                            this.form.setControlValue('Applicant_Id', data.rows[0].values[0]);
+                            const queryForGetValue3 = {
+                                queryCode: 'Appeals_SelectRow',
+                                parameterValues: [
+                                    {
+                                        key: '@Id',
+                                        value: this.id
+                                    }
+                                ]
+                            };
+                            document.getElementById('Applicant_Btn_Add').disabled = true;
+                            this.queryExecutor.getValues(queryForGetValue3).subscribe(data => {
 
-                            this.onRecalcCardPhone();
+                                //LoadDetail Detail_UGL_Aplicant
+                                const parameters = [
+                                    { key: '@phone_number', value: this.form.getControlValue('Phone') }
+                                ];
+                                this.details.loadData('Detail_UGL_Aplicant', parameters);
+
+                                //Detail_UGL_QuestionRegistration
+                                const parameters2 = [
+                                    { key: '@appealId', value: data.rows[0].values[0] }
+                                ];
+                                this.details.loadData('Detail_UGL_QuestionRegistration', parameters2);
+
+                                this.onRecalcCardPhone();
+                            });
+
+                            this.checkApplicantSaveAvailable();
                         });
 
-                        this.checkApplicantSaveAvailable();
-                    });
-                    document.getElementById('Applicant_Btn_Add').disabled = true;
+                    }
                 }.bind(this));
 
                 //Кнопка "Очистити" в группе "Заявник"
@@ -238,7 +259,7 @@
                     this.form.setControlValue('Applicant_Email', null);
                     this.form.setControlValue('Applicant_Comment', null);
                     this.form.setControlValue('Applicant_Phone_Hide', null);
-                   
+
                 }.bind(this));
                 // Отработка кнопки "Додати питання"
                 document.getElementById('Question_Aplicant_Btn_Add').addEventListener("click", function (event) {
@@ -348,14 +369,13 @@
                         this.form.setControlValue('ReceiptSources', { key: data.rows[0].values[4], value: data.rows[0].values[19] });
                         this.form.setControlValue('AppealNumber', data.rows[0].values[3]);
                         this.form.setControlValue('Phone', data.rows[0].values[5]);
-                        // this.form.setControlValue('DateStart', new Date(data.rows[0].values[10]));
                         this.form.setControlValue('DateStart', new Date());
-                        //LoadDetail Detail_UGL_Aplicant
+
                         const parameters = [
                             { key: '@phone_number', value: data.rows[0].values[5] }
                         ];
                         this.details.loadData('Detail_UGL_Aplicant', parameters);
-                        //LoadDetail Detail_UGL_QuestionRegistration
+
                         const parameters2 = [
                             { key: '@appealId', value: this.id }
                         ];
@@ -373,7 +393,7 @@
             this.form.onControlValueChanged('Search_Appeals_Input', this.onChanged_Search_Appeals_Input.bind(this));
             document.getElementById('Search_Appeals_Search').disabled = true;
             document.getElementById('Search_Appeals_Search').addEventListener("click", function (event) {
-              //Detail_QuestionNumberAppeal
+                //Detail_QuestionNumberAppeal
                 const parameters = [
                     { key: '@AppealRegistrationNumber', value: this.form.getControlValue('Search_Appeals_Input') }
                 ];
@@ -382,6 +402,53 @@
             }.bind(this));
         },
         // END INIT
+
+        questionObjectOrg: function () {
+
+            let q_type_id = this.form.getControlValue('Question_TypeId');
+            if (q_type_id == undefined) {
+                this.form.setControlVisibility('Question_Building', false);
+                this.form.setControlVisibility('entrance', false);
+                this.form.setControlVisibility('flat', false);
+                this.form.setControlVisibility('Question_Organization', false);
+            }
+            else {
+                const objAndOrg = {
+                    queryCode: 'QuestionTypes_HideColumns',
+                    parameterValues: [
+                        {
+                            key: '@question_type_id',
+                            value: q_type_id
+                        }
+                    ]
+                };
+                this.queryExecutor.getValues(objAndOrg).subscribe(data => {
+                    this.is_org = data.rows[0].values[0];
+                    this.is_obj = data.rows[0].values[1];
+
+                    if (this.is_obj === true) {
+                        this.form.setControlVisibility('Question_Building', true);
+                        this.form.setControlVisibility('entrance', true);
+                        this.form.setControlVisibility('flat', true);
+
+                    }
+                    else if (this.is_obj !== true) {
+                        this.form.setControlVisibility('Question_Building', false);
+                        this.form.setControlVisibility('entrance', false);
+                        this.form.setControlVisibility('flat', false);
+                    }
+
+                    if (this.is_org === true) {
+                        this.form.setControlVisibility('Question_Organization', true);
+                    }
+                    else if (this.is_org !== true) {
+                        this.form.setControlVisibility('Question_Organization', false);
+                    }
+
+                });
+            }
+        },
+
         checkApplicantHere: function () {
             if (this.form.getControlValue('Applicant_Id') != null) {
                 document.getElementById('Question_Aplicant_Btn_Add').disabled = false;
@@ -392,7 +459,7 @@
         },
         // Условие доступности сохранения заявителя
         checkApplicantSaveAvailable: function () {
-            if (this.form.getControlValue('Applicant_PIB') == null) {
+            if (this.form.getControlValue('Applicant_PIB') == null || this.form.getControlValue('Applicant_Building') == null) {
                 document.getElementById('Applicant_Btn_Add').disabled = true;
             }
             else {
@@ -402,7 +469,6 @@
         //Получение данных заявителя
         getApplicantInfo: function (column, row, value, event, indexOfColumnId) {
             let applicantId = row.values[4];
-            console.log(applicantId);
 
             const Applicant = {
                 queryCode: 'Applicant_Info',
@@ -431,7 +497,6 @@
                     sex = (data.rows[0].values[13]).toString();
                 };
 
-                console.log(data);
                 this.form.setControlValue('Applicant_Building',
                     { key: data.rows[0].values[1], value: data.rows[0].values[2] });
                 this.form.setControlValue('Applicant_Entrance', data.rows[0].values[4])
@@ -478,6 +543,12 @@
             this.getOrgExecut();
             this.onQuestionControlDate(questionType);
             this.checkQuestionRegistrationAvailable();
+            if (questionType === "" || questionType === null) {
+                this.form.setControlValue('Question_Organization', { key: null, value: null });
+                this.form.setControlValue('flat', null);
+                this.form.setControlValue('entrance', null);
+                document.getElementById('Question_Btn_Add').disabled = true;
+            }
         },
         getOrgExecut: function () {
             const objAndOrg = {
@@ -530,7 +601,7 @@
             };
 
             if (value == 4 || value == 5) {
-                this.form.setControlValue('Question_AnswerPhoneOrPost', this.form.getControlValue('Adress_for_answer'));
+                this.form.setControlValue('Question_AnswerPhoneOrPost', this.form.getControlValue('applicantAddress'));
             };
 
             if (value == 3) {
@@ -540,13 +611,67 @@
         },
         // Условия допустимости регистрации Questions`a
         checkQuestionRegistrationAvailable: function () {
-            if (this.form.getControlValue('Question_Content') != null
-                && this.form.getControlValue('Question_TypeId') != null
-                && this.form.getControlValue('Question_AnswerType') != null) {
-                document.getElementById('Question_Btn_Add').disabled = false;
-            }
-            else {
-                document.getElementById('Question_Btn_Add').disabled = true;
+
+            // Куча ифов стартует
+            if (this.form.getControlValue('Question_TypeId') != null) {
+
+                if (this.form.getControlValue('Question_Building') == null) {
+                    this.form.setControlValue('flat', null);
+                    this.form.setControlValue('entrance', null);
+                }
+                // Случай когда объект вопроса и организация обязательны
+                if (this.is_obj == true && this.is_org == true) {
+                    let currentObj = this.form.getControlValue('Question_Building');
+                    let currentOrg = this.form.getControlValue('Question_Organization');
+                    if (currentObj == null || currentOrg == null) {
+                        document.getElementById('Question_Btn_Add').disabled = true;
+                    }
+                    else {
+
+                        if (this.form.getControlValue('Question_Content') != null
+                            && this.form.getControlValue('Question_TypeId') != null
+                            && this.form.getControlValue('Question_AnswerType') != null) {
+                            document.getElementById('Question_Btn_Add').disabled = false;
+                        }
+                        else {
+                            document.getElementById('Question_Btn_Add').disabled = true;
+                        }
+                    }
+                }
+                // Случай когда объект вопроса обязательно а орг нет
+                if (this.is_obj == true && this.is_org == false) {
+                    let currentObj = this.form.getControlValue('Question_Building');
+                    if (currentObj == null) {
+                        document.getElementById('Question_Btn_Add').disabled = true;
+                    }
+                    else {
+                        if (this.form.getControlValue('Question_Content') != null
+                            && this.form.getControlValue('Question_TypeId') != null
+                            && this.form.getControlValue('Question_AnswerType') != null) {
+                            document.getElementById('Question_Btn_Add').disabled = false;
+                        }
+                        else {
+                            document.getElementById('Question_Btn_Add').disabled = true;
+                        }
+                    }
+                }
+                // Случай когда орг вопроса обязательно а объект нет
+                if (this.is_obj == false && this.is_org == true) {
+                    let currentOrg = this.form.getControlValue('Question_Organization');
+                    if (currentOrg == null) {
+                        document.getElementById('Question_Btn_Add').disabled = true;
+                    }
+                    else {
+                        if (this.form.getControlValue('Question_Content') != null
+                            && this.form.getControlValue('Question_TypeId') != null
+                            && this.form.getControlValue('Question_AnswerType') != null) {
+                            document.getElementById('Question_Btn_Add').disabled = false;
+                        }
+                        else {
+                            document.getElementById('Question_Btn_Add').disabled = true;
+                        }
+                    }
+                }
             }
         },
         // Если надо по Id дома найти его полный адрес
@@ -563,18 +688,41 @@
                 this.form.setControlValue('Question_Building',
                     { key: data.rows[0].values[0], value: data.rows[0].values[1] });
             });
+            this.form.setControlValue('flat', this.form.getControlValue('Applicant_Flat'));
+            this.form.setControlValue('entrance', this.form.getControlValue('Applicant_Entrance'));
         },
         convertDateNull: function (value) {
             if (!value) { return this.extractStartDate(); } else { return value; };
         },
-        onChanged_Search_Appeals_Input: function(value) {
-            if(value == "") {
-                //   this.form.disableControl('Search_Appeals_Search');
+        onChanged_Search_Appeals_Input: function (value) {
+            if (value == "") {
                 document.getElementById('Search_Appeals_Search').disabled = true;
-            } else { 
-                //   this.form.enableControl('Search_Appeals_Search');
+            } else {
                 document.getElementById('Search_Appeals_Search').disabled = false;
             };
         },
+        getDistrictAndExecutor: function () {
+            let building = this.form.getControlValue('Applicant_Building');
+            if (building != null && typeof (building) == 'number') {
+                const query = {
+                    queryCode: 'DistrictAndExecutor_byBuilding',
+                    parameterValues: [{
+                        key: '@building_id',
+                        value: building
+                    }]
+                };
+                this.queryExecutor.getValues(query).subscribe(function (data) {
+
+                    if (data.rows[0] != undefined) {
+                        this.form.setControlValue('Applicant_District', data.rows[0].values[1]);
+                        this.form.setControlValue('ExecutorInRoleForObject', data.rows[0].values[2]);
+                    }
+                }.bind(this));
+            }
+            else {
+                this.form.setControlValue('Applicant_District', null);
+                this.form.setControlValue('ExecutorInRoleForObject', null);
+            }
+        }
     };
 }());

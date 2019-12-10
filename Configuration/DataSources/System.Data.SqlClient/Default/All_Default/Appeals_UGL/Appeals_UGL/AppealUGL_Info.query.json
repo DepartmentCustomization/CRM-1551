@@ -58,6 +58,12 @@
       "Name": "appealNum",
       "Position": 8,
       "IsPrintable": false
+    },
+    {
+      "Code": "applicantAddress",
+      "Name": "applicantAddress",
+      "Position": 9,
+      "IsPrintable": false
     }
     ],
     "Parameters": [

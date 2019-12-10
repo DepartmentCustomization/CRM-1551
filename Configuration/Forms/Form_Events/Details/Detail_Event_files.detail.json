@@ -1,0 +1,19 @@
+{
+    "DetailType": "File",
+    "ModelType": "Detail",
+    "Code": "Detail_Event_files",
+    "Name": "Файли заходу",
+    "FormCode": "Form_Event_File",
+    "SelectRowsQueryCode": "Event_File_SelectRows",
+    "SelectRowQueryCode": "Event_File_SelectRow",
+    "SectionCode": "",
+    "Position": 5,
+    "IsExpand": true,
+    "Add": {
+        "InsertQueryCode": "Event_File_Insert"
+    },
+    "QueryParameters": [{
+        "FormFieldName": "Id",
+        "ParameterCode": "@Id"
+    }]
+}

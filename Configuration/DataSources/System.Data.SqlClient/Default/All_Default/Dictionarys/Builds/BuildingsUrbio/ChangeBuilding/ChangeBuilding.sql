@@ -3,6 +3,7 @@ declare @updated table (prevId int);
 update Questions 
 set [object_id] = (select Id from [Objects] where builbing_id = @building),
 [CodeOperation] = N'ChangeFromFormBuilding'
+,[edit_date]=GETUTCDATE()
 OUTPUT deleted.Id
 into @updated
 where Id in (

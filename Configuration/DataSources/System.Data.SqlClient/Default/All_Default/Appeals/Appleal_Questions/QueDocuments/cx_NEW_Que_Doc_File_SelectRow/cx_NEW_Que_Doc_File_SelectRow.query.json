@@ -1,74 +1,41 @@
 {
-  "ModelType": "Query",
-  "Code": "cx_NEW_Que_Doc_File_SelectRow",
-  "Name": "cx_NEW_Que_Doc_File_SelectRow",
-  "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false,
-  "Columns": [
-    {
-      "Code": "Id",
-      "Name": "Id",
-      "Position": 0,
-      "IsPrimaryKey": true,
-      "IsPrintable": false
-    },
-    {
-      "Code": "question_id",
-      "Name": "question_id",
-      "Position": 1,
-      "IsPrintable": false
-    },
-    {
-      "Code": "link",
-      "Name": "link",
-      "Position": 2,
-      "IsPrintable": false
-    },
-    {
-      "Code": "create_date",
-      "Name": "create_date",
-      "Position": 3,
-      "IsPrintable": false
-    },
-    {
-      "Code": "user_id",
-      "Name": "user_id",
-      "Position": 4,
-      "IsPrintable": false
-    },
-    {
-      "Code": "edit_date",
-      "Name": "edit_date",
-      "Position": 5,
-      "IsPrintable": false
-    },
-    {
-      "Code": "edit_user_id",
-      "Name": "edit_user_id",
-      "Position": 6,
-      "IsPrintable": false
-    },
-    {
-      "Code": "Name",
-      "Name": "Name",
-      "Position": 7,
-      "IsFileName": true,
-      "IsPrintable": false
-    },
-    {
-      "Code": "File",
-      "Name": "File",
-      "Position": 8,
-      "IsFileContent": true,
-      "IsPrintable": false
-    }
-  ],
-  "Parameters": [
-    {
-      "Code": "@Id",
-      "Name": "Id",
-      "ParameterType": "Integer",
-      "IsPrimaryKey": true
-    }
-  ]
+    "ModelType": "Query",
+    "Code": "cx_NEW_Que_Doc_File_SelectRow",
+    "Name": "cx_NEW_Que_Doc_File_SelectRow",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [{
+            "Code": "Id",
+            "Name": "Id",
+            "Position": 0,
+            "IsPrimaryKey": true,
+            "IsPrintable": false
+        },
+        {
+            "Code": "create_date",
+            "Name": "create_date",
+            "Position": 1,
+            "IsPrintable": false
+        },
+        {
+            "Code": "Name",
+            "Name": "Name",
+            "Position": 2,
+            "IsFileName": true,
+            "IsPrintable": false
+        },
+        {
+            "Code": "File",
+            "Name": "File",
+            "Position": 3,
+            "IsFileContent": true,
+            "IsPrintable": false
+        }
+    ],
+    "Parameters": [{
+        "Code": "@Id",
+        "Name": "Id",
+        "ParameterType": "Integer",
+        "IsPrimaryKey": true
+    }]
 }

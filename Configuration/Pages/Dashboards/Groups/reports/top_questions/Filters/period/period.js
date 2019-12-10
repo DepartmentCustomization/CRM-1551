@@ -1,6 +1,7 @@
 (function () {
   return {
     placeholder: 'Період',
+    type: "Date",
     onItemSelect: function(date) {
         this.datePeriod(date);
     },

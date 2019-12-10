@@ -13,7 +13,7 @@
 
     init:function(){
         this.form.disableControl('full_name');
-        this.form.disableControl('district_id');
+      //  this.form.disableControl('district_id');
         // this.form.disableControl('is_active');
         this.details.setVisibility('ObjectHistory_details', false);
         this.details.onCellClick('ObjectHistory', this.Detail_History.bind(this));

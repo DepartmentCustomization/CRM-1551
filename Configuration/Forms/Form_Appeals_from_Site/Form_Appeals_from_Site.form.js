@@ -28,7 +28,9 @@
                 });
                 
         this.form.setControlValue('Applicant_Id', ApplicantId);
-    },    
+    },  
+    
+
     IsFormOnlyRead: function(){
         this.form.setGroupVisibility('Group_App_site', false);
         this.form.setGroupVisibility('Group2', false);
@@ -44,6 +46,16 @@
     },
     init: function(){
         
+
+        if (this.form.getControlValue('AppealFromSite_geolocation_lat')) {
+            this.form.enableControl('btn_searchAdressByCoordinate');
+            // this.form.setControlVisibility('btn_searchAdressByCoordinate', true);
+            document.getElementById('btn_searchAdressByCoordinate').disabled = false;
+        } else {
+            this.form.disableControl('btn_searchAdressByCoordinate');
+            // this.form.setControlVisibility('btn_searchAdressByCoordinate', false);
+            document.getElementById('btn_searchAdressByCoordinate').disabled = true;
+        };
         //скрываем кнопку "Сохранить" в верхнем правом углу
         document.getElementsByClassName('float_r')[0].children[1].style.display = 'none';
 
@@ -80,6 +92,8 @@
             this.form.disableControl('AppealFromSite_SiteAppealsResult');
             this.form.disableControl('AppealFromSite_ReceiptDate');
             
+            this.form.disableControl('AppealFromSite_geolocation_lat');
+            this.form.disableControl('AppealFromSite_geolocation_lon');
             this.form.disableControl('1551_ApplicantFromSite_PIB');
             this.form.disableControl('1551_ApplicantFromSite_Phone');
             this.form.setControlValue('1551_ApplicantFromSite_PIB',this.form.getControlValue('ApplicantFromSite_PIB'));
@@ -95,6 +109,24 @@
             this.details.setVisibility('Site_Applicant', false);
             
             this.form.setControlValue('Applicant_INFO', 'Буде створено новий заявник в системі "'+this.form.getControlValue('ApplicantFromSite_PIB')+'"');
+            if (this.form.getControlValue('1551_ApplicantFromSite_Address_Building')) {
+
+                             const queryFor_Applicant1551_Build = {
+                                 queryCode: 'GetOrgById',
+                                 parameterValues: [
+                                     {
+                                         key: '@Id',
+                                         value: this.form.getControlValue('1551_ApplicantFromSite_Address_Building')
+                                     }
+                                          ]
+                             };
+                         
+                             this.queryExecutor.getValues(queryFor_Applicant1551_Build).subscribe(data => {
+                                this.form.setControlValue('Question_Building', { key: data.rows[0].values[0], value: data.rows[0].values[1] });
+                             });
+
+                // this.form.setControlValue('Question_Building', { key: this.form.getControlValue('1551_ApplicantFromSite_Address_Building'), value: this.form.getControlDisplayValue('1551_ApplicantFromSite_Address_Building') })
+            };
         }.bind(this));   
         
         document.getElementById('btn_person1551_question').addEventListener("click", function(event) {
@@ -108,6 +140,11 @@
             this.form.setGroupVisibility('Group2', true);
             this.form.setControlVisibility('btn_CreateApplicant1551', false);
             // this.form.setGroupExpanding('Group_App_site', false);
+        }.bind(this)); 
+        
+
+        document.getElementById('btn_searchAdressByCoordinate').addEventListener("click", function(event) {
+             window.open(location.origin + localStorage.getItem('VirtualPath') + "/dashboard/page/SearchGoogle?lat="+this.form.getControlValue('AppealFromSite_geolocation_lat')+"&lon="+this.form.getControlValue('AppealFromSite_geolocation_lon')+"");
         }.bind(this)); 
         
         

@@ -3,27 +3,5 @@
   "Code": "Appeals_Insert",
   "Name": "Appeals_Insert",
   "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false,
-  "Parameters": [
-    {
-      "Code": "@user_id",
-      "Name": "user_id",
-      "ParameterType": "CurrentUserId"
-    },
-    {
-      "Code": "@phone_number",
-      "Name": "phone_number"
-    },
-    {
-      "Code": "@receipt_source_id",
-      "Name": "receipt_source_id",
-      "ParameterType": "Integer"
-    },
-    {
-      "Code": "@Id",
-      "Name": "Id",
-      "ParameterType": "Integer",
-      "IsPrimaryKey": true
-    }
-  ]
+  "IsUsedForRightsFilter": false
 }

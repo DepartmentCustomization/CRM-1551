@@ -13,6 +13,23 @@ DECLARE @ass_state_id  INT;
 DECLARE @question_id INT
 DECLARE @is_main_exec BIT
 
+--якщо дане доручення дійсно є не в компетенції, то виконуєтся запит початок
+
+if exists (select [Assignments].Id
+from [Assignments]
+inner join [AssignmentTypes] on [Assignments].assignment_type_id=[AssignmentTypes].Id
+inner join [AssignmentResolutions] on [Assignments].AssignmentResolutionsId=[AssignmentResolutions].Id
+inner join [AssignmentStates] on [Assignments].assignment_state_id=[AssignmentStates].Id
+inner join [AssignmentConsiderations] on [Assignments].current_assignment_consideration_id=[AssignmentConsiderations].Id
+inner join [AssignmentResults] on [Assignments].AssignmentResultsId=[AssignmentResults].Id
+where
+[Assignments].Id=@Id and
+[AssignmentTypes].code<>N'ToAttention' and [AssignmentStates].code<>N'Closed' and [AssignmentResults].code=N'NotInTheCompetence'
+  and [AssignmentResolutions].name in (N'Повернуто в 1551', N'Повернуто в батьківську організацію') 
+  and [AssignmentConsiderations].[turn_organization_id] is not null)
+
+  begin
+
 
 --при виборі одного й того самого виконався стан проставляти на зареєстровано
 IF @executor_organization_id=(SELECT [executor_organization_id]
@@ -122,7 +139,9 @@ BEGIN
 			SET @new_con = (SELECT TOP (1)
 				Id
 			FROM @output_con)
-			UPDATE [Assignments] SET current_assignment_consideration_id = @new_con WHERE Id = @Id
+			UPDATE [Assignments] SET current_assignment_consideration_id = @new_con 
+			,[edit_date]=GETUTCDATE()
+			WHERE Id = @Id
 
 
 
@@ -191,7 +210,9 @@ BEGIN
 			SET @new_con = ( SELECT TOP(1)
 				Id
 			FROM @output_con)
-			UPDATE [Assignments] SET current_assignment_consideration_id = @new_con WHERE Id = @Id
+			UPDATE [Assignments] SET current_assignment_consideration_id = @new_con 
+			,[edit_date]=getutcdate()
+			WHERE Id = @Id
 		-- @ass_id
 
 
@@ -264,7 +285,9 @@ BEGIN
 			SET @new_con = (SELECT TOP (1)
 				Id
 			FROM @output_con)
-			UPDATE [Assignments] SET current_assignment_consideration_id = @new_con WHERE Id = @Id
+			UPDATE [Assignments] SET current_assignment_consideration_id = @new_con
+			,[edit_date]=getutcdate()
+			 WHERE Id = @Id
 
 		END
 		ELSE
@@ -446,7 +469,8 @@ BEGIN
 																	[LogUpdated_Query] = N'Button_NeVKompetentcii__Row379' 
 											WHERE Id = @Id
 					UPDATE [Assignments] SET current_assignment_consideration_id = @new_con,
-																	[LogUpdated_Query]= N'Button_NeVKompetentcii__Row382' 
+																	[LogUpdated_Query]= N'Button_NeVKompetentcii__Row382'
+																	,edit_date = GETUTCDATE()
 											WHERE Id = @ass_id
 				END
 										ELSE -- if @tested_transfer = 1
@@ -540,7 +564,9 @@ BEGIN
 					SET @new_con = ( SELECT TOP(1)
 						Id
 					FROM @output_con)
-					UPDATE [Assignments] SET current_assignment_consideration_id = @new_con WHERE Id = @New_Ass
+					UPDATE [Assignments] SET current_assignment_consideration_id = @new_con
+					,edit_date = GETUTCDATE()
+					 WHERE Id = @New_Ass
 				END
 								ELSE
 								BEGIN
@@ -566,7 +592,8 @@ BEGIN
 	END
 END
 
-
+--якщо дане доручення дійсно є не в компетенції, то виконуєтся запит кінець
+end
 
 /* 02-10-2019
 --declare @executor_organization_id int, @Id int, @user_edit_id nvarchar(128)

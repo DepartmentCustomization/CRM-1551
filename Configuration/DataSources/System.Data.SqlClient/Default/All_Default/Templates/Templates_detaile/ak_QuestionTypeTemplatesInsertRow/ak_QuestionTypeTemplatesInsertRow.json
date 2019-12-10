@@ -1,0 +1,22 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_QuestionTypeTemplatesInsertRow",
+    "Name": "ak_QuestionTypeTemplatesInsertRow",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Parameters": [
+      {
+        "Code": "@template_Id",
+        "Name": "template_Id",
+        "ParameterType": "Integer"
+      },{
+        "Code": "@question_type_id",
+        "Name": "question_type_id",
+        "ParameterType": "Integer"
+      },{
+        "Code": "@user_id",
+        "Name": "user_id",
+        "ParameterType": "CurrentUserId"
+      }
+    ]
+  }

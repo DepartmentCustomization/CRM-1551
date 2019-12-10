@@ -53,7 +53,7 @@
             "border": "none",
             "children": [
               {
-                "code": "FlexmonsterWidget-1",
+                "code": "Widget",
                 "type": "NativeDataGridWidgetComponent",
                 "name": "rep_3_top10"
               }

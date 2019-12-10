@@ -1,0 +1,53 @@
+{
+  "ModelType": "Query",
+  "Code": "db_Report_2",
+  "Name": "db_Report_2",
+  "ConnectionCode": "CRM_1551_Analitics_Replication",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "questionType",
+      "Name": "questionType",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "qt.Id",
+      "FilterParameterCode": "@questionType"
+    },
+    {
+      "Code": "questionQty",
+      "Name": "questionQty",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "",
+      "FilterParameterCode": ""
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@questionGroup",
+      "Name": "questionGroup",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@questionType",
+      "Name": "questionType",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@dateTo",
+      "Name": "dateTo",
+      "ParameterType": "DateTime"
+    },
+    {
+      "Code": "@dateFrom",
+      "Name": "dateFrom",
+      "ParameterType": "DateTime"
+    }
+  ]
+}

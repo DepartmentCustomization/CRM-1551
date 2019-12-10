@@ -1,5 +1,6 @@
 {
   "IsMain": true,
   "Type": "DatepickerFilterComponent",
-  "Owner": "period"
+  "Owner": "period",
+  "Position": 1
 }

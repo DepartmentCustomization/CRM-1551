@@ -1,4 +1,5 @@
 {
   "Type": "MultiSelectFilterComponent",
-  "Owner": "assigm_executor_organization"
+  "Owner": "assigm_executor_organization",
+  "Position": 5
 }

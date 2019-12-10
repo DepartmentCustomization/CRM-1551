@@ -103,7 +103,9 @@ select @AppealId
 -- 	set @assign = (select top 1 Id from @output2)
 	
 	
-  update [dbo].[Appeals] set [applicant_id] = @applicant_id
+  update [dbo].[Appeals] 
+  set [applicant_id] = @applicant_id
+  ,[edit_date]=getutcdate()
 			  where [Id] = @AppealId	
 			  
 	exec [dbo].[sp_CreateAssignment] @app_id, @Question_TypeId, @Question_Building, @Question_Organization, @CreatedUser, @Question_ControlDate

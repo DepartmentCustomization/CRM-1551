@@ -1,7 +1,7 @@
 (function () {
   return {
     showTime: true,   
-    placeholder: 'Поступило',
+    placeholder: 'Дата поступило',
     onItemSelect: function(date) {
         this.yourFunctionName(date);
     },

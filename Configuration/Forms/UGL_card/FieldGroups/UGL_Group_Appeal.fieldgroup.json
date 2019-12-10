@@ -27,8 +27,6 @@
       "Name": "Вхідний номер",
       "FieldType": "text",
       "Position": 2
-     // "Icon": "save",
-     // "IconHint": "Зберегти вхідний номер"
     },
     {
       "Code": "AppealNumber",
@@ -68,6 +66,12 @@
       "Position": 8,
       "Icon": "search",
       "IconHint": "Пошук за № Звернення"
+    },
+    {
+      "Code": "applicantAddress",
+      "Name": "Адреса",
+      "FieldType": "text",
+      "Position": 10
     }
   ]
 }

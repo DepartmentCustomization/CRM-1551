@@ -9,9 +9,9 @@
                 `
     ,
     isLoadDistrict: false,
-    isLoadCategorie: false,
+    isLoadCategory: false,
     isDistrictFull: false,
-    isCategorieFull: false,
+    isCategoryFull: false,
     init: function() {
         this.hidePagePreloader();
         this.messageService.publish( { name: 'showPagePreloader'});    
@@ -47,7 +47,7 @@
             limit: -1,
             parameterValues: []
         };
-        this.queryExecutor(executeQueryFiltersDepart, this.setDepartamentData.bind(this, status, location), this);
+        this.queryExecutor(executeQueryFiltersDepart, this.setDepartmentData.bind(this, status, location), this);
         this.showPreloader = false; 
         
         
@@ -110,10 +110,47 @@
         const tabAppeal = this.createElement('div', { id: 'tabAppeal', location: 'section', url: '', className: 'tabAppeal tab tabTo'}, tabAppeal__title);
         const tabAssigment = this.createElement('div', { id: 'tabAssigment', location: 'dashboard', url: 'curator', className: 'tabAssigment tab tabHover'}, tabAssigment__title);
         const tabFinder = this.createElement('div', { id: 'tabFinder', location: 'dashboard', url: 'poshuk_table', className: 'tabFinder tab tabTo'}, tabFinder__title);
-        
-        
         const tabsContainer = this.createElement('div', { id: 'tabsContainer', className: 'tabsContainer'},tabPhone, tabProzvon, tabAppeal, tabAssigment, tabFinder);
+        
+        const techBox__icon = this.createElement('div', { id: 'techBox__icon', className:'material-icons', innerText:'help' });
+        const techBox = this.createElement('div', { id: 'techWrapper' }, techBox__icon);
+        const techInfoCont = this.createElement('div', { id: 'techInfoCont', className: 'techInfoCont'}, techBox);
+        
         tabsWrapper.appendChild(tabsContainer);
+        tabsWrapper.appendChild(techInfoCont);
+        
+        techBox__icon.addEventListener('click', event => {
+            event.stopImmediatePropagation();
+            let target = event.currentTarget;
+            if(techBox.children.length === 1 ){
+                let techInfoWrapper__triangle =  this.createElement('div', { className: 'techInfoWrapper__triangle' });
+                
+                techInfo__messageTitle = this.createElement('div', { id: 'techInfo__messageTitle', innerText: 'Текст повідомлення' });
+                techInfo__messageText = this.createElement('textarea', { id: 'techInfo__messageText', placeholder: 'Введiть текст...'});
+                techInfo__sendBtn = this.createElement('button', { id: 'techInfo__sendBtn', className: 'disabledBtn',  innerText: 'Відправити ', disabled: 'true' });
+                techInfo__infoText = this.createElement('div', { id: 'techInfo__infoText',  innerText: 'Звертайтеся за допомогою цієї форми з будь-якими питаннями у будь який час або  телефонуйте за номером телефону 044-366-80-47' });
+                let techInfoWrapper = this.createElement('div', { id: 'techInfoWrapper'}, techInfoWrapper__triangle, techInfo__messageTitle,techInfo__messageText, techInfo__sendBtn, techInfo__infoText );
+
+                techInfo__messageText.addEventListener('input', function() {
+                    if(techInfo__messageText.textLength){
+                        techInfo__sendBtn.disabled = false;
+                        techInfo__sendBtn.classList.remove('disabledBtn');
+                    } else {
+                        techInfo__sendBtn.disabled = true;
+                        techInfo__sendBtn.classList.add('disabledBtn');
+                    }
+                });
+                techInfo__sendBtn.addEventListener( 'click', e => {
+                    if(techInfo__messageText.textLength){
+                        console.log('sendMessage');
+                        techBox.removeChild(techBox.lastElementChild);
+                    }
+                });
+                techBox.appendChild(techInfoWrapper);
+            }else if(techBox.children.length === 2){
+                techBox.removeChild(techBox.lastElementChild);
+            }
+        });
         
         let tabs = document.querySelectorAll('.tabTo');
         tabs = Array.from(tabs);
@@ -275,7 +312,7 @@
             }.bind(this));
         }.bind(this));
     },
-    setDepartamentData: function(status, location, data){
+    setDepartmentData: function(status, location, data){
         var dataDepartament = [];
         indexId = data.columns.findIndex(el => el.code.toLowerCase() === 'id' );
         indexOrganizationId = data.columns.findIndex(el => el.code.toLowerCase() === 'organization_id' );
@@ -418,7 +455,7 @@
                 limit: -1,
                 parameterValues: []
             };
-            this.queryExecutor(executeQueryFilters, this.setDepartamentData.bind(this, status, location), this);
+            this.queryExecutor(executeQueryFilters, this.setDepartmentData.bind(this, status, location), this);
         }
     },
     createElement: function(tag, props, ...children) {
@@ -687,7 +724,7 @@
                 limit: -1,
                 parameterValues: []
             };
-            this.queryExecutor(executeQueryFilters, this.setDepartamentData.bind(this, status, location), this);
+            this.queryExecutor(executeQueryFilters, this.setDepartmentData.bind(this, status, location), this);
             this.showPreloader = false; 
         }
     },

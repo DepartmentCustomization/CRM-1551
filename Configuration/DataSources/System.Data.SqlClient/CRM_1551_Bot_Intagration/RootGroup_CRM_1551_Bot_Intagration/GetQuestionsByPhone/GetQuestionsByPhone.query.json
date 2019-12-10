@@ -1,0 +1,25 @@
+{
+  "ModelType": "Query",
+  "Code": "GetQuestionsByPhone",
+  "Name": "GetQuestionsByPhone",
+  "ConnectionCode": "CRM_1551_Bot_Integration",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@phone_number",
+      "Name": "phone_number"
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

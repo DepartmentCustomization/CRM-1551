@@ -2,6 +2,14 @@
   return {
     stateForm: '', 
     init:function(){
+      //console.log(this.form.getControlValue('assignment_id'));
+      let categoryIdParam = [{ parameterCode: '@assignment_id', parameterValue: this.form.getControlValue('assignment_id') }];
+      this.form.setControlParameterValues('template_id', categoryIdParam);
+
+      this.form.onControlValueChanged('template_id', this.onComment);
+
+
+
         this.form.disableControl('add_date');
         
         let is_view = this.form.getControlValue('is_view');
@@ -34,6 +42,25 @@
         };
       //  debugger;
       // this.form.setControlValue('FormId',data.rows[0].values[0]);
-    }
+    },
+    onComment: function(onComment) {
+      //this.form.setControlValue('content',data);
+      // Get Value
+      //debugger;
+      const queryForGetValue = {
+        queryCode: 'ak_SelectComment_for_Templates',
+        parameterValues: [
+            {
+                key: '@Id',
+                value: onComment
+            }
+        ]
+    };
+    this.queryExecutor.getValues(queryForGetValue).subscribe(data => {
+       this.form.setControlValue('content', data.rows[0].values);
+    })
+    
+  }
+  
 };
 }());

@@ -1,4 +1,5 @@
 {
   "Type": "CheckboxFilterComponent",
-  "Owner": "archive"
+  "Owner": "archive",
+  "Position": 36
 }

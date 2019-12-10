@@ -441,7 +441,6 @@
         let elements = document.querySelectorAll('.dx-datagrid-export-button');
         elements = Array.from(elements);
         elements.forEach( function(element){
-            debugger;
             let spanElement = this.createElement('span', { className: 'dx-button-text', innerText: 'Excel'});
             element.firstElementChild.appendChild(spanElement);
         }.bind(this));

@@ -1,4 +1,5 @@
 {
   "Type": "DatepickerFilterComponent",
-  "Owner": "control_date"
+  "Owner": "control_date",
+  "Position": 16
 }

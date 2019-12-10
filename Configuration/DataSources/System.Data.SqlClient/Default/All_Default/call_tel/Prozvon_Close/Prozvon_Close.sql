@@ -133,7 +133,8 @@ END
 
 								declare @new_con_id int = (select top 1 Id from @out)
 								update Assignments 
-									set current_assignment_consideration_id = @new_con_id 
+									set current_assignment_consideration_id = @new_con_id
+									    ,[edit_date]=getutcdate() 
 										--,LogUpdated_Query =N'Prozvon_Close_ROW141'
 									where Id = @Id
 							end

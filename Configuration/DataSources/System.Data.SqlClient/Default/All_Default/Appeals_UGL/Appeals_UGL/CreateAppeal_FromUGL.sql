@@ -50,6 +50,9 @@ update [dbo].[Appeals]
 
 update [dbo].[Звернення УГЛ]
  set Appeals_id = @newId
+ ,[Опрацював]=@user_id
+ ,[Дата опрацювання]=GETUTCDATE()
+ ,[Опрацьовано]=1
  where Id = @uglId;
   
 select @newId as [Id]

@@ -9,7 +9,8 @@ INSERT INTO [dbo].[Appeals]
            ,[start_date]
            ,[user_id]
            ,[edit_date]
-           ,[user_edit_id])
+           ,[user_edit_id]
+           ,[sipcallid])
 output [inserted].[Id] into @output (Id)
      VALUES
            (getutcdate() --@registration_date
@@ -22,6 +23,7 @@ output [inserted].[Id] into @output (Id)
            ,@user_id
            ,getutcdate() -- @edit_date
            ,@user_id
+           ,@sipcallid
 		   )
 
 declare @app_id int

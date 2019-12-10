@@ -1,0 +1,63 @@
+{
+  "ModelType": "Query",
+  "Code": "QuestionFileLink_SelectRows",
+  "Name": "QuestionFileLink_SelectRows",
+  "ConnectionCode": "CRM_1551_Bot_Integration",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Идентифікатор запису",
+      "Position": 0,
+      "IsPrintable": false,
+      "SqlName": "[QuestionDocFiles].[Id]",
+      "FilterParameterCode": "@Id"
+    },
+    {
+      "Code": "question_id",
+      "Name": "Идентифікатор питання",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "[QuestionDocFiles].[question_id]",
+      "FilterParameterCode": "@question_id"
+    },
+    {
+      "Code": "registration_number",
+      "Name": "Номер питання",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "[Questions].[registration_number]",
+      "FilterParameterCode": "@registration_number"
+    },
+    {
+      "Code": "link",
+      "Name": "Посилання на файл",
+      "Position": 3,
+      "IsPrintable": false,
+      "SqlName": "[QuestionDocFiles].[link]",
+      "FilterParameterCode": "@link"
+    },
+    {
+      "Code": "create_date",
+      "Name": "Дата створення",
+      "Position": 4,
+      "IsPrintable": false,
+      "SqlName": "[QuestionDocFiles].[create_date]",
+      "FilterParameterCode": "@create_date"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

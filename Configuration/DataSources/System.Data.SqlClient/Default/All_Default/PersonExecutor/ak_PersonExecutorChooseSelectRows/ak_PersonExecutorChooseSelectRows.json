@@ -1,0 +1,54 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_PersonExecutorChooseSelectRows",
+    "Name": "ak_PersonExecutorChooseSelectRows",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 1,
+        "ViewState": "Hidden",
+        "IsPrimaryKey": true
+      },{
+        "Code": "Organization_name",
+        "Name": "Організація",
+        "Position": 2
+      },{
+        "Code": "Positions_name",
+        "Name": "Посада",
+        "Position": 3
+      },{
+        "Code": "PersonExecutorChoose_name",
+        "Name": "Група питань",
+        "Position": 4
+      },{
+        "Code": "questions_types",
+        "Name": "Типи питаннь",
+        "Position": 5
+      },{
+        "Code": "objects",
+        "Name": "Об'єкти",
+        "Position": 6
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@pageOffsetRows",
+        "Name": "pageOffsetRows",
+        "ParameterType": "Integer",
+        "IsPageOffsetRows": true
+      },
+      {
+        "Code": "@pageLimitRows",
+        "Name": "pageLimitRows",
+        "ParameterType": "Integer",
+        "IsPageLimitRows": true
+      },{
+        "Code": "@user_id",
+        "Name": "user_id",
+        "ParameterType": "CurrentUserId"
+      }
+    ]
+  }

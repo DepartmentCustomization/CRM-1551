@@ -1,0 +1,46 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_TemplatesSelectRows",
+    "Name": "ak_TemplatesSelectRows",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 1,
+        "ViewState": "Hidden",
+        "IsPrimaryKey": true
+      },{
+        "Code": "Name",
+        "Name": "Назва шаблону",
+        "Position": 2,
+        "SqlName": "Name",
+        "FilterParameterCode": "@Name"
+      },{
+        "Code": "Content",
+        "Name": "Зміст",
+        "Position": 3,
+        "SqlName": "Content",
+        "FilterParameterCode": "@Content"
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@pageOffsetRows",
+        "Name": "pageOffsetRows",
+        "ParameterType": "Integer",
+        "IsPageOffsetRows": true
+      },
+      {
+        "Code": "@pageLimitRows",
+        "Name": "pageLimitRows",
+        "ParameterType": "Integer",
+        "IsPageLimitRows": true
+      },{
+        "Code": "@user_id",
+        "Name": "user_id",
+        "ParameterType": "CurrentUserId"
+      }
+    ]
+  }

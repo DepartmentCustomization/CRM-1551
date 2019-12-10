@@ -1,10 +1,21 @@
 --declare @applicant_phone nvarchar(max);
---set @applicant_phone = '0574837214, 0674217534, 0951072788, 0970261779'
+--set @applicant_phone = '574837214, 380674217534, 80951072788, 80970261779'
 
 declare @numbers table (num nvarchar(15));
 insert into @numbers
 select value from string_split(@applicant_phone, ',');
 update @numbers set num = replace(num,' ', '')
+
+update @numbers
+set num = 
+case when len(num) > 10 then 
+case 
+when (LEFT(num, 2) = '38') then RIGHT(num, len(num)-2)
+when (LEFT(num, 1) = '3') and (LEFT(num, 2) <> '38') then RIGHT(num, len(num)-1)
+when (LEFT(num, 1) = '8') then RIGHT(num, len(num)-1)
+ end 
+ else num
+ end
 
 select distinct 
 applicant.Id as applicantId,

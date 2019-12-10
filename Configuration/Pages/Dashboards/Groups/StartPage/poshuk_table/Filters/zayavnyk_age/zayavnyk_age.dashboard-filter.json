@@ -1,4 +1,5 @@
 {
   "Type": "MultiSelectFilterComponent",
-  "Owner": "zayavnyk_age"
+  "Owner": "zayavnyk_age",
+  "Position": 30
 }

@@ -32,52 +32,47 @@
                  <div id='container'></div>
                 `
     ,
+
+    data: [],
+
+    counter: 0,
+
+    excelColumnsStart: 0,
+
     init: function() {
         this.sub = this.messageService.subscribe('showWarning', this.showWarning, this);
         this.sub1 = this.messageService.subscribe('setData', this.setData, this );
-        this.sub2 = this.messageService.subscribe('GlobalFilterChanged', this.getFilterParams, this );
+        this.sub2 = this.messageService.subscribe( 'FiltersParams', this.setFilterParams, this );
     },
-    getFilterParams: function (message) {
-        let period = message.package.value.values.find(f => f.name === 'period').value;
-        if( period !== null ){
-            if( period.dateFrom !== '' && period.dateTo !== ''){
-                this.dateFrom =  period.dateFrom;
-                this.dateTo = period.dateTo;
-                let  datePrev = new Date(this.dateFrom);   
-                let  dateCurr = new Date(this.dateTo);               
-                this.previousYear = datePrev.getFullYear();
-                this.currentYear =  dateCurr.getFullYear();
-                this.previousYear = this.currentYear === this.previousYear ? this.currentYear - 1 : this.previousYear;
-                this.dateFromViewValues = this.changeDateTimeValues(this.dateFrom);
-                this.dateToViewValues = this.changeDateTimeValues(this.dateTo);
-            }
-        }
+
+    setFilterParams: function (message) {
+        this.dateFrom = message.dateFrom;
+        this.dateTo = message.dateTo;
+        this.previousYear = message.previousYear;
+        this.currentYear = message.currentYear;
+        this.dateFromViewValues = message.dateFromViewValues;
+        this.dateToViewValues = message.dateToViewValues;
     },
-    afterViewInit: function(data) {
+
+    afterViewInit: function() {
         const reportTitle = document.getElementById('reportTitle');
         const organizationNameInput = document.createElement('span');
         reportTitle.appendChild(organizationNameInput);
         organizationNameInput.id = 'organizationName';
         
-        
         let CONTAINER = document.getElementById('container');
-        this.counter = 0
         let btnExcel = this.createElement('button', { id: 'btnExcel', innerText: 'Вигрузити в Excel', disabled: true } );
         let btnWrap = this.createElement('div', { className: 'btnWrap' }, btnExcel );
         CONTAINER.appendChild(btnWrap);
         
         btnExcel.addEventListener('click', event => {
             event.stopImmediatePropagation();
-            this.createTableExcel();
+            this.createExcelWorkbook();
         });         
     },
-    setYears: function (message) {
-        this.previousYear = message.previousYear;
-        this.currentYear = message.currentYear;
-    },
+
     showWarning: function(message) {
         let CONTAINER = document.getElementById('container');
-        
         const modalBtnTrue =  this.createElement('button', { id:'modalBtnTrue', className: 'btn', innerText: 'Сховати'});
         const modalBtnWrapper =  this.createElement('div', { id:'modalBtnWrapper', className: 'modalBtnWrapper'}, modalBtnTrue);
         const modalTitle =  this.createElement('div', { id:'modalTitle', innerText: 'Оберiть правильну дату!'});
@@ -90,30 +85,227 @@
             CONTAINER.removeChild(container.lastElementChild);
         });
     },
-    setData: function(message){
-        if( message.rep1_data){
-            this.rep1_data =  message.rep1_data;
-            this.counter += 1;
-        }else if( message.rep2_data){
-            this.rep2_data =  message.rep2_data;
-            this.counter += 1;
-        }else if( message.rep3_data){
-            this.rep3_data =  message.rep3_data;
-            this.counter += 1;
-        }else if( message.rep4_data){
-            this.rep4_data =  message.rep4_data;
-            this.counter += 1;
-        }else if( message.rep5_data){
-            this.rep5_data =  message.rep5_data;
-            this.counter += 1;
+
+    setData: function(message) {
+
+        let table = {
+            data: message.data,
+            columns: message.columns   
         }
+        this.data[message.position] = table;
+        this.counter += 1;
+
         if( this.counter === 5 ){
-            this.dataArray = [ this.rep1_data, this.rep2_data, this.rep3_data, this.rep4_data, this.rep5_data];
             document.getElementById('btnExcel').disabled = false;
             this.counter = 0;
         }
     },
-    createTableExcel: function(){
+
+    createExcelWorkbook: function () {
+        const workbook = this.createExcel();
+        const worksheet = workbook.addWorksheet('Заявки', {
+            pageSetup:{
+                orientation: 'landscape',
+                fitToPage: false,
+                margins: {
+                    left: 0.4, right: 0.3,
+                    top: 0.4, bottom: 0.4,
+                    header: 0.0, footer: 0.0
+                }
+            }
+        });
+        this.years = [ this.previousYear, this.currentYear];
+        this.yearsTemp = [ this.previousYear, this.currentYear];
+        this.startStep = 5;
+        this.step = 10;
+
+        this.numberRowsArray = [];
+        const columnsHeader = [];
+        for (let i = 0; i < 16; i++) {
+            let width = { width: 7.8 };
+            columnsHeader.push(width);
+        }
+        worksheet.columns = columnsHeader;
+        for (let i = 0; i < this.data.length; i++) {
+            const data = this.data[i];
+            const columns = data.columns;
+            
+            if( i === 0) {
+                this.setTableType1Header(columns, worksheet, data);
+            } else if ( i === 1) {
+                this.setTableType2Header(columns, worksheet, data);
+            } else {
+                this.setTableType3Header(columns, worksheet, data);
+            }
+        }
+        this.setCellValuesStyles(worksheet);
+        this.setExcelTitle(worksheet);
+        this.helperFunctions.excel.save(workbook, 'Заявки', this.hidePagePreloader);
+    },
+
+    setExcelTitle: function (worksheet) {
+        const title = worksheet.getCell('A1');
+        title.value = 'Статистичний звіт за період з ' + this.dateFromViewValues + ' по ' + this.dateToViewValues;
+        title.font = { name: 'Times New Roman', family: 4, size: 12, underline: false, bold: true , italic: false};
+        title.alignment = { vertical: 'middle', horizontal: 'center', wrapText: false  };
+        worksheet.mergeCells('A1:N1'); 
+    },
+
+    setTableType1Header: function (columns, worksheet, data) {
+        let position = this.excelColumnsStart - 1;
+        for (let i = 0; i < columns.length; i++) {
+            const column = columns[i];
+            const headerTop = this.startStep;
+            const headerBot = this.startStep;
+            const headerLeft = position + 2;
+            const headerRight = position + column.columns.length * 2 + 1;
+            position = this.setSubHeaders(column, worksheet, position, this.startStep);
+            worksheet.mergeCells(headerTop, headerLeft, headerBot, headerRight);
+            const cell = worksheet.getCell(headerTop, headerLeft);
+            cell.value = column.caption;
+            this.setCellStyle(cell);
+            this.setRowStyle(headerTop, worksheet, 30);
+        }
+        const headerHeight = 3;
+        this.setRowValues(data, worksheet, headerHeight);
+        this.startStep += 10;
+    },
+
+    setTableType2Header: function (columns, worksheet, data) {
+        let position = this.excelColumnsStart;
+
+        for (let i = 0; i < columns.length; i++) {
+            const column = columns[i];
+            const headerBot = headerTop = this.startStep;
+            const headerRight = position + column.columns.length;
+            const headerLeft = position + 1;
+            for (let j = 0; j < column.columns.length; j++) {
+                const element = column.columns[j];
+                const cellBot = cellTop = this.startStep + 1;
+                position += 1;
+                worksheet.mergeCells( cellTop, position, cellBot, position);
+                const cell = worksheet.getCell( cellTop, position);
+                cell.value = element.caption;
+                this.setCellStyle(cell);
+                this.setRowStyle(cellTop, worksheet, 50);
+            }
+            worksheet.mergeCells( headerTop, headerLeft, headerBot, headerRight );
+            const cell = worksheet.getCell(headerTop, headerLeft);
+            cell.value = column.caption;
+            this.setCellStyle(cell);
+            this.setRowStyle(headerTop, worksheet, 100);
+        }
+        const headerHeight = 2;
+        this.setRowValues(data, worksheet, headerHeight);
+        this.startStep += 7;
+    },
+
+    setCellYearsValue: function (subHeader, position, worksheet) {
+        for (let i = 0; i < subHeader.columns.length; i++) {
+            const year = subHeader.columns[i];
+            const yearTop = yearBot = this.startStep + 2;
+            const yearPosition = position + i;
+            worksheet.mergeCells( yearTop, yearPosition, yearBot, yearPosition);
+            const cell = worksheet.getCell( yearTop, yearPosition);
+            cell.value = year.caption;
+            this.setCellStyle(cell);
+            this.setRowStyle(yearTop, worksheet, 50);
+        }
+    },
+
+    setTableType3Header: function (columns, worksheet, data) {
+        let position = this.excelColumnsStart + 1;
+        columns.forEach( column => {
+            if(column.columns) {
+                const headerTop = this.startStep;
+                const headerBot = this.startStep;
+                const headerLeft = position + 2;
+                const headerRight = position + column.columns.length * 2 + 1;     
+                worksheet.mergeCells( headerTop, headerLeft, headerBot, headerRight );
+                const cell = worksheet.getCell(headerTop, headerLeft);
+                cell.value = column.caption;
+                this.setCellStyle(cell);
+                this.setRowStyle(headerTop, worksheet, 50);
+                position = this.setSubHeaders(column, worksheet, position, this.startStep);
+            } else {
+                const numberStart = 1;
+                const numberCaption = '№ з\п';
+                const emptyStart = 2;
+                const emptyCaption = '';
+                this.setStandardCells(numberStart, numberCaption, worksheet);
+                this.setStandardCells(emptyStart, emptyCaption, worksheet);
+            }
+        });
+        const headerHeight = 3;
+        this.setRowValues(data, worksheet, headerHeight);
+        this.startStep += this.step + 8;
+    },
+
+    setSubHeaders: function (column, worksheet, position, startStep) {
+        for (let i = 0; i < column.columns.length; i++) {
+            position += 2;
+            const subHeader = column.columns[i];
+            const cellBot = cellTop = startStep + 1;
+            const cellLeft = position;
+            const cellRight = cellLeft + 1;
+            worksheet.mergeCells( cellTop, cellLeft, cellBot, cellRight);
+            const cell = worksheet.getCell( cellTop, cellLeft);
+            cell.value = subHeader.caption;
+            this.setCellYearsValue(subHeader, position, worksheet);
+            this.setCellStyle(cell);
+            this.setRowStyle(cellTop, worksheet, 130);
+        }
+        return position;
+    },
+
+    setStandardCells: function (start, caption, worksheet) {
+        const top = this.startStep;
+        const bot = this.startStep + 2;
+        const right = this.excelColumnsStart + start;
+        const left = this.excelColumnsStart + start;
+        worksheet.mergeCells( top, right, bot, left);
+        const cell = worksheet.getCell( top, right);
+        cell.value = caption;
+        this.setCellStyle(cell);
+    },
+
+    setCellStyle: function (cell) {
+        cell.border = {   top: {style:'thin'}, left: {style:'thin'}, bottom: {style:'thin'}, right: {style:'thin'} };
+        cell.alignment = { vertical: 'middle', horizontal: 'center', wrapText: true  };
+        cell.font = { name: 'Times New Roman', family: 4, size: 10,  underline: false, bold: false , italic: false };
+    },
+
+    setRowValues: function (message, worksheet, headerHeight) {
+        for (let i = 0; i < message.data.length; i++) {
+            const values = message.data[i];
+            const number = this.startStep + headerHeight + i;
+            const obj = {values, number}
+            this.numberRowsArray.push(obj);
+            worksheet.getRow(number).values = values;
+            const height = 70;
+            this.setRowStyle(number, worksheet, height);
+        }
+    },
+
+    setRowStyle: function (number, worksheet, cellHeight) {
+        height = cellHeight ? cellHeight : 60;
+        worksheet.getRow(number).height = height;
+        worksheet.getRow(number).font = { name: 'Times New Roman', family: 4, size: 10, underline: false, bold: false , italic: false};
+        worksheet.getRow(number).alignment = { vertical: 'middle', horizontal: 'center', wrapText: true  };
+    },
+
+    setCellValuesStyles: function (worksheet) {
+        this.numberRowsArray.forEach( row => {
+            for (let j = 0; j < row.values.length; j++) {
+                const top = row.number;
+                const left = j + 1;
+                const cell = worksheet.getCell( top, left);
+                this.setCellStyle(cell);
+            }
+        });
+    },
+
+    createTableExcel: function() {
         this.showPagePreloader('Зачекайте, формується документ');
         const workbook = this.createExcel();
         const worksheet = workbook.addWorksheet('Заявки', {
@@ -487,21 +679,7 @@
         worksheet.getRow(51).height = 150;
         this.helperFunctions.excel.save(workbook, 'Заявки', this.hidePagePreloader);
     },
-    changeDateTimeValues: function(value){
-        let date = new Date(value);
-        let dd = date.getDate();
-        let MM = date.getMonth();
-        let yyyy = date.getFullYear();
-        let HH = date.getUTCHours()
-        let mm = date.getMinutes();
-        MM += 1 ;
-        if( (dd.toString()).length === 1){  dd = '0' + dd; }
-        if( (MM.toString()).length === 1){ MM = '0' + MM ; }
-        if( (HH.toString()).length === 1){  HH = '0' + HH; }
-        if( (mm.toString()).length === 1){ mm = '0' + mm; }
-        let trueDate = dd+'.'+MM+'.' + yyyy;
-        return trueDate;
-    },         
+       
 	createElement: function(tag, props, ...children) {
         const element = document.createElement(tag);
         Object.keys(props).forEach( key => element[key] = props[key] );
@@ -510,7 +688,8 @@
                 element.appendChild(child);
             });
         } return element;
-    },    
+    },
+
     destroy: function(){
         this.sub.unsubscribe();
         this.sub1.unsubscribe();

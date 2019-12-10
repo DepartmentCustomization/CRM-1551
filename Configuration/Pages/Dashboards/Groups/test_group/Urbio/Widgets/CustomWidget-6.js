@@ -45,7 +45,6 @@
     load: function(data) {
     },
     Data_Country: function(message) {
-        // debugger;
         this.Result_Data_Country = message.value;
     },
     Data_LocalitiesByCountry: function(message) {

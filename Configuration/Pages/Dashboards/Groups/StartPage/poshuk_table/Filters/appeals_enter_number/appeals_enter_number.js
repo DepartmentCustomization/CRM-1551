@@ -1,6 +1,6 @@
 (function () {
   return {
-    placeholder: 'Вхідний номер',
+    placeholder: 'Вхідний номер УГЛ',
     onChangeValue: function(value) {
         this.yourFunctionName(value);
     },

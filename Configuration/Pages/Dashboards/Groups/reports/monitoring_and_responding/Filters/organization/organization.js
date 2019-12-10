@@ -2,9 +2,9 @@
   return {
     placeholder: 'Організації-виконавці',
     keyValue: 'Id',
-    displayValue: 'short_name',
+    displayValue: 'orgName',
     baseQueryOptions: {
-        queryCode: 'OrganizationsList',
+        queryCode: 'OrganizationsByUser',
         filterColumns: null,
         limit: -1,
         parameterValues: [],

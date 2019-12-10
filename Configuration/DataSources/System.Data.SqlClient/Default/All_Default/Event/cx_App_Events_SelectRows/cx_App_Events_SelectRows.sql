@@ -2,15 +2,28 @@
 --   declare @object int;
 --   declare @registration_date datetime2;
 
-
+SELECT * FROM (
   select [Events].Id, [Events].start_date, [EventTypes].name EventType,  [Events].plan_end_date
   from [dbo].[Events]
-  left join EventQuestionsTypes as eqt on eqt.event_id = [Events].Id 
+  LEFT JOIN EventClass_QuestionType AS eqt ON eqt.event_class_id = [Events].event_class_id
   inner join [dbo].[EventObjects] on [Events].Id=[EventObjects].event_id
   left join [dbo].[EventTypes] on [Events].event_type_id=[EventTypes].Id
   where eqt.question_type_id = @question_type_id and [EventObjects].[object_id]= @object_id
-  and @registration_date>[Events].registration_date
- and #filter_columns#
+  and @registration_date>[Events].registration_date 
+ 
+  union
+
+   select 
+  e.Id, 
+  e.start_date,
+  [EventTypes].name EventType,
+  e.plan_end_date
+  from [dbo].[Events] AS e
+  left join [dbo].[EventTypes] on e.event_type_id=[EventTypes].Id
+where e.Id = (select event_id from Questions where Questions.Id = @Id)
+) as t
+where 
+  #filter_columns#
   #sort_columns#
  offset @pageOffsetRows rows fetch next @pageLimitRows rows only
 

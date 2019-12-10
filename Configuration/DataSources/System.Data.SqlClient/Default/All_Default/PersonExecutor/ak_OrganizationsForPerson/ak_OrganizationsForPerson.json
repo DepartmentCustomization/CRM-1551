@@ -1,0 +1,39 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_OrganizationsForPerson",
+    "Name": "ak_OrganizationsForPerson",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 1,
+        "IsPrimaryKey": true
+      },{
+        "Code": "Name",
+        "Name": "Name",
+        "Position": 2,
+        "SqlName": "Name",
+        "FilterParameterCode": "@Name"
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@user_id",
+        "Name": "user_id",
+        "ParameterType": "CurrentUserId"
+      },{
+        "Code": "@pageOffsetRows",
+        "Name": "pageOffsetRows",
+        "ParameterType": "Integer",
+        "IsPageOffsetRows": true
+      },
+      {
+        "Code": "@pageLimitRows",
+        "Name": "pageLimitRows",
+        "ParameterType": "Integer",
+        "IsPageLimitRows": true
+      }
+    ]
+  }

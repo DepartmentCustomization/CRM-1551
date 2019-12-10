@@ -86,7 +86,10 @@ begin
 		
 		declare @new_con int
 		set @new_con = (select top (1) Id from @output_con)
-    	update [Assignments] set current_assignment_consideration_id = @new_con where Id = @assignment_id
+    	update [Assignments] 
+		set current_assignment_consideration_id = @new_con
+		,[edit_date]=GETUTCDATE()
+		where Id = @assignment_id
 
 end
 else

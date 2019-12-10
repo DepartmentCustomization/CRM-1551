@@ -151,5 +151,15 @@
     "Code": "Applicant_Id",
     "Name": "Applicant_Id",
     "Position": 24
+  },
+  {
+    "Code": "AppealFromSite_geolocation_lat",
+    "Name": "AppealFromSite_geolocation_lat",
+    "Position": 25
+  },
+  {
+    "Code": "AppealFromSite_geolocation_lon",
+    "Name": "AppealFromSite_geolocation_lon",
+    "Position": 26
   }
 ]

@@ -1,0 +1,6 @@
+{
+    "ModelType": "QueryGroup",
+    "Code": "det_File",
+    "Name": "Файли заходу",
+    "ConnectionCode": "Default"
+}

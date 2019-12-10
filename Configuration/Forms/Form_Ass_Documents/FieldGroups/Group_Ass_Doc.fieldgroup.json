@@ -22,12 +22,24 @@
       "QueryParameters": []
     },
     {
+      "Code": "template_id",
+      "Name": "Шаблон",
+      "FieldType": "select",
+      "Position": 3,
+      "QueryCode": "ak_Templates_forAssignment",
+      "Width": "50%",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    },
+    {
       "Maxlength": 3000,
       "Code": "content",
       "Name": "Коментар",
       "FieldType": "textarea",
       "IsRequired": true,
       "Position": 3,
+      "Width": "100%",
       "Rows": 29
     },
     {
@@ -41,6 +53,13 @@
       "Name": "assignment_сons_id",
       "FieldType": "number",
       "Position": 123,
+      "IsHidden": true
+    },
+    {
+      "Code": "assignment_id",
+      "Name": "assignment_id",
+      "FieldType": "number",
+      "Position": 124,
       "IsHidden": true
     },
     {

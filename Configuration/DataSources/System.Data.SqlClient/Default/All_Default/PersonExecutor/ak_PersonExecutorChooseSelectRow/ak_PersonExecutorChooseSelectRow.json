@@ -1,0 +1,50 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_PersonExecutorChooseSelectRow",
+    "Name": "ak_PersonExecutorChooseSelectRow",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 1,
+        "IsPrimaryKey": true,
+        "IsPrintable": false
+
+      },{
+        "Code": "organization_id",
+        "Name": "organization_id",
+        "Position": 2,
+        "IsPrintable": false
+      },{
+        "Code": "position_id",
+        "Name": "position_id",
+        "Position": 3,
+        "IsPrintable": false
+      },{
+        "Code": "organization_name",
+        "Name": "organization_name",
+        "ReferenceKeyCode": "organization_id",
+        "Position": 4,
+        "IsPrintable": false
+      },{
+        "Code": "position_name",
+        "Name": "position_name",
+        "ReferenceKeyCode": "position_id",
+        "Position": 5,
+        "IsPrintable": false
+      },{
+        "Code": "name",
+        "Name": "name"
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@Id",
+        "Name": "Id",
+        "ParameterType": "Integer",
+        "IsPrimaryKey": true
+      }
+    ]
+  }

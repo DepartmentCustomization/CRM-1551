@@ -4,6 +4,7 @@
   "Name": "Організації",
   "Details": [
     "string:Details\\detail_Objects.detail.json",
+    "string:Details\\det_QuestionTypes_byRule.detail.json",
     "string:Details\\det_Workeds.detail.json",
     "string:Details\\det_Organization.detail.json"
   ],

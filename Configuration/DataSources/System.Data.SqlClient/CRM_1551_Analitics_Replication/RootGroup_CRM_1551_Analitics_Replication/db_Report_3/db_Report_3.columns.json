@@ -1,0 +1,82 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 0,
+    "IsPrintable": false
+  },
+  {
+    "Code": "questionType",
+    "Name": "questionType",
+    "Position": 1,
+    "IsPrintable": false,
+    "SqlName": "qt.Id",
+    "FilterParameterCode": "@questionType"
+  },
+  {
+    "Code": "Golosiivsky",
+    "Name": "Golosiivsky",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "Darnitsky",
+    "Name": "Darnitsky",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "Desnyansky",
+    "Name": "Desnyansky",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "Dnirovsky",
+    "Name": "Dnirovsky",
+    "Position": 5,
+    "IsPrintable": false
+  },
+  {
+    "Code": "Obolonsky",
+    "Name": "Obolonsky",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "Pechersky",
+    "Name": "Pechersky",
+    "Position": 7,
+    "IsPrintable": false
+  },
+  {
+    "Code": "Podilsky",
+    "Name": "Podilsky",
+    "Position": 8,
+    "IsPrintable": false
+  },
+  {
+    "Code": "Svyatoshinsky",
+    "Name": "Svyatoshinsky",
+    "Position": 9,
+    "IsPrintable": false
+  },
+  {
+    "Code": "Solomiansky",
+    "Name": "Solomiansky",
+    "Position": 10,
+    "IsPrintable": false
+  },
+  {
+    "Code": "Shevchenkovsky",
+    "Name": "Shevchenkovsky",
+    "Position": 11,
+    "IsPrintable": false
+  },
+  {
+    "Code": "allQuestionsQty",
+    "Name": "allQuestionsQty",
+    "Position": 12,
+    "IsPrintable": false
+  }
+]

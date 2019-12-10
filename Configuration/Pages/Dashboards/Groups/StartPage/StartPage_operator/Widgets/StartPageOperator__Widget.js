@@ -26,7 +26,7 @@
             listItem.addEventListener( 'click', event => {
                 let target = event.currentTarget;
                 let phoneNumber = document.getElementById('listPhoneNumberInput').value;
-                window.open(location.origin + localStorage.getItem('VirtualPath') + "/sections/CreateAppeal/add?phone="+phoneNumber+"&type="+target.type);
+                window.open(location.origin + localStorage.getItem('VirtualPath') + "/sections/CreateAppeal/add?phone="+phoneNumber+"&type="+target.type+"&sipcallid=0");
             });
         });
         const listTitle  =  this.createElement('div', { id:'listTitle', innerText: 'Виберіть тип звернення:' } );
@@ -71,7 +71,7 @@
       let groupRegAppeals__borderRight = this.createElement('div', { className: "border-right"});
       let groupRegAppeals = this.createElement('div', { className: "group", tabindex: '0' }, groupRegAppeals__icon, groupRegAppeals__description, groupRegAppeals__borderBottom, groupRegAppeals__borderRight );
       groupRegAppeals.addEventListener('click',  event => { 
-          window.open(location.origin + localStorage.getItem('VirtualPath')+'/sections/Appeals_from_Site');
+          window.open(location.origin + localStorage.getItem('VirtualPath')+'/dashboard/page/referrals_from_the_site');
       });
 
       let groupSearchTable__icon = this.createElement('div', { className: "icon letterIcon material-icons",  innerText: 'find_in_page' });
@@ -132,7 +132,7 @@
           let target = event.currentTarget;
           let number = modalNumber.value
           console.log(number);
-          window.open(location.origin + localStorage.getItem('VirtualPath') + "/sections/CreateAppeal/add?phone="+number+"&type=1");
+          window.open(location.origin + localStorage.getItem('VirtualPath') + "/sections/CreateAppeal/add?phone="+number+"&type=1&sipcallid=0");
           CONTAINER.removeChild(container.lastElementChild);
       });
       modalBtnClose.addEventListener( 'click', event => {

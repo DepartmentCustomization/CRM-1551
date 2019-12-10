@@ -1,4 +1,4 @@
-update [Bot_Intagration].[dbo].[BotPollItem]
+update [CRM_1551_Bot_Integration].[dbo].[BotPollItem]
   set [name]= @name
       ,[active]= @active
       ,[role_id]= @role_id

@@ -85,6 +85,8 @@ SELECT afs.Id
       ,afs.[CommentModerator] as [AppealFromSite_CommentModerator]
       ,afs.[ProcessingDate] as [AppealFromSite_ProcessingDate]
       ,(select top 1 ApplicantId from [CRM_1551_Site_Integration].[dbo].[AppealsFromSite] where Id = @Id) as [Applicant_Id]
+	  ,afs.[geolocation_lat] as [AppealFromSite_geolocation_lat]
+	  ,afs.[geolocation_lon] as [AppealFromSite_geolocation_lon]
   FROM [CRM_1551_Site_Integration].[dbo].[AppealsFromSite] afs
   left join [CRM_1551_Site_Integration].[dbo].[ApplicantsFromSite] abi on abi.Id = afs.ApplicantFromSiteId 
   left join [CRM_1551_Analitics].[dbo].[SocialStates] ss on ss.Id = abi.SocialStateId

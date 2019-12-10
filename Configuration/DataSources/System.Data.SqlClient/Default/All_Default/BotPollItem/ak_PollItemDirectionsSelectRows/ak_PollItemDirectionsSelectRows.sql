@@ -1,6 +1,6 @@
 SELECT [Id]
       ,[name]
-  FROM [Bot_Intagration].[dbo].[PollItemDirections]
+  FROM [CRM_1551_Bot_Integration].[dbo].[PollItemDirections]
     where 
   #filter_columns#
   #sort_columns#

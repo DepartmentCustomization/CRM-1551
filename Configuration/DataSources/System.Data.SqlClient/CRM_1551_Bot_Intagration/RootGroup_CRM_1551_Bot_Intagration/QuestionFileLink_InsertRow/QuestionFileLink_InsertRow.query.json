@@ -1,0 +1,29 @@
+{
+  "ModelType": "Query",
+  "Code": "QuestionFileLink_InsertRow",
+  "Name": "QuestionFileLink_InsertRow",
+  "ConnectionCode": "CRM_1551_Bot_Integration",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@link",
+      "Name": "link"
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    },
+    {
+      "Code": "@question_id",
+      "Name": "question_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    }
+  ]
+}

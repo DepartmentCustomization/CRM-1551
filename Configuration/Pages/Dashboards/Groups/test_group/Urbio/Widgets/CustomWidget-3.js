@@ -27,7 +27,6 @@
             if(xhr.status == 200)  {
                    this.Data.push(JSON.parse(xhr.responseText));
                    console.log(this.Data[0].data.query.length);
-                   debugger;
             }
           }
         }.bind(this);

@@ -1,6 +1,6 @@
 (function () {
   return {
-    placeholder: 'Стать ',
+    placeholder: 'Стать',
     keyValue: 'Id',
     displayValue: 'name',
     baseQueryOptions: {

@@ -18,7 +18,8 @@
   },
   {
     "Code": "@appeal_content",
-    "Name": "appeal_content"
+    "Name": "appeal_content",
+    "ParameterType": "Text"
   },
   {
     "Code": "@work_direction_type_id",
@@ -29,5 +30,17 @@
     "Code": "@applicant_from_site_id",
     "Name": "applicant_from_site_id",
     "ParameterType": "Integer"
+  },
+  {
+    "Code": "@geolocation_lat",
+    "Name": "geolocation_lat",
+    "ParameterType": "Text"
+  },
+  {
+    "Code": "@geolocation_lon",
+    "Name": "geolocation_lon",
+    "ParameterType": "Text"
   }
+
+  
 ]

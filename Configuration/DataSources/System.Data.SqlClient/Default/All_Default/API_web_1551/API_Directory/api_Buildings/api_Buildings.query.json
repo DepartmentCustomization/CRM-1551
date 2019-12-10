@@ -42,6 +42,13 @@
       "Position": 4,
       "SqlName": "[Objects].geolocation_lon",
       "FilterParameterCode": "@geolocation_lon"
+    },
+    {
+      "Code": "ObjectId",
+      "Name": "ObjectId",
+      "Position": 5,
+      "SqlName": "[Objects].Id",
+      "FilterParameterCode": "@ObjectId"
     }
   ],
   "Parameters": [

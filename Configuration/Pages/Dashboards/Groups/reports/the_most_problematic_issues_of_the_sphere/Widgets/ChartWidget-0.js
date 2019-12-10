@@ -206,18 +206,12 @@
     },
     changeDateTimeValues: function(value){
         let date = new Date(value);
-        let dd = date.getDate();
-        let MM = date.getMonth();
+        let dd = date.getDate().toString();
+        let mm = (date.getMonth() + 1).toString();
         let yyyy = date.getFullYear();
-        let HH = date.getHours()
-        let mm = date.getMinutes();
-        MM += 1 ;
-        if( (dd.toString()).length === 1){  dd = '0' + dd; }
-        if( (MM.toString()).length === 1){ MM = '0' + MM ; }
-        if( (HH.toString()).length === 1){  HH = '0' + HH; }
-        if( (mm.toString()).length === 1){ mm = '0' + mm; }
-        let trueDate = dd+'.'+MM+'.' + yyyy ;
-        return trueDate;
+        dd = dd.length === 1 ? '0' + dd : dd;
+        mm = mm.length === 1 ? '0' + mm : mm;
+        return dd + '.' + mm + '.' + yyyy ;
     },   
 };
 }());

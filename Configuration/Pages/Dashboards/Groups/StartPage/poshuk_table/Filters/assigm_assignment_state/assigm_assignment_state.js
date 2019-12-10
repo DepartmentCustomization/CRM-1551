@@ -1,6 +1,6 @@
 (function () {
   return {
-    placeholder: 'Стан',
+    placeholder: 'Стан доручення',
     keyValue: 'Id',
     displayValue: 'name',
     baseQueryOptions: {

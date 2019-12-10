@@ -1,4 +1,5 @@
 {
   "Type": "MultiSelectFilterComponent",
-  "Owner": "assigm_assignment_state"
+  "Owner": "assigm_assignment_state",
+  "Position": 8
 }

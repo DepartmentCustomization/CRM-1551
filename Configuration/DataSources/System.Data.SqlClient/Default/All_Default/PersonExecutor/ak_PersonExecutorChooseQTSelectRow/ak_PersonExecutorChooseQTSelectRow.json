@@ -1,0 +1,42 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_PersonExecutorChooseQTSelectRow",
+    "Name": "ak_PersonExecutorChooseQTSelectRow",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 1,
+        "IsPrimaryKey": true
+
+      },{
+        "Code": "person_executor_choose_name",
+        "Name": "person_executor_choose_name",
+        "Position": 2
+      },{
+        "Code": "person_executor_choose_id",
+        "Name": "person_executor_choose_id",
+        "Position": 3
+      },{
+        "Code": "question_type_id",
+        "Name": "question_type_id",
+        "Position": 4
+      },
+      {
+        "Code": "question_type_name",
+        "Name": "question_type_name",
+        "ReferenceKeyCode": "question_type_id",
+        "Position": 5
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@Id",
+        "Name": "Id",
+        "ParameterType": "Integer",
+        "IsPrimaryKey": true
+      }
+    ]
+  }

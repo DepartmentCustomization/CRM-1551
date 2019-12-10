@@ -27,7 +27,8 @@
       "PathColumnCode": "Path",
       "SearchQueryCode": "List_QuestionTypes_SelectRows_Search",
       "SearchKeyColumnCode": "Id",
-      "SearchDisplayColumnCode": "Name"
+      "SearchDisplayColumnCode": "Name",
+      "HasChildrenColumnCode": "has_child"
     },
     {
       "Code": "Question_Building",
@@ -56,7 +57,7 @@
     },
     {
       "Code": "Question_Organization",
-      "Name": "Організація",
+      "Name": "Організація*",
       "FieldType": "lookup",
       "Position": 5,
       "Width": "100%",

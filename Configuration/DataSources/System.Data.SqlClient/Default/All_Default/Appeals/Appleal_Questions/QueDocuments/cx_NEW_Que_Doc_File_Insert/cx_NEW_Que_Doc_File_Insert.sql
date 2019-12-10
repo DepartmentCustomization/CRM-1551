@@ -1,7 +1,8 @@
 INSERT INTO [dbo].[QuestionDocFiles]
-           ([create_date]
-           ,[name]
+           (
+           [name]
            ,[File]
+           ,[create_date]
            ,[user_id]
            ,[edit_date]
            ,[edit_user_id]
@@ -9,9 +10,10 @@ INSERT INTO [dbo].[QuestionDocFiles]
            )
 	output [inserted].[Id]
      VALUES
-           (getutcdate() 
-           ,@Name
+           (
+           @Name
            ,@File
+           ,getutcdate() 
            ,@user_id
            ,getutcdate() 
            ,@user_id

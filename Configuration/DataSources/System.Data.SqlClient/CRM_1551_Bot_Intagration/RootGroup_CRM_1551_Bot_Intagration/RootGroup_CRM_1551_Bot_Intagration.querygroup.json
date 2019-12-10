@@ -1,6 +1,6 @@
 {
   "ModelType": "QueryGroup",
-  "Code": "RootGroup_CRM_1551_Bot_Intagration",
+  "Code": "RootGroup_CRM_1551_Bot_Integration",
   "Name": "All",
-  "ConnectionCode": "CRM_1551_Bot_Intagration"
+  "ConnectionCode": "CRM_1551_Bot_Integration"
 }

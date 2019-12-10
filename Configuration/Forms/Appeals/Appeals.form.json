@@ -3,17 +3,17 @@
   "Code": "Appeals",
   "Name": "Картка оператора",
   "Details": [
-    "string:Details\\Detail_QuestionReestration.detail.json",
-    "string:Details\\Detail_Consultation.detail.json",
-    "string:Details\\Detail_GorodokClaim.detail.json",
-    "string:Details\\Detail_QuestionBuildingAplicant.detail.json",
     "string:Details\\Detail_QuestionApplicant.detail.json",
-    "string:Details\\Detail_QuestionObjectAplicant.detail.json",
+    "string:Details\\Detail_ConsultationAplicant.detail.json",
     "string:Details\\Detail_Aplicant.detail.json",
-    "string:Details\\Detail_Event.detail.json",
+    "string:Details\\Detail_QuestionBuildingAplicant.detail.json",
     "string:Details\\Detail_QuestionNumberAppeal.detail.json",
-    "string:Details\\Detail_QuestionPhone.detail.json",
-    "string:Details\\Detail_ConsultationAplicant.detail.json"
+    "string:Details\\Detail_Consultation.detail.json",
+    "string:Details\\Detail_Event.detail.json",
+    "string:Details\\Detail_QuestionObjectAplicant.detail.json",
+    "string:Details\\Detail_GorodokClaim.detail.json",
+    "string:Details\\Detail_QuestionReestration.detail.json",
+    "string:Details\\Detail_QuestionPhone.detail.json"
   ],
   "Config": {
     "FieldGroups": [

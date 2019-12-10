@@ -1,5 +1,5 @@
 (function () {
-    return {
+  return {
         RecordId: 0,
         StateServerId: 0,
 
@@ -443,6 +443,42 @@
                 };
             };
         }, 
+        Dublicate_Aplicant: function () {
+            const queryForGetValueDublicate = {
+                queryCode: 'ApplicantDublicateInsertRow',
+                parameterValues: [
+                    {
+                        key: '@PhoneNumber',
+                        value: this.form.getControlValue('Phone')
+                    }
+                ]
+            };
+            this.queryExecutor.getValue(queryForGetValueDublicate).subscribe(data => {
+                    debugger;
+                    if (data) {   
+                        if (typeof data === "string") {
+                                    const fieldsForm_Error = {
+                                        title: ' ',
+                                        text: data,
+                                        singleButton: true,
+                                        acceptBtnText: 'ok'
+                                    };
+                                    this.openModalForm(fieldsForm_Error, this.afterModalFormClose.bind(this), this.afterModalFormClose.bind(this));
+                        } else {
+                                    const fieldsForm_Ok = {
+                                        title: ' ',
+                                        text: 'Поточний номер додано до списку дублікатів',
+                                        singleButton: true,
+                                        acceptBtnText: 'ok'
+                                    };
+                                    this.openModalForm(fieldsForm_Ok, this.afterModalFormClose.bind(this), this.afterModalFormClose.bind(this));
+                        }
+                    };
+            });
+        },
+        afterModalFormClose: function(data) {
+            // console.log('Close ', data);
+        },
         TypeFormId: 0,
         init: function() {
             
@@ -474,7 +510,6 @@
             }
             
             function mask(event) {
-                debugger;
                 var matrix = "(___)___-__-__",
                     i = 0,
                     def = matrix.replace(/\D/g, ""),
@@ -517,6 +552,11 @@
                         val_phone = getDataFromLink["phone"]
                     };
                     
+                    
+                var val_sipcallid = '';
+                val_sipcallid = getDataFromLink["sipcallid"]
+                    
+                    
                     const queryForGetValue = {
                         queryCode: 'Appeals_Insert',
                         parameterValues: [
@@ -527,6 +567,10 @@
                             {
                                 key: '@phone_number',
                                 value: val_phone
+                            },
+                            {
+                                key: '@sipcallid',
+                                value: val_sipcallid
                             }
                         ]
                     };
@@ -666,7 +710,15 @@
 
                 this.form.disableControl("ExecutorInRoleForObject");
                 this.form.disableControl("Applicant_District");
-            
+
+
+                const menuDetail_Aplicant =  [{
+                                               "title": "Додати до списку дублікатів",
+                                               "icon": "fa fa-random",
+                                               "functionName": "Dublicate_Aplicant"
+                                             }];
+                 this.details.setActionMenu("Detail_Aplicant", menuDetail_Aplicant);   
+
                 //Кнопка "WIKI_Btn_Search" в группе "Консультація за БЗ"
                 document.getElementById('WIKI_Btn_Search').addEventListener("click", function(event) {
                     const queryForGetValue3 = {

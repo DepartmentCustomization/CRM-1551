@@ -1,5 +1,5 @@
 (function () {
-    return {
+  return {
       placeholder: 'Рейтинг',
       keyValue: 'Id',
       displayValue: 'Name',
@@ -31,5 +31,4 @@
           this.messageService.publish(message);
       }
   };
-  }());
-  
+}());

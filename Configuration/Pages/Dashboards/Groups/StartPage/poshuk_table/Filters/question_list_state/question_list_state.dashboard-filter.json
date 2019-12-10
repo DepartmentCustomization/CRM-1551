@@ -1,4 +1,5 @@
 {
   "Type": "MultiSelectFilterComponent",
-  "Owner": "question_list_state"
+  "Owner": "question_list_state",
+  "Position": 4
 }

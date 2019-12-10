@@ -2,7 +2,9 @@
   "ModelType": "Form",
   "Code": "ApplicantConnectionEfforts",
   "Name": "ApplicantConnectionEfforts",
-  "Details": [],
+  "Details": [
+    "string:Details\\Detail_GetQuestionsByPhone.detail.json"
+  ],
   "Config": {
     "FieldGroups": [
       "string:FieldGroups\\Group1.fieldgroup.json"

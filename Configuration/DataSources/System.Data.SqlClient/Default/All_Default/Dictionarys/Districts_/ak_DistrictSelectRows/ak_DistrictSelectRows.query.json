@@ -9,7 +9,8 @@
       "Code": "Id",
       "Name": "Id",
       "Position": 1,
-      "IsPrintable": false
+      "IsPrintable": false,
+      "IsPrimaryKey": true
     },
     {
       "Code": "name",

@@ -9,19 +9,20 @@
       "Code": "@poll_item_direction_id",
       "Name": "poll_item_direction_id",
       "ParameterType": "Integer"
-    }
-    ,{
-      "Code": "@role_id",
-      "Name": "role_id",
-      "ParameterType": "Integer"
-    },{
+    },
+    {
+      "Code": "@name",
+      "Name": "name"
+    },
+    {
       "Code": "@active",
       "Name": "active",
       "ParameterType": "Boolean"
-    },{
-      "Code": "@name",
-      "Name": "name"
+    },
+    {
+      "Code": "@role_id",
+      "Name": "role_id",
+      "ParameterType": "Integer"
     }
-
   ]
 }

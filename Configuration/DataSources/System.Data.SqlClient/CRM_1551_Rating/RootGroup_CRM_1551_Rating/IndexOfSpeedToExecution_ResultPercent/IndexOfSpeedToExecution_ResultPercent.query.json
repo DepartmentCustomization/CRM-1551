@@ -1,0 +1,24 @@
+{
+  "ModelType": "Query",
+  "Code": "IndexOfSpeedToExecution_ResultPercent",
+  "Name": "IndexOfSpeedToExecution_ResultPercent",
+  "ConnectionCode": "CRM_1551_Rating",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@DateCalc",
+      "Name": "DateCalc",
+      "ParameterType": "DateTime"
+    },
+    {
+      "Code": "@RatingId",
+      "Name": "RatingId",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@RDAId",
+      "Name": "RDAId",
+      "ParameterType": "Integer"
+    }
+  ]
+}

@@ -3,7 +3,7 @@
   "Code": "Detail_Appeals_OtherByPhone",
   "Name": "Мешканці за телефоном",
   "FormCode": "Form_New_Applicant",
-  "SelectRowsQueryCode": "cx_Applicants_OtherResidentsByPhone_SelectRows",
+  "SelectRowsQueryCode": "Appl_OtherByPhone_SelectRows",
   "SelectRowQueryCode": "cx_New_Applicant_SelectRow",
   "SectionCode": "",
   "Position": 3,

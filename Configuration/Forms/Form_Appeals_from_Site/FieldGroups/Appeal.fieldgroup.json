@@ -61,7 +61,30 @@
       "Name": "На доопрацювання",
       "FieldType": "button",
       "Position": 12,
-      "Width": "35%"
+      "Width": "51%"
+    },
+    {
+      "Code": "AppealFromSite_geolocation_lat",
+      "Name": "Координат широти",
+      "FieldType": "text",
+      "Position": 13,
+      "Width": "50%"
+    },
+    {
+      "Code": "AppealFromSite_geolocation_lon",
+      "Name": "Координат довготи",
+      "FieldType": "text",
+      "Position": 14,
+      "Width": "50%"
+    },
+    {
+      "Code": "btn_searchAdressByCoordinate",
+      "Name": "Відобразити адресу на карті",
+      "FieldType": "button",
+      "Position": 15,
+      "Width": "51%",
+      "Icon": "my_location",
+      "IconHint": "Відобразити адресу на карті"
     },
     {
       "Code": "Appeal_Id",

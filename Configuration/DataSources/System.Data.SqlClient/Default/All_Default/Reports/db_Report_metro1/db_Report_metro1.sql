@@ -4,8 +4,11 @@ declare @site_q int;
 declare @ugl_q int;
 declare @result table (source nvarchar(200), val int);
 
- --declare @dateFrom datetime = '2019-06-01 00:00:00';
- --declare @dateTo datetime = current_timestamp;
+ --declare @dateFrom datetime = '2019-01-05 00:00:00';
+ --declare @dateTo datetime = '2019-12-05 00:00:00';
+
+ declare @filterTo datetime = dateadd(second,59,(dateadd(minute,59,(dateadd(hour,23,cast(cast(dateadd(day,0,@dateTo) as date) as datetime))))));
+
 
 insert into @sources (Id, source)
 select Id, [name] from ReceiptSources
@@ -20,7 +23,7 @@ join Appeals a on a.receipt_source_id = rs.Id
 join Questions q on q.appeal_id = a.Id 
 join [Objects] o on o.Id = q.[object_id]
 where rs.Id = 1 and o.Id = 125342
-and q.registration_date between @dateFrom and @dateTo
+and q.registration_date between @dateFrom and @filterTo
 group by s.Id )
 end
 begin
@@ -32,7 +35,7 @@ join Appeals a on a.receipt_source_id = rs.Id
 join Questions q on q.appeal_id = a.Id 
 join [Objects] o on o.Id = q.[object_id]
 where rs.Id = 2 and o.Id = 125342
-and q.registration_date between @dateFrom and @dateTo
+and q.registration_date between @dateFrom and @filterTo
 group by s.Id )
 end
 begin
@@ -44,7 +47,7 @@ join Appeals a on a.receipt_source_id = rs.Id
 join Questions q on q.appeal_id = a.Id 
 join [Objects] o on o.Id = q.[object_id]
 where rs.Id = 3 and o.Id = 125342
-and q.registration_date between @dateFrom and @dateTo
+and q.registration_date between @dateFrom and @filterTo
 group by s.Id )
 end
 

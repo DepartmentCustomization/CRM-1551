@@ -40,6 +40,7 @@
                 parameterValues: []
             };
             this.queryExecutor.getValues(onChangeStatus).subscribe(data => {
+                debugger;
                 if (data.rows.length > 0) {
                     for (var i = 0; i < data.rows.length; i++) {
                         console.log(data.rows[i].values);
@@ -81,6 +82,7 @@
             this.form.disableControl('responsible');
             this.form.disableControl('phones');
             this.form.disableControl('answer');
+            // this.form.disableControl('executor_person_id');
             //enter_number
             this.form.disableControl('enter_number');
 
@@ -139,7 +141,6 @@
                 };
 
                 if (result_id == 4 || result_id == 7 || result_id == 8) {
-                    debugger;
                     if (rework_count < 2) {
                         this.form.setControlVisibility('rework_counter', true);
                         ChoiseResult = [{ parameterCode: '@AssignmentId', parameterValue: this.id }, { parameterCode: '@res_id', parameterValue: 12 }];
@@ -229,15 +230,24 @@
             }
 
             this.form.onControlValueChanged('result_id', this.filterResolution.bind(this));
+            this.form.onControlValueChanged('performer_id', this.chooseExecutorPerson.bind(this));
         },
         /*END INIT */
+
+        chooseExecutorPerson: function(executor_id) {
+            if (executor_id == null) {
+                this.form.setControlValue('executor_person_id', {});
+            };
+
+            let param = [{ parameterCode: '@org_id', parameterValue: executor_id }];
+            this.form.setControlParameterValues('executor_person_id', param);
+        },
 
         goToAssigView: function(column, row, value, event, indexOfColumnId) {
             this.navigateTo('/sections/Assignments_for_view/edit/' + row.values[0] + '/Questions/' + row.values[7]);
         },
 
         filterResolution: function(result_id) {
-            // debugger;
             this.form.setControlVisibility('transfer_to_organization_id', false);
             this.form.setControlRequirement('transfer_to_organization_id', false);
             this.form.setControlVisibility('rework_counter', false);
@@ -266,7 +276,6 @@
             } else {
                 this.form.enableControl('resolution_id');
                 if (result_id == 3 && this.previous_result != 3) {
-                    // debugger;
                     this.form.setControlVisibility('transfer_to_organization_id', true);
                     this.form.disableControl('resolution_id');
 

@@ -1,0 +1,35 @@
+{
+  "Code": "Form_PersonExecutorChooseObjects",
+  "Name": "Об`єкти",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "object_Id",
+      "Name": "Назва",
+      "FieldType": "select",
+      "Position": 2,
+      "QueryCode": "ak_OrganizationsForPerson",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Name",
+      "IsRequired": true,
+      "QueryParameters": []
+    },{
+      "Code": "districts_Id",
+      "Name": "Район",
+      "FieldType": "select",
+      "Position": 1,
+      "QueryCode": "ak_DistrictSelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "IsRequired": true,
+      "QueryParameters": []
+    },{
+      "Code": "person_executor_choose_id",
+      "Name": "person_executor_choose_id",
+      "FieldType": "number",
+      "Position": 3,
+      "IsHidden": true,
+      "QueryParameters": []
+    }
+  ]
+}

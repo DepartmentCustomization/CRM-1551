@@ -1,6 +1,6 @@
 (function () {
   return {
-    placeholder: 'Парадне',
+    placeholder: 'Під`їзд',
     onChangeValue: function(value) {
         this.yourFunctionName(value);
     },

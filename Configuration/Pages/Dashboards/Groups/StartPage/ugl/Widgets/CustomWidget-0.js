@@ -86,7 +86,7 @@
         }
         this.changeFilterItemDistrict();
     },
-    setDepartamentData: function(data){
+    setDepartmentData: function(data){
         this.departData = data;
         this.createFilterDepartElements(data);
     },
@@ -257,12 +257,12 @@
         let tabFinder__title  = this.createElement('div', { className: ' tabTitle', innerText: 'Розширений пошук'});
         
         const tabPhone = this.createElement('div', { id: 'tabPhone', location: 'dashboard', url: 'StartPage_operator', className: 'tabPhone tab tabTo'}, tabPhone__title);
-        const tabAppeal = this.createElement('div', { id: 'tabAppeal', location: 'section', url: '', className: 'tabAppeal tab tabTo'}, tabAppeal__title);
+        const tabAppeal = this.createElement('div', { id: 'tabAppeal', location: 'dashboard', url: 'import_appeals_ugl', className: 'tabAppeal tab tabTo'}, tabAppeal__title);
         const tabAssigment = this.createElement('div', { id: 'tabAssigment', location: 'dashboard', url: 'curator', className: 'tabAssigment tab tabHover'}, tabAssigment__title);
         const tabFinder = this.createElement('div', { id: 'tabFinder', location: 'dashboard', url: 'poshuk_table', className: 'tabFinder tab tabTo'}, tabFinder__title);
         
         
-        const tabsContainer = this.createElement('div', { id: 'tabsContainer', className: 'tabsContainer'},tabPhone ,tabAppeal ,tabAssigment, tabFinder);
+        const tabsContainer = this.createElement('div', { id: 'tabsContainer', className: 'tabsContainer'},tabAppeal ,tabAssigment, tabFinder);
         tabsWrapper.appendChild(tabsContainer);
         
         let tabs = document.querySelectorAll('.tabTo');

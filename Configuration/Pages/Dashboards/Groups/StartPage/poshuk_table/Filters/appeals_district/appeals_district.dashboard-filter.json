@@ -1,4 +1,5 @@
 {
   "Type": "MultiSelectFilterComponent",
-  "Owner": "appeals_district"
+  "Owner": "appeals_district",
+  "Position": 2
 }

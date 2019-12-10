@@ -1,5 +1,5 @@
 (function () {
-    return {
+  return {
       placeholder: 'Виконавець',
       keyValue: 'Id',
       displayValue: 'Name',
@@ -34,5 +34,4 @@
           this.messageService.publish(message);
       }
   };
-  }());
-  
+}());

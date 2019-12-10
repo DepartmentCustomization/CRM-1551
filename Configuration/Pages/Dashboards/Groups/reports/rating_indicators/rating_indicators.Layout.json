@@ -1,5 +1,5 @@
 {
-  "css": "n.dx-datagrid-export-button{\n    background-color: rgba(21, 189, 244, 1)!important;\n    color: #fff!important;\n    padding: 0 8px!important;\n}\n.dx-icon-export-excel-button{\n    color: #fff!important;\n    margin-right: 9px!important;\n}\n.dx-header-row>td>.dx-datagrid-text-content {\n    text-transform: uppercase;\n    text-align: center;\n}\n \n.dx-button-default{\n    background-color: rgba(21, 189, 244, 1)!important;\n}\n",
+  "css": ".dx-datagrid-export-button{\n    background-color: rgba(21, 189, 244, 1)!important;\n    color: #fff!important;\n    padding: 0 8px!important;\n}\n.dx-icon-export-excel-button{\n    color: #fff!important;\n    margin-right: 9px!important;\n}\n.dx-header-row>td>.dx-datagrid-text-content {\n    text-transform: uppercase;\n    text-align: center;\n}\n \n.dx-button-default{\n    background-color: rgba(21, 189, 244, 1)!important;\n}\n .table2__title{\n  text-align:  center; \n margin: 25px 0; \n} \n",
   "rootContainer": {
     "width": "calc( 100% - 10px )",
     "margin": "0 5px 10px",
@@ -13,7 +13,7 @@
       {
         "width": "calc( 100% - 10px )",
         "margin": "0 5px",
-        "flexWrap": "wrap",
+        "flexWrap": "nowrap",
         "flexDirection": "column",
         "order": 1,
         "flexGrow": 1,
@@ -27,31 +27,132 @@
             "flexDirection": "row",
             "order": 1,
             "flexGrow": 1,
-            "alignSelf": "auto",
+            "alignSelf": "flex-start",
             "border": "none",
             "children": [
               {
-                "code": "rating_NativeDataGridWidget",
+                "code": "ratingAll_NativeDataGridWidget",
                 "type": "NativeDataGridWidgetComponent",
                 "name": "ratings"
               }
             ],
             "id": "Container-1",
-            "height": "calc(100% - 10px)",
+            "height": "auto",
             "minHeight": "100px",
             "minWidth": "calc(100% - 10px)",
             "backgroundColor": "white"
+          },
+          {
+            "width": "calc( 100% - 10px )",
+            "margin": "0 5px 10px",
+            "flexWrap": "wrap",
+            "flexDirection": "column",
+            "order": "2",
+            "flexGrow": 1,
+            "alignSelf": "flex-start",
+            "border": "none",
+            "children": [
+              {
+                "width": "calc(100% - 10px)",
+                "margin": "0 5px 10px",
+                "flexWrap": "wrap",
+                "flexDirection": "row",
+                "order": 1,
+                "flexGrow": 1,
+                "alignSelf": "auto",
+                "border": "none",
+                "children": [
+                  {
+                    "code": "table2__NativeDataGridWidget",
+                    "type": "NativeDataGridWidgetComponent",
+                    "name": "table1"
+                  }
+                ],
+                "id": "Container-1",
+                "height": "auto",
+                "minHeight": "100px",
+                "minWidth": "calc(100% - 10px)",
+                "backgroundColor": "white"
+              },
+              {
+                "width": "calc(100% - 10px)",
+                "margin": "0 5px 10px",
+                "flexWrap": "wrap",
+                "flexDirection": "row",
+                "order": 1,
+                "flexGrow": 1,
+                "alignSelf": "auto",
+                "border": "none",
+                "children": [
+                  {
+                    "width": "calc(50% - 10px)",
+                    "margin": "0 5px 10px",
+                    "flexWrap": "wrap",
+                    "flexDirection": "row",
+                    "order": 1,
+                    "flexGrow": 1,
+                    "alignSelf": "auto",
+                    "border": "none",
+                    "children": [
+                      {
+                        "code": "line__ChartWidget",
+                        "type": "ChartWidgetComponent",
+                        "name": "graphic_line"
+                      }
+                    ],
+                    "id": "Container-1",
+                    "height": "600px",
+                    "minHeight": "100px",
+                    "minWidth": "100px",
+                    "backgroundColor": "white"
+                  },
+                  {
+                    "width": "calc(50% - 10px)",
+                    "margin": "0 5px 10px",
+                    "flexWrap": "wrap",
+                    "flexDirection": "row",
+                    "order": 1,
+                    "flexGrow": 1,
+                    "alignSelf": "auto",
+                    "border": "none",
+                    "children": [
+                      {
+                        "code": "pie__ChartWidget",
+                        "type": "ChartWidgetComponent",
+                        "name": "graphic_pie"
+                      }
+                    ],
+                    "id": "Container-1",
+                    "height": "600px",
+                    "minHeight": "100px",
+                    "minWidth": "100px",
+                    "backgroundColor": "white"
+                  }
+                ],
+                "id": "Container-1",
+                "height": "auto",
+                "minHeight": "100px",
+                "minWidth": "calc(100% - 10px)",
+                "backgroundColor": "white"
+              }
+            ],
+            "id": "Container-1",
+            "height": "auto",
+            "minHeight": "100px",
+            "minWidth": "100px",
+            "backgroundColor": "white",
+            "containerId": "infoContainer"
           }
         ],
         "id": "Container-0",
-        "height": "calc( 100% - 10px )",
+        "height": "auto",
         "minHeight": "100px",
         "minWidth": "100px",
         "backgroundColor": "white"
       }
     ],
     "id": "Container-0",
-    "height": "100%",
+    "height": "auto",
     "minHeight": "100%",
     "minWidth": "100%",
     "backgroundColor": "white"

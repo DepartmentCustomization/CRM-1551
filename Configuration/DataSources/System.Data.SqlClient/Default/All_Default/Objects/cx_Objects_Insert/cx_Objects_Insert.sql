@@ -2,7 +2,7 @@ declare @output table (Id int)
 
 INSERT INTO [dbo].[Objects]
            ([object_type_id]
-        --   ,[district_id]
+           ,[district_id]
         --   ,[street_id]
            ,[name]
            ,[builbing_id]
@@ -13,7 +13,7 @@ INSERT INTO [dbo].[Objects]
 		output inserted.Id into @output(Id)
      VALUES
            (@obj_type_id
-        --   ,@district_id
+           ,@district_id
         --   ,@street_id
            ,@object_name
            ,@builbing_id

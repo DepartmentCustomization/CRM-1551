@@ -1,0 +1,20 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_TemplatesInsertRow",
+    "Name": "ak_TemplatesInsertRow",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Parameters": [
+      {
+        "Code": "@name",
+        "Name": "name"
+      },{
+        "Code": "@content",
+        "Name": "content"
+      },{
+        "Code": "@user_id",
+        "Name": "user_id",
+        "ParameterType": "CurrentUserId"
+      }
+    ]
+  }
