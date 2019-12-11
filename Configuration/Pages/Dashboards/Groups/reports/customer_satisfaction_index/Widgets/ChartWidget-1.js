@@ -3,7 +3,7 @@
         chartConfig:{
             title: {
                 text: 'Ввічливість оператора'
-            },
+            },        
             yAxis: {
                 title: {
                     text: 'Number of Employees'
@@ -60,7 +60,6 @@
         init: function() {
             this.render();
         },
-
     };
 }());
   
