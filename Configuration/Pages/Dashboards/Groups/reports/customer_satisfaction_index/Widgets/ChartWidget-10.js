@@ -1,11 +1,9 @@
-
-
 (function () {
     return {
         chartConfig:{
             title: {
                 text: 'Загальне враження вiд роботи з винонавцем',
-            },
+            },       
             yAxis: {
                 title: {
                     text: 'Number of Employees'
@@ -62,7 +60,5 @@
         init: function() {
             this.render();
         },
-
     };
 }());
-  

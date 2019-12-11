@@ -6,7 +6,7 @@
             },        
             yAxis: {
                 title: {
-                    text: 'Number of Employees'
+                    text: ' '
                 }
             },
             legend: {
