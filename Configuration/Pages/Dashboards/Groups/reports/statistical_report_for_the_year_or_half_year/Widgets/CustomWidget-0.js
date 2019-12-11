@@ -25,6 +25,7 @@
                     padding: 7px 18px 8px;
                     border-radius: 5px;  
                     margin: 10px;
+                    outline: none;
                 }                
                 </style>
                 
@@ -103,7 +104,54 @@
 
     createExcelWorkbook: function () {
         const workbook = this.createExcel();
-        const worksheet = workbook.addWorksheet('Заявки', {
+        const worksheet1 = this.createWorksheet(workbook, 'Таблицi 1');
+        const worksheet2 = this.createWorksheet(workbook, 'Таблицi 2');
+
+        this.years = [ this.previousYear, this.currentYear];
+        this.yearsTemp = [ this.previousYear, this.currentYear];
+        this.startStep = 3;
+        this.step = 10;
+
+        this.numberRowsArray = [];
+        const columnsHeader1 = [];
+        for (let i = 0; i < 16; i++) {
+            let width = { width: 7 };
+            columnsHeader1.push(width);
+        }
+        worksheet1.columns = columnsHeader1;
+        
+        const columnsHeader2 = [{ width: 5 }, { width: 24 }];
+        for (let i = 0; i < 14; i++) {
+            let width = { width: 7 };
+            columnsHeader2.push(width);
+        }
+        worksheet2.columns = columnsHeader2;
+
+        for (let i = 0; i < this.data.length; i++) {
+            const data = this.data[i];
+            const columns = data.columns;
+
+            if(i === 0 || i === 1 ) {
+                if( i === 0) {
+                    this.setTableType1Header(columns, worksheet1, data);
+                } else if ( i === 1) {
+                    this.setTableType2Header(columns, worksheet1, data);
+                }
+                this.setCellValuesStyles(worksheet1);
+                this.numberRowsArray = [];
+            } else {
+                this.setTableType3Header(columns, worksheet2, data);
+                this.setCellValuesStyles(worksheet2);
+                this.numberRowsArray = [];
+            }
+        }
+        this.setExcelTitle(worksheet1);
+        this.setExcelTitle(worksheet2);
+        this.helperFunctions.excel.save(workbook, 'Заявки', this.hidePagePreloader);
+    },
+
+    createWorksheet: function (workbook, name) {
+        return  workbook.addWorksheet(name, {
             pageSetup:{
                 orientation: 'landscape',
                 fitToPage: false,
@@ -114,33 +162,6 @@
                 }
             }
         });
-        this.years = [ this.previousYear, this.currentYear];
-        this.yearsTemp = [ this.previousYear, this.currentYear];
-        this.startStep = 5;
-        this.step = 10;
-
-        this.numberRowsArray = [];
-        const columnsHeader = [];
-        for (let i = 0; i < 16; i++) {
-            let width = { width: 7.8 };
-            columnsHeader.push(width);
-        }
-        worksheet.columns = columnsHeader;
-        for (let i = 0; i < this.data.length; i++) {
-            const data = this.data[i];
-            const columns = data.columns;
-            
-            if( i === 0) {
-                this.setTableType1Header(columns, worksheet, data);
-            } else if ( i === 1) {
-                this.setTableType2Header(columns, worksheet, data);
-            } else {
-                this.setTableType3Header(columns, worksheet, data);
-            }
-        }
-        this.setCellValuesStyles(worksheet);
-        this.setExcelTitle(worksheet);
-        this.helperFunctions.excel.save(workbook, 'Заявки', this.hidePagePreloader);
     },
 
     setExcelTitle: function (worksheet) {
@@ -167,8 +188,8 @@
             this.setRowStyle(headerTop, worksheet, 30);
         }
         const headerHeight = 3;
-        this.setRowValues(data, worksheet, headerHeight);
-        this.startStep += 10;
+        this.setHeaderRowValues(data, worksheet, headerHeight);
+        this.startStep += 5;
     },
 
     setTableType2Header: function (columns, worksheet, data) {
@@ -193,11 +214,11 @@
             const cell = worksheet.getCell(headerTop, headerLeft);
             cell.value = column.caption;
             this.setCellStyle(cell);
-            this.setRowStyle(headerTop, worksheet, 100);
+            this.setRowStyle(headerTop, worksheet, 120);
         }
         const headerHeight = 2;
-        this.setRowValues(data, worksheet, headerHeight);
-        this.startStep += 7;
+        this.setHeaderRowValues(data, worksheet, headerHeight);
+        this.startStep = 3;
     },
 
     setCellYearsValue: function (subHeader, position, worksheet) {
@@ -237,8 +258,8 @@
             }
         });
         const headerHeight = 3;
-        this.setRowValues(data, worksheet, headerHeight);
-        this.startStep += this.step + 8;
+        this.setHeaderRowValues(data, worksheet, headerHeight);
+        this.startStep += this.step + 3;
     },
 
     setSubHeaders: function (column, worksheet, position, startStep) {
@@ -275,7 +296,7 @@
         cell.font = { name: 'Times New Roman', family: 4, size: 10,  underline: false, bold: false , italic: false };
     },
 
-    setRowValues: function (message, worksheet, headerHeight) {
+    setHeaderRowValues: function (message, worksheet, headerHeight) {
         for (let i = 0; i < message.data.length; i++) {
             const values = message.data[i];
             const number = this.startStep + headerHeight + i;
@@ -295,6 +316,7 @@
     },
 
     setCellValuesStyles: function (worksheet) {
+
         this.numberRowsArray.forEach( row => {
             for (let j = 0; j < row.values.length; j++) {
                 const top = row.number;
