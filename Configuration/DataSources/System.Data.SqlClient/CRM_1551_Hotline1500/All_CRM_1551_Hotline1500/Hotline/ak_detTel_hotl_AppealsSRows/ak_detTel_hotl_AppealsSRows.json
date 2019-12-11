@@ -1,0 +1,62 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_detTel_hotl_AppealsSRows",
+    "Name": "ak_detTel_hotl_AppealsSRows",
+    "ConnectionCode": "CRM_1551_Hotline1500",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 0,
+        "ViewState": "Hidden",
+        "IsPrimaryKey": true
+      },
+      {
+        "Code": "phone_number",
+        "Name": "Номер",
+        "Position": 1,
+        "SqlName": "a.phone_number",
+        "FilterParameterCode": "@phone_number"
+      },
+      {
+        "Code": "applicant_name",
+        "Name": "ПІБ заявника",
+        "Position": 2,
+        "SqlName": "a.applicant_name",
+        "FilterParameterCode": "@applicant_name"
+      },
+      {
+        "Code": "guidance_kind_name",
+        "Name": "Вид насильства",
+        "Position": 3,
+        "SqlName": "g.name",
+        "FilterParameterCode": "@guidance_kind_name"
+      },
+      {
+        "Code": "offender_name",
+        "Name": "ПІБ кривдника",
+        "Position": 4,
+        "SqlName": "a.offender_name",
+        "FilterParameterCode": "@offender_name"
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@phone_number",
+        "Name": "phone_number"
+      },
+      {
+        "Code": "@pageLimitRows",
+        "Name": "pageLimitRows",
+        "ParameterType": "Integer",
+        "IsPageLimitRows": true
+      },
+      {
+        "Code": "@pageOffsetRows",
+        "Name": "pageOffsetRows",
+        "ParameterType": "Integer",
+        "IsPageOffsetRows": true
+      }
+    ]
+  }

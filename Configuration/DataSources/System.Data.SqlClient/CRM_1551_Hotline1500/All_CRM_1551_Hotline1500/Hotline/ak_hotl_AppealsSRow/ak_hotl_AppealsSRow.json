@@ -1,0 +1,88 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_hotl_AppealsSRow",
+    "Name": "ak_hotl_AppealsSRow",
+    "ConnectionCode": "CRM_1551_Hotline1500",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 0,
+        "IsPrimaryKey": true
+      },
+      {
+        "Code": "registration_date",
+        "Name": "registration_date",
+        "Position": 1
+      },
+      {
+        "Code": "phone_number",
+        "Name": "phone_number",
+        "Position": 2
+      },
+      {
+        "Code": "applicant_name",
+        "Name": "applicant_name",
+        "Position": 3
+      },
+      {
+        "Code": "applicant_address",
+        "Name": "applicant_address",
+        "Position": 4
+      },
+      {
+        "Code": "marital_status_id",
+        "Name": "marital_status_id",
+        "Position": 5
+      },
+      {
+        "Code": "sex",
+        "Name": "sex",
+        "Position": 6
+      },
+      {
+        "Code": "age",
+        "Name": "age",
+        "Position": 7
+      },
+      {
+        "Code": "education_id",
+        "Name": "education_id",
+        "Position": 8
+      },
+      {
+        "Code": "applicant_privilage_id",
+        "Name": "applicant_privilage_id",
+        "Position": 9
+      },
+      {
+        "Code": "guidance_kind_id",
+        "Name": "guidance_kind_id",
+        "Position": 10
+      },
+      {
+        "Code": "offender_name",
+        "Name": "offender_name",
+        "Position": 11
+      },
+      {
+        "Code": "service_content",
+        "Name": "service_content",
+        "Position": 12
+      },
+      {
+        "Code": "comment",
+        "Name": "comment",
+        "Position": 13
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@Id",
+        "Name": "Id",
+        "ParameterType": "Integer",
+        "IsPrimaryKey": true
+      }
+    ]
+  }

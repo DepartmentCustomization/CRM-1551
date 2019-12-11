@@ -1,0 +1,14 @@
+{
+  "ModelType": "Detail",
+  "Code": "Consultation",
+  "Name": "Консультація заявника",
+  "SelectRowsQueryCode": "det_ConsultationApplication",
+  "SectionCode": "",
+  "Position": 2,
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@ApplicantsId"
+    }
+  ]
+}
