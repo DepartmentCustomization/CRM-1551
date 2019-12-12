@@ -42,9 +42,21 @@
         "Position": 5
       },
       {
-        "Code": "sex",
-        "Name": "sex",
+        "Code": "marital_status_name",
+        "Name": "marital_status_name",
+        "Position": 5,
+        "ReferenceKeyCode": "marital_status_id"
+      },
+      {
+        "Code": "sex_id",
+        "Name": "sex_id",
         "Position": 6
+      },
+      {
+        "Code": "sex_name",
+        "Name": "sex_name",
+        "Position": 6,
+        "ReferenceKeyCode": "sex_id"
       },
       {
         "Code": "age",
@@ -57,14 +69,32 @@
         "Position": 8
       },
       {
+        "Code": "education_name",
+        "Name": "education_name",
+        "Position": 8,
+        "ReferenceKeyCode": "education_id"
+      },
+      {
         "Code": "applicant_privilage_id",
         "Name": "applicant_privilage_id",
         "Position": 9
       },
       {
+        "Code": "applicant_privilage_name",
+        "Name": "applicant_privilage_name",
+        "Position": 9,
+        "ReferenceKeyCode": "applicant_privilage_id"
+      },
+      {
         "Code": "guidance_kind_id",
         "Name": "guidance_kind_id",
         "Position": 10
+      },
+      {
+        "Code": "guidance_kind_name",
+        "Name": "guidance_kind_name",
+        "Position": 10,
+        "ReferenceKeyCode": "guidance_kind_id"
       },
       {
         "Code": "offender_name",

@@ -12,10 +12,6 @@
         "IsPrimaryKey": true
       },
       {
-        "Code": "@phone_number",
-        "Name": "phone_number"
-      },
-      {
         "Code": "@applicant_name",
         "Name": "applicant_name"
       },
@@ -29,8 +25,8 @@
         "ParameterType": "Integer"
       },
       {
-        "Code": "@sex",
-        "Name": "sex",
+        "Code": "@sex_id",
+        "Name": "sex_id",
         "ParameterType": "Integer"
       },
       {
@@ -49,6 +45,10 @@
         "ParameterType": "Integer"
       },
       {
+        "Code": "@applicant_needs",
+        "Name": "applicant_needs"
+      },
+      {
         "Code": "@guidance_kind_id",
         "Name": "guidance_kind_id",
         "ParameterType": "Integer"
@@ -64,6 +64,11 @@
       {
         "Code": "@comment",
         "Name": "comment"
+      },
+      {
+        "Code": "@user_edit_id",
+        "Name": "user_edit_id",
+        "ParameterType": "CurrentUserId"
       }
     ]
   }

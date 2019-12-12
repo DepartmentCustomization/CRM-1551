@@ -1,7 +1,7 @@
 {
     "ModelType": "Section",
     "Code": "Hotline",
-    "Name": "Насильства",
+    "Name": "Звернення 15-00",
     "FormCode": "Hotline",
     "SelectRowsQueryCode": "ak_hotl_AppealsSRows",
     "SelectRowQueryCode": "ak_hotl_AppealsSRow",

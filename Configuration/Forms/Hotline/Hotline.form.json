@@ -1,7 +1,7 @@
 {
   "ModelType": "Form",
   "Code": "Hotline",
-  "Name": "Насильства",
+  "Name": "Звернення 15-00",
   "Details": [
     "string:Details\\Detail_Phone.detail.json"
   ],
@@ -10,6 +10,7 @@
       "string:FieldGroups\\Info.fieldgroup.json",
       "string:FieldGroups\\Assingment.fieldgroup.json"
     ],
-    "DefaultFields": []
+    "DefaultFields": [],
+    "Script": "string:Hotline.form.js"
   }
 }
