@@ -164,3 +164,10 @@ from [LiveAddress]
 where applicant_id=@true_applicant_id
 group by [building_id], [flat]
 )
+
+  -- удаление с таблицы [Applicants]
+
+  delete
+  from [Applicants]
+  where Id in (select Id from @table_applicant)
+  and Id<>@true_applicant_id
