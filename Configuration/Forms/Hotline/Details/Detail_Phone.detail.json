@@ -1,7 +1,7 @@
 {
     "ModelType": "Detail",
     "Code": "Detail_Phone",
-    "Name": "Збереження за номером телефону",
+    "Name": "Звернення за номером телефону",
     "SelectRowsQueryCode": "ak_detTel_hotl_AppealsSRows",
     "SectionCode": "",
     "Position": 1,
