@@ -703,7 +703,7 @@ when [Applicants].[birth_date] is null then year(getdate())-[Applicants].birth_y
   '+@filter_assigm_user_checked+N' [Workers] [Workers3] with (nolock) on [AssignmentRevisions].[user_edit_id]=[Workers3].worker_user_id
   '+@appeals_receipt_source+N' [ReceiptSources] with (nolock) on [Appeals].receipt_source_id=[ReceiptSources].Id
   left join [Workers] with (nolock) on [Appeals].user_id=[Workers].worker_user_id
-  '+@filter_zayavnyk_entrance_zayavnyk_flat_district+N' [LiveAddress] with (nolock) on [LiveAddress].applicant_id=[Applicants].Id
+  '+@filter_zayavnyk_entrance_zayavnyk_flat_district+N' [LiveAddress] with (nolock) on [LiveAddress].applicant_id=[Applicants].Id and [LiveAddress].main=''true''
   '+@filter_appeals_district+N' [Buildings] with (nolock) on [LiveAddress].building_id=[Buildings].Id
   '+@filter_appeals_district+N'  [Districts]  on [Buildings].district_id=[Districts].Id 
   '+@filter_appeals_district+N' [Streets] with (nolock) on [Buildings].street_id=[Streets].Id
