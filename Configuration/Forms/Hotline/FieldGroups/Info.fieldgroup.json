@@ -1,0 +1,28 @@
+{
+  "Code": "Info",
+  "Name": "Загальна інформація",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "Id",
+      "Name": "Номер звернення",
+      "FieldType": "number",
+      "Position": 1,
+      "Width": "50%"
+    },
+    {
+      "Code": "registration_date",
+      "Name": "Дата та час надходження",
+      "FieldType": "datetime",
+      "Position": 2,
+      "Width": "50%"
+    },
+    {
+      "Code": "phone_number",
+      "Name": "Номер телефону",
+      "FieldType": "text",
+      "Position": 3,
+      "Width": "50%"
+    }
+  ]
+}

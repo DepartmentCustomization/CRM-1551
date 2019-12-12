@@ -1,0 +1,15 @@
+{
+  "ModelType": "Form",
+  "Code": "Hotline",
+  "Name": "Насильства",
+  "Details": [
+    "string:Details\\Detail_Phone.detail.json"
+  ],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\Info.fieldgroup.json",
+      "string:FieldGroups\\Assingment.fieldgroup.json"
+    ],
+    "DefaultFields": []
+  }
+}
