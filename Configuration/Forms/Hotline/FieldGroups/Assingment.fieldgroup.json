@@ -30,7 +30,7 @@
       "QueryParameters": []
     },
     {
-      "Code": "sex",
+      "Code": "sex_id",
       "Name": "Стать",
       "FieldType": "select",
       "Position": 4,

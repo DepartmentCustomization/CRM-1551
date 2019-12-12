@@ -1,10 +1,10 @@
   update [Appeals]
   set --[registration_date]= @registration_date
-      [phone_number]= @phone_number
-      ,[applicant_name]= @applicant_name
+      --[phone_number]= @phone_number
+      [applicant_name]= @applicant_name
       ,[applicant_address]= @applicant_address
       ,[marital_status_id]= @marital_status_id
-      ,[sex]= @sex
+      ,[sex]= @sex_id
       ,[age]= @age
       ,[education_id]= @education_id
       ,[applicant_privilage_id]= @applicant_privilage_id
