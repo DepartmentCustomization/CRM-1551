@@ -18,12 +18,12 @@ FROM [Events] AS e
 	LEFT JOIN Assignments ON Assignments.Id = Questions.last_assignment_for_execution_id
 	LEFT JOIN Organizations ON Organizations.Id = Assignments.executor_organization_id
 	LEFT JOIN QuestionTypes ON QuestionTypes.Id = Questions.question_type_id
-WHERE (e.Id = @Id
+WHERE ((e.Id = @Id
 	AND Questions.registration_date >= e.registration_date
 	AND ecqt.[is_hard_connection] = 1
 	AND Assignments.main_executor = 1
 	AND Assignments.assignment_state_id <> 5)
-	OR Questions.event_id = @Id
+	OR Questions.event_id = @Id) and e.active='true'
     and 
         #filter_columns#
         #sort_columns#
