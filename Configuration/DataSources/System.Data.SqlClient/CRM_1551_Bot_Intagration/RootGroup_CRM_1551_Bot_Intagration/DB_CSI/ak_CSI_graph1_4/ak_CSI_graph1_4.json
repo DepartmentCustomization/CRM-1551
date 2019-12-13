@@ -1,0 +1,36 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_CSI_graph1_4",
+    "Name": "Швидкість роботи оператора",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 0
+      },
+      {
+        "Code": "Calc_date",
+        "Name": "Calc_date",
+        "Position": 1
+      },
+      {
+        "Code": "Average",
+        "Name": "Average",
+        "Position": 2
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@date_from",
+        "Name": "date_from",
+        "ParameterType": "Datetime"
+      },
+      {
+        "Code": "@date_to",
+        "Name": "date_to",
+        "ParameterType": "Datetime"
+      }
+    ]
+  }

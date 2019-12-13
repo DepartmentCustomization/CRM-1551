@@ -1,0 +1,6 @@
+{
+    "ModelType": "QueryGroup",
+    "Code": "DB_CSI",
+    "Name": "Індекс задоволеності клієнтів",
+    "ConnectionCode": "Default"
+  }
