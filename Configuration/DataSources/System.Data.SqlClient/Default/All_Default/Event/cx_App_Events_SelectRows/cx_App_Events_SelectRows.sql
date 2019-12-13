@@ -9,6 +9,7 @@ SELECT * FROM (
   inner join [dbo].[EventObjects] on [Events].Id=[EventObjects].event_id
   left join [dbo].[EventTypes] on [Events].event_type_id=[EventTypes].Id
   where eqt.question_type_id = @question_type_id and [EventObjects].[object_id]= @object_id
+  and [Events].active='true'
   and @registration_date>[Events].registration_date 
  
   union
@@ -21,6 +22,7 @@ SELECT * FROM (
   from [dbo].[Events] AS e
   left join [dbo].[EventTypes] on e.event_type_id=[EventTypes].Id
 where e.Id = (select event_id from Questions where Questions.Id = @Id)
+and [Events].active='true'
 ) as t
 where 
   #filter_columns#
