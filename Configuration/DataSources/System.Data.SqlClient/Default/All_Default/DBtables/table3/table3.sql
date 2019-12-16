@@ -341,7 +341,7 @@ if object_id('tempdb..#temp_plan_p') is not null drop table #temp_plan_p
  left join [CRM_1551_Analitics].[dbo].[AssignmentResults] with (nolock)  on [Assignments].[AssignmentResultsId]=[AssignmentResults].Id -- +
  left join [CRM_1551_Analitics].[dbo].[AssignmentResolutions] with (nolock)  on [Assignments].[AssignmentResolutionsId]=[AssignmentResolutions].Id
  left join [CRM_1551_Analitics].[dbo].[Organizations] with (nolock)  on [Assignments].executor_organization_id=[Organizations].Id
-
+ where [Questions].event_id is null
 
 
  if object_id('tempdb..#temp_main') is not null drop table #temp_main
