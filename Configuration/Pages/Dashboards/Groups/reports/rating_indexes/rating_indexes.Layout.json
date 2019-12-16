@@ -18,7 +18,7 @@
 .dx-datagrid-group-closed::before{
     display:none;
 }
-.dx-datagrid-group-closed{
+.dx-datagrid-group-closed {
     margin: 10px;
     font: 18px/18px DXIcons;
     height: 18px;

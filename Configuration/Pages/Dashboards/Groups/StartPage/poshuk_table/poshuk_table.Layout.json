@@ -41,13 +41,13 @@
                 "border": "none",
                 "children": [
                   {
-                    "code": "CustomWidget-0",
+                    "code": "filtersName_CustomWidget",
                     "type": "CustomWidgetComponent",
                     "name": "filters_place"
                   }
                 ],
                 "id": "Container-1",
-                "height": "calc(15% - 10px)",
+                "height": "calc(15%)",
                 "minHeight": "calc(15% - 10px)",
                 "minWidth": "calc(100% - 10px)",
                 "backgroundColor": "white"
@@ -109,7 +109,7 @@
                 "border": "none",
                 "children": [
                   {
-                    "code": "CustomWidget-1",
+                    "code": "notification_CustomWidget",
                     "type": "CustomWidgetComponent",
                     "name": "notification"
                   }

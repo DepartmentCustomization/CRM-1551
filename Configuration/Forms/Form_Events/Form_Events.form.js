@@ -77,7 +77,6 @@
             //добавление кнопки на закрытие начало
             document.getElementById('active_button').addEventListener("click", function(event) {
 
-                // debugger;
                 event.stopImmediatePropagation();
                 const Question_Close_callback = (response) => {
                     if (!response) {
@@ -100,7 +99,6 @@
                             ]
                         };
                         console.table(objName.parameterValues);
-                        debugger;
 
                         this.queryExecutor.getValues(objName).subscribe(data => {
                             console.log('Event is not activ');
@@ -139,7 +137,6 @@
                             //console.log('It`s a cancel'); 
                         }
                         /*else{
-                                        //  debugger;
                                         //console.log('It`s a good');
                                         const body = {
                                             queryCode: 'ak4_HallsInsertRow',

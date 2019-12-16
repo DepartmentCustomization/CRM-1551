@@ -3,12 +3,12 @@
         init: function() {
             this.sub = this.messageService.subscribe('GlobalFilterChanged', this.getFiltersParams, this);
         },
+
         getFiltersParams: function(message){
             const period = message.package.value.values.find(f => f.name === 'period').value;
             const executor = message.package.value.values.find(f => f.name === 'executor').value;
             const rating = message.package.value.values.find(f => f.name === 'rating').value;
-
-            if( period !== '' ){
+            if( period !== '' && period !== null){
                 const periodValue = this.convertDateTimeToDate(period);
                 const executorValue = executor === null ? 0 :  executor === '' ? 0 : executor.value;
                 const ratingValue = rating === null ? 0 :  rating === '' ? 0 : rating.value;
@@ -24,6 +24,7 @@
                 }
             }
         },
+
         convertDateTimeToDate: function(value){
             let date = new Date(value);
             let dd = date.getDate().toString();
@@ -33,6 +34,7 @@
             mm = mm.length === 1 ? '0' + mm : mm;
             return yyyy + '-' + mm + '-' + dd;
         }, 
+
         destroy: function () {
             this.sub.unsubscribe();
         },

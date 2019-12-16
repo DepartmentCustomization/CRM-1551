@@ -51,7 +51,7 @@
         },
 
         showTable: function(message) {
-            let tabName = message.tabName;
+            const tabName = message.tabName;
             if(tabName !== 'tabSpeedExplained'){
                 this.active = false;
                 document.getElementById('containerSpeedExplained').style.display = 'none';
@@ -82,7 +82,7 @@
         renderTable: function () {
             if (this.period) {
                 if (this.active) {
-                    let msg = {
+                    const msg = {
                         name: "SetFilterPanelState",
                         package: {
                             value: false

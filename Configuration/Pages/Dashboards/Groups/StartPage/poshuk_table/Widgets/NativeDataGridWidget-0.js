@@ -145,7 +145,6 @@
             let filters = message.package.value.values;
             this.filtersLength = filters.length;
             this.filtersWithOutValues = 0;
-            
             filters.forEach( elem => {
                 if(elem.active === true){
                     let data = elem.value;
@@ -218,7 +217,6 @@
                                     case 'control_date':
                                         this.controlDateFrom = checkDateFrom(elem.value);
                                         break;
-                                            
                                 }
                             }
                             if(data.dateTo != '' ){
@@ -308,7 +306,6 @@
                     {  key: '@control_date_from', value: this.controlDateFrom }, 
                     {  key: '@control_date_to', value: this.controlDateTo },
                     {  key: '@zayavnyk_phone_number', value: this.applicantPhoneNumber },
-                    
                 ];
                 this.loadData(this.afterLoadDataHandler);
                 this.messageService.publish( { 

@@ -57,7 +57,6 @@
                         alignment: 'left',
                         caption: 'Район',
                         setCellValue: function(rowData, value) {
-                            // debugger;
                             rowData.district_id = value;
                             rowData.id_1551 = null;
                         },
@@ -154,11 +153,9 @@
         showColumnFixing: true,
         groupingAutoExpandAll: null,
         // onContentReady: function (e) {
-        //     debugger;
         //     e.component.element().find(".dx-datagrid-header-panel").hide();         
         // }
         toolbarPreparing: function(data) {
-                    debugger;
             var indexSaveButton = data.toolbarOptions.items.indexOf(data.toolbarOptions.items.find(function (item) {
                 return item.name == "saveButton";
             }));
@@ -185,7 +182,6 @@
         // this.subscribeToDataGridActions();
         
         // this.sub = this.messageService.subscribe('clickOnStreets', this.changeOnTable, this);
-        // debugger;
         
         let executeQuery_dis = {
                 queryCode: 'int_list_district_1551',
@@ -247,7 +243,6 @@
         }.bind(this));
     },
     lookupFoo_dis: function(data) {
-                // debugger;
         this.elements_dis = [];
         for( i = 0; i < data.rows.length; i++){
             let el = data.rows[i];
