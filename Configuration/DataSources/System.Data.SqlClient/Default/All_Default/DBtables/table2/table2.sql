@@ -303,7 +303,7 @@ if object_id('tempdb..#temp_nadoopr') is not null drop table #temp_nadoopr
  left join [CRM_1551_Analitics].[dbo].[AssignmentStates] with (nolock) on [Assignments].assignment_state_id=[AssignmentStates].Id
  left join [CRM_1551_Analitics].[dbo].[AssignmentResults] with (nolock) on [Assignments].[AssignmentResultsId]=[AssignmentResults].Id -- +
  left join [CRM_1551_Analitics].[dbo].[AssignmentResolutions] with (nolock) on [Assignments].[AssignmentResolutionsId]=[AssignmentResolutions].Id
-
+ where [Questions].event_id is null
  --where 
  --[AssignmentStates].code=N'NotFulfilled' and [AssignmentResults].code=N'ItIsNotPossibleToPerformThisPeriod'
 

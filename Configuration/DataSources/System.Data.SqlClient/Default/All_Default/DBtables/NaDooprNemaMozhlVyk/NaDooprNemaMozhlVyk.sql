@@ -149,7 +149,7 @@ group by AssignmentConsiderations.assignment_id) rework_counter on Assignments.I
 where 
 
  '+@comment_naDoopr+N'[Assignments].[executor_organization_id]='+ltrim(@organization_id)+N' and ([AssignmentStates].code=N''NotFulfilled'' and ([AssignmentResults].code=N''ForWork'' or [AssignmentResults].code=N''Actually''))
- '+@comment_planProg+N' end_result.assignment_id is not null and end_result.assignment_id is not null
+ '+@comment_planProg+N' end_result.assignment_id is not null and end_result.assignment_id is not null and [Questions].event_id is null
  
 ),
 
