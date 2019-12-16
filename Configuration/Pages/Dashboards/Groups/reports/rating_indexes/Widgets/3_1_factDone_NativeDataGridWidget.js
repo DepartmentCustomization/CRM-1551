@@ -51,7 +51,7 @@
         },
 
         showTable: function(message) {
-            let tabName = message.tabName;
+            const tabName = message.tabName;
             if(tabName !== 'tabFactDone') {
                 this.active = false;
                 document.getElementById('containerFactDone').style.display = 'none';

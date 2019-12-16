@@ -325,13 +325,11 @@
     }
         
     // clearOrganization:function(id){
-    //     debugger;
     //     if(id != null || id != undefined){
     //         this.form.setControlValue('organization_id',{});
     //     }
     // },
     // clearObject:function(id){
-    //     debugger;
     //     if(id != null || id != undefined){
     //         this.form.setControlValue('object_id',{});
     //     }

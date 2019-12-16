@@ -27,7 +27,6 @@
                     this.kolvoPhonesForApplicant =  data.rows.length-1;
                       
                       if (data.rows.length > 0){
-                          // debugger;
                           const fieldsForm = {
                                           title: 'Телефони заявника',
                                           acceptBtnText: 'save',
@@ -228,7 +227,6 @@
               };
       }, 
       onModalPhonesChanged: function(phone) {
-          //  debugger;
           if (!phone) {
               document.getElementById('modal_phone_NEW_phoneDelete').disabled = true;
           } else {
@@ -268,7 +266,6 @@
                       };
                       
                       this.queryExecutor.getValues(queryForGetValue_DeletePhone).subscribe(function (data){
-                                  // debugger;
                                   var event = new Event("click");
                                   document.querySelector('smart-bi-modal-form > div.btn-center-control > button.smart-btn.btn-back.ng-star-inserted').dispatchEvent(event);
                               
@@ -287,13 +284,11 @@
           // console.log('Open ', form);
           form.formConfig = this;
           this.formModalConfig = form;
-         // debugger;
           if (this.kolvoPhonesForApplicant > 0) {
               for (let u = 0; u < this.kolvoPhonesForApplicant; u++ ){
                       document.getElementById('modal_phone'+(u+1)+'_phoneIsMain').addEventListener("click", function(event) {
                           this.formConfig.onChangeCardPhone(true);
                       }.bind(form)); 
-                      // debugger;
                       if (document.getElementById('modal_phone'+(u+1)+'_phoneDelete')) {
                           document.getElementById('modal_phone'+(u+1)+'_phoneDelete').addEventListener("click", function(event) {
                               this.formConfig.onDeleteCardPhone(u+1);
@@ -329,7 +324,6 @@
                       };
                       
                       this.formConfig.queryExecutor.getValues(queryForGetValue_AddNewPhone).subscribe(function (data){
-                                  // debugger;
                                   if (data.rows[0].values[0] == "OK") {
                                        this.setControlValue('modal_phone_NEW', null);
                                        

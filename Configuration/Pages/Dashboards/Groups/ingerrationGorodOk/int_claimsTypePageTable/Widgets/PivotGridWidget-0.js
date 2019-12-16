@@ -117,7 +117,6 @@
             let cat_id = e.oldData.cat_id;
             console.log ('Is_done: ' + is_done + '  key: '+ key + '  id_1551: ' + id_1551 + '  comment: ' + comment);
             
-            // debugger;
             let saveChange = {
                 queryCode: 'int_btnSaveChange_claims_typeGorodok',
                 limit: -1,

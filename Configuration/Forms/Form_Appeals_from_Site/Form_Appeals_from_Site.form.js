@@ -152,7 +152,6 @@
         document.getElementById('Question_BuildingIcon').addEventListener("click", function(event) {
             event.stopImmediatePropagation();
             this.form.setControlValue('Question_Building',{ key: this.form.getControlValue('AppealFromSite_Object'), value: this.form.getControlDisplayValue('AppealFromSite_Object')});
-            // debugger;
         }.bind(this)); 
         
         document.getElementById('btn_SearchApplicant1551').addEventListener("click", function(event) {
@@ -173,7 +172,6 @@
         
         //Кнопка "Зберегти" в группе "Реєстрація питання"
          document.getElementById('Question_Btn_Add').addEventListener("click", function(event) {
-            //  debugger
              const queryForGetValue3 = {
                     queryCode: 'ForSite_Question_Btn_Add_InsertRow',
                     parameterValues: [
@@ -276,7 +274,6 @@
                         // };
                         
                         // this.queryExecutor.getValues(queryForGetValue4).subscribe(data => {
-                        //     debugger;
                         //     // this.form.setControlValue('AppealId', data.rows[0].values[0]);
                         //     // this.form.setControlValue('ReceiptSources', { key: data.rows[0].values[4], value: data.rows[0].values[19] });
                         //     // this.form.setControlValue('AppealNumber', data.rows[0].values[3]);
@@ -318,7 +315,6 @@
         };
         
         this.queryExecutor.getValues(execute).subscribe(data => {
-            // debugger;
             const d = data.rows[0].values[0];
             const dat = d.replace('T',' ').slice(0,16);
             this.form.setControlValue('Question_ControlDate',dat )
@@ -431,7 +427,6 @@
          this.Question_Building_Input = value;
           this.onChanged_Question_Btn_Add_Input();
            this.getOrgExecut();
-        //   debugger;
           if (this.form.getControlValue('Question_TypeId') == null) {
               this.form.setControlVisibility('entrance', false);
               this.form.setControlVisibility('flat', false);
@@ -497,7 +492,6 @@
                         };
                         
                         this.queryExecutor.getValues(objAndOrg).subscribe(data => {
-                            // debugger
                                 this.form.setControlValue('Question_OrganizationId', { key: data.rows[0].values[0], value: data.rows[0].values[1] });
                         });
     },

@@ -9,7 +9,6 @@
             };
 
             document.getElementById('active_button').addEventListener("click", function(event) {
-                // debugger;
 
                 event.stopImmediatePropagation();
                 const Question_Close_callback = (response) => {
@@ -33,7 +32,6 @@
                             ]
                         };
                         console.table(objName.parameterValues);
-                        debugger;
 
                         this.queryExecutor.getValues(objName).subscribe(data => {
                             console.log('Event is not activ');

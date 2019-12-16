@@ -1,6 +1,7 @@
 (function () {
   return {
     placeholder: 'Розглянуто',
+    type: 'Date',
     onItemSelect: function(date) {
         this.yourFunctionName(date);
     },

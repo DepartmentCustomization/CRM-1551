@@ -40,13 +40,11 @@
         if (this.stateForm == 'create') {
             location.reload();
         };
-      //  debugger;
       // this.form.setControlValue('FormId',data.rows[0].values[0]);
     },
     onComment: function(onComment) {
       //this.form.setControlValue('content',data);
       // Get Value
-      //debugger;
       const queryForGetValue = {
         queryCode: 'ak_SelectComment_for_Templates',
         parameterValues: [

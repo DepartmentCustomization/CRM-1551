@@ -5,7 +5,6 @@
   
       onLoadModalPhone: function() {
           
-          debugger;
           this.modal_phone_NEW = null; 
           const queryForGetValue22 = {
               queryCode: 'GetApplicantPhonesForApplicantId',
@@ -421,7 +420,6 @@
                       };
                       
                       this.queryExecutor.getValues(queryForGetValue_UpdatePhone).subscribe(function (data){
-                          // debugger;
                           // var event = new Event("click");
                           // document.querySelector('smart-bi-modal-form > div.btn-center-control > button.smart-btn.btn-back.ng-star-inserted').dispatchEvent(event);
                       
@@ -474,7 +472,6 @@
           }
           
           function mask(event) {
-              debugger;
               var matrix = "(___)___-__-__",
                   i = 0,
                   def = matrix.replace(/\D/g, ""),

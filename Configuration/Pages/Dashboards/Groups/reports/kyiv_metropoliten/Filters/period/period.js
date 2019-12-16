@@ -25,10 +25,10 @@
         let monthFrom = currentDate.getMonth();
         let dayTo = currentDate.getDate();
         let defaultValue = {
-            // убрать  - 1 
-                dateFrom: new Date(year, monthFrom , '01'),
-                dateTo: new Date( year, monthFrom , dayTo)
-            }
+
+            dateFrom: new Date(year, monthFrom , '01'),
+            dateTo: new Date( year, monthFrom , dayTo)
+        }
         this.setDefaultValue(defaultValue); 
     },
     destroy(){

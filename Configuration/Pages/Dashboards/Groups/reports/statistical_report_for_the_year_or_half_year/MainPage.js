@@ -4,11 +4,11 @@
 
             this.sub = this.messageService.subscribe('GlobalFilterChanged', this.getFilterParams, this );
             this.sub1 = this.messageService.subscribe('setYears', this.setYears, this );
-            this.sub1 = this.messageService.subscribe('setStyles', this.setStyles, this );
+            this.sub2 = this.messageService.subscribe('setStyles', this.setStyles, this );
         },
         
         getFilterParams: function (message) {
-            let period = message.package.value.values.find(f => f.name === 'period').value;
+            const period = message.package.value.values.find(f => f.name === 'period').value;
             if( period !== null ){
                 if( period.dateFrom !== '' && period.dateTo !== ''){
                     const dateFrom =  period.dateFrom;
@@ -72,6 +72,8 @@
 
         destroy: function () {
             this.sub.unsubscribe();
+            this.sub1.unsubscribe();
+            this.sub2.unsubscribe();
         }
     };
 }());
