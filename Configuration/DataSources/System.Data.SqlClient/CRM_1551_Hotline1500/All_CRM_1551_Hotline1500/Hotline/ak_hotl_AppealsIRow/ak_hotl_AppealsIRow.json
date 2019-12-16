@@ -1,15 +1,13 @@
 {
     "ModelType": "Query",
-    "Code": "ak_hotl_AppealsURow",
-    "Name": "ak_hotl_AppealsURow",
+    "Code": "ak_hotl_AppealsIRow",
+    "Name": "ak_hotl_AppealsIRow",
     "ConnectionCode": "CRM_1551_Hotline1500",
     "IsUsedForRightsFilter": false,
     "Parameters": [
       {
-        "Code": "@Appeals_Id",
-        "Name": "Appeals_Id",
-        "ParameterType": "Integer",
-        "IsPrimaryKey": true
+        "Code": "@phone_number",
+        "Name": "phone_number"
       },
       {
         "Code": "@applicant_name",
@@ -66,9 +64,15 @@
         "Name": "comment"
       },
       {
-        "Code": "@user_edit_id",
-        "Name": "user_edit_id",
+        "Code": "@user_id",
+        "Name": "user_id",
         "ParameterType": "CurrentUserId"
+      },
+      {
+        "Code": "@Id",
+        "Name": "Id",
+        "ParameterType": "Integer",
+        "IsPrimaryKey": true
       }
     ]
   }
