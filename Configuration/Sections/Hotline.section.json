@@ -1,4 +1,7 @@
 {
+  "Add": {
+    "InsertQueryCode": "ak_hotl_AppealsIRow"
+  },
     "ModelType": "Section",
     "Code": "Hotline",
     "Name": "Звернення 15-00",

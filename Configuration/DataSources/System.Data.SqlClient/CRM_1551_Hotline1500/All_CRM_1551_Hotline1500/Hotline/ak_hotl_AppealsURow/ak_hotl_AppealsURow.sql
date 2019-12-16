@@ -16,4 +16,4 @@
       --,[user_id]= @
       ,[edit_date]= GETUTCDATE()
       ,[user_edit_id]= @user_edit_id
-  where Id=@Id
+  where Id=@Appeals_Id
