@@ -23,7 +23,6 @@
             
             let hh = currentDate.getHours();
             let mm = currentDate.getMinutes();
-            debugger;
             let defaultValue = {
                 dateFrom: new Date(year, monthFrom -1 , dayTo, '00', '00'),
                 dateTo: new Date( year, monthFrom , dayTo, hh, mm)

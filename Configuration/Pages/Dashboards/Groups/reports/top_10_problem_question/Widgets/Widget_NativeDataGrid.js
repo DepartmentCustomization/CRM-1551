@@ -525,7 +525,6 @@
             let period = message.package.value.values.find(f => f.name === 'period').value;
             let questionGroup = message.package.value.values.find(f => f.name === 'questionGroup').value;
             let questionType = message.package.value.values.find(f => f.name === 'questionType').value;
-            debugger;
             if( period !== null ){
                 if( period.dateFrom !== '' && period.dateTo !== ''){
                     this.dateFrom =  period.dateFrom;

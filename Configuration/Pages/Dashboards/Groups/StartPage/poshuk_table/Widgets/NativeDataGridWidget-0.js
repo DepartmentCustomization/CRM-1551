@@ -546,55 +546,63 @@
                 let rowNumber = '№ з/п';
                 captions.push(rowNumber);
                 indexArr.forEach( el => {
-                        if( el.name === 'question_registration_number'  ){
-                            let obj =  {
-                                key: 'registration_number',
-                                width: 10,
-                                height: 20
-                            };
-                            columnsHeader.push(obj);
-                            captions.push('Номер, дата, час');
-                        }else if(el.name === 'zayavnyk_full_name' ){
-                            let obj =  {
-                                key: 'name',
-                                width: 15
-                            };
-                            columnsHeader.push(obj);
-                            captions.push('Заявник');
-                        }else if(el.name === 'question_question_type' ){
-                            let obj =  { 
-                                key: 'question_type',
-                                width: 62
-                            };
-                            columnsHeader.push(obj);
-                            captions.push('Суть питання');
-                        }else if( el.name === 'assigm_executor_organization'  ){
-                            let obj =  { 
-                                key: 'organization',
-                                width: 16
-                            };
-                            columnsHeader.push(obj);
-                            captions.push('Виконавець');
-                        }else if( el.name === 'question_object'  ){
-                            let obj =  { 
-                                key: 'object',
-                                width: 21
-                            };
-                            columnsHeader.push(obj);
-                            captions.push('Місце проблеми (Об\'єкт)');
-                        }else if( el.name === 'registration_date' || el.name === 'zayavnyk_building_number' || el.name === 'zayavnyk_flat' || el.name === 'assigm_question_content'  ){
-                        }else{
-                            let obj =  { 
-                                key: el.name,
-                                width: 13
-                            };
-                            columnsHeader.push(obj);
-                            captions.push(el.caption);
-                        }
+                    if( el.name === 'question_registration_number'  ){
+                        let obj =  {
+                            key: 'registration_number',
+                            width: 10,
+                            height: 20
+                        };
+                        columnsHeader.push(obj);
+                        captions.push('Номер, дата, час');
+                    }else if(el.name === 'zayavnyk_full_name' ){
+                        let obj =  {
+                            key: 'name',
+                            width: 15
+                        };
+                        columnsHeader.push(obj);
+                        captions.push('Заявник');
+                    }else if(el.name === 'question_question_type'){
+                        let obj1 =  { 
+                            key: 'question_type',
+                            width: 10
+                        };
+                        columnsHeader.push(obj1);
+                        captions.push('Тип питання');
+
+                        let obj2 =  { 
+                            key: 'assigm_question_content',
+                            width: 62
+                        };
+                        columnsHeader.push(obj2);
+                        captions.push('Суть питання');
+                        
+                    }else if( el.name === 'assigm_executor_organization'  ){
+                        let obj =  {
+                            key: 'organization',
+                            width: 11
+                        };
+                        columnsHeader.push(obj);
+                        captions.push('Виконавець');
+                    }else if( el.name === 'question_object'  ){
+                        let obj =  { 
+                            key: 'object',
+                            width: 16
+                        };
+                        columnsHeader.push(obj);
+                        captions.push('Місце проблеми (Об\'єкт)');
+                    }else if( el.name === 'registration_date' || el.name === 'zayavnyk_building_number' || el.name === 'zayavnyk_flat'  ){
+                    }else{
+                        let obj =  { 
+                            key: el.name,
+                            width: 13
+                        };
+                        columnsHeader.push(obj);
+                        captions.push(el.caption);
+                    }
                 });
                 worksheet.getRow(5).values = captions;
                 worksheet.columns = columnsHeader;
-                this.addetedIndexes = [];
+                this.addedIndexes = [];
                 
                 
                 let indexRegistrationDate = data.columns.findIndex(el => el.code.toLowerCase() === 'registration_date' );
@@ -602,12 +610,11 @@
                 let indexZayavnykBuildingNumber = data.columns.findIndex(el => el.code.toLowerCase() === 'zayavnyk_building_number' );
                 let indexAssigmQuestionContent = data.columns.findIndex(el => el.code.toLowerCase() === 'assigm_question_content' );
                 let indexExecutionTerm = data.columns.findIndex(el => el.code.toLowerCase() === 'execution_term' );
-                
-                for( let  j = 0; j < data.rows.length; j ++ ){  
+                for( let  j = 0; j < data.rows.length; j ++ ) {
                     let row = data.rows[j];
                     let rowArr = [];
                     let rowItem = { number: j + 1 };
-                    
+
                     for( i = 0; i < indexArr.length; i ++){
                         let el = indexArr[i];
 
@@ -618,12 +625,13 @@
                         }else if(el.name === 'zayavnyk_full_name' ){
                             rowItem.name = row.values[el.index] + ' ' + row.values[indexZayavnykBuildingNumber] + ', кв. ' +  row.values[indexZayavnykFlat];
                         }else if(el.name === 'question_question_type' ){
-                            rowItem.question_type = 'Зміст: ' + row.values[indexAssigmQuestionContent];
+                            rowItem.question_type = 'Тип питання: ' + row.values[el.index];
+                            rowItem.assigm_question_content = 'Зміст: ' + row.values[indexAssigmQuestionContent];
                         }else if( el.name === 'assigm_executor_organization'  ){
                             rowItem.organization = row.values[el.index] + '. Дату контролю: ' + controlDate;
                         }else if( el.name === 'question_object'  ){
                             rowItem.object = row.values[el.index];
-                        }else if( el.name === 'registration_date' || el.name === 'zayavnyk_building_number' || el.name === 'zayavnyk_flat' || el.name === 'assigm_question_content'  ){
+                        }else if( el.name === 'registration_date' || el.name === 'zayavnyk_building_number' || el.name === 'zayavnyk_flat'  ){
                         }else{
                             let prop = indexArr[i].name;
                             switch(prop) {
@@ -718,24 +726,25 @@
                                     rowItem.control_date = this.changeDateTimeValues(row.values[el.index]);
                                     break
                             };
-                            this.addetedIndexes.push(prop);
+                            this.addedIndexes.push(prop);
                         }
                     };
                     rows.push( rowItem );
                 };
                 rows.forEach( el => {
-                    let number = el.number + '.'
                     let row = {
-                        number: number,
+                        number: el.number + '.',
                         name: el.name,
                         registration_number: el.registration_number,
                         organization: el.organization,
                         question_type: el.question_type,
+                        assigm_question_content: el.assigm_question_content,
                         object: el.object
                     }
-                    let indexes = this.addetedIndexes;
+                    let indexes = this.addedIndexes;
                     let size = Object.keys(el).length;
-                    for( i = 0; i < size - 6 ; i ++ ){
+                    let rowSize = Object.keys(row).length;
+                    for( i = 0; i < size - rowSize ; i ++ ){
                         let prop = indexes[i];
                         switch(prop) {
                             case 'appeals_receipt_source':
@@ -827,8 +836,7 @@
                                 break  
                             case 'control_date':
                                 row.control_date = el.control_date;
-                                break     
-                                
+                                break
                         };
                     }
                     worksheet.addRow(row);
