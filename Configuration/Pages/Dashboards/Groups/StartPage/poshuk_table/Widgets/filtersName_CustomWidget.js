@@ -72,7 +72,7 @@
                     case '=':
                         var obj = {
                             title: el.placeholder,
-                            value: 'Наявнiсть файлiв'
+                            value: 'Наявнiсть'
                         }
                         break;
                     case 'like':
