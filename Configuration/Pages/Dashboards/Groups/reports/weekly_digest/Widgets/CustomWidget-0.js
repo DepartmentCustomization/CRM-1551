@@ -38,6 +38,7 @@
         });
     },
     setData: function(message){
+        document.querySelectorAll('#title').forEach( title => title.style.textAlign = "center");
         if( message.rep1_data){
             this.rep1_data =  message.rep1_data;
             this.rep1_title =  message.rep1_title;
@@ -64,6 +65,7 @@
             document.getElementById('btnExcel').disabled = false;
             this.counter = 0;
         }
+        
     },
     createElement: function(tag, props, ...children) {
         const element = document.createElement(tag);

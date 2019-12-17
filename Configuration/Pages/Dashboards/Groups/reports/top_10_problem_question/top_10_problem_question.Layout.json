@@ -53,7 +53,7 @@
             "border": "none",
             "children": [
               {
-                "code": "Widget",
+                "code": "Widget_NativeDataGrid",
                 "type": "NativeDataGridWidgetComponent",
                 "name": "rep_3_top10"
               }
