@@ -35,10 +35,14 @@
                 this.navigateTo('/sections/Questions/edit/' + ques_id)
             });
 
-            const onChangeStatus = {
-                queryCode: 'RightsFilter_HideAndDisableColumns',
-                parameterValues: []
-            };
+            <<
+            << << < HEAD
+                ===
+                === =
+                const onChangeStatus = {
+                    queryCode: 'RightsFilter_HideAndDisableColumns',
+                    parameterValues: []
+                };
             this.queryExecutor.getValues(onChangeStatus).subscribe(data => {
                 if (data.rows.length > 0) {
                     for (var i = 0; i < data.rows.length; i++) {
@@ -57,8 +61,9 @@
             });
 
 
+            >>>
+            >>> > e99e5005c7490eb866c0e2c7fbfab14a7b604e75
             this.form.onControlValueChanged('resolution_id', this.onChangeStatus.bind(this));
-
 
             this.form.disableControl('registration_number');
             this.form.disableControl('receipt_source_id');
@@ -222,9 +227,12 @@
                     this.form.setControlValue('is_exe', data);
                     if (data == 1) {
                         this.form.enableControl('performer_id');
+                        console.log('Enable performer_id');
                     } else {
                         this.form.disableControl('performer_id');
+                        console.log('Disable performer_id');
                     };
+                    this.executeQuery2();
                 });
             }
 
@@ -232,6 +240,29 @@
             this.form.onControlValueChanged('performer_id', this.chooseExecutorPerson.bind(this));
         },
         /*END INIT */
+
+        executeQuery2: function() {
+            const onChangeStatus = {
+                queryCode: 'RightsFilter_HideAndDisableColumns',
+                parameterValues: []
+            };
+            this.queryExecutor.getValues(onChangeStatus).subscribe(data => {
+                if (data.rows.length > 0) {
+                    for (var i = 0; i < data.rows.length; i++) {
+                        console.log(data.rows[i].values);
+                        if (data.rows[i].values[1] == 'disable') {
+                            this.form.disableControl(data.rows[i].values[0]);
+                        };
+
+                        if (data.rows[i].values[1] == 'hide') {
+                            this.form.setControlVisibility(data.rows[i].values[0], false);
+                        };
+
+                    }
+
+                };
+            });
+        },
 
         chooseExecutorPerson: function(executor_id) {
             if (executor_id == null) {
