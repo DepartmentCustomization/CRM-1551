@@ -12,6 +12,11 @@
         "IsPrimaryKey": true
       },
       {
+        "Code": "Appeal_Id",
+        "Name": "Appeal_Id",
+        "Position": 0
+      },
+      {
         "Code": "registration_date",
         "Name": "registration_date",
         "Position": 1
@@ -114,8 +119,8 @@
     ],
     "Parameters": [
       {
-        "Code": "@Id",
-        "Name": "Id",
+        "Code": "@Appeals_Id",
+        "Name": "Appeals_Id",
         "ParameterType": "Integer",
         "IsPrimaryKey": true
       }

@@ -7,6 +7,13 @@
                 <div id='modalContainer'></div>
                 `,
         init: function() {
+            const msg = {
+                name: "SetFilterPanelState",
+                package: {
+                    value: true
+                }
+            };
+            this.messageService.publish(msg);
             this.sub = this.messageService.subscribe('GlobalFilterChanged', this.getFiltersParam, this);
         },
         getFiltersParam: function (message) {

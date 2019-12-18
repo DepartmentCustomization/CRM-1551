@@ -7,7 +7,6 @@
         
 
         onStreetsChanged: function(dis_id) {
-            //debugger
             if (typeof dis_id === 'string') {
                 return
             } else if (dis_id == null) {

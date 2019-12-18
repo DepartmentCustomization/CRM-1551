@@ -1,6 +1,7 @@
 (function () {
   return {
     placeholder: 'Дата закриття',
+    type: 'Date',
     onItemSelect: function(date) {
         this.yourFunctionName(date);
     },

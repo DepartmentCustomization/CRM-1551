@@ -18,7 +18,6 @@
         var num = this.form.getControlValue('phone_number');
         console.log(num);
         // if(num !== null){
-        //     //debugger;
         //     this.form.setControlValue('receipt_source_id', {key:1 , value:'Дзвінок в 1551'});
         // }
         

@@ -22,7 +22,7 @@ SELECT * FROM (
   from [dbo].[Events] AS e
   left join [dbo].[EventTypes] on e.event_type_id=[EventTypes].Id
 where e.Id = (select event_id from Questions where Questions.Id = @Id)
-and [Events].active='true'
+and e.active='true'
 ) as t
 where 
   #filter_columns#

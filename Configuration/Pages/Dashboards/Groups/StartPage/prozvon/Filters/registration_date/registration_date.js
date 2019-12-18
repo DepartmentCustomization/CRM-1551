@@ -1,6 +1,7 @@
 (function () {
   return {
     placeholder: 'Поступило',
+    type: 'Date',
     onItemSelect: function(date) {
         this.yourFunctionName(date);
     },

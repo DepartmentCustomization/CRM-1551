@@ -2,6 +2,7 @@
   return {
     showTime: true,   
     placeholder: 'Дата На продзвон',
+    type: 'DateTime',
     onItemSelect: function(date) {
         this.yourFunctionName(date);
     },

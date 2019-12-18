@@ -39,7 +39,6 @@
     },
     afterViewInit: function() {
         btn_GetData.addEventListener("click", function() {
-                debugger;
         }.bind(this) );
     },
     load: function(data) {
