@@ -1,18 +1,42 @@
-declare @appealInfo table (incomNum nvarchar(50), phone nvarchar(13), full_phone nvarchar(max),
-                           incomDate varchar(20), Applicant_PIB nvarchar(500), Question_Content nvarchar(max), 
-						   ApplicantUGL nvarchar(max), uglId int, appealNum nvarchar(200), applicantAddress nvarchar(500) );
--- declare @Id int = 5398676
+-- declare @Id int = 5398676;
+declare @uglId int = (select Id from [Звернення УГЛ] where Appeals_id = @Id)
+declare @full_phone1 nvarchar(500) = (select Телефон from [Звернення УГЛ] where Id = @uglId )
 
-Insert into @appealInfo
+declare @numbers table (uglId int, num nvarchar(15));
+insert into @numbers
+select @uglId, value from string_split(@full_phone1, ',');
+
+update @numbers set num = replace(num,' ', '')
+
+update @numbers
+set num = 
+case 
+  when len(num) > 10 then 
+case 
+when (LEFT(num, 2) = '38') then RIGHT(num, len(num)-2)
+when (LEFT(num, 1) = '3') and (LEFT(num, 2) <> '38') then RIGHT(num, len(num)-1)
+when (LEFT(num, 1) = '8') then RIGHT(num, len(num)-1)
+ end 
+  when len(num) < 10 AND (LEFT(num, 1) != '0') then N'0' + num 
+  else num
+end
+
+declare @phone_qty int = (select count(1) from @numbers);
+declare @step int = 0;
+declare @full_phone2 nvarchar(500);
+declare @current_phone nvarchar(10);
+
+while (@step < @phone_qty)
+begin
+set @current_phone = (select num from @numbers ORDER BY num OFFSET @step ROWS FETCH NEXT @step+1 ROWS ONLY);
+set @full_phone2 = isnull(@full_phone2,'') + IIF(len(@full_phone2)>1,N', ' + @current_phone, @current_phone)
+set @step += 1;
+end
 
 select 
 [№ звернення] as incomNum, 
-IIF(
-charindex(',', Телефон) > 0, 
-(substring(Телефон, 1, 12)),
-Телефон 
-)  as phone,
-Телефон as full_phone,
+(select top 1 num from @numbers) as phone,
+@full_phone2 as full_phone,
 convert(varchar, [Дата завантаження],(120)) as incomDate,
 Заявник as Applicant_PIB,
 Зміст as Question_Content, 
@@ -42,22 +66,4 @@ convert(varchar, [Дата завантаження],(120)) as incomDate,
 
 from dbo.[Звернення УГЛ] a
 join Appeals appeal on appeal.Id = a.Appeals_id
-where Appeals_id = @Id 
-
-declare @phone nvarchar(12) = ( select phone from @appealInfo );
-
-if (LEN(@phone) > 10 )
-begin
-
-  if(LEFT(@phone, 2) = '38')
-  update @appealInfo set phone = RIGHT(phone, len(phone)-2);
-
-  else if(LEFT(@phone, 1) = '3') and (LEFT(@phone, 2) <> '38')
-  update @appealInfo set phone = RIGHT(phone, len(phone)-1);
-
-  else if(LEFT(@phone, 1) = '8')
-  update @appealInfo set phone = RIGHT(phone, len(phone)-1);
-
-  end
-
-  select * from @appealInfo
+where Appeals_id = @Id

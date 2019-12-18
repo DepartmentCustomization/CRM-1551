@@ -101,7 +101,6 @@
                     this.form.setControlValue('Phone', data.rows[0].values[1]);
                     this.form.setControlValue('CardPhone', data.rows[0].values[3]);
                     this.form.setControlValue('DateStart', data.rows[0].values[2]);
-                    this.form.setControlValue('Applicant_Phone_Hide', data.rows[0].values[3]);
                     this.form.setControlValue('Applicant_PIB', data.rows[0].values[4]);
                     this.form.setControlValue('Question_Content', data.rows[0].values[5]);
                     this.form.setControlValue('ApplicantUGL', data.rows[0].values[6]);
@@ -229,8 +228,6 @@
                                     { key: '@appealId', value: data.rows[0].values[0] }
                                 ];
                                 this.details.loadData('Detail_UGL_QuestionRegistration', parameters2);
-
-                                this.onRecalcCardPhone();
                             });
 
                             this.checkApplicantSaveAvailable();
@@ -258,7 +255,6 @@
                     this.form.setControlValue('Applicant_Age', null);
                     this.form.setControlValue('Applicant_Email', null);
                     this.form.setControlValue('Applicant_Comment', null);
-                    this.form.setControlValue('Applicant_Phone_Hide', null);
 
                 }.bind(this));
                 // Отработка кнопки "Додати питання"
@@ -286,7 +282,7 @@
             //Кнопка "Зберегти" в группе "Реєстрація питання"
             document.getElementById('Question_Btn_Add').addEventListener("click", function (event) {
                 const queryForGetValue3 = {
-                    queryCode: 'Question_Btn_Add_InsertRow',
+                    queryCode: 'Question_UGL_InsertRow',
                     parameterValues: [
                         {
                             key: '@AppealId',
@@ -330,7 +326,7 @@
                         },
                         {
                             key: '@Applicant_Building',
-                            value: this.form.getControlValue('Adress_for_answer')
+                            value: this.form.getControlValue('applicantAddress')
                         },
                         {
                             key: '@Question_OrganizationId',
@@ -351,6 +347,18 @@
                         {
                             key: '@Question_ControlDate',
                             value: new Date(this.convertDateNull(this.form.getControlValue('Question_ControlDate')))
+                        },
+                        {
+                            key: '@answer_phone',
+                            value: this.form.getControlValue('Phone')
+                        },
+                        {
+                            key: '@answer_post',
+                            value: this.form.getControlValue('applicantAddress')
+                        },
+                        {
+                            key: '@answer_mail',
+                            value: this.form.getControlValue('Applicant_Email')
                         }
                     ]
                 };
@@ -516,27 +524,10 @@
                 this.form.setControlValue('Applicant_Id', data.rows[0].values[17]);
                 this.form.setControlValue('Applicant_Age', data.rows[0].values[18]);
                 this.form.setControlValue('ExecutorInRoleForObject', data.rows[0].values[19]);
+                this.form.setControlValue('CardPhone', data.rows[0].values[20]);
             });
         },
-        onRecalcCardPhone: function () {
-            const queryForGetValue_RecalcPhone = {
-                queryCode: 'ApplicantPhonesRecalcCardPhone',
-                parameterValues: [{ key: '@Applicant_id', value: this.form.getControlValue('Applicant_Id') }]
-            };
 
-            this.queryExecutor.getValues(queryForGetValue_RecalcPhone).subscribe(function (data) {
-                this.form.setControlValue('CardPhone', data.rows[0].values[0]);
-            }.bind(this));
-
-            const queryForGetValue_GetIsMainPhone = {
-                queryCode: 'GetApplicantPhonesIsMain',
-                parameterValues: [{ key: '@Applicant_id', value: this.form.getControlValue('Applicant_Id') }]
-            };
-
-            this.queryExecutor.getValues(queryForGetValue_GetIsMainPhone).subscribe(function (data) {
-                this.form.setControlValue('Applicant_Phone_Hide', data.rows[0].values[0]);
-            }.bind(this));
-        },
         // Подстановка ответственной организации и контрольной даты по типу вопроса 
         onChanged_Question_TypeId: function () {
             let questionType = this.form.getControlValue('Question_TypeId');
@@ -597,7 +588,7 @@
         onChangedQuestion_AnswerType: function (value) {
             this.form.setControlValue('Question_AnswerPhoneOrPost', null);
             if (value == 2) {
-                this.form.setControlValue('Question_AnswerPhoneOrPost', this.form.getControlValue('Applicant_Phone_Hide'));
+                this.form.setControlValue('Question_AnswerPhoneOrPost', this.form.getControlValue('CardPhone'));
             };
 
             if (value == 4 || value == 5) {
