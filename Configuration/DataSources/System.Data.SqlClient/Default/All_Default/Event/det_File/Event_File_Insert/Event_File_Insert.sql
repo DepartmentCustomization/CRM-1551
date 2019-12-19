@@ -8,6 +8,7 @@ INSERT INTO [dbo].[EventFiles]
            ,[user]
            ,[edit_user_id]
            ,[edit_date])
+           output [inserted].[Id]
      VALUES
            (
            @Name
@@ -19,4 +20,4 @@ INSERT INTO [dbo].[EventFiles]
            ,GETUTCDATE()
            )
 
-
+ 
