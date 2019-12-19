@@ -2,7 +2,369 @@
     return {
         is_obj: undefined,
         is_org: undefined,
+        onLoadModalPhone: function () {
+            this.modal_phone_NEW = null;
+            const queryForGetValue22 = {
+                queryCode: 'GetApplicantPhonesForApplicantId',
+                parameterValues: [{ key: '@applicant_id', value: this.form.getControlValue('Applicant_Id') }]
+            };
 
+            this.queryExecutor.getValues(queryForGetValue22).subscribe(function (data) {
+
+                this.kolvoPhonesForApplicant = data.rows.length - 1;
+
+                if (data.rows.length > 0) {
+                    const fieldsForm = {
+                        title: 'Телефони заявника',
+                        acceptBtnText: 'save',
+                        cancelBtnText: 'exit',
+                        singleButton: false,
+                        fieldGroups: []
+                    };
+
+                    for (let j = 0; j < data.rows.length; j++) {
+                        if (data.rows[j].values[5] == 1) {
+
+                            var p = {
+                                code: 'GroupPhone' + j,
+                                name: 'Створення телефону',
+                                expand: true,
+                                position: data.rows[j].values[0],
+                                fields: []
+                            };
+
+                            fieldsForm.fieldGroups.push(p);
+
+                            var c = fieldsForm.fieldGroups.length - 1;
+                            var t = {
+                                code: data.rows[j].values[1],
+                                fullScreen: true,
+                                hidden: false,
+                                placeholder: data.rows[j].values[2],
+                                position: 1,
+                                required: false,
+                                value: data.rows[j].values[3],
+                                disabled: true,
+                                type: "text",
+                                icon: 'phone_forwarded',
+                                iconHint: 'Скопіювати з вхідного номера телефону',
+                                maxlength: 14,
+                                width: '50%'
+                            };
+                            fieldsForm.fieldGroups[c].fields.push(t);
+
+                            var t0_0 = {
+                                code: data.rows[j].values[1] + '_phoneType',
+                                fullScreen: true,
+                                hidden: false,
+                                placeholder: 'Тип',
+                                position: 2,
+                                required: false,
+                                value: "Мобільний",
+                                keyValue: 1,
+                                listKeyColumn: "Id",
+                                listDisplayColumn: "name",
+                                type: "select",
+                                queryListCode: "dir_PhoneTypes_SelectRows",
+                                width: '50%'
+                            };
+                            fieldsForm.fieldGroups[c].fields.push(t0_0);
+
+                            var t0_2 = {
+                                code: data.rows[j].values[1] + '_phoneIsMain',
+                                fullScreen: true,
+                                hidden: false,
+                                placeholder: 'Основний?',
+                                position: 3,
+                                required: false,
+                                value: false,
+                                type: "checkbox",
+                                width: '50%'
+                            };
+
+                            fieldsForm.fieldGroups[c].fields.push(t0_2);
+
+
+                            var t0_1 = {
+                                code: data.rows[j].values[1] + '_phoneDelete',
+                                fullScreen: true,
+                                hidden: false,
+                                placeholder: 'Додати',
+                                position: 4,
+                                icon: 'add',
+                                required: false,
+                                type: "button",
+                                width: '50%'
+                            };
+
+                            fieldsForm.fieldGroups[c].fields.push(t0_1);
+
+                        } else {
+                            var p1 = {
+                                code: 'GroupPhone' + j,
+                                name: data.rows[j].values[2],
+                                expand: true,
+                                position: data.rows[j].values[0],
+                                fields: []
+                            };
+
+                            fieldsForm.fieldGroups.push(p1);
+
+                            var c1 = fieldsForm.fieldGroups.length - 1;
+                            var t1_0 = {
+                                code: data.rows[j].values[1] + '_phoneNumber',
+                                fullScreen: true,
+                                hidden: false,
+                                placeholder: 'Номер телефону',
+                                position: 1,
+                                required: false,
+                                value: data.rows[j].values[3],
+                                type: "text",
+                                maxlength: 14,
+                                width: '50%'
+                            };
+                            fieldsForm.fieldGroups[c1].fields.push(t1_0);
+
+                            var t1_1 = {
+                                code: data.rows[j].values[1] + '_phoneType',
+                                fullScreen: true,
+                                hidden: false,
+                                placeholder: 'Тип',
+                                position: 2,
+                                required: false,
+                                value: data.rows[j].values[7],
+                                keyValue: data.rows[j].values[6],
+                                listKeyColumn: "Id",
+                                listDisplayColumn: "name",
+                                type: "select",
+                                queryListCode: "dir_PhoneTypes_SelectRows",
+                                width: '50%'
+                            };
+                            fieldsForm.fieldGroups[c1].fields.push(t1_1);
+
+                            var t1_2 = {
+                                code: data.rows[j].values[1] + '_phoneIsMain',
+                                fullScreen: true,
+                                hidden: false,
+                                placeholder: 'Основний?',
+                                position: 3,
+                                required: false,
+                                value: data.rows[j].values[4],
+                                type: "checkbox",
+                                width: '50%'
+                            };
+
+                            fieldsForm.fieldGroups[c1].fields.push(t1_2);
+
+                            if (data.rows[j].values[4]) {
+                                var t1_3_0 = {
+                                    code: 'phoneDelete_Disabled',
+                                    fullScreen: true,
+                                    hidden: false,
+                                    placeholder: 'Видалити',
+                                    position: 4,
+                                    required: false,
+                                    icon: 'delete',
+                                    type: "button",
+                                    width: '50%'
+                                };
+
+                                fieldsForm.fieldGroups[c1].fields.push(t1_3_0);
+                            } else {
+                                var t1_3_1 = {
+                                    code: data.rows[j].values[1] + '_phoneDelete',
+                                    fullScreen: true,
+                                    hidden: false,
+                                    placeholder: 'Видалити',
+                                    position: 4,
+                                    required: false,
+                                    icon: 'delete',
+                                    type: "button",
+                                    width: '50%'
+                                };
+
+                                fieldsForm.fieldGroups[c1].fields.push(t1_3_1);
+                            }
+
+                            var t1_4 = {
+                                code: data.rows[j].values[1] + '_phoneId',
+                                fullScreen: true,
+                                hidden: true,
+                                placeholder: 'Id',
+                                position: 5,
+                                value: data.rows[j].values[8],
+                                required: false,
+                                type: "text",
+                                width: '100%'
+                            };
+
+                            fieldsForm.fieldGroups[c1].fields.push(t1_4);
+                        };
+                    };
+                    this.openModalForm(fieldsForm, this.onModal_Phone.bind(this), this.afterModal_Phone_FormOpen.bind(this));
+                };
+
+            }.bind(this));
+        },
+        onChangeCardPhone: function (value) {
+            for (let u = 0; u < this.kolvoPhonesForApplicant; u++) {
+                this.formModalConfig.setControlValue('modal_phone' + (u + 1) + '_phoneIsMain', false);
+            };
+        },
+        onRecalcCardPhone: function() {
+            const queryForGetValue_RecalcPhone = {
+                queryCode: 'ApplicantPhonesRecalcCardPhone',
+                parameterValues: [{ key: '@Applicant_id', value: this.form.getControlValue('Applicant_Id')}]
+            };
+            
+            this.queryExecutor.getValues(queryForGetValue_RecalcPhone).subscribe(function (data){
+                this.form.setControlValue('CardPhone' ,data.rows[0].values[0]);
+            }.bind(this));
+            
+            const queryForGetValue_GetIsMainPhone = {
+                queryCode: 'GetApplicantPhonesIsMain',
+                parameterValues: [{ key: '@Applicant_id', value: this.form.getControlValue('Applicant_Id')}]
+            };
+            
+            this.queryExecutor.getValues(queryForGetValue_GetIsMainPhone).subscribe(function (data){
+                this.form.setControlValue('Applicant_Phone_Hide' ,data.rows[0].values[0]);
+            }.bind(this));
+        },
+        onDeleteCardPhone: function(phone) {
+            const queryForGetValue_DeletePhone = {
+                queryCode: 'ApplicantPhonesDelete',
+                parameterValues: [{ key: '@PhoneId', value: this.formModalConfig.getControlValue('modal_phone'+phone+'_phoneId')}]
+            };
+                        
+            this.queryExecutor.getValues(queryForGetValue_DeletePhone).subscribe(function (data){
+                var event = new Event("click");
+                document.querySelector('smart-bi-modal-form > div.btn-center-control > button.smart-btn.btn-back.ng-star-inserted').dispatchEvent(event);
+            
+                this.onLoadModalPhone();
+                this.onRecalcCardPhone();
+                
+                //LoadDetail Detail_Aplicant
+                const parameters_01 = [
+                    { key: '@phone_number', value: this.form.getControlValue('Phone') }
+                ];
+             //   this.details.loadData('Detail_Aplicant', parameters_01/*, filters, sorting*/);       
+            }.bind(this));
+                        
+            // this.formModalConfig.getControlValue('modal_phone'+phone+'_phoneId');
+        },
+        afterModal_Phone_FormOpen: function (form) {
+          
+            form.formConfig = this;
+            this.formModalConfig = form;
+
+            if (this.kolvoPhonesForApplicant > 0) {
+                for (let u = 0; u < this.kolvoPhonesForApplicant; u++) {
+                    document.getElementById('modal_phone' + (u + 1) + '_phoneIsMain').addEventListener("click", function (event) {
+                        this.formConfig.onChangeCardPhone(true);
+                    }.bind(form));
+                    if (document.getElementById('modal_phone' + (u + 1) + '_phoneDelete')) {
+                        document.getElementById('modal_phone' + (u + 1) + '_phoneDelete').addEventListener("click", function (event) {
+                            this.formConfig.onDeleteCardPhone(u + 1);
+                        }.bind(form));
+                    };
+
+                    var input = document.getElementById("modal_phone" + (u + 1) + "_phoneNumber");
+                    input.addEventListener("input", this.mask, false);
+                    input.addEventListener("focus", this.mask, false);
+                    input.addEventListener("blur", this.mask, false);
+                    input.addEventListener("change", this.mask, false);
+                };
+                document.getElementById('phoneDelete_Disabled').disabled = true;
+
+                for (let u2 = 0; u2 < this.kolvoPhonesForApplicant; u2++) {
+                    document.getElementById("modal_phone" + (u2 + 1) + "_phoneNumber").focus();
+                };
+            };
+
+            form.onControlValueChanged('modal_phone_NEW', this.onModalPhonesChanged);
+            document.getElementById('modal_phone_NEW_phoneDelete').disabled = true;
+
+            if (this.form.getControlValue('Applicant_Id')) {
+                document.getElementById('modal_phone_NEW_phoneDelete').addEventListener("click", function (event) {
+                    const queryForGetValue_AddNewPhone = {
+                        queryCode: 'ApplicantPhonesAdd',
+                        parameterValues: [{ key: '@Applicant_id', value: this.formConfig.form.getControlValue('Applicant_Id') }, { key: '@TypePhone', value: this.getControlValue('modal_phone_NEW_phoneType') }, { key: '@Phone', value: this.getControlValue('modal_phone_NEW') }, { key: '@IsMain', value: this.getControlValue('modal_phone_NEW_phoneIsMain') }]
+                    };
+
+                    this.formConfig.queryExecutor.getValues(queryForGetValue_AddNewPhone).subscribe(function (data) {
+                        if (data.rows[0].values[0] == "OK") {
+                            this.setControlValue('modal_phone_NEW', null);
+
+                            var event = new Event("click");
+                            document.querySelector('smart-bi-modal-form > div.btn-center-control > button.smart-btn.btn-back.ng-star-inserted').dispatchEvent(event);
+
+                            this.formConfig.onLoadModalPhone();
+                            this.formConfig.onRecalcCardPhone();
+                           
+                            const parameters_02 = [
+                                { key: '@phone_number', value: this.formConfig.form.getControlValue('Phone') }
+                            ];
+                          //  this.formConfig.details.loadData('Detail_Aplicant', parameters_02/*, filters, sorting*/);
+                        } else {
+                            this.setControlValue('modal_phone_NEW', null);
+                            this.formConfig.openPopUpInfoDialog('Помилка. Такий номер вже існує!');
+                        };
+                    }.bind(this));
+                }.bind(form));
+
+                var input3 = document.getElementById("modal_phone_NEW");
+                input3.addEventListener("input", this.mask, false);
+                input3.addEventListener("focus", this.mask, false);
+                input3.addEventListener("blur", this.mask, false);
+                input3.addEventListener("change", this.mask, false);
+                document.getElementById('modal_phone_NEW').focus();
+                document.getElementById('modal_phone_NEW_phoneDelete').focus();
+
+                document.getElementById('modal_phone_NEWIcon').addEventListener("click", function (event) {
+                    this.setControlValue('modal_phone_NEW', this.formConfig.form.getControlValue('Phone'));
+                    document.getElementById('modal_phone_NEW').focus();
+                    document.getElementById('modal_phone_NEW_phoneDelete').focus();
+                }.bind(form));
+            };
+        },
+        onModalPhonesChanged: function (phone) {
+            if (!phone) {
+                document.getElementById('modal_phone_NEW_phoneDelete').disabled = true;
+            } else {
+                if (phone.replace('(', '').replace(')', '').replace(/-/g, '').replace(/\D/g, '').length == 10) {
+                    document.getElementById('modal_phone_NEW_phoneDelete').disabled = false;
+                } else {
+                    document.getElementById('modal_phone_NEW_phoneDelete').disabled = true;
+                };
+            };
+        },
+        onModal_Phone: function (value) {
+
+            if (value) {
+                if (this.kolvoPhonesForApplicant > 0) {
+                    for (let u = 0; u < this.kolvoPhonesForApplicant; u++) {
+
+                        const queryForGetValue_UpdatePhone = {
+                            queryCode: 'ApplicantPhonesUpdate',
+                            parameterValues: [{ key: '@Applicant_id', value: this.form.getControlValue('Applicant_Id') },
+                            { key: '@TypePhone', value: value.find(f => f.key === '@modal_phone' + (u + 1) + '_phoneType').value },
+                            { key: '@Phone', value: value.find(f => f.key === '@modal_phone' + (u + 1) + '_phoneNumber').value },
+                            { key: '@IsMain', value: value.find(f => f.key === '@modal_phone' + (u + 1) + '_phoneIsMain').value },
+                            { key: '@IdPhone', value: value.find(f => f.key === '@modal_phone' + (u + 1) + '_phoneId').value }]
+                        };
+                        this.queryExecutor.getValues(queryForGetValue_UpdatePhone).subscribe(function (data) {
+
+                        }.bind(this));
+
+                    };
+                    const parameters_03 = [
+                        { key: '@phone_number', value: this.form.getControlValue('Phone') }
+                    ];
+                 //   this.details.loadData('Detail_Aplicant', parameters_03/*, filters, sorting*/);
+                    this.onRecalcCardPhone();
+                };
+            };
+        },
         init: function () {
 
             if (this.state == "create") {
@@ -43,6 +405,12 @@
             else { // state != create
                 this.form.setControlValue('AppealId', this.id);
                 this.form.setControlValue('ReceiptSources', { key: 3, value: 'УГЛ' });
+                
+                this.checkApplicantHere();
+
+                document.getElementById('CardPhone').addEventListener("click", function (event) {
+                    this.onLoadModalPhone();
+                }.bind(this));
 
                 document.getElementsByClassName('float_r')[0].children[1].style.display = 'none';
                 document.getElementById('Question_Btn_Add').disabled = true;
@@ -124,7 +492,7 @@
                     }
                     else {
                         const queryForGetValue2 = {
-                            queryCode: 'Applicant_Btn_Add_InsertRow',
+                            queryCode: 'Applicant_UGL_InsertRow',
                             parameterValues: [
                                 {
                                     key: '@Applicant_Id',
@@ -186,9 +554,9 @@
                                     key: '@AppealId',
                                     value: this.form.getControlValue('AppealId')
                                 },
-                                {
+                                { 
                                     key: '@Applicant_Phone',
-                                    value: this.form.getControlValue('Phone')
+                                    value: this.form.getControlValue('CardPhone')
                                 },
                                 {
                                     key: '@Applicant_Email',
@@ -217,13 +585,11 @@
                             document.getElementById('Applicant_Btn_Add').disabled = true;
                             this.queryExecutor.getValues(queryForGetValue3).subscribe(data => {
 
-                                //LoadDetail Detail_UGL_Aplicant
                                 const parameters = [
                                     { key: '@phone_number', value: this.form.getControlValue('Phone') }
                                 ];
                                 this.details.loadData('Detail_UGL_Aplicant', parameters);
 
-                                //Detail_UGL_QuestionRegistration
                                 const parameters2 = [
                                     { key: '@appealId', value: data.rows[0].values[0] }
                                 ];
@@ -318,7 +684,7 @@
                         },
                         {
                             key: '@Applicant_Phone',
-                            value: this.form.getControlValue('Phone')
+                            value: this.form.getControlValue('CardPhone')
                         },
                         {
                             key: '@Applicant_Email',
@@ -350,7 +716,7 @@
                         },
                         {
                             key: '@answer_phone',
-                            value: this.form.getControlValue('Phone')
+                            value: this.form.getControlValue('CardPhone')
                         },
                         {
                             key: '@answer_post',
@@ -401,7 +767,7 @@
             this.form.onControlValueChanged('Search_Appeals_Input', this.onChanged_Search_Appeals_Input.bind(this));
             document.getElementById('Search_Appeals_Search').disabled = true;
             document.getElementById('Search_Appeals_Search').addEventListener("click", function (event) {
-                //Detail_QuestionNumberAppeal
+                
                 const parameters = [
                     { key: '@AppealRegistrationNumber', value: this.form.getControlValue('Search_Appeals_Input') }
                 ];
@@ -460,9 +826,11 @@
         checkApplicantHere: function () {
             if (this.form.getControlValue('Applicant_Id') != null) {
                 document.getElementById('Question_Aplicant_Btn_Add').disabled = false;
+                this.form.enableControl('CardPhone');
             }
             else {
                 document.getElementById('Question_Aplicant_Btn_Add').disabled = true;
+                this.form.disableControl('CardPhone');
             };
         },
         // Условие доступности сохранения заявителя

@@ -1,0 +1,107 @@
+{
+  "ModelType": "Query",
+  "Code": "Applicant_UGL_InsertRow",
+  "Name": "Applicant_UGL_InsertRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "ApplicantId",
+      "Name": "ApplicantId",
+      "Position": 1,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@Applicant_Id",
+      "Name": "Applicant_Id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@Applicant_Privilege",
+      "Name": "Applicant_Privilege",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@Applicant_Entrance",
+      "Name": "Applicant_Entrance",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@Applicant_Phone",
+      "Name": "Applicant_Phone"
+    },
+    {
+      "Code": "@Applicant_PIB",
+      "Name": "Applicant_PIB"
+    },
+    {
+      "Code": "@Application_BirthDate",
+      "Name": "Application_BirthDate",
+      "ParameterType": "DateTime"
+    },
+    {
+      "Code": "@Applicant_Age",
+      "Name": "Applicant_Age",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@Applicant_Sex",
+      "Name": "Applicant_Sex",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@Applicant_HouseBlock",
+      "Name": "Applicant_HouseBlock"
+    },
+    {
+      "Code": "@Applicant_Type",
+      "Name": "Applicant_Type",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@Applicant_TypePhone",
+      "Name": "Applicant_TypePhone",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@CreatedUser",
+      "Name": "CreatedUser",
+      "ParameterType": "CurrentUserId"
+    },
+    {
+      "Code": "@Applicant_Email",
+      "Name": "Applicant_Email"
+    },
+    {
+      "Code": "@Applicant_Comment",
+      "Name": "Applicant_Comment"
+    },
+    {
+      "Code": "@Applicant_CategoryType",
+      "Name": "Applicant_CategoryType",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@Applicant_Flat",
+      "Name": "Applicant_Flat"
+    },
+    {
+      "Code": "@Applicant_Building",
+      "Name": "Applicant_Building",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@Applicant_SocialStates",
+      "Name": "Applicant_SocialStates",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@AppealId",
+      "Name": "AppealId",
+      "ParameterType": "Integer"
+    }
+  ]
+}

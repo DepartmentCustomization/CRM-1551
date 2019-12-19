@@ -35,7 +35,7 @@ end
 
 select 
 [№ звернення] as incomNum, 
-(select top 1 num from @numbers) as phone,
+@full_phone2 as phone,
 @full_phone2 as full_phone,
 convert(varchar, [Дата завантаження],(120)) as incomDate,
 Заявник as Applicant_PIB,
