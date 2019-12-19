@@ -4,17 +4,19 @@
             title: {
                 text: 'Загальне враження вiд роботи з винонавцем',
             },       
+            xAxis: {
+                categories: []
+            }, 
             yAxis: {
                 title: {
-                    text: 'Number of Employees'
+                    text: ''
                 }
             },
             legend: {
                 layout: 'vertical',
                 align: 'right',
                 verticalAlign: 'middle'
-            },
-        
+            },        
             plotOptions: {
                 series: {
                     label: {
@@ -24,22 +26,7 @@
                 }
             },
         
-            series: [{
-                name: 'Installation',
-                data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
-            }, {
-                name: 'Manufacturing',
-                data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
-            }, {
-                name: 'Sales & Distribution',
-                data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
-            }, {
-                name: 'Project Development',
-                data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
-            }, {
-                name: 'Other',
-                data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
-            }],
+            series: [],
         
             responsive: {
                 rules: [{
@@ -58,7 +45,78 @@
         },
 
         init: function() {
+            this.sub = this.messageService.subscribe('FilterParams', this.setFilterValues, this);
+        },
+
+        setFilterValues: function(message) {
+            this.dateFrom = message.dateFrom;
+            this.dateTo = message.dateTo;
+            this.chartConfig.yAxis.title.text = message.yAxis;
+            if(this.dateFrom && this.dateTo) {
+                this.executeQuery();
+            }
+        },
+
+        executeQuery: function () {
+            const query = {
+                "queryCode": "ak_CSI_graph1_11",
+                "limit": -1,
+                "parameterValues": [
+                    {
+                        "key": "@date_from",
+                        "value": this.dateFrom
+                    },
+                    {
+                        "key": "@date_to",
+                        "value": this.dateTo
+                    }
+                ]
+            };
+            this.queryExecutor(query, this.load, this);
+        },
+
+        load: function (data) {
+            this.fillIndexes(data);
+            this.setChartSeries(data);
             this.render();
         },
+
+        fillIndexes: function (data) {
+            this.valueId = this.getIndex(data, 'id');
+            this.calcDate = this.getIndex(data, 'calc_date');
+            this.average = this.getIndex(data, 'average');
+        },
+
+        getIndex: function (data, name) {
+            return data.columns.findIndex((el) => {
+                return el.code.toLowerCase() === name;
+            })
+        },
+
+        setChartSeries: function (data) {
+            const chartData = {
+                name: this.chartConfig.title.text,
+                colorByPoint: true,
+                data: this.getSeriesData(data)
+            };
+            this.chartConfig.series = [];
+            this.chartConfig.series.push(chartData);
+        },
+
+        getSeriesData: function (data) {
+            let result = [];
+            this.chartConfig.xAxis.categories = [];
+            for (let i = 0; i < data.rows.length; i++) {
+                const value = data.rows[i].values[this.average];
+                const caption = data.rows[i].values[this.calcDate];
+                this.chartConfig.xAxis.categories.push(caption);
+                result.push(value);
+            }
+            return result;
+        },
+
+        destroy: function () {
+            this.sub.unsubscribe();
+        }
     };
 }());
