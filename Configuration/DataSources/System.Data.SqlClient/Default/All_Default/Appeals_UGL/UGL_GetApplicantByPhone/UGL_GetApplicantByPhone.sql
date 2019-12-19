@@ -23,8 +23,8 @@ applicant.full_name,
 concat(street_type.shortname, N' ', street.name, N' ', 
 building.number,isnull(building.letter, null)) as applicant_address,
 social.[name] as social_state,
-privilege.[Name] as privilege,
-phone_number
+privilege.[Name] as privilege
+
 from ApplicantPhones phone
 join Applicants applicant on applicant.Id = phone.applicant_id
 left join LiveAddress live on live.applicant_id = applicant.Id

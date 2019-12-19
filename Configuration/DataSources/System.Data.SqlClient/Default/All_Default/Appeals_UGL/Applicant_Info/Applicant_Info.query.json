@@ -124,6 +124,12 @@
       "Name": "execOrg",
       "Position": 19,
       "IsPrintable": false
+    },
+    {
+      "Code": "CardPhone",
+      "Name": "CardPhone",
+      "Position": 20,
+      "IsPrintable": false
     }
     ],
     "Parameters": [
