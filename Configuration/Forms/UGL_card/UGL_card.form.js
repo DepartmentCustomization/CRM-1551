@@ -211,59 +211,58 @@
                 this.formModalConfig.setControlValue('modal_phone' + (u + 1) + '_phoneIsMain', false);
             };
         },
-        onRecalcCardPhone: function() {
+        onRecalcCardPhone: function () {
             const queryForGetValue_RecalcPhone = {
                 queryCode: 'ApplicantPhonesRecalcCardPhone',
-                parameterValues: [{ key: '@Applicant_id', value: this.form.getControlValue('Applicant_Id')}]
+                parameterValues: [{ key: '@Applicant_id', value: this.form.getControlValue('Applicant_Id') }]
             };
-            
-            this.queryExecutor.getValues(queryForGetValue_RecalcPhone).subscribe(function (data){
-                this.form.setControlValue('CardPhone' ,data.rows[0].values[0]);
+
+            this.queryExecutor.getValues(queryForGetValue_RecalcPhone).subscribe(function (data) {
+                this.form.setControlValue('CardPhone', data.rows[0].values[0]);
             }.bind(this));
-            
+
             const queryForGetValue_GetIsMainPhone = {
                 queryCode: 'GetApplicantPhonesIsMain',
-                parameterValues: [{ key: '@Applicant_id', value: this.form.getControlValue('Applicant_Id')}]
+                parameterValues: [{ key: '@Applicant_id', value: this.form.getControlValue('Applicant_Id') }]
             };
-            
-            this.queryExecutor.getValues(queryForGetValue_GetIsMainPhone).subscribe(function (data){
-                this.form.setControlValue('Applicant_Phone_Hide' ,data.rows[0].values[0]);
+
+            this.queryExecutor.getValues(queryForGetValue_GetIsMainPhone).subscribe(function (data) {
+                this.form.setControlValue('Applicant_Phone_Hide', data.rows[0].values[0]);
             }.bind(this));
         },
-        onDeleteCardPhone: function(phone) {
+        onDeleteCardPhone: function (phone) {
             const queryForGetValue_DeletePhone = {
                 queryCode: 'ApplicantPhonesDelete',
-                parameterValues: [{ key: '@PhoneId', value: this.formModalConfig.getControlValue('modal_phone'+phone+'_phoneId')}]
+                parameterValues: [{ key: '@PhoneId', value: this.formModalConfig.getControlValue('modal_phone' + phone + '_phoneId') }]
             };
-                        
-            this.queryExecutor.getValues(queryForGetValue_DeletePhone).subscribe(function (data){
+
+            this.queryExecutor.getValues(queryForGetValue_DeletePhone).subscribe(function () {
                 var event = new Event("click");
                 document.querySelector('smart-bi-modal-form > div.btn-center-control > button.smart-btn.btn-back.ng-star-inserted').dispatchEvent(event);
-            
+
                 this.onLoadModalPhone();
                 this.onRecalcCardPhone();
-                
-                //LoadDetail Detail_Aplicant
-                const parameters_01 = [
-                    { key: '@phone_number', value: this.form.getControlValue('Phone') }
+
+                // Загрузка заявителей по телефону в деталь
+                const parameters = [
+                    { key: '@applicant_phone', value: this.form.getControlValue('CardPhone') }
                 ];
-             //   this.details.loadData('Detail_Aplicant', parameters_01/*, filters, sorting*/);       
+                this.details.loadData('Detail_UGL_Aplicant', parameters);
             }.bind(this));
-                        
-            // this.formModalConfig.getControlValue('modal_phone'+phone+'_phoneId');
+
         },
         afterModal_Phone_FormOpen: function (form) {
-          
+
             form.formConfig = this;
             this.formModalConfig = form;
 
             if (this.kolvoPhonesForApplicant > 0) {
                 for (let u = 0; u < this.kolvoPhonesForApplicant; u++) {
-                    document.getElementById('modal_phone' + (u + 1) + '_phoneIsMain').addEventListener("click", function (event) {
+                    document.getElementById('modal_phone' + (u + 1) + '_phoneIsMain').addEventListener("click", function () {
                         this.formConfig.onChangeCardPhone(true);
                     }.bind(form));
                     if (document.getElementById('modal_phone' + (u + 1) + '_phoneDelete')) {
-                        document.getElementById('modal_phone' + (u + 1) + '_phoneDelete').addEventListener("click", function (event) {
+                        document.getElementById('modal_phone' + (u + 1) + '_phoneDelete').addEventListener("click", function () {
                             this.formConfig.onDeleteCardPhone(u + 1);
                         }.bind(form));
                     };
@@ -285,7 +284,7 @@
             document.getElementById('modal_phone_NEW_phoneDelete').disabled = true;
 
             if (this.form.getControlValue('Applicant_Id')) {
-                document.getElementById('modal_phone_NEW_phoneDelete').addEventListener("click", function (event) {
+                document.getElementById('modal_phone_NEW_phoneDelete').addEventListener("click", function () {
                     const queryForGetValue_AddNewPhone = {
                         queryCode: 'ApplicantPhonesAdd',
                         parameterValues: [{ key: '@Applicant_id', value: this.formConfig.form.getControlValue('Applicant_Id') }, { key: '@TypePhone', value: this.getControlValue('modal_phone_NEW_phoneType') }, { key: '@Phone', value: this.getControlValue('modal_phone_NEW') }, { key: '@IsMain', value: this.getControlValue('modal_phone_NEW_phoneIsMain') }]
@@ -300,11 +299,12 @@
 
                             this.formConfig.onLoadModalPhone();
                             this.formConfig.onRecalcCardPhone();
-                           
-                            const parameters_02 = [
-                                { key: '@phone_number', value: this.formConfig.form.getControlValue('Phone') }
+
+                            // Загрузка заявителей по телефону в деталь
+                            const parameters = [
+                                { key: '@applicant_phone', value: this.form.getControlValue('CardPhone') }
                             ];
-                          //  this.formConfig.details.loadData('Detail_Aplicant', parameters_02/*, filters, sorting*/);
+                            this.details.loadData('Detail_UGL_Aplicant', parameters);
                         } else {
                             this.setControlValue('modal_phone_NEW', null);
                             this.formConfig.openPopUpInfoDialog('Помилка. Такий номер вже існує!');
@@ -320,7 +320,7 @@
                 document.getElementById('modal_phone_NEW').focus();
                 document.getElementById('modal_phone_NEW_phoneDelete').focus();
 
-                document.getElementById('modal_phone_NEWIcon').addEventListener("click", function (event) {
+                document.getElementById('modal_phone_NEWIcon').addEventListener("click", function () {
                     this.setControlValue('modal_phone_NEW', this.formConfig.form.getControlValue('Phone'));
                     document.getElementById('modal_phone_NEW').focus();
                     document.getElementById('modal_phone_NEW_phoneDelete').focus();
@@ -357,10 +357,11 @@
                         }.bind(this));
 
                     };
-                    const parameters_03 = [
-                        { key: '@phone_number', value: this.form.getControlValue('Phone') }
+                    // Загрузка заявителей по телефону в деталь
+                    const parameters = [
+                        { key: '@applicant_phone', value: this.form.getControlValue('CardPhone') }
                     ];
-                 //   this.details.loadData('Detail_Aplicant', parameters_03/*, filters, sorting*/);
+                    this.details.loadData('Detail_UGL_Aplicant', parameters);
                     this.onRecalcCardPhone();
                 };
             };
@@ -405,10 +406,10 @@
             else { // state != create
                 this.form.setControlValue('AppealId', this.id);
                 this.form.setControlValue('ReceiptSources', { key: 3, value: 'УГЛ' });
-                
+
                 this.checkApplicantHere();
 
-                document.getElementById('CardPhone').addEventListener("click", function (event) {
+                document.getElementById('CardPhone').addEventListener("click", function () {
                     this.onLoadModalPhone();
                 }.bind(this));
 
@@ -485,7 +486,7 @@
                 this.details.onCellClick('Detail_UGL_Aplicant', this.getApplicantInfo.bind(this));
 
                 //Кнопка "Зберегти" в группе "Заявник"
-                document.getElementById('Applicant_Btn_Add').addEventListener("click", function (event) {
+                document.getElementById('Applicant_Btn_Add').addEventListener("click", function () {
                     let entrance = this.form.getControlValue('Applicant_Entrance');
                     if (entrance != null && entrance < 1) {
                         this.openPopUpInfoDialog('Номер під`їзду не може бути менше 1');
@@ -554,7 +555,7 @@
                                     key: '@AppealId',
                                     value: this.form.getControlValue('AppealId')
                                 },
-                                { 
+                                {
                                     key: '@Applicant_Phone',
                                     value: this.form.getControlValue('CardPhone')
                                 },
@@ -585,8 +586,9 @@
                             document.getElementById('Applicant_Btn_Add').disabled = true;
                             this.queryExecutor.getValues(queryForGetValue3).subscribe(data => {
 
+                                // Загрузка заявителей по телефону в деталь
                                 const parameters = [
-                                    { key: '@phone_number', value: this.form.getControlValue('Phone') }
+                                    { key: '@applicant_phone', value: this.form.getControlValue('CardPhone') }
                                 ];
                                 this.details.loadData('Detail_UGL_Aplicant', parameters);
 
@@ -603,7 +605,7 @@
                 }.bind(this));
 
                 //Кнопка "Очистити" в группе "Заявник"
-                document.getElementById('Applicant_Btn_Clear').addEventListener("click", function (event) {
+                document.getElementById('Applicant_Btn_Clear').addEventListener("click", function () {
 
                     this.form.setControlValue('Applicant_Id', null);
                     this.form.setControlValue('Applicant_PIB', null);
@@ -624,7 +626,7 @@
 
                 }.bind(this));
                 // Отработка кнопки "Додати питання"
-                document.getElementById('Question_Aplicant_Btn_Add').addEventListener("click", function (event) {
+                document.getElementById('Question_Aplicant_Btn_Add').addEventListener("click", function () {
                     let build = this.form.getControlValue('Applicant_Building');
                     this.getBuildingInfo(build);
                     this.form.setGroupVisibility('UGL_Group_CreateQuestion', true);
@@ -646,7 +648,7 @@
                 }.bind(this));
             }
             //Кнопка "Зберегти" в группе "Реєстрація питання"
-            document.getElementById('Question_Btn_Add').addEventListener("click", function (event) {
+            document.getElementById('Question_Btn_Add').addEventListener("click", function () {
                 const queryForGetValue3 = {
                     queryCode: 'Question_UGL_InsertRow',
                     parameterValues: [
@@ -767,7 +769,7 @@
             this.form.onControlValueChanged('Search_Appeals_Input', this.onChanged_Search_Appeals_Input.bind(this));
             document.getElementById('Search_Appeals_Search').disabled = true;
             document.getElementById('Search_Appeals_Search').addEventListener("click", function (event) {
-                
+
                 const parameters = [
                     { key: '@AppealRegistrationNumber', value: this.form.getControlValue('Search_Appeals_Input') }
                 ];
