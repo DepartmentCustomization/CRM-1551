@@ -1,4 +1,37 @@
---declare @applicantId int = 1494284;
+-- declare @applicantId int = 1515873;
+
+declare @numbers table (num nvarchar(15));
+insert into @numbers
+select phone_number from ApplicantPhones where applicant_id = @applicantId
+
+update @numbers set num = replace(num,' ', '')
+
+update @numbers
+set num = 
+case 
+  when len(num) > 10 then 
+case 
+when (LEFT(num, 2) = '38') then RIGHT(num, len(num)-2)
+when (LEFT(num, 1) = '3') and (LEFT(num, 2) <> '38') then RIGHT(num, len(num)-1)
+when (LEFT(num, 1) = '8') then RIGHT(num, len(num)-1)
+ end 
+  when len(num) < 10 AND (LEFT(num, 1) != '0') then N'0' + num 
+  else num
+end
+
+
+declare @phone_qty int = (select count(1) from @numbers);
+declare @step int = 0;
+declare @full_phone2 nvarchar(500);
+declare @current_phone nvarchar(10);
+
+while (@step < @phone_qty)
+begin
+set @current_phone = (select num from @numbers ORDER BY num OFFSET @step ROWS FETCH NEXT @step+1 ROWS ONLY);
+set @full_phone2 = isnull(@full_phone2,'') + IIF(len(@full_phone2)>1,N', ' + @current_phone, @current_phone)
+set @step += 1;
+end
+
 
 select top 1
 full_name as Applicant_PIB,
@@ -24,7 +57,8 @@ a.birth_date is not null,
 year(getdate()) - year(a.birth_date),
 null
 ) as Applicant_Age,
-o.[short_name] as execOrg
+o.[short_name] as execOrg,
+@full_phone2 as CardPhone
 
 from Applicants a
 left join LiveAddress la on la.applicant_id = a.Id 
