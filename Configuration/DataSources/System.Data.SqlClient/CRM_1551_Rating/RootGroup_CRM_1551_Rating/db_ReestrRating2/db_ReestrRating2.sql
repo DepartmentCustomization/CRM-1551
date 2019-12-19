@@ -695,7 +695,7 @@ begin
 		 t1.[AssignmentRegistrationDate] as [Дата контролю доручення],
 		 [Rating].[name] as [Тип рейтингу],
 		 [org_RDA].[short_name] as [Назва РДА]
-  FROM [dbo].[Реєстр - На доопрацювання (Всього)] as t1
+  FROM [dbo].[Реєстр - На доопрацювання (Всього) інфо] as t1
   left join [CRM_1551_Analitics].[dbo].[Appeals] on [Appeals].[Id] = t1.[AppealId]
   left join [CRM_1551_Analitics].[dbo].[Questions] on [Questions].[Id] = t1.[QuestionId]
   left join [CRM_1551_Analitics].[dbo].[QuestionTypes] on [QuestionTypes].[Id] = t1.[QuestionTypeId]
@@ -707,7 +707,7 @@ begin
   left join [CRM_1551_Analitics].[dbo].[Organizations] as [org_RDA] on [org_RDA].[Id] = t1.[RDAId]
   where t1.[Id] in (
 			SELECT max(Id)
-			FROM [dbo].[Реєстр - На доопрацювання (Всього)]
+			FROM [dbo].[Реєстр - На доопрацювання (Всього) інфо]
 			where [StateToDate] = @CalcDate
 			and [RatingId] = @RatingId
 			and [RDAId] = @RDAId

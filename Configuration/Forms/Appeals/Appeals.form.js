@@ -1644,6 +1644,13 @@
             this.scrollTopMainForm();   
         },
         onCellClick_Detail_Event: function(column, row, value, event, indexOfColumnId) {
+            if (row.values[8] == 'GORODOK') {
+                document.getElementById('Event_Prew_Btn_Consultation').disabled = true;
+                document.getElementById('Event_Prew_Btn_Add').disabled = true;
+            } else {
+                document.getElementById('Event_Prew_Btn_Consultation').disabled = false;
+                document.getElementById('Event_Prew_Btn_Add').disabled = false;
+            };
             this.form.setGroupVisibility('Group_Events', true);
             this.form.setControlValue('Event_Prew_Id', row.values[0]); 
             this.form.setControlValue('Event_Prew_Type', { key: row.values[7], value: row.values[2] });
@@ -1931,6 +1938,7 @@
         Applicant_Phone_Input: "",
         Applicant_Building_Input: undefined,
         Applicant_Entrance_Input: "",
+        Applicant_Flat_Input: "",
 
         onChanged_Applicant_CategoryType_Input: function(value) {
             if(this.InitialState_Applicant_CategoryType == this.onChanged_Input(this.form.getControlValue('Applicant_CategoryType'))) {this.CheckParamForApplicant_CategoryType = 0} else {this.CheckParamForApplicant_CategoryType = 1};
@@ -1981,6 +1989,24 @@
         },
 
         onChanged_Applicant_Entrance_Input: function(value) {
+            if (value) {
+                if (value.length >= 0) {
+                    if (value.substr(0,1) === 0) {
+                        value = "";
+                        this.form.setControlValue('Applicant_Entrance', value);
+                    };
+                };
+                if (typeof(value) === "string") {
+                    if (value.length >= 0) {
+                        if (value.substr(0,1) === "-" || value.substr(0,1) == "0") {
+                            value = "";
+                            this.form.setControlValue('Applicant_Entrance', value);
+                        }
+                    }
+                }
+            };
+            
+            
             this.Applicant_Entrance_Input = value;
             if(this.InitialState_Applicant_Entrance == this.onChanged_Input(this.form.getControlValue('Applicant_Entrance'))) {
                 this.CheckParamForApplicant_Entrance = 0
@@ -2030,6 +2056,7 @@
                     this.form.setControlValue('Applicant_Privilege',  { key: data.rows[0].values[0], value: data.rows[0].values[1]} ); 
                 });
             };
+            
             if(this.InitialState_Applicant_Privilege == this.onChanged_Input(this.form.getControlValue('Applicant_Privilege'))) {
                 this.CheckParamForApplicant_Privilege = 0
             } else {
@@ -2144,10 +2171,11 @@
                 }
             };
             
-            
-            if(this.Applicant_PIB_Input == "") {
+            if(this.Applicant_PIB_Input == "" || this.Applicant_Building_Input == "" || this.Applicant_Building_Input == undefined || this.Applicant_Building_Input == null || this.Applicant_Flat_Input == undefined || this.Applicant_Flat_Input == null || this.Applicant_Flat_Input == "") {
                     document.getElementById('Applicant_Btn_Add').disabled = true;
+
             } else { 
+                
                 if( this.CheckParamForApplicant_PIB == 0 && 
                     this.CheckParamForApplicant_Phone == 0 && 
                     this.CheckParamForApplicant_Building == 0 &&
@@ -2674,14 +2702,14 @@
 
             this.InitialState_Applicant_PIB = this.form.getControlValue('Applicant_PIB');
             this.InitialState_Applicant_Phone = this.form.getControlValue('CardPhone');  
-            this.InitialState_Applicant_Building = this.form.getControlValue('Applicant_Building');
+            this.InitialState_Applicant_Building = this.form.getControlValue('Applicant_Building').key;
             this.InitialState_Applicant_HouseBlock = this.form.getControlValue('Applicant_HouseBlock');
             this.InitialState_Applicant_Entrance = this.form.getControlValue('Applicant_Entrance');
             this.InitialState_Applicant_Flat = this.form.getControlValue('Applicant_Flat');
-            this.InitialState_Applicant_Privilege = this.form.getControlValue('Applicant_Privilege');
-            this.InitialState_Applicant_SocialStates = this.form.getControlValue('Applicant_SocialStates');
-            this.InitialState_Applicant_CategoryType = this.form.getControlValue('Applicant_CategoryType');
-            this.InitialState_Applicant_Type = this.form.getControlValue('Applicant_Type');
+            this.InitialState_Applicant_Privilege = this.form.getControlValue('Applicant_Privilege').key;
+            this.InitialState_Applicant_SocialStates = this.form.getControlValue('Applicant_SocialStates').key;
+            this.InitialState_Applicant_CategoryType = this.form.getControlValue('Applicant_CategoryType').key;
+            this.InitialState_Applicant_Type = this.form.getControlValue('Applicant_Type').key;
             this.InitialState_Applicant_Sex = this.form.getControlValue('Applicant_Sex');
             this.InitialState_Application_BirthDate = this.form.getControlValue('Application_BirthDate');
             this.InitialState_Applicant_Email = this.form.getControlValue('Applicant_Email');
@@ -2716,6 +2744,7 @@
         onChanged_Applicant_Flat_Input: function(value) {
             if(this.InitialState_Applicant_Flat == this.onChanged_Input(this.form.getControlValue('Applicant_Flat'))) {this.CheckParamForApplicant_Flat = 0} else {this.CheckParamForApplicant_Flat = 1};
             this.onChanged_Question_Aplicant_Btn_Add_Input();
+            this.Applicant_Flat_Input = value;
         },
         onChanged_Applicant_Type_Input: function(value) {
             if (value == null || value == undefined) {
