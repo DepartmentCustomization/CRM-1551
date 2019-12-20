@@ -101,14 +101,13 @@ begin
 	@NEW_AssignmentResultsId = [TransitionAssignmentStates].new_assignment_result_id,
 	@NEW_AssignmentResolutionId = [TransitionAssignmentStates].new_assignment_resolution_id
 	from [dbo].[Questions]
-	inner join [dbo].[Assignments] on [Assignments].Id = [Questions].last_assignment_for_execution_id
-	inner join [dbo].[AssignmentConsiderations] on [AssignmentConsiderations].Id =  [Assignments].[current_assignment_consideration_id]
-	inner join [dbo].[AssignmentRevisions] on [AssignmentRevisions].assignment_consideration_іd =  [AssignmentConsiderations].[Id]
+	left  join [dbo].[Assignments] on [Assignments].Id = [Questions].last_assignment_for_execution_id
+	left join [dbo].[AssignmentConsiderations] on [AssignmentConsiderations].Id =  [Assignments].[current_assignment_consideration_id]
+	left join [dbo].[AssignmentRevisions] on [AssignmentRevisions].assignment_consideration_іd =  [AssignmentConsiderations].[Id]
 	left join [dbo].[TransitionAssignmentStates]  on 
 		isnull([TransitionAssignmentStates].old_assignment_result_id,0) = isnull(Assignments.AssignmentResultsId,0) 
 		and  isnull([TransitionAssignmentStates].old_assignment_resolution_id,0) = isnull(Assignments.AssignmentResolutionsId,0) 
 		and isnull([TransitionAssignmentStates].old_assignment_state_id,0) = isnull(Assignments.assignment_state_id,0)
-	    and isnull([TransitionAssignmentStates].new_assignment_result_id,0) = case when isnull([AssignmentRevisions].rework_counter,0)<=2 then 5 /*На доопрацювання*/ when isnull([AssignmentRevisions].rework_counter,0)>2 then 12 /*Фактично*/ end
 	where [Questions].[Id] = @question_id
 	
 	--select @NEW_AssignmentStateId, @NEW_AssignmentResultsId, @NEW_AssignmentResolutionId
