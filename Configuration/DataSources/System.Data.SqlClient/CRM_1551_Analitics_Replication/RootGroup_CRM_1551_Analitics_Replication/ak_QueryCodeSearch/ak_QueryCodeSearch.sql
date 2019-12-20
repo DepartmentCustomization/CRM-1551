@@ -445,7 +445,7 @@ else N'left join'
 end;
 --стан
 declare @filter_assigm_assignment_state nvarchar(20)=
-case when charindex(N'assigm_assignment_state in (', @param1,  1)>0
+case when charindex(N'assigm_assignment_state in (', @param1,  1)>0 or charindex(N'overdue = N''true''', @param1,  1)>0
 then N'inner join'
 else N'left join'
 end;
@@ -680,7 +680,7 @@ when [Applicants].[birth_date] is null then year(getdate())-[Applicants].birth_y
  ,App_phone.phone_number zayavnyk_phone_number
  ,[Appeals].[registration_number] appeals_registration_number
 
- ,case when [AssignmentStates].Id in (1,2) and [AssignmentRevisions].control_date<getutcdate()
+ ,case when [AssignmentStates].Id in (1,2) and [Assignments].[execution_date]<getutcdate()
  then ''true'' end overdue
  
  ,case when timeliness_table.min_date<=[AssignmentRevisions].control_date then 1
