@@ -33,7 +33,6 @@
         setFilterValues: function(message) {
             this.dateFrom = message.dateFrom;
             this.dateTo = message.dateTo;
-            this.chartConfig.yAxis.title.text = message.yAxis;
             if(this.dateFrom && this.dateTo) {
                 this.executeQuery();
             }
@@ -41,7 +40,7 @@
 
         executeQuery: function () {
             const query = {
-                "queryCode": "ak_CSI_graph1_8",
+                "queryCode": "ak_CSI_graph1_6",
                 "limit": -1,
                 "parameterValues": [
                     {
@@ -65,8 +64,8 @@
 
         fillIndexes: function (data) {
             this.valueId = this.getIndex(data, 'id');
-            this.calcDate = this.getIndex(data, 'calc_date');
-            this.average = this.getIndex(data, 'average');
+            this.grade = this.getIndex(data, 'grade');
+            this.countQuestions = this.getIndex(data, 'count_questions');
         },
 
         getIndex: function (data, name) {
@@ -77,7 +76,7 @@
 
         setChartSeries: function (data) {
             const chartData = {
-                name: this.chartConfig.title.text,
+                name: 'this.chartConfig.title.text',
                 colorByPoint: true,
                 data: this.getSeriesData(data)
             };
@@ -87,12 +86,13 @@
 
         getSeriesData: function (data) {
             let result = [];
-            this.chartConfig.xAxis.categories = [];
             for (let i = 0; i < data.rows.length; i++) {
-                const value = data.rows[i].values[this.average];
-                const caption = data.rows[i].values[this.calcDate];
-                this.chartConfig.xAxis.categories.push(caption);
-                result.push(value);
+                let element = {
+                    id: data.rows[i].values[this.valueId],
+                    name: data.rows[i].values[this.countQuestions],
+                    y: data.rows[i].values[this.grade],
+                }
+                result.push(element);
             }
             return result;
         },

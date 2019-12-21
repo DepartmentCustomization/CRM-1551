@@ -93,7 +93,7 @@
 
         setChartSeries: function (data) {
             const chartData = {
-                name: this.chartConfig.title.text,
+                name: 'this.chartConfig.title.text',
                 colorByPoint: true,
                 data: this.getSeriesData(data)
             };
