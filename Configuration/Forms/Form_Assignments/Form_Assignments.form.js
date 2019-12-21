@@ -271,6 +271,7 @@
         },
 
         filterResolution: function(result_id) {
+            console.log('Result ' + result_id);
             this.form.setControlVisibility('transfer_to_organization_id', false);
             this.form.setControlRequirement('transfer_to_organization_id', false);
             this.form.setControlVisibility('rework_counter', false);
