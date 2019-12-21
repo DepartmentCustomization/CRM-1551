@@ -10,7 +10,7 @@ declare @assignments_notCall table(qty int, oper_id nvarchar(300) );
 
 insert into @opers(Id, full_name)
 select UserId, LastName + isnull(' ' + FirstName, N'') + isnull(' ' + Patronymic,N'')
-from CRM_1551_System.[dbo].[User]
+from [#system_database_name#].[dbo].[User]
 
 -- получить количество по Questions
 insert into @questions_value (qty, oper_id)

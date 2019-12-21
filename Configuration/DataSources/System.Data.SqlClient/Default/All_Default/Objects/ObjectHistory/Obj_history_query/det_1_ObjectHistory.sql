@@ -26,7 +26,7 @@ SELECT [Object_History].[Id]
 		    end as [operation_name]
   FROM [dbo].[Object_History]
 	left join [Objects] on [Objects].Id = [Object_History].[object_id]
-	left join [CRM_1551_System].[dbo].[User]  as [User] on [User].UserId = [Object_History].[Log_User]
+	left join [#system_database_name#].[dbo].[User]  as [User] on [User].UserId = [Object_History].[Log_User]
 WHERE [Object_History].[object_id] = @object_id
 and  [Object_History].Id in (select t0.history_id_new
           from #temp_Obj as t0

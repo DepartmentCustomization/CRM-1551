@@ -1,5 +1,8 @@
-SELECT [Id]
-	,[Code]
-    ,[Name]
-FROM [CRM_1551_System].[dbo].[DashboardPage]
-where [DashboardGroupId] = 1004
+SELECT
+    [Id],
+    [Code],
+    [Name]
+FROM
+    [#system_database_name#].[dbo].[DashboardPage]
+WHERE
+    [DashboardGroupId] = 1004

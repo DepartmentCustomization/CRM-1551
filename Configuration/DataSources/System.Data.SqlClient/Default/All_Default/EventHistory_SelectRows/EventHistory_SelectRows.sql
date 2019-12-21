@@ -27,7 +27,7 @@ SELECT [Event_History].[Id]
 			when [Event_History].[Log_Activity] = N'UPDATE' then N'Редагування'
 			else [Event_History].[Log_Activity] end as [Log_Activity]
   FROM [dbo].[Event_History]
-  left join [CRM_1551_System].[dbo].[User] on [User].UserId = [Event_History].[Log_User]
+  left join [#system_database_name#].[dbo].[User] on [User].UserId = [Event_History].[Log_User]
   where [Event_History].event_id = @event_id
   and [Event_History].Id in (select t0.history_id_new
               from #temp_OUT as t0
