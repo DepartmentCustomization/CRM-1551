@@ -124,12 +124,64 @@ BEGIN
 	-- 	Перерозподіл на підрядну організацію (если поменялся исполнитель)
 	if @result_id = 1 and @resolution_id is null
 	begin
+			declare @turn_organization_id int = null
 	    --AL. если предыдущий результат - "Не в компетенции" тo
 	    if (select AssignmentResultsId from Assignments where Id = @Id) = 3
 	    begin 
-		    set @performer_id = @transfer_to_organization_id
+			declare @transfer int  -- output param
+			set @performer_id = @transfer_to_organization_id
+
+			EXEC pr_OrganizationalCheck @id, @performer_id, @transfer OUTPUT
+			IF @transfer = 0
+				BEGIN
+					set @turn_organization_id = 1762
+					set @result_id = 3
+					set @resolution_id = 1 
+					set @ass_state_id = 3
+
+				update AssignmentConsiderations
+				set	 
+					consideration_date = GETUTCDATE()
+					,short_answer = @short_answer
+					,transfer_to_organization_id = @transfer_to_organization_id
+					,[assignment_result_id] = @result_id
+					,[assignment_resolution_id] = @resolution_id
+					,turn_organization_id = @turn_organization_id
+					,[edit_date] = getutcdate()
+					where Id = @current_consid 
+
+				update [Assignments] 
+				set  AssignmentResultsId = @result_id
+					,AssignmentResolutionsId = @resolution_id
+					,[assignment_state_id]= @ass_state_id 
+					,[edit_date]= getutcdate()
+					,[user_edit_id]= @user_edit_id
+					,[LogUpdated_Query] = N'cx_App_Que_Assignments_Update_Row159'
+				where Id = @Id
+
+				INSERT INTO [dbo].[AssignmentRevisions]
+					   ([assignment_consideration_іd]
+					   ,[control_type_id]
+					   ,[assignment_resolution_id]
+					   ,[control_comment]
+					   ,[user_id]
+					   ,[rework_counter]
+					   ,[edit_date]
+					   ,[user_edit_id])
+				 VALUES
+					   (@current_consid --@ass_cons_id
+					   ,1 -- @control_type_id
+					   ,@resolution_id 
+					   ,@control_comment
+					   ,@user_edit_id
+					   ,@rework_counter
+					   ,getutcdate() 
+					   ,@user_edit_id
+					   )
+				return;
+				END
 	    end
-	
+
 	    
     	if @performer_id <> (select organization_id from Assignments where Id = @Id)
     	begin
