@@ -38,20 +38,6 @@
       "Width": "20%"
     },
     {
-      "Code": "phone_hide",
-      "Name": "phone_hide",
-      "FieldType": "text",
-      "Position": 111,
-      "IsHidden": true
-    },
-    {
-      "Code": "phone",
-      "Name": "phone",
-      "FieldType": "text",
-      "Position": 112,
-      "IsHidden": true
-    },
-    {
       "Code": "phone_number_norm",
       "Name": "phone_number_norm",
       "FieldType": "number",
