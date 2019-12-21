@@ -3,5 +3,5 @@ SELECT [UserId]
       ,[UserName]
       ,[FirstName]
       ,[LastName]
-  FROM [CRM_1551_System].[dbo].[User]
+  FROM [#system_database_name#].[dbo].[User]
   where UserId = @Id

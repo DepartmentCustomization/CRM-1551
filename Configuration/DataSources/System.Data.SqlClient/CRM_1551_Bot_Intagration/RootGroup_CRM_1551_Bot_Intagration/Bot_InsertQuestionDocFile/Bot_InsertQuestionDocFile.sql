@@ -1,5 +1,5 @@
 
-declare @UserBot nvarchar(128) = (select top 1 UserId from [CRM_1551_System_v2.0].[dbo].[User] where [UserName] = N'api_bot1551')
+declare @UserBot nvarchar(128) = (select top 1 UserId from [#system_database_name#].[dbo].[User] where [UserName] = N'api_bot1551')
 
     INSERT INTO [CRM_1551_Analitics].[dbo].[QuestionDocFiles]
            ([create_date]

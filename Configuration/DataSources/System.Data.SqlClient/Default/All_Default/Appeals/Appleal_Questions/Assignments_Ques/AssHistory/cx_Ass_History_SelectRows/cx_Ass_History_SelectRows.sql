@@ -38,7 +38,7 @@ update #temp_OUT set history_id_old = (select top 1 Id from [dbo].[Assignment_Hi
 		else N'Зміни в дорученні' end as [operation_name]
   FROM [dbo].[Assignment_History]
 	left join Assignments on Assignments.Id = [Assignment_History].assignment_id
-	left join [CRM_1551_System].[dbo].[User]  as [User] on [User].UserId = [Assignment_History].[Log_User]
+	left join [#system_database_name#].[dbo].[User]  as [User] on [User].UserId = [Assignment_History].[Log_User]
 WHERE [Assignment_History].[assignment_id] = @Id
 and  [Assignment_History].Id in (select t0.history_id_new
           from #temp_OUT as t0

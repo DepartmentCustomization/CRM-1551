@@ -28,6 +28,6 @@ SELECT [Positions].[Id]
   left join [CRM_1551_Analitics].[dbo].[Positions] [Positions2] on [Positions].parent_id=[Positions2].Id
   left join [CRM_1551_Analitics].[dbo].[Organizations] on [Positions].[organizations_id]=[Organizations].Id
   left join [CRM_1551_Analitics].[dbo].[Roles] on [Positions].[role_id]=[Roles].Id
-  left join [CRM_1551_System].[dbo].[User] on [Positions].[user_edit_id]=[User].UserId
-  left join [CRM_1551_System].[dbo].[User] [User2] on [Positions].[programuser_id]=[User2].UserId
+  left join [#system_database_name#].[dbo].[User] on [Positions].[user_edit_id]=[User].UserId
+  left join [#system_database_name#].[dbo].[User] [User2] on [Positions].[programuser_id]=[User2].UserId
   where [Positions].Id=@Id
