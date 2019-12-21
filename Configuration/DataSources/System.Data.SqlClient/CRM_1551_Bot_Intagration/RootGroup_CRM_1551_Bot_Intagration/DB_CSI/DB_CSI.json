@@ -1,6 +1,6 @@
 {
-    "ModelType": "QueryGroup",
-    "Code": "DB_CSI",
-    "Name": "Індекс задоволеності клієнтів",
-    "ConnectionCode": "Default"
-  }
+  "ModelType": "QueryGroup",
+  "Code": "DB_CSI",
+  "Name": "Індекс задоволеності клієнтів",
+  "ConnectionCode": "CRM_1551_Bot_Integration"
+}
