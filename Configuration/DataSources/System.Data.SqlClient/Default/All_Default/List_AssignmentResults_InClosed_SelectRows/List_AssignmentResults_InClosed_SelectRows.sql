@@ -14,7 +14,7 @@ begin
     SELECT [Id]
           ,[name] as Name
       FROM [dbo].[AssignmentResults]
-        WHERE code in (N'Done' , N'Independently', N'ForWork')
+        WHERE code in (N'Done' , N'Independently', N'ForWork', N'Cancel')
         and
     	#filter_columns#
          #sort_columns#
@@ -25,7 +25,7 @@ begin
     SELECT [Id]
           ,[name] as Name
       FROM [dbo].[AssignmentResults]
-        WHERE code in (N'Done' , N'Independently')
+        WHERE code in (N'Done' , N'Independently', N'Cancel')
         and
     	#filter_columns#
          #sort_columns#

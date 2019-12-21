@@ -44,7 +44,7 @@
       "Name": "Дата початку",
       "Position": 7,
       "IsPrintable": false,
-      "SqlName": "[Events].[start_date]",
+      "SqlName": "[t1].[Дата початку]",
       "FilterParameterCode": "@start_date"
     },
     {
@@ -56,6 +56,13 @@
     {
       "Code": "EventTypesId",
       "Name": "EventTypesId",
+      "Position": 9,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "BaseType",
+      "Name": "BaseType",
       "Position": 9,
       "ViewState": "Hidden",
       "IsPrintable": false
