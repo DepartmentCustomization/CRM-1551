@@ -14,9 +14,7 @@
         previous_result: '',
 
         onLoadModalPhone: function () {
-
             this.modal_phone_NEW = null;
-
             const queryForGetValue22 = {
                 queryCode: 'GetApplicantPhonesForApplicantId',
                 parameterValues: [{ key: '@applicant_id', value: this.form.getControlValue('Id') }]
@@ -214,27 +212,14 @@
                             fieldsForm.fieldGroups[c1].fields.push(t1_4);
                         };
                     };
-
-
                     this.openModalForm(fieldsForm, this.onModal_Phone.bind(this), this.afterModal_Phone_FormOpen.bind(this));
                 };
 
             }.bind(this));
         },
-        onChangePhoneNumber: function (value) {
+        onChangeCardPhone: function (value) {
             for (let u = 0; u < this.kolvoPhonesForApplicant; u++) {
                 this.formModalConfig.setControlValue('modal_phone' + (u + 1) + '_phoneIsMain', false);
-            };
-        },
-        onModalPhonesChanged: function (phone) {
-            if (!phone) {
-                document.getElementById('modal_phone_NEW_phoneDelete').disabled = true;
-            } else {
-                if (phone.replace('(', '').replace(')', '').replace(/-/g, '').replace(/\D/g, '').length == 10) {
-                    document.getElementById('modal_phone_NEW_phoneDelete').disabled = false;
-                } else {
-                    document.getElementById('modal_phone_NEW_phoneDelete').disabled = true;
-                };
             };
         },
         onRecalcCardPhone: function () {
@@ -242,9 +227,18 @@
                 queryCode: 'ApplicantPhonesRecalcCardPhone',
                 parameterValues: [{ key: '@Applicant_id', value: this.form.getControlValue('Id') }]
             };
+
             this.queryExecutor.getValues(queryForGetValue_RecalcPhone).subscribe(function (data) {
                 this.form.setControlValue('phone_number', data.rows[0].values[0]);
+            }.bind(this));
 
+            const queryForGetValue_GetIsMainPhone = {
+                queryCode: 'GetApplicantPhonesIsMain',
+                parameterValues: [{ key: '@Applicant_id', value: this.form.getControlValue('Id') }]
+            };
+
+            this.queryExecutor.getValues(queryForGetValue_GetIsMainPhone).subscribe(function (data) {
+                this.form.setControlValue('phone_number_norm', data.rows[0].values[0]);
             }.bind(this));
         },
         onDeleteCardPhone: function (phone) {
@@ -253,32 +247,33 @@
                 parameterValues: [{ key: '@PhoneId', value: this.formModalConfig.getControlValue('modal_phone' + phone + '_phoneId') }]
             };
 
-            this.queryExecutor.getValues(queryForGetValue_DeletePhone).subscribe(function (data) {
+            this.queryExecutor.getValues(queryForGetValue_DeletePhone).subscribe(function () {
                 var event = new Event("click");
                 document.querySelector('smart-bi-modal-form > div.btn-center-control > button.smart-btn.btn-back.ng-star-inserted').dispatchEvent(event);
 
                 this.onLoadModalPhone();
                 this.onRecalcCardPhone();
 
-                //LoadDetail Detail_Aplicant
-                const parameters_01 = [
-                    { key: '@phone_number', value: this.form.getControlValue('phone_number') }
+                // Загрузка заявителей по телефону в деталь
+                const parameters = [
+                    { key: '@applicant_phone', value: this.form.getControlValue('phone_number') }
                 ];
-                this.details.loadData('Phone', parameters_01/*, filters, sorting*/);
-
+                this.details.loadData('Phone', parameters);
             }.bind(this));
+
         },
         afterModal_Phone_FormOpen: function (form) {
-            // console.log('Open ', form);
+
             form.formConfig = this;
             this.formModalConfig = form;
+
             if (this.kolvoPhonesForApplicant > 0) {
                 for (let u = 0; u < this.kolvoPhonesForApplicant; u++) {
-                    document.getElementById('modal_phone' + (u + 1) + '_phoneIsMain').addEventListener("click", function (event) {
+                    document.getElementById('modal_phone' + (u + 1) + '_phoneIsMain').addEventListener("click", function () {
                         this.formConfig.onChangeCardPhone(true);
                     }.bind(form));
                     if (document.getElementById('modal_phone' + (u + 1) + '_phoneDelete')) {
-                        document.getElementById('modal_phone' + (u + 1) + '_phoneDelete').addEventListener("click", function (event) {
+                        document.getElementById('modal_phone' + (u + 1) + '_phoneDelete').addEventListener("click", function () {
                             this.formConfig.onDeleteCardPhone(u + 1);
                         }.bind(form));
                     };
@@ -291,21 +286,16 @@
                 };
                 document.getElementById('phoneDelete_Disabled').disabled = true;
 
-
                 for (let u2 = 0; u2 < this.kolvoPhonesForApplicant; u2++) {
                     document.getElementById("modal_phone" + (u2 + 1) + "_phoneNumber").focus();
                 };
             };
 
-
-
             form.onControlValueChanged('modal_phone_NEW', this.onModalPhonesChanged);
             document.getElementById('modal_phone_NEW_phoneDelete').disabled = true;
 
-
-
             if (this.form.getControlValue('Id')) {
-                document.getElementById('modal_phone_NEW_phoneDelete').addEventListener("click", function (event) {
+                document.getElementById('modal_phone_NEW_phoneDelete').addEventListener("click", function () {
                     const queryForGetValue_AddNewPhone = {
                         queryCode: 'ApplicantPhonesAdd',
                         parameterValues: [{ key: '@Applicant_id', value: this.formConfig.form.getControlValue('Id') }, { key: '@TypePhone', value: this.getControlValue('modal_phone_NEW_phoneType') }, { key: '@Phone', value: this.getControlValue('modal_phone_NEW') }, { key: '@IsMain', value: this.getControlValue('modal_phone_NEW_phoneIsMain') }]
@@ -320,11 +310,12 @@
 
                             this.formConfig.onLoadModalPhone();
                             this.formConfig.onRecalcCardPhone();
-                            //LoadDetail Detail_Aplicant
-                            const parameters_02 = [
-                                { key: '@phone_number', value: this.formConfig.form.getControlValue('phone_number') }
+
+                            // Загрузка заявителей по телефону в деталь
+                            const parameters = [
+                                { key: '@applicant_phone', value: this.form.getControlValue('phone_number') }
                             ];
-                            this.formConfig.details.loadData('Detail_Aplicant', parameters_02/*, filters, sorting*/);
+                            this.details.loadData('Phone', parameters);
                         } else {
                             this.setControlValue('modal_phone_NEW', null);
                             this.formConfig.openPopUpInfoDialog('Помилка. Такий номер вже існує!');
@@ -340,17 +331,27 @@
                 document.getElementById('modal_phone_NEW').focus();
                 document.getElementById('modal_phone_NEW_phoneDelete').focus();
 
-                document.getElementById('modal_phone_NEWIcon').addEventListener("click", function (event) {
-                    this.setControlValue('modal_phone_NEW', this.formConfig.form.getControlValue('phone_number'));
+                document.getElementById('modal_phone_NEWIcon').addEventListener("click", function () {
+                    this.setControlValue('modal_phone_NEW', this.formConfig.form.getControlValue('Phone'));
                     document.getElementById('modal_phone_NEW').focus();
                     document.getElementById('modal_phone_NEW_phoneDelete').focus();
                 }.bind(form));
             };
         },
+        onModalPhonesChanged: function (phone) {
+            if (!phone) {
+                document.getElementById('modal_phone_NEW_phoneDelete').disabled = true;
+            } else {
+                if (phone.replace('(', '').replace(')', '').replace(/-/g, '').replace(/\D/g, '').length == 10) {
+                    document.getElementById('modal_phone_NEW_phoneDelete').disabled = false;
+                } else {
+                    document.getElementById('modal_phone_NEW_phoneDelete').disabled = true;
+                };
+            };
+        },
         onModal_Phone: function (value) {
 
             if (value) {
-
                 if (this.kolvoPhonesForApplicant > 0) {
                     for (let u = 0; u < this.kolvoPhonesForApplicant; u++) {
 
@@ -362,16 +363,16 @@
                             { key: '@IsMain', value: value.find(f => f.key === '@modal_phone' + (u + 1) + '_phoneIsMain').value },
                             { key: '@IdPhone', value: value.find(f => f.key === '@modal_phone' + (u + 1) + '_phoneId').value }]
                         };
-
                         this.queryExecutor.getValues(queryForGetValue_UpdatePhone).subscribe(function (data) {
 
                         }.bind(this));
 
                     };
-                    const parameters_03 = [
-                        { key: '@phone_number', value: this.form.getControlValue('phone_number') }
+                    // Загрузка заявителей по телефону в деталь
+                    const parameters = [
+                        { key: '@applicant_phone', value: this.form.getControlValue('phone_number') }
                     ];
-                    this.details.loadData('Phone', parameters_03/*, filters, sorting*/);
+                    this.details.loadData('Phone', parameters);
                     this.onRecalcCardPhone();
                 };
             };
@@ -437,13 +438,6 @@
             input.addEventListener("input", mask1, false);
             input.addEventListener("focus", mask1, false);
             input.addEventListener("blur", mask1, false);
-
-            // арт кон
-
-            //  this.subscriptions.push(input);
-
-            //    this.form.onControlValueChanged('district_id', this.onStreetsChanged);
-            //   this.form.onControlValueChanged('building_id', this.onStrNumberChanged); // StrictId building_id арт 
 
             this.form.onControlValueChanged('birth_date', this.validateDate);
             this.form.onControlValueChanged('building_id', this.onChanged_Applicant_Building);
@@ -639,45 +633,17 @@
                 }
                 this.openModalForm(formValidDate, callbackValidDate);
             }
-
-            //вычисление возраста
-
-            //  console.log(getAge(valid_date));
             this.form.setControlValue('age', getAge(valid_date));
-        },
-
-        onStrNumberChanged: function (st_id) {
-            // console.log(st_id);
-            // this.form.setControlValue('building_id', {});
-            // let dependParams = [{ parameterCode: '@district_id', parameterValue: st_id }]; //арт @street @district_id
-            // this.form.setControlParameterValues('building_id', dependParams); 
-            // this.form.enableControl('building_id'); 
-            // this.form.disableControl("StrictId");
-
         },
 
         onStreetsChanged: function (dis_id) {
 
-            //this.form.setControlValue('StrictId', {}); арт
             this.form.setControlValue('building_id', {});
 
             let dependParams = [{ parameterCode: '@district_id', parameterValue: dis_id }];
-            this.form.setControlParameterValues('building_id', dependParams);  //арт building_id StrictId
-            this.form.enableControl('building_id'); // building_id StrictId арт
-            //this.form.disableControl('building_id'); арт
+            this.form.setControlParameterValues('building_id', dependParams);
+            this.form.enableControl('building_id');
+
         }
-
-        // destroy: function(){
-        //     input.removeEventListener("input", mask, false);
-        //     input.removeEventListener("focus", mask, false);
-        //     input.removeEventListener("blur", mask, false);
-        // this.unsubscribeFromMessages();
-        // }
-
-        // unsubscribeFromMessages: function(){
-        //     for(var i =0; i < this.subscriptions.length; i++) {
-        //             this.subscriptions[i].unsubscribe();
-        //     }
-        // }
     }
 }());

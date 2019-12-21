@@ -2,36 +2,29 @@
 ----------------> GET APPLICANT PHONES IN ROW <-----------------
 IF OBJECT_ID('tempdb.dbo.#ApplicantPhones') IS NOT NULL BEGIN DROP TABLE #ApplicantPhones
 END
-SELECT
-    DISTINCT applicant_id,
+SELECT DISTINCT 
+    applicant_id,
     phone_number = CAST(NULL AS VARCHAR(500)) INTO #ApplicantPhones
-FROM
-    dbo.ApplicantPhones 
-	WHERE applicant_id = @applicant_id
-	DECLARE @applicantID INT,
-    @Value CHAR(10) 
-	DECLARE cur 
-	CURSOR LOCAL READ_ONLY FAST_FORWARD FOR
+FROM dbo.ApplicantPhones
+WHERE
+    applicant_id = @applicant_id DECLARE @applicantID INT,
+    @Value CHAR(10) DECLARE cur CURSOR LOCAL READ_ONLY FAST_FORWARD FOR
 SELECT
     applicant_id,
     phone_number
-FROM
-    dbo.ApplicantPhones
-	where applicant_id = @applicant_id
-	OPEN cur FETCH NEXT
+FROM dbo.ApplicantPhones
+WHERE applicant_id = @applicant_id OPEN cur FETCH NEXT
 FROM
     cur INTO @applicantID,
     @Value WHILE @@FETCH_STATUS = 0 BEGIN
-UPDATE
-    #ApplicantPhones
+UPDATE #ApplicantPhones
 SET
     phone_number = ISNULL(phone_number + ', ' + @Value, @Value)
-WHERE
-    applicant_id = @applicantID FETCH NEXT
-FROM
-    cur INTO @applicantID,
+WHERE applicant_id = @applicantID FETCH NEXT
+FROM cur 
+INTO @applicantID,
     @Value
-END 
+END
 CLOSE cur 
 DEALLOCATE cur 
 ---------------------> END GETTING PHONES <---------------------
@@ -39,44 +32,51 @@ SELECT
     [Applicants].Id,
     [Applicants].full_name,
     [Applicants].mail,
-	[Districts].Id district_id,
+    [Districts].Id district_id,
     [Districts].name DistrictsName,
-	[Streets].Id StrictId,
+    [Streets].Id StrictId,
     concat(StreetTypes.shortname, ' ', [Streets].[name]) StrictName,
-	Buildings.Id building_id,
-    case when [Buildings].street_id is not null then N'вул. '+[Streets].name else N'' end+
-    case when [Buildings].name is not null then N', буд. '+[Buildings].name else N'' end 
-    as building_name,
+    Buildings.Id building_id,
+    CASE
+        WHEN [Buildings].street_id IS NOT NULL THEN N'вул. ' + [Streets].name
+        ELSE N''
+    END + CASE
+        WHEN [Buildings].name IS NOT NULL THEN N', буд. ' + [Buildings].name
+        ELSE N''
+    END AS building_name,
     [LiveAddress].house_block,
     [LiveAddress].entrance,
     [LiveAddress].flat,
-	[ApplicantTypes].Id applicant_type_id,
+    [ApplicantTypes].Id applicant_type_id,
     [ApplicantTypes].name ApplicantType,
-	[CategoryType].Id category_type_id,
+    [CategoryType].Id category_type_id,
     [CategoryType].name Category,
-	[ApplicantPrivilege].Id applicant_privilage_id,
+    [ApplicantPrivilege].Id applicant_privilage_id,
     [ApplicantPrivilege].Name Privilege,
-	[SocialStates].Id social_state_id,
+    [SocialStates].Id social_state_id,
     [SocialStates].name [SocialStates],
     [Applicants].sex,
     CASE
         WHEN [Applicants].birth_date IS NULL THEN CONVERT(nvarchar(200), [Applicants].birth_year)
         ELSE CONVERT(nvarchar(200), [Applicants].birth_date)
     END birth_date,
-    case 
-when [birth_date] is null then year(getdate())-birth_year
-  when month([birth_date])<=month(getdate())
-  and day([birth_date])<=day(getdate())
-  then DATEDIFF(yy, [birth_date], getdate())
-  else DATEDIFF(yy, [birth_date], getdate())-1 end age,
-  [birth_year],
- case 
- when birth_date is not null
- then
-  case when day(birth_date)<10 then N'0'+ltrim(day(birth_date))+N'-' else ltrim(day(birth_date))+N'-' end+
- +case when month(birth_date)<10 then N'0'+ltrim(month(birth_date)) else ltrim(month(birth_date)) end
- else null end day_month,
-
+    CASE
+        WHEN [birth_date] IS NULL THEN year(getdate()) - birth_year
+        WHEN MONTH([birth_date]) <= MONTH(getdate())
+        AND DAY([birth_date]) <= DAY(getdate()) THEN DATEDIFF(yy, [birth_date], getdate())
+        ELSE DATEDIFF(yy, [birth_date], getdate()) -1
+    END age,
+    [birth_year],
+    CASE
+        WHEN birth_date IS NOT NULL THEN CASE
+            WHEN DAY(birth_date) < 10 THEN N'0' + ltrim(DAY(birth_date)) + N'-'
+            ELSE ltrim(DAY(birth_date)) + N'-'
+        END + +CASE
+            WHEN MONTH(birth_date) < 10 THEN N'0' + ltrim(MONTH(birth_date))
+            ELSE ltrim(MONTH(birth_date))
+        END
+        ELSE NULL
+    END day_month,
     [Applicants].comment,
     #ApplicantPhones.phone_number
 FROM
