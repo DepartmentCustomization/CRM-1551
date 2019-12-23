@@ -1,7 +1,7 @@
-    -- declare @org int = 3;
-    -- declare @dateFrom date = '2019-01-01';
-    -- declare @dateTo date = getdate();
-    -- declare @question_type_id int = 1;
+    --  declare @org int = 3;
+    --  declare @dateFrom date = '2019-01-01';
+    --  declare @dateTo date = getdate();
+    --  declare @question_type_id int = 1;
 
 
   if object_id('tempdb..##temp_QuestionTypes4monitoring') is not null drop table ##temp_QuestionTypes4monitoring
@@ -156,7 +156,20 @@ if object_id('tempdb..#temp_Main') is not null drop table #temp_Main
   inner join #temp_Organizations2 [Organizations] on [Assignments].executor_organization_id=[Organizations].sub_id
   left join (SELECT [assignment_id], Min([edit_date]) as first_execution_date FROM Assignment_History with (nolock) WHERE [assignment_state_id] = 3 GROUP BY [assignment_id]) First_Assigment_execution ON [Assignments].id = First_Assigment_execution.[assignment_id]
  -- left join (SELECT [assignment_id], Min([edit_date]) as first_in_work FROM Assignment_History with (nolock) WHERE [assignment_state_id] = 2 GROUP BY [assignment_id]) First_In_Work ON [Assignments].id = First_In_Work.[assignment_id]
-  left join (SELECT [assignment_id], Min([edit_date]) as plan_prog FROM Assignment_History with (nolock) WHERE [assignment_state_id] = 3 AND [AssignmentResultsId] = 8 GROUP BY [assignment_id]) plan_prog ON [Assignments].id = plan_prog.[assignment_id]
+  left join (
+      SELECT a.id as [assignment_id], ah.edit_date as plan_prog FROM [dbo].[Assignments] a
+            LEFT JOIN (SELECT [assignment_id], Max(id) as max_history_id
+           FROM Assignment_History with (nolock) 
+           WHERE [assignment_state_id] <> 5 
+           GROUP BY [assignment_id]) s1 ON a.id = s1.assignment_id
+      LEFT JOIN Assignment_History ah with (nolock) ON s1.max_history_id = ah.Id
+      WHERE a.[assignment_state_id] = 5 and a.AssignmentResultsId = 7 AND ah.assignment_state_id = 3 AND ah.AssignmentResultsId = 8
+
+      UNION ALL
+
+      SELECT a.id, edit_date FROM [dbo].[Assignments] a
+      WHERE [assignment_state_id] = 3 AND [AssignmentResultsId] = 8
+         ) plan_prog ON [Assignments].id = plan_prog.[assignment_id]
   INNER join ##temp_QuestionTypes4monitoring ON [Questions].question_type_id = ##temp_QuestionTypes4monitoring.id
   where convert(date, Assignments.registration_date) between @dateFrom and @dateTo
 
