@@ -48,8 +48,12 @@
             indexQuestionStateOnCheck = values[0].findIndex(el => el.code.toLowerCase() === 'stateoncheck');
             indexQuestionStateOnRefinement = values[0].findIndex(el => el.code.toLowerCase() === 'stateonrefinement');
             indexQuestionStateClose = values[0].findIndex(el => el.code.toLowerCase() === 'stateclose');
+            indexQuestionObject = values[0].findIndex(el => el.code.toLowerCase() === 'objectname');
+            indexQuestionResolution = values[0].findIndex(el => el.code.toLowerCase() === 'resolution');
+            indexQuestionResult = values[0].findIndex(el => el.code.toLowerCase() === 'result');
+
             const columns = values.shift();
-            const reportData = values.map((row, index) => ({ 
+            const reportData = values.map((row, index) => ({
                 "Батькiвська 1 рiвень": values[index][indexOrgatization_Level_1],
                 "Батькiвська 2 рiвень": values[index][indexOrgatization_Level_2],
                 "Батькiвська 3 рiвень": values[index][indexOrgatization_Level_3],
@@ -72,6 +76,10 @@
                 "Стан питання. На перевірці": values[index][indexQuestionStateOnCheck],
                 "Стан питання. На доопрацюванні": values[index][indexQuestionStateOnRefinement],
                 "Стан питання. Закрито": values[index][indexQuestionStateClose],
+                "Об'єкт питання": values[index][indexQuestionObject],
+                "Резолюція": values[index][indexQuestionResolution],
+                "Результат": values[index][indexQuestionResult]
+
             }));
             const report = {
                 dataSource: {

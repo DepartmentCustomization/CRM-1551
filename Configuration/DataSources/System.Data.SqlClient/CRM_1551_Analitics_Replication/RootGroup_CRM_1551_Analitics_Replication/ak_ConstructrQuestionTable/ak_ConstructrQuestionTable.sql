@@ -1,9 +1,9 @@
-  --declare @RegistrationDateFrom date='2018-08-01';
-  --declare @RegistrationDateTo date='2019-10-01';
-  --declare @OrganizationExecId int;
-  --declare @OrganizationExecGroupId int;
-  --declare @ReceiptSourcesId int = 1;
-  --declare @QuestionGroupId int;
+  -- declare @RegistrationDateFrom date='2018-02-01';
+  -- declare @RegistrationDateTo date='2019-12-23';
+  -- declare @OrganizationExecId int = 9;
+  -- declare @OrganizationExecGroupId int;
+  -- declare @ReceiptSourcesId int = null;
+  -- declare @QuestionGroupId int;
  
 if object_id('tempdb..#temp_OUT') is not null drop table #temp_OUT
 create table #temp_OUT(
@@ -104,7 +104,10 @@ end
   case when QuestionStates.[name] = 'В роботі' then 1 else 0 end as stateInWork,
   case when QuestionStates.[name] = 'На перевірці' then 1 else 0 end as stateOnCheck,
   case when QuestionStates.[name] = 'На доопрацюванні' then 1 else 0 end as stateOnRefinement,
-  case when QuestionStates.[name] = 'Закрито' then 1 else 0 end as stateClose
+  case when QuestionStates.[name] = 'Закрито' then 1 else 0 end as stateClose,
+  isnull([Obj].[name],'Невідомо') as objectName,
+  isnull([Resolution].[name],'Невідомо') as resolution,
+  isnull([Result].[name],'Невідомо') as result
 
   from [Questions] as [Que]
   left join [QuestionTypes] as [QueTypes] on [Que].question_type_id=[QueTypes].Id
@@ -112,8 +115,10 @@ end
   left join [Appeals] on [Que].appeal_id=[Appeals].Id
   left join [ReceiptSources] on [Appeals].receipt_source_id=[ReceiptSources].Id
   left join [Assignments] as [Ass] on [Que].last_assignment_for_execution_id=[Ass].Id
-  
-  left join (
+  left join [Objects] as [Obj] on [Que].[object_id] = [Obj].Id
+  left join [AssignmentResolutions] as [Resolution] on [Resolution].Id = [Ass].AssignmentResolutionsId
+  left join [AssignmentResults] as [Result] on [Result].Id = [Ass].AssignmentResultsId
+  left join ( 
 		select  [Id],	
 				[ParentId],	
 				[Name],	
@@ -149,9 +154,3 @@ end
   and ([ReceiptSources].[Id] = @ReceiptSourcesId or @ReceiptSourcesId is null)
   and [Que].question_type_id in (select QueTypeId from #temp_OUT_QuestionGroup)
   and #filter_columns#
-
-  --convert(date, Vykon.Log_Date)
-  --convert(date, Closed.Log_Date)
-  --[QueTypes].[Id] as [QuestionTypeId]
-  --[Vykon].Log_Date Vykon_date,
-  --[Closed].Log_Date Close_date,
