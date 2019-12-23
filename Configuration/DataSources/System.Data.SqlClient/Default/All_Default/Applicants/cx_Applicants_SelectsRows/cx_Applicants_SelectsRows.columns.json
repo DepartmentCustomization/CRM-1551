@@ -20,26 +20,8 @@
     "Name": "Номер телефона",
     "Position": 3,
     "IsPrintable": false,
-    "SqlName": "[ApplicantPhonesMain].phone_number_norm",
+    "SqlName": "#ApplicantPhones.phone_number",
     "FilterParameterCode": "@phone_number"
-  },
-  {
-    "Code": "PhoneType",
-    "Name": "Тип телефону",
-    "Position": 4,
-    "IsPrintable": false
-  },
-  {
-    "Code": "phone_number2",
-    "Name": "Додатковий телефон",
-    "Position": 5,
-    "SqlName": "[ApplicantPhonesNotMain].phone_number_norm",
-    "FilterParameterCode": "@phone_number2"
-  },
-  {
-    "Code": "PhoneType2",
-    "Name": "Тип додаткового телефону",
-    "Position": 6
   },
   {
     "Code": "DistrictsName",

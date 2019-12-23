@@ -116,17 +116,6 @@
     "ReferenceKeyCode": "social_state_id"
   },
   {
-    "Code": "phone_type_id",
-    "Name": "phone_type_id",
-    "Position": 21
-  },
-  {
-    "Code": "PhoneType",
-    "Name": "PhoneType",
-    "Position": 22,
-    "ReferenceKeyCode": "phone_type_id"
-  },
-  {
     "Code": "DistrictsName",
     "Name": "DistrictsName",
     "Position": 23,
@@ -153,27 +142,6 @@
     "Name": "StrictName",
     "Position": 27,
     "ReferenceKeyCode": "StrictId"
-  },
-  {
-    "Code": "phone_number2",
-    "Name": "phone_number2",
-    "Position": 28
-  },
-  {
-    "Code": "phone_type_id2",
-    "Name": "phone_type_id2",
-    "Position": 29
-  },
-  {
-    "Code": "PhoneType2",
-    "Name": "PhoneType2",
-    "Position": 30,
-    "ReferenceKeyCode": "phone_type_id2"
-  },
-  {
-    "Code": "phone_number_norm",
-    "Name": "phone_number_norm",
-    "Position": 31
   },
   {
     "Code": "day_month",
