@@ -30,11 +30,11 @@
             "alignSelf": "flex-start",
             "border": "none",
             "children": [
-              // {
-              //   "code": "ratingAll_NativeDataGridWidget",
-              //   "type": "NativeDataGridWidgetComponent",
-              //   "name": "ratings"
-              // }
+              {
+                "code": "ratingAll_NativeDataGridWidget",
+                "type": "NativeDataGridWidgetComponent",
+                "name": "ratings"
+              }
             ],
             "id": "Container-1",
             "height": "auto",
@@ -62,11 +62,11 @@
                 "alignSelf": "auto",
                 "border": "none",
                 "children": [
-                  // {
-                  //   "code": "table2__NativeDataGridWidget",
-                  //   "type": "NativeDataGridWidgetComponent",
-                  //   "name": "table1"
-                  // }
+                  {
+                    "code": "table2__NativeDataGridWidget",
+                    "type": "NativeDataGridWidgetComponent",
+                    "name": "table1"
+                  }
                 ],
                 "id": "Container-1",
                 "height": "auto",
@@ -94,11 +94,11 @@
                     "alignSelf": "auto",
                     "border": "none",
                     "children": [
-                      // {
-                      //   "code": "line__ChartWidget",
-                      //   "type": "ChartWidgetComponent",
-                      //   "name": "graphic_line"
-                      // }
+                      {
+                        "code": "line__ChartWidget",
+                        "type": "ChartWidgetComponent",
+                        "name": "graphic_line"
+                      }
                     ],
                     "id": "Container-1",
                     "height": "600px",
@@ -116,11 +116,11 @@
                     "alignSelf": "auto",
                     "border": "none",
                     "children": [
-                      // {
-                      //   "code": "pie__ChartWidget",
-                      //   "type": "ChartWidgetComponent",
-                      //   "name": "graphic_pie"
-                      // }
+                      {
+                        "code": "pie__ChartWidget",
+                        "type": "ChartWidgetComponent",
+                        "name": "graphic_pie"
+                      }
                     ],
                     "id": "Container-1",
                     "height": "600px",

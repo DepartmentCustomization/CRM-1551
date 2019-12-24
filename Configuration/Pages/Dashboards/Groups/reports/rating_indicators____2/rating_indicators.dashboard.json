@@ -1,8 +1,9 @@
 {
   "DashboardGroupCode": "reports",
+  "Position": 1,
   "Description": "",
   "DescriptionUrl": "",
   "ModelType": "Dashboard",
-  "Code": "rating_indicators",
+  "Code": "rating_indicators____2",
   "Name": "Показники рейтингів"
 }
