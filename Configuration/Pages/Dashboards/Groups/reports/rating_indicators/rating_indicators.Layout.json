@@ -1,7 +1,7 @@
 {
   "css": ".dx-datagrid-export-button{\n    background-color: rgba(21, 189, 244, 1)!important;\n    color: #fff!important;\n    padding: 0 8px!important;\n}\n.dx-icon-export-excel-button{\n    color: #fff!important;\n    margin-right: 9px!important;\n}\n.dx-header-row>td>.dx-datagrid-text-content {\n    text-transform: uppercase;\n    text-align: center;\n}\n \n.dx-button-default{\n    background-color: rgba(21, 189, 244, 1)!important;\n}\n .table2__title{\n  text-align:  center; \n margin: 25px 0; \n} \n",
   "rootContainer": {
-    "width": "calc( 100% - 10px )",
+    "width": "auto",
     "margin": "0 5px 10px",
     "flexWrap": "wrap",
     "flexDirection": "row",
@@ -30,11 +30,11 @@
             "alignSelf": "flex-start",
             "border": "none",
             "children": [
-              // {
-              //   "code": "ratingAll_NativeDataGridWidget",
-              //   "type": "NativeDataGridWidgetComponent",
-              //   "name": "ratings"
-              // }
+              {
+                "code": "ratingAll_NativeDataGridWidget",
+                "type": "NativeDataGridWidgetComponent",
+                "name": "ratings"
+              }
             ],
             "id": "Container-1",
             "height": "auto",
@@ -62,11 +62,11 @@
                 "alignSelf": "auto",
                 "border": "none",
                 "children": [
-                  // {
-                  //   "code": "table2__NativeDataGridWidget",
-                  //   "type": "NativeDataGridWidgetComponent",
-                  //   "name": "table1"
-                  // }
+                  {
+                    "code": "table2__NativeDataGridWidget",
+                    "type": "NativeDataGridWidgetComponent",
+                    "name": "table1"
+                  }
                 ],
                 "id": "Container-1",
                 "height": "auto",
@@ -84,50 +84,6 @@
                 "alignSelf": "auto",
                 "border": "none",
                 "children": [
-                  {
-                    "width": "calc(50% - 10px)",
-                    "margin": "0 5px 10px",
-                    "flexWrap": "wrap",
-                    "flexDirection": "row",
-                    "order": 1,
-                    "flexGrow": 1,
-                    "alignSelf": "auto",
-                    "border": "none",
-                    "children": [
-                      // {
-                      //   "code": "line__ChartWidget",
-                      //   "type": "ChartWidgetComponent",
-                      //   "name": "graphic_line"
-                      // }
-                    ],
-                    "id": "Container-1",
-                    "height": "600px",
-                    "minHeight": "100px",
-                    "minWidth": "100px",
-                    "backgroundColor": "white"
-                  },
-                  {
-                    "width": "calc(50% - 10px)",
-                    "margin": "0 5px 10px",
-                    "flexWrap": "wrap",
-                    "flexDirection": "row",
-                    "order": 1,
-                    "flexGrow": 1,
-                    "alignSelf": "auto",
-                    "border": "none",
-                    "children": [
-                      // {
-                      //   "code": "pie__ChartWidget",
-                      //   "type": "ChartWidgetComponent",
-                      //   "name": "graphic_pie"
-                      // }
-                    ],
-                    "id": "Container-1",
-                    "height": "600px",
-                    "minHeight": "100px",
-                    "minWidth": "100px",
-                    "backgroundColor": "white"
-                  }
                 ],
                 "id": "Container-1",
                 "height": "auto",
@@ -152,9 +108,9 @@
       }
     ],
     "id": "Container-0",
-    "height": "auto",
+    "height": "100%",
     "minHeight": "100%",
     "minWidth": "100%",
-    "backgroundColor": "white"
+    "backgroundColor": "#eee"
   }
 }
