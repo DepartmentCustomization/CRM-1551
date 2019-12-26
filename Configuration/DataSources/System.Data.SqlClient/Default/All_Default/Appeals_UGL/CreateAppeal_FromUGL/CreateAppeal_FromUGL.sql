@@ -44,8 +44,8 @@ Values (
 
 declare @newId int = (select top 1 Id from @outId)
 update [dbo].[Appeals] 
- set registration_number =  concat( SUBSTRING ( rtrim(YEAR(getdate())),4,1),'-',
-(select count(Id) from Appeals where year(Appeals.registration_date) = year(getdate())) )
+ set registration_number =  concat( SUBSTRING ( rtrim(YEAR(getutcdate())),4,1),'-',
+(select count(Id) from Appeals where year(Appeals.registration_date) = year(getutcdate())) )
  where Id =  @newId
 
 update [dbo].[Звернення УГЛ]
