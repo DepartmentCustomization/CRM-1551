@@ -1,5 +1,5 @@
-  -- declare @dateFrom datetime = '2019-12-01 00:00:00';
-  -- declare @dateTo datetime = current_timestamp;
+--    declare @dateFrom datetime = '2019-12-01 00:00:00';
+--    declare @dateTo datetime = current_timestamp;
 
  declare @filterFrom datetime = dateadd(day,1,cast(@dateFrom as date));
  declare @filterTo datetime = dateadd(second,59,(dateadd(minute,59,(dateadd(hour,23,cast(cast(dateadd(day,1,@dateTo) as date) as datetime))))));
@@ -13,16 +13,17 @@ declare @tab_Sin table (source nvarchar(200) COLLATE DATABASE_DEFAULT, prev_val 
 
 IF OBJECT_ID('tempdb..#sources') IS NOT NULL DROP TABLE #sources
 CREATE TABLE #sources (
-    source_name VARCHAR(MAX) COLLATE DATABASE_DEFAULT
+    source_name VARCHAR(MAX) COLLATE Ukrainian_CI_AS
 );
 begin
-insert into #sources
+insert into #sources (source_name)
 select name from ReceiptSources
 where Id not in (4,5,6,7)
 Union 
 select  'КБУ'
-
+--select * from #sources
 end
+
 --- Комунального господарства
 begin 
 insert into @tab_Com (source, prev_val, cur_val) 
@@ -337,7 +338,11 @@ declare @result table (source nvarchar(200),
 			join @tab_Sin t_sin on t_sin.source = s.source_name
  
 end
-     select [source],
+     select 
+     ROW_NUMBER() OVER (
+     ORDER BY [source]
+   ) as row#,
+	 [source],
 	 IIF(prevCommunal = '0', '-', prevCommunal) prevCommunal, IIF(curCommunal = '0', '-', curCommunal) curCommunal,
 	 IIF(prevResidential = '0', '-', prevResidential) prevResidential, IIF(curResidential = '0', '-', curResidential) curResidential,
 	 IIF(prevEcology = '0', '-', prevEcology) prevEcology, IIF(curEcology = '0', '-', curEcology) curEcology,
