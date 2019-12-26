@@ -148,6 +148,10 @@
           result.push(element);
         }
         return result;
+      },
+
+      destroy: function () {
+        this.sub.unsubscribe();
       }
     };
 }());

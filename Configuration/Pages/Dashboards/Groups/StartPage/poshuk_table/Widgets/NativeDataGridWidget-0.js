@@ -146,7 +146,7 @@
             this.filtersLength = filters.length;
             this.filtersWithOutValues = 0;
             filters.forEach( elem => {
-                if(elem.active === true){
+                if(elem.active === true) {
                     let data = elem.value;
                     if(typeof(data) === "boolean"){
                         this.createObjMacros( elem.name, '=', 'true', elem.placeholder);

@@ -1,7 +1,7 @@
 {
     "ModelType": "Query",
-    "Code": "ak_CSI_yersteday_indicator",
-    "Name": "ak_CSI_yersteday_indicator",
+    "Code": "ak_CSI_yesterday_indicator",
+    "Name": "ak_CSI_yesterday_indicator",
     "ConnectionCode": "Default",
     "IsUsedForRightsFilter": false,
     "Columns": [
@@ -16,4 +16,4 @@
         "Position": 1
       }
     ]
-  }
+}
