@@ -214,13 +214,12 @@
                 }
             };
             this.messageService.publish(msg);
-
             this.sub = this.messageService.subscribe( 'FiltersParams', this.setFiltersParams, this );
             this.sub1 = this.messageService.subscribe( 'ApplyGlobalFilters', this.renderTable, this );
             this.dataGridInstance.onCellClick.subscribe(e => {
                 e.event.stopImmediatePropagation();
-                if(e.column){
-                    if(e.row !== undefined
+                if(e.column) {
+                    if (e.row !== undefined
 						&& e.column.dataField !== 'RDAName'
                         && e.column.dataField !== 'IntegratedMetric_PerformanceLevel'
                         && e.column.dataField !== 'PercentPleasureOfExecution'
@@ -230,7 +229,7 @@
                         && e.column.dataField !== 'PercentOnVeracity'
                         && e.column.dataField !== 'PercentOfExecution'
                         && e.column.dataField !== 'PercentClosedOnTime'
-                    ){
+                    ) {
                         const rdaid = e.data.RDAId;
                         const ratingid = e.data.RatingId;
                         const columncode = e.column.dataField;
@@ -238,12 +237,11 @@
                         const string = 'rdaid='+rdaid+'&ratingid='+ratingid+'&columncode='+columncode+'&date='+date;
                         window.open(location.origin + localStorage.getItem('VirtualPath') + "/dashboard/page/district_rating_indicator?"+string);
                     }
-                    if(e.row !== undefined && e.column.dataField === 'IntegratedMetric_PerformanceLevel') {
+                    if (e.row !== undefined && e.column.dataField === 'IntegratedMetric_PerformanceLevel') {
                         this.showPagePreloader('');
                         this.messageService.publish({ name: 'showInfo'});
                     }
-                    if(e.column.dataField == 'RDAName'
-                    ){
+                    if (e.column.dataField == 'RDAName') {
                         let rdaid = e.data.RDAId;
                         let ratingid = e.data.RatingId;
                         let date = this.date;
@@ -273,8 +271,8 @@
 
         setFiltersParams: function (message) {
             this.date = message.date;
-            this.executor =   message.executor;
-            this.rating =   message.rating;
+            this.executor = message.executor;
+            this.rating = message.rating;
             this.config.query.parameterValues = [ 
                 {key: '@DateCalc' , value: this.date },
                 {key: '@RDAId', value: this.executor },
@@ -290,7 +288,6 @@
                 }
             };
             this.messageService.publish(msg);
-            
             this.loadData(this.afterLoadDataHandler);
         }, 
 

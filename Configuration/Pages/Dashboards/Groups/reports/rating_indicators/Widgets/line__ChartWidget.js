@@ -71,7 +71,7 @@
         },
         setFiltersParams: function (message) {
             this.date = message.date;
-            this.rating =   message.rating;
+            this.rating = message.rating;
         },
 
         showInfo: function (message) {

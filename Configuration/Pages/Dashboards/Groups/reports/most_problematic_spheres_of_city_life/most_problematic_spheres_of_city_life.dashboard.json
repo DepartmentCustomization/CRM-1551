@@ -1,4 +1,6 @@
 {
+  "IsVisible": true,
+  "DashboardGroupCode": "reports",
   "Description": "",
   "DescriptionUrl": "",
   "ModelType": "Dashboard",

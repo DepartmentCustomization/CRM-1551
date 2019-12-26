@@ -725,6 +725,9 @@
                                 case 'control_date':
                                     rowItem.control_date = this.changeDateTimeValues(row.values[el.index]);
                                     break
+                                case 'ConsDocumentContent':
+                                    rowItem.ConsDocumentContent = row.values[el.index];
+                                    break    
                             };
                             this.addedIndexes.push(prop);
                         }
@@ -836,6 +839,9 @@
                                 break  
                             case 'control_date':
                                 row.control_date = el.control_date;
+                                break
+                            case 'ConsDocumentContent':
+                                row.ConsDocumentContent = el.ConsDocumentContent;
                                 break
                         };
                     }
