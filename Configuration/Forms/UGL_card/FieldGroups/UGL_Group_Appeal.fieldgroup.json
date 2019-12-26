@@ -71,6 +71,7 @@
       "Code": "applicantAddress",
       "Name": "Адреса",
       "FieldType": "text",
+      "IsHidden": true,
       "Position": 10
     }
   ]

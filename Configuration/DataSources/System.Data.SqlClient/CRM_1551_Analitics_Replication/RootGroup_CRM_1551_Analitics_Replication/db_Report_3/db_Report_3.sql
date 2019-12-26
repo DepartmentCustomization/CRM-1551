@@ -4,8 +4,8 @@
 --  declare @questionType int = 0;
 --  declare @questionGroup int = 0;
 
- declare @filterFrom datetime = cast(dateadd(day,0,@datefrom) as date);
- declare @filterTo datetime = dateadd(second,59,(dateadd(minute,59,(dateadd(hour,23,cast(cast(dateadd(day,0,@dateTo) as date) as datetime))))));
+ declare @filterFrom datetime = cast(dateadd(day,1,@datefrom) as date);
+ declare @filterTo datetime = dateadd(second,59,(dateadd(minute,59,(dateadd(hour,23,cast(cast(dateadd(day,1,@dateTo) as date) as datetime))))));
 
 
  declare @question_t table (typeQ int)
@@ -47,8 +47,8 @@ begin
  -- НАХОДИМ ИД QuestionTypes которые входят в выбранную QuestionGroups
  insert into @question_g(typeG)
  select qt.Id from QuestionTypes qt 
- left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
- left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
+ join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
+ join QuestionGroups qg on qg.Id = qgiqt.group_question_id
       where qg.report_code = 'Analitica_spheres'  
 	  and qg.Id = @questionGroup        
  end
@@ -73,16 +73,16 @@ select
  from (SELECT 
   qt.[name] AS questionType, d.[name] as district, isnull(count(q.Id),0) as questionQty
 FROM Questions q 
-left join QuestionTypes qt on qt.Id = q.question_type_id
-			left join [Objects] o on o.Id = q.[object_id]
-			left join [Buildings] b on b.Id = o.builbing_id
-			left join [Districts] d on d.Id = b.district_id
-			left join [QGroupIncludeQTypes] qgiqt on qgiqt.type_question_id = qt.Id
-			left join [QuestionGroups] qg on qg.Id = qgiqt.group_question_id
+join QuestionTypes qt on qt.Id = q.question_type_id
+			join [Objects] o on o.Id = q.[object_id]
+			join [Buildings] b on b.Id = o.builbing_id
+			join [Districts] d on d.Id = b.district_id
+		--	left join [QGroupIncludeQTypes] qgiqt on qgiqt.type_question_id = qt.Id
+		--	left join [QuestionGroups] qg on qg.Id = qgiqt.group_question_id
   where q.registration_date between @filterFrom and @filterTo
   and qt.Id in (select typeQ from @question_t) 
-  and qt.Id in (select typeG from @question_g) 
-  and qg.report_code = 'Analitica_spheres'
+--  and qt.Id in (select typeG from @question_g) 
+--  and qg.report_code = 'Analitica_spheres'
  
   group by qt.[name], d.[name]
  ) as q_tab

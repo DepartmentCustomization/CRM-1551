@@ -1,6 +1,6 @@
 -- declare @Id int = 5398676;
 declare @uglId int = (select Id from [Звернення УГЛ] where Appeals_id = @Id)
-declare @full_phone1 nvarchar(500) = (select Телефон from [Звернення УГЛ] where Id = @uglId )
+declare @full_phone1 nvarchar(500) = (select top 1 Телефон from [Звернення УГЛ] where Id = @uglId )
 
 declare @numbers table (uglId int, num nvarchar(15));
 insert into @numbers
@@ -33,7 +33,7 @@ set @full_phone2 = isnull(@full_phone2,'') + IIF(len(@full_phone2)>1,N', ' + @cu
 set @step += 1;
 end
 
-select 
+select top 1
 [№ звернення] as incomNum, 
 @full_phone2 as phone,
 @full_phone2 as full_phone,

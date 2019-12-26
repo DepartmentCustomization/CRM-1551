@@ -445,23 +445,25 @@
 
         // При выборе дома подтягиваю район 
         onChanged_Applicant_Building: function () {
-
-            var district = {
-                queryCode: 'GetDistrictForBuilding2',
-                parameterValues: [
-                    {
-                        key: '@building_id',
-                        value: this.form.getControlValue('building_id')
-                    }
-                ]
-            };
-            this.queryExecutor.getValues(district).subscribe(function (data) {
-                if (data.rows.length > 0) {
-                    this.form.setControlValue('district_id', { key: data.rows[0].values[0], value: data.rows[0].values[1] });
-                } else {
-                    this.form.setControlValue('district_id', '');
+            let build = this.form.getControlValue('building_id');
+            if (typeof (build) === 'number') {
+                var district = {
+                    queryCode: 'GetDistrictForBuilding2',
+                    parameterValues: [
+                        {
+                            key: '@building_id',
+                            value: build
+                        }
+                    ]
                 };
-            }.bind(this));
+                this.queryExecutor.getValues(district).subscribe(function (data) {
+                    if (data.rows.length > 0) {
+                        this.form.setControlValue('district_id', { key: data.rows[0].values[0], value: data.rows[0].values[1] });
+                    } else {
+                        this.form.setControlValue('district_id', '');
+                    };
+                }.bind(this));
+            }
 
         },
 

@@ -1,38 +1,11 @@
-----------------> GET APPLICANT PHONES IN ROW <-----------------
-IF OBJECT_ID('tempdb.dbo.#ApplicantPhones') IS NOT NULL BEGIN DROP TABLE #ApplicantPhones
-END
-SELECT
-  DISTINCT applicant_id,
-  phone_number = CAST(NULL AS VARCHAR(500)) INTO #ApplicantPhones
-FROM
-  dbo.ApplicantPhones DECLARE @applicantID INT,
-  @Value CHAR(10) DECLARE cur CURSOR LOCAL READ_ONLY FAST_FORWARD FOR
-SELECT
-  applicant_id,
-  phone_number
-FROM dbo.ApplicantPhones OPEN cur FETCH NEXT
-FROM cur 
-INTO @applicantID,
-     @Value 
-     WHILE @@FETCH_STATUS = 0 BEGIN
-UPDATE
-  #ApplicantPhones
-SET phone_number = ISNULL(phone_number + ', ' + @Value, @Value)
-WHERE applicant_id = @applicantID 
-FETCH NEXT FROM cur 
-INTO @applicantID,
-     @Value
-END 
-CLOSE cur 
-DEALLOCATE cur
----------------------> END GETTING PHONES <---------------------
 SELECT
   [Applicants].Id,
   [Applicants].full_name,
+  sub_phones.phone_number,
   [Applicants].mail,
   [Districts].name DistrictsName,
-  concat(StreetTypes.shortname, ' ', [Streets].[name]) Street,
-  concat(Buildings.number, Buildings.letter) BuildNumber,
+  CONCAT(StreetTypes.shortname, ' ', [Streets].[name]) Street,
+  CONCAT(Buildings.number, Buildings.letter) BuildNumber,
   [LiveAddress].house_block,
   [LiveAddress].entrance,
   [LiveAddress].flat,
@@ -58,11 +31,9 @@ SELECT
       getdate()
     ) -1
   END age,
-  [Applicants].comment,
-  #ApplicantPhones.phone_number
+  [Applicants].comment
 FROM
   [dbo].[Applicants]
-  LEFT JOIN #ApplicantPhones on #ApplicantPhones.applicant_id = [Applicants].Id 
   LEFT JOIN [dbo].[LiveAddress] ON [Applicants].Id = [LiveAddress].[applicant_id]
   LEFT JOIN [dbo].[Buildings] ON [LiveAddress].building_id = [Buildings].Id
   LEFT JOIN [dbo].[Districts] ON [Buildings].district_id = Districts.Id
@@ -72,7 +43,17 @@ FROM
   LEFT JOIN [dbo].[CategoryType] ON [Applicants].category_type_id = [CategoryType].Id
   LEFT JOIN [dbo].[ApplicantPrivilege] ON [Applicants].applicant_privilage_id = [ApplicantPrivilege].Id
   LEFT JOIN [dbo].[SocialStates] ON [Applicants].social_state_id = [SocialStates].Id
+  LEFT JOIN (SELECT 
+     b.Id AS applicant_id,
+     phone_number  = STUFF(
+       (SELECT ', ' + p.phone_number
+        FROM dbo.Applicants b1
+		INNER JOIN dbo.ApplicantPhones p ON p.applicant_id = b1.Id 
+		WHERE p.applicant_id = b.Id 
+        FOR XML PATH('')), 1, 1, '')
+     FROM
+     dbo.Applicants b) sub_phones on sub_phones.applicant_id = [Applicants].Id 
 WHERE
-  #filter_columns#
-  #sort_columns#
-  OFFSET @pageOffsetRows ROWS FETCH next @pageLimitRows ROWS ONLY
+ #filter_columns#
+ #sort_columns#
+ OFFSET @pageOffsetRows ROWS FETCH next @pageLimitRows ROWS ONLY
