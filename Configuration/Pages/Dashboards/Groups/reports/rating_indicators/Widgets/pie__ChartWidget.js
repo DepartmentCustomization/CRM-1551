@@ -1,6 +1,5 @@
 (function () {
     return {
-
         chartConfig: {
             chart: {
                 plotBackgroundColor: null,

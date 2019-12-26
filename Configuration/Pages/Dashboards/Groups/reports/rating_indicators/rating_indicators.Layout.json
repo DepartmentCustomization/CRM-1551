@@ -84,6 +84,50 @@
                 "alignSelf": "auto",
                 "border": "none",
                 "children": [
+                  {
+                    "width": "calc(50% - 10px)",
+                    "margin": "0 5px 10px",
+                    "flexWrap": "wrap",
+                    "flexDirection": "row",
+                    "order": 1,
+                    "flexGrow": 1,
+                    "alignSelf": "auto",
+                    "border": "none",
+                    "children": [
+                      {
+                        "code": "line__ChartWidget",
+                        "type": "ChartWidgetComponent",
+                        "name": "graphic_line"
+                      }
+                    ],
+                    "id": "Container-1",
+                    "height": "600px",
+                    "minHeight": "100px",
+                    "minWidth": "100px",
+                    "backgroundColor": "white"
+                  },
+                  {
+                    "width": "calc(50% - 10px)",
+                    "margin": "0 5px 10px",
+                    "flexWrap": "wrap",
+                    "flexDirection": "row",
+                    "order": 1,
+                    "flexGrow": 1,
+                    "alignSelf": "auto",
+                    "border": "none",
+                    "children": [
+                      {
+                        "code": "pie__ChartWidget",
+                        "type": "ChartWidgetComponent",
+                        "name": "graphic_pie"
+                      }
+                    ],
+                    "id": "Container-1",
+                    "height": "600px",
+                    "minHeight": "100px",
+                    "minWidth": "100px",
+                    "backgroundColor": "white"
+                  }
                 ],
                 "id": "Container-1",
                 "height": "auto",
@@ -111,6 +155,6 @@
     "height": "100%",
     "minHeight": "100%",
     "minWidth": "100%",
-    "backgroundColor": "#eee"
+    "backgroundColor": "white"
   }
 }

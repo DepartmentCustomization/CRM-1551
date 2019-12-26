@@ -273,7 +273,6 @@
             this.date = message.date;
             this.executor = message.executor;
             this.rating = message.rating;
-            debugger;
             this.config.query.parameterValues = [ 
                 {key: '@DateCalc' , value: this.date },
                 {key: '@RDAId', value: this.executor },
