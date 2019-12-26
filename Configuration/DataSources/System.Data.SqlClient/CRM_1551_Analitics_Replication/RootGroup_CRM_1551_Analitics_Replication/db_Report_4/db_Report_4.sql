@@ -155,8 +155,6 @@ if object_id('tempdb..#temp_Main') is not null drop table #temp_Main
   inner join [Questions] with (nolock) on [Assignments].question_id=[Questions].Id
   inner join #temp_Organizations2 [Organizations] on [Assignments].executor_organization_id=[Organizations].sub_id
   left join (SELECT [assignment_id], Min([edit_date]) as first_execution_date FROM Assignment_History with (nolock) WHERE [assignment_state_id] = 3 GROUP BY [assignment_id]) First_Assigment_execution ON [Assignments].id = First_Assigment_execution.[assignment_id]
- -- left join (SELECT [assignment_id], Min([edit_date]) as first_in_work FROM Assignment_History with (nolock) WHERE [assignment_state_id] = 2 GROUP BY [assignment_id]) First_In_Work ON [Assignments].id = First_In_Work.[assignment_id]
-  INNER join ##temp_QuestionTypes4monitoring ON [Questions].question_type_id = ##temp_QuestionTypes4monitoring.id
   left join (
       SELECT a.id as [assignment_id], ah.edit_date as plan_prog FROM [dbo].[Assignments] a
             LEFT JOIN (SELECT [assignment_id], Max(id) as max_history_id
