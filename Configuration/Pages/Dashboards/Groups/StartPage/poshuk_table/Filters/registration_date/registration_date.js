@@ -3,6 +3,7 @@
         showTime: true,   
         placeholder: 'Дата поступило',
         type: 'DateTime',
+        stepMinute: 1,
         onItemSelect: function(date) {
             this.yourFunctionName(date);
         },
