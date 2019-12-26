@@ -33,7 +33,7 @@
       "QueryParameters": []
     },
     {
-      "Maxlength": 3000,
+      "Maxlength": 7000,
       "Code": "content",
       "Name": "Коментар",
       "FieldType": "textarea",
