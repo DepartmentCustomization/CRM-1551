@@ -140,7 +140,7 @@ if object_id('tempdb..#temp_Main') is not null drop table #temp_Main
   select [Assignments].Id, [Organizations].main_org_id orgId, [Organizations].main_org_name orgName, 1 AllCount,
   case when (first_execution_date <= execution_date) then 1 else 0 end inTimeQty,--- Закритих вчасно
   case when (first_execution_date > execution_date) then 1 else 0 end outTimeQty,--- Закритих не вчасно
-  case when assignment_state_id = 1 and [Assignments].[execution_date]<getutcdate() then 1 else 0 end waitTimeQty,--- Зареєстровано та не надійшло в роботу вчасно
+  case when assignment_state_id in (1,2) and [Assignments].[execution_date]<getutcdate() then 1 else 0 end waitTimeQty,--- Зареєстровано та не надійшло в роботу вчасно
   case when AssignmentResultsId in (4,7,10) and assignment_state_id = 5  then 1 else 0 end doneClosedQty,--- Виконано та закрито
   case when AssignmentResultsId in (5,12) and assignment_state_id = 4  then 1 else 0 end notDoneClosedQty,--- Виконано та на доопрацювання
   case when AssignmentResultsId in (4, 7, 8) and assignment_state_id = 3 then 1 else 0 end doneOnCheckQty,--- Виконано та на перевірці
@@ -156,8 +156,21 @@ if object_id('tempdb..#temp_Main') is not null drop table #temp_Main
   inner join #temp_Organizations2 [Organizations] on [Assignments].executor_organization_id=[Organizations].sub_id
   left join (SELECT [assignment_id], Min([edit_date]) as first_execution_date FROM Assignment_History with (nolock) WHERE [assignment_state_id] = 3 GROUP BY [assignment_id]) First_Assigment_execution ON [Assignments].id = First_Assigment_execution.[assignment_id]
  -- left join (SELECT [assignment_id], Min([edit_date]) as first_in_work FROM Assignment_History with (nolock) WHERE [assignment_state_id] = 2 GROUP BY [assignment_id]) First_In_Work ON [Assignments].id = First_In_Work.[assignment_id]
-  left join (SELECT [assignment_id], Min([edit_date]) as plan_prog FROM Assignment_History with (nolock) WHERE [assignment_state_id] = 3 AND [AssignmentResultsId] = 8 GROUP BY [assignment_id]) plan_prog ON [Assignments].id = plan_prog.[assignment_id]
   INNER join ##temp_QuestionTypes4monitoring ON [Questions].question_type_id = ##temp_QuestionTypes4monitoring.id
+  left join (
+      SELECT a.id as [assignment_id], ah.edit_date as plan_prog FROM [dbo].[Assignments] a
+            LEFT JOIN (SELECT [assignment_id], Max(id) as max_history_id
+           FROM Assignment_History with (nolock) 
+           WHERE [assignment_state_id] <> 5 
+           GROUP BY [assignment_id]) s1 ON a.id = s1.assignment_id
+      LEFT JOIN Assignment_History ah with (nolock) ON s1.max_history_id = ah.Id
+      WHERE a.[assignment_state_id] = 5 and a.AssignmentResultsId = 7 AND ah.assignment_state_id = 3 AND ah.AssignmentResultsId = 8
+
+      UNION ALL
+
+      SELECT a.id, edit_date FROM [dbo].[Assignments] a
+      WHERE [assignment_state_id] = 3 AND [AssignmentResultsId] = 8
+         ) plan_prog ON [Assignments].id = plan_prog.[assignment_id]
   where convert(date, Assignments.registration_date) between @dateFrom and @dateTo
 
 --  and [Assignments].main_executor = 1

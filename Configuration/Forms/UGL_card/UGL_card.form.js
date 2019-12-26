@@ -1,7 +1,9 @@
 (function () {
     return {
+        // Для типов вопроса - определить какой из полей объект/организация требуется
         is_obj: undefined,
         is_org: undefined,
+
         onLoadModalPhone: function () {
             this.modal_phone_NEW = null;
             const queryForGetValue22 = {
@@ -407,15 +409,26 @@
                 this.form.setControlValue('AppealId', this.id);
                 this.form.setControlValue('ReceiptSources', { key: 3, value: 'УГЛ' });
 
-                this.checkApplicantHere();
-
                 document.getElementById('CardPhone').addEventListener("click", function () {
                     this.onLoadModalPhone();
                 }.bind(this));
 
                 document.getElementsByClassName('float_r')[0].children[1].style.display = 'none';
                 document.getElementById('Question_Btn_Add').disabled = true;
+                // Отслеживание изменения значений полей для активности кнопки сохранить заявителя
+                this.form.onControlValueChanged('Applicant_PIB', this.applicantIsPIBChanged);
+                this.form.onControlValueChanged('Applicant_Building', this.applicantIsBuildingChanged);
+                this.form.onControlValueChanged('Applicant_Entrance', this.applicantIsEntranceChanged);
+                this.form.onControlValueChanged('Applicant_Flat', this.applicantIsFlatChanged);
+                this.form.onControlValueChanged('Applicant_Privilege', this.applicantIsPrivilegeChanged);
+                this.form.onControlValueChanged('Applicant_SocialStates', this.applicantIsSocialStateChanged);
+                this.form.onControlValueChanged('Applicant_Type', this.applicantIsApplicantTypeChanged);
+                this.form.onControlValueChanged('Applicant_Sex', this.applicantIsSexChanged);
+                this.form.onControlValueChanged('Applicant_BirthDate', this.applicantIsBirthDateChanged);
+                this.form.onControlValueChanged('Applicant_Email', this.applicantIsMailChanged);
+                this.form.onControlValueChanged('Applicant_Comment', this.applicantIsNoteChanged);
 
+                this.form.disableControl('CardPhone');
                 this.form.disableControl('ReceiptSources');
                 this.form.disableControl('Phone');
                 this.form.disableControl('DateStart');
@@ -570,7 +583,6 @@
                             ]
                         };
 
-
                         this.queryExecutor.getValues(queryForGetValue2).subscribe(data => {
 
                             this.form.setControlValue('Applicant_Id', data.rows[0].values[0]);
@@ -598,9 +610,7 @@
                                 this.details.loadData('Detail_UGL_QuestionRegistration', parameters2);
                             });
 
-                            this.checkApplicantSaveAvailable();
                         });
-
                     }
                 }.bind(this));
 
@@ -778,7 +788,125 @@
             }.bind(this));
         },
         // END INIT
-
+        input_pib: null,
+        input_pib_check: 0,
+        applicantIsPIBChanged: function (value) {
+            if (this.input_pib == value) {
+                this.input_pib_check = 0;
+            } else {
+                this.input_pib_check = 1;
+            };
+            this.input_pib = value;
+        },
+        input_building: null,
+        input_building_check: 0,
+        applicantIsBuildingChanged: function (value) {
+            if (this.input_building == value) {
+                this.input_building_check = 0;
+            } else {
+                this.input_building_check = 1;
+            };
+            this.input_building = value;
+            this.applicantSaveButtonManager(this.input_building_check);
+        },
+        input_entrance: null,
+        input_entrance_check: 0,
+        applicantIsEntranceChanged: function (value) {
+            if (this.input_entrance == value) {
+                this.input_entrance_check = 0;
+            } else {
+                this.input_entrance_check = 1;
+            };
+            this.input_entrance = value;
+        },
+        input_flat: null,
+        input_flat_check: 0,
+        applicantIsFlatChanged: function (value) {
+            if (this.input_flat == value) {
+                this.input_flat_check = 0;
+            } else {
+                this.input_flat_check = 1;
+            };
+            this.input_flat = value;
+        },
+        input_privilege: null,
+        input_privilege_check: 0,
+        applicantIsPrivilegeChanged: function (value) {
+            if (this.input_privilege == value) {
+                this.input_privilege_check = 0;
+            } else {
+                this.input_privilege_check = 1;
+            };
+            this.input_privilege = value;
+        },
+        input_socialState: null,
+        input_socialState_check: 0,
+        applicantIsSocialStateChanged: function (value) {
+            if (this.input_socialState == value) {
+                this.input_socialState_check = 0;
+            } else {
+                this.input_socialState_check = 1;
+            };
+            this.input_socialState = value;
+        },
+        input_applicantType: null,
+        input_applicantType_check: 0,
+        applicantIsApplicantTypeChanged: function (value) {
+            if (this.input_applicantType == value) {
+                this.input_applicantType_check = 0;
+            } else {
+                this.input_applicantType_check = 1;
+            };
+            this.input_applicantType = value;
+        },
+        input_applicantSex: null,
+        input_applicantSex_check: 0,
+        applicantIsSexChanged: function (value) {
+            if (this.input_applicantSex == value) {
+                this.input_applicantSex_check = 0;
+            } else {
+                this.input_applicantSex_check = 1;
+            };
+            this.input_applicantSex = value;
+        },
+        input_birthDate: null,
+        input_birthDate_check: 0,
+        applicantIsBirthDateChanged: function (value) {
+            if (this.input_birthDate == value) {
+                this.input_birthDate_check = 0;
+            } else {
+                this.input_birthDate_check = 1;
+            };
+            this.input_birthDate = value;
+        },
+        input_mail: null,
+        input_mail_check: 0,
+        applicantIsMailChanged: function (value) {
+            if (this.input_mail == value) {
+                this.input_mail_check = 0;
+            } else {
+                this.input_mail_check = 1;
+            };
+            this.input_mail = value;
+        },
+        input_note: null,
+        input_note_check: 0,
+        applicantIsNoteChanged: function (value) {
+            if (this.input_note == value) {
+                this.input_note_check = 0;
+            } else {
+                this.input_note_check = 1;
+            };
+            this.input_note = value;
+        },
+        applicantSaveButtonManager: function (input_check) {
+            if (input_check === 1) {
+                document.getElementById('Applicant_Btn_Add').disabled = false;
+            }
+            else if (input_check === 0) {
+                document.getElementById('Applicant_Btn_Add').disabled = true;
+            }
+        },
         questionObjectOrg: function () {
 
             let q_type_id = this.form.getControlValue('Question_TypeId');
@@ -826,7 +954,7 @@
         },
 
         checkApplicantHere: function () {
-            if (this.form.getControlValue('Applicant_Id') != null) {
+            if (this.form.getControlValue('Applicant_Id') !== undefined) {
                 document.getElementById('Question_Aplicant_Btn_Add').disabled = false;
                 this.form.enableControl('CardPhone');
             }
@@ -837,13 +965,18 @@
         },
         // Условие доступности сохранения заявителя
         checkApplicantSaveAvailable: function () {
-            if (this.form.getControlValue('Applicant_PIB') == null || this.form.getControlValue('Applicant_Building') == null) {
-                document.getElementById('Applicant_Btn_Add').disabled = true;
-            }
-            else {
-                document.getElementById('Applicant_Btn_Add').disabled = false;
+            if (this.form.getControlValue('Applicant_Id') == undefined) {
+                if (
+                    (this.form.getControlValue('Applicant_PIB') == null || this.form.getControlValue('Applicant_Building') == null)
+                ) {
+                    document.getElementById('Applicant_Btn_Add').disabled = true;
+                }
+                else {
+                    document.getElementById('Applicant_Btn_Add').disabled = false;
+                }
             };
         },
+
         //Получение данных заявителя
         getApplicantInfo: function (column, row, value, event, indexOfColumnId) {
             let applicantId = row.values[4];
@@ -860,42 +993,46 @@
 
             // Наполнение полей заявителя данными выбраного с детали
             this.queryExecutor.getValues(Applicant).subscribe(data => {
+                if (data) {
+                    let BirthDate = null;
+                    if (data.rows[0].values[14] == null) {
+                        BirthDate = null;
+                    } else {
+                        BirthDate = new Date(data.rows[0].values[14]);
+                    };
 
-                let BirthDate = null;
-                if (data.rows[0].values[14] == null) {
-                    BirthDate = null;
-                } else {
-                    BirthDate = new Date(data.rows[0].values[14]);
-                };
+                    let sex = null;
+                    if (data.rows[0].values[13] == null) {
+                        sex = null;
+                    } else {
+                        sex = (data.rows[0].values[13]).toString();
+                    };
 
-                let sex = null;
-                if (data.rows[0].values[13] == null) {
-                    sex = null;
-                } else {
-                    sex = (data.rows[0].values[13]).toString();
-                };
+                    this.form.setControlValue('Applicant_Building',
+                        { key: data.rows[0].values[1], value: data.rows[0].values[2] });
+                    this.form.setControlValue('Applicant_Entrance', data.rows[0].values[4])
+                    this.form.setControlValue('Applicant_Flat', data.rows[0].values[5])
+                    this.form.setControlValue('Applicant_District', data.rows[0].values[6])
+                    this.form.setControlValue('Applicant_Privilege',
+                        { key: data.rows[0].values[7], value: data.rows[0].values[8] });
+                    this.form.setControlValue('Applicant_SocialStates',
+                        { key: data.rows[0].values[9], value: data.rows[0].values[10] });
+                    this.form.setControlValue('Applicant_Type',
+                        { key: data.rows[0].values[11], value: data.rows[0].values[12] });
+                    this.form.setControlValue('Applicant_Sex', sex);
+                    this.form.setControlValue('Applicant_BirthDate', BirthDate);
+                    this.form.setControlValue('Applicant_Email', data.rows[0].values[15]);
+                    this.form.setControlValue('Applicant_Comment', data.rows[0].values[16]);
+                    this.form.setControlValue('Applicant_PIB', data.rows[0].values[0]);
+                    this.form.setControlValue('Applicant_Id', data.rows[0].values[17]);
+                    this.form.setControlValue('Applicant_Age', data.rows[0].values[18]);
+                    this.form.setControlValue('ExecutorInRoleForObject', data.rows[0].values[19]);
+                    this.form.setControlValue('CardPhone', data.rows[0].values[20]);
 
-                this.form.setControlValue('Applicant_Building',
-                    { key: data.rows[0].values[1], value: data.rows[0].values[2] });
-                this.form.setControlValue('Applicant_Entrance', data.rows[0].values[4])
-                this.form.setControlValue('Applicant_Flat', data.rows[0].values[5])
-                this.form.setControlValue('Applicant_District', data.rows[0].values[6])
-                this.form.setControlValue('Applicant_Privilege',
-                    { key: data.rows[0].values[7], value: data.rows[0].values[8] });
-                this.form.setControlValue('Applicant_SocialStates',
-                    { key: data.rows[0].values[9], value: data.rows[0].values[10] });
-                this.form.setControlValue('Applicant_Type',
-                    { key: data.rows[0].values[11], value: data.rows[0].values[12] });
-                this.form.setControlValue('Applicant_Sex', sex);
-                this.form.setControlValue('Applicant_BirthDate', BirthDate);
-                this.form.setControlValue('Applicant_Email', data.rows[0].values[15]);
-                this.form.setControlValue('Applicant_Comment', data.rows[0].values[16]);
-                this.form.setControlValue('Applicant_PIB', data.rows[0].values[0]);
-                this.form.setControlValue('Applicant_Id', data.rows[0].values[17]);
-                this.form.setControlValue('Applicant_Age', data.rows[0].values[18]);
-                this.form.setControlValue('ExecutorInRoleForObject', data.rows[0].values[19]);
-                this.form.setControlValue('CardPhone', data.rows[0].values[20]);
+                }
             });
+            
+            document.getElementById('Applicant_Btn_Add').disabled = true;
         },
 
         // Подстановка ответственной организации и контрольной даты по типу вопроса 
