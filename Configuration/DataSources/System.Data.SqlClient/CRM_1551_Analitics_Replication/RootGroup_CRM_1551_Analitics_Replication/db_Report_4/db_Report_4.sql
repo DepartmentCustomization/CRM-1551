@@ -1,7 +1,7 @@
-    -- declare @org int = 3;
-    -- declare @dateFrom date = '2019-01-01';
-    -- declare @dateTo date = getdate();
-    -- declare @question_type_id int = 1;
+    --  declare @org int = 3;
+    --  declare @dateFrom date = '2019-01-01';
+    --  declare @dateTo date = getdate();
+    --  declare @question_type_id int = 1;
 
 
   if object_id('tempdb..##temp_QuestionTypes4monitoring') is not null drop table ##temp_QuestionTypes4monitoring
@@ -170,10 +170,6 @@ if object_id('tempdb..#temp_Main') is not null drop table #temp_Main
       WHERE [assignment_state_id] = 3 AND [AssignmentResultsId] = 8
          ) plan_prog ON [Assignments].id = plan_prog.[assignment_id]
   where convert(date, Assignments.registration_date) between @dateFrom and @dateTo
-
---  and [Assignments].main_executor = 1
-
---  select * from #temp_Main
  
   if object_id('tempdb..#temp_MainMain') is not null drop table #temp_MainMain
 

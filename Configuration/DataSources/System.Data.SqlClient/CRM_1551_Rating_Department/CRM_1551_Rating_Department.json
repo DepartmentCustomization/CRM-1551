@@ -1,0 +1,7 @@
+{
+    "ModelType": "Connection",
+    "Code": "CRM_1551_Rating_Department",
+    "Name": "CRM_1551_Rating_Department",
+    "ProviderCode": "System.Data.SqlClient",
+    "ConnectionString": "string:c:\\Dev\\ConnectionStrings\\CRM-1551\\CRM_1551_Rating_Department.connectionString.txt"
+  }
