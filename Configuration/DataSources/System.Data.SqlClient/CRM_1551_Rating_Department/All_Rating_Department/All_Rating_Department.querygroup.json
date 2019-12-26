@@ -1,0 +1,6 @@
+{
+    "ModelType": "QueryGroup",
+    "Code": "All_Rating_Department",
+    "Name": "Все",
+    "ConnectionCode": "CRM_1551_Rating_Department"
+  }
