@@ -23,3 +23,4 @@ WHERE
   #filter_columns#
   #sort_columns#
   OFFSET @pageOffsetRows ROWS FETCH next @pageLimitRows ROWS ONLY
+>>>>>>> 8609d2aa9dd3862b2b71c698d1c42e1df8aa7715
