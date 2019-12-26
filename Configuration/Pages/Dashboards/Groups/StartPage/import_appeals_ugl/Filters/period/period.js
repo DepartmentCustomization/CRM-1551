@@ -3,6 +3,7 @@
         placeholder: '',
         showTime: true,
         type: 'DateTime',
+        stepMinute: 1,
         onItemSelect: function(date) {
             this.yourFunctionName(date);
         },

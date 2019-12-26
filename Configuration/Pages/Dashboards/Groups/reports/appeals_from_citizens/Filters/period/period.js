@@ -3,6 +3,7 @@
         placeholder: 'Дата та час',
         showTime: true,
         type: 'DateTime',
+        stepMinute: 1,
         onItemSelect: function(date) {
             this.datePeriod(date);
         },
