@@ -29,8 +29,8 @@ set @q =
 FROM 
 	(  select DateCalc,
 		RDAId,
-		Indicator as Indicator
-		from [dbo].[Rating_IntegratedMetric_PerformanceLevel]
+		IntegratedMetric_PerformanceLevel as Indicator
+		from [dbo].[Rating_ResultTable]
 		where DateCalc between N'''+convert(nvarchar,@fromDate,121)+''' and N'''+convert(nvarchar,@toDate,121)+'''
 		and RatingId = '+rtrim(@RatingId)+' ) p
 PIVOT
@@ -39,8 +39,8 @@ MAX(Indicator)
 FOR [DateCalc] IN
 ( '+left(@str,len(@str)-1)+' )
 ) AS pvt
-left join (select   RDAId,  AVG(Indicator) as IndicatorAVG   
-		   from [dbo].[Rating_IntegratedMetric_PerformanceLevel]   
+left join (select   RDAId,  AVG(IntegratedMetric_PerformanceLevel) as IndicatorAVG   
+		   from [dbo].[Rating_ResultTable]   
 		   where DateCalc between N'''+convert(nvarchar,@fromDate,121)+''' and N'''+convert(nvarchar,@toDate,121)+'''
 		   and RatingId = '+rtrim(@RatingId)+'    
 		   group by RDAId
@@ -50,4 +50,5 @@ ORDER BY rnk DESC
 '
 --select @q
 exec (@q)
+
 
