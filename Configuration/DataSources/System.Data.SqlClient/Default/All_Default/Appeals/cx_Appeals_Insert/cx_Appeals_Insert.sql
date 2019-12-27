@@ -44,7 +44,7 @@ output [inserted].[Id] into @output (Id)
 declare @app_id int
 set @app_id = (select top 1 Id from @output)
 
-update [dbo].[Appeals] set registration_number =  concat( YEAR(getdate()),'-',MONTH(getdate()),'/',@app_id  ) where Id =  @app_id
+update [dbo].[Appeals] set registration_number =  concat( YEAR(getutcdate()),'-',MONTH(getutcdate()),'/',@app_id  ) where Id =  @app_id
 
 select @app_id as [Id]
 return;
