@@ -19,36 +19,36 @@
                     alignItems: 'middle',
                     columns: [
                         {
-                            dataField: 'count_rmz',
+                            dataField: 'Count_rmz',
                             caption: 'Минулий період',
                         }, {
-                            dataField: 'count_rpz',
+                            dataField: 'Count_rpz',
                             caption: 'Поточний місяць',
                         },
                     ]
                 }, {
-                    dataField: 'count_rzz',
+                    dataField: 'Count_rzz',
                     caption: 'з них, Зареєстровано',
                 }, {
-                    dataField: 'count_rzr',
+                    dataField: 'Count_rzr',
                     caption: 'з них, В роботі',
                 }, {
                     caption: 'Закриття виконавцем',
                     alignItems: 'middle',
                     columns: [
                         {
-                            dataField: 'count_rzvv',
+                            dataField: 'Count_rzvv',
                             caption: 'Вчасно',
                         }, {
-                            dataField: 'count_rzvnv',
+                            dataField: 'Count_rzvnv',
                             caption: 'Не вчасно',
                         }, {
-                            dataField: 'count_rzvp',
+                            dataField: 'Count_rzvp',
                             caption: 'Прострочено',
                         },
                     ]
                 }, {
-                    dataField: 'vids_vz',
+                    dataField: 'Vids_vz',
                     caption: '% вчасно закритих',
                 }, 
             ],
@@ -247,7 +247,7 @@
         },
     
         setQueryParams: function (message) {
-            this.config.query.parameterValues = [ { key: '@date', value: message.date}],
+            this.config.query.parameterValues = [ { key: '@Date', value: message.date}],
             this.loadData(this.afterLoadDataHandler);
         },
     
