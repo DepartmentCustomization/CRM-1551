@@ -1,10 +1,13 @@
--- declare @Id int = 5398676;
-declare @uglId int = (select Id from [Звернення УГЛ] where Appeals_id = @Id)
+-- declare @Id int = 5399849;
+
+declare @uglId int = (select top 1 Id from [Звернення УГЛ] where Appeals_id = @Id)
 declare @full_phone1 nvarchar(500) = (select top 1 Телефон from [Звернення УГЛ] where Id = @uglId )
 
-declare @numbers table (uglId int, num nvarchar(15));
+declare @numbers table (rownum int, uglId int, num nvarchar(15));
 insert into @numbers
-select @uglId, value from string_split(@full_phone1, ',');
+SELECT 
+  ROW_NUMBER() OVER(ORDER BY value ASC), 
+  @uglId, value from string_split(@full_phone1, ',');
 
 update @numbers set num = replace(num,' ', '')
 
@@ -22,13 +25,13 @@ when (LEFT(num, 1) = '8') then RIGHT(num, len(num)-1)
 end
 
 declare @phone_qty int = (select count(1) from @numbers);
-declare @step int = 0;
+declare @step int = 1;
 declare @full_phone2 nvarchar(500);
 declare @current_phone nvarchar(10);
 
-while (@step < @phone_qty)
+while (@step <= @phone_qty)
 begin
-set @current_phone = (select num from @numbers ORDER BY num OFFSET @step ROWS FETCH NEXT @step+1 ROWS ONLY);
+set @current_phone = (select num from @numbers ORDER BY rownum ASC OFFSET @step-1 ROW FETCH NEXT 1 ROWS ONLY);
 set @full_phone2 = isnull(@full_phone2,'') + IIF(len(@full_phone2)>1,N', ' + @current_phone, @current_phone)
 set @step += 1;
 end
