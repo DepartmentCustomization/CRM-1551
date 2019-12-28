@@ -136,6 +136,13 @@
       "FieldType": "number",
       "Position": 199,
       "IsHidden": true
+    },
+    {
+      "Code": "editable",
+      "Name": "editable",
+      "FieldType": "checkbox",
+      "Position": 200,
+      "IsHidden": true
     }
   ]
 }

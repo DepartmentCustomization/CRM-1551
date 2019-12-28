@@ -1,4 +1,5 @@
 --declare @Id int =2231581;
+--declare @user_Id nvarchar =N'  ';
 
 SELECT distinct top 1
 	   [Assignments].[Id]
@@ -83,6 +84,9 @@ SELECT distinct top 1
 		,Assignments.executor_person_id
 		-- ,pe.Id as executor_person_id
 		,concat(p.[name], ' (' + p.[position] +')') as executor_person_name
+		--,isnull(orr.editable, 'false') editable
+        , case when orr.editable='true' then convert(bit, 'true') else convert(bit, 'false') end editable
+		--,convert(bit, 'true') editable
   FROM [dbo].[Assignments]
 	left join AssignmentTypes aty on aty.Id = Assignments.assignment_type_id
 	left join AssignmentStates ast on ast.Id = Assignments.assignment_state_id
@@ -119,4 +123,9 @@ SELECT distinct top 1
     left join [Organizations] org_bal on balans.executor_id=org_bal.Id
 	-- left join dbo.[PersonExecutorChoose] as pe on pe.Id = Assignments.executor_person_id
 	left join dbo.[Positions] as p on p.Id = Assignments.executor_person_id
+	left join (select distinct o.organization_id, o.editable
+  from [Positions] p inner join [OrganizationInResponsibilityRights] o on p.Id=o.position_id
+  where p.[programuser_id]=@user_Id --and o.organization_id=a.ex\
+  --order by case when o.editable='true' then 1 else 2 end
+  ) orr on perf.Id=orr.organization_id
  where Assignments.Id = @Id
