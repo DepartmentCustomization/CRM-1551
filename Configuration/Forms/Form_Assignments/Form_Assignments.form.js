@@ -13,7 +13,12 @@
         previous_result: '',
 
         init: function() {
-
+            //debugger
+            //режим чтения для тех пользователей, которым не доступно редактирование
+            if (this.form.getControlValue('editable') === false) {
+                this.navigateTo('/sections/Assignments/view/' + this.id);
+            
+            }
             // в поле виконавець выводить только подрядные огранизации, родитель - Assignments.organization_id на кого пришло доручення
             let param_ass_id = [
                 { parameterCode: '@ass_id', parameterValue: this.id }
@@ -231,6 +236,8 @@
 
             this.form.onControlValueChanged('result_id', this.filterResolution.bind(this));
             this.form.onControlValueChanged('performer_id', this.chooseExecutorPerson.bind(this));
+
+               
         },
         /*END INIT */
 
