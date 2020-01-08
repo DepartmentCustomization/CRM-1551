@@ -1,6 +1,6 @@
 {
   "ModelType": "Query",
-  "Code": "ApplicantConnectionEfforts_SelectRows",
+  "Code": "ApplicantConEfforts_SRows",
   "Name": "ApplicantConnectionEfforts_SelectRows",
   "ConnectionCode": "CRM_1551_Bot_Integration",
   "IsUsedForRightsFilter": false,
