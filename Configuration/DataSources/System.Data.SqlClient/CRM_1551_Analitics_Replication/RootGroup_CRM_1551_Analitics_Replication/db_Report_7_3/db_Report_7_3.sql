@@ -1,5 +1,5 @@
---declare @dateFrom datetime = '2020-01-01 00:00:00';
---declare @dateTo datetime = '2020-06-01 00:00:00';
+--  declare @dateFrom datetime = '2019-01-01 00:00:00';
+--  declare @dateTo datetime = '2019-12-31 00:00:00';
 
 -- declare @filterTo datetime = dateadd(second,59,(dateadd(minute,59,(dateadd(hour,23,cast(cast(dateadd(day,0,@dateTo) as date) as datetime))))));
 
@@ -41,10 +41,11 @@ left join (
 select source_name, 
 count(q.Id) AllPrev
 from #sources 
-left join ReceiptSources rs on rs.name = #sources.source_name
-left join Appeals a on a.receipt_source_id = rs.Id
-left join Questions q on q.appeal_id = a.Id
-where year(q.registration_date) = 
+join ReceiptSources rs on rs.name = #sources.source_name
+join Appeals a on a.receipt_source_id = rs.Id
+join Questions q on q.appeal_id = a.Id
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes)
+		   and year(q.registration_date) = 
 		   @previousYear
 		   and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -53,7 +54,8 @@ group by #sources.source_name
 UNION 
 select 'КБУ' as source_name, isnull(count(Id),0)
 from Questions q
-where year(q.registration_date) = 
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes)
+		   and year(q.registration_date) = 
 		   @previousYear
 		   and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -66,7 +68,8 @@ from #sources
 left join ReceiptSources rs on rs.name = #sources.source_name
 left join Appeals a on a.receipt_source_id = rs.Id
 left join Questions q on q.appeal_id = a.Id
-where year(q.registration_date) = 
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes)
+		   and year(q.registration_date) = 
 		                        @currentYear
 		   and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -75,7 +78,8 @@ group by #sources.source_name
 UNION
 select 'КБУ' as source_name, isnull(count(Id),0) Val
 from Questions q
-where year(registration_date) = 
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes)
+		   and year(registration_date) = 
                                @currentYear
 		   and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -95,10 +99,7 @@ from #sources
 left join ReceiptSources rs on rs.name = #sources.source_name
 left join Appeals a on a.receipt_source_id = rs.Id
 left join Questions q on q.appeal_id = a.Id
-				 left join QuestionTypes qt on qt.Id = q.question_type_id
-				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
-				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
-where group_question_id = 5
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 5)
 and year(q.registration_date) = 
 		   @previousYear
            and datepart(dayofyear, q.registration_date) 
@@ -108,9 +109,8 @@ group by #sources.source_name
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0)
 from Questions q
-left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
-where group_question_id = 5 and 
-year(q.registration_date) = 
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 5) 
+and year(q.registration_date) = 
 		   @previousYear
 		   and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -123,11 +123,8 @@ from #sources
 left join ReceiptSources rs on rs.name = #sources.source_name
 left join Appeals a on a.receipt_source_id = rs.Id
 left join Questions q on q.appeal_id = a.Id
-				 left join QuestionTypes qt on qt.Id = q.question_type_id
-				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
-				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
-where group_question_id = 5 and
-year(q.registration_date) = 
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 5)
+and year(q.registration_date) = 
 		                        @currentYear
 		   and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -136,9 +133,8 @@ group by #sources.source_name
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0) Val
 from Questions q
-left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
-where group_question_id = 5 and 
-year(registration_date) =  
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 5) 
+and year(registration_date) =  
                          @currentYear
 		   and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -158,11 +154,8 @@ from #sources
 left join ReceiptSources rs on rs.name = #sources.source_name
 left join Appeals a on a.receipt_source_id = rs.Id
 left join Questions q on q.appeal_id = a.Id
-				 left join QuestionTypes qt on qt.Id = q.question_type_id
-				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
-				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
-where group_question_id = 6 and
-year(q.registration_date) = 
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 6) 
+and year(q.registration_date) = 
 		   @previousYear
 		   and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -171,9 +164,8 @@ group by #sources.source_name
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0)
 from Questions q
-left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
-where group_question_id = 6 and 
-year(q.registration_date) = 
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 6) 
+and year(q.registration_date) = 
 		   @previousYear
 		   and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -186,10 +178,7 @@ from #sources
 left join ReceiptSources rs on rs.name = #sources.source_name
 left join Appeals a on a.receipt_source_id = rs.Id
 left join Questions q on q.appeal_id = a.Id
-				 left join QuestionTypes qt on qt.Id = q.question_type_id
-				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
-				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
-where group_question_id = 6
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 6) 
 and year(q.registration_date) = 
                                @currentYear
 		   and datepart(dayofyear, q.registration_date) 
@@ -199,9 +188,8 @@ group by #sources.source_name
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0) Val
 from Questions q
-left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
-where group_question_id = 6 and 
-year(registration_date) = 
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 6) 
+and year(registration_date) = 
                          @currentYear
 	       and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -221,11 +209,8 @@ from #sources
 left join ReceiptSources rs on rs.name = #sources.source_name
 left join Appeals a on a.receipt_source_id = rs.Id
 left join Questions q on q.appeal_id = a.Id
-				 left join QuestionTypes qt on qt.Id = q.question_type_id
-				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
-				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
-where group_question_id = 7 and 
-year(q.registration_date) = 
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 7) 
+and year(q.registration_date) = 
 		   @previousYear
            and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -234,9 +219,8 @@ group by #sources.source_name
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0)
 from Questions q
-left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
-where group_question_id = 7 and 
-year(q.registration_date) = 
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 7)
+and year(q.registration_date) = 
 		   @previousYear
            and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -249,10 +233,7 @@ from #sources
 left join ReceiptSources rs on rs.name = #sources.source_name
 left join Appeals a on a.receipt_source_id = rs.Id
 left join Questions q on q.appeal_id = a.Id
-				 left join QuestionTypes qt on qt.Id = q.question_type_id
-				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
-				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
-where group_question_id = 7
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 7)
 and year(q.registration_date) = 
                                @currentYear
 		   and datepart(dayofyear, q.registration_date) 
@@ -262,9 +243,8 @@ group by #sources.source_name
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0) Val
 from Questions q
-left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
-where group_question_id = 7 and 
-year(registration_date) = 
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 7)
+and year(registration_date) = 
                          @currentYear
 		   and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -284,11 +264,8 @@ from #sources
 left join ReceiptSources rs on rs.name = #sources.source_name
 left join Appeals a on a.receipt_source_id = rs.Id
 left join Questions q on q.appeal_id = a.Id
-				 left join QuestionTypes qt on qt.Id = q.question_type_id
-				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
-				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
-where group_question_id = 8 and
-year(q.registration_date) = 
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 8)
+and year(q.registration_date) = 
 		   @previousYear
            and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -297,9 +274,8 @@ group by #sources.source_name
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0)
 from Questions q
-left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
-where group_question_id = 8 and 
-year(q.registration_date) = 
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 8)
+and year(q.registration_date) = 
 		   @previousYear
            and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -312,10 +288,7 @@ from #sources
 left join ReceiptSources rs on rs.name = #sources.source_name
 left join Appeals a on a.receipt_source_id = rs.Id
 left join Questions q on q.appeal_id = a.Id
-				 left join QuestionTypes qt on qt.Id = q.question_type_id
-				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
-				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
-where group_question_id = 8
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 8)
 and year(q.registration_date) = 
                               @currentYear
 		   and datepart(dayofyear, q.registration_date) 
@@ -325,9 +298,8 @@ group by #sources.source_name
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0) Val
 from Questions q
-left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
-where group_question_id = 8 and 
-year(registration_date) = 
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 8)
+and year(registration_date) = 
                          @currentYear
 	       and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -347,11 +319,8 @@ from #sources
 left join ReceiptSources rs on rs.name = #sources.source_name
 left join Appeals a on a.receipt_source_id = rs.Id
 left join Questions q on q.appeal_id = a.Id
-				 left join QuestionTypes qt on qt.Id = q.question_type_id
-				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
-				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
-where group_question_id = 9 and
-year(q.registration_date) = 
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 9)
+and year(q.registration_date) = 
 		   @previousYear
 		   and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -360,9 +329,8 @@ group by #sources.source_name
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0)
 from Questions q
-left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
-where group_question_id = 9 and 
-year(q.registration_date) = 
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 9) 
+and year(q.registration_date) = 
 		   @previousYear
 		   and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -375,10 +343,7 @@ from #sources
 left join ReceiptSources rs on rs.name = #sources.source_name
 left join Appeals a on a.receipt_source_id = rs.Id
 left join Questions q on q.appeal_id = a.Id
-				 left join QuestionTypes qt on qt.Id = q.question_type_id
-				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
-				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
-where group_question_id = 9
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 9)
 and year(q.registration_date) = 
                               @currentYear
 		   and datepart(dayofyear, q.registration_date) 
@@ -388,9 +353,8 @@ group by #sources.source_name
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0) Val
 from Questions q
-left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
-where group_question_id = 9 and 
-year(registration_date) = 
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 9)
+and year(registration_date) = 
                          @currentYear
 	       and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -410,11 +374,8 @@ from #sources
 left join ReceiptSources rs on rs.name = #sources.source_name
 left join Appeals a on a.receipt_source_id = rs.Id
 left join Questions q on q.appeal_id = a.Id
-				 left join QuestionTypes qt on qt.Id = q.question_type_id
-				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
-				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
-where group_question_id = 10 and
-year(q.registration_date) = 
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 10) 
+and year(q.registration_date) = 
 		   @previousYear
            and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -423,9 +384,8 @@ group by #sources.source_name
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0) Val
 from Questions q
-left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
-where group_question_id = 10 and 
-year(q.registration_date) = 
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 10) 
+and year(q.registration_date) = 
 		   @previousYear
            and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -438,10 +398,7 @@ from #sources
 left join ReceiptSources rs on rs.name = #sources.source_name
 left join Appeals a on a.receipt_source_id = rs.Id
 left join Questions q on q.appeal_id = a.Id
-				 left join QuestionTypes qt on qt.Id = q.question_type_id
-				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
-				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
-where group_question_id = 10
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 10)
 and year(q.registration_date) = 
                               @currentYear
 		   and datepart(dayofyear, q.registration_date) 
@@ -451,8 +408,7 @@ group by #sources.source_name
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0) Val
 from Questions q
-left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
-where group_question_id = 10 and 
+where q.question_type_id in (select type_question_id from QGroupIncludeQTypes where group_question_id = 10) and 
 year(registration_date) = 
                         @currentYear
 	       and datepart(dayofyear, q.registration_date) 
