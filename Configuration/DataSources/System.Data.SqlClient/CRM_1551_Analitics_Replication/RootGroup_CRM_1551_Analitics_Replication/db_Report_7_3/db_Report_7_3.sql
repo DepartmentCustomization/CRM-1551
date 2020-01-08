@@ -1,7 +1,13 @@
- --declare @dateFrom datetime = '2019-01-01 00:00:00';
- --declare @dateTo datetime = current_timestamp;
+--declare @dateFrom datetime = '2020-01-01 00:00:00';
+--declare @dateTo datetime = '2020-06-01 00:00:00';
 
- declare @filterTo datetime = dateadd(second,59,(dateadd(minute,59,(dateadd(hour,23,cast(cast(dateadd(day,0,@dateTo) as date) as datetime))))));
+-- declare @filterTo datetime = dateadd(second,59,(dateadd(minute,59,(dateadd(hour,23,cast(cast(dateadd(day,0,@dateTo) as date) as datetime))))));
+
+declare @currentYear int = year(@dateFrom);
+declare @previousYear int = year(@dateFrom)-1;
+
+declare @dayNumStart int = datepart(dayofyear, @dateFrom);
+declare @dayNumEnd int = datepart(dayofyear, @dateTo);
 
 declare @tab_All table (source nvarchar(200)COLLATE Ukrainian_CI_AS, prev_val int, cur_val int);
 declare @tab_Agr table (source nvarchar(200)COLLATE Ukrainian_CI_AS, prev_val int, cur_val int);
@@ -32,21 +38,27 @@ insert into @tab_All ([source], prev_val, cur_val)
 select z.source_name, isnull(AllPrev,0) AllPrev, isnull(AllCur,0) AllCur
 from #sources z
 left join (
-select source_name, count(q.Id) AllPrev
+select source_name, 
+count(q.Id) AllPrev
 from #sources 
 left join ReceiptSources rs on rs.name = #sources.source_name
 left join Appeals a on a.receipt_source_id = rs.Id
 left join Questions q on q.appeal_id = a.Id
-where year(q.registration_date) = (select dateadd(year, -1, year(current_timestamp)))
-and q.registration_date between dateadd(year, -1, year(@dateFrom))
-and dateadd(year, -1, year(@filterTo)) 
+where year(q.registration_date) = 
+		   @previousYear
+		   and datepart(dayofyear, q.registration_date) 
+		   between 
+		   @dayNumStart and @dayNumEnd
 group by #sources.source_name 
 UNION 
 select 'КБУ' as source_name, isnull(count(Id),0)
 from Questions q
-where year(registration_date) = (select dateadd(year, -1, year(current_timestamp))) 
-and q.registration_date between dateadd(year, -1, year(@dateFrom))
-and dateadd(year, -1, year(@filterTo))) s on s.source_name = z.source_name
+where year(q.registration_date) = 
+		   @previousYear
+		   and datepart(dayofyear, q.registration_date) 
+		   between 
+		   @dayNumStart and @dayNumEnd
+		   ) s on s.source_name = z.source_name
 -- Теперішній рік
 left join (
 select source_name, count(q.Id) AllCur
@@ -54,14 +66,21 @@ from #sources
 left join ReceiptSources rs on rs.name = #sources.source_name
 left join Appeals a on a.receipt_source_id = rs.Id
 left join Questions q on q.appeal_id = a.Id
-where year(q.registration_date) = year(current_timestamp)
-and q.registration_date between @dateFrom and @filterTo 
+where year(q.registration_date) = 
+		                        @currentYear
+		   and datepart(dayofyear, q.registration_date) 
+		   between 
+		   @dayNumStart and @dayNumEnd 
 group by #sources.source_name 
 UNION
 select 'КБУ' as source_name, isnull(count(Id),0) Val
 from Questions q
-where year(registration_date) = year(current_timestamp)
-and q.registration_date between @dateFrom and @filterTo) ss on ss.source_name = z.source_name
+where year(registration_date) = 
+                               @currentYear
+		   and datepart(dayofyear, q.registration_date) 
+		   between 
+		  @dayNumStart and @dayNumEnd
+		  ) ss on ss.source_name = z.source_name
 end
 --select * from @tab_All
 --- Аграрної політики і земельних відносин
@@ -80,18 +99,23 @@ left join Questions q on q.appeal_id = a.Id
 				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
 				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
 where group_question_id = 5
-and year(q.registration_date) = (select dateadd(year, -1, year(current_timestamp)))
-and q.registration_date between dateadd(year, -1, year(@dateFrom))
-and dateadd(year, -1, year(@filterTo)) 
+and year(q.registration_date) = 
+		   @previousYear
+           and datepart(dayofyear, q.registration_date) 
+		   between 
+		   @dayNumStart and @dayNumEnd
 group by #sources.source_name 
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0)
 from Questions q
 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
 where group_question_id = 5 and 
-year(registration_date) = (select dateadd(year, -1, year(current_timestamp)))
-and q.registration_date between dateadd(year, -1, year(@dateFrom))
-and dateadd(year, -1, year(@filterTo)) ) s on s.source_name = z.source_name
+year(q.registration_date) = 
+		   @previousYear
+		   and datepart(dayofyear, q.registration_date) 
+		   between 
+		   @dayNumStart and @dayNumEnd
+		   ) s on s.source_name = z.source_name
 -- Теперішній рік
 left join (
 select source_name, count(q.Id) AgrCur
@@ -102,17 +126,23 @@ left join Questions q on q.appeal_id = a.Id
 				 left join QuestionTypes qt on qt.Id = q.question_type_id
 				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
 				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
-where group_question_id = 5
-and year(q.registration_date) = year(current_timestamp) 
-and q.registration_date between @dateFrom and @filterTo
+where group_question_id = 5 and
+year(q.registration_date) = 
+		                        @currentYear
+		   and datepart(dayofyear, q.registration_date) 
+		   between 
+		  @dayNumStart and @dayNumEnd
 group by #sources.source_name 
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0) Val
 from Questions q
 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
 where group_question_id = 5 and 
-year(registration_date) = year(current_timestamp)
-and q.registration_date between @dateFrom and @filterTo
+year(registration_date) =  
+                         @currentYear
+		   and datepart(dayofyear, q.registration_date) 
+		   between 
+@dayNumStart and @dayNumEnd
 ) ss on ss.source_name = z.source_name
 end
 --select * from @tab_Agr
@@ -131,19 +161,24 @@ left join Questions q on q.appeal_id = a.Id
 				 left join QuestionTypes qt on qt.Id = q.question_type_id
 				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
 				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
-where group_question_id = 6
-and year(q.registration_date) = (select dateadd(year, -1, year(current_timestamp)))
-and q.registration_date between dateadd(year, -1, year(@dateFrom))
-and dateadd(year, -1, year(@filterTo)) 
+where group_question_id = 6 and
+year(q.registration_date) = 
+		   @previousYear
+		   and datepart(dayofyear, q.registration_date) 
+		   between 
+           @dayNumStart and @dayNumEnd
 group by #sources.source_name 
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0)
 from Questions q
 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
 where group_question_id = 6 and 
-year(registration_date) = (select dateadd(year, -1, year(current_timestamp))) 
-and q.registration_date between dateadd(year, -1, year(@dateFrom))
-and dateadd(year, -1, year(@filterTo))) s on s.source_name = z.source_name
+year(q.registration_date) = 
+		   @previousYear
+		   and datepart(dayofyear, q.registration_date) 
+		   between 
+		   @dayNumStart and @dayNumEnd
+		   ) s on s.source_name = z.source_name
 -- Теперішній рік
 left join (
 select source_name, count(q.Id) TransCur
@@ -155,16 +190,22 @@ left join Questions q on q.appeal_id = a.Id
 				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
 				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
 where group_question_id = 6
-and year(q.registration_date) = year(current_timestamp) 
-and q.registration_date between @dateFrom and @filterTo
+and year(q.registration_date) = 
+                               @currentYear
+		   and datepart(dayofyear, q.registration_date) 
+		   between 
+           @dayNumStart and @dayNumEnd
 group by #sources.source_name 
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0) Val
 from Questions q
 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
 where group_question_id = 6 and 
-year(registration_date) = year(current_timestamp)
-and q.registration_date between @dateFrom and @filterTo
+year(registration_date) = 
+                         @currentYear
+	       and datepart(dayofyear, q.registration_date) 
+		   between 
+           @dayNumStart and @dayNumEnd
 ) ss on ss.source_name = z.source_name
 end
 --select * from @tab_Trans
@@ -183,19 +224,24 @@ left join Questions q on q.appeal_id = a.Id
 				 left join QuestionTypes qt on qt.Id = q.question_type_id
 				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
 				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
-where group_question_id = 7
-and year(q.registration_date) = (select dateadd(year, -1, year(current_timestamp))) 
-and q.registration_date between dateadd(year, -1, year(@dateFrom))
-and dateadd(year, -1, year(@filterTo))
+where group_question_id = 7 and 
+year(q.registration_date) = 
+		   @previousYear
+           and datepart(dayofyear, q.registration_date) 
+		   between 
+		   @dayNumStart and @dayNumEnd
 group by #sources.source_name 
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0)
 from Questions q
 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
 where group_question_id = 7 and 
-year(registration_date) = (select dateadd(year, -1, year(current_timestamp)))
-and q.registration_date between dateadd(year, -1, year(@dateFrom))
-and dateadd(year, -1, year(@filterTo))) s on s.source_name = z.source_name
+year(q.registration_date) = 
+		   @previousYear
+           and datepart(dayofyear, q.registration_date) 
+		   between 
+		   @dayNumStart and @dayNumEnd
+		   ) s on s.source_name = z.source_name
 -- Теперішній рік
 left join (
 select source_name, count(q.Id) FinanceCur
@@ -207,16 +253,22 @@ left join Questions q on q.appeal_id = a.Id
 				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
 				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
 where group_question_id = 7
-and year(q.registration_date) = year(current_timestamp) 
-and q.registration_date between @dateFrom and @filterTo
+and year(q.registration_date) = 
+                               @currentYear
+		   and datepart(dayofyear, q.registration_date) 
+		   between 
+		   @dayNumStart and @dayNumEnd
 group by #sources.source_name 
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0) Val
 from Questions q
 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
 where group_question_id = 7 and 
-year(registration_date) = year(current_timestamp)
-and q.registration_date between @dateFrom and @filterTo
+year(registration_date) = 
+                         @currentYear
+		   and datepart(dayofyear, q.registration_date) 
+		   between 
+		   @dayNumStart and @dayNumEnd
 ) ss on ss.source_name = z.source_name
 end
 --select * from @tab_Finance
@@ -235,19 +287,24 @@ left join Questions q on q.appeal_id = a.Id
 				 left join QuestionTypes qt on qt.Id = q.question_type_id
 				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
 				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
-where group_question_id = 8
-and year(q.registration_date) = (select dateadd(year, -1, year(current_timestamp))) 
-and q.registration_date between dateadd(year, -1, year(@dateFrom))
-and dateadd(year, -1, year(@filterTo))
+where group_question_id = 8 and
+year(q.registration_date) = 
+		   @previousYear
+           and datepart(dayofyear, q.registration_date) 
+		   between 
+		   @dayNumStart and @dayNumEnd
 group by #sources.source_name 
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0)
 from Questions q
 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
 where group_question_id = 8 and 
-year(registration_date) = (select dateadd(year, -1, year(current_timestamp))) 
-and q.registration_date between dateadd(year, -1, year(@dateFrom))
-and dateadd(year, -1, year(@filterTo))) s on s.source_name = z.source_name
+year(q.registration_date) = 
+		   @previousYear
+           and datepart(dayofyear, q.registration_date) 
+		   between 
+		   @dayNumStart and @dayNumEnd
+		   ) s on s.source_name = z.source_name
 -- Теперішній рік
 left join (
 select source_name, count(q.Id) SocialCur
@@ -259,16 +316,22 @@ left join Questions q on q.appeal_id = a.Id
 				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
 				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
 where group_question_id = 8
-and year(q.registration_date) = year(current_timestamp) 
-and q.registration_date between @dateFrom and @filterTo
+and year(q.registration_date) = 
+                              @currentYear
+		   and datepart(dayofyear, q.registration_date) 
+		   between 
+		   @dayNumStart and @dayNumEnd
 group by #sources.source_name 
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0) Val
 from Questions q
 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
 where group_question_id = 8 and 
-year(registration_date) = year(current_timestamp)
-and q.registration_date between @dateFrom and @filterTo
+year(registration_date) = 
+                         @currentYear
+	       and datepart(dayofyear, q.registration_date) 
+		   between 
+		   @dayNumStart and @dayNumEnd
 ) ss on ss.source_name = z.source_name
 end
 --select * from @tab_Social
@@ -287,19 +350,24 @@ left join Questions q on q.appeal_id = a.Id
 				 left join QuestionTypes qt on qt.Id = q.question_type_id
 				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
 				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
-where group_question_id = 9
-and year(q.registration_date) = (select dateadd(year, -1, year(current_timestamp)))
-and q.registration_date between dateadd(year, -1, year(@dateFrom))
-and dateadd(year, -1, year(@filterTo)) 
+where group_question_id = 9 and
+year(q.registration_date) = 
+		   @previousYear
+		   and datepart(dayofyear, q.registration_date) 
+		   between 
+		   @dayNumStart and @dayNumEnd
 group by #sources.source_name 
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0)
 from Questions q
 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
 where group_question_id = 9 and 
-year(registration_date) = (select dateadd(year, -1, year(current_timestamp))) 
-and q.registration_date between dateadd(year, -1, year(@dateFrom))
-and dateadd(year, -1, year(@filterTo))) s on s.source_name = z.source_name
+year(q.registration_date) = 
+		   @previousYear
+		   and datepart(dayofyear, q.registration_date) 
+		   between 
+		   @dayNumStart and @dayNumEnd
+		   ) s on s.source_name = z.source_name
 -- Теперішній рік
 left join (
 select source_name, count(q.Id) WorkCur
@@ -311,16 +379,22 @@ left join Questions q on q.appeal_id = a.Id
 				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
 				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
 where group_question_id = 9
-and year(q.registration_date) = year(current_timestamp) 
-and q.registration_date between @dateFrom and @filterTo
+and year(q.registration_date) = 
+                              @currentYear
+		   and datepart(dayofyear, q.registration_date) 
+		   between 
+		   @dayNumStart and @dayNumEnd
 group by #sources.source_name 
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0) Val
 from Questions q
 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
 where group_question_id = 9 and 
-year(registration_date) = year(current_timestamp)
-and q.registration_date between @dateFrom and @filterTo
+year(registration_date) = 
+                         @currentYear
+	       and datepart(dayofyear, q.registration_date) 
+		   between 
+		   @dayNumStart and @dayNumEnd
 ) ss on ss.source_name = z.source_name
 end
 --select * from @tab_Work
@@ -339,19 +413,24 @@ left join Questions q on q.appeal_id = a.Id
 				 left join QuestionTypes qt on qt.Id = q.question_type_id
 				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
 				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
-where group_question_id = 10
-and year(q.registration_date) = (select dateadd(year, -1, year(current_timestamp)))
-and q.registration_date between dateadd(year, -1, year(@dateFrom))
-and dateadd(year, -1, year(@filterTo)) 
+where group_question_id = 10 and
+year(q.registration_date) = 
+		   @previousYear
+           and datepart(dayofyear, q.registration_date) 
+		   between 
+		   @dayNumStart and @dayNumEnd
 group by #sources.source_name 
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0) Val
 from Questions q
 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
 where group_question_id = 10 and 
-year(registration_date) = (select dateadd(year, -1, year(current_timestamp))) 
-and q.registration_date between dateadd(year, -1, year(@dateFrom))
-and dateadd(year, -1, year(@filterTo))) s on s.source_name = z.source_name
+year(q.registration_date) = 
+		   @previousYear
+           and datepart(dayofyear, q.registration_date) 
+		   between 
+		   @dayNumStart and @dayNumEnd
+		   ) s on s.source_name = z.source_name
 -- Теперішній рік
 left join (
 select source_name, count(q.Id) HealthCur
@@ -363,16 +442,22 @@ left join Questions q on q.appeal_id = a.Id
 				 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = qt.Id
 				 left join QuestionGroups qg on qg.Id = qgiqt.group_question_id
 where group_question_id = 10
-and year(q.registration_date) = year(current_timestamp) 
-and q.registration_date between @dateFrom and @filterTo
+and year(q.registration_date) = 
+                              @currentYear
+		   and datepart(dayofyear, q.registration_date) 
+		   between 
+		   @dayNumStart and @dayNumEnd
 group by #sources.source_name 
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0) Val
 from Questions q
 left join QGroupIncludeQTypes qgiqt on qgiqt.type_question_id = q.question_type_id
 where group_question_id = 10 and 
-year(registration_date) = year(current_timestamp)
-and q.registration_date between @dateFrom and @filterTo
+year(registration_date) = 
+                        @currentYear
+	       and datepart(dayofyear, q.registration_date) 
+		   between 
+           @dayNumStart and @dayNumEnd
 ) ss on ss.source_name = z.source_name
 end
 --select * from @tab_Health
@@ -421,7 +506,8 @@ end
 	 when [source] = 'Сайт/моб. додаток' then 'з них, через офіційний веб-портал та додатки для мобільних пристроїв'
 	 when [source] = 'УГЛ' then 'з них, через ДУ «Урядовий контактний центр»'
 	 when [source] = 'Телеефір' then 'з них, у рамках проекту «Прямий зв`язок з київською міською владаю»'
-	 else '' end as [source],
+	 else '' end as
+	 [source],
 	 IIF(prevAll = '0', '-', prevAll) prevAll, IIF(curAll = '0', '-', curAll) curAll,
 	 IIF(prevAgr = '0', '-', prevAgr) prevAgr, IIF(curAgr = '0', '-', curAgr) curAgr,
 	 IIF(prevTrans = '0', '-', prevTrans) prevTrans, IIF(curTrans = '0', '-', curTrans) curTrans,
