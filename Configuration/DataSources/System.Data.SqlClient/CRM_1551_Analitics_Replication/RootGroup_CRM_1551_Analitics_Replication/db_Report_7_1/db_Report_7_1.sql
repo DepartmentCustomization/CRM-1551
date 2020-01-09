@@ -48,7 +48,7 @@ from Questions q
  -- Всього за попередній 
 left join (select cast(count(Id) as nvarchar) as qtyPrev
            from Questions 
-		   where question_type_id in (select type_question_id from QGroupIncludeQTypes)
+		   where question_type_id is not null
 		   and year(registration_date) = 
 		   @previousYear
 		   and datepart(dayofyear, registration_date) 
@@ -58,7 +58,7 @@ left join (select cast(count(Id) as nvarchar) as qtyPrev
  -- Всього за теперішній
 left join (select cast(count(Id) as nvarchar) as qtyCurrent
            from Questions 
-		   where question_type_id in (select type_question_id from QGroupIncludeQTypes)
+		   where question_type_id is not null
 		   and year(registration_date) = 
 		                        @currentYear
 		   and datepart(dayofyear, registration_date) 

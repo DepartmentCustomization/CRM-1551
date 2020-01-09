@@ -1,5 +1,6 @@
---declare @dateFrom datetime = '2020-01-01 00:00:00';
---declare @dateTo datetime = '2020-06-01 00:00:00';
+-- declare @dateFrom datetime = '2019-01-01 00:00:00';
+-- declare @dateTo datetime = '2019-12-31 00:00:00';
+
 --declare @filterTo datetime = dateadd(second,59,(dateadd(minute,59,(dateadd(hour,23,cast(cast(dateadd(day,0,@dateTo) as date) as datetime))))));
 
 declare @currentYear int = year(@dateFrom);
@@ -391,7 +392,90 @@ declare @result table (source nvarchar(200),
 					   curResidential nvarchar(10), prevEcology nvarchar(10), curEcology nvarchar(10),
 					   prevLaw nvarchar(10), curLaw nvarchar(10), prevFamily nvarchar(10),
 					   curFamily nvarchar(10), prevSince nvarchar(10), curSince nvarchar(10) ) 
+-------------> Преобразование и обнова для верочки данных <--------------     
+     -- Communal
+		DECLARE
+		@prevQtyCom_rs2 INT = 
+		(select sum(isnull(prev_val,0)) from @tab_Com where source in ('КБУ') )
+		- (select sum(isnull(prev_val,0)) from @tab_Com where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
 
+		 @curQtyCom_rs2 INT = 
+		 (select sum(isnull(cur_val,0)) from @tab_Com where source in ('КБУ') )
+		- (select sum(isnull(cur_val,0)) from @tab_Com where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+	 -- Residential
+	     @prevQtyRes_rs2 INT = 
+		(select sum(isnull(prev_val,0)) from @tab_Res where source in ('КБУ') )
+		- (select sum(isnull(prev_val,0)) from @tab_Res where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+
+		 @curQtyRes_rs2 INT = 
+		 (select sum(isnull(cur_val,0)) from @tab_Res where source in ('КБУ') )
+		- (select sum(isnull(cur_val,0)) from @tab_Res where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+     -- Ecology
+	     @prevQtyEco_rs2 INT = 
+		(select sum(isnull(prev_val,0)) from @tab_Eco where source in ('КБУ') )
+		- (select sum(isnull(prev_val,0)) from @tab_Eco where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+
+		 @curQtyEco_rs2 INT = 
+		 (select sum(isnull(cur_val,0)) from @tab_Eco where source in ('КБУ') )
+		- (select sum(isnull(cur_val,0)) from @tab_Eco where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ), 
+     -- Law
+	    @prevQtyLaw_rs2 INT = 
+		(select sum(isnull(prev_val,0)) from @tab_Law where source in ('КБУ') )
+		- (select sum(isnull(prev_val,0)) from @tab_Law where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+
+		 @curQtyLaw_rs2 INT = 
+		 (select sum(isnull(cur_val,0)) from @tab_Law where source in ('КБУ') )
+		- (select sum(isnull(cur_val,0)) from @tab_Law where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ), 
+	 -- Family
+	    @prevQtyFam_rs2 INT = 
+		(select sum(isnull(prev_val,0)) from @tab_Fam where source in ('КБУ') )
+		- (select sum(isnull(prev_val,0)) from @tab_Fam where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+
+		 @curQtyFam_rs2 INT =  
+		 (select sum(isnull(cur_val,0)) from @tab_Fam where source in ('КБУ') )
+		- (select sum(isnull(cur_val,0)) from @tab_Fam where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ), 
+     -- Science
+	     @prevQtySin_rs2 INT = 
+		(select sum(isnull(prev_val,0)) from @tab_Sin where source in ('КБУ') )
+		- (select sum(isnull(prev_val,0)) from @tab_Sin where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+
+		 @curQtySin_rs2 INT =  
+		 (select sum(isnull(cur_val,0)) from @tab_Sin where source in ('КБУ') )
+		- (select sum(isnull(cur_val,0)) from @tab_Sin where source in ('Сайт/моб. додаток','УГЛ','Телеефір') )
+
+		BEGIN
+
+              UPDATE @tab_Com 
+              set prev_val = @prevQtyCom_rs2,
+                  cur_val = @curQtyCom_rs2
+              where source = 'Дзвінок в 1551'
+              
+              UPDATE @tab_Res 
+              set prev_val = @prevQtyRes_rs2,
+                  cur_val = @curQtyRes_rs2
+              where source = 'Дзвінок в 1551'
+
+              UPDATE @tab_Eco
+              set prev_val = @prevQtyEco_rs2,
+                  cur_val = @curQtyEco_rs2
+			  where source = 'Дзвінок в 1551'
+
+			  UPDATE @tab_Law
+              set prev_val = @prevQtyLaw_rs2,
+                  cur_val = @curQtyLaw_rs2
+              where source = 'Дзвінок в 1551'
+
+			  UPDATE @tab_Fam
+              set prev_val = @prevQtyFam_rs2,
+                  cur_val = @curQtyFam_rs2
+              where source = 'Дзвінок в 1551'
+
+			  UPDATE @tab_Sin 
+			  set prev_val = @prevQtySin_rs2,
+                  cur_val = @curQtySin_rs2
+              where source = 'Дзвінок в 1551'
+	         END
+ -------------> Получить конечный результат <--------------
 	              insert into @result 
 				  select source_name, 
 				  t_com.prev_val prevCommunal, t_com.cur_val curCommunal,
@@ -427,4 +511,4 @@ end
 	 IIF(prevFamily = '0', '-', prevFamily) prevFamily, IIF(curFamily = '0', '-', curFamily) curFamily,
 	 IIF(prevSince = '0', '-', prevSince) prevHealth, IIF(curSince = '0', '-', curSince) curSince
 	 from @result	 
-	 order by curCommunal desc
+	 order by source desc
