@@ -1,5 +1,6 @@
--- declare @dateFrom datetime = '2019-01-01 00:00:00';
--- declare @dateTo datetime = '2019-12-31 00:00:00';
+--  declare @dateFrom datetime = '2019-01-01 00:00:00';
+--  declare @dateTo datetime = '2019-12-31 00:00:00';
+
 --declare @filterTo datetime = dateadd(second,59,(dateadd(minute,59,(dateadd(hour,23,cast(cast(dateadd(day,0,@dateTo) as date) as datetime))))));
 
 declare @currentYear int = year(@dateFrom);
@@ -216,7 +217,8 @@ from #sources
 left join ReceiptSources rs on rs.name = #sources.source_name
 left join Appeals a on a.receipt_source_id = rs.Id
 left join Questions q on q.appeal_id = a.Id
-where q.question_type_id in ( select type_question_id from QGroupIncludeQTypes where group_question_id = 20)
+where q.question_type_id is not null 
+and q.question_type_id not in (select type_question_id from QGroupIncludeQTypes where group_question_id between 5 and 19)
 and year(q.registration_date) = @previousYear
 and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -226,7 +228,8 @@ group by #sources.source_name
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0) Val
 from Questions q
-where q.question_type_id in ( select type_question_id from QGroupIncludeQTypes where group_question_id = 20) 
+where q.question_type_id is not null 
+and q.question_type_id not in (select type_question_id from QGroupIncludeQTypes where group_question_id between 5 and 19)
 and year(registration_date) = @previousYear
 and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -240,7 +243,8 @@ from #sources
 left join ReceiptSources rs on rs.name = #sources.source_name
 left join Appeals a on a.receipt_source_id = rs.Id
 left join Questions q on q.appeal_id = a.Id
-where q.question_type_id in ( select type_question_id from QGroupIncludeQTypes where group_question_id = 20)
+where q.question_type_id is not null 
+and q.question_type_id not in (select type_question_id from QGroupIncludeQTypes where group_question_id between 5 and 19)
 and year(q.registration_date) = @currentYear
 and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -250,7 +254,8 @@ group by #sources.source_name
 UNION
 select 'КБУ' as source_name, isnull(count(q.Id),0) Val
 from Questions q
-where q.question_type_id in ( select type_question_id from QGroupIncludeQTypes where group_question_id = 20)
+where q.question_type_id is not null
+and q.question_type_id not in (select type_question_id from QGroupIncludeQTypes where group_question_id between 5 and 19)
 and year(registration_date) = @currentYear
 and datepart(dayofyear, q.registration_date) 
 		   between 
@@ -272,7 +277,92 @@ declare @result table (source nvarchar(200),
 					   prevLocPow nvarchar(10), curLocPow nvarchar(10), prevStCon nvarchar(10),
 					   curStCon nvarchar(10), prevOth nvarchar(10), curOth nvarchar(10),
 					   prevEmployees nvarchar(10), curEmployees nvarchar(10)) 
+ -------------> Преобразование и обнова для верочки данных <--------------       
+		-- Religy
+		DECLARE 
+		@prevQtyRel_rs2 INT = 
+		(select sum(isnull(prev_val,0)) from @tab_Rel where source in ('КБУ') )
+		- (select sum(isnull(prev_val,0)) from @tab_Rel where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
 
+		@curQtyRel_rs2 INT = 
+		(select sum(isnull(cur_val,0)) from @tab_Rel where source in ('КБУ') )
+		- (select sum(isnull(cur_val,0)) from @tab_Rel where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+		-- Center Power
+		@prevQtyExPow_rs2 INT = 
+		(select sum(isnull(prev_val,0)) from @tab_exPow where source in ('КБУ') )
+		- (select sum(isnull(prev_val,0)) from @tab_exPow where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+
+		@curQtyExPow_rs2 INT = 
+		(select sum(isnull(cur_val,0)) from @tab_exPow where source in ('КБУ') )
+		- (select sum(isnull(cur_val,0)) from @tab_exPow where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+		-- Local Municipalitet
+		@prevQtyLocMun_rs2 INT = 
+		(select sum(isnull(prev_val,0)) from @tab_locMun where source in ('КБУ') )
+		- (select sum(isnull(prev_val,0)) from @tab_locMun where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+
+		@curQtyLocMun_rs2 INT = 
+		(select sum(isnull(cur_val,0)) from @tab_locMun where source in ('КБУ') )
+		- (select sum(isnull(cur_val,0)) from @tab_locMun where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+		-- Local Power
+		@prevQtyLocPow_rs2 INT = 
+		(select sum(isnull(prev_val,0)) from @tab_locPow where source in ('КБУ') )
+		- (select sum(isnull(prev_val,0)) from @tab_locPow where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+
+		@curQtyLocPow_rs2 INT = 
+		(select sum(isnull(cur_val,0)) from @tab_locPow where source in ('КБУ') )
+		- (select sum(isnull(cur_val,0)) from @tab_locPow where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+		-- Construction 
+		@prevQtyCon_rs2 INT = 
+		(select sum(isnull(prev_val,0)) from @tab_stCon where source in ('КБУ') )
+		- (select sum(isnull(prev_val,0)) from @tab_stCon where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+
+		@curQtyCon_rs2 INT = 
+		(select sum(isnull(cur_val,0)) from @tab_stCon where source in ('КБУ') )
+		- (select sum(isnull(cur_val,0)) from @tab_stCon where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+		-- Other 
+		@prevQtyOth_rs2 INT = 
+		(select sum(isnull(prev_val,0)) from @tab_Oth where source in ('КБУ') )
+		- (select sum(isnull(prev_val,0)) from @tab_Oth where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+
+		@curQtyOth_rs2 INT = 
+		(select sum(isnull(cur_val,0)) from @tab_Oth where source in ('КБУ') )
+		- (select sum(isnull(cur_val,0)) from @tab_Oth where source in ('Сайт/моб. додаток','УГЛ','Телеефір') )
+
+			  BEGIN
+
+              UPDATE @tab_Rel 
+              set prev_val = @prevQtyRel_rs2,
+                  cur_val = @curQtyRel_rs2
+              where source = 'Дзвінок в 1551'
+              
+              UPDATE @tab_exPow 
+              set prev_val = @prevQtyExPow_rs2,
+                  cur_val = @curQtyExPow_rs2
+              where source = 'Дзвінок в 1551'
+
+              UPDATE @tab_locMun 
+              set prev_val = @prevQtyLocMun_rs2,
+                  cur_val = @curQtyLocMun_rs2
+			  where source = 'Дзвінок в 1551'
+
+			  UPDATE @tab_locPow
+              set prev_val = @prevQtyLocPow_rs2,
+                  cur_val = @curQtyLocPow_rs2
+              where source = 'Дзвінок в 1551'
+
+			  UPDATE @tab_stCon
+              set prev_val = @prevQtyCon_rs2,
+                  cur_val = @curQtyCon_rs2
+              where source = 'Дзвінок в 1551'
+
+			  UPDATE @tab_Oth
+              set prev_val = @prevQtyOth_rs2,
+                  cur_val = @curQtyOth_rs2
+              where source = 'Дзвінок в 1551'
+
+	         END
+
+ -------------> Получить конечный результат <--------------
 	              insert into @result 
 				  select source_name, 
 				  t_rel.prev_val prevRel, t_rel.cur_val curRel,
@@ -283,13 +373,13 @@ declare @result table (source nvarchar(200),
 				  t_oth.prev_val prevSince, t_oth.cur_val curSince,
 				  t_empl.prev_val prevEmployees, t_empl.cur_val curEmployees
 			from #sources s
-			join @tab_Rel t_rel on t_rel.[source] = s.source_name
-			join @tab_exPow t_expow on t_expow.source = s.source_name
-			join @tab_locMun t_locmun on t_locmun.source = s.source_name
-			join @tab_locPow t_locpow on t_locpow.source = s.source_name
-			join @tab_stCon t_stcon on t_stcon.source = s.source_name
-			join @tab_Oth t_oth on t_oth.source = s.source_name
-            join @tab_Employees t_empl on t_empl.sourse = s.source_name
+			inner join @tab_Rel t_rel on t_rel.[source] = s.source_name
+			inner join @tab_exPow t_expow on t_expow.source = s.source_name
+			inner join @tab_locMun t_locmun on t_locmun.source = s.source_name
+			inner join @tab_locPow t_locpow on t_locpow.source = s.source_name
+			inner join @tab_stCon t_stcon on t_stcon.source = s.source_name
+			inner join @tab_Oth t_oth on t_oth.source = s.source_name
+            inner join @tab_Employees t_empl on t_empl.sourse = s.source_name
 
 end
 
@@ -321,5 +411,5 @@ end
 	 IIF(prevOth = '0', '-', prevOth) prevOther, IIF(curOth = '0', '-', curOth) curOther,
 	 IIF(prevEmployees = '0', '-', prevEmployees) prevEmployees, IIF(curEmployees = '0', '-', curEmployees) curEmployees
 	 from @result r
-	 join #sources s on r.source = s.source_name	 
+	 inner join #sources s on r.source = s.source_name	 
 	 order by row#

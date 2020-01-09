@@ -1,5 +1,5 @@
---  declare @dateFrom datetime = '2019-01-01 00:00:00';
---  declare @dateTo datetime = '2019-12-31 00:00:00';
+  --declare @dateFrom datetime = '2019-01-01 00:00:00';
+  --declare @dateTo datetime = '2019-12-31 00:00:00';
 
 -- declare @filterTo datetime = dateadd(second,59,(dateadd(minute,59,(dateadd(hour,23,cast(cast(dateadd(day,0,@dateTo) as date) as datetime))))));
 
@@ -29,7 +29,7 @@ from ReceiptSources
 where Id not in (4,5,6,7)
 Union 
 select  'КБУ'
---select * from #sources
+-- select * from #sources
 end
 --- По всім групам питань
 begin 
@@ -44,7 +44,7 @@ from #sources
 join ReceiptSources rs on rs.name = #sources.source_name
 join Appeals a on a.receipt_source_id = rs.Id
 join Questions q on q.appeal_id = a.Id
-where q.question_type_id in (select type_question_id from QGroupIncludeQTypes)
+where q.question_type_id is not null
 		   and year(q.registration_date) = 
 		   @previousYear
 		   and datepart(dayofyear, q.registration_date) 
@@ -423,6 +423,97 @@ declare @result table (source nvarchar(200), prevAll nvarchar(10), curAll nvarch
 					   curTrans nvarchar(10), prevFinance nvarchar(10), curFinance nvarchar(10),
 					   prevSocial nvarchar(10), curSocial nvarchar(10), prevWork nvarchar(10),
 					   curWork nvarchar(10), prevHealth nvarchar(10), curHealth nvarchar(10) ) 
+
+  -------------> Преобразование и обнова для верочки данных <--------------       
+		-- All
+		DECLARE @prevQty_rs2 INT = 
+		(select sum(isnull(prev_val,0)) from @tab_All where source in ('КБУ') )
+		- (select sum(isnull(prev_val,0)) from @tab_All where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+
+		@curQty_rs2 INT = 
+		(select sum(isnull(cur_val,0)) from @tab_All where source in ('КБУ') )
+		- (select sum(isnull(cur_val,0)) from @tab_All where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+		-- Agr
+		@prevQtyAgr_rs2 INT = 
+		(select sum(isnull(prev_val,0)) from @tab_Agr where source in ('КБУ') )
+		- (select sum(isnull(prev_val,0)) from @tab_Agr where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+
+		 @curQtyAgr_rs2 INT = 
+		 (select sum(isnull(cur_val,0)) from @tab_Agr where source in ('КБУ') )
+		- (select sum(isnull(cur_val,0)) from @tab_Agr where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+		-- Transport
+		@prevQtyTran_rs2 INT = 
+		(select sum(isnull(prev_val,0)) from @tab_Trans where source in ('КБУ') )
+		- (select sum(isnull(prev_val,0)) from @tab_Trans where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+
+		 @curQtyTran_rs2 INT = 
+		 (select sum(isnull(cur_val,0)) from @tab_Agr where source in ('КБУ') )
+		- (select sum(isnull(cur_val,0)) from @tab_Agr where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+		-- Finance
+		@prevQtyFin_rs2 INT = 
+		(select sum(isnull(prev_val,0)) from @tab_Finance where source in ('КБУ') )
+		- (select sum(isnull(prev_val,0)) from @tab_Finance where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+
+		@curQtyFin_rs2 INT = 
+		 (select sum(isnull(cur_val,0)) from @tab_Finance where source in ('КБУ') )
+		- (select sum(isnull(cur_val,0)) from @tab_Finance where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+		-- Social
+		@prevQtySoc_rs2 INT = 
+		(select sum(isnull(prev_val,0)) from @tab_Social where source in ('КБУ') )
+		- (select sum(isnull(prev_val,0)) from @tab_Social where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+
+		@curQtySoc_rs2 INT = 
+		 (select sum(isnull(cur_val,0)) from @tab_Social where source in ('КБУ') )
+		- (select sum(isnull(cur_val,0)) from @tab_Social where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+		-- Work
+		@prevQtyWork_rs2 INT = 
+		(select sum(isnull(prev_val,0)) from @tab_Work where source in ('КБУ') )
+		- (select sum(isnull(prev_val,0)) from @tab_Work where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+
+		@curQtyWork_rs2 INT = 
+		 (select sum(isnull(cur_val,0)) from @tab_Work where source in ('КБУ') )
+		- (select sum(isnull(cur_val,0)) from @tab_Work where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+		-- Health
+		@prevQtyHeal_rs2 INT = 
+		(select sum(isnull(prev_val,0)) from @tab_Work where source in ('КБУ') )
+		- (select sum(isnull(prev_val,0)) from @tab_Work where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ),
+
+		 @curQtyHeal_rs2 INT = 
+		 (select sum(isnull(cur_val,0)) from @tab_Health where source in ('КБУ') )
+		- (select sum(isnull(cur_val,0)) from @tab_Health where source in ('Сайт/моб. додаток','УГЛ','Телеефір') ) ;
+
+	         BEGIN
+
+              UPDATE @tab_All 
+              set prev_val = @prevQty_rs2,
+                  cur_val = @curQty_rs2
+              where source = 'Дзвінок в 1551'
+              
+              UPDATE @tab_Agr 
+              set prev_val = @prevQtyAgr_rs2,
+                  cur_val = @curQtyAgr_rs2
+              where source = 'Дзвінок в 1551'
+
+              UPDATE @tab_Trans
+              set prev_val = @prevQtyTran_rs2,
+                  cur_val = @curQtyTran_rs2
+			  where source = 'Дзвінок в 1551'
+
+			  UPDATE @tab_Finance
+              set prev_val = @prevQtyFin_rs2,
+                  cur_val = @curQtyFin_rs2
+              where source = 'Дзвінок в 1551'
+
+			  UPDATE @tab_Social
+              set prev_val = @prevQtySoc_rs2,
+                  cur_val = @curQtySoc_rs2
+              where source = 'Дзвінок в 1551'
+
+			  UPDATE @tab_Work 
+			  set prev_val = @prevQtyWork_rs2,
+                  cur_val = @curQtyWork_rs2
+              where source = 'Дзвінок в 1551'
+	         END
 
 	              insert into @result 
 				  select source_name, 
