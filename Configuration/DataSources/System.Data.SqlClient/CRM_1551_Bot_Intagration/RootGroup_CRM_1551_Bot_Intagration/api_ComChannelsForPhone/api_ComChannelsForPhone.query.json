@@ -1,0 +1,52 @@
+{
+    "ModelType": "Query",
+    "Code": "api_ComChannelsForPhone",
+    "Name": "api_ComChannelsForPhone",
+    "ConnectionCode": "CRM_1551_Bot_Integration",
+    "IsUsedForRightsFilter": false,
+    "Columns" : [
+        {
+            "Code": "Id",
+            "Name": "Id",
+            "Position": 0
+          },
+          {
+            "Code": "phone_number",
+            "Name": "phone_number",
+            "Position": 1
+          },
+          {
+            "Code": "chanel_id",
+            "Name": "chanel_id",
+            "Position": 0
+          },
+          {
+            "Code": "chat_id",
+            "Name": "chat_id",
+            "Position": 0
+          },
+          {
+            "Code": "chat_is",
+            "Name": "chat_is",
+            "Position": 0
+          }
+    ],
+    "Parameters": [
+      {
+        "Code": "@phone_number",
+        "Name": "phone_number"
+      },
+      {
+        "Code": "@pageLimitRows",
+        "Name": "pageLimitRows",
+        "ParameterType": "Integer",
+        "IsPageLimitRows": true
+      },
+      {
+        "Code": "@pageOffsetRows",
+        "Name": "pageOffsetRows",
+        "ParameterType": "Integer",
+        "IsPageOffsetRows": true
+      }
+    ]
+  }
