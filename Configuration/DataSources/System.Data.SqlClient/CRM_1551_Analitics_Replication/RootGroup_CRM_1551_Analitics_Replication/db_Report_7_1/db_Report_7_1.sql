@@ -1,5 +1,5 @@
---  declare @dateFrom datetime = '2019-01-01 00:00:00';
---  declare @dateTo datetime = '2019-12-31 00:00:00';
+  --declare @dateFrom datetime = '2020-01-01 00:00:00';
+  --declare @dateTo datetime = '2020-01-09 00:00:00';
 
 --  declare @filterTo datetime = dateadd(second,59,(dateadd(minute,59,(dateadd(hour,23,cast(cast(dateadd(day,0,@dateTo) as date) as datetime))))));
 
@@ -48,7 +48,7 @@ from Questions q
  -- Всього за попередній 
 left join (select cast(count(Id) as nvarchar) as qtyPrev
            from Questions 
-		   where question_type_id is not null 
+		   where question_type_id in (select type_question_id from QGroupIncludeQTypes)
 		   and year(registration_date) = 
 		   @previousYear
 		   and datepart(dayofyear, registration_date) 
@@ -58,10 +58,10 @@ left join (select cast(count(Id) as nvarchar) as qtyPrev
  -- Всього за теперішній
 left join (select cast(count(Id) as nvarchar) as qtyCurrent
            from Questions 
-		   where question_type_id is not null 
+		   where question_type_id in (select type_question_id from QGroupIncludeQTypes)
 		   and year(registration_date) = 
 		                        @currentYear
-		    		   and datepart(dayofyear, registration_date) 
+		   and datepart(dayofyear, registration_date) 
 		   between 
 		   @dayNumStart and @dayNumEnd
 		   ) qCurr on 1 <> 0
@@ -158,6 +158,6 @@ left join (select cast(count(q.Id) as nvarchar) as qtyExpl_curr
 		   between datepart(dayofyear, @dateFrom) 
 		   and datepart(dayofyear, @dateTo)
 		   ) qExpl_curr on 1 <> 0
--- Інше (зареєстровано, в роботі, на перевірці) за попередній 
+-- Інше 
 ) x
 ) z
