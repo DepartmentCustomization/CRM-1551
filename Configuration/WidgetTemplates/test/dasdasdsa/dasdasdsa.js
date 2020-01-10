@@ -11,7 +11,6 @@
                 `
     ,
     init: function() {
-        console.log('Hiaaaa');
     }
 };
 }());
