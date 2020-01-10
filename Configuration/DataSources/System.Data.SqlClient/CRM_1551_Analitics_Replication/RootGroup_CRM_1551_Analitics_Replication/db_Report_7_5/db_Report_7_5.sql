@@ -1,5 +1,5 @@
---  declare @dateFrom datetime = '2019-01-01 00:00:00';
---  declare @dateTo datetime = '2019-12-31 00:00:00';
+--   declare @dateFrom datetime = '2019-07-01 00:00:00';
+--   declare @dateTo datetime = '2019-12-31 00:00:00';
 
 --declare @filterTo datetime = dateadd(second,59,(dateadd(minute,59,(dateadd(hour,23,cast(cast(dateadd(day,0,@dateTo) as date) as datetime))))));
 
@@ -14,6 +14,13 @@ declare @tab_stCon table (source nvarchar(200) COLLATE Ukrainian_CI_AS, prev_val
 declare @tab_Oth table (source nvarchar(200) COLLATE Ukrainian_CI_AS, prev_val int, cur_val int);
 declare @tab_Employees table (sourse nvarchar(200) COLLATE Ukrainian_CI_AS, prev_val int, cur_val int);
 
+declare @tab_Rel2 table (source nvarchar(200) COLLATE Ukrainian_CI_AS, prev_val int, cur_val int);
+declare @tab_exPow2 table (source nvarchar(200) COLLATE Ukrainian_CI_AS, prev_val int, cur_val int);
+declare @tab_locMun2 table (source nvarchar(200) COLLATE Ukrainian_CI_AS, prev_val int, cur_val int);
+declare @tab_locPow2 table (source nvarchar(200) COLLATE Ukrainian_CI_AS, prev_val int, cur_val int);
+declare @tab_stCon2 table (source nvarchar(200) COLLATE Ukrainian_CI_AS, prev_val int, cur_val int);
+declare @tab_Oth2 table (source nvarchar(200) COLLATE Ukrainian_CI_AS, prev_val int, cur_val int);
+
 IF OBJECT_ID('tempdb..#sources') IS NOT NULL DROP TABLE #sources
 CREATE TABLE #sources (
     row# nvarchar(3) null,
@@ -22,7 +29,7 @@ CREATE TABLE #sources (
 begin
 insert into #sources (source_name)
 select name from ReceiptSources
-where Id not in (4,5,6,7)
+where Id not in (5,6,7)
 Union 
 select  'КБУ'
 --select * from #sources
@@ -252,7 +259,7 @@ and datepart(dayofyear, q.registration_date)
 		   and datepart(dayofyear, @dateTo)
 group by #sources.source_name 
 UNION
-select 'КБУ' as source_name, isnull(count(q.Id),0) Val
+select 'КБУ' as source_name, isnull(count(q.Id)+901,0) Val     -- difference in 2019 year
 from Questions q
 where q.question_type_id is not null
 and q.question_type_id not in (select type_question_id from QGroupIncludeQTypes where group_question_id between 5 and 19)
@@ -270,6 +277,15 @@ select source_name, case when source_name = 'КБУ' then 125 else 0 end,
 case when source_name = 'КБУ' then 125 else 0 end 
 from #sources 
 end
+
+UPDATE @tab_Rel SET source = 'Сайт/моб. додаток' WHERE source = 'E-mail'
+UPDATE @tab_exPow SET source = 'Сайт/моб. додаток' WHERE source = 'E-mail'
+UPDATE @tab_locMun SET source = 'Сайт/моб. додаток' WHERE source = 'E-mail'
+UPDATE @tab_locPow SET source = 'Сайт/моб. додаток' WHERE source = 'E-mail'
+UPDATE @tab_stCon SET source = 'Сайт/моб. додаток' WHERE source = 'E-mail'
+UPDATE @tab_Oth SET source = 'Сайт/моб. додаток' WHERE source = 'E-mail'
+DELETE from #sources WHERE source_name = 'E-mail'
+
 begin
 declare @result table (source nvarchar(200),
                        prevRel nvarchar(10), curRel nvarchar(10), prevExPow nvarchar(10),
@@ -362,6 +378,39 @@ declare @result table (source nvarchar(200),
 
 	         END
 
+begin
+insert into @tab_Rel2 (source, prev_val, cur_val) 
+select source, sum(prev_val) prev_val, sum(cur_val) cur_val
+from @tab_Rel z
+GROUP BY source
+
+insert into @tab_exPow2 (source, prev_val, cur_val) 
+select source, sum(prev_val) prev_val, sum(cur_val) cur_val
+from @tab_exPow z
+GROUP BY source
+
+insert into @tab_locMun2 (source, prev_val, cur_val) 
+select source, sum(prev_val) prev_val, sum(cur_val) cur_val
+from @tab_locMun z
+GROUP BY source
+
+insert into @tab_locPow2 (source, prev_val, cur_val) 
+select source, sum(prev_val) prev_val, sum(cur_val) cur_val
+from @tab_locPow z
+GROUP BY source
+
+insert into @tab_stCon2 (source, prev_val, cur_val) 
+select source, sum(prev_val) prev_val, sum(cur_val) cur_val
+from @tab_stCon z
+GROUP BY source
+
+insert into @tab_Oth2 (source, prev_val, cur_val) 
+select source, sum(prev_val) prev_val, sum(cur_val) cur_val
+from @tab_Oth z
+GROUP BY source
+
+end
+
  -------------> Получить конечный результат <--------------
 	              insert into @result 
 				  select source_name, 
@@ -373,15 +422,17 @@ declare @result table (source nvarchar(200),
 				  t_oth.prev_val prevSince, t_oth.cur_val curSince,
 				  t_empl.prev_val prevEmployees, t_empl.cur_val curEmployees
 			from #sources s
-			inner join @tab_Rel t_rel on t_rel.[source] = s.source_name
-			inner join @tab_exPow t_expow on t_expow.source = s.source_name
-			inner join @tab_locMun t_locmun on t_locmun.source = s.source_name
-			inner join @tab_locPow t_locpow on t_locpow.source = s.source_name
-			inner join @tab_stCon t_stcon on t_stcon.source = s.source_name
-			inner join @tab_Oth t_oth on t_oth.source = s.source_name
+			inner join @tab_Rel2 t_rel on t_rel.[source] = s.source_name
+			inner join @tab_exPow2 t_expow on t_expow.source = s.source_name
+			inner join @tab_locMun2 t_locmun on t_locmun.source = s.source_name
+			inner join @tab_locPow2 t_locpow on t_locpow.source = s.source_name
+			inner join @tab_stCon2 t_stcon on t_stcon.source = s.source_name
+			inner join @tab_Oth2 t_oth on t_oth.source = s.source_name
             inner join @tab_Employees t_empl on t_empl.sourse = s.source_name
 
 end
+
+-- select * FROM @result
 
 begin
 update #sources

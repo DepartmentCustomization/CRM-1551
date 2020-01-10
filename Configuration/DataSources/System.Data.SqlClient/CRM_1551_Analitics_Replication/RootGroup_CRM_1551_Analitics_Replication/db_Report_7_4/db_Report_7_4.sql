@@ -1,5 +1,5 @@
--- declare @dateFrom datetime = '2019-01-01 00:00:00';
--- declare @dateTo datetime = '2019-12-31 00:00:00';
+--  declare @dateFrom datetime = '2019-07-01 00:00:00';
+--  declare @dateTo datetime = '2019-12-31 00:00:00';
 
 --declare @filterTo datetime = dateadd(second,59,(dateadd(minute,59,(dateadd(hour,23,cast(cast(dateadd(day,0,@dateTo) as date) as datetime))))));
 
@@ -13,6 +13,13 @@ declare @tab_Law table (source nvarchar(200) COLLATE DATABASE_DEFAULT, prev_val 
 declare @tab_Fam table (source nvarchar(200) COLLATE DATABASE_DEFAULT, prev_val int, cur_val int);
 declare @tab_Sin table (source nvarchar(200) COLLATE DATABASE_DEFAULT, prev_val int, cur_val int);
 
+declare @tab_Com2 table (source nvarchar(200) COLLATE DATABASE_DEFAULT, prev_val int, cur_val int);
+declare @tab_Res2 table (source nvarchar(200) COLLATE DATABASE_DEFAULT, prev_val int, cur_val int);
+declare @tab_Eco2 table (source nvarchar(200) COLLATE DATABASE_DEFAULT, prev_val int, cur_val int);
+declare @tab_Law2 table (source nvarchar(200) COLLATE DATABASE_DEFAULT, prev_val int, cur_val int);
+declare @tab_Fam2 table (source nvarchar(200) COLLATE DATABASE_DEFAULT, prev_val int, cur_val int);
+declare @tab_Sin2 table (source nvarchar(200) COLLATE DATABASE_DEFAULT, prev_val int, cur_val int);
+
 IF OBJECT_ID('tempdb..#sources') IS NOT NULL DROP TABLE #sources
 CREATE TABLE #sources (
     source_name VARCHAR(MAX) COLLATE Ukrainian_CI_AS
@@ -20,7 +27,7 @@ CREATE TABLE #sources (
 begin
 insert into #sources (source_name)
 select name from ReceiptSources
-where Id not in (4,5,6,7)
+where Id not in (5,6,7)
 Union 
 select  'КБУ'
 --select * from #sources
@@ -386,6 +393,14 @@ and datepart(dayofyear, q.registration_date)
 		   ) ss on ss.source_name = z.source_name
 end
 
+UPDATE @tab_Com SET source = 'Сайт/моб. додаток' WHERE source = 'E-mail'
+UPDATE @tab_Res SET source = 'Сайт/моб. додаток' WHERE source = 'E-mail'
+UPDATE @tab_Eco SET source = 'Сайт/моб. додаток' WHERE source = 'E-mail'
+UPDATE @tab_Law SET source = 'Сайт/моб. додаток' WHERE source = 'E-mail'
+UPDATE @tab_Fam SET source = 'Сайт/моб. додаток' WHERE source = 'E-mail'
+UPDATE @tab_Sin SET source = 'Сайт/моб. додаток' WHERE source = 'E-mail'
+DELETE from #sources WHERE source_name = 'E-mail'
+
 begin
 declare @result table (source nvarchar(200),
                        prevCommunal nvarchar(10), curCommunal nvarchar(10), prevResidential nvarchar(10),
@@ -475,6 +490,40 @@ declare @result table (source nvarchar(200),
                   cur_val = @curQtySin_rs2
               where source = 'Дзвінок в 1551'
 	         END
+
+begin
+insert into @tab_Com2 (source, prev_val, cur_val) 
+select source, sum(prev_val) prev_val, sum(cur_val) cur_val
+from @tab_Com z
+GROUP BY source
+
+insert into @tab_Res2 (source, prev_val, cur_val) 
+select source, sum(prev_val) prev_val, sum(cur_val) cur_val
+from @tab_Res z
+GROUP BY source
+
+insert into @tab_Eco2 (source, prev_val, cur_val) 
+select source, sum(prev_val) prev_val, sum(cur_val) cur_val
+from @tab_Eco z
+GROUP BY source
+
+insert into @tab_Law2 (source, prev_val, cur_val) 
+select source, sum(prev_val) prev_val, sum(cur_val) cur_val
+from @tab_Law z
+GROUP BY source
+
+insert into @tab_Fam2 (source, prev_val, cur_val) 
+select source, sum(prev_val) prev_val, sum(cur_val) cur_val
+from @tab_Fam z
+GROUP BY source
+
+insert into @tab_Sin2 (source, prev_val, cur_val) 
+select source, sum(prev_val) prev_val, sum(cur_val) cur_val
+from @tab_Sin z
+GROUP BY source
+
+end
+
  -------------> Получить конечный результат <--------------
 	              insert into @result 
 				  select source_name, 
@@ -485,14 +534,15 @@ declare @result table (source nvarchar(200),
 				  t_fam.prev_val prevFamily, t_fam.cur_val curFamily,
 				  t_sin.prev_val prevSince, t_sin.cur_val curSince
 			from #sources s
-			join @tab_Com t_com on t_com.[source] = s.source_name
-			join @tab_Res t_res on t_res.source = s.source_name
-			join @tab_Eco t_eco on t_eco.source = s.source_name
-			join @tab_law t_law on t_law.source = s.source_name
-			join @tab_Fam t_fam on t_fam.source = s.source_name
-			join @tab_Sin t_sin on t_sin.source = s.source_name
+			join @tab_Com2 t_com on t_com.[source] = s.source_name
+			join @tab_Res2 t_res on t_res.source = s.source_name
+			join @tab_Eco2 t_eco on t_eco.source = s.source_name
+			join @tab_law2 t_law on t_law.source = s.source_name
+			join @tab_Fam2 t_fam on t_fam.source = s.source_name
+			join @tab_Sin2 t_sin on t_sin.source = s.source_name
  
 end
+
      select 
      ROW_NUMBER() OVER (
      ORDER BY [source]
