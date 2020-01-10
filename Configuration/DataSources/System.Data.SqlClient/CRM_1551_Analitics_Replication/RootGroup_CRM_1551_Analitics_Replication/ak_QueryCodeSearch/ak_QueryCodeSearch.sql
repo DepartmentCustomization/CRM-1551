@@ -683,8 +683,8 @@ when [Applicants].[birth_date] is null then year(getdate())-[Applicants].birth_y
  ,case when [AssignmentStates].Id in (1,2) and [Assignments].[execution_date]<getutcdate()
  then ''true'' end overdue
  
- ,case when timeliness_table.min_date<=[AssignmentRevisions].control_date then 1
-	   when timeliness_table.min_date>[AssignmentRevisions].control_date then 2
+ ,case when timeliness_table.min_date<=[Assignments].[execution_date] then 1
+	   when timeliness_table.min_date>[Assignments].[execution_date] then 2
   end timeliness
 
   from 
