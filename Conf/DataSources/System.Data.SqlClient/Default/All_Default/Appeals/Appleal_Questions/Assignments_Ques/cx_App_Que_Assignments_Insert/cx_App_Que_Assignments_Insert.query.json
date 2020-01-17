@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_App_Que_Assignments_Insert",
+  "Name": "cx_App_Que_Assignments_Insert",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

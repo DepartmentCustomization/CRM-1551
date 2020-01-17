@@ -1,0 +1,47 @@
+{
+  "ModelType": "Query",
+  "Code": "SelectEventClass_QuestionTypes",
+  "Name": "SelectEventClass_QuestionTypes",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "id",
+      "Name": "id",
+      "Position": 0,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "questionTypeName",
+      "Name": "Назва типу",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "is_hard_connection",
+      "Name": "Признак пов'язаності",
+      "Position": 2
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

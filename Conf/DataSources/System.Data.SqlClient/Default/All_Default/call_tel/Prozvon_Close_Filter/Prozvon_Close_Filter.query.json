@@ -1,0 +1,7 @@
+{
+    "ModelType": "Query",
+    "Code": "Prozvon_Close_Filter",
+    "Name": "Prozvon_Close_Filter",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false
+}

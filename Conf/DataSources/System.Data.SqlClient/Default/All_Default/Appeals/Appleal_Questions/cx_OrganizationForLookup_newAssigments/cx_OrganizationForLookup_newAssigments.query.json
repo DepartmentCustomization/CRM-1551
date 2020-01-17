@@ -1,0 +1,58 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_OrganizationForLookup_newAssigments",
+  "Name": "cx_OrganizationForLookup_newAssigments",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "short_name",
+      "Name": "Коротка назва організації",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "short_name",
+      "FilterParameterCode": "@short_name"
+    },
+    {
+      "Code": "head_name",
+      "Name": "ПІБ керівника",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "head_name",
+      "FilterParameterCode": "@head_name"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@question_id",
+      "Name": "question_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@Global_Org",
+      "Name": "Global_Org",
+      "ParameterType": "Integer",
+      "RightsFilterQueryCode": "glodal_Organizations"
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "ModelType": "Query",
+  "Code": "api_AssignmentRevisionsSelectRows",
+  "Name": "api_AssignmentRevisionsSelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "grade",
+      "Name": "grade",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "grade_comment",
+      "Name": "grade_comment",
+      "Position": 2,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

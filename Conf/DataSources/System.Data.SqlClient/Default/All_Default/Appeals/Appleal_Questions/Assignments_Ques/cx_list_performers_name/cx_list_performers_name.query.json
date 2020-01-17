@@ -1,0 +1,44 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_list_performers_name",
+  "Name": "cx_list_performers_name",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrimaryKey": true,
+      "IsPrintable": false
+    },
+    {
+      "Code": "full_name",
+      "Name": "full_name",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "case when len([head_name]) > 5 then [head_name] + ' ( ' + [short_name] + ')' \t\t\t\t\telse [short_name] end",
+      "FilterParameterCode": "@name"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@OrgFilter",
+      "Name": "OrgFilter",
+      "ParameterType": "Integer",
+      "RightsFilterQueryCode": "glodal_Organizations"
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

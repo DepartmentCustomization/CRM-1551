@@ -1,0 +1,22 @@
+{
+  "ModelType": "Detail",
+  "Code": "helper",
+  "Name": "Помічники",
+  "FormCode": "PositionsHelpers",
+  "SelectRowsQueryCode": "ak_HelpedPositiinsSelectRows",
+  "SelectRowQueryCode": "ak_HelpedPositiinsSelectRow",
+  "UpdateQueryCode": "ak_HelpedPositionsUpdateRow",
+  "SectionCode": "",
+  "DeleteQueryCode": "ak_HelpedPositionsDeleteRow",
+  "Position": 1,
+  "IsExpand": true,
+  "Add": {
+    "InsertQueryCode": "ak_HelpedPositiinsInsertRow"
+  },
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@position_id"
+    }
+  ]
+}

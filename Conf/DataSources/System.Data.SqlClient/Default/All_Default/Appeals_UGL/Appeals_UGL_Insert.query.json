@@ -1,0 +1,8 @@
+{
+  "ModelType": "Query",
+  "Code": "Appeals_UGL_Insert",
+  "Name": "Appeals_UGL_Insert",
+  "ConnectionCode": "Default",
+  "Sql":"string:Appeals_UGL_Insert.sql",
+	"Parameters":"json:Appeals_UGL_Insert.parameters.json"
+}

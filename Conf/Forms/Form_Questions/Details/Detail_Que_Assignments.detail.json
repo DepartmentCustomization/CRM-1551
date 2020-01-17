@@ -1,0 +1,35 @@
+{
+  "ModelType": "Detail",
+  "Code": "Detail_Que_Assignments",
+  "Name": "Доручення Питання",
+  "FormCode": "Form_Assignments",
+  "SelectRowsQueryCode": "cx_App_Que_Assignments_SelectRows",
+  "SectionCode": "Assignments",
+  "Position": 1,
+  "IsExpand": true,
+  "Add": {
+    "InsertQueryParameterCode": "@organization_id",
+    "QueryCode": "cx_OrganizationForLookup_newAssigments",
+    "ColumnCode": "Id",
+    "AddType": "Lookup",
+    "InsertQueryCode": "cx_InsetManyNewAssigments",
+    "QueryParameters": [
+      {
+        "FormFieldName": "Id",
+        "ParameterCode": "@question_id"
+      }
+    ],
+    "InsertQueryParameters": [
+      {
+        "FormFieldName": "Id",
+        "ParameterCode": "@question_id"
+      }
+    ]
+  },
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@question"
+    }
+  ]
+}

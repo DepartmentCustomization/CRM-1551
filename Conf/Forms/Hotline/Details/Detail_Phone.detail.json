@@ -1,0 +1,15 @@
+{
+    "ModelType": "Detail",
+    "Code": "Detail_Phone",
+    "Name": "Звернення за номером телефону",
+    "SelectRowsQueryCode": "ak_detTel_hotl_AppealsSRows",
+    "SectionCode": "",
+    "Position": 1,
+    "IsExpand": true,
+    "QueryParameters": [
+        {
+          "FormFieldName": "phone_number",
+          "ParameterCode": "@phone_number"
+        }
+      ]
+}

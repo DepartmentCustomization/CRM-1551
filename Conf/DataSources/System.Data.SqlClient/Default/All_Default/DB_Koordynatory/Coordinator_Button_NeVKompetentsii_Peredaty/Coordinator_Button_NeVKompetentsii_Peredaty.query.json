@@ -1,0 +1,25 @@
+{
+  "ModelType": "Query",
+  "Code": "Coordinator_Button_NeVKompetentsii_Peredaty",
+  "Name": "Coordinator_Button_NeVKompetentsii_Peredaty",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@user_edit_id",
+      "Name": "user_edit_id",
+      "ParameterType": "CurrentUserId"
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    },
+    {
+      "Code": "@executor_organization_id",
+      "Name": "executor_organization_id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

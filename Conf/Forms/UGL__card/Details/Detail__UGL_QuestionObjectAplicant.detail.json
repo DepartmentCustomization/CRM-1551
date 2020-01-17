@@ -1,0 +1,10 @@
+{
+  "ModelType": "Detail",
+  "Code": "Detail__UGL_QuestionObjectAplicant",
+  "Name": "Питання за помешканням заявника",
+  "SelectRowsQueryCode": "Detail_QuestionObjectAplicant_selectRows",
+  "SectionCode": "",
+  "Position": 6,
+  "IsExpand": true,
+  "QueryParameters": []
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "Code": "@registration_date_to",
+    "Name": "registration_date_to",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@pageLimitRows",
+    "Name": "pageLimitRows",
+    "ParameterType": "Integer",
+    "IsPageLimitRows": true
+  },
+  {
+    "Code": "@assigm_executor_organization",
+    "Name": "assigm_executor_organization",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@user_id",
+    "Name": "user_id",
+    "ParameterType": "CurrentUserId"
+  },
+  {
+    "Code": "@execution_term_from",
+    "Name": "execution_term_from",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@transfer_date_to",
+    "Name": "transfer_date_to",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@param1",
+    "Name": "param1"
+  },
+  {
+    "Code": "@state_changed_date_done_from",
+    "Name": "state_changed_date_done_from",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@registration_date_from",
+    "Name": "registration_date_from",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@execution_term_to",
+    "Name": "execution_term_to",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@pageOffsetRows",
+    "Name": "pageOffsetRows",
+    "ParameterType": "Integer",
+    "IsPageOffsetRows": true
+  },
+  {
+    "Code": "@state_changed_date_to",
+    "Name": "state_changed_date_to",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@state_changed_date_done_to",
+    "Name": "state_changed_date_done_to",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@transfer_date_from",
+    "Name": "transfer_date_from",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@state_changed_date_from",
+    "Name": "state_changed_date_from",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@zayavnyk_phone_number",
+    "Name": "zayavnyk_phone_number"
+  },
+  {
+    "Code": "@control_date_from",
+    "Name": "control_date_from",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@control_date_to",
+    "Name": "control_date_to",
+    "ParameterType": "DateTime"
+  }
+]

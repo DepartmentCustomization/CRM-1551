@@ -1,0 +1,15 @@
+{
+  "ModelType": "Detail",
+  "Code": "files0",
+  "Name": "Файли",
+  "FormCode": "Form_API_web_1551_FileFromSite",
+  "SelectRowsQueryCode": "api_FileFromSite_SelectRows",
+  "SelectRowQueryCode": "api_FileFromSite_SelectRow",
+  "SectionCode": "API_web_1551_FileFromSite",
+  "DeleteQueryCode": "api_FileFromSite_DeleteRow",
+  "Position": 1,
+  "Add": {
+    "InsertQueryCode": "api_FileFromSite_InsertRow"
+  },
+  "QueryParameters": []
+}

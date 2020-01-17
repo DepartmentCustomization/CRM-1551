@@ -1,0 +1,6 @@
+{
+    "ModelType": "QueryGroup",
+    "Code": "PersonExecutor",
+    "Name": "Посада як виконавець",
+    "ConnectionCode": "Default"
+  }

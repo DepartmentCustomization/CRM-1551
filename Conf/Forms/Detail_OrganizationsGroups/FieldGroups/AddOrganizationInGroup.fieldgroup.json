@@ -1,0 +1,26 @@
+{
+  "Code": "AddOrganizationInGroup",
+  "Name": "Інформація",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "org",
+      "Name": "Організація",
+      "FieldType": "select",
+      "IsRequired": true,
+      "Position": 1,
+      "Width": "100%",
+      "QueryCode": "OrganizationsList",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "short_name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "groupId",
+      "Name": "Група",
+      "FieldType": "number",
+      "Position": 2,
+      "IsHidden": true
+    }
+  ]
+}

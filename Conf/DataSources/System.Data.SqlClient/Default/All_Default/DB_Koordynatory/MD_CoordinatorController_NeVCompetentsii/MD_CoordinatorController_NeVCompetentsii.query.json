@@ -1,0 +1,45 @@
+{
+  "ModelType": "Query",
+  "Code": "MD_CoordinatorController_NeVCompetentsii",
+  "Name": "MD_CoordinatorController_NeVCompetentsii",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "address",
+      "Name": "address",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "content",
+      "Name": "content",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "comment",
+      "Name": "comment",
+      "Position": 4,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@zayiavnykId",
+      "Name": "zayiavnykId",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@questionId",
+      "Name": "questionId",
+      "ParameterType": "Integer"
+    }
+  ]
+}

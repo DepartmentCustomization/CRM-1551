@@ -1,0 +1,11 @@
+{
+  "Add": {
+    "InsertQueryCode": "api_ApplicantDocuments_Insert"
+  },
+  "ModelType": "Section",
+  "Code": "API_web_1551_ApplicantDocuments",
+  "Name": "API_web_1551_ApplicantDocuments",
+  "FormCode": "Form_API_web_1551_ApplicantDocuments",
+  "SelectRowsQueryCode": "api_ApplicantDocuments_SelectRows",
+  "SelectRowQueryCode": "api_ApplicantDocuments_SelectRow"
+}

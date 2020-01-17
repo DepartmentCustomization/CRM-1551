@@ -1,0 +1,49 @@
+{
+  "ModelType": "Query",
+  "Code": "dir_Streets_SelectRow",
+  "Name": "dir_Streets_SelectRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "IsPrintable": false
+    },
+    {
+      "Code": "name",
+      "Name": "Назва",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "district",
+      "Name": "Район",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "streetTypeId",
+      "Name": "Тип вулиці Id",
+      "Position": 5,
+      "IsPrintable": false
+    },
+    {
+      "Code": "streetTypeName",
+      "Name": "Тип вулиці",
+      "Position": 6,
+      "IsPrintable": false,
+      "ReferenceKeyCode": "streetTypeId"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

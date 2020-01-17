@@ -1,0 +1,18 @@
+{
+  "ModelType": "Form",
+  "Code": "AudioFiles",
+  "Name": "Аудіо-файл",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\Grouo1.fieldgroup.json"
+    ],
+    "DefaultFields": [
+      {
+        "Code": "EventId",
+        "ParentFormFieldCodeForKeyValue": "Id",
+        "ParentFormFieldCodeForDisplayValue": "Id"
+      }
+    ]
+  }
+}

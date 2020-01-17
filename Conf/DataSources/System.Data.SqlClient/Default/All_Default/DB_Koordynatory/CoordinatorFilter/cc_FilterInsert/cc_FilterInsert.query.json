@@ -1,0 +1,29 @@
+{
+  "ModelType": "Query",
+  "Code": "cc_FilterInsert",
+  "Name": "cc_FilterInsert",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@department_id",
+      "Name": "department_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@questiondirection_id",
+      "Name": "questiondirection_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    },
+    {
+      "Code": "@district_id",
+      "Name": "district_id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

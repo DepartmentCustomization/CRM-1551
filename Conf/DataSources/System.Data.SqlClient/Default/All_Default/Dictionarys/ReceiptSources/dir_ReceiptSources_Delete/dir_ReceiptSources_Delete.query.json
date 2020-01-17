@@ -1,0 +1,16 @@
+{
+  "ModelType": "Query",
+  "Code": "dir_ReceiptSources_Delete",
+  "Name": "dir_ReceiptSources_Delete",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Sql": "DELETE FROM [dbo].[ReceiptSources] WHERE Id = @Id",
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

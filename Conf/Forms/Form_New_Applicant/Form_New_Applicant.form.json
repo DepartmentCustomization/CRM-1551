@@ -1,0 +1,28 @@
+{
+  "ModelType": "Form",
+  "Code": "Form_New_Applicant",
+  "Name": "Додавання нового заявкина з заявки",
+  "IsPrintable": false,
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\Group_New_Applicant.fieldgroup.json",
+      "string:FieldGroups\\Group_Applicant_LiveAdress2.fieldgroup.json",
+      "string:FieldGroups\\Group_Applicants_AddInform2.fieldgroup.json",
+      "string:FieldGroups\\Group_UpdateInfo2.fieldgroup.json"
+    ],
+    "DefaultFields": [
+      {
+        "Code": "phone_number",
+        "ParentFormFieldCodeForKeyValue": "phone_number",
+        "ParentFormFieldCodeForDisplayValue": "phone_number"
+      },
+      {
+        "Code": "appeals",
+        "ParentFormFieldCodeForKeyValue": "Id",
+        "ParentFormFieldCodeForDisplayValue": "Id"
+      }
+    ],
+    "Script": "string:Form_New_Applicant.form.js"
+  }
+}

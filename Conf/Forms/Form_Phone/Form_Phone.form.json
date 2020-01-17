@@ -1,0 +1,13 @@
+{
+  "ModelType": "Form",
+  "Code": "Form_Phone",
+  "Name": "Телефон",
+  "IsPrintable": false,
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\Group_Phone.fieldgroup.json"
+    ],
+    "DefaultFields": []
+  }
+}

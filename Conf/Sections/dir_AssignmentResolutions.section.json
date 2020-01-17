@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "dir_AssignmentResolutions_Insert"
+  },
+  "ModelType": "Section",
+  "Code": "dir_AssignmentResolutions",
+  "Name": "Довідник: Резолюції доручень",
+  "FormCode": "Form_dictionary_universal",
+  "SelectRowsQueryCode": "dir_AssignmentResolutions_SelectRows",
+  "SelectRowQueryCode": "dir_AssignmentResolutions_SelectRow",
+  "UpdateQueryCode": "dir_AssignmentResolutions_Update",
+  "DeleteQueryCode": "dir_AssignmentResolutions_Delete"
+}

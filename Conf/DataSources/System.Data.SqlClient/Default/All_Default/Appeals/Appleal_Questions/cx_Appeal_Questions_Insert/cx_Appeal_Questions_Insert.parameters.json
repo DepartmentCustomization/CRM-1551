@@ -1,0 +1,88 @@
+[
+  {
+    "Code": "@user_edit_id",
+    "Name": "user_edit_id",
+    "ParameterType": "CurrentUserId"
+  },
+  {
+    "Code": "@application_town_id",
+    "Name": "application_town_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@appeal_id",
+    "Name": "appeal_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@control_date",
+    "Name": "control_date",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@answer_phone",
+    "Name": "answer_phone"
+  },
+  {
+    "Code": "@object_comment",
+    "Name": "object_comment"
+  },
+  {
+    "Code": "@question_state_id",
+    "Name": "question_state_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@question_content",
+    "Name": "question_content"
+  },
+  {
+    "Code": "@question_type_id",
+    "Name": "question_type_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@event_id",
+    "Name": "event_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@organization_id",
+    "Name": "organization_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@object_id",
+    "Name": "object_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@Id",
+    "Name": "Id",
+    "ParameterType": "Integer",
+    "IsPrimaryKey": true
+  },
+  {
+    "Code": "@receipt_date",
+    "Name": "receipt_date",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@answer_post",
+    "Name": "answer_post"
+  },
+  {
+    "Code": "@answer_mail",
+    "Name": "answer_mail"
+  },
+  {
+    "Code": "@user_id",
+    "Name": "user_id",
+    "ParameterType": "CurrentUserId"
+  },
+  {
+    "Code": "@answer_form_id",
+    "Name": "answer_form_id",
+    "ParameterType": "Integer"
+  }
+]

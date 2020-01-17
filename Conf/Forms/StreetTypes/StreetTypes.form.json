@@ -1,0 +1,12 @@
+{
+  "ModelType": "Form",
+  "Code": "StreetTypes",
+  "Name": "Типи вулиць",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\StreetTypes.fieldgroup.json"
+    ],
+    "DefaultFields": []
+  }
+}

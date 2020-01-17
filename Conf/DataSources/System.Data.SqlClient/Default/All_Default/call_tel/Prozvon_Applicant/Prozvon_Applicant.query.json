@@ -1,0 +1,22 @@
+{
+  "ModelType": "Query",
+  "Code": "Prozvon_Applicant",
+  "Name": "Prozvon_Applicant",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@ApplicantsId",
+      "Name": "ApplicantsId",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@filter",
+      "Name": "filter"
+    },
+    {
+      "Code": "@sort",
+      "Name": "sort"
+    }
+  ]
+}

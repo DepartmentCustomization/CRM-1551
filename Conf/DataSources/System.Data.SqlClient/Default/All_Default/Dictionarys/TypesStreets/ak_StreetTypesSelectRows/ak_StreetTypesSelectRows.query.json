@@ -1,0 +1,42 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_StreetTypesSelectRows",
+  "Name": "ak_StreetTypesSelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "IsPrintable": false
+    },
+    {
+      "Code": "shortname",
+      "Name": "Коротка назва",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "name",
+      "Name": "Назва",
+      "Position": 3,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

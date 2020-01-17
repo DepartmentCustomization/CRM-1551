@@ -1,0 +1,24 @@
+{
+  "ModelType": "Query",
+  "Code": "db_second",
+  "Name": "db_second",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@place_id",
+      "Name": "place_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@date_start",
+      "Name": "date_start",
+      "ParameterType": "DateTime"
+    },
+    {
+      "Code": "@date_end",
+      "Name": "date_end",
+      "ParameterType": "DateTime"
+    }
+  ]
+}

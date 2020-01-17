@@ -1,0 +1,25 @@
+{
+  "Code": "Group_Event_obj_obj",
+  "Name": "ПОВ'ЯЗАНІ ОБ'ЄКТИ",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "object_id",
+      "Name": "Об'єкт",
+      "FieldType": "select",
+      "Position": 1,
+      "Width": "100%",
+      "QueryCode": "list_fullName_Object",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "object_name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "event_id",
+      "Name": "event_id",
+      "FieldType": "number",
+      "Position": 1,
+      "IsHidden": true
+    }
+  ]
+}

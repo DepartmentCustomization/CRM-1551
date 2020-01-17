@@ -1,0 +1,17 @@
+{
+    "ModelType": "Detail",
+    "Code": "ApplicantHistory_details",
+    "Name": "Детальна історія",
+    "SelectRowsQueryCode": "det_2_ApplicantHistory",
+    "Position": 6,
+    "IsExpand": true,
+    "PrintType": "None",
+    "IsWithClosing": true,
+    
+    "QueryParameters": [
+      {
+        "FormFieldName": "Id",
+        "ParameterCode": "@history_id"
+      }
+    ]
+  }

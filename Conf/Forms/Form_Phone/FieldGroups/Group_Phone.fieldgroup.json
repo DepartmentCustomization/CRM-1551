@@ -1,0 +1,13 @@
+{
+  "Code": "Group_Phone",
+  "Name": "Телефон",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "phone_number",
+      "Name": "Номер телефону",
+      "FieldType": "text",
+      "Position": 1
+    }
+  ]
+}

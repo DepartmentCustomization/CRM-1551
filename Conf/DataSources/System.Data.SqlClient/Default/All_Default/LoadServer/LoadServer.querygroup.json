@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "LoadServer",
+  "Name": "LoadServer",
+  "ConnectionCode": "Default"
+}

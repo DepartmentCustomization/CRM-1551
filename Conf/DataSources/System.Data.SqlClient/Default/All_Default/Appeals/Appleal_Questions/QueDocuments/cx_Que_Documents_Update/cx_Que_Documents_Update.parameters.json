@@ -1,0 +1,26 @@
+[
+  {
+    "Code": "@doc_type_id",
+    "Name": "doc_type_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@content",
+    "Name": "content"
+  },
+  {
+    "Code": "@edit_user_id",
+    "Name": "edit_user_id",
+    "ParameterType": "CurrentUserId"
+  },
+  {
+    "Code": "@Id",
+    "Name": "Id",
+    "ParameterType": "Integer",
+    "IsPrimaryKey": true
+  },
+  {
+    "Code": "@name",
+    "Name": "name"
+  }
+]

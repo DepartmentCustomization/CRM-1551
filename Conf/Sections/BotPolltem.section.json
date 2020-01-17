@@ -1,0 +1,12 @@
+{
+  "Add": {
+    "InsertQueryCode": "ak_BotPolltemInsertRow"
+  },
+  "ModelType": "Section",
+  "Code": "BotPolltem",
+  "Name": "Бот Опитування",
+  "FormCode": "BotPolltem",
+  "SelectRowsQueryCode": "ak_BotPolltemSelectRows",
+  "SelectRowQueryCode": "ak_BotPolltemSelectRow",
+  "UpdateQueryCode": "ak_BotPolltemUpdateRow"
+}

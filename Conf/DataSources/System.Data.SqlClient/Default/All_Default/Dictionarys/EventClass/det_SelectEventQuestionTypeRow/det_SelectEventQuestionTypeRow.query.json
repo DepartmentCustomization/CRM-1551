@@ -1,0 +1,40 @@
+{
+  "ModelType": "Query",
+  "Code": "det_SelectEventQuestionTypeRow",
+  "Name": "det_SelectEventQuestionTypeRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "id",
+      "Name": "id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "event_id",
+      "Name": "event_id",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "question_type_id",
+      "Name": "question_type_id",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "is_hard_connection",
+      "Name": "is_hard_connection",
+      "Position": 3,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

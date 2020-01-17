@@ -1,0 +1,22 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_PersonExecutorChooseQTInsertRow",
+    "Name": "ak_PersonExecutorChooseQTInsertRow",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Parameters": [
+      {
+        "Code": "@person_executor_choose_id",
+        "Name": "person_executor_choose_id",
+        "ParameterType": "Integer"
+      },{
+        "Code": "@question_type_id",
+        "Name": "question_type_id",
+        "ParameterType": "Integer"
+      },{
+        "Code": "@user_id",
+        "Name": "user_id",
+        "ParameterType": "CurrentUserId"
+      }
+    ]
+  }

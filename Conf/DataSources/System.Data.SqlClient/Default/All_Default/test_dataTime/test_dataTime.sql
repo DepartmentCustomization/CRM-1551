@@ -1,0 +1,1 @@
+select GETDATE() dt, GETUTCDATE() dt_with

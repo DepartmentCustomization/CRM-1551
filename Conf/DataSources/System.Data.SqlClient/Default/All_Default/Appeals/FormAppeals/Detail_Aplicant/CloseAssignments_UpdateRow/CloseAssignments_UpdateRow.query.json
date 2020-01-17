@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "CloseAssignments_UpdateRow",
+  "Name": "CloseAssignments_UpdateRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

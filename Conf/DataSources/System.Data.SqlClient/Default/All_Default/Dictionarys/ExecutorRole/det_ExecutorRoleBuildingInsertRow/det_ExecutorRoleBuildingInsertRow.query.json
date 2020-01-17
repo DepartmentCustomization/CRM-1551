@@ -1,0 +1,24 @@
+{
+  "ModelType": "Query",
+  "Code": "det_ExecutorRoleBuildingInsertRow",
+  "Name": "det_ExecutorRoleBuildingInsertRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@executor_role_id",
+      "Name": "executor_role_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@build_id",
+      "Name": "build_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@executor_id",
+      "Name": "executor_id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

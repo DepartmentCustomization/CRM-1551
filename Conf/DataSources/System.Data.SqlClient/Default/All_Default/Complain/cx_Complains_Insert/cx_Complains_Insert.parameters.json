@@ -1,0 +1,30 @@
+[
+  {
+    "Code": "@complain_type_id",
+    "Name": "complain_type_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@text",
+    "Name": "text"
+  },
+  {
+    "Code": "@culpritname",
+    "Name": "culpritname"
+  },
+  {
+    "Code": "@Id",
+    "Name": "Id",
+    "ParameterType": "Integer",
+    "IsPrimaryKey": true
+  },
+  {
+    "Code": "@guilty",
+    "Name": "guilty"
+  },
+  {
+    "Code": "@user_id",
+    "Name": "user_id",
+    "ParameterType": "CurrentUserId"
+  }
+]

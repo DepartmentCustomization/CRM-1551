@@ -1,0 +1,7 @@
+{
+  "ModelType": "Connection",
+  "Code": "CRM_1551_Analitics_Replication",
+  "Name": "CRM_1551_Analitics_Replication",
+  "ProviderCode": "System.Data.SqlClient",
+  "ConnectionString": "string:c:\\Dev\\ConnectionStrings\\CRM-1551\\CRM_1551_Analitics_Replication.connectionString.txt"
+}

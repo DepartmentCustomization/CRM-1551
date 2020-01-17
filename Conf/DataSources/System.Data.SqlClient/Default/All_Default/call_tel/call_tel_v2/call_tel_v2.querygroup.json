@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "call_tel_v2",
+  "Name": "Прозвон_v2",
+  "ConnectionCode": "Default"
+}

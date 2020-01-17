@@ -1,0 +1,13 @@
+{
+  "Code": "AssignmentTypes",
+  "Name": "Типи доручень",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "name",
+      "Name": "Назва",
+      "FieldType": "text",
+      "Position": 1
+    }
+  ]
+}

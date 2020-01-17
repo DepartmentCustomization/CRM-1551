@@ -1,0 +1,7 @@
+{
+    "ModelType": "Connection",
+    "Code": "Default",
+    "Name": "Подключение по-умолчанию",
+    "ProviderCode": "System.Data.SqlClient",
+    "ConnectionString": "string:c:\\Dev\\ConnectionStrings\\CRM-1551\\Default.connectionString.txt"
+}

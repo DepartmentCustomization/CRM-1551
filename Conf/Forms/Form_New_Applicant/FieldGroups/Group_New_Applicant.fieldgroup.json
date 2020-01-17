@@ -1,0 +1,39 @@
+{
+  "Code": "Group_New_Applicant",
+  "Name": "Новий заявник",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "full_name",
+      "Name": "Призвіще, ім'я та по батькові",
+      "FieldType": "text",
+      "IsRequired": true,
+      "Position": 1,
+      "Icon": "account_circle"
+    },
+    {
+      "Code": "phone_number",
+      "Name": "Телефон",
+      "FieldType": "text",
+      "Position": 1,
+      "Icon": "phone"
+    },
+    {
+      "Code": "phone_type_id",
+      "Name": "Тип",
+      "FieldType": "select",
+      "Position": 1,
+      "QueryCode": "dir_PhoneTypes_SelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "mail",
+      "Name": "Електрона адреса",
+      "FieldType": "text",
+      "Position": 1,
+      "Icon": "mail_outline"
+    }
+  ]
+}

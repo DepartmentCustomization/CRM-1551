@@ -1,0 +1,71 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_QuestionTypes_SelectRows",
+  "Name": "cx_QuestionTypes_SelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "parent_type_name",
+      "Name": "Батьківський тип питання",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "parent_type.name",
+      "FilterParameterCode": "@name_param"
+    },
+    {
+      "Code": "name",
+      "Name": "Тип питання",
+      "Position": 3,
+      "IsPrintable": false,
+      "SqlName": "[QuestionTypes].[name]",
+      "FilterParameterCode": "@name"
+    },
+    {
+      "Code": "emergency",
+      "Name": "Аварійне",
+      "Position": 4,
+      "IsPrintable": false
+    },
+    {
+      "Code": "active",
+      "Name": "Активне",
+      "Position": 5,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Attention_term_hours",
+      "Name": "Attention_term_hours",
+      "Position": 6,
+      "IsPrintable": false
+    },
+    {
+      "Code": "execution_term",
+      "Name": "execution_term",
+      "Position": 7,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

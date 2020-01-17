@@ -1,0 +1,14 @@
+{
+  "ModelType": "Query",
+  "Code": "QuestionTypes_HideColumns",
+  "Name": "QuestionTypes_HideColumns",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@question_type_id",
+      "Name": "question_type_id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

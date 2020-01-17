@@ -1,0 +1,43 @@
+{
+  "Code": "Group_PreviewApplicant",
+  "Name": "Заявник в системі",
+  "Position": 3,
+  "IsWithClosing": true,
+  "Fields": [
+    {
+      "Code": "1551_Applicant_PIB",
+      "Name": "Прізвище, Ім'я та По батькові",
+      "FieldType": "text",
+      "Position": 1
+    },
+    {
+      "Code": "1551_Applicant_Phone",
+      "Name": "Номер телефону",
+      "FieldType": "text",
+      "Position": 2,
+      "Width": "100%"
+    },
+    {
+      "Code": "1551_Applicant_Address",
+      "Name": "Об'єкт",
+      "FieldType": "text",
+      "Position": 3,
+      "Width": "100%"
+    },
+    {
+      "Code": "btn_person1551_question",
+      "Name": "Створити питання",
+      "FieldType": "button",
+      "Position": 4,
+      "Icon": "note_add",
+      "IconHint": "Створити питання"
+    },
+    {
+      "Code": "Applicant_Id",
+      "Name": "Applicant_Id",
+      "FieldType": "text",
+      "Position": 999,
+      "IsHidden": true
+    }
+  ]
+}

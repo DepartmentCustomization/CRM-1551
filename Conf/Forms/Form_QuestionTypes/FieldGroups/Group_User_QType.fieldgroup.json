@@ -1,0 +1,21 @@
+{
+  "Code": "Group_User_QType",
+  "Name": "Реєстрація",
+  "Position": 2,
+  "Fields": [
+    {
+      "Code": "edit_date",
+      "Name": "Оновлено",
+      "FieldType": "date-time",
+      "Position": 1,
+      "Width": "25%"
+    },
+    {
+      "Code": "user_edit_id",
+      "Name": "Зареєстровано",
+      "FieldType": "text",
+      "Position": 2,
+      "Width": "75%"
+    }
+  ]
+}

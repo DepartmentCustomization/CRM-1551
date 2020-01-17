@@ -1,0 +1,128 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_hotl_AppealsSRow",
+    "Name": "ak_hotl_AppealsSRow",
+    "ConnectionCode": "CRM_1551_Hotline1500",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 0,
+        "IsPrimaryKey": true
+      },
+      {
+        "Code": "Appeal_Id",
+        "Name": "Appeal_Id",
+        "Position": 0
+      },
+      {
+        "Code": "registration_date",
+        "Name": "registration_date",
+        "Position": 1
+      },
+      {
+        "Code": "phone_number",
+        "Name": "phone_number",
+        "Position": 2
+      },
+      {
+        "Code": "applicant_needs",
+        "Name": "applicant_needs",
+        "Position": 2
+      },
+      {
+        "Code": "applicant_name",
+        "Name": "applicant_name",
+        "Position": 3
+      },
+      {
+        "Code": "applicant_address",
+        "Name": "applicant_address",
+        "Position": 4
+      },
+      {
+        "Code": "marital_status_id",
+        "Name": "marital_status_id",
+        "Position": 5
+      },
+      {
+        "Code": "marital_status_name",
+        "Name": "marital_status_name",
+        "Position": 5,
+        "ReferenceKeyCode": "marital_status_id"
+      },
+      {
+        "Code": "sex_id",
+        "Name": "sex_id",
+        "Position": 6
+      },
+      {
+        "Code": "sex_name",
+        "Name": "sex_name",
+        "Position": 6,
+        "ReferenceKeyCode": "sex_id"
+      },
+      {
+        "Code": "age",
+        "Name": "age",
+        "Position": 7
+      },
+      {
+        "Code": "education_id",
+        "Name": "education_id",
+        "Position": 8
+      },
+      {
+        "Code": "education_name",
+        "Name": "education_name",
+        "Position": 8,
+        "ReferenceKeyCode": "education_id"
+      },
+      {
+        "Code": "applicant_privilage_id",
+        "Name": "applicant_privilage_id",
+        "Position": 9
+      },
+      {
+        "Code": "applicant_privilage_name",
+        "Name": "applicant_privilage_name",
+        "Position": 9,
+        "ReferenceKeyCode": "applicant_privilage_id"
+      },
+      {
+        "Code": "guidance_kind_id",
+        "Name": "guidance_kind_id",
+        "Position": 10
+      },
+      {
+        "Code": "guidance_kind_name",
+        "Name": "guidance_kind_name",
+        "Position": 10,
+        "ReferenceKeyCode": "guidance_kind_id"
+      },
+      {
+        "Code": "offender_name",
+        "Name": "offender_name",
+        "Position": 11
+      },
+      {
+        "Code": "service_content",
+        "Name": "service_content",
+        "Position": 12
+      },
+      {
+        "Code": "comment",
+        "Name": "comment",
+        "Position": 13
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@Appeals_Id",
+        "Name": "Appeals_Id",
+        "ParameterType": "Integer",
+        "IsPrimaryKey": true
+      }
+    ]
+  }

@@ -1,0 +1,18 @@
+{
+  "ModelType": "Form",
+  "Code": "det_PositionOrganizations",
+  "Name": "Організації у підпорядкуванні",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\all.fieldgroup.json"
+    ],
+    "DefaultFields": [
+      {
+        "Code": "position_id",
+        "ParentFormFieldCodeForKeyValue": "id",
+        "ParentFormFieldCodeForDisplayValue": "position"
+      }
+    ]
+  }
+}

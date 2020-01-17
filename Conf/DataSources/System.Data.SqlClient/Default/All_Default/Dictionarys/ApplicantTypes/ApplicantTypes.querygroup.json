@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "ApplicantTypes",
+  "Name": "Типи заявників",
+  "ConnectionCode": "Default"
+}

@@ -1,0 +1,18 @@
+{
+  "ModelType": "Query",
+  "Code": "Coordinator_Button_Prozvon",
+  "Name": "Coordinator_Button_Prozvon",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@Ids",
+      "Name": "Ids"
+    },
+    {
+      "Code": "@user",
+      "Name": "user",
+      "ParameterType": "CurrentUserId"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "ModelType": "Query",
+  "Code": "Filter_ParentOrgForReport",
+  "Name": "Filter_ParentOrgForReport",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "SqlName": "OrgId",
+      "FilterParameterCode": "@Id"
+    },
+    {
+      "Code": "Name",
+      "Name": "Name",
+      "Position": 1,
+      "SqlName": "OrgName",
+      "FilterParameterCode": "@Name"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pos",
+      "Name": "pos",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

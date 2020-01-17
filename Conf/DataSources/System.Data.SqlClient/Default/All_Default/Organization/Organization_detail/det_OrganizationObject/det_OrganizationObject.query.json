@@ -1,0 +1,60 @@
+{
+  "ModelType": "Query",
+  "Code": "det_OrganizationObject",
+  "Name": "det_OrganizationObject",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "ConnectionType",
+      "Name": "Тип зв'язку",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "[ExecutorRole].name",
+      "FilterParameterCode": "@ConnectionType"
+    },
+    {
+      "Code": "ObjectType",
+      "Name": "Тип об'єкта",
+      "Position": 3,
+      "IsPrintable": false,
+      "SqlName": "[ObjectTypes].name",
+      "FilterParameterCode": "@ObjectType"
+    },
+    {
+      "Code": "ObjectName",
+      "Name": "Назва об'єкта",
+      "Position": 4,
+      "IsPrintable": false,
+      "SqlName": "[Objects].name",
+      "FilterParameterCode": "@ObjectName"
+    },
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 4,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@organization_id",
+      "Name": "organization_id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

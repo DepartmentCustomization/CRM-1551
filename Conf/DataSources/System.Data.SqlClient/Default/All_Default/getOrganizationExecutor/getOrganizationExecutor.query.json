@@ -1,0 +1,25 @@
+{
+  "ModelType": "Query",
+  "Code": "getOrganizationExecutor",
+  "Name": "getOrganizationExecutor",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Sql": "exec [dbo].[sp_getOrganizationExecutor] @question_type_id,\t@object_id,\t@organization_id",
+  "Parameters": [
+    {
+      "Code": "@object_id",
+      "Name": "object_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@organization_id",
+      "Name": "organization_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@question_type_id",
+      "Name": "question_type_id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

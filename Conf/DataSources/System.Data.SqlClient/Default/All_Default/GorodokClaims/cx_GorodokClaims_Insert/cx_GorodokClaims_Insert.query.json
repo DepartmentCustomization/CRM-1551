@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_GorodokClaims_Insert",
+  "Name": "cx_GorodokClaims_Insert",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

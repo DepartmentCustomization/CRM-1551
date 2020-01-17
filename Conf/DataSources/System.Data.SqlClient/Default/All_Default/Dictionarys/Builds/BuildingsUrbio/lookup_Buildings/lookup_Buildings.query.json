@@ -1,0 +1,39 @@
+{
+  "ModelType": "Query",
+  "Code": "lookup_Buildings",
+  "Name": "lookup_Buildings",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrimaryKey": true,
+      "IsPrintable": false,
+      "Hint": "Ідентифікаційний номер"
+    },
+    {
+      "Code": "full_name",
+      "Name": "Адреса",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "st.name+N' '+ s.name+N', '+b.name",
+      "FilterParameterCode": "@full_name"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_StreetTypesIntoRow",
+  "Name": "ak_StreetTypesIntoRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@shortname",
+      "Name": "shortname"
+    },
+    {
+      "Code": "@name",
+      "Name": "name"
+    }
+  ]
+}

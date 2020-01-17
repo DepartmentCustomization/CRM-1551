@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "GorodokClaim_Prew_Btn_Consultation_InsertRow",
+  "Name": "GorodokClaim_Prew_Btn_Consultation_InsertRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

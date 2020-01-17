@@ -1,0 +1,97 @@
+{
+  "Code": "Appeal",
+  "Name": "Звернення з сайту",
+  "Position": 6,
+  "Fields": [
+    {
+      "Code": "AppealFromSite_Id",
+      "Name": "Номер звернення на сайті",
+      "FieldType": "number",
+      "Position": 1
+    },
+    {
+      "Code": "AppealFromSite_WorkDirectionType",
+      "Name": "Тип робіт",
+      "FieldType": "select",
+      "Position": 1,
+      "QueryCode": "api_WorkDirectionTypes",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "AppealFromSite_Content",
+      "Name": "Зміст",
+      "FieldType": "textarea",
+      "Position": 1,
+      "Width": "100%",
+      "Rows": 2
+    },
+    {
+      "Code": "AppealFromSite_Object",
+      "Name": "Місце проблеми",
+      "FieldType": "select",
+      "Position": 3,
+      "Width": "100%",
+      "QueryCode": "List_Objects",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "AppealFromSite_SiteAppealsResult",
+      "Name": "Стан звернення",
+      "FieldType": "select",
+      "IsRequired": true,
+      "Position": 5,
+      "QueryCode": "List_AppealFromSiteResults",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "AppealFromSite_ReceiptDate",
+      "Name": "Дата та час надходження",
+      "FieldType": "date-time",
+      "IsRequired": true,
+      "Position": 5
+    },
+    {
+      "Code": "additional",
+      "Name": "На доопрацювання",
+      "FieldType": "button",
+      "Position": 12,
+      "Width": "51%"
+    },
+    {
+      "Code": "AppealFromSite_geolocation_lat",
+      "Name": "Координат широти",
+      "FieldType": "text",
+      "Position": 13,
+      "Width": "50%"
+    },
+    {
+      "Code": "AppealFromSite_geolocation_lon",
+      "Name": "Координат довготи",
+      "FieldType": "text",
+      "Position": 14,
+      "Width": "50%"
+    },
+    {
+      "Code": "btn_searchAdressByCoordinate",
+      "Name": "Відобразити адресу на карті",
+      "FieldType": "button",
+      "Position": 15,
+      "Width": "51%",
+      "Icon": "my_location",
+      "IconHint": "Відобразити адресу на карті"
+    },
+    {
+      "Code": "Appeal_Id",
+      "Name": "Appeal_Id (hide)",
+      "FieldType": "text",
+      "Position": 1000,
+      "IsHidden": true
+    }
+  ]
+}

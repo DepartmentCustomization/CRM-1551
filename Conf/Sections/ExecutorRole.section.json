@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "ak_ExecutorRoleInsertRow"
+  },
+  "ModelType": "Section",
+  "Code": "ExecutorRole",
+  "Name": "Довідник: Роль виконавця",
+  "FormCode": "ExecutorRole",
+  "SelectRowsQueryCode": "ak_ExecutorRoleSelectRows",
+  "SelectRowQueryCode": "ak_ExecutorRoleSelectRow",
+  "UpdateQueryCode": "ak_ExecutorRoleUpdateRow",
+  "DeleteQueryCode": "ak_ExecutorRoleDeleteRow"
+}

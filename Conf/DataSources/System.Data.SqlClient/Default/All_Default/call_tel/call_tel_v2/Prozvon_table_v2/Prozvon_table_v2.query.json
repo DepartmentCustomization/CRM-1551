@@ -1,0 +1,17 @@
+{
+  "ModelType": "Query",
+  "Code": "Prozvon_table_v2",
+  "Name": "Prozvon_table_v2",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@sort",
+      "Name": "sort"
+    },
+    {
+      "Code": "@filter",
+      "Name": "filter"
+    }
+  ]
+}

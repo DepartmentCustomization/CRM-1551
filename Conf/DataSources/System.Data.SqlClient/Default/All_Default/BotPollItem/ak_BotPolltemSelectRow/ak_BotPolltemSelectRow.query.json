@@ -1,0 +1,43 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_BotPolltemSelectRow",
+  "Name": "ak_BotPolltemSelectRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "IsPrintable": false
+    },
+    {
+      "Code": "name",
+      "Name": "name",
+      "Position": 2
+    },
+    {
+      "Code": "active",
+      "Name": "active",
+      "Position": 3
+    },
+    {
+      "Code": "role_id",
+      "Name": "role_id",
+      "Position": 4
+    },
+    {
+      "Code": "poll_item_direction_id",
+      "Name": "poll_item_direction_id",
+      "Position": 5
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

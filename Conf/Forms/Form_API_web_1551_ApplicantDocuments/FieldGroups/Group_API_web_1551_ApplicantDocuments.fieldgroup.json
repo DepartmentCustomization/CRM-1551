@@ -1,0 +1,56 @@
+{
+  "Code": "Group_API_web_1551_ApplicantDocuments",
+  "Name": "Group_API_web_1551_ApplicantDocuments",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "applicant_id",
+      "Name": "applicant_id",
+      "FieldType": "number",
+      "Position": 1,
+      "Width": "51%"
+    },
+    {
+      "Code": "documenttype_id",
+      "Name": "documenttype_id",
+      "FieldType": "number",
+      "Position": 2,
+      "Width": "51%"
+    },
+    {
+      "Code": "series",
+      "Name": "series",
+      "FieldType": "text",
+      "Position": 3,
+      "Width": "51%"
+    },
+    {
+      "Code": "documentnumber",
+      "Name": "documentnumber",
+      "FieldType": "number",
+      "Position": 4,
+      "Width": "51%"
+    },
+    {
+      "Code": "issuedate",
+      "Name": "issuedate",
+      "FieldType": "date",
+      "Position": 5,
+      "Width": "51%"
+    },
+    {
+      "Code": "validity",
+      "Name": "validity",
+      "FieldType": "date",
+      "Position": 6,
+      "Width": "51%"
+    },
+    {
+      "Code": "issued_by",
+      "Name": "issued_by",
+      "FieldType": "text",
+      "Position": 7,
+      "Width": "51%"
+    }
+  ]
+}

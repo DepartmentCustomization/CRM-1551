@@ -1,0 +1,77 @@
+{
+  "ModelType": "Query",
+  "Code": "api_ApplicantBasicInformation_SelectRows",
+  "Name": "api_ApplicantBasicInformation_SelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Fathername",
+      "Name": "Fathername",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Firstname",
+      "Name": "Firstname",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Surname",
+      "Name": "Surname",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Birthdate",
+      "Name": "Birthdate",
+      "Position": 4,
+      "IsPrintable": false
+    },
+    {
+      "Code": "ApplicantPrivilegeId",
+      "Name": "ApplicantPrivilegeId",
+      "Position": 5,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Sex",
+      "Name": "Sex",
+      "Position": 6,
+      "IsPrintable": false
+    },
+    {
+      "Code": "SocialStateId",
+      "Name": "SocialStateId",
+      "Position": 7,
+      "IsPrintable": false
+    },
+    {
+      "Code": "INN",
+      "Name": "INN",
+      "Position": 8,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

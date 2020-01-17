@@ -1,0 +1,33 @@
+{
+  "Code": "EventClassType",
+  "Name": "Тип питання заходу",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "question_type_id",
+      "Name": "Назва типу",
+      "FieldType": "select",
+      "IsRequired": true,
+      "Position": 1,
+      "Width": "60%",
+      "QueryCode": "cx_QuestionTypes_SelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "is_hard_connection",
+      "Name": "Признак пов'язаності",
+      "FieldType": "checkbox",
+      "Position": 3,
+      "Width": "60%"
+    },
+    {
+      "Code": "event_id",
+      "Name": "event_id",
+      "FieldType": "number",
+      "Position": 1,
+      "IsHidden": true
+    }
+  ]
+}

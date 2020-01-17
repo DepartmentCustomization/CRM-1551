@@ -1,0 +1,14 @@
+{
+  "Add": {
+    "InsertQueryCode": "ak_TemplatesInsertRow"
+  },
+  "ModelType": "Section",
+  "Code": "Templates",
+  "Name": "Шаблони",
+  "FormCode": "Templates",
+  "SelectRowsQueryCode": "ak_TemplatesSelectRows",
+  "SelectRowQueryCode": "ak_TemplatesSelectRow",
+  "UpdateQueryCode": "ak_TemplatesUpdateRow",
+  "DeleteQueryCode": "ak_TemplatesDeleteRow"
+}
+

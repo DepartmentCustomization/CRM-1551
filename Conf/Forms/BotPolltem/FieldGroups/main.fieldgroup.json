@@ -1,0 +1,55 @@
+{
+    "Code": "main",
+    "Name": "Зміст",
+    "Position": 1,
+    "Fields": [
+      {
+        "Code": "name",
+        "Name": "Назва",
+        "FieldType": "text",
+        "Position": 1,
+        "Width": "100%",
+        "QueryParameters": []
+      },
+      {
+        "Code": "active",
+        "Name": "Активний",
+        "FieldType": "checkbox",
+        "Position": 2,
+        "Width": "10%",
+        "QueryParameters": []
+      },
+      {
+        "Code": "role_id",
+        "Name": "Роль",
+        "FieldType": "select",
+        "Position": 3,
+        "Width": "30%",
+        "QueryCode": "ak_RolesSelectRows",
+        "KeyColumnCode": "id",
+        "DisplayColumnCode": "name",
+        "QueryParameters": [
+          {
+            "ParentFormFieldCode": "Id",
+            "ParameterCode": "@Id"
+          }
+        ]
+      },
+      {
+        "Code": "poll_item_direction_id",
+        "Name": "Напрямок опитування",
+        "FieldType": "select",
+        "Position": 4,
+        "Width": "30%",
+        "QueryCode": "ak_PollItemDirectionsSelectRows",
+        "KeyColumnCode": "id",
+        "DisplayColumnCode": "name",
+        "QueryParameters": [
+          {
+            "ParentFormFieldCode": "Id",
+            "ParameterCode": "@Id"
+          }
+        ]
+      }
+    ]
+  }

@@ -1,0 +1,29 @@
+{
+    "ModelType": "Query",
+    "Code": "SelectBuildName",
+    "Name": "SelectBuildName",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [ 
+        {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 0,
+        "IsPrintable": false
+      },
+      {
+        "Code": "full_name",
+        "Name": "full_name",
+        "Position": 1,
+        "IsPrintable": false
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@Id",
+        "Name": "Id",
+        "ParameterType": "Integer",
+        "IsPrimaryKey": true
+      }
+    ]
+  }

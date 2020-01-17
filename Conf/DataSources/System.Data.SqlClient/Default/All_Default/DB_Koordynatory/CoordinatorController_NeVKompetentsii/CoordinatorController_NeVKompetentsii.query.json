@@ -1,0 +1,18 @@
+{
+  "ModelType": "Query",
+  "Code": "CoordinatorController_NeVKompetentsii",
+  "Name": "CoordinatorController_NeVKompetentsii",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    },
+    {
+      "Code": "@navigation",
+      "Name": "navigation"
+    }
+  ]
+}

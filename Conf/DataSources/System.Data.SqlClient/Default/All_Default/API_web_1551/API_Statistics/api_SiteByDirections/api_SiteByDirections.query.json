@@ -1,0 +1,41 @@
+{
+  "ModelType": "Query",
+  "Code": "api_SiteByDirections",
+  "Name": "api_SiteByDirections",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "QuestionGroup",
+      "Name": "QuestionGroup",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "count_Assignments",
+      "Name": "count_Assignments",
+      "Position": 2,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

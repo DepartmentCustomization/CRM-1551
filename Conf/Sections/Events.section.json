@@ -1,0 +1,12 @@
+{
+  "Add": {
+    "InsertQueryCode": "cx_Events_Insert"
+  },
+  "ModelType": "Section",
+  "Code": "Events",
+  "Name": "8. Заходи",
+  "FormCode": "Form_Events",
+  "SelectRowsQueryCode": "cx_Events_SelectRows",
+  "SelectRowQueryCode": "cx_Events_SelectRow",
+  "UpdateQueryCode": "cx_Events_Update"
+}

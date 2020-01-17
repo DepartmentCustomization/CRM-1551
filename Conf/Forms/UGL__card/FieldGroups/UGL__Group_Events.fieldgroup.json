@@ -1,0 +1,67 @@
+{
+  "Code": "UGL__Group_Events",
+  "Name": "Перегляд Заходу",
+  "Position": 5,
+  "IsWithClosing": true,
+  "Fields": [
+    {
+      "Code": "Event_Prew_Id",
+      "Name": "Номер Заходу",
+      "FieldType": "number",
+      "Position": 1
+    },
+    {
+      "Code": "Event_Prew_Type",
+      "Name": "Тип Заходу",
+      "FieldType": "select",
+      "Position": 2,
+      "QueryCode": "dir_EventTypes_SelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "Event_Prew_Name",
+      "Name": "Назва Заходу",
+      "FieldType": "text",
+      "Position": 3
+    },
+    {
+      "Code": "Event_Prew_EventOrganizers",
+      "Name": "Відповідальний за усунення",
+      "FieldType": "text",
+      "Position": 4
+    },
+    {
+      "Code": "Event_Prew_Comment",
+      "Name": "Зміст",
+      "FieldType": "textarea",
+      "Position": 5,
+      "Width": "100%"
+    },
+    {
+      "Code": "Event_Prew_StartDate",
+      "Name": "Дата та час початку Заходу",
+      "FieldType": "date-time",
+      "Position": 6
+    },
+    {
+      "Code": "Event_Prew_PlanEndDate",
+      "Name": "Планова дата та час  завершення Заходу",
+      "FieldType": "date-time",
+      "Position": 7
+    },
+    {
+      "Code": "Event_Prew_Btn_Consultation",
+      "Name": "Консультація за Заходом",
+      "FieldType": "button",
+      "Position": 8
+    },
+    {
+      "Code": "Event_Prew_Btn_Add",
+      "Name": "Додати питання",
+      "FieldType": "button",
+      "Position": 10
+    }
+  ]
+}

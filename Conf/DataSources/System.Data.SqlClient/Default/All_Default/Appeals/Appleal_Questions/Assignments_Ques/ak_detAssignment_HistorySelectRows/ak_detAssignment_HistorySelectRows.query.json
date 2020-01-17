@@ -1,0 +1,92 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_detAssignment_HistorySelectRows",
+  "Name": "ak_detAssignment_HistorySelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "AssignmentStates",
+      "Name": "Стан доручення",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "[AssignmentStates].name",
+      "FilterParameterCode": "@AssignmentStates"
+    },
+    {
+      "Code": "transfer_date",
+      "Name": "Взято в роботу",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "[Assignment_History].transfer_date",
+      "FilterParameterCode": "transfer_date"
+    },
+    {
+      "Code": "short_name",
+      "Name": "Виконавець",
+      "Position": 3,
+      "IsPrintable": false,
+      "SqlName": "[Organizations].short_name",
+      "FilterParameterCode": "@short_name"
+    },
+    {
+      "Code": "main",
+      "Name": "Головний",
+      "Position": 4,
+      "IsPrintable": false,
+      "SqlName": "case when [Assignment_History].main_executor=N'true' then N'Так' when [Assignment_History].main_executor=N'false' then N'Ні' end",
+      "FilterParameterCode": "@main"
+    },
+    {
+      "Code": "AssignmentResult",
+      "Name": "Результат",
+      "Position": 5,
+      "IsPrintable": false,
+      "SqlName": "[AssignmentResults].name",
+      "FilterParameterCode": "@AssignmentResult"
+    },
+    {
+      "Code": "AssignmentResolution",
+      "Name": "Резолюція",
+      "Position": 6,
+      "IsPrintable": false,
+      "SqlName": "[AssignmentResolutions].name",
+      "FilterParameterCode": "@AssignmentResolution"
+    },
+    {
+      "Code": "short_answer",
+      "Name": "Коментар",
+      "Position": 7,
+      "IsPrintable": false,
+      "SqlName": "[Assignment_History].short_answer",
+      "FilterParameterCode": "@short_answer"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@assignment_id",
+      "Name": "assignment_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

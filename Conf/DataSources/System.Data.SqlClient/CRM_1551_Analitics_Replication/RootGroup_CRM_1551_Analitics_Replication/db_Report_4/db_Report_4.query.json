@@ -1,0 +1,29 @@
+{
+  "ModelType": "Query",
+  "Code": "db_Report_4",
+  "Name": "db_Report_4",
+  "ConnectionCode": "CRM_1551_Analitics_Replication",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@dateTo",
+      "Name": "dateTo",
+      "ParameterType": "DateTime"
+    },
+    {
+      "Code": "@org",
+      "Name": "org",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@question_type_id",
+      "Name": "question_type_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@dateFrom",
+      "Name": "dateFrom",
+      "ParameterType": "DateTime"
+    }
+  ]
+}

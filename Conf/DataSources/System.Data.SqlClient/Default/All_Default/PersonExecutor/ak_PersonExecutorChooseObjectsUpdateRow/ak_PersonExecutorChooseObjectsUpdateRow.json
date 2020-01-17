@@ -1,0 +1,27 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_PersonExecutorChooseObjectsUpdateRow",
+    "Name": "ak_PersonExecutorChooseObjectsUpdateRow",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Parameters": [
+      {
+        "Code": "@person_executor_choose_id",
+        "Name": "person_executor_choose_id",
+        "ParameterType": "Integer"
+      },{
+        "Code": "@object_id",
+        "Name": "object_id",
+        "ParameterType": "Integer"
+      },{
+        "Code": "@user_id",
+        "Name": "user_id",
+        "ParameterType": "CurrentUserId"
+      },{
+        "Code": "@Id",
+        "Name": "Id",
+        "ParameterType": "Integer",
+        "IsPrimaryKey": true
+      }
+    ]
+  }

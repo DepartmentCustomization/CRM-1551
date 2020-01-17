@@ -1,0 +1,69 @@
+{
+  "Code": "Group_Cliams_Gorodok_Audio",
+  "Name": "Аудіо-інформатор",
+  "Position": 2,
+  "Fields": [
+    {
+      "Code": "audio_start_date",
+      "Name": "Дата початку програвання",
+      "FieldType": "date-time",
+      "Position": 1,
+      "Width": "30%"
+    },
+    {
+      "Code": "audio_end_date",
+      "Name": "Дата закінчення програвання",
+      "FieldType": "date-time",
+      "Position": 2,
+      "Width": "30%"
+    },
+    {
+      "Code": "say_plan_end_date",
+      "Name": "Дата закінчення робіт",
+      "FieldType": "checkbox",
+      "Position": 3,
+      "Width": "35%"
+    },
+    {
+      "Code": "say_liveAddress_id",
+      "Name": "Персональна адреса",
+      "FieldType": "checkbox",
+      "Position": 4,
+      "Width": "25%"
+    },
+    {
+      "Code": "standart_audio",
+      "Name": "Стандартний аудиофайл",
+      "FieldType": "checkbox",
+      "Position": 4,
+      "Width": "25%"
+    },
+    {
+      "Code": "say_organization_id",
+      "Name": "Організація, що проводить роботи",
+      "FieldType": "checkbox",
+      "Position": 5,
+      "Width": "35%"
+    },
+    {
+      "Code": "phone_for_information",
+      "Name": "Телефон для довідок",
+      "FieldType": "text",
+      "Position": 7
+    },
+    {
+      "Code": "say_phone_for_information",
+      "Name": "Телефон для довідок",
+      "FieldType": "checkbox",
+      "Position": 8,
+      "Width": "30%"
+    },
+    {
+      "Code": "audio_on",
+      "Name": "Активувати аудио",
+      "FieldType": "checkbox",
+      "Position": 33,
+      "Width": "100%"
+    }
+  ]
+}

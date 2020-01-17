@@ -1,0 +1,38 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_PositionsSelectRows2",
+  "Name": "ak_PositionsSelectRows2",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "name",
+      "Name": "Зміст",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "N'ФІО: '+isnull([Positions].name, N'_')+N', Організація: '+isnull([Organizations].short_name, N'_')+N', Посада: '+isnull([Positions].position, N'_')",
+      "FilterParameterCode": "@name"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_Events_SelectRows",
+  "Name": "cx_Events_SelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "№ заходу",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "IsPrintable": false
+    },
+    {
+      "Code": "event_type_name",
+      "Name": "Тип заходу",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "EventTypes.name",
+      "FilterParameterCode": "@Name"
+    },
+    {
+      "Code": "event_class_name",
+      "Name": "Клас заходу",
+      "Position": 6,
+      "IsPrintable": false
+    },
+    {
+      "Code": "object_name",
+      "Name": "Об'єкт",
+      "Position": 7,
+      "IsPrintable": false,
+      "SqlName": "concat(ObjectTypes.name,' : ', Streets.name, ' ', Buildings.number,Buildings.letter)",
+      "FilterParameterCode": "@ObjName"
+    },
+    {
+      "Code": "executor_name",
+      "Name": "Виконавець",
+      "Position": 8,
+      "IsPrintable": false,
+      "SqlName": "Executors.name",
+      "FilterParameterCode": "@Executor"
+    },
+    {
+      "Code": "start_date",
+      "Name": "Дата початку",
+      "Position": 9,
+      "IsPrintable": false
+    },
+    {
+      "Code": "real_end_date",
+      "Name": "Факт.завершення",
+      "Position": 10,
+      "IsPrintable": false
+    },
+    {
+      "Code": "active",
+      "Name": "Активний",
+      "Position": 11,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "audio_on",
+      "Name": "Активне аудіо",
+      "Position": 11
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

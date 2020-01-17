@@ -1,0 +1,165 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 1,
+    "IsPrimaryKey": true,
+    "IsPrintable": false
+  },
+  {
+    "Code": "registration_date",
+    "Name": "registration_date",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "full_name",
+    "Name": "full_name",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "phone_number",
+    "Name": "phone_number",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "phone_type_name",
+    "Name": "phone_type_name",
+    "Position": 5,
+    "IsPrintable": false
+  },
+  {
+    "Code": "phone_type_id",
+    "Name": "phone_type_id",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "mail",
+    "Name": "mail",
+    "Position": 7,
+    "IsPrintable": false
+  },
+  {
+    "Code": "district_name",
+    "Name": "district_name",
+    "Position": 8,
+    "IsPrintable": false
+  },
+  {
+    "Code": "district_id",
+    "Name": "district_id",
+    "Position": 9,
+    "IsPrintable": false
+  },
+  {
+    "Code": "building_name",
+    "Name": "building_name",
+    "Position": 10,
+    "IsPrintable": false
+  },
+  {
+    "Code": "building_id",
+    "Name": "building_id",
+    "Position": 11,
+    "IsPrintable": false
+  },
+  {
+    "Code": "flat",
+    "Name": "flat",
+    "Position": 12,
+    "IsPrintable": false
+  },
+  {
+    "Code": "house_block",
+    "Name": "house_block",
+    "Position": 13,
+    "IsPrintable": false
+  },
+  {
+    "Code": "entrance",
+    "Name": "entrance",
+    "Position": 14,
+    "IsPrintable": false
+  },
+  {
+    "Code": "types_name",
+    "Name": "types_name",
+    "Position": 15,
+    "IsPrintable": false
+  },
+  {
+    "Code": "types_id",
+    "Name": "types_id",
+    "Position": 16,
+    "IsPrintable": false
+  },
+  {
+    "Code": "category_name",
+    "Name": "category_name",
+    "Position": 17,
+    "IsPrintable": false
+  },
+  {
+    "Code": "category_id",
+    "Name": "category_id",
+    "Position": 18,
+    "IsPrintable": false
+  },
+  {
+    "Code": "states_name",
+    "Name": "states_name",
+    "Position": 19,
+    "IsPrintable": false
+  },
+  {
+    "Code": "states_id",
+    "Name": "states_id",
+    "Position": 20,
+    "IsPrintable": false
+  },
+  {
+    "Code": "sex",
+    "Name": "sex",
+    "Position": 21,
+    "IsPrintable": false
+  },
+  {
+    "Code": "birth_date",
+    "Name": "birth_date",
+    "Position": 22,
+    "IsPrintable": false
+  },
+  {
+    "Code": "age",
+    "Name": "age",
+    "Position": 23,
+    "IsPrintable": false
+  },
+  {
+    "Code": "comment",
+    "Name": "comment",
+    "Position": 24,
+    "IsPrintable": false
+  },
+  {
+    "Code": "user_id",
+    "Name": "user_id",
+    "Position": 25,
+    "IsPrintable": false
+  },
+  {
+    "Code": "edit_date",
+    "Name": "edit_date",
+    "Position": 26,
+    "IsPrintable": false
+  },
+  {
+    "Code": "user_edit_id",
+    "Name": "user_edit_id",
+    "Position": 27,
+    "IsPrintable": false
+  }
+]

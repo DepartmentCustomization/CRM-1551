@@ -1,0 +1,41 @@
+{
+  "ModelType": "Query",
+  "Code": "Detail_ConsultationAplicant_selectRows",
+  "Name": "Detail_ConsultationAplicant_selectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Номер консультації",
+      "Name": "Номер консультації",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Дата та час реєстрації",
+      "Name": "Дата реєстрації",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Тип консультації",
+      "Name": "Тип консультації",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Номер Заходу/заявки Городок/статті БЗ",
+      "Name": "Номер Заходу/заявки Городок/статті БЗ",
+      "Position": 4,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 5,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    }
+  ]
+}

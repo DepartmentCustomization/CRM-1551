@@ -1,0 +1,16 @@
+{
+  "ModelType": "Detail",
+  "Code": "EventHistory_Details",
+  "Name": "Детальна історія",
+  "SelectRowsQueryCode": "EventHistory_Detail_SelectRows",
+  "SectionCode": "",
+  "Position": 10,
+  "IsExpand": true,
+  "IsWithClosing": true,
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@history_id"
+    }
+  ]
+}

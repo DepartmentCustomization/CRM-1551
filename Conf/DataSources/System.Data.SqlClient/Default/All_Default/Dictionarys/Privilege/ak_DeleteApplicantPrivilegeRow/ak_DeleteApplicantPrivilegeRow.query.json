@@ -1,0 +1,15 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_DeleteApplicantPrivilegeRow",
+  "Name": "ak_DeleteApplicantPrivilegeRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@id",
+      "Name": "id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

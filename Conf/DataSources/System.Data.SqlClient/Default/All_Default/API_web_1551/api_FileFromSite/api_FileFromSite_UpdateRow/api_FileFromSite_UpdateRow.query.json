@@ -1,0 +1,28 @@
+{
+  "ModelType": "Query",
+  "Code": "api_FileFromSite_UpdateRow",
+  "Name": "api_FileFromSite_UpdateRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    },
+    {
+      "Code": "@name",
+      "Name": "name"
+    },
+    {
+      "Code": "@appeal_from_site_id",
+      "Name": "appeal_from_site_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@File",
+      "Name": "File"
+    }
+  ]
+}

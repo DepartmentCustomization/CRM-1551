@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "dir_ControlTypes_Insert"
+  },
+  "ModelType": "Section",
+  "Code": "dir_ControlTypes",
+  "Name": "Довідник: Типи контролю",
+  "FormCode": "Form_dictionary_universal",
+  "SelectRowsQueryCode": "dir_ControlTypes_SelectRows",
+  "SelectRowQueryCode": "dir_ControlTypes_SelectRow",
+  "UpdateQueryCode": "dir_ControlTypes_Update",
+  "DeleteQueryCode": "dir_ControlTypes_Delete"
+}

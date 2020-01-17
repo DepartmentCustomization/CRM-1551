@@ -1,0 +1,21 @@
+{
+  "ModelType": "Query",
+  "Code": "list_onExecuteTerm",
+  "Name": "list_onExecuteTerm",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "execut",
+      "Name": "execut",
+      "Position": 1
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@q_type_id",
+      "Name": "q_type_id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

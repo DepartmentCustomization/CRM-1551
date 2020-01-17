@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_BotPolltemUpdateRow",
+  "Name": "ak_BotPolltemUpdateRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

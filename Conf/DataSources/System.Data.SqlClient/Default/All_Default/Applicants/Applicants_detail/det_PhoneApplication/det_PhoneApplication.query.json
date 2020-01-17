@@ -1,0 +1,63 @@
+{
+  "ModelType": "Query",
+  "Code": "det_PhoneApplication",
+  "Name": "det_PhoneApplication",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "full_name",
+      "Name": "ПІБ",
+      "Position": 2,
+      "IsPrintable": false,
+      "ReferenceKeyCode": "Id",
+      "ReferenceSectionCode": "Applicants"
+    },
+    {
+      "Code": "Building",
+      "Name": "Адреса заявника",
+      "Position": 3,
+      "IsPrintable": false,
+      "SqlName": "concat('р-н. ' + [Districts].name, ', '+ StreetTypes.shortname +' ' + [Streets].name,  \t  ', буд.' + [Buildings].name, ', під.' + rtrim([LiveAddress].entrance), ', кв.' + [LiveAddress].flat \t   ) ",
+      "FilterParameterCode": "@build"
+    },
+    {
+      "Code": "Privilege",
+      "Name": "Пільги",
+      "Position": 4,
+      "IsPrintable": false
+    },
+    {
+      "Code": "SocialStates",
+      "Name": "Соц. статус",
+      "Position": 5,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@phone",
+      "Name": "phone"
+    }
+  ]
+}

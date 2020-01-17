@@ -1,0 +1,41 @@
+{
+  "ModelType": "Query",
+  "Code": "QuestionGroupTypes_SelectRows",
+  "Name": "QuestionGroupTypes_SelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "typeName",
+      "Name": "Назва",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "ModelType": "Query",
+  "Code": "dir_QuestionGroups_SelectRow",
+  "Name": "dir_QuestionGroups_SelectRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "IsPrintable": false
+    },
+    {
+      "Code": "groupName",
+      "Name": "Назва групи",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "reportCode",
+      "Name": "Звіт",
+      "Position": 3,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

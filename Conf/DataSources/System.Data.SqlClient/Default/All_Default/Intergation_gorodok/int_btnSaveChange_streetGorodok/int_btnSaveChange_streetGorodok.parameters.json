@@ -1,0 +1,36 @@
+[
+  {
+    "Code": "@id_1551",
+    "Name": "id_1551",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@user_id",
+    "Name": "user_id",
+    "ParameterType": "CurrentUserId"
+  },
+  {
+    "Code": "@key",
+    "Name": "key",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@comment",
+    "Name": "comment"
+  },
+  {
+    "Code": "@cat_id",
+    "Name": "cat_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@is_done",
+    "Name": "is_done",
+    "ParameterType": "Boolean"
+  },
+  {
+    "Code": "@id_1551_new",
+    "Name": "id_1551_new",
+    "ParameterType": "Integer"
+  }
+]

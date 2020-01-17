@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "ProcessingKind",
+  "Name": "Вид обробки",
+  "ConnectionCode": "Default"
+}

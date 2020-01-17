@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "cx_Ass_Documents_Insert"
+  },
+  "ModelType": "Section",
+  "Code": "Ass_Documents",
+  "Name": "Документи доручень",
+  "FormCode": "Form_Ass_Documents",
+  "SelectRowsQueryCode": "cx_Ass_Documents_SelectRows",
+  "SelectRowQueryCode": "cx_Ass_Documents_SelectRow",
+  "UpdateQueryCode": "cx_Ass_Documents_Update",
+  "IsVisible": false
+}

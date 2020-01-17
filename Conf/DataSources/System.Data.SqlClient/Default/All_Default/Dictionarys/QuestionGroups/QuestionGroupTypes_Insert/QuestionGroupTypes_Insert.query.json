@@ -1,0 +1,17 @@
+{
+  "ModelType": "Query",
+  "Code": "QuestionGroupTypes_Insert",
+  "Name": "QuestionGroupTypes_Insert",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@typeName",
+      "Name": "typeName"
+    },
+    {
+      "Code": "@groupName",
+      "Name": "groupName"
+    }
+  ]
+}

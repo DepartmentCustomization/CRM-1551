@@ -1,0 +1,12 @@
+{
+  "Add": {
+    "InsertQueryCode": "cx_QuestionTypes_Insert"
+  },
+  "ModelType": "Section",
+  "Code": "QuestionTypes",
+  "Name": "Класифікатор типів питань",
+  "FormCode": "Form_QuestionTypes",
+  "SelectRowsQueryCode": "cx_QuestionTypes_SelectRows",
+  "SelectRowQueryCode": "cx_QuestionTypes_SelectRow",
+  "UpdateQueryCode": "cx_QuestionTypes_Update"
+}

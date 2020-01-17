@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "QueDocuments",
+  "Name": "Документи питань",
+  "ConnectionCode": "Default"
+}

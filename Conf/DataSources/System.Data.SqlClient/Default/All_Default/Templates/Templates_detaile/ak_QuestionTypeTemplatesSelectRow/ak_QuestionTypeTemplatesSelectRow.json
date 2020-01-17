@@ -1,0 +1,40 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_QuestionTypeTemplatesSelectRow",
+    "Name": "ak_QuestionTypeTemplatesSelectRow",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 1,
+        "IsPrimaryKey": true,
+        "IsPrintable": false
+
+      },{
+        "Code": "templates_name",
+        "Name": "templates_name",
+        "Position": 2,
+        "IsPrintable": false
+      },{
+        "Code": "templates_Id",
+        "Name": "templates_Id",
+        "Position": 3,
+        "IsPrintable": false
+      },{
+        "Code": "question_type_id",
+        "Name": "question_type_id",
+        "Position": 4,
+        "IsPrintable": false
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@Id",
+        "Name": "Id",
+        "ParameterType": "Integer",
+        "IsPrimaryKey": true
+      }
+    ]
+  }

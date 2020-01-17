@@ -1,0 +1,40 @@
+{
+  "ModelType": "Query",
+  "Code": "MD_EventsTable",
+  "Name": "MD_EventsTable",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "question_content",
+      "Name": "question_content",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "name",
+      "Name": "name",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "event_id",
+      "Name": "event_id",
+      "Position": 4,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@eventId",
+      "Name": "eventId",
+      "ParameterType": "Integer"
+    }
+  ]
+}

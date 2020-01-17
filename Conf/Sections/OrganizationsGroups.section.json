@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "InsertOrganizationsGroup"
+  },
+  "ModelType": "Section",
+  "Code": "OrganizationsGroups",
+  "Name": "Довідник: Групи організацій",
+  "FormCode": "OrganizationsGroups",
+  "SelectRowsQueryCode": "SelectAllOrganizationsGroups",
+  "SelectRowQueryCode": "SelectOrganizationGroup",
+  "UpdateQueryCode": "UpdateOrganizationGroup",
+  "DeleteQueryCode": "DeleteOrganizationGroup"
+}

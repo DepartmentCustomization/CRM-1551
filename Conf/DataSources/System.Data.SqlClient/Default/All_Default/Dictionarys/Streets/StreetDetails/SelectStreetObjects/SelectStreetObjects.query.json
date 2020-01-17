@@ -1,0 +1,55 @@
+{
+  "ModelType": "Query",
+  "Code": "SelectStreetObjects",
+  "Name": "SelectStreetObjects",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "oName",
+      "Name": "Назва",
+      "Position": 1,
+      "IsPrintable": false,
+      "ReferenceKeyCode": "oId",
+      "ReferenceSectionCode": "Objects"
+    },
+    {
+      "Code": "activity",
+      "Name": "Значення активності",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "oId",
+      "Name": "oId",
+      "Position": 3,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "isUrbio",
+      "Name": "З Urbio",
+      "Position": 3,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

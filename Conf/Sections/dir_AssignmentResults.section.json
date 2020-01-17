@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "dir_AssignmentResults_Insert"
+  },
+  "ModelType": "Section",
+  "Code": "dir_AssignmentResults",
+  "Name": "Довідник: Результати розгляду",
+  "FormCode": "Form_dictionary_universal",
+  "SelectRowsQueryCode": "dir_AssignmentResults_SelectRows",
+  "SelectRowQueryCode": "dir_AssignmentResults_SelectRow",
+  "UpdateQueryCode": "dir_AssignmentResults_Update",
+  "DeleteQueryCode": "dir_AssignmentResults_Delete"
+}

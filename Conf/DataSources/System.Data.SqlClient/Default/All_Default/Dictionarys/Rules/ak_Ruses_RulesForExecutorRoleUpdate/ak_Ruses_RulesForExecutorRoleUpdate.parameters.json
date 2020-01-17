@@ -1,0 +1,38 @@
+[
+  {
+    "Code": "@Id",
+    "Name": "Id",
+    "ParameterType": "Integer",
+    "IsPrimaryKey": true
+  },
+  {
+    "Code": "@main",
+    "Name": "main",
+    "ParameterType": "Boolean"
+  },
+  {
+    "Code": "@priority",
+    "Name": "priority",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@ExecutorRoleLevel_Id",
+    "Name": "ExecutorRoleLevel_Id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@Rules_Id",
+    "Name": "Rules_Id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@ExecutorRole_Id",
+    "Name": "ExecutorRole_Id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@ProcessingKind_Id",
+    "Name": "ProcessingKind_Id",
+    "ParameterType": "Integer"
+  }
+]

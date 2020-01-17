@@ -1,0 +1,19 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_CSI_yesterday_indicator",
+    "Name": "ak_CSI_yesterday_indicator",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 0
+      },
+      {
+        "Code": "Integral_indicator",
+        "Name": "Integral_indicator",
+        "Position": 1
+      }
+    ]
+}

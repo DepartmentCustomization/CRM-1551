@@ -1,0 +1,30 @@
+{
+  "ModelType": "Query",
+  "Code": "det_ExecutorRoleBuildingUpdateRow",
+  "Name": "det_ExecutorRoleBuildingUpdateRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@build_id",
+      "Name": "build_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@executor_id",
+      "Name": "executor_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    },
+    {
+      "Code": "@executor_role_id",
+      "Name": "executor_role_id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

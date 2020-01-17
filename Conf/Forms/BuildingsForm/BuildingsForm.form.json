@@ -1,0 +1,19 @@
+{
+  "ModelType": "Form",
+  "Code": "Buildings Form",
+  "Name": "Довідник: Будинки",
+  "Details": [
+    "string:Details\\BuildingQuestion.detail.json",
+    "string:Details\\BuildingsUrbio.detail.json",
+    "string:Details\\BuildingApplicants.detail.json",
+    "string:Details\\BuildHistory\\BuildingHistory.detail.json",
+    "string:Details\\BuildHistory\\BuildingHistory_details.detail.json"
+  ],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\BuildingsInformation.fieldgroup.json"
+    ],
+    "DefaultFields": [],
+    "Script": "string:BuildingsForm.form.js"
+  }
+}

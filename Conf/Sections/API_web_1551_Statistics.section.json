@@ -1,0 +1,10 @@
+{
+  "Add": {},
+  "ModelType": "Section",
+  "Code": "API_web_1551_Statistics",
+  "Name": "API_web_1551_Statistics",
+  "FormCode": "API_web_1551_Statistics",
+  "SelectRowsQueryCode": "api_SiteStatistics_Question30daysWithDay",
+  "SelectRowQueryCode": "api_SelectRows_ak",
+  "UpdateQueryCode": "api_SelectRows_ak"
+}

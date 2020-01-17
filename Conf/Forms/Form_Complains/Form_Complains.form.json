@@ -1,0 +1,13 @@
+{
+  "ModelType": "Form",
+  "Code": "Form_Complains",
+  "Name": "Скарга",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\Group_Complains.fieldgroup.json"
+    ],
+    "DefaultFields": [],
+    "Script": "string:Form_Complains.form.js"
+  }
+}

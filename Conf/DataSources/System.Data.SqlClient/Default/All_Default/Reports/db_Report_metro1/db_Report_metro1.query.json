@@ -1,0 +1,39 @@
+{
+  "ModelType": "Query",
+  "Code": "db_Report_metro1",
+  "Name": "db_Report_metro1",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "source",
+      "Name": "source",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "val",
+      "Name": "val",
+      "Position": 2,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@dateTo",
+      "Name": "dateTo",
+      "ParameterType": "DateTime"
+    },
+    {
+      "Code": "@dateFrom",
+      "Name": "dateFrom",
+      "ParameterType": "DateTime"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "ModelType": "Form",
+  "Code": "SiteAppealsStates",
+  "Name": "Форма довідника: Стани звернень з сайту",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\SiteAppealsStates.fieldgroup.json"
+    ],
+    "DefaultFields": []
+  }
+}

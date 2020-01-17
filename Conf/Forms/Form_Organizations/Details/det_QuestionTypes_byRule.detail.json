@@ -1,0 +1,22 @@
+{
+    "ModelType": "Detail",
+    "Code": "det_QuestionTypes_byRule",
+    "Name": "Типи питань",
+   // "FormCode": "OrganizationObject",
+    "SelectRowsQueryCode": "det_QuestionTypes_byRule",
+   // "SelectRowQueryCode": "det_ak_OrganizationObjectSelectRow",
+  //  "UpdateQueryCode": "det_ak_OrganizationObjectUpdateRow",
+    "SectionCode": "",
+  //  "DeleteQueryCode": "det_ak_OrganizationObjectDelete",
+    "Position": 2,
+    "IsExpand": true,
+    "Add": {
+    //  "InsertQueryCode": "det_ak_OrganizationObjectInsertRow"
+    },
+    "QueryParameters": [
+      {
+        "FormFieldName": "Id",
+        "ParameterCode": "@OrganisationId"
+      }
+    ]
+  }

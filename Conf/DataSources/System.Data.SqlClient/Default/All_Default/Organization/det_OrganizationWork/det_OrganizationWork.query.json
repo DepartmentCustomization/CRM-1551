@@ -1,0 +1,66 @@
+{
+  "ModelType": "Query",
+  "Code": "det_OrganizationWork",
+  "Name": "det_OrganizationWork",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "id",
+      "Name": "id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "name",
+      "Name": "name",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "phone_number",
+      "Name": "phone_number",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "position",
+      "Name": "position",
+      "Position": 4,
+      "IsPrintable": false
+    },
+    {
+      "Code": "active",
+      "Name": "active",
+      "Position": 5,
+      "IsPrintable": false
+    },
+    {
+      "Code": "worker_user_id",
+      "Name": "worker_user_id",
+      "Position": 6,
+      "IsPrintable": false
+    },
+    {
+      "Code": "roles_id",
+      "Name": "roles_id",
+      "Position": 7
+    },
+    {
+      "Code": "roles_name",
+      "Name": "roles_name",
+      "Position": 8,
+      "ReferenceKeyCode": "roles_id"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "ModelType": "Form",
+  "Code": "Form_ClaimsGorodok",
+  "Name": "Заявки з \"Городок\"",
+  "Details": [
+    "string:Details\\Detail_ClaimsObjects.detail.json",
+    "string:Details\\Detail_ClaimGorodok_Question.detail.json"
+  ],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\Group_Cliams_Gorodok.fieldgroup.json",
+      "string:FieldGroups\\Group_Cliams_Gorodok_Audio.fieldgroup.json"
+    ],
+    "DefaultFields": [],
+    "Script": "string:Form_ClaimsGorodok.form.js"
+  }
+}

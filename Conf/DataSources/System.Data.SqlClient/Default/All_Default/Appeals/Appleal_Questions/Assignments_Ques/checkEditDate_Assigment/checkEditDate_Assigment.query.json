@@ -1,0 +1,27 @@
+{
+  "ModelType": "Query",
+  "Code": "checkEditDate_Assigment",
+  "Name": "checkEditDate_Assigment",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "checkDate",
+      "Name": "checkDate",
+      "Position": 0,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@assigment_id",
+      "Name": "assigment_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@edit_date_form",
+      "Name": "edit_date_form",
+      "ParameterType": "DateTime"
+    }
+  ]
+}

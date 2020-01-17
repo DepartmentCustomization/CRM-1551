@@ -1,0 +1,70 @@
+[
+  {
+    "Code": "@name",
+    "Name": "name"
+  },
+  {
+    "Code": "@short_name",
+    "Name": "short_name"
+  },
+  {
+    "Code": "@population",
+    "Name": "population",
+    "ParameterType": "Decimal"
+  },
+  {
+    "Code": "@othercontacts",
+    "Name": "othercontacts"
+  },
+  {
+    "Code": "@user_id",
+    "Name": "user_id",
+    "ParameterType": "CurrentUserId"
+  },
+  {
+    "Code": "@organization_code",
+    "Name": "organization_code",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@positions_id",
+    "Name": "positions_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@organization_type_id",
+    "Name": "organization_type_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@organization_id",
+    "Name": "organization_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@address",
+    "Name": "address"
+  },
+  {
+    "Code": "@phone_number",
+    "Name": "phone_number"
+  },
+  {
+    "Code": "@notes",
+    "Name": "notes"
+  },
+  {
+    "Code": "@active",
+    "Name": "active",
+    "ParameterType": "Boolean"
+  },
+  {
+    "Code": "@programworker",
+    "Name": "programworker",
+    "ParameterType": "Boolean"
+  },
+  {
+    "Code": "@head_name",
+    "Name": "head_name"
+  }
+]

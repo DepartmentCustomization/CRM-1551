@@ -1,0 +1,65 @@
+{
+  "Code": "main",
+  "Name": "Загальна інформація",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "ExecutorRoleLevel_Id",
+      "Name": "Рівень ролі ",
+      "FieldType": "lookup",
+      "Position": 2,
+      "Width": "10%",
+      "QueryCode": "ak_ExecutorRoleLevelSelectRows2",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Idname",
+      "QueryParameters": []
+    },
+    {
+      "Code": "ExecutorRole_Id",
+      "Name": "Роль виконавця",
+      "FieldType": "lookup",
+      "Position": 3,
+      "Width": "25%",
+      "QueryCode": "ak_ExecutorRoleSelectRows2",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Idname",
+      "QueryParameters": []
+    },
+    {
+      "Code": "Rules_Id",
+      "Name": "Правило вибору",
+      "FieldType": "select",
+      "Position": 4,
+      "Width": "20%",
+      "QueryCode": "ak_RulesSelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Idname",
+      "QueryParameters": []
+    },
+    {
+      "Code": "priority",
+      "Name": "Пріоритет",
+      "FieldType": "number",
+      "Position": 5,
+      "Width": "10%"
+    },
+    {
+      "Code": "main",
+      "Name": "Головний",
+      "FieldType": "checkbox",
+      "Position": 6,
+      "Width": "15%"
+    },
+    {
+      "Code": "ProcessingKind_Id",
+      "Name": "Тип обробки",
+      "FieldType": "lookup",
+      "Position": 7,
+      "Width": "20%",
+      "QueryCode": "ak_ProcessingKindSelectRows2",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Idname",
+      "QueryParameters": []
+    }
+  ]
+}

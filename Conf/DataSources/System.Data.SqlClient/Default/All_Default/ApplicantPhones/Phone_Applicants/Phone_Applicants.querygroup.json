@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "Phone_Applicants",
+  "Name": "Заявники за телефоном",
+  "ConnectionCode": "Default"
+}

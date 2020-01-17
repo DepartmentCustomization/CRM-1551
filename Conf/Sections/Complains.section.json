@@ -1,0 +1,12 @@
+{
+  "Add": {
+    "InsertQueryCode": "cx_Complains_Insert"
+  },
+  "ModelType": "Section",
+  "Code": "Complains",
+  "Name": "7. Скарги",
+  "FormCode": "Form_Complains",
+  "SelectRowsQueryCode": "cx_Complains_SelectRows",
+  "SelectRowQueryCode": "cx_Complains_SelectRow",
+  "UpdateQueryCode": "cx_Complains_Update"
+}

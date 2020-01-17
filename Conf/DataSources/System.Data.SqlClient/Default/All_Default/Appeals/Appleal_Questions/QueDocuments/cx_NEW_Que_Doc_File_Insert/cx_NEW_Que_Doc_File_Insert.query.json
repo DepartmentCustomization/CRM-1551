@@ -1,0 +1,27 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_NEW_Que_Doc_File_Insert",
+  "Name": "cx_NEW_Que_Doc_File_Insert",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@question_id",
+      "Name": "question_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@File",
+      "Name": "File"
+    },
+    {
+      "Code": "@Name",
+      "Name": "Name"
+    },
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    }
+  ]
+}

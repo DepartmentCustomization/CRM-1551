@@ -1,0 +1,26 @@
+{
+  "Code": "EventClassInfo",
+  "Name": "Класи заходів",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "name",
+      "Name": "Назва",
+      "FieldType": "text",
+      "IsRequired": true,
+      "Position": 1,
+      "Width": "60%"
+    },
+    {
+      "Code": "eventClassTypeId",
+      "Name": "Тип заходу",
+      "FieldType": "select",
+      "Position": 2,
+      "Width": "60%",
+      "QueryCode": "SelectEventClassType",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "eventClassType",
+      "QueryParameters": []
+    }
+  ]
+}

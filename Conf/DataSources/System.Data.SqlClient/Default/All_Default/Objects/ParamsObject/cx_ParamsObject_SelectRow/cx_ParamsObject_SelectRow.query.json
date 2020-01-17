@@ -1,0 +1,47 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_ParamsObject_SelectRow",
+  "Name": "cx_ParamsObject_SelectRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "IsPrintable": false
+    },
+    {
+      "Code": "params_id",
+      "Name": "params_id",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "value",
+      "Name": "value",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "params_name",
+      "Name": "params_name",
+      "Position": 4,
+      "ReferenceKeyCode": "params_id"
+    },
+    {
+      "Code": "object_id",
+      "Name": "object_id",
+      "Position": 5
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

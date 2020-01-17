@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_Objects_Insert",
+  "Name": "cx_Objects_Insert",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

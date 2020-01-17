@@ -1,0 +1,24 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_ParamsObject_Update",
+  "Name": "cx_ParamsObject_Update",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@params_id",
+      "Name": "params_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@value",
+      "Name": "value"
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

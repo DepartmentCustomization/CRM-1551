@@ -1,0 +1,23 @@
+{
+  "Code": "bad_Appeal",
+  "Name": "Доопрацювання",
+  "Position": 10,
+  "IsWithClosing": true,
+  "Fields": [
+    {
+      "Code": "AppealFromSite_CommentModerator",
+      "Name": "Коментар модератора",
+      "FieldType": "textarea",
+      "Position": 1,
+      "Width": "100%",
+      "Rows": 6
+    },
+    {
+      "Code": "return_appeal",
+      "Name": "Зберегти",
+      "FieldType": "button",
+      "Position": 2,
+      "Width": "20%"
+    }
+  ]
+}

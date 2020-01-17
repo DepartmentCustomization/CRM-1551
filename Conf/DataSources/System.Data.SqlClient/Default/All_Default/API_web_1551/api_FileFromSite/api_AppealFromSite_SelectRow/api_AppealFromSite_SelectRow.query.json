@@ -1,0 +1,52 @@
+{
+  "ModelType": "Query",
+  "Code": "api_AppealFromSite_SelectRow",
+  "Name": "api_AppealFromSite_SelectRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "id",
+      "Name": "id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "receipt_date",
+      "Name": "receipt_date",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "appeal_content",
+      "Name": "appeal_content",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "site_appeals_result_id",
+      "Name": "site_appeals_result_id",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "processing_date",
+      "Name": "processing_date",
+      "Position": 4,
+      "IsPrintable": false
+    },
+    {
+      "Code": "appeal_from_site_id",
+      "Name": "appeal_from_site_id",
+      "Position": 5
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

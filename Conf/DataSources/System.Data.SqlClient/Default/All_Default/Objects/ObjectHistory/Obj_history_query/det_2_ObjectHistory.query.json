@@ -1,0 +1,54 @@
+{
+    "ModelType": "Query",
+    "Code": "det_2_ObjectHistory",
+    "Name": "det_2_ObjectHistory",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "history_id",
+        "Name": "history_id",
+        "Position": 1,
+        "IsPrintable": false,
+        "ViewState": "Hidden"
+      },
+      {
+        "Code": "history_type_name",
+        "Name": "Назва",
+        "Position": 2,
+        "IsPrintable": false
+      },
+      {
+        "Code": "history_value_old",
+        "Name": "Було",
+        "Position": 3,
+        "IsPrintable": false
+      },
+      {
+        "Code": "history_value_new",
+        "Name": "Стало",
+        "Position": 4,
+        "IsPrintable": false
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@pageOffsetRows",
+        "Name": "pageOffsetRows",
+        "ParameterType": "Integer",
+        "IsPageOffsetRows": true
+      },
+      {
+        "Code": "@pageLimitRows",
+        "Name": "pageLimitRows",
+        "ParameterType": "Integer",
+        "IsPageLimitRows": true
+      },
+      {
+        "Code": "@history_id",
+        "Name": "history_id",
+        "ParameterType": "Integer",
+        "IsPrimaryKey": false
+      }
+    ]
+  }

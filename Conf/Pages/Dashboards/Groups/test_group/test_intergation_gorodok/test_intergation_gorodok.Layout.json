@@ -1,0 +1,114 @@
+{
+  "css": "",
+  "rootContainer": {
+    "width": "auto",
+    "margin": "0 5px 10px",
+    "flexWrap": "wrap",
+    "flexDirection": "row",
+    "order": 1,
+    "flexGrow": 1,
+    "alignSelf": "auto",
+    "border": "none",
+    "children": [
+      {
+        "width": "50%",
+        "margin": "0 5px 10px",
+        "flexWrap": "wrap",
+        "flexDirection": "column",
+        "order": 1,
+        "flexGrow": 1,
+        "alignSelf": "auto",
+        "border": "none",
+        "children": [
+          {
+            "width": "auto",
+            "margin": "0 5px 10px",
+            "flexWrap": "wrap",
+            "flexDirection": "row",
+            "order": 1,
+            "flexGrow": 1,
+            "alignSelf": "auto",
+            "border": "none",
+            "children": [
+              {
+                "width": "calc(45% - 10px)",
+                "margin": "0 5px 10px",
+                "flexWrap": "wrap",
+                "flexDirection": "column",
+                "order": 1,
+                "flexGrow": 1,
+                "alignSelf": "auto",
+                "border": "none",
+                "children": [
+                  {
+                    "code": "NativeDataGridWidget-0",
+                    "type": "NativeDataGridWidgetComponent",
+                    "name": "test_integration_gorodok"
+                  }
+                ],
+                "id": "Container-1",
+                "height": "calc(100% - 10px)",
+                "minHeight": "100px",
+                "minWidth": "100px",
+                "backgroundColor": "white"
+              },
+              {
+                "width": "calc(5% - 10px)",
+                "margin": "0 5px 10px",
+                "flexWrap": "wrap",
+                "flexDirection": "row",
+                "order": 1,
+                "flexGrow": 1,
+                "alignSelf": "auto",
+                "border": "none",
+                "children": [],
+                "id": "Container-1",
+                "height": "calc(100% - 10px)",
+                "minHeight": "100px",
+                "minWidth": "10px",
+                "backgroundColor": "lightgrey"
+              },
+              {
+                "width": "calc(45% - 10px)",
+                "margin": "0 5px 10px",
+                "flexWrap": "wrap",
+                "flexDirection": "row",
+                "order": 1,
+                "flexGrow": 1,
+                "alignSelf": "auto",
+                "border": "none",
+                "children": [
+                  {
+                    "code": "NativeDataGridWidget-1",
+                    "type": "NativeDataGridWidgetComponent",
+                    "name": "StreetsFrom1551"
+                  }
+                ],
+                "id": "Container-1",
+                "height": "calc(100% - 10px)",
+                "minHeight": "100px",
+                "minWidth": "100px",
+                "backgroundColor": "white"
+              }
+            ],
+            "id": "Container-1",
+            "height": "80%",
+            "minHeight": "100px",
+            "minWidth": "calc(100% - 10px)",
+            "backgroundColor": "white"
+          }
+        ],
+        "id": "Container-0",
+        "height": "calc(100% - 10px)",
+        "minHeight": "100px",
+        "minWidth": "100px",
+        "backgroundColor": "white"
+      }
+    ],
+    "id": "Container-0",
+    "height": "100%",
+    "minHeight": "100%",
+    "minWidth": "100%",
+    "backgroundColor": "#eee"
+  }
+}

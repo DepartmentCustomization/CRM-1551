@@ -1,0 +1,39 @@
+{
+  "Code": "Group_Appeals_2_2",
+  "Name": "Інформація по заявнику",
+  "Position": 2,
+  "Fields": [
+    {
+      "Code": "applicant_id",
+      "Name": "Заявник",
+      "FieldType": "select",
+      "Position": 1,
+      "Icon": "add_circle",
+      "IconHint": "Додати нового заявника",
+      "QueryCode": "cx_filter_applicantsForLookup",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "full_name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "applicant_category_id",
+      "Name": "Категорія заявника",
+      "FieldType": "select",
+      "Position": 1,
+      "QueryCode": "dir_ApplicantCategories_SelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "social_state_id",
+      "Name": "Соціальний стан",
+      "FieldType": "select",
+      "Position": 1,
+      "QueryCode": "dir_SocialState_SelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    }
+  ]
+}

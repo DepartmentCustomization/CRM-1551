@@ -1,0 +1,86 @@
+[
+  {
+    "Code": "row#",
+    "Name": "row#",
+    "Position": 0,
+    "IsPrintable": false
+  },
+  {
+    "Code": "source",
+    "Name": "source",
+    "Position": 1,
+    "IsPrintable": false
+  },
+  {
+    "Code": "prevCommunal",
+    "Name": "prevCommunal",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "curCommunal",
+    "Name": "curCommunal",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "prevResidential",
+    "Name": "prevResidential",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "curResidential",
+    "Name": "curResidential",
+    "Position": 5,
+    "IsPrintable": false
+  },
+  {
+    "Code": "prevEcology",
+    "Name": "prevEcology",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "curEcology",
+    "Name": "curEcology",
+    "Position": 7,
+    "IsPrintable": false
+  },
+  {
+    "Code": "prevLaw",
+    "Name": "prevLaw",
+    "Position": 8,
+    "IsPrintable": false
+  },
+  {
+    "Code": "curLaw",
+    "Name": "curLaw",
+    "Position": 9,
+    "IsPrintable": false
+  },
+  {
+    "Code": "prevFamily",
+    "Name": "prevFamily",
+    "Position": 10,
+    "IsPrintable": false
+  },
+  {
+    "Code": "curFamily",
+    "Name": "curFamily",
+    "Position": 11,
+    "IsPrintable": false
+  },
+  {
+    "Code": "prevHealth",
+    "Name": "prevHealth",
+    "Position": 12,
+    "IsPrintable": false
+  },
+  {
+    "Code": "curSince",
+    "Name": "curSince",
+    "Position": 13,
+    "IsPrintable": false
+  }
+]

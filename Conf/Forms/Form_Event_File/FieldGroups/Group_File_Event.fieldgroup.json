@@ -1,0 +1,26 @@
+{
+    "Code": "Form_Event_File",
+    "Name": "Файл",
+    "Position": 1,
+    "Fields": [{
+            "Code": "Name",
+            "Name": "Назва файла",
+            "FieldType": "text",
+            "Position": 1
+        },
+        {
+            "Code": "File",
+            "Name": "Файл",
+            "FieldType": "file",
+            "Position": 2,
+            "FileNameColumnCode": "Name"
+        },
+        {
+            "Code": "event_id",
+            "Name": "event_id",
+            "FieldType": "number",
+            "Position": 100,
+            "IsHidden": true
+        }
+    ]
+}

@@ -1,0 +1,34 @@
+{
+  "ModelType": "Query",
+  "Code": "List_Organizations_SelectRows",
+  "Name": "List_Organizations_SelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "IsPrintable": false,
+      "SqlName": "Id",
+      "FilterParameterCode": "@Id"
+    },
+    {
+      "Code": "Name",
+      "Name": "Name",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "Name",
+      "FilterParameterCode": "@Name"
+    },
+    {
+      "Code": "ParentId",
+      "Name": "ParentId",
+      "Position": 3,
+      "IsPrintable": false,
+      "SqlName": "ParentId",
+      "FilterParameterCode": "@ParentId"
+    }
+  ]
+}

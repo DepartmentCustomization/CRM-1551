@@ -1,0 +1,36 @@
+{
+  "ModelType": "Query",
+  "Code": "int_list_houses_1551",
+  "Name": "int_list_houses_1551",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "name",
+      "Name": "name",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "st.name + ' ' + sty.shortname +' буд.'+ bu.name",
+      "FilterParameterCode": "@name"
+    },
+    {
+      "Code": "district_id",
+      "Name": "district_id",
+      "Position": 2,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@dis",
+      "Name": "dis",
+      "ParameterType": "Integer"
+    }
+  ]
+}

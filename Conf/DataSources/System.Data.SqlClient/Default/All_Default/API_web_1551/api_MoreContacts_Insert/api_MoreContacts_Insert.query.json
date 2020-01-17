@@ -1,0 +1,27 @@
+{
+  "ModelType": "Query",
+  "Code": "api_MoreContacts_Insert",
+  "Name": "api_MoreContacts_Insert",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@applicant_id",
+      "Name": "applicant_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@mail",
+      "Name": "mail"
+    },
+    {
+      "Code": "@phonenumber",
+      "Name": "phonenumber"
+    },
+    {
+      "Code": "@сontacttype_id",
+      "Name": "сontacttype_id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

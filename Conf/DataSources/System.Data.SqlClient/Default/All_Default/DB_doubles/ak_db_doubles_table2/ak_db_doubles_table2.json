@@ -1,0 +1,59 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_db_doubles_table2",
+    "Name": "ak_db_doubles_table2",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+        {
+            "Code": "Id",
+            "Name": "Id",
+            "Position": 1,
+            "IsPrimaryKey": true,
+            "IsPrintable": false
+        },
+        {
+            "Code": "Phone_number",
+            "Name": "Phone_number",
+            "Position": 2,
+            "IsPrintable": false
+        },
+        {
+            "Code": "Full_name",
+            "Name": "Full_name",
+            "Position": 3,
+            "IsPrintable": false
+        },
+        {
+            "Code": "Address",
+            "Name": "Address",
+            "Position": 4,
+            "IsPrintable": false
+        },
+        {
+            "Code": "Years",
+            "Name": "Years",
+            "Position": 5,
+            "IsPrintable": false
+        },
+        {
+            "Code": "SocialState",
+            "Name": "SocialState",
+            "Position": 6,
+            "IsPrintable": false
+        },
+        {
+            "Code": "Privilege",
+            "Name": "Privilege",
+            "Position": 7,
+            "IsPrintable": false
+        }
+    ],
+    "Parameters": [
+        {
+            "Code": "@Id",
+            "Name": "Id",
+            "ParameterType": "Integer"
+        } 
+    ]
+}

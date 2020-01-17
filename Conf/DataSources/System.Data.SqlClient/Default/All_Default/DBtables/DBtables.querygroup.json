@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "DBtables",
+  "Name": "Керівник_Виконавець",
+  "ConnectionCode": "Default"
+}

@@ -1,0 +1,11 @@
+SELECT [Id]
+      ,[question_doc_id]
+      ,[link]
+      ,[create_date]
+      ,[user_id]
+      ,[edit_date]
+      ,[edit_user_id]
+      ,[name] as [Name]
+      ,[File]
+  FROM [dbo].[QuestionDocFiles]
+  where Id = @Id

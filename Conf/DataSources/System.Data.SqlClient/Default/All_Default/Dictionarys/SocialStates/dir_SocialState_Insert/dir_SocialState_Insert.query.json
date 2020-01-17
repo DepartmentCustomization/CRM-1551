@@ -1,0 +1,20 @@
+{
+  "ModelType": "Query",
+  "Code": "dir_SocialState_Insert",
+  "Name": "dir_SocialState_Insert",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    },
+    {
+      "Code": "@name",
+      "Name": "name",
+      "ParameterType": "DateTime"
+    }
+  ]
+}

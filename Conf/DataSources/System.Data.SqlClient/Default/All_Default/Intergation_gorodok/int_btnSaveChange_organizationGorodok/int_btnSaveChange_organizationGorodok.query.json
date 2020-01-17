@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "int_btnSaveChange_organizationGorodok",
+  "Name": "int_btnSaveChange_organizationGorodok",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

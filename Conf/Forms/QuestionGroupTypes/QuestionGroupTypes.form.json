@@ -1,0 +1,15 @@
+{
+  "ModelType": "Form",
+  "Code": "QuestionGroupTypes",
+  "Name": "Довідник груп та типів питань",
+  "IsPrintable": false,
+  "Details": [
+    "string:Details\\Detail_QuestionGroupTypes.detail.json"
+  ],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\Information.fieldgroup.json"
+    ],
+    "DefaultFields": []
+  }
+}

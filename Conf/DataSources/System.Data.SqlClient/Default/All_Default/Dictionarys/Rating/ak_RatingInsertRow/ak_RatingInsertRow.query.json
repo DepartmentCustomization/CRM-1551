@@ -1,0 +1,13 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_RatingInsertRow",
+  "Name": "ak_RatingInsertRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@name",
+      "Name": "name"
+    }
+  ]
+}

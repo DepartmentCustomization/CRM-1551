@@ -1,0 +1,16 @@
+{
+    "ModelType": "Form",
+    "Code": "Form_Event_File",
+    "Name": "Файли",
+    "Details": [],
+    "Config": {
+        "FieldGroups": [
+            "string:FieldGroups\\Group_File_Event.fieldgroup.json"
+        ],
+        "DefaultFields": [{
+            "Code": "event_id",
+            "ParentFormFieldCodeForKeyValue": "event_id",
+            "ParentFormFieldCodeForDisplayValue": "event_id"
+        }]
+    }
+}

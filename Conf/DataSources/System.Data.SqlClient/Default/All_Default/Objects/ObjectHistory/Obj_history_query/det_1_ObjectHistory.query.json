@@ -1,0 +1,56 @@
+{
+    "ModelType": "Query",
+    "Code": "det_1_ObjectHistory",
+    "Name": "det_1_ObjectHistory",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 1,
+        "IsPrintable": false,
+        "IsPrimaryKey": true,
+        "ViewState": "Hidden"
+      },
+      {
+        "Code": "operation_date",
+        "Name": "Дата операції",
+        "Position": 2,
+        "IsPrintable": false
+      },
+      {
+        "Code": "user_id",
+        "Name": "Виконав",
+        "Position": 3,
+        "IsPrintable": false
+      },
+      {
+        "Code": "operation_name",
+        "Name": "Опис",
+        "Position": 4,
+        "IsPrintable": false
+      }
+      
+    ],
+    "Parameters": [
+      {
+        "Code": "@pageOffsetRows",
+        "Name": "pageOffsetRows",
+        "ParameterType": "Integer",
+        "IsPageOffsetRows": true
+      },
+      {
+        "Code": "@pageLimitRows",
+        "Name": "pageLimitRows",
+        "ParameterType": "Integer",
+        "IsPageLimitRows": true
+      },
+      {
+        "Code": "@object_id",
+        "Name": "object_id",
+        "ParameterType": "Integer",
+        "IsPrimaryKey": false
+      }
+    ]
+  }

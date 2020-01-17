@@ -1,0 +1,37 @@
+{
+  "ModelType": "Query",
+  "Code": "list_years",
+  "Name": "list_years",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "id",
+      "Name": "id",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "id_year",
+      "Name": "id_year",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "id_year",
+      "FilterParameterCode": "@id_year"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

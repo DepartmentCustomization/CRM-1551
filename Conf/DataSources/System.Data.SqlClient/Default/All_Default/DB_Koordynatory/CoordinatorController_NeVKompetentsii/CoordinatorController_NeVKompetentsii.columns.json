@@ -1,0 +1,80 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 1,
+    "IsPrintable": false
+  },
+  {
+    "Code": "registration_number",
+    "Name": "registration_number",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "QuestionType",
+    "Name": "QuestionType",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "zayavnikName",
+    "Name": "zayavnikName",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "adress",
+    "Name": "adress",
+    "Position": 5,
+    "IsPrintable": false
+  },
+  {
+    "Code": "vykonavets",
+    "Name": "vykonavets",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "QuestionId",
+    "Name": "QuestionId",
+    "Position": 7,
+    "IsPrintable": false
+  },
+  {
+    "Code": "zayavnikId",
+    "Name": "zayavnikId",
+    "Position": 8,
+    "IsPrintable": false
+  },
+  {
+    "Code": "short_answer",
+    "Name": "short_answer",
+    "Position": 9
+  },
+  {
+    "Code": "question_content",
+    "Name": "question_content",
+    "Position": 10
+  },
+  {
+    "Code": "adressZ",
+    "Name": "adressZ",
+    "Position": 11
+  },
+  {
+    "Code": "transfer_to_organization_id",
+    "Name": "transfer_to_organization_id",
+    "Position": 12
+  },
+  {
+    "Code": "transfer_to_organization_name",
+    "Name": "transfer_to_organization_name",
+    "Position": 13
+  },
+  {
+    "Code": "control_date",
+    "Name": "control_date",
+    "Position": 14
+  }
+]

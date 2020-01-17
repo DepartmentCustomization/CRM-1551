@@ -1,0 +1,74 @@
+[
+  {
+    "Code": "OrganizationId",
+    "Name": "OrganizationId",
+    "Position": 1,
+    "IsPrintable": false
+  },
+  {
+    "Code": "OrganizationName",
+    "Name": "OrganizationName",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "Bylo",
+    "Name": "Bylo",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "Nadiyshlo",
+    "Name": "Nadiyshlo",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "VRoboti",
+    "Name": "VRoboti",
+    "Position": 5,
+    "IsPrintable": false
+  },
+  {
+    "Code": "VykonVchasno",
+    "Name": "VykonVchasno",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "VykonNeVchasno",
+    "Name": "VykonNeVchasno",
+    "Position": 7,
+    "IsPrintable": false
+  },
+  {
+    "Code": "RozyasnenoVchasno",
+    "Name": "RozyasnenoVchasno",
+    "Position": 8,
+    "IsPrintable": false
+  },
+  {
+    "Code": "RozyasnenoNeVchasno",
+    "Name": "RozyasnenoNeVchasno",
+    "Position": 9,
+    "IsPrintable": false
+  },
+  {
+    "Code": "VidsVykon",
+    "Name": "VidsVykon",
+    "Position": 10,
+    "IsPrintable": false
+  },
+  {
+    "Code": "VidsZad",
+    "Name": "VidsZad",
+    "Position": 11,
+    "IsPrintable": false
+  },
+  {
+    "Code": "VidsRozyasn",
+    "Name": "VidsRozyasn",
+    "Position": 12,
+    "IsPrintable": false
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "ModelType": "Query",
+  "Code": "w",
+  "Name": "w",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Sql": "--update OrganizationsAndParent set Organizations in (134, 135, 136, 137, 138, 139, 140, 7101) where id = 26229"
+}

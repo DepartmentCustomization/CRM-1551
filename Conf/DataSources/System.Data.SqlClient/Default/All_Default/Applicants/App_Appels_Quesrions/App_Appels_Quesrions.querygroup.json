@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "App_Appels_Quesrions",
+  "Name": "Звернення_питання заявника",
+  "ConnectionCode": "Default"
+}

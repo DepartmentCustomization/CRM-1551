@@ -1,0 +1,34 @@
+{
+  "Code": "all",
+  "Name": "Зміст",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "FieldType": "number",
+      "IsHidden": true,
+      "Width": "10%"
+    },
+    {
+      "Code": "position_id",
+      "Name": "Посада",
+      "FieldType": "select",
+      "Position": 1,
+      "QueryCode": "ak_PositionsSelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "position",
+      "QueryParameters": []
+    },
+    {
+      "Code": "organization_id",
+      "Name": "Організація",
+      "FieldType": "select",
+      "Position": 2,
+      "QueryCode": "cx_OrganizationSelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "short_name",
+      "QueryParameters": []
+    }
+  ]
+}

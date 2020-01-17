@@ -1,0 +1,31 @@
+[
+  {
+    "Code": "@assignment_cons_doc_id",
+    "Name": "assignment_cons_doc_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@user_id",
+    "Name": "user_id",
+    "ParameterType": "CurrentUserId"
+  },
+  {
+    "Code": "@Id",
+    "Name": "Id",
+    "ParameterType": "Integer",
+    "IsPrimaryKey": true
+  },
+  {
+    "Code": "@name",
+    "Name": "name"
+  },
+  {
+    "Code": "@File",
+    "Name": "File"
+  },
+  {
+    "Code": "@user_edit_i",
+    "Name": "user_edit_i",
+    "ParameterType": "CurrentUserId"
+  }
+]

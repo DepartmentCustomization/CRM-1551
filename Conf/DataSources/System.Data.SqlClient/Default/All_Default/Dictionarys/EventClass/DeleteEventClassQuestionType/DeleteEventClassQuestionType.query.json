@@ -1,0 +1,14 @@
+{
+  "ModelType": "Query",
+  "Code": "DeleteEventClassQuestionType",
+  "Name": "DeleteEventClassQuestionType",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

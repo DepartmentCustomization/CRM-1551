@@ -1,0 +1,17 @@
+{
+    "ModelType": "Detail",
+    "Code": "ObjectHistory_details",
+    "Name": "Детальна історія",
+    "SelectRowsQueryCode": "det_2_ObjectHistory",
+    "SectionCode": "",
+    "Position": 7,
+    "IsExpand": true,
+    "PrintType": "None",
+    "IsWithClosing": true,
+    "QueryParameters": [
+      {
+        "FormFieldName": "Id",
+        "ParameterCode": "@history_id"
+      }
+    ]
+  }

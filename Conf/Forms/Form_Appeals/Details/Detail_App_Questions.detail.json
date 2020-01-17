@@ -1,0 +1,16 @@
+{
+  "DetailType": "Section",
+  "ModelType": "Detail",
+  "Code": "Detail_App_Questions",
+  "Name": "Питання Звернення",
+  "SelectRowsQueryCode": "cx_Appeal_Questions_SelectsRows",
+  "SectionCode": "Questions",
+  "Position": 1,
+  "IsExpand": true,
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@Id"
+    }
+  ]
+}

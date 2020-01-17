@@ -1,0 +1,14 @@
+{
+  "ModelType": "Query",
+  "Code": "GetAppeal_receipt_source_id",
+  "Name": "GetAppeal_receipt_source_id",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@AppealId",
+      "Name": "AppealId",
+      "ParameterType": "Integer"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "ModelType": "Detail",
+  "Code": "Detail_ClaimsObjects",
+  "Name": "Пов'язані об'єкти",
+  "SelectRowsQueryCode": "cx_ClaimsGorodok_Objects_Rows",
+  "SectionCode": "",
+  "Position": 1,
+  "IsExpand": true,
+  "QueryParameters": [
+    {
+      "FormFieldName": "main_object_id",
+      "ParameterCode": "@obj_id"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "ModelType": "Detail",
+  "Code": "Detail_QuestionPhone",
+  "Name": "Питання за номером телефону",
+  "SelectRowsQueryCode": "Detail_QuestionPhone_selectRows",
+  "SectionCode": "",
+  "Position": 7,
+  "IsExpand": true,
+  "QueryParameters": []
+}

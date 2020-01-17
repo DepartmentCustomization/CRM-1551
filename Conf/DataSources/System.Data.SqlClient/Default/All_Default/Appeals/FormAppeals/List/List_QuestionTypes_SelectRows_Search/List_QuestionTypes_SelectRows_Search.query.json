@@ -1,0 +1,55 @@
+{
+  "ModelType": "Query",
+  "Code": "List_QuestionTypes_SelectRows_Search",
+  "Name": "List_QuestionTypes_SelectRows_Search",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "Name",
+      "Name": "Назва",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "Name",
+      "FilterParameterCode": "@Name"
+    },
+    {
+      "Code": "comments",
+      "Name": "Опис",
+      "Position": 3,
+      "IsPrintable": false,
+      "SqlName": "comments"
+    },
+    {
+      "Code": "Path",
+      "Name": "Шлях",
+      "Position": 4,
+      "IsPrintable": false,
+      "SqlName": "Path",
+      "FilterParameterCode": "@Path",
+      "ViewState": "Collapsed"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

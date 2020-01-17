@@ -1,0 +1,43 @@
+{
+    "ModelType": "Query",
+    "Code": "det_QuestionTypes_byRule",
+    "Name": "det_QuestionTypes_byRule",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 1,
+        "IsPrimaryKey": true,
+        "ViewState": "Hidden",
+        "IsPrintable": false
+      },
+      {
+        "Code": "questionType",
+        "Name": "Назва",
+        "Position": 2,
+        "IsPrintable": false
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@OrganisationId",
+        "Name": "Id",
+        "ParameterType": "Integer",
+        "IsPrimaryKey": true
+      },
+      {
+        "Code": "@pageLimitRows",
+        "Name": "pageLimitRows",
+        "ParameterType": "Integer",
+        "IsPageLimitRows": true
+      },
+      {
+        "Code": "@pageOffsetRows",
+        "Name": "pageOffsetRows",
+        "ParameterType": "Integer",
+        "IsPageOffsetRows": true
+      }
+    ]
+  }

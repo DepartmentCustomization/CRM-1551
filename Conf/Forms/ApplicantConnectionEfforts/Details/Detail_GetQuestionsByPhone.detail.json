@@ -1,0 +1,10 @@
+{
+  "ModelType": "Detail",
+  "Code": "Detail_GetQuestionsByPhone",
+  "Name": "Detail_GetQuestionsByPhone",
+  "SelectRowsQueryCode": "GetQuestionsByPhone",
+  "SectionCode": "",
+  "Position": 1,
+  "IsExpand": true,
+  "QueryParameters": []
+}

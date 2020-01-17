@@ -1,0 +1,12 @@
+{
+  "Add": {
+    "InsertQueryCode": "ak_hotl_AppealsIRow"
+  },
+    "ModelType": "Section",
+    "Code": "Hotline",
+    "Name": "Звернення 15-00",
+    "FormCode": "Hotline",
+    "SelectRowsQueryCode": "ak_hotl_AppealsSRows",
+    "SelectRowQueryCode": "ak_hotl_AppealsSRow",
+    "UpdateQueryCode": "ak_hotl_AppealsURow"
+  }

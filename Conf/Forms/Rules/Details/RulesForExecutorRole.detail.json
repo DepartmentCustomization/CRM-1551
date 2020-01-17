@@ -1,0 +1,22 @@
+{
+  "ModelType": "Detail",
+  "Code": "RulesForExecutorRole",
+  "Name": "Правило для ролі виконавця",
+  "FormCode": "RulesForExecutorRole",
+  "SelectRowsQueryCode": "det_Ruses_RulesForExecutorRoleRows",
+  "SelectRowQueryCode": "det_Ruses_RulesForExecutorRoleRow",
+  "UpdateQueryCode": "ak_Ruses_RulesForExecutorRoleUpdate",
+  "SectionCode": "",
+  "DeleteQueryCode": "ak_Ruses_RulesForExecutorRoleDelete",
+  "Position": 1,
+  "IsExpand": true,
+  "Add": {
+    "InsertQueryCode": "ak_RulesForExecutorRoleInsert"
+  },
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@rules_id"
+    }
+  ]
+}

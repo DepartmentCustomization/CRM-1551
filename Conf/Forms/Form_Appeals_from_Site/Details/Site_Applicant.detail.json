@@ -1,0 +1,10 @@
+{
+    "ModelType": "Detail",
+    "Code": "Site_Applicant",
+    "Name": "Заявники в системі",
+    "SelectRowsQueryCode": "Site_SearchApplicant",
+    "SectionCode": "",
+    "Position": 1,
+    "IsExpand": true,
+    "QueryParameters": []
+}

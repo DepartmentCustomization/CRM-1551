@@ -1,0 +1,83 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_Applicants_More_Address_SelectRows",
+  "Name": "cx_Applicants_More_Address_SelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "districts_name",
+      "Name": "Район",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "Districts.name",
+      "FilterParameterCode": "@disrtict_param"
+    },
+    {
+      "Code": "building",
+      "Name": "Будинок",
+      "Position": 4,
+      "IsPrintable": false,
+      "SqlName": "Buildings.name",
+      "FilterParameterCode": "@street_param"
+    },
+    {
+      "Code": "flat",
+      "Name": "Кв",
+      "Position": 5,
+      "IsPrintable": false
+    },
+    {
+      "Code": "house_block",
+      "Name": "Корпус",
+      "Position": 6,
+      "IsPrintable": false
+    },
+    {
+      "Code": "entrance",
+      "Name": "П",
+      "Position": 7,
+      "IsPrintable": false
+    },
+    {
+      "Code": "main",
+      "Name": "Основна адреса проживання",
+      "Position": 8,
+      "IsPrintable": false
+    },
+    {
+      "Code": "active",
+      "Name": "Активний",
+      "Position": 9,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@applicant_id",
+      "Name": "applicant_id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

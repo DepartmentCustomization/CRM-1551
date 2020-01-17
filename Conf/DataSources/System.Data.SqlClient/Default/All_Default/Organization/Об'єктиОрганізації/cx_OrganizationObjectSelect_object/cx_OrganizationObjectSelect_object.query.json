@@ -1,0 +1,51 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_OrganizationObjectSelect_object",
+  "Name": "cx_OrganizationObjectSelect_object",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "ObjectName",
+      "Name": "Назва об'єкта",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "[Objects].name",
+      "FilterParameterCode": "@ObjectName"
+    },
+    {
+      "Code": "adress",
+      "Name": "Адреса",
+      "Position": 3,
+      "IsPrintable": false,
+      "SqlName": "[Districts].name+N' район,'+case when [Streets].name is not null then N' вул. '+[Streets].name else N'' end+ case when [Buildings].number is not null then N' буд. '+rtrim([Buildings].number) else N'' end",
+      "FilterParameterCode": "@adress"
+    },
+    {
+      "Code": "builbing_id",
+      "Name": "builbing_id",
+      "Position": 4,
+      "ViewState": "Hidden"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

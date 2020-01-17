@@ -1,0 +1,137 @@
+{
+  "css": ".dx-datagrid-group-opened{\n    margin: 10px;\n    font: 18px/18px DXIcons;\n    height: 18px;\n    background-position: 0 0;\n    background-size: 10px 8px;\n    padding: 0;\n    text-align: center;\n    color: #959595;\n    background-image: url('assets/img/1551/crm1551_arrow_open.png');\n    background-repeat: no-repeat;\n}\n.dx-datagrid-group-opened::before{\n    display:none;\n}\n.dx-datagrid-group-closed::before{\n    display:none;\n}\n.dx-datagrid-group-closed{\n    margin: 10px;\n    font: 18px/18px DXIcons;\n    height: 18px;\n    background-position: 0 0;\n    background-size: 10px 10px;\n    padding: 0;\n    text-align: center;\n    color: #959595;\n    background-image: url('assets/img/1551/crm1551_arrow_close.png');\n    background-repeat: no-repeat;\n    \n}\n.dx-datagrid-text-content{\n    font-weight: 400;\n    font-style: normal;\n    font-size: 14px;\n    color: #999999;\n    text-align: left;\n}\n.dx-data-row{\n    font-weight: 400;\n    font-style: normal;\n    text-align: left;\n    font-size: 14px;\n    color: #000000;\n}\n.dx-master-detail-cell{\n    background-color: rgba(239, 247, 249, 1)!important;    \n}\n.dx-button-default{\n    background-color: rgba(21, 189, 244, 1)!important;\n}\n\n.dx-datagrid-export-button{\n    background-color: rgba(21, 189, 244, 1)!important;\n    color: #fff!important;\n    padding: 0 8px!important;\n}\n.dx-icon-export-excel-button{\n    color: #fff!important;\n    margin-right: 9px!important;\n}\n.dx-header-row>td>.dx-datagrid-text-content, .dx-datagrid-headers .dx-datagrid-table .dx-row>td{\n    text-transform: uppercase;\n    text-align: center!important;\n}\n.dx-datagrid-content .dx-datagrid-table .dx-row>td, .dx-datagrid-content>.dx-datagrid-table>.dx-row>tr>td {\n    font-size: 17px!important;\n}\n.select-widget>.select-widget-list>ul{\n    width: calc( 230% + 10px)!important;\n}",
+  "rootContainer": {
+    "width": "auto",
+    "margin": "0 5px 10px",
+    "flexWrap": "wrap",
+    "flexDirection": "column",
+    "order": 1,
+    "flexGrow": 1,
+    "alignSelf": "auto",
+    "border": "none",
+    "children": [
+      {
+        "width": "auto",
+        "margin": "0 5px 10px",
+        "flexWrap": "wrap",
+        "flexDirection": "column",
+        "order": "2",
+        "flexGrow": 1,
+        "alignSelf": "auto",
+        "border": "none",
+        "children": [
+          {
+            "width": "auto",
+            "margin": "0 5px 10px",
+            "flexWrap": "wrap",
+            "flexDirection": "row",
+            "order": 1,
+            "flexGrow": 1,
+            "alignSelf": "auto",
+            "border": "none",
+            "children": [
+              {
+                "width": "auto",
+                "margin": "5px 5px",
+                "flexWrap": "wrap",
+                "flexDirection": "row",
+                "order": 1,
+                "flexGrow": 1,
+                "alignSelf": "auto",
+                "border": "none",
+                "children": [
+                  {
+                    "code": "DataGridWidget-0",
+                    "type": "NativeDataGridWidgetComponent",
+                    "name": "rep6_1"
+                  }
+                ],
+                "id": "Container-2",
+                "height": "calc(100% - 10px)",
+                "minHeight": "100px",
+                "minWidth": "100px",
+                "backgroundColor": "white"
+              }
+            ],
+            "id": "Container-1",
+            "height": "auto",
+            "minHeight": "250px",
+            "minWidth": "calc(50% - 10px)",
+            "backgroundColor": "white"
+          },
+          {
+            "width": "auto",
+            "margin": "0 5px 10px",
+            "flexWrap": "wrap",
+            "flexDirection": "row",
+            "order": 1,
+            "flexGrow": 1,
+            "alignSelf": "auto",
+            "border": "none",
+            "children": [
+              {
+                "width": "auto",
+                "margin": "5px 5px",
+                "flexWrap": "wrap",
+                "flexDirection": "row",
+                "order": 1,
+                "flexGrow": 1,
+                "alignSelf": "auto",
+                "border": "none",
+                "children": [
+                  {
+                    "code": "DataGridWidget-1",
+                    "type": "NativeDataGridWidgetComponent",
+                    "name": "rep6_2"
+                  }
+                ],
+                "id": "Container-1",
+                "height": "calc(100% - 10px)",
+                "minHeight": "100px",
+                "minWidth": "100px",
+                "backgroundColor": "white"
+              }
+            ],
+            "id": "Container-1",
+            "height": "auto",
+            "minHeight": "250px",
+            "minWidth": "calc(50% - 10px)",
+            "backgroundColor": "white"
+          }
+        ],
+        "id": "Container-0",
+        "height": "calc( 100% - 100px) ",
+        "minHeight": "500px",
+        "minWidth": "calc(100% - 10px)",
+        "backgroundColor": "white"
+      },
+      {
+        "width": "auto",
+        "margin": "0 5px 10px",
+        "flexWrap": "wrap",
+        "flexDirection": "row",
+        "order": 1,
+        "flexGrow": 1,
+        "alignSelf": "auto",
+        "border": "none",
+        "children": [
+          {
+            "code": "CustomWidget-0",
+            "type": "CustomWidgetComponent",
+            "name": "title_report"
+          }
+        ],
+        "id": "Container-1",
+        "height": "50px",
+        "minHeight": "50px",
+        "minWidth": "calc(100% - 10px)",
+        "backgroundColor": "white"
+      }
+    ],
+    "id": "Container-0",
+    "height": "calc( 100% -60px)",
+    "minHeight": "100%",
+    "minWidth": "100%",
+    "backgroundColor": "white"
+  }
+}

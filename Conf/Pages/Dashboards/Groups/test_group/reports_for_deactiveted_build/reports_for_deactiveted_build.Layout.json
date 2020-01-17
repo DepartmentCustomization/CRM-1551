@@ -1,0 +1,176 @@
+{
+  "css": "",
+  "rootContainer": {
+    "width": "auto",
+    "margin": "0 5px 10px",
+    "flexWrap": "wrap",
+    "flexDirection": "column",
+    "order": 1,
+    "flexGrow": 1,
+    "alignSelf": "auto",
+    "border": "none",
+    "children": [
+      {
+        "width": "auto",
+        "margin": "0 5px 10px",
+        "flexWrap": "wrap",
+        "flexDirection": "column",
+        "order": "2",
+        "flexGrow": 1,
+        "alignSelf": "auto",
+        "border": "none",
+        "children": [
+          {
+            "width": "calc(50% - 20px)",
+            "margin": "0 5px 10px",
+            "flexWrap": "wrap",
+            "flexDirection": "row",
+            "order": 1,
+            "flexGrow": 1,
+            "alignSelf": "auto",
+            "border": "none",
+            "children": [
+              {
+                "width": "auto",
+                "margin": "5px 5px 10px",
+                "flexWrap": "wrap",
+                "flexDirection": "row",
+                "order": 1,
+                "flexGrow": 1,
+                "alignSelf": "auto",
+                "border": "none",
+                "children": [
+                  {
+                    "code": "DataGridWidget-0",
+                    "type": "DataGridWidgetComponent",
+                    "name": "table 11"
+                  }
+                ],
+                "id": "Container-2",
+                "height": "calc(100% - 20px)",
+                "minHeight": "100px",
+                "minWidth": "100px",
+                "backgroundColor": "white"
+              }
+            ],
+            "id": "Container-1",
+            "height": "calc( 50% - 10px) ",
+            "minHeight": "100px",
+            "minWidth": "calc(50% - 10px)",
+            "backgroundColor": "white"
+          },
+          {
+            "width": "calc(50% - 10px)",
+            "margin": "0 5px 10px",
+            "flexWrap": "wrap",
+            "flexDirection": "row",
+            "order": 1,
+            "flexGrow": 1,
+            "alignSelf": "auto",
+            "border": "none",
+            "children": [
+              {
+                "width": "auto",
+                "margin": "5px 5px 10px",
+                "flexWrap": "wrap",
+                "flexDirection": "row",
+                "order": 1,
+                "flexGrow": 1,
+                "alignSelf": "auto",
+                "border": "none",
+                "children": [
+                  {
+                    "code": "DataGridWidget-1",
+                    "type": "DataGridWidgetComponent",
+                    "name": "table_this_day"
+                  }
+                ],
+                "id": "Container-1",
+                "height": "calc(100% - 20px)",
+                "minHeight": "100px",
+                "minWidth": "100px",
+                "backgroundColor": "white"
+              }
+            ],
+            "id": "Container-1",
+            "height": "calc( 50% - 10px) ",
+            "minHeight": "100px",
+            "minWidth": "calc(50% - 10px)",
+            "backgroundColor": "white"
+          },
+          {
+            "width": "calc(50% - 10px)",
+            "margin": "0 5px 10px",
+            "flexWrap": "wrap",
+            "flexDirection": "row",
+            "order": 1,
+            "flexGrow": 1,
+            "alignSelf": "auto",
+            "border": "none",
+            "children": [
+              {
+                "width": "auto",
+                "margin": "5px 5px 10px",
+                "flexWrap": "wrap",
+                "flexDirection": "row",
+                "order": 1,
+                "flexGrow": 1,
+                "alignSelf": "auto",
+                "border": "none",
+                "children": [
+                  {
+                    "code": "DataGridWidget-2",
+                    "type": "DataGridWidgetComponent",
+                    "name": "table__difference "
+                  }
+                ],
+                "id": "Container-1",
+                "height": "calc(100% - 20px)",
+                "minHeight": "100px",
+                "minWidth": "100px",
+                "backgroundColor": "white"
+              }
+            ],
+            "id": "Container-1",
+            "height": "calc( 50% - 10px) ",
+            "minHeight": "100px",
+            "minWidth": "calc(50% - 10px)",
+            "backgroundColor": "white"
+          }
+        ],
+        "id": "Container-0",
+        "height": "calc( 100% - 70px) ",
+        "minHeight": "100px",
+        "minWidth": "calc(100% - 10px)",
+        "backgroundColor": "white"
+      },
+      {
+        "width": "auto",
+        "margin": "0 5px 10px",
+        "flexWrap": "wrap",
+        "flexDirection": "row",
+        "order": 1,
+        "flexGrow": 1,
+        "alignSelf": "auto",
+        "border": "none",
+        "children": [
+          {
+            "code": "CustomWidget-0",
+            "type": "CustomWidgetComponent",
+            "name": "title_report"
+          }
+        ],
+        "id": "Container-1",
+        "height": "50px",
+        "minHeight": "50px",
+        "minWidth": "calc(100% - 10px)",
+        "backgroundColor": "white"
+      }
+    ],
+    "id": "Container-0",
+    "height": "calc( 100% -60px)",
+    "minHeight": "100%",
+    "minWidth": "100%",
+    "backgroundColor": "white"
+  }
+}

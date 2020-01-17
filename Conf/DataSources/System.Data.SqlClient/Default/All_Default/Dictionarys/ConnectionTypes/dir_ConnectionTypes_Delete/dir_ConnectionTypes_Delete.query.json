@@ -1,0 +1,16 @@
+{
+  "ModelType": "Query",
+  "Code": "dir_ConnectionTypes_Delete",
+  "Name": "dir_ConnectionTypes_Delete",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Sql": "DELETE FROM [dbo].[ConnectionTypes] WHERE Id = @Id",
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

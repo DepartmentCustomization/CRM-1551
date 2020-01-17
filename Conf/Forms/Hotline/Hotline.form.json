@@ -1,0 +1,16 @@
+{
+  "ModelType": "Form",
+  "Code": "Hotline",
+  "Name": "Звернення 15-00",
+  "Details": [
+    "string:Details\\Detail_Phone.detail.json"
+  ],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\Info.fieldgroup.json",
+      "string:FieldGroups\\Assingment.fieldgroup.json"
+    ],
+    "DefaultFields": [],
+    "Script": "string:Hotline.form.js"
+  }
+}

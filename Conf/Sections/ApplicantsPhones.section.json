@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "cx_Applicants_Insert"
+  },
+  "ModelType": "Section",
+  "Code": "ApplicantsPhones",
+  "Name": "3. Телефони",
+  "FormCode": "Form_Applicants",
+  "SelectRowsQueryCode": "cx_ApplicantsPhones_SelectsRows",
+  "SelectRowQueryCode": "cx_Applicants_SelectsRow",
+  "UpdateQueryCode": "cx_Applicants_Update",
+  "IsVisible": false
+}

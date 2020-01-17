@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "ak_InsertApplicantPrivilegeRow"
+  },
+  "ModelType": "Section",
+  "Code": "ApplicantPrivilege",
+  "Name": "Довідник: Пільги",
+  "FormCode": "ApplicantPrivilege",
+  "SelectRowsQueryCode": "div_SelectApplicantPrivilegeRows",
+  "SelectRowQueryCode": "ak_SelectApplicantPrivilegeRow",
+  "UpdateQueryCode": "ak_UpdateApplicantPrivilegeRow",
+  "DeleteQueryCode": "ak_DeleteApplicantPrivilegeRow"
+}

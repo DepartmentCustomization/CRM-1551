@@ -1,0 +1,135 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 1,
+    "IsPrimaryKey": true,
+    "IsPrintable": false
+  },
+  {
+    "Code": "claim_number",
+    "Name": "claim_number",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "claim_state",
+    "Name": "claim_state",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "claim_type",
+    "Name": "claim_type",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "claim_content",
+    "Name": "claim_content",
+    "Position": 5,
+    "IsPrintable": false
+  },
+  {
+    "Code": "main_object_id",
+    "Name": "main_object_id",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "executor",
+    "Name": "executor",
+    "Position": 7,
+    "IsPrintable": false
+  },
+  {
+    "Code": "start_date",
+    "Name": "start_date",
+    "Position": 8,
+    "IsPrintable": false
+  },
+  {
+    "Code": "planned_end_date",
+    "Name": "planned_end_date",
+    "Position": 9,
+    "IsPrintable": false
+  },
+  {
+    "Code": "fact_end_date",
+    "Name": "fact_end_date",
+    "Position": 10,
+    "IsPrintable": false
+  },
+  {
+    "Code": "comment_executor",
+    "Name": "comment_executor",
+    "Position": 11,
+    "IsPrintable": false
+  },
+  {
+    "Code": "global",
+    "Name": "global",
+    "Position": 12,
+    "IsPrintable": false
+  },
+  {
+    "Code": "audio_start_date",
+    "Name": "audio_start_date",
+    "Position": 13,
+    "IsPrintable": false
+  },
+  {
+    "Code": "audio_end_date",
+    "Name": "audio_end_date",
+    "Position": 14,
+    "IsPrintable": false
+  },
+  {
+    "Code": "standart_audio",
+    "Name": "standart_audio",
+    "Position": 15,
+    "IsPrintable": false
+  },
+  {
+    "Code": "say_liveAddress_id",
+    "Name": "say_liveAddress_id",
+    "Position": 16,
+    "IsPrintable": false
+  },
+  {
+    "Code": "say_organization_id",
+    "Name": "say_organization_id",
+    "Position": 17,
+    "IsPrintable": false
+  },
+  {
+    "Code": "say_phone_for_information",
+    "Name": "say_phone_for_information",
+    "Position": 18,
+    "IsPrintable": false
+  },
+  {
+    "Code": "phone_for_information",
+    "Name": "phone_for_information",
+    "Position": 19,
+    "IsPrintable": false
+  },
+  {
+    "Code": "say_plan_end_date",
+    "Name": "say_plan_end_date",
+    "Position": 20,
+    "IsPrintable": false
+  },
+  {
+    "Code": "audio_on",
+    "Name": "audio_on",
+    "Position": 21,
+    "IsPrintable": false
+  },
+  {
+    "Code": "object_name",
+    "Name": "object_name",
+    "Position": 22,
+    "ReferenceKeyCode": "main_object_id"
+  }
+]

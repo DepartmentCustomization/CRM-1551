@@ -1,0 +1,15 @@
+{
+  "ModelType": "Detail",
+  "Code": "EventHistory",
+  "Name": "Історія заходів",
+  "SelectRowsQueryCode": "EventHistory_SelectRows",
+  "SectionCode": "",
+  "Position": 9,
+  "IsExpand": true,
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@event_id"
+    }
+  ]
+}

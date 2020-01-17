@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "ak_StreetTypesIntoRow"
+  },
+  "ModelType": "Section",
+  "Code": "StreetTypes",
+  "Name": "Довідник: Типи вулиць",
+  "FormCode": "StreetTypes",
+  "SelectRowsQueryCode": "ak_StreetTypesSelectRows",
+  "SelectRowQueryCode": "ak_StreetTypesSelectRow",
+  "UpdateQueryCode": "ak_StreetTypesUpdateRow",
+  "DeleteQueryCode": "ak_StreetTypesDeleteRow"
+}

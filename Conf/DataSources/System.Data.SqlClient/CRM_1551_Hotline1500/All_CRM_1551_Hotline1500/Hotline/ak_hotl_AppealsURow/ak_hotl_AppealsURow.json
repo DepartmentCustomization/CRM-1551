@@ -1,0 +1,74 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_hotl_AppealsURow",
+    "Name": "ak_hotl_AppealsURow",
+    "ConnectionCode": "CRM_1551_Hotline1500",
+    "IsUsedForRightsFilter": false,
+    "Parameters": [
+      {
+        "Code": "@Appeals_Id",
+        "Name": "Appeals_Id",
+        "ParameterType": "Integer",
+        "IsPrimaryKey": true
+      },
+      {
+        "Code": "@applicant_name",
+        "Name": "applicant_name"
+      },
+      {
+        "Code": "@applicant_address",
+        "Name": "applicant_address"
+      },
+      {
+        "Code": "@marital_status_id",
+        "Name": "marital_status_id",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@sex_id",
+        "Name": "sex_id",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@age",
+        "Name": "age",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@education_id",
+        "Name": "education_id",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@applicant_privilage_id",
+        "Name": "applicant_privilage_id",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@applicant_needs",
+        "Name": "applicant_needs"
+      },
+      {
+        "Code": "@guidance_kind_id",
+        "Name": "guidance_kind_id",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@offender_name",
+        "Name": "offender_name"
+      },
+      {
+        "Code": "@service_content",
+        "Name": "service_content"
+      },
+      {
+        "Code": "@comment",
+        "Name": "comment"
+      },
+      {
+        "Code": "@user_edit_id",
+        "Name": "user_edit_id",
+        "ParameterType": "CurrentUserId"
+      }
+    ]
+  }

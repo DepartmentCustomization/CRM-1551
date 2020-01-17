@@ -1,0 +1,43 @@
+{
+  "ModelType": "Query",
+  "Code": "list_filter_Streets_in_district",
+  "Name": "list_filter_Streets_in_district",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "IsPrintable": false
+    },
+    {
+      "Code": "name",
+      "Name": "name",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "case when [Buildings].street_id is not null then N'вул. '+[Streets].name else N'' end+   case when [Buildings].name is not null then N' '+[Buildings].name else N'' end",
+      "FilterParameterCode": "@name"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@district_id",
+      "Name": "district_id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

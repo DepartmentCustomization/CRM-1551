@@ -1,0 +1,11 @@
+{
+  "Add": {
+    "InsertQueryCode": "ExecutorEvaluations_InsertRow"
+  },
+  "ModelType": "Section",
+  "Code": "BOT1551_ExecutorEvaluations",
+  "Name": "BOT1551_ExecutorEvaluations",
+  "FormCode": "ExecutorEvaluations",
+  "SelectRowsQueryCode": "ExecutorEvaluations_SelectRows",
+  "SelectRowQueryCode": "ExecutorEvaluations_SelectRow"
+}

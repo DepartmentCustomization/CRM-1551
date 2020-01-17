@@ -1,0 +1,22 @@
+{
+  "ModelType": "Detail",
+  "Code": "Detail_QuestionGroupTypes",
+  "Name": "Тип питань",
+  "FormCode": "Form_Detail_QuestionGroupTypes",
+  "SelectRowsQueryCode": "QuestionGroupTypes_SelectRows",
+  "SelectRowQueryCode": "QuestionGroupTypes_SelectRow",
+  "UpdateQueryCode": "QuestionGroupTypes_Update",
+  "SectionCode": "",
+  "DeleteQueryCode": "QuestionGroupTypes_Delete",
+  "Position": 1,
+  "IsExpand": true,
+  "Add": {
+    "InsertQueryCode": "QuestionGroupTypes_Insert"
+  },
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@Id"
+    }
+  ]
+}

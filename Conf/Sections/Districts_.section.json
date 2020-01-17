@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "ak_DistrictInsertRow"
+  },
+  "ModelType": "Section",
+  "Code": "Districts_",
+  "Name": "Довідник: Райони",
+  "FormCode": "Districts_",
+  "SelectRowsQueryCode": "ak_DistrictSelectRows",
+  "SelectRowQueryCode": "ak_DistrictSelectRow",
+  "UpdateQueryCode": "ak_DistrictUpdateRow",
+  "DeleteQueryCode": "ak_DistrictDeleteRow"
+}

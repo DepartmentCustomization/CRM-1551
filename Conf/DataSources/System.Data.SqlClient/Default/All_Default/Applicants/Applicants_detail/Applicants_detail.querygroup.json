@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "Applicants_detail",
+  "Name": "Деталі Заявника",
+  "ConnectionCode": "Default"
+}

@@ -1,0 +1,42 @@
+{
+  "ModelType": "Query",
+  "Code": "list_houses_number2",
+  "Name": "list_houses_number2",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "number",
+      "Name": "number",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "concat(isnull(StreetTypes.shortname,N''),N' ', isnull([Streets].[name],N''),N' ', isnull(Buildings.[name],N''))",
+      "FilterParameterCode": "@number"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@street",
+      "Name": "street",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

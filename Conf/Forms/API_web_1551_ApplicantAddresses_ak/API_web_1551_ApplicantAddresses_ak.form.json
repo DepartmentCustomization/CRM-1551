@@ -1,0 +1,14 @@
+{
+  "ModelType": "Form",
+  "Code": "API_web_1551_ApplicantAddresses_ak",
+  "Name": "API_web_1551_ApplicantAddresses_ak",
+  "Details": [
+    "string:Details\\QuestionFiles.detail.json"
+  ],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\main.fieldgroup.json"
+    ],
+    "DefaultFields": []
+  }
+}

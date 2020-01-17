@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "AppealsFromSite",
+  "Name": "Звернення з сайту",
+  "ConnectionCode": "Default"
+}

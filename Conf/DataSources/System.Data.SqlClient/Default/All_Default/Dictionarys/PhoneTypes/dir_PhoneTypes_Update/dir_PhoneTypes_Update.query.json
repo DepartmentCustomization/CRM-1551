@@ -1,0 +1,19 @@
+{
+  "ModelType": "Query",
+  "Code": "dir_PhoneTypes_Update",
+  "Name": "dir_PhoneTypes_Update",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@name",
+      "Name": "name"
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

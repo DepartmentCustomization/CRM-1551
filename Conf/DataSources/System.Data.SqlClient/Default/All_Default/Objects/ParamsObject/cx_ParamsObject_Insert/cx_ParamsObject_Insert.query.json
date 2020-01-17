@@ -1,0 +1,29 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_ParamsObject_Insert",
+  "Name": "cx_ParamsObject_Insert",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@value",
+      "Name": "value"
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    },
+    {
+      "Code": "@object_id",
+      "Name": "object_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@params_id",
+      "Name": "params_id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

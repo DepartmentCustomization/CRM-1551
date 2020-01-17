@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "dir_DocumentTypes_Insert"
+  },
+  "ModelType": "Section",
+  "Code": "dir_DocumentTypes",
+  "Name": "Довідник: Типи документів",
+  "FormCode": "Form_dictionary_universal",
+  "SelectRowsQueryCode": "dir_DocumentTypes_SelectRows",
+  "SelectRowQueryCode": "dir_DocumentTypes_SelectRow",
+  "UpdateQueryCode": "dir_DocumentTypes_Update",
+  "DeleteQueryCode": "dir_DocumentTypes_Delete"
+}

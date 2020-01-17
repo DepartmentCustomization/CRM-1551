@@ -1,0 +1,24 @@
+{
+  "ModelType": "Query",
+  "Code": "det_ak_OrganizationObjectInsertRow",
+  "Name": "det_ak_OrganizationObjectInsertRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@organization_id",
+      "Name": "organization_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@executor_role_id",
+      "Name": "executor_role_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@building_id",
+      "Name": "building_id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

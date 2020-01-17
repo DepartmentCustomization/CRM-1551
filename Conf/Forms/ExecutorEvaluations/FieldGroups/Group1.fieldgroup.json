@@ -1,0 +1,37 @@
+{
+  "Code": "Group1",
+  "Name": "Group1",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "applicant_connection_effort_id",
+      "Name": "applicant_connection_effort_id",
+      "FieldType": "number",
+      "Position": 1
+    },
+    {
+      "Code": "bot_poll_number",
+      "Name": "bot_poll_number",
+      "FieldType": "number",
+      "Position": 2
+    },
+    {
+      "Code": "bot_poll_item_id",
+      "Name": "bot_poll_item_id",
+      "FieldType": "number",
+      "Position": 3
+    },
+    {
+      "Code": "grade",
+      "Name": "grade",
+      "FieldType": "number",
+      "Position": 4
+    },
+    {
+      "Code": "answer_date",
+      "Name": "answer_date",
+      "FieldType": "date-time",
+      "Position": 5
+    }
+  ]
+}

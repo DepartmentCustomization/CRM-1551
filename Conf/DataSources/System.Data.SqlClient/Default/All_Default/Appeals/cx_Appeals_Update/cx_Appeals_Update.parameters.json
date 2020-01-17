@@ -1,0 +1,47 @@
+[
+  {
+    "Code": "@enter_number",
+    "Name": "enter_number"
+  },
+  {
+    "Code": "@applicant_id",
+    "Name": "applicant_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@Id",
+    "Name": "Id",
+    "ParameterType": "Integer",
+    "IsPrimaryKey": true
+  },
+  {
+    "Code": "@article",
+    "Name": "article"
+  },
+  {
+    "Code": "@sender_post_adrress",
+    "Name": "sender_post_adrress"
+  },
+  {
+    "Code": "@mail",
+    "Name": "mail"
+  },
+  {
+    "Code": "@user_edit_id",
+    "Name": "user_edit_id",
+    "ParameterType": "CurrentUserId"
+  },
+  {
+    "Code": "@end_date",
+    "Name": "end_date",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@sender_name",
+    "Name": "sender_name"
+  },
+  {
+    "Code": "@city_receipt",
+    "Name": "city_receipt"
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "ModelType": "Query",
+  "Code": "api_FileFromSite_DeleteRow",
+  "Name": "api_FileFromSite_DeleteRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

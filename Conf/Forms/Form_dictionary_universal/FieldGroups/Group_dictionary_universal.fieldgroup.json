@@ -1,0 +1,13 @@
+{
+  "Code": "Group_dictionary_universal",
+  "Name": "Довідник",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "name",
+      "Name": "Назва",
+      "FieldType": "text",
+      "Position": 1
+    }
+  ]
+}

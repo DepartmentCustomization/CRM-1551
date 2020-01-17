@@ -1,0 +1,35 @@
+{
+  "Code": "Group_Appeals_2_6",
+  "Name": "Надати відповідь у вигляді",
+  "Position": 6,
+  "Fields": [
+    {
+      "Code": "answer_type_id",
+      "Name": "Тип відповіді",
+      "FieldType": "select",
+      "Position": 1,
+      "QueryCode": "dir_AnswerTypes_SelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "answer_phone",
+      "Name": "Номер телефону",
+      "FieldType": "text",
+      "Position": 1
+    },
+    {
+      "Code": "answer_post",
+      "Name": "Поштова адреса",
+      "FieldType": "text",
+      "Position": 1
+    },
+    {
+      "Code": "answer_mail",
+      "Name": "E-mail",
+      "FieldType": "text",
+      "Position": 1
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Add": {
+    "InsertQueryCode": "ak_PersonExecutorChooseInsertRow"
+  },
+  "ModelType": "Section",
+  "Code": "PersonExecutorChoose",
+  "Name": "PersonExecutorChoose",
+  "FormCode": "PersonExecutorChoose",
+  "SelectRowsQueryCode": "ak_PersonExecutorChooseSelectRows",
+  "SelectRowQueryCode": "ak_PersonExecutorChooseSelectRow",
+  "UpdateQueryCode": "ak_PersonExecutorChooseUpdateRow",
+  "DeleteQueryCode": "ak_PersonExecutorChooseDeleteRow"
+}
+

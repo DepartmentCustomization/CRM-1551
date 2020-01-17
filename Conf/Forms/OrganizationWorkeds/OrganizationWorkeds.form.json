@@ -1,0 +1,19 @@
+{
+  "ModelType": "Form",
+  "Code": "OrganizationWorkeds",
+  "Name": "Організація(Працівники/Виконавці)",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\Worked.fieldgroup.json"
+    ],
+    "DefaultFields": [
+      {
+        "Code": "organization_id",
+        "ParentFormFieldCodeForKeyValue": "Id",
+        "ParentFormFieldCodeForDisplayValue": "short_name"
+      }
+    ],
+    "Script": "string:OrganizationWorkeds.form.js"
+  }
+}

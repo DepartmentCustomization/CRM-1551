@@ -1,0 +1,23 @@
+{
+  "ModelType": "Query",
+  "Code": "Bot_InsertQuestionDocFile",
+  "Name": "Bot_InsertQuestionDocFile",
+  "ConnectionCode": "CRM_1551_Bot_Integration",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@File",
+      "Name": "File",
+      "ParameterType": "Varbinary"
+    },
+    {
+      "Code": "@question_id",
+      "Name": "question_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@Name",
+      "Name": "Name"
+    }
+  ]
+}

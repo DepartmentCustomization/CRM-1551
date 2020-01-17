@@ -1,0 +1,15 @@
+{
+  "ModelType": "Query",
+  "Code": "ExecutorEvaluations_SelectRow",
+  "Name": "ExecutorEvaluations_SelectRow",
+  "ConnectionCode": "CRM_1551_Bot_Integration",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

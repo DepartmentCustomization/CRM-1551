@@ -1,0 +1,48 @@
+{
+  "Code": "Group_Applicant",
+  "Name": "Заявник",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "full_name",
+      "Name": "Прізвище Ім'я та По батькові",
+      "FieldType": "text",
+      "IsRequired": true,
+      "Position": 1,
+      "Icon": "account_circle",
+      "Width": "100%"
+    },
+    {
+      "Code": "phone_number",
+      "Name": "Номер телефону",
+      "FieldType": "text",
+      "IsRequired": true,
+      "Position": 2,
+      "Width": "100%",
+      "Icon": "phone"
+    },
+    {
+      "Code": "mail",
+      "Name": "E-mail",
+      "FieldType": "text",
+      "Position": 7,
+      "Icon": "mail_outline",
+      "Width": "100%"
+    },
+    {
+      "Code": "Id",
+      "Name": "applicant_id",
+      "FieldType": "number",
+      "Position": 111,
+      "IsHidden": true,
+      "Width": "20%"
+    },
+    {
+      "Code": "phone_number_norm",
+      "Name": "phone_number_norm",
+      "FieldType": "number",
+      "Position": 1999,
+      "IsHidden": true
+    }
+  ]
+}

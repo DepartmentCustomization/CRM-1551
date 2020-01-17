@@ -1,0 +1,39 @@
+{
+  "ModelType": "Query",
+  "Code": "db_Report_metro2",
+  "Name": "db_Report_metro2",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "qType",
+      "Name": "qType",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "qty",
+      "Name": "qty",
+      "Position": 2,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@dateTo",
+      "Name": "dateTo",
+      "ParameterType": "DateTime"
+    },
+    {
+      "Code": "@dateFrom",
+      "Name": "dateFrom",
+      "ParameterType": "DateTime"
+    }
+  ]
+}

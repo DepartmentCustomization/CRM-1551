@@ -1,0 +1,55 @@
+[
+  {
+    "Code": "@region",
+    "Name": "region"
+  },
+  {
+    "Code": "@addresstype_id",
+    "Name": "addresstype_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@street_id",
+    "Name": "street_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@flat",
+    "Name": "flat"
+  },
+  {
+    "Code": "@cityname",
+    "Name": "cityname"
+  },
+  {
+    "Code": "@building",
+    "Name": "building"
+  },
+  {
+    "Code": "@district",
+    "Name": "district"
+  },
+  {
+    "Code": "@index",
+    "Name": "index",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@street",
+    "Name": "street"
+  },
+  {
+    "Code": "@building_id",
+    "Name": "building_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@country",
+    "Name": "country"
+  },
+  {
+    "Code": "@applicant_id",
+    "Name": "applicant_id",
+    "ParameterType": "Integer"
+  }
+]

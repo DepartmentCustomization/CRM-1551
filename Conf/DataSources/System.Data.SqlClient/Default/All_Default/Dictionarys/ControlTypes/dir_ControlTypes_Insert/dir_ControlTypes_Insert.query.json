@@ -1,0 +1,19 @@
+{
+  "ModelType": "Query",
+  "Code": "dir_ControlTypes_Insert",
+  "Name": "dir_ControlTypes_Insert",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@name",
+      "Name": "name"
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

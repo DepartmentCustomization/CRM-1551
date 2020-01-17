@@ -1,0 +1,78 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 0,
+    "IsPrintable": false
+  },
+  {
+    "Code": "name",
+    "Name": "name",
+    "Position": 1,
+    "IsPrintable": false
+  },
+  {
+    "Code": "ExecutorRoleLevel_Id",
+    "Name": "ExecutorRoleLevel_Id",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "ExecutorRoleLevel",
+    "Name": "ExecutorRoleLevel",
+    "Position": 3,
+    "IsPrintable": false,
+    "ReferenceKeyCode": "ExecutorRoleLevel_Id"
+  },
+  {
+    "Code": "ExecutorRole_Id",
+    "Name": "ExecutorRole_Id",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "ExecutorRole",
+    "Name": "ExecutorRole",
+    "Position": 5,
+    "IsPrintable": false,
+    "ReferenceKeyCode": "ExecutorRole_Id"
+  },
+  {
+    "Code": "Rules_Id",
+    "Name": "Rules_Id",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "Rules",
+    "Name": "Rules",
+    "Position": 7,
+    "IsPrintable": false,
+    "ReferenceKeyCode": "Rules_Id"
+  },
+  {
+    "Code": "priority",
+    "Name": "priority",
+    "Position": 8,
+    "IsPrintable": false
+  },
+  {
+    "Code": "main",
+    "Name": "main",
+    "Position": 9,
+    "IsPrintable": false
+  },
+  {
+    "Code": "ProcessingKind_Id",
+    "Name": "ProcessingKind_Id",
+    "Position": 10,
+    "IsPrintable": false
+  },
+  {
+    "Code": "ProcessingKind",
+    "Name": "ProcessingKind",
+    "Position": 11,
+    "IsPrintable": false,
+    "ReferenceKeyCode": "ProcessingKind_Id"
+  }
+]

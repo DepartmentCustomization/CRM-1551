@@ -1,0 +1,21 @@
+{
+  "DetailType": "File",
+  "ModelType": "Detail",
+  "Code": "Detail_Question_File",
+  "Name": "Файли питання",
+  "FormCode": "Form_Que_Doc_File_NEW",
+  "SelectRowsQueryCode": "cx_NEW_Que_Doc_File_SelectRows",
+  "SelectRowQueryCode": "cx_NEW_Que_Doc_File_SelectRow",
+  "SectionCode": "",
+  "Position": 30,
+  "IsExpand": true,
+  "Add": {
+    "InsertQueryCode": "cx_NEW_Que_Doc_File_Insert"
+  },
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@Id"
+    }
+  ]
+}

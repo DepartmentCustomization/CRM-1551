@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "dir_ReceiptSources_Insert"
+  },
+  "ModelType": "Section",
+  "Code": "dir_ReceiptSources",
+  "Name": "Довідник: Джерела надхоження",
+  "FormCode": "Form_dictionary_universal",
+  "SelectRowsQueryCode": "dir_ReceiptSources_SelectRows",
+  "SelectRowQueryCode": "dir_ReceiptSources_SelectRow",
+  "UpdateQueryCode": "dir_ReceiptSources_Update",
+  "DeleteQueryCode": "dir_ReceiptSources_Delete"
+}

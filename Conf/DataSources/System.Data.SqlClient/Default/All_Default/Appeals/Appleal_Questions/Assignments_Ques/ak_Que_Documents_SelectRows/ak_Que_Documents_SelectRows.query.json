@@ -1,0 +1,53 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_Que_Documents_SelectRows",
+  "Name": "ak_Que_Documents_SelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "name",
+      "Name": "Назва файлу",
+      "Position": 2,
+      "IsFileName": true
+    },
+    {
+      "Code": "create_date",
+      "Name": "Дата додавання файлу",
+      "Position": 3
+    },
+    {
+      "Code": "File",
+      "Name": "File",
+      "Position": 4,
+      "IsFileContent": true
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

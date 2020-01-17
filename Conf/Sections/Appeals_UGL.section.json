@@ -1,0 +1,17 @@
+{
+  "ModelType":"Section",
+  "Code":"Appeals_UGL",
+  "Name":"Звернення УГЛ",
+  "SelectRowsQueryCode":"Appeals_UGL_SelectRows",
+  "Add":
+  {
+    "AddType":"General",
+    "InsertQueryCode":"Appeals_UGL_Insert",
+    "ImportCsv":
+    {
+      "ImportCsvType":"ByRow",
+      "TableName":"[dbo].[УГЛ]",
+      "BatchSize":50
+    }
+  }
+}

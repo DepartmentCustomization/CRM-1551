@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "ak_PositionsInsertRow"
+  },
+  "ModelType": "Section",
+  "Code": "Positions",
+  "Name": "Посади",
+  "FormCode": "Positions",
+  "SelectRowsQueryCode": "ak_PositionsSelectRows",
+  "SelectRowQueryCode": "ak_PositionsSelectRow",
+  "UpdateQueryCode": "ak_PositionsUpdateRow",
+  "DeleteQueryCode": "ak_PositionsDeleteRow"
+}

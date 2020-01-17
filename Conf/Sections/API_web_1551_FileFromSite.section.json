@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "api_AppealFromSite_InsertRows"
+  },
+  "ModelType": "Section",
+  "Code": "API_web_1551_FileFromSite",
+  "Name": "API_web_1551_FileFromSite",
+  "FormCode": "Form_API_web_1551_FileFromSite",
+  "SelectRowsQueryCode": "api_AppealFromSite_SelectRows",
+  "SelectRowQueryCode": "api_AppealFromSite_SelectRow",
+  "UpdateQueryCode": "api_AppealFromSite_UpdateRows",
+  "DeleteQueryCode": "api_AppealFromSite_DeleteRows"
+}

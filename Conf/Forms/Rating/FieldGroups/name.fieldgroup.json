@@ -1,0 +1,13 @@
+{
+  "Code": "name",
+  "Name": "Назва",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "name",
+      "Name": "Назва рейтингу",
+      "FieldType": "text",
+      "Position": 1
+    }
+  ]
+}

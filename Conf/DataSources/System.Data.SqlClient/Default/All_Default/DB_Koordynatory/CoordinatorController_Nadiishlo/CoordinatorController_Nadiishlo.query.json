@@ -1,0 +1,13 @@
+{
+  "ModelType": "Query",
+  "Code": "CoordinatorController_Nadiishlo",
+  "Name": "CoordinatorController_Nadiishlo",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@navigation",
+      "Name": "navigation"
+    }
+  ]
+}

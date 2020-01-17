@@ -1,0 +1,40 @@
+{
+  "ModelType": "Query",
+  "Code": "Answer_Applicant_info",
+  "Name": "Answer_Applicant_info",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "answer_mail",
+      "Name": "answer_mail",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "answer_phone",
+      "Name": "answer_phone",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "answer_post",
+      "Name": "answer_post",
+      "Position": 3,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@id_con",
+      "Name": "id_con",
+      "ParameterType": "Integer"
+    }
+  ]
+}

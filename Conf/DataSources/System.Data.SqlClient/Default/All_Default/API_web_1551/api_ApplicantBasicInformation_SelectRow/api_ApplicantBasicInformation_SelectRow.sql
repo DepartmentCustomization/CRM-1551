@@ -1,0 +1,11 @@
+ SELECT [Id]
+		  ,[Surname] as [surname]
+           ,[Firstname] as [firstname]
+           ,[Fathername] as [fathername]
+           ,[Birthdate] as [birthdate]
+           ,[Sex] as [sex]
+           ,[SocialStateId] as [socialstate_id]
+           ,[ApplicantPrivilegeId] as [applicantprivilage_id]
+           ,[INN] as [inn]
+  FROM [CRM_1551_Site_Integration].[dbo].[ApplicantsFromSite]
+  where Id = @Id

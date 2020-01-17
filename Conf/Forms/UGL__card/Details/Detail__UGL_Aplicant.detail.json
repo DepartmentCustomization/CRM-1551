@@ -1,0 +1,15 @@
+{
+  "ModelType": "Detail",
+  "Code": "Detail__UGL_Aplicant",
+  "Name": "Заявники за телефоном",
+  "SelectRowsQueryCode": "detail_appeal_Aplicant_selectRows",
+  "SectionCode": "",
+  "Position": 1,
+  "IsExpand": true,
+  "QueryParameters": [
+    {
+      "FormFieldName": "Phone",
+      "ParameterCode": "@phone_number"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_DistrictInsertRow",
+  "Name": "ak_DistrictInsertRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@name",
+      "Name": "name"
+    }
+  ]
+}

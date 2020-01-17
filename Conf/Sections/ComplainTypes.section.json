@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "ak_ComplainTypesInsertRow"
+  },
+  "ModelType": "Section",
+  "Code": "ComplainTypes",
+  "Name": "Довідник: Типи скарг",
+  "FormCode": "ComplainTypes",
+  "SelectRowsQueryCode": "ak_ComplainTypesSelectRows",
+  "SelectRowQueryCode": "ak_ComplainTypesSelectRow",
+  "UpdateQueryCode": "ak_ComplainTypesUpdateRow",
+  "DeleteQueryCode": "ak_ComplainTypesDeleteRow"
+}

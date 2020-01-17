@@ -1,0 +1,8 @@
+{
+    "ModelType": "Section",
+    "Code": "Gorodok_global",
+    "Name": "Глобальні заявки ГородОк",
+    "FormCode": "Form_Gorodok_global",
+    "SelectRowsQueryCode": "Gorodok_global_SelectRows",
+    "SelectRowQueryCode": "Gorodok_global_SelectRow"
+}

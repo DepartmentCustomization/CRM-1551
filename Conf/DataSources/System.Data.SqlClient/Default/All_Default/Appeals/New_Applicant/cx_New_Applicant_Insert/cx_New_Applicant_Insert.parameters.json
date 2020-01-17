@@ -1,0 +1,103 @@
+[
+  {
+    "Code": "@appeals",
+    "Name": "appeals",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@types_id",
+    "Name": "types_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@active",
+    "Name": "active",
+    "ParameterType": "Boolean"
+  },
+  {
+    "Code": "@entrance",
+    "Name": "entrance",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@mail",
+    "Name": "mail",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@age",
+    "Name": "age",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@user_id",
+    "Name": "user_id",
+    "ParameterType": "CurrentUserFullName"
+  },
+  {
+    "Code": "@birth_date",
+    "Name": "birth_date",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@sex",
+    "Name": "sex"
+  },
+  {
+    "Code": "@user_edit_id",
+    "Name": "user_edit_id",
+    "ParameterType": "CurrentUserFullName"
+  },
+  {
+    "Code": "@full_name",
+    "Name": "full_name"
+  },
+  {
+    "Code": "@comment",
+    "Name": "comment"
+  },
+  {
+    "Code": "@phone_number",
+    "Name": "phone_number"
+  },
+  {
+    "Code": "@main",
+    "Name": "main",
+    "ParameterType": "Boolean"
+  },
+  {
+    "Code": "@house_block",
+    "Name": "house_block",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@states_id",
+    "Name": "states_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@Id",
+    "Name": "Id",
+    "ParameterType": "Integer",
+    "IsPrimaryKey": true
+  },
+  {
+    "Code": "@building_id",
+    "Name": "building_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@phone_type_id",
+    "Name": "phone_type_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@category_id",
+    "Name": "category_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@flat",
+    "Name": "flat"
+  }
+]

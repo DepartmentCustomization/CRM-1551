@@ -1,0 +1,96 @@
+{
+  "ModelType": "Query",
+  "Code": "det_QuestionTypesRulesSelectRows",
+  "Name": "det_QuestionTypesRulesSelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "ExecutorRoleLevelName",
+      "Name": "Рівень ролі",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "[ExecutorRoleLevel].name",
+      "FilterParameterCode": "@ExecutorRoleLevelName"
+    },
+    {
+      "Code": "Rule",
+      "Name": "Правило вибору",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "ltrim([Rules].Id)+N'. '+[Rules].name",
+      "FilterParameterCode": "@Rule"
+    },
+    {
+      "Code": "ExecutorRole",
+      "Name": "Роль виконавця",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "[ExecutorRole].name ",
+      "FilterParameterCode": "@ExecutorRole"
+    },
+    {
+      "Code": "priority",
+      "Name": "Пріоритет",
+      "Position": 4,
+      "IsPrintable": false,
+      "SqlName": "[RulesForExecutorRole].priority",
+      "FilterParameterCode": "@priority"
+    },
+    {
+      "Code": "main",
+      "Name": "Головний",
+      "Position": 5,
+      "IsPrintable": false,
+      "SqlName": "  case when [RulesForExecutorRole].main=N'true' then N'Так'   when [RulesForExecutorRole].main=N'false' then N'Ні'end  ",
+      "FilterParameterCode": "@main"
+    },
+    {
+      "Code": "QuestionTypesName",
+      "Name": "Тип питання",
+      "Position": 6,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "ProcessingKind_Id",
+      "Name": "ProcessingKind_Id",
+      "Position": 7,
+      "ViewState": "Hidden"
+    },
+    {
+      "Code": "ProcessingKind_Name",
+      "Name": "Тип обробки",
+      "Position": 8,
+      "SqlName": "[ProcessingKind].name ",
+      "FilterParameterCode": "@ProcessingKind_Name"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@questionType_Id",
+      "Name": "questionType_Id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

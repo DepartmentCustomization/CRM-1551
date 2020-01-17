@@ -1,0 +1,12 @@
+{
+  "ModelType": "Form",
+  "Code": "ExecutorRoleLevel",
+  "Name": "Форма довідника: Рівень ролі",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\ExecutorRoleLevel.fieldgroup.json"
+    ],
+    "DefaultFields": []
+  }
+}

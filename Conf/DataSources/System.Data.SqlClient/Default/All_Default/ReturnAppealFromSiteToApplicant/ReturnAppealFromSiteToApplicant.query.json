@@ -1,0 +1,18 @@
+{
+  "ModelType": "Query",
+  "Code": "ReturnAppealFromSiteToApplicant",
+  "Name": "ReturnAppealFromSiteToApplicant",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@AppealFromSite_CommentModerator",
+      "Name": "AppealFromSite_CommentModerator"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_QuestionTypes_Insert",
+  "Name": "cx_QuestionTypes_Insert",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

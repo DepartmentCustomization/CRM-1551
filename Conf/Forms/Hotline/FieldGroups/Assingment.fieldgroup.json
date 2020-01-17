@@ -1,0 +1,125 @@
+{
+  "Code": "Assingment",
+  "Name": "Звернення",
+  "Position": 2,
+  "Fields": [
+    {
+      "Code": "applicant_name",
+      "Name": "ПІБ постраждалої особи",
+      "FieldType": "text",
+      "Position": 1,
+      "Width": "100%",
+      "IsRequired": true
+    },
+    {
+      "Code": "applicant_address",
+      "Name": "Адреса заявника",
+      "FieldType": "text",
+      "Position": 2,
+      "Width": "100%",
+      "IsRequired": true
+    },
+    {
+      "Code": "marital_status_id",
+      "Name": "Сімейний стан",
+      "FieldType": "select",
+      "Position": 3,
+      "Width": "40%",
+      "Icon": "",
+      "QueryCode": "ak_MaritalStatuses_SRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "sex_id",
+      "Name": "Стать",
+      "FieldType": "select",
+      "Position": 4,
+      "Width": "30%",
+      "Icon": "",
+      "QueryCode": "ak_hotl_Sex_SRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Name",
+      "QueryParameters": [],
+      "IsRequired": true
+    },
+    {
+      "Code": "age",
+      "Name": "Вік",
+      "FieldType": "number",
+      "Position": 5,
+      "Width": "30%"
+    },
+    {
+      "Code": "education_id",
+      "Name": "Освіта",
+      "FieldType": "select",
+      "Position": 6,
+      "Width": "40%",
+      "Icon": "",
+      "QueryCode": "ak_Educations_SRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "applicant_privilage_id",
+      "Name": "Працездатність",
+      "FieldType": "select",
+      "Position": 7,
+      "Width": "60%",
+      "Icon": "",
+      "QueryCode": "ak_ApplicantPrivilages_SRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "guidance_kind_id",
+      "Name": "Вид насильства",
+      "FieldType": "select",
+      "Position": 8,
+      "Width": "100%",
+      "Icon": "",
+      "QueryCode": "ak_GuidanceKinds_SRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Name",
+      "QueryParameters": [],
+      "IsRequired": true
+    },
+    {
+      "Code": "applicant_needs",
+      "Name": "Інформація про потреби заявника",
+      "FieldType": "textarea",
+      "Position": 9,
+      "Rows": 5,
+      "Width": "100%"
+    },
+    {
+      "Code": "offender_name",
+      "Name": "ПІБ кривдника",
+      "FieldType": "text",
+      "Position": 10,
+      "Width": "100%",
+      "IsRequired": true
+    },
+    {
+      "Code": "service_content",
+      "Name": "Зміст наданої послуги",
+      "FieldType": "textarea",
+      "Position": 11,
+      "Rows": 5,
+      "Width": "100%",
+      "IsRequired": true
+    },
+    {
+      "Code": "comment",
+      "Name": "Примітка",
+      "FieldType": "textarea",
+      "Position": 12,
+      "Rows": 2,
+      "Width": "100%"
+    }
+  ]
+}

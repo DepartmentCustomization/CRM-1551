@@ -1,0 +1,16 @@
+{
+  "ModelType": "Query",
+  "Code": "dir_EventTypes_Delete",
+  "Name": "dir_EventTypes_Delete",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Sql": "DELETE FROM [dbo].[EventTypes] WHERE Id = @Id",
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

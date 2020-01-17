@@ -1,0 +1,26 @@
+{
+  "Code": "Group_UpdateInfo2",
+  "Name": "Виконав останні зміни",
+  "Position": 4,
+  "IsExpanded": false,
+  "Fields": [
+    {
+      "Code": "edit_date",
+      "Name": "Дата останього редагування",
+      "FieldType": "date-time",
+      "Position": 1
+    },
+    {
+      "Code": "user_edit_id",
+      "Name": "Особа, що внесла останні зміни",
+      "FieldType": "text",
+      "Position": 1
+    },
+    {
+      "Code": "appeals",
+      "Name": "appeals",
+      "FieldType": "number",
+      "Position": 1
+    }
+  ]
+}

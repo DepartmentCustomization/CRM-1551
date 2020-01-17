@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "DocumentTypes",
+  "Name": "Типи документів",
+  "ConnectionCode": "Default"
+}

@@ -1,0 +1,19 @@
+{
+  "ModelType": "Query",
+  "Code": "ak_DistrictUpdateRow",
+  "Name": "ak_DistrictUpdateRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@id",
+      "Name": "id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    },
+    {
+      "Code": "@name",
+      "Name": "name"
+    }
+  ]
+}

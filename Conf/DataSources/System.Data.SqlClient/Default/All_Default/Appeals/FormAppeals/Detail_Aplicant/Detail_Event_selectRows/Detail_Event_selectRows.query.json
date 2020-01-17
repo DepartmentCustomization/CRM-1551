@@ -1,0 +1,90 @@
+{
+  "ModelType": "Query",
+  "Code": "Detail_Event_selectRows",
+  "Name": "Detail_Event_selectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "Номер Заходу",
+      "Name": "Номер Заходу",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Тип Заходу",
+      "Name": "Тип Заходу",
+      "Position": 3,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "Відповідальний за усунення",
+      "Name": "Відповідальний за усунення",
+      "Position": 5,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "Зміст",
+      "Name": "Зміст",
+      "Position": 6,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Дата початку",
+      "Name": "Дата початку",
+      "Position": 7,
+      "IsPrintable": false,
+      "SqlName": "[t1].[Дата початку]",
+      "FilterParameterCode": "@start_date"
+    },
+    {
+      "Code": "Планова дата завершення",
+      "Name": "Планова дата завершення",
+      "Position": 8,
+      "IsPrintable": false
+    },
+    {
+      "Code": "EventTypesId",
+      "Name": "EventTypesId",
+      "Position": 9,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "BaseType",
+      "Name": "BaseType",
+      "Position": 9,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@object_id",
+      "Name": "object_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

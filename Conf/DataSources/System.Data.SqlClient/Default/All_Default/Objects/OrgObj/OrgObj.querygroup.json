@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "OrgObj",
+  "Name": "Організації, пов\"язані з об\"єктом",
+  "ConnectionCode": "Default"
+}

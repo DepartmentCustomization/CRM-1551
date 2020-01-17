@@ -1,0 +1,48 @@
+{
+  "ModelType": "Query",
+  "Code": "cx_ClaimsGorodok_Objects_Rows",
+  "Name": "cx_ClaimsGorodok_Objects_Rows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "main_obj_name",
+      "Name": "Головний об'єкт",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "obj_name",
+      "Name": "Об'єкти",
+      "Position": 3,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@obj_id",
+      "Name": "obj_id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

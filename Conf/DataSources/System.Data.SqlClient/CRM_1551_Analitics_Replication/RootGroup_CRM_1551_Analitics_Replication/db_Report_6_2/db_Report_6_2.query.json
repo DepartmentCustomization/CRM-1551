@@ -1,0 +1,57 @@
+{
+  "ModelType": "Query",
+  "Code": "db_Report_6_2",
+  "Name": "db_Report_6_2",
+  "ConnectionCode": "CRM_1551_Analitics_Replication",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "district",
+      "Name": "district",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "gvpQty",
+      "Name": "gvpQty",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "hvpQty",
+      "Name": "hvpQty",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "heatingQty",
+      "Name": "heatingQty",
+      "Position": 4,
+      "IsPrintable": false
+    },
+    {
+      "Code": "electricityQty",
+      "Name": "electricityQty",
+      "Position": 5,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@dateFrom",
+      "Name": "dateFrom",
+      "ParameterType": "DateTime"
+    },
+    {
+      "Code": "@dateTo",
+      "Name": "dateTo",
+      "ParameterType": "DateTime"
+    }
+  ]
+}

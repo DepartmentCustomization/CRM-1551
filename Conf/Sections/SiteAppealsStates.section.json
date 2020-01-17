@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "ak_SiteAppealsStatesInsertRow"
+  },
+  "ModelType": "Section",
+  "Code": "SiteAppealsStates",
+  "Name": "Довідник: Стани звернень з сайту",
+  "FormCode": "SiteAppealsStates",
+  "SelectRowsQueryCode": "ak_SiteAppealsStatesSelectRows",
+  "SelectRowQueryCode": "ak_SiteAppealsStatesSelectRow",
+  "UpdateQueryCode": "ak_SiteAppealsStatesUpdateRow",
+  "DeleteQueryCode": "ak_SiteAppealsStatesDeleteRow"
+}

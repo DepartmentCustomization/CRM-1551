@@ -1,0 +1,35 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_QuestionTypesSelectRows_forTemplates",
+    "Name": "ak_QuestionTypesSelectRows_forTemplates",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 1,
+        "IsPrimaryKey": true
+      },{
+        "Code": "Name",
+        "Name": "Назва",
+        "Position": 2,
+        "SqlName": "Name",
+        "FilterParameterCode": "@Name"
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@pageOffsetRows",
+        "Name": "pageOffsetRows",
+        "ParameterType": "Integer",
+        "IsPageOffsetRows": true
+      },
+      {
+        "Code": "@pageLimitRows",
+        "Name": "pageLimitRows",
+        "ParameterType": "Integer",
+        "IsPageLimitRows": true
+      }
+    ]
+  }

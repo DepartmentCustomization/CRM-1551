@@ -1,0 +1,46 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_PersonExecutorChooseObjectsSelectRows_det",
+    "Name": "ak_PersonExecutorChooseObjectsSelectRows_det",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 1,
+        "ViewState": "Hidden",
+        "IsPrimaryKey": true
+      },{
+        "Code": "District_name",
+        "Name": "Район",
+        "Position": 2,
+        "SqlName": "[Districts].name",
+        "FilterParameterCode": "@District_name"
+      },{
+        "Code": "Object_name",
+        "Name": "Назва",
+        "Position": 3,
+        "SqlName": "[Objects].name",
+        "FilterParameterCode": "@Object_name"
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@person_executor_choose_id",
+        "Name": "person_executor_choose_id",
+        "ParameterType": "Integer"
+      },{
+        "Code": "@pageOffsetRows",
+        "Name": "pageOffsetRows",
+        "ParameterType": "Integer",
+        "IsPageOffsetRows": true
+      },
+      {
+        "Code": "@pageLimitRows",
+        "Name": "pageLimitRows",
+        "ParameterType": "Integer",
+        "IsPageLimitRows": true
+      }
+    ]
+  }

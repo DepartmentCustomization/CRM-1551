@@ -1,0 +1,15 @@
+{
+  "ModelType": "Detail",
+  "Code": "Detail_Question_by_Object",
+  "Name": "Питання за об'єктом",
+  "SelectRowsQueryCode": "cx_Question_by_Object_SelectRows",
+  "SectionCode": "",
+  "Position": 5,
+  "IsExpand": true,
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@Id"
+    }
+  ]
+}
