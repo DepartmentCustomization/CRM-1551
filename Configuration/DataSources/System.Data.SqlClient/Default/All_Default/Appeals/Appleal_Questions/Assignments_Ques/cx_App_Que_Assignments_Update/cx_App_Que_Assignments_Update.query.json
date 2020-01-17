@@ -1,7 +1,0 @@
-{
-  "ModelType": "Query",
-  "Code": "cx_App_Que_Assignments_Update",
-  "Name": "cx_App_Que_Assignments_Update",
-  "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false
-}

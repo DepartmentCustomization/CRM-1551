@@ -1,7 +1,0 @@
-{
-  "ModelType": "Query",
-  "Code": "UpdateBuilding",
-  "Name": "UpdateBuilding",
-  "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false
-}

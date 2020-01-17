@@ -1,7 +1,0 @@
-(function () {
-  return {
-    init: function() {
-        
-    },
-};
-}());

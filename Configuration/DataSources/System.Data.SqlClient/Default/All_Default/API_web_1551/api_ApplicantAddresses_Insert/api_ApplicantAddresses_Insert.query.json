@@ -1,7 +1,0 @@
-{
-  "ModelType": "Query",
-  "Code": "api_ApplicantAddresses_Insert",
-  "Name": "api_ApplicantAddresses_Insert",
-  "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false
-}

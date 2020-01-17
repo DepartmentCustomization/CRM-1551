@@ -1,8 +1,0 @@
-{
-  "ModelType": "Query",
-  "Code": "api_AppealsFromSiteUpdateRow",
-  "Name": "api_AppealsFromSiteUpdateRow",
-  "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false,
-  "Sql": "select 1 id"
-}

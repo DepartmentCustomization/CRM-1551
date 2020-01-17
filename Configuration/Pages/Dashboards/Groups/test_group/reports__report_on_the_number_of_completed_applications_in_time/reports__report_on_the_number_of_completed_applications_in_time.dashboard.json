@@ -1,8 +1,0 @@
-{
-  "DashboardGroupCode": "test_group",
-  "Description": "",
-  "DescriptionUrl": "",
-  "ModelType": "Dashboard",
-  "Code": "reports__report_on_the_number_of_completed_applications_in_time",
-  "Name": "Звіт щодо кількості виконаних вчасно заявок"
-}

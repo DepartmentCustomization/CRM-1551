@@ -1,8 +1,0 @@
-{
-	"ModelType":"Query",
-	"Code":"insertrow",
-	"Name":"insertrow",
-	"ConnectionCode":"Default",
-	"Sql":"string:insertrow.sql",
-	"Parameters":"json:insertrow.parameters.json"
-}

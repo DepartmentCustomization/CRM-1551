@@ -1,7 +1,0 @@
-{
-  "ModelType": "Query",
-  "Code": "ak_PositionsInsertRow",
-  "Name": "ak_PositionsInsertRow",
-  "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false
-}

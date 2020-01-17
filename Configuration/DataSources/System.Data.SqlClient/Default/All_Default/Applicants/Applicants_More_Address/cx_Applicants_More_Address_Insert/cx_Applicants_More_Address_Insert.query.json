@@ -1,7 +1,0 @@
-{
-  "ModelType": "Query",
-  "Code": "cx_Applicants_More_Address_Insert",
-  "Name": "cx_Applicants_More_Address_Insert",
-  "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false
-}

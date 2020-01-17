@@ -1,7 +1,0 @@
-{
-  "ModelType": "Query",
-  "Code": "cx_OrganizationUpdateRow",
-  "Name": "cx_OrganizationUpdateRow",
-  "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false
-}

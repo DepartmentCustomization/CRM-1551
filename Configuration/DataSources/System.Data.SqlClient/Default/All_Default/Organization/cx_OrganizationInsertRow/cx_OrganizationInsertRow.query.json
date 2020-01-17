@@ -1,7 +1,0 @@
-{
-  "ModelType": "Query",
-  "Code": "cx_OrganizationInsertRow",
-  "Name": "cx_OrganizationInsertRow",
-  "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false
-}

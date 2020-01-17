@@ -1,7 +1,0 @@
-{
-  "ModelType": "Query",
-  "Code": "cx_QuestionTypes_Update",
-  "Name": "cx_QuestionTypes_Update",
-  "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false
-}

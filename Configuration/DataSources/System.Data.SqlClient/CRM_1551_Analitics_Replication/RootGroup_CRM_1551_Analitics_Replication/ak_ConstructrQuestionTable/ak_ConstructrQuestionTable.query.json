@@ -1,7 +1,0 @@
-{
-  "ModelType": "Query",
-  "Code": "ak_ConstructrQuestionTable",
-  "Name": "ak_ConstructrQuestionTable",
-  "ConnectionCode": "CRM_1551_Analitics_Replication",
-  "IsUsedForRightsFilter": false
-}

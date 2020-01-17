@@ -1,7 +1,0 @@
-{
-  "ModelType": "Query",
-  "Code": "ak_RulesForExecutorRoleInsert",
-  "Name": "ak_RulesForExecutorRoleInsert",
-  "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false
-}

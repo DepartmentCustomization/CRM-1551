@@ -1,7 +1,0 @@
-{
-  "ModelType": "Query",
-  "Code": "cx_Applicants_Update",
-  "Name": "cx_Applicants_Update",
-  "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false
-}

@@ -1,7 +1,0 @@
-{
-  "ModelType": "Query",
-  "Code": "GetReceiptSources",
-  "Name": "GetReceiptSources",
-  "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false
-}

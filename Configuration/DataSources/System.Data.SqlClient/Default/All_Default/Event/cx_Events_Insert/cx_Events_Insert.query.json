@@ -1,7 +1,0 @@
-{
-  "ModelType": "Query",
-  "Code": "cx_Events_Insert",
-  "Name": "cx_Events_Insert",
-  "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false
-}

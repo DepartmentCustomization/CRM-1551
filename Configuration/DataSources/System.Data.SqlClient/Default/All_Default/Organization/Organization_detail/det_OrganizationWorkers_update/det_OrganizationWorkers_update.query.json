@@ -1,7 +1,0 @@
-{
-  "ModelType": "Query",
-  "Code": "det_OrganizationWorkers_update",
-  "Name": "det_OrganizationWorkers_update",
-  "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false
-}

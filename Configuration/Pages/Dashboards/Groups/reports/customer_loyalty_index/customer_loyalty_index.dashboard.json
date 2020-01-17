@@ -1,8 +1,0 @@
-{
-  "DashboardGroupCode": "reports",
-  "Description": "",
-  "DescriptionUrl": "",
-  "ModelType": "Dashboard",
-  "Code": "customer_loyalty_index",
-  "Name": "Індекс лояльності клієнтів (NPS)"
-}

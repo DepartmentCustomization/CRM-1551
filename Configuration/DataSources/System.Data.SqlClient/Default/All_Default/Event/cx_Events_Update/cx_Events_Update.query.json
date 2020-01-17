@@ -1,7 +1,0 @@
-{
-  "ModelType": "Query",
-  "Code": "cx_Events_Update",
-  "Name": "cx_Events_Update",
-  "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false
-}

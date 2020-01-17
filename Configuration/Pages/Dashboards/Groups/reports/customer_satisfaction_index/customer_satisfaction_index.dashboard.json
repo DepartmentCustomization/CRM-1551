@@ -1,8 +1,0 @@
-{
-  "DashboardGroupCode": "reports",
-  "Description": "",
-  "DescriptionUrl": "",
-  "ModelType": "Dashboard",
-  "Code": "customer_satisfaction_index",
-  "Name": "Індекс задоволеності клієнтів (CSI)"
-}

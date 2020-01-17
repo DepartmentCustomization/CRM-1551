@@ -1,8 +1,0 @@
-{
-  "DashboardGroupCode": "test_group",
-  "Description": "",
-  "DescriptionUrl": "",
-  "ModelType": "Dashboard",
-  "Code": "report_on_the_timeliness_of_closing_hits",
-  "Name": "Звіт щодо показнику вчасності закриття звернень"
-}

@@ -1,9 +1,0 @@
-{
-  "DashboardGroupCode": "reports",
-  "Position": 3,
-  "Description": "",
-  "DescriptionUrl": "",
-  "ModelType": "Dashboard",
-  "Code": "top_10_problem_question",
-  "Name": "ТОП-10 найпроблемніших питань в розрізі районів"
-}

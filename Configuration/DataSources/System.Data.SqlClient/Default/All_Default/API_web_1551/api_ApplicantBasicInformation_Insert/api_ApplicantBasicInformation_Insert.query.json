@@ -1,7 +1,0 @@
-{
-  "ModelType": "Query",
-  "Code": "api_ApplicantBasicInformation_Insert",
-  "Name": "api_ApplicantBasicInformation_Insert",
-  "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false
-}

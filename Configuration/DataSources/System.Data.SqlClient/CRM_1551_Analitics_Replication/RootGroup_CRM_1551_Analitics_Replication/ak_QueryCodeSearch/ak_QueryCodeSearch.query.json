@@ -1,7 +1,0 @@
-{
-  "ModelType": "Query",
-  "Code": "ak_QueryCodeSearch",
-  "Name": "ak_QueryCodeSearch",
-  "ConnectionCode": "CRM_1551_Analitics_Replication",
-  "IsUsedForRightsFilter": false
-}

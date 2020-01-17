@@ -1,7 +1,0 @@
-{
-  "ModelType": "Query",
-  "Code": "cx_Que_Doc_File_UpdateRow",
-  "Name": "cx_Que_Doc_File_UpdateRow",
-  "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false
-}

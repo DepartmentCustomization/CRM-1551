@@ -1,6 +1,0 @@
-{
-    "ModelType": "QueryGroup",
-    "Code": "DB_doubles",
-    "Name": "ДБ Об'єднати дублі заявників",
-    "ConnectionCode": "Default"
-  }

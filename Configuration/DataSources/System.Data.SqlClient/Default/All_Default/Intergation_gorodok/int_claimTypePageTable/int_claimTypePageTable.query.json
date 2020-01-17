@@ -1,7 +1,0 @@
-{
-  "ModelType": "Query",
-  "Code": "int_claimTypePageTable",
-  "Name": "int_claimTypePageTable",
-  "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false
-}

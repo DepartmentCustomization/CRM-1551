@@ -1,7 +1,0 @@
-{
-  "ModelType": "Query",
-  "Code": "cx_Objects_Update",
-  "Name": "cx_Objects_Update",
-  "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false
-}

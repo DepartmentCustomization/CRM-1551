@@ -1,9 +1,0 @@
-{
-  "DashboardGroupCode": "StartPage",
-  "Position": 999,
-  "Description": "Переключение режимов нагрузки на сервер",
-  "DescriptionUrl": "",
-  "ModelType": "Dashboard",
-  "Code": "LoadServer",
-  "Name": "LoadServer"
-}

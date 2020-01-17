@@ -1,5 +1,0 @@
-{
-  "ModelType": "Provider",
-  "Code": "System.Data.SqlClient",
-  "Name": "MSSQL"
-}

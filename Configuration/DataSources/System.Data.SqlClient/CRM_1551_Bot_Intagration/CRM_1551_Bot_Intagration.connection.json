@@ -1,7 +1,0 @@
-{
-  "ModelType": "Connection",
-  "Code": "CRM_1551_Bot_Integration",
-  "Name": "CRM_1551_Bot_Integration",
-  "ProviderCode": "System.Data.SqlClient",
-  "ConnectionString": "string:c:\\Dev\\ConnectionStrings\\CRM-1551\\CRM_1551_Bot_Integration.connectionString.txt"
-}

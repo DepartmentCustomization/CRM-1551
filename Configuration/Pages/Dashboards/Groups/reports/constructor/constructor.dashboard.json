@@ -1,9 +1,0 @@
-{
-  "DashboardGroupCode": "reports",
-  "Position": 1,
-  "Description": "",
-  "DescriptionUrl": "",
-  "ModelType": "Dashboard",
-  "Code": "constructor",
-  "Name": "Конструктор"
-}

@@ -1,7 +1,0 @@
-{
-  "ModelType": "Query",
-  "Code": "api_AssignmentRevisions_Update",
-  "Name": "api_AssignmentRevisions_Update",
-  "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false
-}

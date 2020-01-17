@@ -1,7 +1,0 @@
-{
-    "ModelType": "Query",
-    "Code": "Event_File_Insert",
-    "Name": "Event_File_Insert",
-    "ConnectionCode": "Default",
-    "IsUsedForRightsFilter": false
-}
