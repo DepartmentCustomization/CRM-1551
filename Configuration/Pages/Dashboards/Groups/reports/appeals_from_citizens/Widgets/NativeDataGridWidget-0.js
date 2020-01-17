@@ -36,37 +36,37 @@
                 },
             ],
             summary: {
-                totalItems: [{
-                    column: "questionQ",
-                    summaryType: "sum",
-                    customizeText: function(data) {
-                    return "Сума: " + data.value;
-                }
-                }, {
-                    column: "assignmentQ",
-                    summaryType: "sum",
-                    customizeText: function(data) {
-                    return "Сума: " + data.value;
-                }
-                }, {
-                    column: "doneQ",
-                    summaryType: "sum",
-                    customizeText: function(data) {
-                    return "Сума: " + data.value;
-                }
-                }, {
-                    column: "reworkQ",
-                    summaryType: "sum",
-                    customizeText: function(data) {
-                    return "Сума: " + data.value;
-                }
-                }, {
-                    column: "notCallQ",
-                    summaryType: "sum",
-                    customizeText: function(data) {
-                    return "Сума: " + data.value;
-                }
-                }]
+                    totalItems: [{
+                        column: "questionQ",
+                        summaryType: "sum",
+                        customizeText: function(data) {
+                        return "Сума: " + data.value;
+                    }
+                    }, {
+                        column: "assignmentQ",
+                        summaryType: "sum",
+                        customizeText: function(data) {
+                        return "Сума: " + data.value;
+                    }
+                    }, {
+                        column: "doneQ",
+                        summaryType: "sum",
+                        customizeText: function(data) {
+                        return "Сума: " + data.value;
+                    }
+                    }, {
+                        column: "reworkQ",
+                        summaryType: "sum",
+                        customizeText: function(data) {
+                        return "Сума: " + data.value;
+                    }
+                    }, {
+                        column: "notCallQ",
+                        summaryType: "sum",
+                        customizeText: function(data) {
+                        return "Сума: " + data.value;
+                    }
+                    }]
             },
             keyExpr: 'Id',
             scrolling: {
@@ -97,7 +97,7 @@
             this.dataGridInstance.height = window.innerHeight - 200;
             this.sub = this.messageService.subscribe('GlobalFilterChanged', this.getFiltersParams, this);
         },
-        getFiltersParams: function(message) {
+        getFiltersParams: function(message){
             
             let period = message.package.value.values.find(f => f.name === 'period').value;
             let citizenName = message.package.value.values.find(f => f.name === 'citizen_name').value;
@@ -147,7 +147,7 @@
         afterLoadDataHandler: function(data) {
             this.render();
         },
-        destroy: function() {
+        destroy: function(){
             this.sub.unsubscribe();
         },
     };

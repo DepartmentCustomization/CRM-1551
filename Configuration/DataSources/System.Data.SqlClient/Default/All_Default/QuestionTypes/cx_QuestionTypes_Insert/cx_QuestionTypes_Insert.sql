@@ -1,9 +1,14 @@
-   declare @output table (Id int);
 
-   -- declare @question_type_id int = 207;
 
-   declare @new_index_right nvarchar(max) =
-   (
+ declare @output table (Id int);
+-- declare @question_type_id int;
+
+
+
+ -- declare @question_type_id int = 207;
+  declare @new_index_right nvarchar(max) =
+
+  (
   select case when len(REVERSE(left(REVERSE([index]), charindex(N'.',REVERSE([index]))-1))*1+1)>1
   then ltrim(REVERSE(left(REVERSE([index]), charindex(N'.',REVERSE([index]))-1))*1+1)
   else N'0'+ltrim(REVERSE(left(REVERSE([index]), charindex(N'.',REVERSE([index]))-1))*1+1)
@@ -16,7 +21,7 @@
   select max(convert(bigint,(REPLACE([index], N'.', N''))))
   from [CRM_1551_Analitics].[dbo].[QuestionTypes]
   where [question_type_id]=@question_type_id))  
-   )
+  )
 
   --- left
 
@@ -34,7 +39,11 @@
   where [question_type_id]=@question_type_id))  
   )
 
+
   declare @new_index1 nvarchar(max)= (select @new_index_left+ @new_index_right)
+
+
+
 
   declare @new_index2 nvarchar(max)=
   (
@@ -67,6 +76,7 @@
    -- select @new_index1, @new_index_left, @new_index_right, @new_index2, @new_index3, @new_index
 
 
+
 INSERT INTO [dbo].[QuestionTypes]
            ([question_type_id]
            ,[index]
@@ -82,14 +92,18 @@ INSERT INTO [dbo].[QuestionTypes]
            ,[edit_date]
            ,[user_edit_id]
            ,[Object_is]
-           ,[Organization_is],
-		     [has_child])
- output [inserted].[Id] into @output (Id)           
+           ,[Organization_is])
+           
+
+ output [inserted].[Id] into @output (Id)
+  
+           
      VALUES
            (@question_type_id
            --,@index
            ,@new_index
-           ,@name        
+           ,@name
+           
            ,@emergency
            ,@active
            ,@rule_id
@@ -106,33 +120,68 @@ INSERT INTO [dbo].[QuestionTypes]
            ,@user_edit_id
            ,@Object_is
            ,@Organization_is
-		     ,0 -- При создании нового типа у него еще нету потомков 
 		   )
-
----------------------- Проверить необходимость обновления has_child родительского типа ---------------------------------
-  DECLARE @parent_has_child_value bit = (
-    SELECT
-      has_child
-    FROM QuestionTypes
-    WHERE Id = @question_type_id
-  );
-
-IF(@question_type_id IS NOT NULL) 
-BEGIN 
-  IF(
-  @parent_has_child_value IS NULL OR @parent_has_child_value = 0) 
-  BEGIN
-   UPDATE
-   QuestionTypes SET
-   has_child = 1
-   WHERE Id = @question_type_id
-  END
-END 
----------------------------------------------- ИДЕМ ДАЛЬШЕ --------------------------------------------------------------
+		   
   declare @id_type int;
    set @id_type=(select top 1 id from @output)		   
    
 
+	--	if @zhkg=1
+	--	begin
+
+	--insert into [CRM_1551_Analitics].[dbo].[QuestionTypeInRating]
+ -- (
+ -- [QuestionType_id]
+ --     ,[Rating_id]
+      
+ -- )
+
+ -- VALUES
+  
+ -- ( @id_type
+ --     , 1
+ -- ) 
+
+ -- end
+
+ -- if @blag=1
+
+ -- begin
+
+ -- insert into [CRM_1551_Analitics].[dbo].[QuestionTypeInRating]
+ -- (
+ -- [QuestionType_id]
+ --     ,[Rating_id]
+      
+ -- )
+
+ -- VALUES
+  
+ -- ( @id_type
+ --     , 2
+ -- ) 
+
+ -- end
+
+ -- if @zhytraion=1
+
+ -- begin
+
+ -- insert into [CRM_1551_Analitics].[dbo].[QuestionTypeInRating]
+ -- (
+ -- [QuestionType_id]
+ --     ,[Rating_id]
+      
+ -- )
+
+ -- VALUES
+  
+ -- ( @id_type
+ --     , 3
+ -- ) 
+
+ -- end
+  
   insert into [CRM_1551_Analitics].[dbo].[QuestionTypeInRating]
   ([Rating_id],
   [QuestionType_id])

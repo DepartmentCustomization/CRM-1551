@@ -85,7 +85,6 @@
     },
     createDGButtons: function(e) {
         let toolbarItems = e.toolbarOptions.items;
-
         toolbarItems.push({
             widget: "dxButton", 
             options: { 
@@ -104,7 +103,6 @@
             },
             location: "before"
         });
-
         toolbarItems.push({
             widget: "dxButton", 
             options: { 
@@ -131,15 +129,12 @@
         this.queryExecutor(executeQuery, this.showUser, this);
         this.showPreloader = false;
         this.sortingArr = [];
-        
         this.sub = this.messageService.subscribe( 'GlobalFilterChanged', this.setFiltersValue, this );
         this.sub1 = this.messageService.subscribe( 'ApplyGlobalFilters', this.findAllCheckedFilter, this );
         this.sub2 = this.messageService.subscribe( 'reloadMainTable', this.reloadMainTable, this );
-        
         this.config.onToolbarPreparing = this.createDGButtons.bind(this);
         this.config.masterDetail.template = this.createMasterDetails.bind(this);
         this.config.onOptionChanged = this.onOptionChanged.bind(this);
-
         this.dataGridInstance.onCellClick.subscribe( function(e) {
             if( e.column ){
                 if(e.column.dataField == "full_name" && e.row != undefined){
@@ -152,17 +147,14 @@
                     let CurrentUserPhone = e.row.data.phone_number;
                     let PhoneForCall = this.userPhoneNumber;
                     let xhr = new XMLHttpRequest();
-                    xhr.open('GET', `http://10.192.200.14:5566/CallService/Call/number=` + CurrentUserPhone  + `&operator=` + PhoneForCall );
+                    xhr.open('GET', `https://cc.1551.gov.ua:5566/CallService/Call/number=` + CurrentUserPhone  + `&operator=` + PhoneForCall );
                     xhr.send();
                 }
             }
         }.bind(this));
-        let userId = JSON.parse(localStorage.getItem('userId')); 
-        let houseId = JSON.parse(localStorage.getItem('houseId'));
         this.config.query.parameterValues = [ { key: '@filter', value: this.macrosValue },
                                               { key: '@sort', value: this.sort  }];
         this.loadData(this.afterLoadDataHandler);
-
     },
     onOptionChanged: function(args) {
         let columnCode;
@@ -202,14 +194,13 @@
                     columnCode = 'dataSource'
                     break;
             }
-            
             if(columnCode != undefined ){
                 if(columnCode != 'dataSource'){
-                    let infoColumn = { name: columnCode, value: args.value };
+                    const infoColumn = { name: columnCode, value: args.value };
                     if( this.sortingArr.length === 0  ){
                         this.sortingArr.push(infoColumn);
                     }else{
-                        index = this.sortingArr.findIndex(x => x.name === columnCode);
+                        const index = this.sortingArr.findIndex(x => x.name === columnCode);
                         if( index === -1 ){
                             this.sortingArr.push(infoColumn);
                         }else{
@@ -220,11 +211,10 @@
                     this.messageService.publish({ name: 'sortingArr', arr: this.sortingArr });
                 }
             }
-
         }
     },    
     showUser: function(data){
-        indexPhoneNumber = data.columns.findIndex(el => el.code.toLowerCase() === 'phonenumber' );
+        const indexPhoneNumber = data.columns.findIndex(el => el.code.toLowerCase() === 'phonenumber' );
         this.userPhoneNumber = data.rows[0].values[indexPhoneNumber]
     },
     openModalCloserForm: function(){
@@ -245,36 +235,39 @@
     createMasterDetails: function(container, options){
         let currentEmployeeData = options.data;
         let lastNdzTime;
-        if(currentEmployeeData.comment == null){ currentEmployeeData.comment = ''; }
-        if(currentEmployeeData.history == null){ currentEmployeeData.history = ''; }
-        if(currentEmployeeData.zmist == null){ currentEmployeeData.zmist = ''; }
-        
-        if(currentEmployeeData.cc_nedozvon == null){ currentEmployeeData.cc_nedozvon = ''; }
+        if(currentEmployeeData.comment == null){
+ currentEmployeeData.comment = ''; 
+}
+        if(currentEmployeeData.history == null){
+ currentEmployeeData.history = ''; 
+}
+        if(currentEmployeeData.zmist == null){
+ currentEmployeeData.zmist = ''; 
+}
+        if(currentEmployeeData.cc_nedozvon == null){
+ currentEmployeeData.cc_nedozvon = ''; 
+}
         if(currentEmployeeData.edit_date === null){
             lastNdzTime = ''
         }else{
             lastNdzTime = this.changeDateTimeValues(currentEmployeeData.edit_date);
         }
-        if(currentEmployeeData.control_comment == null){ currentEmployeeData.control_comment = ''; }
-        
+        if(currentEmployeeData.control_comment == null){
+ currentEmployeeData.control_comment = ''; 
+}
         let ndz = currentEmployeeData.cc_nedozvon;
         let ndzComment = currentEmployeeData.control_comment;
-        
         let elementHistory__content = this.createElement('div', { className: 'elementHistory__content content', innerText: ndz +  ' ( дата та час останнього недозвону: ' + lastNdzTime + '), коментар: ' + ndzComment  });
         let elementHistory__caption = this.createElement('div', { className: 'elementHistory__caption caption', innerText: "Історія"});
         let elementHistory = this.createElement('div', { className: 'elementHistory element'}, elementHistory__caption, elementHistory__content);
-        
         let elementСontent__content = this.createElement('div', { className: 'elementСontent__content content', innerText: ""+currentEmployeeData.zmist+""});
         let elementСontent__caption = this.createElement('div', { className: 'elementСontent__caption caption', innerText: "Зміст"});
         let elementСontent = this.createElement('div', { className: 'elementСontent element'}, elementСontent__caption, elementСontent__content);
-        
         let elementComment__content = this.createElement('div', { className: 'elementComment__content content', innerText: ""+currentEmployeeData.comment+""});
         let elementComment__caption = this.createElement('div', { className: 'elementComment__caption caption', innerText: "Коментар виконавця"});
         let elementComment = this.createElement('div', { className: 'elementСontent element'}, elementComment__caption, elementComment__content);
-        
         let elementsWrapper  = this.createElement('div', { className: 'elementsWrapper'}, elementHistory, elementСontent, elementComment);
         container.appendChild(elementsWrapper);
-        
         let elementsAll = document.querySelectorAll('.element');
         elementsAll = Array.from(elementsAll);
         elementsAll.forEach( el => {
@@ -295,18 +288,25 @@
         let HH = date.getHours()
         let mm = date.getMinutes();
         MM += 1 ;
-        if( (dd.toString()).length === 1){  dd = '0' + dd; }
-        if( (MM.toString()).length === 1){ MM = '0' + MM ; }
-        if( (HH.toString()).length === 1){  HH = '0' + HH; }
-        if( (mm.toString()).length === 1){ mm = '0' + mm; }
+        if( (dd.toString()).length === 1){
+  dd = '0' + dd; 
+}
+        if( (MM.toString()).length === 1){
+ MM = '0' + MM ; 
+}
+        if( (HH.toString()).length === 1){
+  HH = '0' + HH; 
+}
+        if( (mm.toString()).length === 1){
+ mm = '0' + mm; 
+}
         let trueDate = dd+'.'+MM+'.' + yyyy +' '+ HH +':'+ mm;
         return trueDate;
     },       
-    afterLoadDataHandler: function(data) {
+    afterLoadDataHandler: function() {
         this.render();
     },
     setFiltersValue:function(message) {
-
         this.filtersValues = [];
         this.filtersValuesMacros = [];
         let filters = message.package.value.values;
@@ -325,7 +325,6 @@
                                     let values = el.viewValue.split('-');
                                     let ageValue = '(zayavnyk_age>='+values[0]+' and zayavnyk_age<='+values[1]+')';
                                     this.ageArr.push(ageValue);
-                                    
                                     ageSendViewValue = ageSendViewValue + ', '+ el.viewValue;
                                 });
                                 ageSendViewValue = ageSendViewValue.slice(2, [ageSendViewValue.length]);
@@ -380,7 +379,6 @@
                                 case 'execution_term':
                                     this.executionTermFrom = checkDateFrom(elem.value);
                                     break;
-                                        
                             }
                         }
                         if(data.dateTo != '' ){
@@ -411,10 +409,10 @@
         });
         function checkDateFrom(val){
             return val ? val.dateFrom : null;
-        };
+        }
         function checkDateTo(val){
             return val ? val.dateTo : null;
-        };
+        }
     },
     createObjMacros: function(name, operation, value, placeholder, viewValue){
         let obj = {
@@ -450,12 +448,10 @@
             month = month + "";
             hours = hours + "";
             minutes = minutes + "";
-            
-            month.length == 1 ? month = '0'+month : month = month ;
-            date.length == 1 ? date = '0'+date : date = date ;            
-            hours.length == 1 ? hours = '0'+hours : hours = hours ;            
-            minutes.length == 1 ? minutes = '0'+minutes : minutes = minutes ;            
-
+            month = month.length == 1 ? '0' + month : month ;
+            date =  date.length == 1 ?'0'+date : date ;            
+            hours = hours.length == 1 ?'0'+hours : hours ;            
+            minutes = minutes.length == 1 ?'0'+minutes : minutes ;            
             let value = ""+year+"-"+month+"-"+date+" "+hours+":"+minutes+"";
             textMacros = ""+code+" "+operation+" N'"+value+"' and";
         }
@@ -464,17 +460,14 @@
     findAllCheckedFilter: function(){
         let filters = this.filtersValuesMacros;
         if( filters.length > 0 ){
-            
             this.textFilterMacros = [];
             filters.forEach( function(el){
               this.createFilterMacros( el.code, el.operation, el.value);
             }.bind(this));
-            
             let arr = this.textFilterMacros;
             let str = arr.join(' ');
             let macrosValue = str.slice(0, -4);
             this.macrosValue = macrosValue;
-            
             this.messageService.publish( { 
                 name: 'filters',
                 value: this.filtersValuesMacros

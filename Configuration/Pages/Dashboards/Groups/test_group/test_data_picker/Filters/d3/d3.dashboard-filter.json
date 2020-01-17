@@ -1,6 +1,6 @@
 {
   "IsMain": false,
   "Type": "DatepickerFilterComponent",
-  "Owner": "d3_time",
+  "Owner": "d3",
   "Position": 3
 }

@@ -289,11 +289,5 @@
         "Position": 50,
         "IsPrintable": false,
         "ReferenceKeyCode": "executor_person_id"
-    },
-    {
-        "Code": "editable",
-        "Name": "editable",
-        "Position": 51,
-        "IsPrintable": false
     }
 ]

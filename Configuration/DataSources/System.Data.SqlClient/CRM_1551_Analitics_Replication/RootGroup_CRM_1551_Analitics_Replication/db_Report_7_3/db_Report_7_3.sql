@@ -1,5 +1,5 @@
---   declare @dateFrom datetime = '2019-07-01 00:00:00';
---   declare @dateTo datetime = '2019-12-31 00:00:00';
+ -- declare @dateFrom datetime = '2019-07-01 00:00:00';
+ -- declare @dateTo datetime = '2019-12-31 00:00:00';
 
 -- declare @filterTo datetime = dateadd(second,59,(dateadd(minute,59,(dateadd(hour,23,cast(cast(dateadd(day,0,@dateTo) as date) as datetime))))));
 
@@ -209,7 +209,7 @@ and year(registration_date) =
 ) ss on ss.source_name = z.source_name
 end
 
---select * from @tab_Trans
+-- select * from @tab_Trans
 
 --- Фінансової, податкової, митної політики
 begin 
@@ -433,10 +433,8 @@ end
 --select * from @tab_Health
 
 UPDATE @tab_All SET source = 'Сайт/моб. додаток' WHERE source = 'E-mail'
---select * from @tab_All
 UPDATE @tab_Agr SET source = 'Сайт/моб. додаток' WHERE source = 'E-mail'
 UPDATE @tab_Trans SET source = 'Сайт/моб. додаток' WHERE source = 'E-mail'
---select * from @tab_Trans
 UPDATE @tab_Finance SET source = 'Сайт/моб. додаток' WHERE source = 'E-mail'
 UPDATE @tab_Social SET source = 'Сайт/моб. додаток' WHERE source = 'E-mail'
 UPDATE @tab_Work SET source = 'Сайт/моб. додаток' WHERE source = 'E-mail'
@@ -551,7 +549,6 @@ insert into @tab_All2 (source, prev_val, cur_val)
 select source, sum(prev_val) prev_val, sum(cur_val) cur_val
 from @tab_All z
 GROUP BY source
---select * from @tab_All2
 
 insert into @tab_Agr2 (source, prev_val, cur_val) 
 select source, sum(prev_val) prev_val, sum(cur_val) cur_val
@@ -562,7 +559,6 @@ insert into @tab_Trans2 (source, prev_val, cur_val)
 select source, sum(prev_val) prev_val, sum(cur_val) cur_val
 from @tab_Trans z
 GROUP BY source
---select * from @tab_Trans2
 
 insert into @tab_Finance2 (source, prev_val, cur_val) 
 select source, sum(prev_val) prev_val, sum(cur_val) cur_val
@@ -570,26 +566,19 @@ from @tab_Finance z
 GROUP BY source
 
 insert into @tab_Social2 (source, prev_val, cur_val) 
--- Попередній рік
 select source, sum(prev_val) prev_val, sum(cur_val) cur_val
 from @tab_Social z
 GROUP BY source
 
---select * from @tab_Social2
-
 insert into @tab_Work2 (source, prev_val, cur_val) 
--- Попередній рік
 select source, sum(prev_val) prev_val, sum(cur_val) cur_val
 from @tab_Work z
 GROUP BY source
---select * from @tab_Work2
 
 insert into @tab_Health2 (source, prev_val, cur_val) 
--- Попередній рік
 select source, sum(prev_val) prev_val, sum(cur_val) cur_val
 from @tab_Health z
 GROUP BY source
---select * from @tab_Health2
 
 end
 	              insert into @result 

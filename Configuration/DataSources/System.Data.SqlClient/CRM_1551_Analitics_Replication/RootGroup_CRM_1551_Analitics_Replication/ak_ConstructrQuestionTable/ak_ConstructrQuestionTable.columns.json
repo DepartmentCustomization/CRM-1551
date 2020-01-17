@@ -163,23 +163,5 @@
     "Name": "stateClose",
     "Position":25,
     "IsPrintable": false
-  },
-  {
-    "Code": "objectName",
-    "Name": "objectName",
-    "Position":26,
-    "IsPrintable": false
-  },
-  {
-    "Code": "resolution",
-    "Name": "resolution",
-    "Position":27,
-    "IsPrintable": false
-  },
-  {
-    "Code": "result",
-    "Name": "result",
-    "Position":28,
-    "IsPrintable": false
   }
 ]

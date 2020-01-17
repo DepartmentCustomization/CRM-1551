@@ -14,7 +14,6 @@
                 dataField: 'Phone_number',
                 caption: 'Номер телефону',
             }, {
-
                 dataField: 'Count_applicants',
                 caption: 'Кількість заявникiв',
             }
@@ -22,10 +21,8 @@
         keyExpr: 'Id',
         focusedRowEnabled: true
     },
-
     init: function() {
         this.loadData(this.afterLoadDataHandler);
-
         this.dataGridInstance.onCellClick.subscribe(e => {
             if(e.column) {
                 const dataField = this.config.columns[0].dataField;
@@ -35,11 +32,9 @@
             }
         });
     },
-
     afterLoadDataHandler: function(data) {
         this.render();
     },
-
     destroy: function(data) {
         this.sub.unsubscribe();
     },

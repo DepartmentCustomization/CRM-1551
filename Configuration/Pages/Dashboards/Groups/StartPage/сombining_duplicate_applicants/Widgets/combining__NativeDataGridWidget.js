@@ -44,7 +44,6 @@
         },
         keyExpr: 'Id'
     },
-
     init: function() {
         this.mainRowId = undefined;
         this.tableId = undefined;
@@ -55,9 +54,8 @@
             this.mainRowId = row.key;
         });
     },
-
     createTableButton: function(e) {
-        var toolbarItems = e.toolbarOptions.items;
+        let toolbarItems = e.toolbarOptions.items;
         toolbarItems.push(
             {
                 widget: "dxButton", 
@@ -97,7 +95,6 @@
             }
         );
     },
-
     showApplicants: function (message) {
         this.tableId = message.id;
         this.config.query.parameterValues = [
@@ -105,7 +102,6 @@
         ];
         this.loadData(this.afterLoadDataHandler);
     },
-
     executeQueryCombining: function (rowsId) {
         let query = {
             queryCode: 'ak_db_doubles_ButtonCombine',
@@ -119,7 +115,6 @@
         this.queryExecutor(query, this.response, this);
         this.showPreloader = false;
     },
-
     executeQueryMissing: function () {
         let query = {
             queryCode: 'ak_db_doubles_ButtonSkip',
@@ -131,16 +126,13 @@
         this.queryExecutor(query, this.response, this);
         this.showPreloader = false;
     },
-
     response: function () {
         window.location.reload();
     },
-
     afterLoadDataHandler: function(data) {
         this.data = data;
         this.render();
     },
-
     destroy: function(data) {
         this.sub.unsubscribe();
     },
