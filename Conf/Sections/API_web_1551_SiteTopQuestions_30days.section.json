@@ -1,0 +1,6 @@
+{
+  "ModelType": "Section",
+  "Code": "API_web_1551_SiteTopQuestions_30days",
+  "Name": "API_web_1551_SiteTopQuestions_30days",
+  "SelectRowsQueryCode": "api_SiteTopQuestions_30days"
+}
