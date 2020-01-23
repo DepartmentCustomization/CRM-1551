@@ -40,12 +40,10 @@
             'rgb(244, 91, 91)',
             'rgb(145, 232, 225)'
         ],
-
         init: function () {
             this.sub = this.messageService.subscribe( 'FiltersParams', this.setFiltersParams, this );
             this.sub1 = this.messageService.subscribe( 'showInfo', this.showInfo, this );
         },
-
         executeQuery: function () {
             const query = {
                 "queryCode": "db_ReestrRating_LineChart",
@@ -64,7 +62,6 @@
             this.queryExecutor(query, this.load, this);
             this.showPreloader = false;
         },
-
         load: function (data) {
             this.setChartSeries(data);
             this.render();
@@ -73,20 +70,16 @@
             this.date = message.date;
             this.rating = message.rating;
         },
-
         showInfo: function (message) {
             this.executeQuery();
         },
-
         setChartSeries: function (data) {
             this.chartConfig.series = [];
             this.chartConfig.series = this.getSeriesData(data);
         },
-
         getSeriesData: function (array) {
             let result = [];
             let categories = this.chartConfig.xAxis.categories = [];
-            
             for (let i = 2; i < array.columns.length; i++) {
                 let day = array.columns[i];
                 let value = day.code;
@@ -106,7 +99,6 @@
             }
             return result;
         },
-
         destroy: function () {
             this.sub.unsubscribe();      
             this.sub1.unsubscribe();      

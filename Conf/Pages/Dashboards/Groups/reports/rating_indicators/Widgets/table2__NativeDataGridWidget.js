@@ -3,7 +3,6 @@
         formatTitle: function () {
            return "<h3 class='table2__title'>Зведені показання за переліком питань: Житлове господарство</h3>"
         },
-
         config: {
             query: {
                 code: 'db_ReestrRating_Table',
@@ -30,14 +29,12 @@
             showColumnFixing: true,
             key: 'RDAId'
         },
-
         init: function() {
             this.config.title = 
             document.getElementById('infoContainer').style.display = 'none';
             this.sub = this.messageService.subscribe( 'FiltersParams', this.setFiltersParams, this );  
             this.sub1 = this.messageService.subscribe( 'showInfo', this.showInfo, this );  
         },
-
         showInfo: function (message) {
             document.getElementById('infoContainer').style.display = 'block';
             let createTableQuery = {
@@ -48,7 +45,6 @@
             this.queryExecutor(createTableQuery, this.setColumns, this);
             this.showPreloader = false;
         },
-
         setFiltersParams: function (message) {
             this.date = message.date;
             this.rating =   message.rating;
@@ -57,7 +53,6 @@
                 {key: '@RatingId', value: this.rating } 
             ];
         },
-
         setColumns: function (data) {
             for (let i = 0; i < data.columns.length; i++) {
                 const element = data.columns[i];
@@ -65,7 +60,6 @@
                 const alignment = 'center';
                 const verticalAlignment = 'Bottom';
                 let caption = '';
-
                 if(dataField !== 'RDAId') {
                     if(dataField === 'RDAName') {
                         caption = 'Назва установи';
@@ -73,7 +67,6 @@
                         caption = 'Підсумок';
                     }else if(dataField === 'rnk') {
                         caption = 'Місце';
-                        
                     } else {
                         caption = element.name;
                     }
@@ -83,15 +76,12 @@
             }
             this.config.columns[0].fixed = true;
             this.config.columns[0].width = 200;
-
             this.hidePagePreloader();
             this.loadData(this.afterLoadDataHandler);
         },
-
         afterLoadDataHandler: function(data) {
             this.render();
         },
-
         destroy: function () {
             this.sub.unsubscribe();      
             this.sub1.unsubscribe();      
