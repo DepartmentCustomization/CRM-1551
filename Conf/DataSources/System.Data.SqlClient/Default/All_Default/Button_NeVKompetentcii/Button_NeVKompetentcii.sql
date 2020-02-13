@@ -53,7 +53,7 @@ IF @executor_organization_id IS NOT NULL
 BEGIN
 
 
-	SET @ass_state_id  = assignment_state_id
+	SELECT @ass_state_id  = assignment_state_id
 	, @result_id = AssignmentResultsId
 	, @resolution_id = AssignmentResolutionsId
 	, @current_consid = current_assignment_consideration_id
