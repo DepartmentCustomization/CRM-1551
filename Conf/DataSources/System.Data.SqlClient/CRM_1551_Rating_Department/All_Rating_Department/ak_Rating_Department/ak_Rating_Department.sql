@@ -1,15 +1,15 @@
 --  declare @Date datetime ='2019-12-03';
 
-  select [Organization_Id] Id
+  SELECT [Organization_Id] Id
       ,[Organization_name]
-      ,[Count_rmz]
-      ,[Count_rpz]
-      ,[Count_rzz]
-      ,[Count_rzr]
-      ,[Count_rzvv]
-      ,[Count_rzvnv]
-      ,[Count_rzvp]
+      ,[Count_rmz] [ReestrZKMM]
+      ,[Count_rpz] [ReestrZKPM]
+      ,[Count_rzz] [ReestrZNZ]
+      ,[Count_rzr] [ReestrZNVR]
+      ,[Count_rzvv] [ReestrZVV]
+      ,[Count_rzvnv] [ReestrZVNV]
+      ,[Count_rzvp] [ReestrZVP]
       ,[Vids_vz]
       --,[StateToDate]
-  from [Department_ResultTable]
-  where CONVERT(date, [StateToDate])=CONVERT(date, @Date)
+  FROM [dbo].[Department_ResultTable]  
+  WHERE CONVERT(DATE, [StateToDate])=CONVERT(DATE, @Date);

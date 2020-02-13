@@ -12,7 +12,14 @@
     "Name": "ПІБ",
     "Position": 2,
     "IsPrintable": false,
-    "SqlName": "[Applicants].full_name",
+    "SqlName": "STUFF(
+    (SELECT ', ' + p.phone_number
+     FROM dbo.Applicants b1
+ INNER JOIN dbo.ApplicantPhones p ON p.applicant_id = b1.Id 
+ WHERE p.applicant_id = b.Id 
+     FOR XML PATH('')), 1, 1, '')
+  FROM
+  dbo.Applicants b)",
     "FilterParameterCode": "@full_name"
   },
   {
@@ -20,7 +27,7 @@
     "Name": "Номер телефона",
     "Position": 3,
     "IsPrintable": false,
-    "SqlName": "#ApplicantPhones.phone_number",
+    "SqlName": "sub_phones.phone_number",
     "FilterParameterCode": "@phone_number"
   },
   {

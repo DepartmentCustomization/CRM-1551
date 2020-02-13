@@ -1,351 +1,596 @@
---declare @organization_id int =2006;
---declare @user_id nvarchar(300)=N'02ece542-2d75-479d-adad-fd333d09604d';
+--DECLARE @organization_Id INT =1762;
+--DECLARE @user_id NVARCHAR(300)=N'29796543-b903-48a6-9399-4840f6eac396';
 
- declare @role nvarchar(500)=
-   (select [Roles].name
-   from [CRM_1551_Analitics].[dbo].[Positions] with (nolock)
-   left join [CRM_1551_Analitics].[dbo].[Roles] on [Positions].role_id=[Roles].Id
-   where [Positions].programuser_id=@user_id)
+  IF EXISTS
+  (SELECT orr.*
+  FROM [dbo].[OrganizationInResponsibilityRights] orr
+  INNER JOIN dbo.Positions p ON orr.position_id=P.Id
+  WHERE orr.organization_id=@organization_Id 
+  AND P.programuser_id=@user_id)
 
- declare @Organization table(Id int);
+	BEGIN
+		DECLARE @role NVARCHAR(500) = (SELECT
+		[Roles].name
+	FROM [dbo].[Positions] WITH (NOLOCK)
+	LEFT JOIN [dbo].[Roles]
+		ON [Positions].role_id = [Roles].Id
+	WHERE [Positions].programuser_id = @user_id);
 
- declare @OrganizationId int = 
- case 
- when @organization_id is not null
- then @organization_id
- else (select Id
-   from [CRM_1551_Analitics].[dbo].[Organizations] with (nolock)
-   where Id in (select organization_id
-   from [CRM_1551_Analitics].[dbo].[Workers] with (nolock)
-   where worker_user_id=@user_id))
-  end
+DECLARE @Organization TABLE (
+	Id INT
+);
 
-
- declare @IdT table (Id int);
-
- -- НАХОДИМ ИД ОРГАНИЗАЦИЙ ГДЕ ИД И ПАРЕНТЫ ВЫБРАНОЙ И СРАЗУ ЗАЛИВАЕМ
- insert into @IdT(Id)
- select Id from [CRM_1551_Analitics].[dbo].[Organizations]  with (nolock)
- where (Id=@OrganizationId or [parent_organization_id]=@OrganizationId) and Id not in (select Id from @IdT)
-
- --  НАХОДИМ ПАРЕНТЫ ОРГ, КОТОРЫХ ЗАЛИЛИ, <-- нужен цыкл
- while (select count(id) from (select Id from [CRM_1551_Analitics].[dbo].[Organizations] with (nolock)
- where [parent_organization_id] in (select Id from @IdT) --or Id in (select Id from @IdT)
- and Id not in (select Id from @IdT)) q)!=0
- begin
-
- insert into @IdT
- select Id from [CRM_1551_Analitics].[dbo].[Organizations] with (nolock)
- where [parent_organization_id] in (select Id from @IdT) --or Id in (select Id from @IdT)
- and Id not in (select Id from @IdT)
- end 
-
- insert into @Organization (Id)
- select Id from @IdT;
+DECLARE @OrganizationId INT =
+CASE
+	WHEN @organization_id IS NOT NULL THEN @organization_id
+	ELSE (SELECT
+				Id
+			FROM [dbo].[Organizations] WITH (NOLOCK)
+			WHERE Id IN (SELECT
+					organization_id
+				FROM [dbo].[Workers] WITH (NOLOCK)
+				WHERE worker_user_id = @user_id))
+END;
 
 
+DECLARE @IdT TABLE (
+	Id INT
+);
 
- ------------для плана/програми---
-  if object_id('tempdb..#temp_main_end') is not null drop table #temp_main_end
-  select Id
-  into #temp_main_end
-  from [Assignments] with (nolock)
-  where assignment_state_id=5 and AssignmentResultsId=7 and executor_organization_id=@organization_id
- 
-  
-  if object_id('tempdb..#temp_end_state') is not null drop table #temp_end_state
-  select [Assignment_History].Id, [Assignment_History].assignment_id, [Assignment_History].assignment_state_id
-  into #temp_end_state
-  from [Assignment_History] with (nolock) inner join #temp_main_end on [Assignment_History].assignment_id=#temp_main_end.Id
-  inner join [AssignmentStates] on [Assignment_History].assignment_state_id=[AssignmentStates].Id
+-- НАХОДИМ ИД ОРГАНИЗАЦИЙ ГДЕ ИД И ПАРЕНТЫ ВЫБРАНОЙ И СРАЗУ ЗАЛИВАЕМ
+INSERT INTO @IdT (Id)
+	SELECT
+		Id
+	FROM [dbo].[Organizations] WITH (NOLOCK)
+	WHERE (Id = @OrganizationId
+	OR [parent_organization_id] = @OrganizationId)
+	AND Id NOT IN (SELECT
+			Id
+		FROM @IdT);
 
-  where [AssignmentStates].code=N'OnCheck' and
-  [AssignmentStates].code<>N'Closed' and [Assignment_History].id in
-  (select max([Assignment_History].id) id_max
-  from [Assignment_History]  with (nolock) inner join #temp_main_end on [Assignment_History].assignment_id=#temp_main_end.Id
-  where [Assignment_History].assignment_state_id<>5
-  group by [Assignment_History].assignment_id)
-  
+--  НАХОДИМ ПАРЕНТЫ ОРГ, КОТОРЫХ ЗАЛИЛИ, <-- нужен цыкл
+WHILE (SELECT
+		COUNT(Id)
+	FROM (SELECT
+			Id
+		FROM [dbo].[Organizations] WITH (NOLOCK)
+		WHERE [parent_organization_id] IN (SELECT
+				Id
+			FROM @IdT) --or Id in (select Id from @IdT)
+		AND Id NOT IN (SELECT
+				Id
+			FROM @IdT)) q)
+!= 0
+BEGIN
 
-  if object_id('tempdb..#temp_end_result') is not null drop table #temp_end_result
-  select [Assignment_History].Id, [Assignment_History].assignment_id, [Assignment_History].AssignmentResultsId
-  into #temp_end_result
-  from [Assignment_History] with (nolock) inner join #temp_main_end on [Assignment_History].assignment_id=#temp_main_end.Id
-  inner join [AssignmentResults] on [Assignment_History].AssignmentResultsId=[AssignmentResults].Id
-  where [AssignmentResults].code=N'ItIsNotPossibleToPerformThisPeriod' and
-  [AssignmentResults].code<>N'WasExplained ' and [Assignment_History].id in
-  (select max([Assignment_History].id) id_max
-  from [Assignment_History] with (nolock) inner join #temp_main_end on [Assignment_History].assignment_id=#temp_main_end.Id
-  where [Assignment_History].AssignmentResultsId<>7
-  group by [Assignment_History].assignment_id)
+INSERT INTO @IdT
+	SELECT
+		Id
+	FROM [dbo].[Organizations] WITH (NOLOCK)
+	WHERE [parent_organization_id] IN (SELECT
+			Id
+		FROM @IdT) --or Id in (select Id from @IdT)
+	AND Id NOT IN (SELECT
+			Id
+		FROM @IdT);
+END
 
-
- -----------------основное-----
-
-if object_id('tempdb..#temp_navig') is not null drop table #temp_navig
-select * 
-into #temp_navig
-from (
-		select 1 Id, N'УГЛ' name union all select 2 Id, N'Електронні джерела' union all select 3 Id, N'Пріоритетне' union all 
-		select 4 Id, N'Інші доручення' union all select 5 Id, N'Зауваження'
-	) as t
-	
- if object_id('tempdb..#temp_nadiishlo') is not null drop table #temp_nadiishlo
- select [Assignments].Id,
- case when [ReceiptSources].code=N'UGL' then 1
- when [ReceiptSources].code=N'Website_mob.addition' then 2
- when [QuestionTypes].emergency=N'true' then 3
- when [QuestionTypes].parent_organization_is=N'true' then 5
- else 4
- end navigation
- into #temp_nadiishlo
- from 
- [CRM_1551_Analitics].[dbo].[Assignments]  with (nolock) left join 
- [CRM_1551_Analitics].[dbo].[Questions]  with (nolock) on [Assignments].question_id=[Questions].Id
- left join [CRM_1551_Analitics].[dbo].[Appeals]  with (nolock) on [Questions].appeal_id=[Appeals].Id
- left join [CRM_1551_Analitics].[dbo].[ReceiptSources] with (nolock) on [Appeals].receipt_source_id=[ReceiptSources].Id
- left join [CRM_1551_Analitics].[dbo].[QuestionTypes] with (nolock) on [Questions].question_type_id=[QuestionTypes].Id
- left join [CRM_1551_Analitics].[dbo].[AssignmentTypes] with (nolock) on [Assignments].assignment_type_id=[AssignmentTypes].Id
- left join [CRM_1551_Analitics].[dbo].[AssignmentStates] with (nolock) on [Assignments].assignment_state_id=[AssignmentStates].Id
- left join [CRM_1551_Analitics].[dbo].[AssignmentResults] with (nolock) on [Assignments].[AssignmentResultsId]=[AssignmentResults].Id
- left join [CRM_1551_Analitics].[dbo].[AssignmentResolutions] with (nolock) on [Assignments].[AssignmentResolutionsId]=[AssignmentResolutions].Id
-
- where 
- (([AssignmentTypes].code<>N'ToAttention' and [AssignmentStates].code=N'Registered' and [AssignmentResults].[name]=N'Очікує прийому в роботу') 
- or ([AssignmentResults].code=N'ReturnedToTheArtist' and [AssignmentStates].code=N'Registered'))
- and
- [Assignments].[executor_organization_id]=@organization_id
+INSERT INTO @Organization (Id)
+	SELECT
+		Id
+	FROM @IdT;
 
 
-if object_id('tempdb..#temp_nevkomp') is not null drop table #temp_nevkomp
-   select [Assignments].Id,
- case when [ReceiptSources].code=N'UGL' then 1
- when [ReceiptSources].code=N'Website_mob.addition' then 2
- when [QuestionTypes].emergency=N'true' then 3
- when [QuestionTypes].parent_organization_is=N'true' then 5
- else 4
- end navigation
- into #temp_nevkomp
-   from [CRM_1551_Analitics].[dbo].[Assignments] with (nolock) left join 
-[CRM_1551_Analitics].[dbo].[Questions] with (nolock) on [Assignments].question_id=[Questions].Id
-left join [CRM_1551_Analitics].[dbo].[Appeals] with (nolock) on [Questions].appeal_id=[Appeals].Id
-left join [CRM_1551_Analitics].[dbo].[ReceiptSources] with (nolock) on [Appeals].receipt_source_id=[ReceiptSources].Id
-left join [CRM_1551_Analitics].[dbo].[QuestionTypes] with (nolock) on [Questions].question_type_id=[QuestionTypes].Id
-left join [CRM_1551_Analitics].[dbo].[AssignmentTypes] with (nolock) on [Assignments].assignment_type_id=[AssignmentTypes].Id
-left join [CRM_1551_Analitics].[dbo].[AssignmentStates] with (nolock) on [Assignments].assignment_state_id=[AssignmentStates].Id
-left join [CRM_1551_Analitics].[dbo].[AssignmentConsiderations] with (nolock) on [Assignments].current_assignment_consideration_id=[AssignmentConsiderations].Id
-left join [CRM_1551_Analitics].[dbo].[AssignmentResults] with (nolock) on [Assignments].[AssignmentResultsId]=[AssignmentResults].Id -- +
-left join [CRM_1551_Analitics].[dbo].[AssignmentResolutions] with (nolock) on [Assignments].[AssignmentResolutionsId]=[AssignmentResolutions].Id
-where 
-   [AssignmentTypes].code<>N'ToAttention' and [AssignmentStates].code<>N'Closed' and [AssignmentResults].code=N'NotInTheCompetence'
-   and [AssignmentResolutions].name in (N'Повернуто в 1551', N'Повернуто в батьківську організацію')
-   and (case when @role=N'Конролер' and [AssignmentResolutions].name=N'Повернуто в 1551' then 1
-   when @role<>N'Конролер' and [AssignmentResolutions].name=N'Повернуто в батьківську організацію'
-   then 1 end)=1
-   and [AssignmentConsiderations].turn_organization_id=@organization_id
+
+------------для плана/програми---
+IF OBJECT_ID('tempdb..#temp_main_end') IS NOT NULL
+BEGIN
+	DROP TABLE #temp_main_end;
+END;
+
+SELECT
+	Id INTO #temp_main_end
+FROM [dbo].[Assignments] WITH (NOLOCK)
+WHERE assignment_state_id = 5
+AND AssignmentResultsId = 7
+AND executor_organization_id = @organization_id;
 
 
- if object_id('tempdb..#temp_prostr') is not null drop table #temp_prostr
- select [Assignments].Id, 
- case when [ReceiptSources].code=N'UGL' then 1
- when [ReceiptSources].code=N'Website_mob.addition' then 2
- when [QuestionTypes].emergency=N'true' then 3
- when [QuestionTypes].parent_organization_is=N'true' then 5
- else 4
- end navigation
- into #temp_prostr
- from 
- [CRM_1551_Analitics].[dbo].[Assignments] with (nolock) left join 
- [CRM_1551_Analitics].[dbo].[Questions] with (nolock) on [Assignments].question_id=[Questions].Id
- left join [CRM_1551_Analitics].[dbo].[Appeals] with (nolock) on [Questions].appeal_id=[Appeals].Id
- left join [CRM_1551_Analitics].[dbo].[ReceiptSources] with (nolock) on [Appeals].receipt_source_id=[ReceiptSources].Id
- left join [CRM_1551_Analitics].[dbo].[QuestionTypes] with (nolock) on [Questions].question_type_id=[QuestionTypes].Id
- left join [CRM_1551_Analitics].[dbo].[AssignmentTypes] with (nolock) on [Assignments].assignment_type_id=[AssignmentTypes].Id
- left join [CRM_1551_Analitics].[dbo].[AssignmentStates] with (nolock) on [Assignments].assignment_state_id=[AssignmentStates].Id
- left join [CRM_1551_Analitics].[dbo].[AssignmentResults] with (nolock) on [Assignments].[AssignmentResultsId]=[AssignmentResults].Id -- +
- left join [CRM_1551_Analitics].[dbo].[AssignmentResolutions] with (nolock) on [Assignments].[AssignmentResolutionsId]=[AssignmentResolutions].Id
- where 
- --[AssignmentTypes].code<>N'ToAttention' and [AssignmentStates].code=N'InWork' and 
- --[Questions].control_date<=getutcdate()
-   ([Questions].control_date<=getutcdate() and [AssignmentTypes].code<>N'ToAttention' and [AssignmentStates].code=N'InWork' )
- and
- [Assignments].[executor_organization_id]=@organization_id
+IF OBJECT_ID('tempdb..#temp_end_state') IS NOT NULL
+BEGIN
+	DROP TABLE #temp_end_state;
+END;
+
+SELECT
+	[Assignment_History].Id
+   ,[Assignment_History].assignment_id
+   ,[Assignment_History].assignment_state_id 
+   INTO #temp_end_state
+FROM [Assignment_History] WITH (NOLOCK)
+INNER JOIN #temp_main_end
+	ON [Assignment_History].assignment_id = #temp_main_end.Id
+INNER JOIN [AssignmentStates]
+	ON [Assignment_History].assignment_state_id = [AssignmentStates].Id
+
+WHERE [AssignmentStates].code = N'OnCheck'
+AND [AssignmentStates].code <> N'Closed'
+AND [Assignment_History].Id IN (SELECT
+		MAX([Assignment_History].Id) id_max
+	FROM [Assignment_History] WITH (NOLOCK)
+	INNER JOIN #temp_main_end
+		ON [Assignment_History].assignment_id = #temp_main_end.Id
+	WHERE [Assignment_History].assignment_state_id <> 5
+	GROUP BY [Assignment_History].assignment_id);
 
 
-if object_id('tempdb..#temp_uvaga') is not null drop table #temp_uvaga
- select [Assignments].Id, 
- case when [ReceiptSources].code=N'UGL' then 1
- when [ReceiptSources].code=N'Website_mob.addition' then 2
- when [QuestionTypes].emergency=N'true' then 3
- when [QuestionTypes].parent_organization_is=N'true' then 5
- else 4
- end navigation
- into #temp_uvaga
- from 
- [CRM_1551_Analitics].[dbo].[Assignments] with (nolock) left join 
- [CRM_1551_Analitics].[dbo].[Questions] with (nolock) on [Assignments].question_id=[Questions].Id
- left join [CRM_1551_Analitics].[dbo].[Appeals] with (nolock) on [Questions].appeal_id=[Appeals].Id
- left join [CRM_1551_Analitics].[dbo].[ReceiptSources] with (nolock) on [Appeals].receipt_source_id=[ReceiptSources].Id
- left join [CRM_1551_Analitics].[dbo].[QuestionTypes] with (nolock) on [Questions].question_type_id=[QuestionTypes].Id
- left join [CRM_1551_Analitics].[dbo].[AssignmentTypes] with (nolock) on [Assignments].assignment_type_id=[AssignmentTypes].Id
- left join [CRM_1551_Analitics].[dbo].[AssignmentStates] with (nolock) on [Assignments].assignment_state_id=[AssignmentStates].Id
- left join [CRM_1551_Analitics].[dbo].[AssignmentResults] with (nolock) on [Assignments].[AssignmentResultsId]=[AssignmentResults].Id -- +
- left join [CRM_1551_Analitics].[dbo].[AssignmentResolutions] with (nolock) on [Assignments].[AssignmentResolutionsId]=[AssignmentResolutions].Id
- where 
- --[AssignmentTypes].code<>N'ToAttention' and [AssignmentStates].code=N'InWork' and 
- --datediff(HH, [Assignments].registration_date, getdate())>[Attention_term_hours]
- --and datediff(HH, [Assignments].registration_date, getdate())<=[execution_term]
- -- DATEADD(MI, DATEDIFF(MI, [Questions].registration_date, [Questions].control_date)*0.25*-1, [Questions].control_date)<getutcdate()
-  -- [Questions].control_date>=getutcdate()
-   (DATEADD(MI, DATEDIFF(MI, [Questions].registration_date, [Questions].control_date)*0.25*-1, [Questions].control_date)<getutcdate() and [Questions].control_date>=getutcdate() and [AssignmentTypes].code<>N'ToAttention' and [AssignmentStates].code=N'InWork')
- and [Assignments].[executor_organization_id]=@organization_id
- 
+IF OBJECT_ID('tempdb..#temp_end_result') IS NOT NULL
+BEGIN
+	DROP TABLE #temp_end_result;
+END;
+SELECT
+	[Assignment_History].Id
+   ,[Assignment_History].assignment_id
+   ,[Assignment_History].AssignmentResultsId INTO #temp_end_result
+FROM [Assignment_History] WITH (NOLOCK)
+INNER JOIN #temp_main_end
+	ON [Assignment_History].assignment_id = #temp_main_end.Id
+INNER JOIN [AssignmentResults]
+	ON [Assignment_History].AssignmentResultsId = [AssignmentResults].Id
+WHERE [AssignmentResults].code = N'ItIsNotPossibleToPerformThisPeriod'
+AND [AssignmentResults].code <> N'WasExplained '
+AND [Assignment_History].Id IN (SELECT
+		MAX([Assignment_History].Id) id_max
+	FROM [Assignment_History] WITH (NOLOCK)
+	INNER JOIN #temp_main_end
+		ON [Assignment_History].assignment_id = #temp_main_end.Id
+	WHERE [Assignment_History].AssignmentResultsId <> 7
+	GROUP BY [Assignment_History].assignment_id);
 
-if object_id('tempdb..#temp_vroboti') is not null drop table #temp_vroboti
- select [Assignments].Id, 
- case when [ReceiptSources].code=N'UGL' then 1
- when [ReceiptSources].code=N'Website_mob.addition' then 2
- when [QuestionTypes].emergency=N'true' then 3
- when [QuestionTypes].parent_organization_is=N'true' then 5
- else 4
- end navigation
- into #temp_vroboti
- from 
- [CRM_1551_Analitics].[dbo].[Assignments] with (nolock) left join 
- [CRM_1551_Analitics].[dbo].[Questions] with (nolock) on [Assignments].question_id=[Questions].Id
- left join [CRM_1551_Analitics].[dbo].[Appeals] with (nolock) on [Questions].appeal_id=[Appeals].Id
- left join [CRM_1551_Analitics].[dbo].[ReceiptSources] with (nolock) on [Appeals].receipt_source_id=[ReceiptSources].Id
- left join [CRM_1551_Analitics].[dbo].[QuestionTypes] with (nolock) on [Questions].question_type_id=[QuestionTypes].Id
- left join [CRM_1551_Analitics].[dbo].[AssignmentTypes] with (nolock) on [Assignments].assignment_type_id=[AssignmentTypes].Id
- left join [CRM_1551_Analitics].[dbo].[AssignmentStates] with (nolock) on [Assignments].assignment_state_id=[AssignmentStates].Id
- left join [CRM_1551_Analitics].[dbo].[AssignmentResults] with (nolock) on [Assignments].[AssignmentResultsId]=[AssignmentResults].Id -- +
- left join [CRM_1551_Analitics].[dbo].[AssignmentResolutions] with (nolock) on [Assignments].[AssignmentResolutionsId]=[AssignmentResolutions].Id
- where 
- --[AssignmentTypes].code<>N'ToAttention' and [AssignmentStates].code=N'InWork' and
- --datediff(HH, [Assignments].registration_date, getdate())<=[Attention_term_hours]
+
+-----------------основное-----
+
+IF OBJECT_ID('tempdb..#temp_navig') IS NOT NULL
+BEGIN
+	DROP TABLE #temp_navig;
+END;
+
+SELECT * INTO #temp_navig
+FROM (SELECT
+		1 Id
+	   ,N'УГЛ' name
+	UNION ALL
+	SELECT
+		2 Id
+	   ,N'Електронні джерела'
+	UNION ALL
+	SELECT
+		3 Id
+	   ,N'Пріоритетне'
+	UNION ALL
+	SELECT
+		4 Id
+	   ,N'Інші доручення'
+	UNION ALL
+	SELECT
+		5 Id
+	   ,N'Зауваження') AS t;
+
+IF OBJECT_ID('tempdb..#temp_nadiishlo') IS NOT NULL
+BEGIN
+	DROP TABLE #temp_nadiishlo
+END;
+
+SELECT
+	[Assignments].Id
+   ,CASE
+		WHEN [ReceiptSources].code = N'UGL' THEN 1
+		WHEN [ReceiptSources].code = N'Website_mob.addition' THEN 2
+		WHEN [QuestionTypes].emergency = N'true' THEN 3
+		WHEN [QuestionTypes].parent_organization_is = N'true' THEN 5
+		ELSE 4
+	END navigation INTO #temp_nadiishlo
+FROM [dbo].[Assignments] WITH (NOLOCK)
+LEFT JOIN [dbo].[Questions] WITH (NOLOCK)
+	ON [Assignments].question_id = [Questions].Id
+LEFT JOIN [dbo].[Appeals] WITH (NOLOCK)
+	ON [Questions].appeal_id = [Appeals].Id
+LEFT JOIN [dbo].[ReceiptSources] WITH (NOLOCK)
+	ON [Appeals].receipt_source_id = [ReceiptSources].Id
+LEFT JOIN [dbo].[QuestionTypes] WITH (NOLOCK)
+	ON [Questions].question_type_id = [QuestionTypes].Id
+LEFT JOIN [dbo].[AssignmentTypes] WITH (NOLOCK)
+	ON [Assignments].assignment_type_id = [AssignmentTypes].Id
+LEFT JOIN [dbo].[AssignmentStates] WITH (NOLOCK)
+	ON [Assignments].assignment_state_id = [AssignmentStates].Id
+LEFT JOIN [dbo].[AssignmentResults] WITH (NOLOCK)
+	ON [Assignments].[AssignmentResultsId] = [AssignmentResults].Id
+LEFT JOIN [dbo].[AssignmentResolutions] WITH (NOLOCK)
+	ON [Assignments].[AssignmentResolutionsId] = [AssignmentResolutions].Id
+
+WHERE (([AssignmentTypes].code <> N'ToAttention'
+AND [AssignmentStates].code = N'Registered'
+AND [AssignmentResults].[name] = N'Очікує прийому в роботу')
+OR ([AssignmentResults].code = N'ReturnedToTheArtist'
+AND [AssignmentStates].code = N'Registered'))
+AND [Assignments].[executor_organization_id] = @organization_id;
+
+
+IF OBJECT_ID('tempdb..#temp_nevkomp') IS NOT NULL
+BEGIN
+	DROP TABLE #temp_nevkomp;
+END;
+SELECT
+	[Assignments].Id
+   ,CASE
+		WHEN [ReceiptSources].code = N'UGL' THEN 1
+		WHEN [ReceiptSources].code = N'Website_mob.addition' THEN 2
+		WHEN [QuestionTypes].emergency = N'true' THEN 3
+		WHEN [QuestionTypes].parent_organization_is = N'true' THEN 5
+		ELSE 4
+	END navigation INTO #temp_nevkomp
+FROM [dbo].[Assignments] WITH (NOLOCK)
+LEFT JOIN [dbo].[Questions] WITH (NOLOCK)
+	ON [Assignments].question_id = [Questions].Id
+LEFT JOIN [dbo].[Appeals] WITH (NOLOCK)
+	ON [Questions].appeal_id = [Appeals].Id
+LEFT JOIN [dbo].[ReceiptSources] WITH (NOLOCK)
+	ON [Appeals].receipt_source_id = [ReceiptSources].Id
+LEFT JOIN [dbo].[QuestionTypes] WITH (NOLOCK)
+	ON [Questions].question_type_id = [QuestionTypes].Id
+LEFT JOIN [dbo].[AssignmentTypes] WITH (NOLOCK)
+	ON [Assignments].assignment_type_id = [AssignmentTypes].Id
+LEFT JOIN [dbo].[AssignmentStates] WITH (NOLOCK)
+	ON [Assignments].assignment_state_id = [AssignmentStates].Id
+LEFT JOIN [dbo].[AssignmentConsiderations] WITH (NOLOCK)
+	ON [Assignments].current_assignment_consideration_id = [AssignmentConsiderations].Id
+LEFT JOIN [dbo].[AssignmentResults] WITH (NOLOCK)
+	ON [Assignments].[AssignmentResultsId] = [AssignmentResults].Id -- +
+LEFT JOIN [dbo].[AssignmentResolutions] WITH (NOLOCK)
+	ON [Assignments].[AssignmentResolutionsId] = [AssignmentResolutions].Id
+WHERE [AssignmentTypes].code <> N'ToAttention'
+AND [AssignmentStates].code <> N'Closed'
+AND [AssignmentResults].code = N'NotInTheCompetence'
+AND [AssignmentResolutions].name IN (N'Повернуто в 1551', N'Повернуто в батьківську організацію')
+AND (CASE
+	WHEN @role = N'Конролер' AND
+		[AssignmentResolutions].name = N'Повернуто в 1551' THEN 1
+	WHEN @role <> N'Конролер' AND
+		[AssignmentResolutions].name = N'Повернуто в батьківську організацію' THEN 1
+END) = 1
+AND [AssignmentConsiderations].turn_organization_id = @organization_id;
+
+
+IF OBJECT_ID('tempdb..#temp_prostr') IS NOT NULL
+BEGIN
+	DROP TABLE #temp_prostr;
+END;
+SELECT
+	[Assignments].Id
+   ,CASE
+		WHEN [ReceiptSources].code = N'UGL' THEN 1
+		WHEN [ReceiptSources].code = N'Website_mob.addition' THEN 2
+		WHEN [QuestionTypes].emergency = N'true' THEN 3
+		WHEN [QuestionTypes].parent_organization_is = N'true' THEN 5
+		ELSE 4
+	END navigation INTO #temp_prostr
+FROM [dbo].[Assignments] WITH (NOLOCK)
+LEFT JOIN [dbo].[Questions] WITH (NOLOCK)
+	ON [Assignments].question_id = [Questions].Id
+LEFT JOIN [dbo].[Appeals] WITH (NOLOCK)
+	ON [Questions].appeal_id = [Appeals].Id
+LEFT JOIN [dbo].[ReceiptSources] WITH (NOLOCK)
+	ON [Appeals].receipt_source_id = [ReceiptSources].Id
+LEFT JOIN [dbo].[QuestionTypes] WITH (NOLOCK)
+	ON [Questions].question_type_id = [QuestionTypes].Id
+LEFT JOIN [dbo].[AssignmentTypes] WITH (NOLOCK)
+	ON [Assignments].assignment_type_id = [AssignmentTypes].Id
+LEFT JOIN [dbo].[AssignmentStates] WITH (NOLOCK)
+	ON [Assignments].assignment_state_id = [AssignmentStates].Id
+LEFT JOIN [dbo].[AssignmentResults] WITH (NOLOCK)
+	ON [Assignments].[AssignmentResultsId] = [AssignmentResults].Id -- +
+LEFT JOIN [dbo].[AssignmentResolutions] WITH (NOLOCK)
+	ON [Assignments].[AssignmentResolutionsId] = [AssignmentResolutions].Id
+WHERE
+--[AssignmentTypes].code<>N'ToAttention' and [AssignmentStates].code=N'InWork' and 
+--[Questions].control_date<=getutcdate()
+([Questions].control_date <= GETUTCDATE()
+AND [AssignmentTypes].code <> N'ToAttention'
+AND [AssignmentStates].code = N'InWork')
+AND [Assignments].[executor_organization_id] = @organization_id;
+
+
+IF OBJECT_ID('tempdb..#temp_uvaga') IS NOT NULL
+BEGIN
+	DROP TABLE #temp_uvaga;
+END;
+SELECT
+	[Assignments].Id
+   ,CASE
+		WHEN [ReceiptSources].code = N'UGL' THEN 1
+		WHEN [ReceiptSources].code = N'Website_mob.addition' THEN 2
+		WHEN [QuestionTypes].emergency = N'true' THEN 3
+		WHEN [QuestionTypes].parent_organization_is = N'true' THEN 5
+		ELSE 4
+	END navigation INTO #temp_uvaga
+FROM [dbo].[Assignments] WITH (NOLOCK)
+LEFT JOIN [dbo].[Questions] WITH (NOLOCK)
+	ON [Assignments].question_id = [Questions].Id
+LEFT JOIN [dbo].[Appeals] WITH (NOLOCK)
+	ON [Questions].appeal_id = [Appeals].Id
+LEFT JOIN [dbo].[ReceiptSources] WITH (NOLOCK)
+	ON [Appeals].receipt_source_id = [ReceiptSources].Id
+LEFT JOIN [dbo].[QuestionTypes] WITH (NOLOCK)
+	ON [Questions].question_type_id = [QuestionTypes].Id
+LEFT JOIN [dbo].[AssignmentTypes] WITH (NOLOCK)
+	ON [Assignments].assignment_type_id = [AssignmentTypes].Id
+LEFT JOIN [dbo].[AssignmentStates] WITH (NOLOCK)
+	ON [Assignments].assignment_state_id = [AssignmentStates].Id
+LEFT JOIN [dbo].[AssignmentResults] WITH (NOLOCK)
+	ON [Assignments].[AssignmentResultsId] = [AssignmentResults].Id -- +
+LEFT JOIN [dbo].[AssignmentResolutions] WITH (NOLOCK)
+	ON [Assignments].[AssignmentResolutionsId] = [AssignmentResolutions].Id
+WHERE
+--[AssignmentTypes].code<>N'ToAttention' and [AssignmentStates].code=N'InWork' and 
+--datediff(HH, [Assignments].registration_date, getdate())>[Attention_term_hours]
+--and datediff(HH, [Assignments].registration_date, getdate())<=[execution_term]
+-- DATEADD(MI, DATEDIFF(MI, [Questions].registration_date, [Questions].control_date)*0.25*-1, [Questions].control_date)<getutcdate()
+-- [Questions].control_date>=getutcdate()
+(DATEADD(MI, DATEDIFF(MI, [Questions].registration_date, [Questions].control_date) * 0.25 * -1, [Questions].control_date) < GETUTCDATE()
+AND [Questions].control_date >= GETUTCDATE()
+AND [AssignmentTypes].code <> N'ToAttention'
+AND [AssignmentStates].code = N'InWork')
+AND [Assignments].[executor_organization_id] = @organization_id
+
+
+IF OBJECT_ID('tempdb..#temp_vroboti') IS NOT NULL
+BEGIN
+	DROP TABLE #temp_vroboti;
+END;
+SELECT
+	[Assignments].Id
+   ,CASE
+		WHEN [ReceiptSources].code = N'UGL' THEN 1
+		WHEN [ReceiptSources].code = N'Website_mob.addition' THEN 2
+		WHEN [QuestionTypes].emergency = N'true' THEN 3
+		WHEN [QuestionTypes].parent_organization_is = N'true' THEN 5
+		ELSE 4
+	END navigation INTO #temp_vroboti
+FROM [dbo].[Assignments] WITH (NOLOCK)
+LEFT JOIN [dbo].[Questions] WITH (NOLOCK)
+	ON [Assignments].question_id = [Questions].Id
+LEFT JOIN [dbo].[Appeals] WITH (NOLOCK)
+	ON [Questions].appeal_id = [Appeals].Id
+LEFT JOIN [dbo].[ReceiptSources] WITH (NOLOCK)
+	ON [Appeals].receipt_source_id = [ReceiptSources].Id
+LEFT JOIN [dbo].[QuestionTypes] WITH (NOLOCK)
+	ON [Questions].question_type_id = [QuestionTypes].Id
+LEFT JOIN [dbo].[AssignmentTypes] WITH (NOLOCK)
+	ON [Assignments].assignment_type_id = [AssignmentTypes].Id
+LEFT JOIN [dbo].[AssignmentStates] WITH (NOLOCK)
+	ON [Assignments].assignment_state_id = [AssignmentStates].Id
+LEFT JOIN [dbo].[AssignmentResults] WITH (NOLOCK)
+	ON [Assignments].[AssignmentResultsId] = [AssignmentResults].Id -- +
+LEFT JOIN [dbo].[AssignmentResolutions] WITH (NOLOCK)
+	ON [Assignments].[AssignmentResolutionsId] = [AssignmentResolutions].Id
+WHERE
+--[AssignmentTypes].code<>N'ToAttention' and [AssignmentStates].code=N'InWork' and
+--datediff(HH, [Assignments].registration_date, getdate())<=[Attention_term_hours]
 -- DATEADD(MI, DATEDIFF(MI, [Questions].registration_date, [Questions].control_date)*0.75, [Questions].registration_date)>=getutcdate()
- -- and [Questions].control_date>=getutcdate()
-   [Assignments].[executor_organization_id]=@organization_id
- and (DATEADD(MI, DATEDIFF(MI, [Questions].registration_date, [Questions].control_date)*0.75, [Questions].registration_date)>=getutcdate() and [Questions].control_date>=getutcdate() and [AssignmentTypes].code<>N'ToAttention' and [AssignmentStates].code=N'InWork')
+-- and [Questions].control_date>=getutcdate()
+[Assignments].[executor_organization_id] = @organization_id
+AND (DATEADD(MI, DATEDIFF(MI, [Questions].registration_date, [Questions].control_date) * 0.75, [Questions].registration_date) >= GETUTCDATE()
+AND [Questions].control_date >= GETUTCDATE()
+AND [AssignmentTypes].code <> N'ToAttention'
+AND [AssignmentStates].code = N'InWork');
 
 
 
-if object_id('tempdb..#temp_dovidoma') is not null drop table #temp_dovidoma
- select [Assignments].Id, 
- case when [ReceiptSources].code=N'UGL' then 1
- when [ReceiptSources].code=N'Website_mob.addition' then 2
- when [QuestionTypes].emergency=N'true' then 3
- when [QuestionTypes].parent_organization_is=N'true' then 5
- else 4
- end navigation
- into #temp_dovidoma
- from 
- [CRM_1551_Analitics].[dbo].[Assignments] with (nolock) left join 
- [CRM_1551_Analitics].[dbo].[Questions] with (nolock) on [Assignments].question_id=[Questions].Id
- left join [CRM_1551_Analitics].[dbo].[Appeals] with (nolock) on [Questions].appeal_id=[Appeals].Id
- left join [CRM_1551_Analitics].[dbo].[ReceiptSources] with (nolock) on [Appeals].receipt_source_id=[ReceiptSources].Id
- left join [CRM_1551_Analitics].[dbo].[QuestionTypes] with (nolock) on [Questions].question_type_id=[QuestionTypes].Id
- left join [CRM_1551_Analitics].[dbo].[AssignmentTypes] with (nolock) on [Assignments].assignment_type_id=[AssignmentTypes].Id
- left join [CRM_1551_Analitics].[dbo].[AssignmentStates] with (nolock) on [Assignments].assignment_state_id=[AssignmentStates].Id
- left join [CRM_1551_Analitics].[dbo].[AssignmentResults] with (nolock) on [Assignments].[AssignmentResultsId]=[AssignmentResults].Id -- +
- left join [CRM_1551_Analitics].[dbo].[AssignmentResolutions] with (nolock) on [Assignments].[AssignmentResolutionsId]=[AssignmentResolutions].Id
+IF OBJECT_ID('tempdb..#temp_dovidoma') IS NOT NULL
+BEGIN
+	DROP TABLE #temp_dovidoma;
+END;
+SELECT
+	[Assignments].Id
+   ,CASE
+		WHEN [ReceiptSources].code = N'UGL' THEN 1
+		WHEN [ReceiptSources].code = N'Website_mob.addition' THEN 2
+		WHEN [QuestionTypes].emergency = N'true' THEN 3
+		WHEN [QuestionTypes].parent_organization_is = N'true' THEN 5
+		ELSE 4
+	END navigation INTO #temp_dovidoma
+FROM [dbo].[Assignments] WITH (NOLOCK)
+LEFT JOIN [dbo].[Questions] WITH (NOLOCK)
+	ON [Assignments].question_id = [Questions].Id
+LEFT JOIN [dbo].[Appeals] WITH (NOLOCK)
+	ON [Questions].appeal_id = [Appeals].Id
+LEFT JOIN [dbo].[ReceiptSources] WITH (NOLOCK)
+	ON [Appeals].receipt_source_id = [ReceiptSources].Id
+LEFT JOIN [dbo].[QuestionTypes] WITH (NOLOCK)
+	ON [Questions].question_type_id = [QuestionTypes].Id
+LEFT JOIN [dbo].[AssignmentTypes] WITH (NOLOCK)
+	ON [Assignments].assignment_type_id = [AssignmentTypes].Id
+LEFT JOIN [dbo].[AssignmentStates] WITH (NOLOCK)
+	ON [Assignments].assignment_state_id = [AssignmentStates].Id
+LEFT JOIN [dbo].[AssignmentResults] WITH (NOLOCK)
+	ON [Assignments].[AssignmentResultsId] = [AssignmentResults].Id -- +
+LEFT JOIN [dbo].[AssignmentResolutions] WITH (NOLOCK)
+	ON [Assignments].[AssignmentResolutionsId] = [AssignmentResolutions].Id
 
- where 
- [AssignmentTypes].code=N'ToAttention' and [AssignmentStates].code=N'Registered'
- and [Assignments].[executor_organization_id]=@organization_id
-
-
-
-if object_id('tempdb..#temp_nadoopr') is not null drop table #temp_nadoopr
- select [Assignments].Id, 
- case when [ReceiptSources].code=N'UGL' then 1
- when [ReceiptSources].code=N'Website_mob.addition' then 2
- when [QuestionTypes].emergency=N'true' then 3
- when [QuestionTypes].parent_organization_is=N'true' then 5
- else 4
- end navigation
- into #temp_nadoopr
- from 
- [CRM_1551_Analitics].[dbo].[Assignments] with (nolock) left join 
- [CRM_1551_Analitics].[dbo].[Questions] with (nolock) on [Assignments].question_id=[Questions].Id
- left join [CRM_1551_Analitics].[dbo].[Appeals] with (nolock) on [Questions].appeal_id=[Appeals].Id
- left join [CRM_1551_Analitics].[dbo].[ReceiptSources] with (nolock) on [Appeals].receipt_source_id=[ReceiptSources].Id
- left join [CRM_1551_Analitics].[dbo].[QuestionTypes] with (nolock) on [Questions].question_type_id=[QuestionTypes].Id
- left join [CRM_1551_Analitics].[dbo].[AssignmentTypes] with (nolock) on [Assignments].assignment_type_id=[AssignmentTypes].Id
- left join [CRM_1551_Analitics].[dbo].[AssignmentStates] with (nolock) on [Assignments].assignment_state_id=[AssignmentStates].Id
- left join [CRM_1551_Analitics].[dbo].[AssignmentResults] with (nolock) on [Assignments].[AssignmentResultsId]=[AssignmentResults].Id -- +
- left join [CRM_1551_Analitics].[dbo].[AssignmentResolutions] with (nolock) on [Assignments].[AssignmentResolutionsId]=[AssignmentResolutions].Id
-
- where 
- [AssignmentStates].code=N'NotFulfilled' and ([AssignmentResults].code=N'ForWork' or [AssignmentResults].code=N'Actually')
- and [Assignments].[executor_organization_id]=@organization_id
+WHERE [AssignmentTypes].code = N'ToAttention'
+AND [AssignmentStates].code = N'Registered'
+AND [Assignments].[executor_organization_id] = @organization_id
 
 
 
- if object_id('tempdb..#temp_plan_p') is not null drop table #temp_plan_p
- select [Assignments].Id, 
- case when [ReceiptSources].code=N'UGL' then 1
- when [ReceiptSources].code=N'Website_mob.addition' then 2
- when [QuestionTypes].emergency=N'true' then 3
- when [QuestionTypes].parent_organization_is=N'true' then 5
- else 4
- end navigation
- into #temp_plan_p
- from 
- [CRM_1551_Analitics].[dbo].[Assignments]  with (nolock)
- inner join #temp_end_result on [Assignments].Id=#temp_end_result.assignment_id
- inner join #temp_end_state on [Assignments].Id=#temp_end_state.assignment_id
- left join [CRM_1551_Analitics].[dbo].[Questions] with (nolock) on [Assignments].question_id=[Questions].Id
- left join [CRM_1551_Analitics].[dbo].[Appeals] with (nolock) on [Questions].appeal_id=[Appeals].Id
- left join [CRM_1551_Analitics].[dbo].[ReceiptSources] with (nolock) on [Appeals].receipt_source_id=[ReceiptSources].Id
- left join [CRM_1551_Analitics].[dbo].[QuestionTypes] with (nolock) on [Questions].question_type_id=[QuestionTypes].Id
- left join [CRM_1551_Analitics].[dbo].[AssignmentTypes] with (nolock) on [Assignments].assignment_type_id=[AssignmentTypes].Id
- left join [CRM_1551_Analitics].[dbo].[AssignmentStates] with (nolock) on [Assignments].assignment_state_id=[AssignmentStates].Id
- left join [CRM_1551_Analitics].[dbo].[AssignmentResults] with (nolock) on [Assignments].[AssignmentResultsId]=[AssignmentResults].Id -- +
- left join [CRM_1551_Analitics].[dbo].[AssignmentResolutions] with (nolock) on [Assignments].[AssignmentResolutionsId]=[AssignmentResolutions].Id
- where [Questions].event_id is null
- --where 
- --[AssignmentStates].code=N'NotFulfilled' and [AssignmentResults].code=N'ItIsNotPossibleToPerformThisPeriod'
+IF OBJECT_ID('tempdb..#temp_nadoopr') IS NOT NULL
+BEGIN
+	DROP TABLE #temp_nadoopr;
+END;
+SELECT
+	[Assignments].Id
+   ,CASE
+		WHEN [ReceiptSources].code = N'UGL' THEN 1
+		WHEN [ReceiptSources].code = N'Website_mob.addition' THEN 2
+		WHEN [QuestionTypes].emergency = N'true' THEN 3
+		WHEN [QuestionTypes].parent_organization_is = N'true' THEN 5
+		ELSE 4
+	END navigation INTO #temp_nadoopr
+FROM [dbo].[Assignments] WITH (NOLOCK)
+LEFT JOIN [dbo].[Questions] WITH (NOLOCK)
+	ON [Assignments].question_id = [Questions].Id
+LEFT JOIN [dbo].[Appeals] WITH (NOLOCK)
+	ON [Questions].appeal_id = [Appeals].Id
+LEFT JOIN [dbo].[ReceiptSources] WITH (NOLOCK)
+	ON [Appeals].receipt_source_id = [ReceiptSources].Id
+LEFT JOIN [dbo].[QuestionTypes] WITH (NOLOCK)
+	ON [Questions].question_type_id = [QuestionTypes].Id
+LEFT JOIN [dbo].[AssignmentTypes] WITH (NOLOCK)
+	ON [Assignments].assignment_type_id = [AssignmentTypes].Id
+LEFT JOIN [dbo].[AssignmentStates] WITH (NOLOCK)
+	ON [Assignments].assignment_state_id = [AssignmentStates].Id
+LEFT JOIN [dbo].[AssignmentResults] WITH (NOLOCK)
+	ON [Assignments].[AssignmentResultsId] = [AssignmentResults].Id -- +
+LEFT JOIN [dbo].[AssignmentResolutions] WITH (NOLOCK)
+	ON [Assignments].[AssignmentResolutionsId] = [AssignmentResolutions].Id
 
- --and [Assignments].[executor_organization_id]=@organization_id
-
-
- if object_id('tempdb..#temp_main') is not null drop table #temp_main
- 
- select Id, navigation, N'nadiishlo' name
- into #temp_main
- from #temp_nadiishlo
- union all
- select Id, navigation, N'nevkomp' name
- from #temp_nevkomp
- union all
- select Id, navigation, N'prostr' name
- from #temp_prostr
- union all
- select Id, navigation, N'uvaga' name
- from #temp_uvaga
- union all
- select Id, navigation, N'vroboti' name
- from #temp_vroboti
- union all
- select Id, navigation, N'dovidoma' name
- from #temp_dovidoma
- union all
- select Id, navigation, N'nadoopr' name
- from #temp_nadoopr
- union all
- select Id, navigation, N'neVykonNeMozhl' name
- from #temp_plan_p
- 
+WHERE [AssignmentStates].code = N'NotFulfilled'
+AND ([AssignmentResults].code = N'ForWork'
+OR [AssignmentResults].code = N'Actually')
+AND [Assignments].[executor_organization_id] = @organization_id
 
 
-select Id, name [navigation], isnull([nadiishlo], 0) [nadiyshlo], isnull([nevkomp], 0) [neVKompetentsii], 
-isnull([prostr], 0) [prostrocheni], isnull([uvaga], 0) [uvaga], isnull([vroboti], 0) [vroboti],
-isnull([dovidoma], 0) [dovidoma], isnull([nadoopr], 0) [naDoopratsiyvanni], isnull([neVykonNeMozhl], 0) [neVykonNeMozhl]
-from
-(select #temp_navig.Id, #temp_navig.name, main.name main_name, cc
-from #temp_navig left join 
-(select navigation, name, count(Id) cc from #temp_main group by navigation, name) main on #temp_navig.Id=main.navigation) t
-pivot
-( sum(cc) for main_name in ([nadiishlo], [nevkomp], [prostr], [uvaga], [vroboti], [dovidoma], [nadoopr], [neVykonNeMozhl])
-) pvt
+
+IF OBJECT_ID('tempdb..#temp_plan_p') IS NOT NULL
+BEGIN
+	DROP TABLE #temp_plan_p;
+END;
+SELECT
+	[Assignments].Id
+   ,CASE
+		WHEN [ReceiptSources].code = N'UGL' THEN 1
+		WHEN [ReceiptSources].code = N'Website_mob.addition' THEN 2
+		WHEN [QuestionTypes].emergency = N'true' THEN 3
+		WHEN [QuestionTypes].parent_organization_is = N'true' THEN 5
+		ELSE 4
+	END navigation INTO #temp_plan_p
+FROM [dbo].[Assignments] WITH (NOLOCK)
+INNER JOIN #temp_end_result
+	ON [Assignments].Id = #temp_end_result.assignment_id
+INNER JOIN #temp_end_state
+	ON [Assignments].Id = #temp_end_state.assignment_id
+LEFT JOIN [dbo].[Questions] WITH (NOLOCK)
+	ON [Assignments].question_id = [Questions].Id
+LEFT JOIN [dbo].[Appeals] WITH (NOLOCK)
+	ON [Questions].appeal_id = [Appeals].Id
+LEFT JOIN [dbo].[ReceiptSources] WITH (NOLOCK)
+	ON [Appeals].receipt_source_id = [ReceiptSources].Id
+LEFT JOIN [dbo].[QuestionTypes] WITH (NOLOCK)
+	ON [Questions].question_type_id = [QuestionTypes].Id
+LEFT JOIN [dbo].[AssignmentTypes] WITH (NOLOCK)
+	ON [Assignments].assignment_type_id = [AssignmentTypes].Id
+LEFT JOIN [dbo].[AssignmentStates] WITH (NOLOCK)
+	ON [Assignments].assignment_state_id = [AssignmentStates].Id
+LEFT JOIN [dbo].[AssignmentResults] WITH (NOLOCK)
+	ON [Assignments].[AssignmentResultsId] = [AssignmentResults].Id -- +
+LEFT JOIN [dbo].[AssignmentResolutions] WITH (NOLOCK)
+	ON [Assignments].[AssignmentResolutionsId] = [AssignmentResolutions].Id
+WHERE [Questions].event_id IS NULL
+--where 
+--[AssignmentStates].code=N'NotFulfilled' and [AssignmentResults].code=N'ItIsNotPossibleToPerformThisPeriod'
+
+--and [Assignments].[executor_organization_id]=@organization_id
+
+
+IF OBJECT_ID('tempdb..#temp_main') IS NOT NULL
+BEGIN
+	DROP TABLE #temp_main;
+END;
+
+SELECT
+	Id
+   ,navigation
+   ,N'nadiishlo' name INTO #temp_main
+FROM #temp_nadiishlo
+UNION ALL
+SELECT
+	Id
+   ,navigation
+   ,N'nevkomp' name
+FROM #temp_nevkomp
+UNION ALL
+SELECT
+	Id
+   ,navigation
+   ,N'prostr' name
+FROM #temp_prostr
+UNION ALL
+SELECT
+	Id
+   ,navigation
+   ,N'uvaga' name
+FROM #temp_uvaga
+UNION ALL
+SELECT
+	Id
+   ,navigation
+   ,N'vroboti' name
+FROM #temp_vroboti
+UNION ALL
+SELECT
+	Id
+   ,navigation
+   ,N'dovidoma' name
+FROM #temp_dovidoma
+UNION ALL
+SELECT
+	Id
+   ,navigation
+   ,N'nadoopr' name
+FROM #temp_nadoopr
+UNION ALL
+SELECT
+	Id
+   ,navigation
+   ,N'neVykonNeMozhl' name
+FROM #temp_plan_p;
+
+
+
+SELECT
+	Id
+   ,name [navigation]
+   ,ISNULL([nadiishlo], 0) [nadiyshlo]
+   ,ISNULL([nevkomp], 0) [neVKompetentsii]
+   ,ISNULL([prostr], 0) [prostrocheni]
+   ,ISNULL([uvaga], 0) [uvaga]
+   ,ISNULL([vroboti], 0) [vroboti]
+   ,ISNULL([dovidoma], 0) [dovidoma]
+   ,ISNULL([nadoopr], 0) [naDoopratsiyvanni]
+   ,ISNULL([neVykonNeMozhl], 0) [neVykonNeMozhl]
+FROM (SELECT
+		#temp_navig.Id
+	   ,#temp_navig.name
+	   ,main.name main_name
+	   ,cc
+	FROM #temp_navig
+	LEFT JOIN (SELECT
+			navigation
+		   ,name
+		   ,COUNT(Id) cc
+		FROM #temp_main
+		GROUP BY navigation
+				,name) main
+		ON #temp_navig.Id = main.navigation) t
+PIVOT
+(SUM(cc) FOR main_name IN ([nadiishlo], [nevkomp], [prostr], [uvaga], [vroboti], [dovidoma], [nadoopr], [neVykonNeMozhl])
+) pvt;
+	END
+   
+   ELSE 
+
+	BEGIN
+		SELECT 1 Id, 2 [nadiyshlo], 2 [neVKompetentsii], 2 [prostrocheni], 2 [uvaga], 2 [vroboti], 2 [dovidoma], 2 [naDoopratsiyvanni], 2 [neVykonNeMozhl]
+		WHERE 1=2;
+	END;
+
+   

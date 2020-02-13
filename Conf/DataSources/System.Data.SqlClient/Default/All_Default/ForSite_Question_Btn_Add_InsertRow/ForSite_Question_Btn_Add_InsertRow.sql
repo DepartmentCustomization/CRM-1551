@@ -208,7 +208,9 @@ declare @getdate datetime = getutcdate();
       ,[user_edit_id]
       ,[last_assignment_for_execution_id]
 	  ,[entrance] -- art
-	  ,[flat]) -- art
+	  ,[flat]
+    ,[geolocation_lat]
+    ,[geolocation_lon]) -- art
 output [inserted].[Id] into @output (Id)	
 select @AppealId
       ,(concat( SUBSTRING ( rtrim(YEAR(getdate())),4,1),'-',(select count(Id) from Appeals where year(Appeals.registration_date) = year(getutcdate())) ))+N'/'+rtrim((select count(1) from [dbo].[Questions] where appeal_id = @AppealId)+1) /*[registration_number]*/
@@ -233,10 +235,38 @@ select @AppealId
       ,NULL /*last_assignment_for_execution_id*/
 	  ,@entrance -- art
 	  ,@flat -- art
+    ,@AppealFromSite_geolocation_lat
+    ,@AppealFromSite_geolocation_lon
 	set @app_id = (select top 1 Id from @output)
 	
 	
 	
+  INSERT INTO [dbo].[QuestionDocFiles]
+  (
+  --[link]
+      [create_date]
+      ,[user_id]
+      ,[edit_date]
+      ,[edit_user_id]
+      ,[name]
+      ,[File]
+      ,[question_id]
+      --,[GUID]
+  )
+
+  SELECT --N'test' [link]
+      GETUTCDATE() [create_date]
+      ,@CreatedByUserId [user_id]
+      ,GETUTCDATE() [edit_date]
+      ,@CreatedByUserId [edit_user_id]
+      ,[AppealFromSiteFiles].[Name]
+      ,[AppealFromSiteFiles].[File]
+      ,@app_id [question_id]
+      --,[GUID]
+  from [CRM_1551_Site_Integration].[dbo].[AppealFromSiteFiles]
+  where 
+  [AppealFromSiteId]=@AppealsFromSite_Id
+
 	
   update [dbo].[Appeals] set [applicant_id] = @applicant_id
 			  where [Id] = @AppealId	

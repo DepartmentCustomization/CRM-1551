@@ -1,4 +1,4 @@
-(function () {
+(function() {
     return {
         chartConfig: {
             chart: {
@@ -26,7 +26,7 @@
             },
             xAxis: {
                 categories: []
-            },
+            }
         },
         colors: [
             'rgb(124, 181, 236)',
@@ -40,44 +40,44 @@
             'rgb(244, 91, 91)',
             'rgb(145, 232, 225)'
         ],
-        init: function () {
-            this.sub = this.messageService.subscribe( 'FiltersParams', this.setFiltersParams, this );
-            this.sub1 = this.messageService.subscribe( 'showInfo', this.showInfo, this );
+        init: function() {
+            this.sub = this.messageService.subscribe('FiltersParams', this.setFiltersParams, this);
+            this.sub1 = this.messageService.subscribe('showInfo', this.showInfo, this);
         },
-        executeQuery: function () {
+        executeQuery: function() {
             const query = {
-                "queryCode": "db_ReestrRating_LineChart",
-                "limit": -1,
-                "parameterValues": [
+                'queryCode': 'db_ReestrRating_LineChart',
+                'limit': -1,
+                'parameterValues': [
                     {
-                        "key": "@CalcDate",
-                        "value": this.date
+                        'key': '@CalcDate',
+                        'value': this.date
                     },
                     {
-                        "key": "@RatingId",
-                        "value": this.rating
+                        'key': '@RatingId',
+                        'value': this.rating
                     }
                 ]
             };
             this.queryExecutor(query, this.load, this);
             this.showPreloader = false;
         },
-        load: function (data) {
+        load: function(data) {
             this.setChartSeries(data);
             this.render();
         },
-        setFiltersParams: function (message) {
+        setFiltersParams: function(message) {
             this.date = message.date;
             this.rating = message.rating;
         },
-        showInfo: function (message) {
+        showInfo: function() {
             this.executeQuery();
         },
-        setChartSeries: function (data) {
+        setChartSeries: function(data) {
             this.chartConfig.series = [];
             this.chartConfig.series = this.getSeriesData(data);
         },
-        getSeriesData: function (array) {
+        getSeriesData: function(array) {
             let result = [];
             let categories = this.chartConfig.xAxis.categories = [];
             for (let i = 2; i < array.columns.length; i++) {
@@ -99,9 +99,9 @@
             }
             return result;
         },
-        destroy: function () {
-            this.sub.unsubscribe();      
-            this.sub1.unsubscribe();      
+        destroy: function() {
+            this.sub.unsubscribe();
+            this.sub1.unsubscribe();
         }
     };
 }());

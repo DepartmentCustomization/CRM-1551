@@ -16,38 +16,38 @@
           "Position": 2
         },
         {
-          "Code": "Count_rmz",
-          "Name": "Count_rmz",
+          "Code": "ReestrZKMM",
+          "Name": "ReestrZKMM",
           "Position": 3
         },
         {
-          "Code": "Count_rpz",
-          "Name": "Count_rpz",
+          "Code": "ReestrZKPM",
+          "Name": "ReestrZKPM",
           "Position": 4
         },
         {
-          "Code": "Count_rzz",
-          "Name": "Count_rzz",
+          "Code": "ReestrZNZ",
+          "Name": "ReestrZNZ",
           "Position": 5
         },
         {
-          "Code": "Count_rzr",
-          "Name": "Count_rzr",
+          "Code": "ReestrZNVR",
+          "Name": "ReestrZNVR",
           "Position": 6
         },
         {
-          "Code": "Count_rzvv",
-          "Name": "Count_rzvv",
+          "Code": "ReestrZVV",
+          "Name": "ReestrZVV",
           "Position": 7
         },
         {
-          "Code": "Count_rzvnv",
-          "Name": "Count_rzvnv",
+          "Code": "ReestrZVNV",
+          "Name": "ReestrZVNV",
           "Position": 8
         },
         {
-          "Code": "Count_rzvp",
-          "Name": "Count_rzvp",
+          "Code": "ReestrZVP",
+          "Name": "ReestrZVP",
           "Position": 9
         },
         {

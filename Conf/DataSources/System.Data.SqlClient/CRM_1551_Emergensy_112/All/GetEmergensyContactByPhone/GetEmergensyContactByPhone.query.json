@@ -1,0 +1,13 @@
+{
+  "ModelType": "Query",
+  "Code": "GetEmergensyContactByPhone",
+  "Name": "GetEmergensyContactByPhone",
+  "ConnectionCode": "CRM_1551_Emergensy_112",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@Phone",
+      "Name": "Phone"
+    }
+  ]
+}

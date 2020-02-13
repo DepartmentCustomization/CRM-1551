@@ -1,194 +1,97 @@
---declare @user_Id nvarchar(128)=N'29796543-b903-48a6-9399-4840f6eac396';
+--DECLARE @user_Id NVARCHAR(128) = N'29796543-b903-48a6-9399-4840f6eac396';
 
-declare @organization_main table (Id int);
+DECLARE @Organization TABLE (
+	Id INT
+);
+WITH cte1 -- все подчиненные 3 и 3
+AS
+(SELECT
+		Id
+	   ,[parent_organization_id] ParentId
+	FROM [dbo].[Organizations] t
+	WHERE Id IN (SELECT DISTINCT
+			[organization_id]
+		FROM [dbo].[Workers]
+		WHERE worker_user_id = @user_Id)
+	UNION ALL
+	SELECT
+		tp.Id
+	   ,[parent_organization_id] ParentId
+	FROM [dbo].[Organizations] tp
+	INNER JOIN cte1 curr
+		ON tp.[parent_organization_id] = curr.Id)
 
-declare @organization_table table (Id int, n int identity(1,1));
-declare @n int=1;
-
-declare @organization_id int;
-declare @Organization table(Id int, Id_n int);
-declare @OrganizationId int;
-declare @IdT table (Id int, Id_n int identity(1,1));
-
-insert into @organization_table(Id)
- select distinct [organization_id]
-  from [Workers]
-  where worker_user_id=@user_id;
- 
-
-while exists(select id from @organization_table where n=@n)
-begin
-	set @organization_id =(select id from @organization_table where n=@n);--2006;
-	--declare @user_id nvarchar(300)=N'02ece542-2d75-479d-adad-fd333d09604d';
-
-
-	 --declare @Organization table(Id int);
-
-	 set @OrganizationId = @organization_id;
-
-
-	 -- НАХОДИМ ИД ОРГАНИЗАЦИЙ ГДЕ ИД И ПАРЕНТЫ ВЫБРАНОЙ И СРАЗУ ЗАЛИВАЕМ
-	 insert into @IdT(Id)
-	 select Id from [CRM_1551_Analitics].[dbo].[Organizations] 
-	 where (Id=@OrganizationId or [parent_organization_id]=@OrganizationId) and Id not in (select Id from @IdT)
-
-	 --  НАХОДИМ ПАРЕНТЫ ОРГ, КОТОРЫХ ЗАЛИЛИ, <-- нужен цыкл
-	 while (select count(id) from (select Id from [CRM_1551_Analitics].[dbo].[Organizations]
-	 where [parent_organization_id] in (select Id from @IdT) --or Id in (select Id from @IdT)
-	 and Id not in (select Id from @IdT)) q)!=0
-	 begin
-
-	 insert into @IdT
-	 select Id from [CRM_1551_Analitics].[dbo].[Organizations]
-	 where [parent_organization_id] in (select Id from @IdT) --or Id in (select Id from @IdT)
-	 and Id not in (select Id from @IdT)
-	 end 
-
-	 insert into @Organization (Id)
-	 select Id from @IdT;
-
-	-- delete from @Organization;
-    delete from @IdT;
-
-set @n=@n+1;
-end;
+INSERT INTO @Organization (Id)
+	SELECT
+		Id
+	FROM cte1;
 
 -- показать всех, кто в 1761 и роль администратора 7
+
 -- подорганизации 1761 начало
 
-declare @organization_id1761 int =1761;
+DECLARE @Organization1761 TABLE (
+	Id INT
+);
 
-declare @Organization1761 table(Id int);
+WITH cte1 -- все подчиненные 3 и 3
+AS
+(SELECT
+		Id
+	   ,[parent_organization_id] ParentId
+	FROM [dbo].[Organizations] t
+	WHERE Id = 1761
+	UNION ALL
+	SELECT
+		tp.Id
+	   ,[parent_organization_id] ParentId
+	FROM [dbo].[Organizations] tp
+	INNER JOIN cte1 curr
+		ON tp.[parent_organization_id] = curr.Id)
 
-declare @OrganizationId1761 int = @organization_id1761;
+INSERT INTO @Organization1761 (cte1.Id)
+	SELECT
+		Id
+	FROM cte1;
 
-
- declare @IdT1761 table (Id int);
-
- -- НАХОДИМ ИД ОРГАНИЗАЦИЙ ГДЕ ИД И ПАРЕНТЫ ВЫБРАНОЙ И СРАЗУ ЗАЛИВАЕМ
- insert into @IdT1761 (Id)
- select Id from [CRM_1551_Analitics].[dbo].[Organizations] 
- where (Id=@OrganizationId1761 or [parent_organization_id]=@OrganizationId1761) and Id not in (select Id from @IdT1761)
-
- --  НАХОДИМ ПАРЕНТЫ ОРГ, КОТОРЫХ ЗАЛИЛИ, <-- нужен цыкл
- while (select count(id) from (select Id from [CRM_1551_Analitics].[dbo].[Organizations]
- where [parent_organization_id] in (select Id from @IdT1761) --or Id in (select Id from @IdT)
- and Id not in (select Id from @IdT1761)) q)!=0
- begin
-
- insert into @IdT1761 (Id)
- select Id from [CRM_1551_Analitics].[dbo].[Organizations]
- where [parent_organization_id] in (select Id from @IdT1761) --or Id in (select Id from @IdT)
- and Id not in (select Id from @IdT1761)
- end 
-
- insert into @Organization1761 (Id)
- select Id from @IdT1761;
-
- --select * from @Organization1761
 
 -- 1761 конец
+
 -- 7 начало
-declare @ad int=
-(select distinct d
-  from
-  (select case when [roles_id]=7 then 7 else null end d
-  from [Workers]
-  where [worker_user_id]=@user_id) t
-  where d is not null)
+DECLARE @ad INT = (SELECT DISTINCT
+		d
+	FROM (SELECT
+			CASE
+				WHEN [roles_id] = 7 THEN 7
+				ELSE NULL
+			END d
+		FROM [dbo].[Workers]
+		WHERE [worker_user_id] = @user_Id) t
+	WHERE d IS NOT NULL);
 -- 7 конец
 
-if @ad=7 or exists(select Id from @Organization1761 where id in (select distinct organization_id
-  from [Workers]
-  where [worker_user_id]=@user_id))
 
-	begin
-		select Id, short_name
-		from [Organizations]
-		/**/where #filter_columns#
+--сам запрос
+
+IF @ad=7 OR EXISTS(SELECT Id FROM @Organization1761 WHERE id IN (SELECT DISTINCT organization_id
+  FROM [dbo].[Workers]
+  WHERE [worker_user_id]=@user_id))
+
+	BEGIN
+		SELECT Id, short_name
+		FROM [dbo].[Organizations]
+		/**/WHERE #filter_columns#
   #sort_columns#
- offset @pageOffsetRows rows fetch next @pageLimitRows rows only 
-	end
+ offset @pageOffsetRows ROWS FETCH NEXT @pageLimitRows ROWS only 
+	END
 
-else
-	begin
-		select [Organizations].Id, [Organizations].short_name
-		from @Organization o inner join [Organizations] on o.Id=[Organizations].Id
+ELSE
+	BEGIN
+		SELECT [Organizations].Id, [Organizations].short_name
+		FROM @Organization o INNER JOIN [Organizations] ON o.Id=[Organizations].Id
 	
 
-/**/where #filter_columns#
+/**/WHERE #filter_columns#
   #sort_columns#
- offset @pageOffsetRows rows fetch next @pageLimitRows rows only 
-end
-
--- --declare @user_Id nvarchar(128)=N'eb6d56d2-e217-45e4-800b-c851666ce795';
-
--- declare @organization_main table (Id int);
-
--- declare @organization_table table (Id int, n int identity(1,1));
--- declare @n int=1;
-
--- declare @organization_id int;
--- declare @Organization table(Id int, Id_n int);
--- declare @OrganizationId int;
--- declare @IdT table (Id int, Id_n int identity(1,1));
-
--- insert into @organization_table(Id)
---  select distinct [organization_id]
---   from [Workers]
---   where worker_user_id=@user_id;
- 
-
--- while exists(select id from @organization_table where n=@n)
--- begin
--- 	set @organization_id =(select id from @organization_table where n=@n);--2006;
--- 	--declare @user_id nvarchar(300)=N'02ece542-2d75-479d-adad-fd333d09604d';
-
-
--- 	 --declare @Organization table(Id int);
-
--- 	 set @OrganizationId = @organization_id;
-
-
--- 	 -- НАХОДИМ ИД ОРГАНИЗАЦИЙ ГДЕ ИД И ПАРЕНТЫ ВЫБРАНОЙ И СРАЗУ ЗАЛИВАЕМ
--- 	 insert into @IdT(Id)
--- 	 select Id from [CRM_1551_Analitics].[dbo].[Organizations] 
--- 	 where (Id=@OrganizationId or [parent_organization_id]=@OrganizationId) and Id not in (select Id from @IdT)
-
--- 	 --  НАХОДИМ ПАРЕНТЫ ОРГ, КОТОРЫХ ЗАЛИЛИ, <-- нужен цыкл
--- 	 while (select count(id) from (select Id from [CRM_1551_Analitics].[dbo].[Organizations]
--- 	 where [parent_organization_id] in (select Id from @IdT) --or Id in (select Id from @IdT)
--- 	 and Id not in (select Id from @IdT)) q)!=0
--- 	 begin
-
--- 	 insert into @IdT
--- 	 select Id from [CRM_1551_Analitics].[dbo].[Organizations]
--- 	 where [parent_organization_id] in (select Id from @IdT) --or Id in (select Id from @IdT)
--- 	 and Id not in (select Id from @IdT)
--- 	 end 
-
--- 	 insert into @Organization (Id)
--- 	 select Id from @IdT;
-
--- 	-- delete from @Organization;
---     delete from @IdT;
-
--- set @n=@n+1;
--- end
-
--- select [Organizations].Id, [Organizations].short_name
--- from @Organization o inner join [Organizations] on o.Id=[Organizations].Id
--- where #filter_columns#
---   #sort_columns#
---  offset @pageOffsetRows rows fetch next @pageLimitRows rows only
-
-
---   SELECT [Id]
---       ,[short_name]
---   FROM [CRM_1551_Analitics].[dbo].[Organizations]
-  
-    
---     where 
---     #filter_columns#
---     #sort_columns#
---     offset @pageOffsetRows rows fetch next @pageLimitRows rows only
+ offset @pageOffsetRows ROWS FETCH NEXT @pageLimitRows ROWS only 
+END

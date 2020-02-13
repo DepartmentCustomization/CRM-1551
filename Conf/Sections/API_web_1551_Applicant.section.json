@@ -7,5 +7,6 @@
   "Name": "API_web_1551_Applicant",
   "FormCode": "Form_API_web_1551_Applicant",
   "SelectRowsQueryCode": "api_ApplicantBasicInformation_SelectRows",
-  "SelectRowQueryCode": "api_ApplicantBasicInformation_SelectRow"
+  "SelectRowQueryCode": "api_ApplicantBasicInformation_SelectRow",
+  "UpdateQueryCode": "api_ApplicantBasicInformation_UpdateRow"
 }

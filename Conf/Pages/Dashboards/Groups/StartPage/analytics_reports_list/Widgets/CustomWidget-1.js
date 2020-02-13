@@ -1,4 +1,4 @@
-(function () {
+(function() {
     return {
         title: ' ',
         hint: '',
@@ -28,28 +28,25 @@
             const reportListContainer = document.getElementById('reportListContainer');
             let reportListWrap = this.createElement('div', { id: 'reportListWrap'});
             reportListContainer.appendChild(reportListWrap);
-            this.reports.forEach( report => {
+            this.reports.forEach(report => {
                 const reportTitle = report.title;
                 const url = report.url;
-                
                 const reportListItem = this.createElement('div', { className: 'reportListItem', url: url, innerText: reportTitle });
                 reportListWrap.appendChild(reportListItem);
-                
-                reportListItem.addEventListener( 'click', event => {
+                reportListItem.addEventListener('click', event => {
                     const target = event.currentTarget;
-                    window.open(location.origin + localStorage.getItem('VirtualPath') + "/dashboard/page/"+target.url);
+                    window.open(location.origin + localStorage.getItem('VirtualPath') + '/dashboard/page/' + target.url);
                 });
             });
         },
         createElement: function(tag, props, ...children) {
             const element = document.createElement(tag);
-            Object.keys(props).forEach( key => element[key] = props[key] );
-            if(children.length > 0){
-                children.forEach( child =>{
+            Object.keys(props).forEach(key => element[key] = props[key]);
+            if(children.length > 0) {
+                children.forEach(child =>{
                     element.appendChild(child);
                 });
             } return element;
-        },  
+        }
     };
 }());
-  

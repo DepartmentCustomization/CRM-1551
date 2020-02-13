@@ -1,7 +1,7 @@
-(function () {
+(function() {
     return {
         placeholder: 'Період',
-        type: "Date",
+        type: 'Date',
         onItemSelect: function(date) {
             this.datePeriod(date);
         },
@@ -15,10 +15,8 @@
             }
             this.messageService.publish(message);
         },
-        init: function(){
-        
+        init: function() {
         },
-        
         initValue: function() {
             let currentDate = new Date();
             let year = currentDate.getFullYear();
@@ -26,12 +24,11 @@
             let dayTo = currentDate.getDate();
             let defaultValue = {
                 dateFrom: new Date(year, monthFrom , '01'),
-                dateTo: new Date( year, monthFrom , dayTo)
+                dateTo: new Date(year, monthFrom , dayTo)
             }
-            this.setDefaultValue(defaultValue); 
+            this.setDefaultValue(defaultValue);
         },
-        destroy(){
-        // console.log('Destroy date filter');
+        destroy() {
         }
     };
 }());

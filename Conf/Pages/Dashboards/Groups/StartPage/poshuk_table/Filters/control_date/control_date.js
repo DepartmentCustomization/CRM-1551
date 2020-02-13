@@ -1,8 +1,8 @@
-(function () {
+(function() {
     return {
-        showTime: true,   
+        showTime: true,
         placeholder: 'Дата перевірка',
-        type: "DateTime",
+        type: 'DateTime',
         stepMinute: 1,
         onItemSelect: function(date) {
             this.yourFunctionName(date);

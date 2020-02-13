@@ -1,4 +1,22 @@
-INSERT INTO [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteAddresses]
+IF NOT EXISTS
+  (SELECT Id FROM [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteAddresses]
+  WHERE ISNULL([ApplicantFromSiteId],0)=ISNULL(@applicant_id,0)
+            AND ISNULL([AddressTypeId],0)=ISNULL(@addresstype_id,0)
+            AND ISNULL([Index],0)=ISNULL(@index,0)
+            AND ISNULL([Country],N'')=ISNULL(@country,N'')
+            AND ISNULL([Region],N'')=ISNULL(@region,N'')
+            AND ISNULL([District],N'')=ISNULL(@district,N'')
+            AND ISNULL([CityName],N'')=ISNULL(@cityname,N'')
+            AND ISNULL([StreetId],0)=ISNULL(@street_id,0)
+            AND ISNULL([StreetName],N'')=ISNULL(@street,N'')
+            AND ISNULL([BuildingId],0)=ISNULL(@building_id,0)
+            AND ISNULL([BuildingName],N'')=ISNULL(@building,N'')
+            AND ISNULL([Flat],N'')=ISNULL(@flat,N'')
+		   )
+
+  BEGIN
+
+  INSERT INTO [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteAddresses]
            ([ApplicantFromSiteId]
            ,[AddressTypeId]
            ,[Index]
@@ -23,4 +41,6 @@ INSERT INTO [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteAddresses]
            ,@street
            ,@building_id
            ,@building
-           ,@flat)
+           ,@flat);
+
+	END

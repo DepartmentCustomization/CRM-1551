@@ -1,6 +1,6 @@
-(function () {
+(function() {
     return {
-        showTime: true,   
+        showTime: true,
         placeholder: 'Дата На продзвон',
         type: 'DateTime',
         stepMinute: 1,

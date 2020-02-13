@@ -1,6 +1,5 @@
 {
   "IsMain": true,
   "Type": "CalendarFilterComponent",
-  "Owner": "date",
-  "Position": 12
+  "Owner": "date"
 }

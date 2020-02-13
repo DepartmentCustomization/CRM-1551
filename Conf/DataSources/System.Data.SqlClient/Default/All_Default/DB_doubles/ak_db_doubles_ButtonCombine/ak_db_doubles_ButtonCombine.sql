@@ -148,7 +148,7 @@ group by replace([ApplicantPhones].[phone_number], N'+38', N''))
 --обновить таблицу [LiveAddress] на нового заявителя и его адресс главный, остальные других выбраных не главные
 /**/
 update [LiveAddress]
-set main=case when applicant_id=@true_applicant_id then 'true' else 'false' end
+set main=case when applicant_id=@true_applicant_id and main='true' then 'true' else 'false' end
 ,applicant_id=@true_applicant_id
 where applicant_id in (select Id from @table_applicant)
 

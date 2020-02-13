@@ -38,6 +38,16 @@
       "Name": "Id",
       "FieldType": "number",
       "Position": 1
+    },
+    {
+      "Code": "api_GorodokClaimsNow",
+      "Name": "api_GorodokClaimsNow",
+      "FieldType": "select",
+      "Position": 1,
+      "QueryCode": "api_GorodokClaimsNow",
+      "KeyColumnCode": "claim_number",
+      "DisplayColumnCode": "claim_number",
+      "QueryParameters": []
     }
   ]
 }

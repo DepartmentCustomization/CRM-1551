@@ -1,6 +1,6 @@
-declare @output table (Id int);
+DECLARE @output TABLE (Id INT);
 
-insert into [CRM_1551_Site_Integration].[dbo].[AppealsFromSite]
+INSERT INTO [CRM_1551_Site_Integration].[dbo].[AppealsFromSite]
   (
 		[ReceiptDate]
       ,[ApplicantFromSiteId]
@@ -12,10 +12,12 @@ insert into [CRM_1551_Site_Integration].[dbo].[AppealsFromSite]
       ,[EditByDate]
       ,[geolocation_lat]
       ,[geolocation_lon]
+      ,[SystemIP]
+      ,[is_verified]
   )
-output [inserted].[Id] into @output (Id)
+OUTPUT [inserted].[Id] INTO @output (Id)
 
-  select
+  SELECT
        GETUTCDATE()
       ,@applicant_from_site_id
       ,@work_direction_type_id
@@ -26,5 +28,7 @@ output [inserted].[Id] into @output (Id)
       ,GETUTCDATE()
       ,@geolocation_lat
       ,@geolocation_lon
+      ,@SystemIP
+      ,@is_verified;
       
-select Id from @output
+SELECT Id FROM @output;

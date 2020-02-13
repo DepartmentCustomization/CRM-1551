@@ -1,0 +1,94 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 0,
+    "IsPrintable": false,
+    "SqlName": "[Elevators].Id",
+    "FilterParameterCode": "@Id"
+  },
+  {
+    "Code": "claim_id",
+    "Name": "claim_id",
+    "Position": 1,
+    "IsPrintable": false
+  },
+  {
+    "Code": "claim_type_name",
+    "Name": "claim_type_name",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "start_from",
+    "Name": "start_from",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "due_to",
+    "Name": "due_to",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "is_profilactic",
+    "Name": "is_profilactic",
+    "Position": 5,
+    "IsPrintable": false
+  },
+  {
+    "Code": "with_people",
+    "Name": "with_people",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "modernization",
+    "Name": "modernization",
+    "Position": 7,
+    "IsPrintable": false
+  },
+  {
+    "Code": "switched_off",
+    "Name": "switched_off",
+    "Position": 8,
+    "IsPrintable": false
+  },
+  {
+    "Code": "entrance",
+    "Name": "entrance",
+    "Position": 9,
+    "IsPrintable": false
+  },
+  {
+    "Code": "name",
+    "Name": "name",
+    "Position": 10,
+    "IsPrintable": false
+  },
+  {
+    "Code": "house_id",
+    "Name": "house_id",
+    "Position": 11,
+    "IsPrintable": false
+  },
+  {
+    "Code": "executor_name",
+    "Name": "executor_name",
+    "Position": 12,
+    "IsPrintable": false
+  },
+  {
+    "Code": "street_name",
+    "Name": "street_name",
+    "Position": 13,
+    "IsPrintable": false
+  },
+  {
+    "Code": "house_name",
+    "Name": "house_name",
+    "Position": 14,
+    "IsPrintable": false
+  }
+]

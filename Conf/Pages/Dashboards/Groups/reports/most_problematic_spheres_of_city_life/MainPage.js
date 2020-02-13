@@ -1,6 +1,6 @@
-(function () {
-  return {
-    init: function () {
-    },
-  };
+(function() {
+    return {
+        init: function() {
+        }
+    };
 }());

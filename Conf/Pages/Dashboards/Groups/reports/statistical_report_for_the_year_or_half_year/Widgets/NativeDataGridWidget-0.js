@@ -1,6 +1,5 @@
-(function () {
+(function() {
     return {
-
         config: {
             query: {
                 code: 'db_Report_7_1',
@@ -12,8 +11,8 @@
             },
             columns: [
                 {
-                caption: 'Кількість звернень',
-                columns: [
+                    caption: 'Кількість звернень',
+                    columns: [
                         {
                             caption: 'усіх',
                             alignment: 'center',
@@ -22,11 +21,11 @@
                                 {
                                     caption: 'previousYear',
                                     dataField: 'qtyPrev',
-                                    alignment: 'center',
+                                    alignment: 'center'
                                 }, {
                                     caption: 'currentYear',
                                     dataField: 'qtyCurrent',
-                                    alignment: 'center',
+                                    alignment: 'center'
                                 }
                             ]
                         }, {
@@ -36,15 +35,13 @@
                                 {
                                     caption: 'previousYear',
                                     dataField: 'qtyMail_prev',
-                                    alignment: 'center',
-                                    
+                                    alignment: 'center'
                                 }, {
                                     caption: 'currentYear',
                                     dataField: 'qtyMail_curr',
-                                    alignment: 'center',
+                                    alignment: 'center'
                                 }
                             ]
-                            
                         }, {
                             caption: 'на особистому прийомі (п. 1.2)*',
                             alignment: 'center',
@@ -52,17 +49,15 @@
                                 {
                                     caption: 'previousYear',
                                     dataField: 'qtyPersonal_prev',
-                                    alignment: 'center',
-                                    
+                                    alignment: 'center'
                                 }, {
                                     caption: 'currentYear',
                                     dataField: 'qtyPersonal_curr',
-                                    alignment: 'center',
+                                    alignment: 'center'
                                 }
-                                
                             ]
-                        },
-                ]
+                        }
+                    ]
                 }, {
                     caption: 'Результати розгляду звернень:',
                     alignment: 'center',
@@ -74,26 +69,25 @@
                                 {
                                     caption: 'previousYear',
                                     dataField: 'qtyPos_prev',
-                                    alignment: 'center',
+                                    alignment: 'center'
                                 }, {
                                     dataField: 'qtyPos_curr',
                                     alignment: 'center',
-                                    caption: 'currentYear',
+                                    caption: 'currentYear'
                                 }
                             ]
                         }, {
-                            
                             caption: 'відмолено у задоволенні (не виконано) п. 9.2',
                             alignment: 'center',
                             columns: [
                                 {
                                     caption: 'previousYear',
                                     dataField: 'qtyNeg_prev',
-                                    alignment: 'center',
+                                    alignment: 'center'
                                 }, {
                                     dataField: 'qtyNeg_curr',
                                     alignment: 'center',
-                                    caption: 'currentYear',
+                                    caption: 'currentYear'
                                 }
                             ]
                         }, {
@@ -103,11 +97,11 @@
                                 {
                                     caption: 'previousYear',
                                     dataField: 'qtyExpl_prev',
-                                    alignment: 'center',
+                                    alignment: 'center'
                                 }, {
                                     dataField: 'qtyExpl_curr',
                                     alignment: 'center',
-                                    caption: 'currentYear',
+                                    caption: 'currentYear'
                                 }
                             ]
                         }, {
@@ -117,11 +111,11 @@
                                 {
                                     caption: 'previousYear',
                                     dataField: 'qtyElse_prev',
-                                    alignment: 'center',
+                                    alignment: 'center'
                                 }, {
                                     dataField: 'qtyElse_curr',
                                     alignment: 'center',
-                                    caption: 'currentYear',
+                                    caption: 'currentYear'
                                 }
                             ]
                         }
@@ -130,46 +124,40 @@
             ],
             keyExpr: 'qtyExpl_prev'
         },
-
         init: function() {
-            this.sub =  this.messageService.subscribe( 'FiltersParams', this.setFilterParams, this );
+            this.sub = this.messageService.subscribe('FiltersParams', this.setFilterParams, this);
             this.config.onContentReady = this.afterRenderTable.bind(this);
         },
-
-        setFilterParams: function (message) {
+        setFilterParams: function(message) {
             this.previousYear = message.previousYear;
             this.currentYear = message.currentYear;
             this.config.query.parameterValues = [
-                {key: '@dateFrom' , value:  message.dateFrom },  
-                {key: '@dateTo', value: message.dateTo } 
+                {key: '@dateFrom' , value:  message.dateFrom },
+                {key: '@dateTo', value: message.dateTo }
             ];
             this.loadData(this.afterLoadDataHandler);
-        }, 
-
+        },
         afterLoadDataHandler: function(data) {
             const name = 'setData';
             const columns = this.config.columns;
             const position = 0;
-            this.messageService.publish( {name, data, columns, position} );
+            this.messageService.publish({name, data, columns, position});
             this.render(this.afterRenderTable());
-        },   
-        
-        afterRenderTable: function (params) {
+        },
+        afterRenderTable: function() {
             this.messageService.publish({ name: 'setStyles'});
             this.setYears();
         },
-
         setYears: function() {
-            this.config.columns.forEach( col => {
-                col.columns.forEach( col => {
+            this.config.columns.forEach(col => {
+                col.columns.forEach(col => {
                     col.columns[0].caption = this.previousYear;
                     col.columns[1].caption = this.currentYear;
                 });
             });
         },
-
         destroy: function() {
             this.sub.unsubscribe();
-        },
+        }
     };
 }());

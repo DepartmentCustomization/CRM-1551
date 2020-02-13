@@ -59,6 +59,12 @@
       "Name": "inn",
       "Position": 8,
       "IsPrintable": false
+    },
+    {
+      "Code": "is_verified",
+      "Name": "is_verified",
+      "Position": 9,
+      "IsPrintable": false
     }
   ],
   "Parameters": [

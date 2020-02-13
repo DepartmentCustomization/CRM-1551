@@ -1,0 +1,14 @@
+{
+    "ModelType": "Query",
+    "Code": "DepartmentUGL_ButtonDel",
+    "Name": "DepartmentUGL_ButtonDel",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Parameters": [
+
+        {
+          "Code": "@Ids",
+          "Name": "Ids"
+        }
+      ]
+  }

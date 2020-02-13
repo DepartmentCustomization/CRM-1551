@@ -1,0 +1,43 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_listService112",
+    "Name": "ak_listService112",
+    "ConnectionCode": "CRM_1551_Emergensy_112",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 0
+      },
+      {
+        "Code": "Name",
+        "Name": "Name",
+        "Position": 1
+      },
+      {
+        "Code": "Service_is",
+        "Name": "Service_is",
+        "Position": 2
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@pageOffsetRows",
+        "Name": "pageOffsetRows",
+        "ParameterType": "Integer",
+        "IsPageOffsetRows": true
+      },
+      {
+        "Code": "@pageLimitRows",
+        "Name": "pageLimitRows",
+        "ParameterType": "Integer",
+        "IsPageLimitRows": true
+      },
+      {
+        "Code": "@Category_Id",
+        "Name": "Category_Id",
+        "ParameterType": "Integer"
+      }
+    ]
+  }

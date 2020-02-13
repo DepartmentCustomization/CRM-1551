@@ -1,4 +1,4 @@
-(function () {
+(function() {
     return {
         title: ' ',
         hint: '',
@@ -49,37 +49,45 @@
             ];
             this.sub = this.messageService.subscribe('getConfig', this.executeQuery, this);
         },
-
-        afterViewInit: function(){
+        afterViewInit: function() {
             const CONTAINER = document.getElementById('container');
-            const tabSpeedDone = this.createElement('div', { id: 'tabSpeedDone', className: 'tab tabHover', innerText: 'Швидкість виконання'});
-            const tabSpeedExplained = this.createElement('div', { id: 'tabSpeedExplained', className: 'tab', innerText: 'Швидкість роз\'яснення'});
+            const tabSpeedDone = this.createElement('div',
+                {
+                    id: 'tabSpeedDone',
+                    className: 'tab tabHover',
+                    innerText: 'Швидкість виконання'
+                }
+            );
+            const tabSpeedExplained = this.createElement('div',
+                {
+                    id: 'tabSpeedExplained',
+                    className: 'tab',
+                    innerText: 'Швидкість роз\'яснення'
+                }
+            );
             const tabFactDone = this.createElement('div', { id: 'tabFactDone', className: 'tab', innerText: 'Фактичне виконання'});
             const tabsWrapper = this.createElement('div', { id: 'tabsWrapper'}, tabSpeedDone, tabSpeedExplained, tabFactDone);
             CONTAINER.appendChild(tabsWrapper);
-
             const tabs = document.querySelectorAll('.tab');
-            tabs.forEach( tab => {
-                tab.addEventListener( 'click', e => {
-                    tabs.forEach( tab => tab.classList.remove('tabHover'));
+            tabs.forEach(tab => {
+                tab.addEventListener('click', e => {
+                    tabs.forEach(tab => tab.classList.remove('tabHover'));
                     let target = e.currentTarget;
                     target.classList.add('tabHover');
-                    this.messageService.publish( {name: 'showTable', tabName: target.id});
+                    this.messageService.publish({name: 'showTable', tabName: target.id});
                 });
             });
         },
-
         createElement: function(tag, props, ...children) {
             const element = document.createElement(tag);
-            Object.keys(props).forEach( key => element[key] = props[key] );
-            if(children.length > 0){
-                children.forEach( child =>{
+            Object.keys(props).forEach(key => element[key] = props[key]);
+            if(children.length > 0) {
+                children.forEach(child =>{
                     element.appendChild(child);
                 });
             } return element;
-        },  
-
-        executeQuery: function (message) {
+        },
+        executeQuery: function(message) {
             this.results = [];
             const tab = message.tab;
             const codeResult = message.codeResult;
@@ -95,19 +103,18 @@
             this.queryExecutor(executeQuery, this.setColumns.bind(this, config, codeResult, tab), this);
             this.showPreloader = false;
         },
-
-        setColumns: function (config, codeResult, tab, data) {
+        setColumns: function(config, codeResult, tab, data) {
             if(data.rows.length) {
                 for (let i = 0; i < data.columns.length; i++) {
                     const element = data.columns[i];
-                    if( element.code !== 'QuestionTypeId') {
+                    if(element.code !== 'QuestionTypeId') {
                         let format = undefined;
                         const width = i === 1 ? 400 : 120;
                         const dataField = element.code;
                         const caption = this.setCaption(element.name);
-                        const columnSliced =  element.name.slice(0, 7);
+                        const columnSliced = element.name.slice(0, 7);
                         if(columnSliced === 'Percent') {
-                            format = function (value) {
+                            format = function(value) {
                                 return value.toFixed(2);
                             }
                         }
@@ -128,40 +135,34 @@
                 this.hidePagePreloader('Зачекайте, завантажуються фiльтри');
             }
         },
-
-        setCaption: function (caption) {
+        setCaption: function(caption) {
             if(caption === 'QuestionTypeName') {
                 return '';
             } else if(caption === 'EtalonDays') {
                 return 'Середнє (еталон)';
-            } else {
-                const id = +caption.slice(-1);
-                const index = this.districts.findIndex(el => el.id === id );
-                return this.districts[index].name;
             }
+            const id = Number(caption.slice(-1));
+            const index = this.districts.findIndex(el => el.id === id);
+            return this.districts[index].name;
         },
-
-        setColumnsSummary: function (config, tab, data) {
+        setColumnsSummary: function(config, tab, data) {
             if(data.rows.length) {
-                 for (let i = 0; i < data.columns.length; i++) {
+                for (let i = 0; i < data.columns.length; i++) {
                     const element = data.columns[i];
-                    const dataField = "Place_" + element.code;
+                    const dataField = 'Place_' + element.code;
                     const value = data.rows[0].values[i];
-                    const dataType = element.dataType;
-
                     let objAvg = {
                         column: dataField,
-                        summaryType: "avg",
+                        summaryType: 'avg',
                         customizeText: function(data) {
                             return data.value.toFixed(2);
-                        },
+                        }
                     }
                     let obj = {
                         column: dataField,
                         name: dataField,
-                        summaryType: "custom"
+                        summaryType: 'custom'
                     }
-                    
                     this.results.push(value);
                     config.summary.totalItems.push(objAvg);
                     config.summary.totalItems.push(obj);
@@ -174,42 +175,41 @@
                 this.hidePagePreloader('Зачекайте, завантажуються фiльтри');
             }
         },
-
-        calculateCustomSummary: function (options) {
+        calculateCustomSummary: function(options) {
             switch (options.name) {
-                case 'Place_2000':
-                    options.totalValue = this.results[0].toFixed(2);
-                    break;
-                case 'Place_2001':
-                    options.totalValue = this.results[1].toFixed(2);
-                    break;
-                case 'Place_2002':
-                    options.totalValue = this.results[2].toFixed(2);
-                    break;
-                case 'Place_2003':
-                    options.totalValue = this.results[3].toFixed(2);
-                    break;
-                case 'Place_2004':
-                    options.totalValue = this.results[4].toFixed(2);
-                    break;
-                case 'Place_2005':
-                    options.totalValue = this.results[5].toFixed(2);
-                    break;
-                case 'Place_2006':
-                    options.totalValue = this.results[6].toFixed(2);
-                    break;
-                case 'Place_2007':
-                    options.totalValue = this.results[7].toFixed(2);
-                    break;
-                case 'Place_2008':
-                    options.totalValue = this.results[8].toFixed(2);
-                    break;
-                case 'Place_2009':
-                    options.totalValue = this.results[9].toFixed(2);
-                    break;
-                default:
-                    break;
+            case 'Place_2000':
+                options.totalValue = this.results[0].toFixed(2);
+                break;
+            case 'Place_2001':
+                options.totalValue = this.results[1].toFixed(2);
+                break;
+            case 'Place_2002':
+                options.totalValue = this.results[2].toFixed(2);
+                break;
+            case 'Place_2003':
+                options.totalValue = this.results[3].toFixed(2);
+                break;
+            case 'Place_2004':
+                options.totalValue = this.results[4].toFixed(2);
+                break;
+            case 'Place_2005':
+                options.totalValue = this.results[5].toFixed(2);
+                break;
+            case 'Place_2006':
+                options.totalValue = this.results[6].toFixed(2);
+                break;
+            case 'Place_2007':
+                options.totalValue = this.results[7].toFixed(2);
+                break;
+            case 'Place_2008':
+                options.totalValue = this.results[8].toFixed(2);
+                break;
+            case 'Place_2009':
+                options.totalValue = this.results[9].toFixed(2);
+                break;
+            default:
+                break;
             }
-        },
+        }
     };
 }());

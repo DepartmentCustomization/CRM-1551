@@ -1,9 +1,9 @@
-(function () {
-  return {
-            title: ' ',
-            hint: '',
-            formatTitle: function() {},
-            customConfig:
+(function() {
+    return {
+        title: ' ',
+        hint: '',
+        formatTitle: function() {},
+        customConfig:
                         `
                         <style>
                         #reportTitle{
@@ -15,15 +15,15 @@
                         
                         <div id='reportTitle'></div>
                         `
-            ,
-            init: function() {
-            },
-            afterViewInit: function(data) {
-                const reportTitle = document.getElementById('reportTitle');
-                const organizationNameInput = document.createElement('span');
-                organizationNameInput.innerText = 'Індекс задоволеності клієнтів (CSI)';
-                reportTitle.appendChild(organizationNameInput);
-                organizationNameInput.id = 'organizationName';
-            }
-        };
+        ,
+        init: function() {
+        },
+        afterViewInit: function() {
+            const reportTitle = document.getElementById('reportTitle');
+            const organizationNameInput = document.createElement('span');
+            organizationNameInput.innerText = 'Індекс задоволеності клієнтів (CSI)';
+            reportTitle.appendChild(organizationNameInput);
+            organizationNameInput.id = 'organizationName';
+        }
+    };
 }());

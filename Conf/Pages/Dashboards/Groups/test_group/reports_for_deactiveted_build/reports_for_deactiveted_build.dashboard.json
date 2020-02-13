@@ -1,8 +1,0 @@
-{
-  "DashboardGroupCode": "test_group",
-  "Description": "",
-  "DescriptionUrl": "",
-  "ModelType": "Dashboard",
-  "Code": "reports_for_deactiveted_build",
-  "Name": "Звіт щодо кількості відключених будинків по комунальним послугам "
-}

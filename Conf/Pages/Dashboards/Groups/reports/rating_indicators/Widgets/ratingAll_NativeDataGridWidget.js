@@ -1,4 +1,4 @@
-(function () {
+(function() {
     return {
         config: {
             query: {
@@ -15,7 +15,7 @@
                     caption: 'Назва установи',
                     fixed: true,
                     width: 200
-                }, {    
+                }, {
                     caption: 'Зареєстровано, В роботі, На доопрацюванні, На перевірці за попередній період',
                     alignItems: 'middle',
                     columns: [
@@ -24,64 +24,64 @@
                             caption: 'Всього'
                         }, {
                             dataField: 'PreviousPeriod_Registered',
-                            caption: 'Зареєстровано',
+                            caption: 'Зареєстровано'
                         }, {
                             dataField: 'PreviousPeriod_InTheWorks',
-                            caption: 'В роботі',
+                            caption: 'В роботі'
                         }, {
                             dataField: 'PreviousPeriod_InTest',
-                            caption: 'На перевірці',
+                            caption: 'На перевірці'
                         }, {
                             dataField: 'PreviousPeriod_ForRevision',
-                            caption: 'На доопрацюванні',
+                            caption: 'На доопрацюванні'
                         }, {
                             dataField: 'PreviousPeriod_Closed',
-                            caption: 'Закрито',
-                        } 
+                            caption: 'Закрито'
+                        }
                     ]
                 }, {
                     dataField: 'CurrentMonth_Total',
-                    caption: 'Загальна кількість звернень за поточний місяць',
+                    caption: 'Загальна кількість звернень за поточний місяць'
                 }, {
                     caption: 'За поточний місяць',
                     alignItems: 'middle',
                     columns: [
                         {
                             dataField: 'CurrentMonth_Registered',
-                            caption: 'Зареєстровано',
+                            caption: 'Зареєстровано'
                         }, {
                             dataField: 'CurrentMonth_InTheWorks',
-                            caption: 'В роботі',
+                            caption: 'В роботі'
                         }, {
                             dataField: 'CurrentMonth_InTest',
-                            caption: 'На перевірці',
+                            caption: 'На перевірці'
                         }, {
                             dataField: 'CurrentMonth_ForRevision',
-                            caption: 'На доопрацюванні',
+                            caption: 'На доопрацюванні'
                         }, {
                             dataField: 'CurrentMonth_Closed',
-                            caption: 'Закрито',
-                        } 
+                            caption: 'Закрито'
+                        }
                     ]
                 }, {
                     dataField: 'OfThem_Registered',
-                    caption: 'з них, Зареєстровано',
+                    caption: 'з них, Зареєстровано'
                 }, {
                     dataField: 'OfThem_AtWork',
-                    caption: 'з них, В роботі',
+                    caption: 'з них, В роботі'
                 }, {
                     caption: 'На перевірці',
                     alignItems: 'middle',
                     columns: [
                         {
                             dataField: 'OnTest_Done',
-                            caption: 'Виконано',
+                            caption: 'Виконано'
                         }, {
                             dataField: 'OnTest_Explained',
-                            caption: 'Роз\'яснено',
+                            caption: 'Роз\'яснено'
                         }, {
                             dataField: 'OnTest_CannotBeExecutedAtThisTime',
-                            caption: 'Не можливо виконанти в даний період',
+                            caption: 'Не можливо виконанти в даний період'
                         }
                     ]
                 }, {
@@ -90,34 +90,34 @@
                     columns: [
                         {
                             dataField: 'ResultOfExecution_Done',
-                            caption: 'Виконано',
+                            caption: 'Виконано'
                         }, {
                             dataField: 'ResultOfExecution_Explained',
-                            caption: 'Роз\'яснено',
+                            caption: 'Роз\'яснено'
                         }, {
                             dataField: 'ResultOfExecution_Others',
-                            caption: 'Інші',
+                            caption: 'Інші'
                         }
                     ]
                 }, {
                     dataField: 'ForRevision_All',
-                    caption: 'На доопрацювання (Всього)',
+                    caption: 'На доопрацювання (Всього)'
                 }, {
                     dataField: 'ForRevision_Total',
-                    caption: 'На доопрацювання (прозвон)',
+                    caption: 'На доопрацювання (прозвон)'
                 }, {
                     caption: 'На доопрацювання (прозвон)',
                     alignItems: 'middle',
                     columns: [
                         {
                             dataField: 'ForRevision_1Time',
-                            caption: '1 раз',
+                            caption: '1 раз'
                         }, {
                             dataField: 'ForRevision_2Times',
-                            caption: '2 рази',
+                            caption: '2 рази'
                         }, {
                             dataField: 'ForRevision_3AndMore',
-                            caption: '3 і більше',
+                            caption: '3 і більше'
                         }
                     ]
                 }, {
@@ -126,68 +126,68 @@
                     columns: [
                         {
                             dataField: 'ViewedByArtist_Total',
-                            caption: 'Всі',
+                            caption: 'Всі'
                         }, {
                             dataField: 'ViewedByArtist_WrongTime',
-                            caption: 'Не вчасно',
+                            caption: 'Не вчасно'
                         }
                     ]
                 }, {
                     dataField: 'PercentClosedOnTime',
                     caption: '% вчасно закритих',
-                    format: function (value) { 
+                    format: function(value) {
                         return value.toFixed(2);
                     }
                 }, {
                     dataField: 'PercentOfExecution',
                     caption: '% виконання',
-                    format: function (value) { 
+                    format: function(value) {
                         return value.toFixed(2);
                     }
                 }, {
                     dataField: 'PercentOnVeracity',
                     caption: '% достовірності',
-                    format: function (value) { 
+                    format: function(value) {
                         return value.toFixed(2);
                     }
                 }, {
                     dataField: 'IndexOfSpeedToExecution',
                     caption: 'Індекс швидкості виконання',
-                    format: function (value) { 
+                    format: function(value) {
                         return value.toFixed(2);
                     }
                 }, {
                     dataField: 'IndexOfSpeedToExplain',
                     caption: 'Індекс швидкості роз\'яснення',
-                    format: function (value) { 
+                    format: function(value) {
                         return value.toFixed(2);
                     }
                 }, {
                     dataField: 'IndexOfFactToExecution',
                     caption: 'Індекс фактичного виконання',
-                    format: function (value) { 
+                    format: function(value) {
                         return value.toFixed(2);
                     }
                 }, {
                     dataField: 'PercentPleasureOfExecution',
                     caption: '% задоволеність виконанням',
-                    format: function (value) { 
+                    format: function(value) {
                         return value.toFixed(2);
                     }
                 }, {
                     dataField: 'IntegratedMetric_PerformanceLevel',
                     caption: 'Рівень виконання',
-                    format: function (value) { 
+                    format: function(value) {
                         return value.toFixed(2);
                     }
-                }    
+                }
             ],
             columnChooser: {
                 enabled: true
             },
             sorting: {
-                mode: "multiple"
-            },   
+                mode: 'multiple'
+            },
             showBorders: false,
             showColumnLines: true,
             showRowLines: true,
@@ -207,14 +207,14 @@
         },
         init: function() {
             let msg = {
-                name: "SetFilterPanelState",
+                name: 'SetFilterPanelState',
                 package: {
                     value: true
                 }
             };
             this.messageService.publish(msg);
-            this.sub = this.messageService.subscribe( 'FiltersParams', this.setFiltersParams, this );
-            this.sub1 = this.messageService.subscribe( 'ApplyGlobalFilters', this.renderTable, this );
+            this.sub = this.messageService.subscribe('FiltersParams', this.setFiltersParams, this);
+            this.sub1 = this.messageService.subscribe('ApplyGlobalFilters', this.renderTable, this);
             this.dataGridInstance.onCellClick.subscribe(e => {
                 e.event.stopImmediatePropagation();
                 if(e.column) {
@@ -233,31 +233,54 @@
                         const ratingid = e.data.RatingId;
                         const columncode = e.column.dataField;
                         const date = this.date;
-                        const string = 'rdaid='+rdaid+'&ratingid='+ratingid+'&columncode='+columncode+'&date='+date;
-                        window.open(location.origin + localStorage.getItem('VirtualPath') + "/dashboard/page/district_rating_indicator?"+string);
+                        const string = 'rdaid=' + rdaid + '&ratingid=' + ratingid + '&columncode=' + columncode + '&date=' + date;
+                        window.open(
+                            location.origin +
+                            localStorage.getItem('VirtualPath') +
+                            '/dashboard/page/district_rating_indicator?' +
+                            string
+                        );
                     }
                     if (e.row !== undefined && e.column.dataField === 'IntegratedMetric_PerformanceLevel') {
                         this.showPagePreloader('');
                         this.messageService.publish({ name: 'showInfo'});
                     }
-                    if (e.column.dataField == 'RDAName') {
+                    if (e.row !== undefined &&
+                        (
+                            e.column.dataField === 'IndexOfSpeedToExecution' ||
+                            e.column.dataField === 'IndexOfSpeedToExplain' ||
+                            e.column.dataField === 'IndexOfFactToExecution'
+                        )
+                    ) {
+                        window.open(
+                            location.origin +
+                            localStorage.getItem('VirtualPath') +
+                            '/dashboard/page/rating_indexes'
+                        );
+                    }
+                    if (e.column.dataField === 'RDAName') {
                         let rdaid = e.data.RDAId;
                         let ratingid = e.data.RatingId;
                         let date = this.date;
-                        let string = 'RDAId='+rdaid+'&RatingId='+ratingid+'&DateCalc='+date;
-                        window.open(location.origin + localStorage.getItem('VirtualPath') + "/dashboard/page/rating_indicators_detail?"+string);
+                        let string = 'RDAId=' + rdaid + '&RatingId=' + ratingid + '&DateCalc=' + date;
+                        window.open(
+                            location.origin +
+                            localStorage.getItem('VirtualPath') +
+                            '/dashboard/page/rating_indicators_detail?' +
+                            string
+                        );
                     }
                 }
             });
-            this.config.columns.forEach( col => {
-                function setColStyles(col){
-                    col.width = col.dataField === "RDAName" ? '200' : '120';
+            this.config.columns.forEach(col => {
+                function setColStyles(col) {
+                    col.width = col.dataField === 'RDAName' ? '200' : '120';
                     col.alignment = 'center';
                     col.verticalAlignment = 'Bottom';
                 }
-                if(col.columns){
+                if(col.columns) {
                     setColStyles(col);
-                    col.columns.forEach( col => setColStyles(col));
+                    col.columns.forEach(col => setColStyles(col));
                 }else{
                     setColStyles(col);
                 }
@@ -265,35 +288,35 @@
             this.config.onContentReady = this.onMyContentReady.bind(this);
             this.config.onToolbarPreparing = this.createTableButton.bind(this);
         },
-        setFiltersParams: function (message) {
+        setFiltersParams: function(message) {
             this.date = message.date;
             this.executor = message.executor;
             this.rating = message.rating;
-            this.config.query.parameterValues = [ 
+            this.config.query.parameterValues = [
                 {key: '@DateCalc' , value: this.date },
                 {key: '@RDAId', value: this.executor },
                 {key: '@RatingId', value: this.rating }
             ];
         },
-        renderTable: function () {
+        renderTable: function() {
             let msg = {
-                name: "SetFilterPanelState",
+                name: 'SetFilterPanelState',
                 package: {
                     value: false
                 }
             };
             this.messageService.publish(msg);
             this.loadData(this.afterLoadDataHandler);
-        }, 
-        createTableButton: function (e) {
+        },
+        createTableButton: function(e) {
             let toolbarItems = e.toolbarOptions.items;
             toolbarItems.push({
-                widget: "dxButton", 
-                location: "after",
-                options: { 
-                    icon: "exportxlsx",
-                    type: "default",
-                    text: "Excel",
+                widget: 'dxButton',
+                location: 'after',
+                options: {
+                    icon: 'exportxlsx',
+                    type: 'default',
+                    text: 'Excel',
                     onClick: function(e) {
                         e.event.stopImmediatePropagation();
                         let exportQuery = {
@@ -304,10 +327,10 @@
                         this.queryExecutor(exportQuery, this.myCreateExcel, this);
                         this.showPreloader = false;
                     }.bind(this)
-                },
+                }
             });
         },
-        myCreateExcel: function (data) {
+        myCreateExcel: function(data) {
             this.showPagePreloader('Зачекайте, формується документ');
             let visibleColumns = this.visibleColumns;
             this.columnsWithoutSub = [];
@@ -315,7 +338,7 @@
             let worksheet = workbook.addWorksheet('Заявки', {
                 pageSetup:{
                     orientation: 'landscape',
-                    fitToPage: false,
+                    fitToPage: false
                 }
             });
             worksheet.pageSetup.margins = {
@@ -337,7 +360,7 @@
             worksheet.getRow(2).font = { name: 'Times New Roman', family: 4, size: 16, underline: false, bold: true , italic: false};
             worksheet.getRow(2).alignment = { vertical: 'middle', horizontal: 'center' };
             let captions = [];
-            let columnsHeader = [];      
+            let columnsHeader = [];
             for (let i = 0; i < visibleColumns.length; i++) {
                 let column = visibleColumns[i];
                 let caption = column.caption;
@@ -347,7 +370,7 @@
                 let width = 15;
                 let index = 10;
                 let columnProp = { header, key, width, index };
-                columnsHeader.push(columnProp);    
+                columnsHeader.push(columnProp);
             }
             worksheet.columns = columnsHeader;
             worksheet.getRow(5).values = captions;
@@ -364,12 +387,12 @@
             for (let i = 0; i < this.config.columns.length; i++) {
                 let column = this.config.columns[i];
                 let colCaption = column.caption;
-                if( !column.dataField ) {
-                    column.columns.forEach( col => {
+                if(!column.dataField) {
+                    column.columns.forEach(col => {
                         let length = 0;
                         let colIndexTo = 0;
-                        if(this.subColumnCaption.length > 0){
-                            if(this.subColumnCaption[this.subColumnCaption.length - 1].colCaption !== colCaption){
+                        if(this.subColumnCaption.length > 0) {
+                            if(this.subColumnCaption[this.subColumnCaption.length - 1].colCaption !== colCaption) {
                                 let obj = {
                                     colCaption,
                                     length,
@@ -406,35 +429,35 @@
             for (let i = 0; i < visibleColumns.length; i++) {
                 const visCol = visibleColumns[i];
                 let df = visCol.dataField;
-                let index = this.allColumns.findIndex( el => el.dataField === df ); 
+                let index = this.allColumns.findIndex(el => el.dataField === df);
                 resultColumns.push(this.allColumns[index]);
             }
             for (let i = 0; i < resultColumns.length; i++) {
                 const resCol = resultColumns[i];
-                const colIndexTo = i+1;
-                let indexCaptionFrom ;
-                if( resCol.isSub === true ){
+                const colIndexTo = i + 1;
+                let indexCaptionFrom;
+                if(resCol.isSub === true) {
                     if(this.subColumnCaption.length > 0) {
                         let group = this.subColumnCaption[resCol.index];
-                        if(group.colCaption === resCol.caption){
-                            group.length ++;
+                        if(group.colCaption === resCol.caption) {
+                            group.length++;
                             group.colIndexTo = colIndexTo;
                         }
                     }
                     indexCaptionFrom = 5;
                 }else{
-                    let caption = resCol.caption;        
+                    let caption = resCol.caption;
                     let column = { caption, colIndexTo }
                     indexCaptionFrom = 4;
                     this.columnsWithoutSub.push(column);
                 }
-                worksheet.mergeCells(indexCaptionFrom, colIndexTo, 5, colIndexTo );
+                worksheet.mergeCells(indexCaptionFrom, colIndexTo, 5, colIndexTo);
             }
-            this.subColumnCaption.forEach( col => {
+            this.subColumnCaption.forEach(col => {
                 let indexFrom = col.colIndexTo - col.length + 1;
                 let indexTo = col.colIndexTo;
-                if( col.length > 0 ){
-                    worksheet.mergeCells( 4, indexFrom, 4, indexTo );
+                if(col.length > 0) {
+                    worksheet.mergeCells(4, indexFrom, 4, indexTo);
                     let caption = worksheet.getCell(4, indexFrom);
                     caption.value = col.colCaption;
                 }
@@ -449,7 +472,7 @@
                 let rowValues = [];
                 for (let j = 0; j < resultColumns.length; j++) {
                     const element = resultColumns[j];
-                    let index = data.columns.findIndex(el => el.code === element.dataField );
+                    let index = data.columns.findIndex(el => el.code === element.dataField);
                     rowValues[j] = rowData.values[index];
                 }
                 worksheet.addRow(rowValues);
@@ -459,12 +482,12 @@
         afterLoadDataHandler: function() {
             this.render();
         },
-        onMyContentReady: function () {
+        onMyContentReady: function() {
             this.visibleColumns = this.dataGridInstance.instance.getVisibleColumns();
         },
-        destroy: function () {
+        destroy: function() {
             this.sub.unsubscribe();
             this.sub1.unsubscribe();
-        },
+        }
     };
 }());

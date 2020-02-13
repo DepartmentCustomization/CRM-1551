@@ -1,4 +1,4 @@
-(function () {
+(function() {
     return {
         placeholder: 'Дата з початку року',
         type: 'Date',
@@ -20,16 +20,13 @@
             let year = currentDate.getFullYear();
             let monthFrom = currentDate.getMonth();
             let dayTo = currentDate.getDate();
-            
             let defaultValue = {
-                // убрать  - 1 
-                    dateFrom: new Date(year, 0, '01'),
-                    dateTo: new Date( year, monthFrom , dayTo)
-                }
-            this.setDefaultValue(defaultValue); 
+                dateFrom: new Date(year, 0, '01'),
+                dateTo: new Date(year, monthFrom , dayTo)
+            }
+            this.setDefaultValue(defaultValue);
         },
-        destroy(){
-        // console.log('Destroy date filter');
+        destroy() {
         }
     };
 }());

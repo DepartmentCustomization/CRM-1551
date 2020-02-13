@@ -1,4 +1,4 @@
-(function () {
+(function() {
     return {
         config: {
             query: {
@@ -13,9 +13,8 @@
                 {
                     dataField: 'source',
                     caption: ' ',
-                    width: 200,
-                    
-                }, 
+                    width: 200
+                },
                 {
                     caption: 'у тому числі питання:',
                     columns: [
@@ -28,9 +27,8 @@
                                     caption: 'previousYear',
                                     dataField: 'prevReligy',
                                     alignment: 'center',
-                                    
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }, {
@@ -38,7 +36,7 @@
                                     dataField: 'curReligy',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }
@@ -52,7 +50,7 @@
                                     dataField: 'prevCentralExecutePower',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }, {
@@ -60,7 +58,7 @@
                                     dataField: 'curCentralExecutePower',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }
@@ -74,7 +72,7 @@
                                     dataField: 'prevLocalExecutePower',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }, {
@@ -82,7 +80,7 @@
                                     dataField: 'curLocalExecutePower',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }
@@ -96,7 +94,7 @@
                                     dataField: 'prevLocalMunicipalitet',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }, {
@@ -104,7 +102,7 @@
                                     dataField: 'curLocalMunicipalitet',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }
@@ -118,7 +116,7 @@
                                     dataField: 'prevStateConstruction',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }, {
@@ -126,7 +124,7 @@
                                     dataField: 'curStateConstruction',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }
@@ -140,7 +138,7 @@
                                     dataField: 'prevOther',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }, {
@@ -148,7 +146,7 @@
                                     dataField: 'curOther',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }
@@ -162,7 +160,7 @@
                                     dataField: 'prevEmployees',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }, {
@@ -170,50 +168,44 @@
                                     dataField: 'curEmployees',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }
                             ]
                         }
                     ]
-                }, 
-                
+                }
             ],
             keyExpr: 'source'
         },
-        
         init: function() {
-            this.sub =  this.messageService.subscribe( 'FiltersParams', this.setFilterParams, this );
+            this.sub = this.messageService.subscribe('FiltersParams', this.setFilterParams, this);
             this.config.onContentReady = this.afterRenderTable.bind(this);
         },
-
-        setFilterParams: function (message) {
+        setFilterParams: function(message) {
             this.config.query.parameterValues = [
-                {key: '@dateFrom' , value:  message.dateFrom },  
-                {key: '@dateTo', value: message.dateTo } 
+                {key: '@dateFrom' , value:  message.dateFrom },
+                {key: '@dateTo', value: message.dateTo }
             ];
             this.loadData(this.afterLoadDataHandler);
-        }, 
-
+        },
         afterLoadDataHandler: function(data) {
             const name = 'setData';
             const columns = this.config.columns;
             const position = 4;
-            this.messageService.publish( {name, data, columns, position} );
+            this.messageService.publish({name, data, columns, position});
             this.render(this.afterRenderTable());
-        },   
-
-        afterRenderTable: function (params) {
+        },
+        afterRenderTable: function() {
             this.messageService.publish({ name: 'setStyles'});
             this.messageService.publish({
                 name: 'setYears',
                 columns: this.config.columns[1].columns
             });
         },
-
         destroy: function() {
             this.sub.unsubscribe();
-        },
+        }
     };
 }());

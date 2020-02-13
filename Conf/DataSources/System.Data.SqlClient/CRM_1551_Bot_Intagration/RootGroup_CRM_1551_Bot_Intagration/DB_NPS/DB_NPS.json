@@ -1,0 +1,6 @@
+{
+    "ModelType": "QueryGroup",
+    "Code": "DB_NPS",
+    "Name": "Індекс лояльності клієнтів (NPS)",
+    "ConnectionCode": "CRM_1551_Bot_Integration"
+  }

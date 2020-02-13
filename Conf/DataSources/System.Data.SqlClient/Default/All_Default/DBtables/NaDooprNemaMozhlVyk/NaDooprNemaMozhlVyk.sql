@@ -4,32 +4,64 @@
  declare @navigation nvarchar(400)=N'Усі';
  declare @column nvarchar(400)=N'На доопрацюванні';
 */
- declare @comment_naDoopr nvarchar(6)=(select case when @column=N'На доопрацюванні' then N' ' else N'--' end);
- declare @comment_planProg nvarchar(6)=(select case when @column=N'План/Програма' then N' ' else N'--' end);
- 
 
-declare @NavigationTable table(Id nvarchar(400));
+IF EXISTS (SELECT orr.*
+  FROM [dbo].[OrganizationInResponsibilityRights] orr
+  INNER JOIN dbo.Positions p ON orr.position_id=P.Id
+  WHERE orr.organization_id=@organization_Id 
+  AND P.programuser_id=@user_id)
 
-if @navigation=N'Усі'
-	begin
-		insert into @NavigationTable (Id)
-		select N'Інші доручення' n union all select N'УГЛ' n union all
-		select N'Зауваження' n union all select N'Електронні джерела' n union all select N'Пріоритетне'
-	end 
-else 
-	begin
-		insert into @NavigationTable (Id)
-		select @navigation
-	end;
-
-	declare @IdS nvarchar(max)=
-
- (select stuff(
- (select N','+N''''+Id+'''' from @NavigationTable
- for xml path('')),1,1,''));
+	BEGIN
+		DECLARE @comment_naDoopr NVARCHAR(6) = (SELECT
+		CASE
+			WHEN @column = N'На доопрацюванні' THEN N' '
+			ELSE N'--'
+		END);
+DECLARE @comment_planProg NVARCHAR(6) = (SELECT
+		CASE
+			WHEN @column = N'План/Програма' THEN N' '
+			ELSE N'--'
+		END);
 
 
-declare @qcode nvarchar(max)=N'
+DECLARE @NavigationTable TABLE (
+	Id NVARCHAR(400)
+);
+
+IF @navigation = N'Усі'
+BEGIN
+	INSERT INTO @NavigationTable (Id)
+		SELECT
+			N'Інші доручення' n
+		UNION ALL
+		SELECT
+			N'УГЛ' n
+		UNION ALL
+		SELECT
+			N'Зауваження' n
+		UNION ALL
+		SELECT
+			N'Електронні джерела' n
+		UNION ALL
+		SELECT
+			N'Пріоритетне';
+END
+ELSE
+BEGIN
+	INSERT INTO @NavigationTable (Id)
+		SELECT
+			@navigation;
+END;
+
+DECLARE @IdS NVARCHAR(MAX) = (SELECT
+		STUFF((SELECT
+				N',' + N'''' + Id + ''''
+			FROM @NavigationTable
+			FOR XML PATH (''))
+		, 1, 1, ''));
+
+
+DECLARE @qcode NVARCHAR(MAX) = N'
 
   
  with
@@ -39,7 +71,7 @@ declare @qcode nvarchar(max)=N'
   (
   select Id
   from [Assignments] with (nolock)
-  where assignment_state_id=5 and AssignmentResultsId=7 and [executor_organization_id]='+ltrim(@organization_id)+N'
+  where assignment_state_id=5 and AssignmentResultsId=7 and [executor_organization_id]=' + LTRIM(@organization_id) + N'
   ), 
   end_state as
   (
@@ -148,8 +180,8 @@ group by AssignmentConsiderations.assignment_id) rework_counter on Assignments.I
 
 where 
 
- '+@comment_naDoopr+N'[Assignments].[executor_organization_id]='+ltrim(@organization_id)+N' and ([AssignmentStates].code=N''NotFulfilled'' and ([AssignmentResults].code=N''ForWork'' or [AssignmentResults].code=N''Actually''))
- '+@comment_planProg+N' end_result.assignment_id is not null and end_result.assignment_id is not null and [Questions].event_id is null
+ ' + @comment_naDoopr + N'[Assignments].[executor_organization_id]=' + LTRIM(@organization_id) + N' and ([AssignmentStates].code=N''NotFulfilled'' and ([AssignmentResults].code=N''ForWork'' or [AssignmentResults].code=N''Actually''))
+ ' + @comment_planProg + N' end_result.assignment_id is not null and end_result.assignment_id is not null and [Questions].event_id is null
  
 ),
 
@@ -162,14 +194,16 @@ select 1 Id, N''УГЛ'' name union all select 2 Id, N''Електронні д�
 select /*ROW_NUMBER() over(order by registration_number)*/ main.Id, registration_number, QuestionType, zayavnyk, adress, control_date, zayavnykId,
 zayavnyk_adress, zayavnyk_zmist, short_answer, rework_counter, balans_name
  from main where --navigation, registration_number, from main
-  navigation in ('+@Ids+N')
+  navigation in (' + @IdS + N')
  order by case when rework_counter=2 then 1 else 2 end, Id'
 
- exec(@qcode)
+EXEC (@qcode);
+	END
 
- /*
-select ar.*
-  FROM [CRM_1551_Analitics].[dbo].[AssignmentConsiderations] ac
-  inner join AssignmentRevisions ar on ac.Id=ar.assignment_consideration_іd
-  where ac.assignment_id=2811173
- */
+ELSE
+	
+	BEGIN
+   SELECT 1 Id, NULL  registration_number, NULL  QuestionType, NULL  zayavnyk, NULL  adress, NULL  control_date, NULL  zayavnykId, NULL 
+zayavnyk_adress, NULL  zayavnyk_zmist, NULL  short_answer, NULL  rework_counter, NULL  balans_name
+   WHERE 1=3;
+	END

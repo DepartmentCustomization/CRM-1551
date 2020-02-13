@@ -92,7 +92,7 @@
     {
       "Code": "Question_ControlDate",
       "Name": "Дата Контролю",
-      "FieldType": "text",
+      "FieldType": "date-time",
       "Position": 7
     },
     {

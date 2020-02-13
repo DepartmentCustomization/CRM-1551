@@ -15,7 +15,9 @@
       "Code": "name",
       "Name": "name",
       "Position": 1,
-      "IsPrintable": false
+      "IsPrintable": false,
+      "SqlName": "CONCAT([LastName], ' ', [FirstName], ' ', [Patronymic])",
+      "FilterParameterCode": "@name"
     }
   ],
   "Parameters": [

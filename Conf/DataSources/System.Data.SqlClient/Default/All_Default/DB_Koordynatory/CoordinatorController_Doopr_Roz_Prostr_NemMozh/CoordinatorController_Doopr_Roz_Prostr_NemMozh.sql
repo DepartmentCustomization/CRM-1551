@@ -1,82 +1,116 @@
 /*
-declare @navigation nvarchar(400)=N'Усі';
-declare @column nvarchar(400)=N'Прострочені';--N'План / Програма';
-declare @user_id nvarchar(128)=N'29796543-b903-48a6-9399-4840f6eac396';
+DECLARE @navigation NVARCHAR(400)=N'Усі';
+DECLARE @column NVARCHAR(400)=N'Прострочені';--N'План / Програма';
+DECLARE @user_id NVARCHAR(128)=N'29796543-b903-48a6-9399-4840f6eac396';
 */
 
-declare @comment_ros nvarchar(6)=(select case when @column=N'Роз`яcнено' then N' ' else N'--' end);
-declare @comment_doopr nvarchar(6)=(select case when @column=N'Доопрацьовані' then N' ' else N'--' end);
-declare @comment_prostr nvarchar(6)=(select case when @column=N'Прострочені' then N' ' else N'--' end);
-declare @comment_nemozh nvarchar(6)=(select case when @column=N'План / Програма' then N' ' else N'--' end);
+DECLARE @comment_ros NVARCHAR(6) = (SELECT
+		CASE
+			WHEN @column = N'Роз`яcнено' THEN N' '
+			ELSE N'--'
+		END);
+DECLARE @comment_doopr NVARCHAR(6) = (SELECT
+		CASE
+			WHEN @column = N'Доопрацьовані' THEN N' '
+			ELSE N'--'
+		END);
+DECLARE @comment_prostr NVARCHAR(6) = (SELECT
+		CASE
+			WHEN @column = N'Прострочені' THEN N' '
+			ELSE N'--'
+		END);
+DECLARE @comment_nemozh NVARCHAR(6) = (SELECT
+		CASE
+			WHEN @column = N'План / Програма' THEN N' '
+			ELSE N'--'
+		END);
 
 
-declare @question_type_ids nvarchar(max);
-declare @rda_ids nvarchar(max);
-declare @department_ids nvarchar(max);
-declare @rda_question_type_ids nvarchar(max);
-declare @filters nvarchar(max);
+DECLARE @question_type_ids NVARCHAR(MAX);
+DECLARE @rda_ids NVARCHAR(MAX);
+DECLARE @department_ids NVARCHAR(MAX);
+DECLARE @rda_question_type_ids NVARCHAR(MAX);
+DECLARE @filters NVARCHAR(MAX);
 
-  declare @role0 nvarchar(500)=
-  (select [Roles].name
-  from [Positions] with (nolock)
-  left join [Roles] with (nolock) on [Positions].role_id=[Roles].Id
-  where [Positions].programuser_id=@user_id);
+DECLARE @role0 NVARCHAR(500) = (SELECT
+		[Roles].Name
+	FROM [Positions] [Positions] WITH (NOLOCK)
+	LEFT JOIN [Roles] [Roles] WITH (NOLOCK)
+		ON [Positions].role_id = [Roles].Id
+	WHERE [Positions].programuser_id = @user_id);
 
-  declare @role nvarchar(500)=case when @role0 is null then N'qqqq' else @role0 end 
-
-
-set @question_type_ids=(
-
-select stuff((
-select 
-N'or ( '+case 
-when [FiltersForControler].questiondirection_id=0 then N'1=1'
---when [QuestionTypesAndParent].QuestionTypes is null then N'1=2'
-else N'[QuestionTypes].Id in ('+[QuestionTypesAndParent].QuestionTypes+N') ' end+ 
-
-case 
-when [FiltersForControler].district_id=0 then N'1=1'
---when [OrganizationsAndParent].Organizations is null then N'1=2'
-else N' and [Organizations].Id in ('+[OrganizationsAndParent].Organizations+N')' end+N' )'
-  from [FiltersForControler] with (nolock)
-  left join [QuestionTypesAndParent] with (nolock) on [FiltersForControler].questiondirection_id=[QuestionTypesAndParent].ParentId
-  left join [OrganizationsAndParent] with (nolock) on [FiltersForControler].district_id=[OrganizationsAndParent].ParentId
-  where [FiltersForControler].user_id=@user_id
-  for xml path('')),1,3,N'')
-  )
-  
- -- select @question_type_ids
-
-  set @department_ids =(
-  select stuff(
-  (
-  select N' or [Organizations].Id in ('+[OrganizationsAndParent].Organizations+')'
-    from [FiltersForControler] with (nolock)
-  inner join [OrganizationsAndParent] with (nolock) on [FiltersForControler].organization_id=[OrganizationsAndParent].ParentId
-  where [FiltersForControler].user_id=@user_id
-  for xml path('')),1,4,N'')
-  )
-  
-
-  set @filters=(
-  select N'('+
-  case when @question_type_ids is null then N'(1=2)' else N'('+@question_type_ids+N')' end+ 
-  case when @department_ids is null then N' or (1=2)' else N' or ('+@department_ids+N')' end)+N')';
-
-declare @navigation1 nvarchar(400)=(select case when @navigation=N'Усі' then N'(N''Інші доручення'', N''УГЛ'', N''Зауваження'', N''Електронні джерела'', N''Пріоритетне'')' else N'(N'''+@navigation+N''')' end)
+DECLARE @role NVARCHAR(500) = CASE
+	WHEN @role0 IS NULL THEN N'qqqq'
+	ELSE @role0
+END;
 
 
-declare @exec1 nvarchar(max)=N'
+SET @question_type_ids = (SELECT
+		STUFF((SELECT
+				N'or ( ' +
+				CASE
+					WHEN [FiltersForControler].questiondirection_id = 0 THEN N'1=1'
+					--when [QuestionTypesAndParent].QuestionTypes is null then N'1=2'
+					ELSE N'[QuestionTypes].Id in (' + [QuestionTypesAndParent].QuestionTypes + N') '
+				END +
+
+				CASE
+					WHEN [FiltersForControler].district_id = 0 THEN N'1=1'
+					--when [OrganizationsAndParent].Organizations is null then N'1=2'
+					ELSE N' and [Organizations].Id in (' + [OrganizationsAndParent].Organizations + N')'
+				END + N' )'
+			FROM [FiltersForControler] [FiltersForControler] WITH (NOLOCK)
+			LEFT JOIN [QuestionTypesAndParent] [QuestionTypesAndParent] WITH (NOLOCK)
+				ON [FiltersForControler].questiondirection_id = [QuestionTypesAndParent].ParentId
+			LEFT JOIN [OrganizationsAndParent] [OrganizationsAndParent] WITH (NOLOCK)
+				ON [FiltersForControler].district_id = [OrganizationsAndParent].ParentId
+			WHERE [FiltersForControler].user_id = @user_id
+			FOR XML PATH (''))
+		, 1, 3, N''));
+
+-- select @question_type_ids
+
+SET @department_ids = (SELECT
+		STUFF((SELECT
+				N' or [Organizations].Id in (' + [OrganizationsAndParent].Organizations + ')'
+			FROM [FiltersForControler] WITH (NOLOCK)
+			INNER JOIN [OrganizationsAndParent] WITH (NOLOCK)
+				ON [FiltersForControler].organization_id = [OrganizationsAndParent].ParentId
+			WHERE [FiltersForControler].user_id = @user_id
+			FOR XML PATH (''))
+		, 1, 4, N''));
+
+
+SET @filters = (SELECT
+		N'(' +
+		CASE
+			WHEN @question_type_ids IS NULL THEN N'(1=2)'
+			ELSE N'(' + @question_type_ids + N')'
+		END +
+		CASE
+			WHEN @department_ids IS NULL THEN N' or (1=2)'
+			ELSE N' or (' + @department_ids + N')'
+		END)
++ N')';
+
+DECLARE @navigation1 NVARCHAR(400) = (SELECT
+		CASE
+			WHEN @navigation = N'Усі' THEN N'(N''Інші доручення'', N''УГЛ'', N''Зауваження'', N''Електронні джерела'', N''Пріоритетне'')'
+			ELSE N'(N''' + @navigation + N''')'
+		END);
+
+
+DECLARE @exec1 NVARCHAR(MAX) = N'
 select [Assignments].Id, [Organizations].Id OrganizationsId, 
 
-case when len([Organizations].[head_name]) > 5 then [Organizations].[head_name] + '' ( '' + [Organizations].[short_name] + '')''
+CASE WHEN len([Organizations].[head_name]) > 5 then [Organizations].[head_name] + '' ( '' + [Organizations].[short_name] + '')''
 					else [Organizations].[short_name] end
 
  OrganizationsName,
 [Applicants].full_name zayavnykName, [StreetTypes].shortname+N'' ''+Streets.name+N'', ''+[Buildings].name adress, [Questions].registration_number,
 [QuestionTypes].name QuestionType,
 
-case when [ReceiptSources].code=N''UGL'' then N''УГЛ'' 
+CASE WHEN [ReceiptSources].code=N''UGL'' then N''УГЛ'' 
 when [ReceiptSources].code=N''Website_mob.addition'' or [ReceiptSources].code=N''Mail'' then N''Електронні джерела''
 when [QuestionTypes].emergency=N''true'' then N''Пріоритетне''
 when [QuestionTypes].parent_organization_is=N''true'' then N''Зауваження''
@@ -92,7 +126,8 @@ end navigation,
 
  ,[Organizations2].Id [transfer_to_organization_id]
  ,[Organizations2].[short_name] [transfer_to_organization_name]
-
+ ,CASE WHEN [Events].[active]=''true'' THEN ''true'' ELSE ''false'' END event
+ --,''true'' event
 from 
 [Assignments] with (nolock) inner join 
 [Questions] with (nolock) on [Assignments].question_id=[Questions].Id
@@ -111,6 +146,7 @@ left join [Streets] with (nolock) on [Buildings].street_id=[Streets].Id
 left join [Applicants] with (nolock) on [Appeals].applicant_id=[Applicants].Id
 left join [AssignmentRevisions] with (nolock) on [AssignmentConsiderations].Id=[AssignmentRevisions].assignment_consideration_іd
 left join [StreetTypes] with (nolock) on [Streets].street_type_id=[StreetTypes].Id
+left join [dbo].[Events] on [Questions].[event_id]=[Events].Id
 
 left join (select count(AssignmentRevisions.id) rework_counter, AssignmentConsiderations.assignment_id
 from AssignmentRevisions with (nolock)
@@ -125,30 +161,33 @@ group by AssignmentConsiderations.assignment_id) rework_counter on Assignments.I
 
 left join [Buildings] [Buildings5] with (nolock) on [Objects].builbing_id=[Buildings5].Id
 left join [Districts] [Districts5] with (nolock) on [Buildings5].district_id=[Districts5].Id
-where '+@filters+N'
+where ' + @filters + N'
 and 
-'+@comment_doopr+N'( [AssignmentStates].code=N''OnCheck'' and [AssignmentResults].code=N''WasExplained '' and [AssignmentResolutions].code=N''Requires1551ChecksByTheController'' and [AssignmentRevisions].rework_counter in (1,2))
- '+@comment_ros+N'( [AssignmentTypes].code<>N''ToAttention'' and [AssignmentStates].code=N''OnCheck'' and [AssignmentResults].code=N''WasExplained '' and [AssignmentResolutions].code=N''Requires1551ChecksByTheController'')
- '+@comment_prostr+N'( [AssignmentTypes].code<>N''ToAttention'' and [AssignmentStates].code=N''OnCheck'' and [AssignmentResults].code=N''WasExplained '' and [AssignmentResolutions].code=N''Requires1551ChecksByTheController'' and [Questions].control_date<=getutcdate())
- '+@comment_nemozh+N' ([AssignmentStates].code=N''OnCheck'' and [AssignmentResults].code=N''ItIsNotPossibleToPerformThisPeriod'' and [AssignmentResolutions].code=N''RequiresFunding_IncludedInThePlan'')
-'
+' + @comment_doopr + N'( [AssignmentStates].code=N''OnCheck'' and [AssignmentResults].code=N''WasExplained '' and [AssignmentResolutions].code=N''Requires1551ChecksByTheController'' and [AssignmentRevisions].rework_counter in (1,2))
+ ' + @comment_ros + N'( [AssignmentTypes].code<>N''ToAttention'' and [AssignmentStates].code=N''OnCheck'' and [AssignmentResults].code=N''WasExplained '' and [AssignmentResolutions].code=N''Requires1551ChecksByTheController'')
+ ' + @comment_prostr + N'( [AssignmentTypes].code<>N''ToAttention'' and [AssignmentStates].code=N''OnCheck'' and [AssignmentResults].code=N''WasExplained '' and [AssignmentResolutions].code=N''Requires1551ChecksByTheController'' and [Questions].control_date<=getutcdate())
+ ' + @comment_nemozh + N' ([AssignmentStates].code=N''OnCheck'' and [AssignmentResults].code=N''ItIsNotPossibleToPerformThisPeriod'' and [AssignmentResolutions].code=N''RequiresFunding_IncludedInThePlan'')
+';
 
- declare @exec_resulr nvarchar(max)=N'
+DECLARE @exec_resulr NVARCHAR(MAX) = N'
   with
 
 main as
-('+@exec1
-+N') select  Id, registration_number, zayavnykName, control_date, zayavnykId, QuestionType, adress,  QuestionId, 
+(' + @exec1
++ N') select  Id, registration_number, zayavnykName, control_date, zayavnykId, QuestionType, adress,  QuestionId, 
 OrganizationsName,
- rework_counter, short_answer, question_content, adressZ, [transfer_to_organization_id], [transfer_to_organization_name]
+ rework_counter, short_answer, question_content, adressZ, [transfer_to_organization_id], [transfer_to_organization_name], event
  from main where 
 
- navigation in'+ @navigation1+N'
+ navigation in' + @navigation1 + N'
  --and #filter_columns#
-order by Id desc'
+order by Id desc';
 
 
-exec(@exec_resulr)
+EXEC (@exec_resulr);
+
+
+
 
 
 

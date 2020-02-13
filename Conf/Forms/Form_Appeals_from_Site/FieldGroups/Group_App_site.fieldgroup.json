@@ -1,7 +1,7 @@
 {
   "Code": "Group_App_site",
   "Name": "Заявник з сайту",
-  "IsExpanded": false,
+  "IsExpanded": true,
   "Fields": [
     {
       "Code": "ApplicantFromSite_PIB",

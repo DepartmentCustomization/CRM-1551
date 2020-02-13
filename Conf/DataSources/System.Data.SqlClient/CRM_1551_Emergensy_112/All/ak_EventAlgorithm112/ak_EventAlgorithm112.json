@@ -1,0 +1,26 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_EventAlgorithm112",
+    "Name": "ak_EventAlgorithm112",
+    "ConnectionCode": "CRM_1551_Emergensy_112",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 0
+      },
+      {
+        "Code": "info",
+        "Name": "info",
+        "Position": 1
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@event_category_id",
+        "Name": "event_category_id",
+        "ParameterType": "Integer"
+      }
+    ]
+  }

@@ -1,4 +1,4 @@
-(function () {
+(function() {
     return {
         init: function() {
             this.sub3 = this.messageService.subscribe('GlobalFilterChanged', this.getFilterParams, this);
@@ -9,14 +9,14 @@
             const ratingFilter = message.package.value.values.find(f => f.name === 'rating').value;
             const name = 'FiltersParams';
             const date = this.changeDateTimeValues(dateFilter);
-            if( date !== '' ){
-                const executor = executorFilter === null ? 0 :  executorFilter === '' ? 0 : executorFilter.value;
-                const rating = ratingFilter === null ? 0 :  ratingFilter === '' ? 0 : ratingFilter.value;
-                this.messageService.publish({ name, date, executor, rating  });
+            if(date !== '') {
+                const executor = executorFilter === null ? 0 : executorFilter === '' ? 0 : executorFilter.value;
+                const rating = ratingFilter === null ? 0 : ratingFilter === '' ? 0 : ratingFilter.value;
+                this.messageService.publish({ name, date, executor, rating });
             }
         },
         changeDateTimeValues: function(value) {
-            if( value === '') {
+            if(value === '') {
                 return value;
             }
             let date = new Date(value);
@@ -27,7 +27,7 @@
             mm = mm.length === 1 ? '0' + mm : mm;
             return yyyy + '-' + mm + '-' + dd;
         },
-        destroy: function () {
+        destroy: function() {
             this.sub3.unsubscribe();
         }
     };

@@ -53,7 +53,7 @@ IF @executor_organization_id IS NOT NULL
 BEGIN
 
 
-	SELECT @ass_state_id  = assignment_state_id
+	SET @ass_state_id  = assignment_state_id
 	, @result_id = AssignmentResultsId
 	, @resolution_id = AssignmentResolutionsId
 	, @current_consid = current_assignment_consideration_id
@@ -467,6 +467,7 @@ BEGIN
 					FROM @output_con)
 					UPDATE [Assignments] SET main_executor = 0,
 																	[LogUpdated_Query] = N'Button_NeVKompetentcii__Row379' 
+																	,edit_date = GETUTCDATE()
 											WHERE Id = @Id
 					UPDATE [Assignments] SET current_assignment_consideration_id = @new_con,
 																	[LogUpdated_Query]= N'Button_NeVKompetentcii__Row382'
@@ -559,7 +560,8 @@ BEGIN
 					FROM AssignmentConsiderations
 					WHERE Id = @current_consid
 
-					UPDATE [Assignments] SET main_executor = 0,[LogUpdated_Query] = N'Button_NeVKompetentcii_Row441' WHERE Id = @Id
+					UPDATE [Assignments] SET main_executor = 0,[LogUpdated_Query] = N'Button_NeVKompetentcii_Row441'
+					,edit_date = GETUTCDATE() WHERE Id = @Id
 
 					SET @new_con = ( SELECT TOP(1)
 						Id

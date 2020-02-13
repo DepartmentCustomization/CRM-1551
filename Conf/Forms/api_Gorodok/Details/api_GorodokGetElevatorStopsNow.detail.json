@@ -1,0 +1,9 @@
+{
+  "ModelType": "Detail",
+  "Code": "api_GorodokGetElevatorStopsNow",
+  "Name": "api_GorodokGetElevatorStopsNow",
+  "SelectRowsQueryCode": "api_GorodokGetElevatorStopsNow",
+  "SectionCode": "",
+  "Position": 1,
+  "QueryParameters": []
+}

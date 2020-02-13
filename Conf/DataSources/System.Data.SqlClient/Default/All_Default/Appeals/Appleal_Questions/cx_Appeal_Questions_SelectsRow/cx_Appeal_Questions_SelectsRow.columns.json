@@ -239,5 +239,15 @@
     "Code": "flag_is_state",
     "Name": "flag_is_state",
     "Position": 42
+  },
+  {
+    "Code": "geolocation_lat",
+    "Name": "geolocation_lat",
+    "Position": 43
+  },
+  {
+    "Code": "geolocation_lon",
+    "Name": "geolocation_lon",
+    "Position": 44
   }
 ]

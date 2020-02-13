@@ -1,43 +1,79 @@
 /*
 declare @user_id nvarchar(300)=N'02ece542-2d75-479d-adad-fd333d09604d';
-declare @organization_id int =2350;
+declare @organization_id int =2005;
 declare @navigation nvarchar(400)=N'Усі';
 declare @column nvarchar(400)=N'Прострочені';
 */
 
-declare @comment_prost nvarchar(6)=(select case when @column=N'Прострочені' then N' ' else N'--' end);
-declare @comment_uvaga nvarchar(6)=(select case when @column=N'Увага' then N' ' else N'--' end);
-declare @comment_vroboti nvarchar(6)=(select case when @column=N'В роботі' then N' ' else N'--' end);
+IF EXISTS (SELECT orr.*
+  FROM [dbo].[OrganizationInResponsibilityRights] orr
+  INNER JOIN dbo.Positions p ON orr.position_id=P.Id
+  WHERE orr.organization_id=@organization_Id 
+  AND P.programuser_id=@user_id)
+
+	BEGIN
+		
+DECLARE @comment_prost NVARCHAR(6) = (SELECT
+		CASE
+			WHEN @column = N'Прострочені' THEN N' '
+			ELSE N'--'
+		END);
+DECLARE @comment_uvaga NVARCHAR(6) = (SELECT
+		CASE
+			WHEN @column = N'Увага' THEN N' '
+			ELSE N'--'
+		END);
+DECLARE @comment_vroboti NVARCHAR(6) = (SELECT
+		CASE
+			WHEN @column = N'В роботі' THEN N' '
+			ELSE N'--'
+		END);
 
 
-declare @NavigationTable table(Id nvarchar(400));
+DECLARE @NavigationTable TABLE (
+	Id NVARCHAR(400)
+);
 
-if @navigation=N'Усі'
-	begin
-		insert into @NavigationTable (Id)
-		select N'Інші доручення' n union all select N'УГЛ' n union all
-		select N'Зауваження' n union all select N'Електронні джерела' n union all select N'Пріоритетне'
-	end 
-else 
-	begin
-		insert into @NavigationTable (Id)
-		select @navigation
-	end;
+IF @navigation = N'Усі'
+BEGIN
+	INSERT INTO @NavigationTable (Id)
+		SELECT
+			N'Інші доручення' n
+		UNION ALL
+		SELECT
+			N'УГЛ' n
+		UNION ALL
+		SELECT
+			N'Зауваження' n
+		UNION ALL
+		SELECT
+			N'Електронні джерела' n
+		UNION ALL
+		SELECT
+			N'Пріоритетне';
+END
+ELSE
+BEGIN
+	INSERT INTO @NavigationTable (Id)
+		SELECT
+			@navigation
+END;
 
 
-declare @IdS nvarchar(max)=
+DECLARE @IdS NVARCHAR(MAX) = (SELECT
+		STUFF((SELECT
+				N',' + N'''' + Id + ''''
+			FROM @NavigationTable
+			FOR XML PATH (''))
+		, 1, 1, ''));
 
- (select stuff(
- (select N','+N''''+Id+'''' from @NavigationTable
- for xml path('')),1,1,''));
-
- --select @IdS
+--select @IdS
 -- with
 
 --main as
 --(
 
-declare @exec_code1 nvarchar(max)=N'
+DECLARE @exec_code1 NVARCHAR(MAX) = N'
 
 select [Assignments].Id, [Organizations].Id OrganizationsId, [Organizations].name OrganizationsName,
 [Applicants].full_name zayavnyk, 
@@ -90,20 +126,20 @@ left join (select [building_id], [executor_id]
 
 left join [CRM_1551_Analitics].[dbo].[Organizations] [Organizations3] on balans.executor_id=[Organizations3].Id
 
-where [Assignments].executor_organization_id='+ltrim(@organization_id)+N'
+where [Assignments].executor_organization_id=' + LTRIM(@organization_id) + N'
  and 
 
-'+@comment_uvaga+N' (DATEADD(MI, DATEDIFF(MI, [Questions].registration_date, [Questions].control_date)*0.25*-1, [Questions].control_date)<getutcdate() and [Questions].control_date>=getutcdate() and [AssignmentTypes].code<>N''ToAttention'' and [AssignmentStates].code=N''InWork'')
- '+@comment_prost+N' ([Questions].control_date<=getutcdate() and [AssignmentTypes].code<>N''ToAttention'' and [AssignmentStates].code=N''InWork'' )
- '+@comment_vroboti+N' (DATEADD(MI, DATEDIFF(MI, [Questions].registration_date, [Questions].control_date)*0.75, [Questions].registration_date)>=getutcdate() and [Questions].control_date>=getutcdate() and [AssignmentTypes].code<>N''ToAttention'' and [AssignmentStates].code=N''InWork'')
+' + @comment_uvaga + N' (DATEADD(MI, DATEDIFF(MI, [Questions].registration_date, [Questions].control_date)*0.25*-1, [Questions].control_date)<getutcdate() and [Questions].control_date>=getutcdate() and [AssignmentTypes].code<>N''ToAttention'' and [AssignmentStates].code=N''InWork'')
+ ' + @comment_prost + N' ([Questions].control_date<=getutcdate() and [AssignmentTypes].code<>N''ToAttention'' and [AssignmentStates].code=N''InWork'' )
+ ' + @comment_vroboti + N' (DATEADD(MI, DATEDIFF(MI, [Questions].registration_date, [Questions].control_date)*0.75, [Questions].registration_date)>=getutcdate() and [Questions].control_date>=getutcdate() and [AssignmentTypes].code<>N''ToAttention'' and [AssignmentStates].code=N''InWork'')
 '
 
 
-declare @exec_ruzult nvarchar(max)=
+DECLARE @exec_ruzult NVARCHAR(MAX) =
 N'with
 
 main as
-('+
+(' +
 @exec_code1
 +
 N'),
@@ -115,7 +151,17 @@ select 1 Id, N''УГЛ'' name union all select 2 Id, N''Електронні д�
 
 select Id, navigation, registration_number, QuestionType, zayavnyk, adress, vykonavets, control_date, zayavnykId, QuestionId
 , zayavnyk_adress, zayavnyk_zmist, balans_name, receipt_date
- from main where navigation in ('+@IdS+N')
+ from main where navigation in (' + @IdS + N')
 order by registration_date'
 
-exec(@exec_ruzult)
+EXEC (@exec_ruzult);
+	END
+
+ELSE
+	
+	BEGIN
+	SELECT 1 Id, NULL  navigation, NULL  registration_number, NULL  QuestionType, NULL  zayavnyk, NULL  adress, 
+	NULL  vykonavets, NULL  control_date, NULL  zayavnykId, NULL  QuestionId, NULL  zayavnyk_adress, NULL  zayavnyk_zmist, 
+	NULL  balans_name, NULL  receipt_date
+   WHERE 1=3;
+	END

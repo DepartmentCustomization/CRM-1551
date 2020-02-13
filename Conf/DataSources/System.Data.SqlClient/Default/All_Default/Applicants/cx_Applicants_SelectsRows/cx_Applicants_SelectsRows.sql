@@ -15,19 +15,19 @@ SELECT
   [SocialStates].name [SocialStates],
   [Applicants].sex,
   CASE
-    WHEN [Applicants].birth_date IS NULL THEN CONVERT(nvarchar(200), [Applicants].birth_year)
-    ELSE CONVERT(nvarchar(200), [Applicants].birth_date)
+    WHEN [Applicants].birth_date IS NULL THEN CONVERT(NVARCHAR(200), [Applicants].birth_year)
+    ELSE CONVERT(NVARCHAR(200), [Applicants].birth_date)
   END birth_date,
   CASE
-    WHEN MONTH(CONVERT(date, [Applicants].birth_date)) <= MONTH(getdate())
-    AND DAY(CONVERT(date, [Applicants].birth_date)) <= DAY(getdate()) THEN DATEDIFF(
+    WHEN MONTH(CONVERT(DATE, [Applicants].birth_date)) <= MONTH(getdate())
+    AND DAY(CONVERT(DATE, [Applicants].birth_date)) <= DAY(getdate()) THEN DATEDIFF(
       yy,
-      CONVERT(date, [Applicants].birth_date),
+      CONVERT(DATE, [Applicants].birth_date),
       getdate()
     )
     ELSE DATEDIFF(
       yy,
-      CONVERT(date, [Applicants].birth_date),
+      CONVERT(DATE, [Applicants].birth_date),
       getdate()
     ) -1
   END age,
@@ -52,8 +52,8 @@ FROM
 		WHERE p.applicant_id = b.Id 
         FOR XML PATH('')), 1, 1, '')
      FROM
-     dbo.Applicants b) sub_phones on sub_phones.applicant_id = [Applicants].Id 
+     dbo.Applicants b) sub_phones ON sub_phones.applicant_id = [Applicants].Id 
 WHERE
  #filter_columns#
  #sort_columns#
- OFFSET @pageOffsetRows ROWS FETCH next @pageLimitRows ROWS ONLY
+ OFFSET @pageOffsetRows ROWS FETCH NEXT @pageLimitRows ROWS ONLY

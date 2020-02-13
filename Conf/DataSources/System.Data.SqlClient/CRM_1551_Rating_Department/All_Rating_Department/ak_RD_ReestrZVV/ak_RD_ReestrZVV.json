@@ -1,0 +1,80 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_RD_ReestrZVV",
+    "Name": "ak_RD_ReestrZVV",
+    "ConnectionCode": "CRM_1551_Rating_Department",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+        {
+          "Code": "Id",
+          "Name": "Id",
+          "Position": 1
+        },
+        {
+          "Code": "Appeal_number",
+          "Name": "Appeal_number",
+          "Position": 2
+        },
+        {
+          "Code": "Question_number",
+          "Name": "Question_number",
+          "Position": 3
+        },
+        {
+          "Code": "QuestionType",
+          "Name": "QuestionType",
+          "Position": 4
+        },
+        {
+          "Code": "AssignmentExecutorOrganization",
+          "Name": "AssignmentExecutorOrganization",
+          "Position": 5
+        },
+        {
+          "Code": "AssignmentRegistrationDate",
+          "Name": "AssignmentRegistrationDate",
+          "Position": 6
+        },
+        {
+          "Code": "AssignmentState",
+          "Name": "AssignmentState",
+          "Position": 7
+        },
+        {
+          "Code": "AssignmentResult",
+          "Name": "AssignmentResult",
+          "Position": 8
+        },
+        {
+          "Code": "AssigmentExecutionDate",
+          "Name": "AssigmentExecutionDate",
+          "Position": 9
+        },
+        {
+          "Code": "Rating",
+          "Name": "Rating",
+          "Position": 10
+        },
+        {
+          "Code": "Department",
+          "Name": "Department",
+          "Position": 11
+        },
+        {
+          "Code": "AssignmentResolution",
+          "Name": "AssignmentResolution",
+          "Position": 12
+        }
+      ],
+    "Parameters": [
+        {
+          "Code": "@Date",
+          "Name": "Date",
+          "ParameterType": "DateTime"
+        },{
+          "Code": "@Organization_Id",
+          "Name": "Organization_Id",
+          "ParameterType": "Integer"
+        }
+      ]
+  }

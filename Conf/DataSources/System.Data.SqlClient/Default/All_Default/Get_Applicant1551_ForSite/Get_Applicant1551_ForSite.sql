@@ -7,7 +7,7 @@ select (select top 1 full_name FROM [dbo].[Applicants] where Id = @ApplicantId) 
 										where p.applicant_id=@ApplicantId
 										and len(isnull(p.phone_number,N'')) > 0
 										for xml path('')), 2,1,N'') as [1551_Applicant_Phone],
-      stuff((select N' ,'+case when [Buildings].[index] is null then N'' else isnull(rtrim([Buildings].[index]),N'')+N', ' end + isnull([StreetTypes].shortname,N'')+N' '+isnull([Streets].name,N'')+N' '+isnull([Buildings].name,N'') 
+      stuff((select N' ,'+case when [Buildings].[index] is null then N'' else isnull(rtrim([Buildings].[index]),N'')+N', ' end + isnull([StreetTypes].shortname,N'')+N' '+isnull([Streets].name,N'')+N' '+isnull([Buildings].name,N'')+ISNULL(N', п.'+LTRIM([LiveAddress].entrance), N'') 
 	  + case when len(isnull([LiveAddress].flat,N'')) = 0 then N'' else N', кв. '+isnull(rtrim([LiveAddress].flat),N'') end
 									from [dbo].[Applicants] p
 									left join [dbo].[LiveAddress] on [LiveAddress].applicant_id = p.Id

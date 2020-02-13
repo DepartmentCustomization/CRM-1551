@@ -1,6 +1,6 @@
-(function () {
+(function() {
     return {
-        showTime: true,   
+        showTime: true,
         placeholder: 'Дата поступило',
         type: 'DateTime',
         stepMinute: 1,

@@ -1,0 +1,35 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_listAddressSearch",
+    "Name": "ak_listAddressSearch",
+    "ConnectionCode": "CRM_1551_Emergensy_112",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 0
+      },
+      {
+        "Code": "geolocation_lat",
+        "Name": "geolocation_lat",
+        "Position": 1
+      },
+      {
+        "Code": "geolocation_lon",
+        "Name": "geolocation_lon",
+        "Position": 2
+      },
+      {
+        "Code": "AddressSearch",
+        "Name": "AddressSearch",
+        "Position": 3
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@search",
+        "Name": "search"
+      }
+    ]
+  }

@@ -1,4 +1,4 @@
-(function () {
+(function() {
     return {
         placeholder: 'Виконавець',
         keyValue: 'Id',
@@ -11,8 +11,8 @@
             pageNumber: 1,
             sortColumns: [
                 {
-                key: 'Id',
-                value: 0
+                    key: 'Id',
+                    value: 0
                 }
             ]
         },
@@ -22,8 +22,8 @@
         onClearFilter: function() {
         },
         initValue: function() {
-            this.setDefaultValue('first'); 
-        }, 
+            this.setDefaultValue('first');
+        },
         setValues: function(item) {
             let message = {
                 name: '',

@@ -115,8 +115,11 @@ where Id = ( select current_assignment_consideration_id from Assignments where I
            ,first_executor_organization_id
          from AssignmentConsiderations where assignment_id = @Id
         
-    update Questions set last_assignment_for_execution_id = @ass_id where last_assignment_for_execution_id = @Id
-    update Assignments set main_executor = 0 where id = @Id
+    update Questions set last_assignment_for_execution_id = @ass_id
+    ,edit_date = GETUTCDATE() where last_assignment_for_execution_id = @Id
+    update Assignments set main_executor = 0 
+    ,[edit_date]=GETUTCDATE()
+    where id = @Id
 
 end
 

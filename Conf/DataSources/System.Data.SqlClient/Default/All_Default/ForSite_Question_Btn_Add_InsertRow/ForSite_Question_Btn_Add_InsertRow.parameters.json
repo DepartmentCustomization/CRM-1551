@@ -87,5 +87,13 @@
     "Code": "@Question_Organization",
     "Name": "Question_Organization",
     "ParameterType": "Integer"
+  },
+  {
+    "Code": "@AppealFromSite_geolocation_lon",
+    "Name": "AppealFromSite_geolocation_lon"
+  },
+  {
+    "Code": "@AppealFromSite_geolocation_lat",
+    "Name": "AppealFromSite_geolocation_lat"
   }
 ]

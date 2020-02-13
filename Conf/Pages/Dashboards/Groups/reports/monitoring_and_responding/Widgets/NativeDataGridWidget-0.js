@@ -1,4 +1,4 @@
-(function () {
+(function() {
     return {
         config: {
             query: {
@@ -13,156 +13,155 @@
                 {
                     dataField: 'orgName',
                     caption: 'Назва установи',
-                    width: 400,
-                },  {
+                    width: 400
+                }, {
                     dataField: 'AllCount',
                     caption: 'Кількість звернень',
-                    alignment: 'center',
-                },  {
+                    alignment: 'center'
+                }, {
                     caption: 'Закриття виконавцем',
                     columns: [
                         {
-                            caption: "Вчасно",
-                            dataField: "inTimeQty",
+                            caption: 'Вчасно',
+                            dataField: 'inTimeQty',
                             alignment: 'center'
                         }, {
-                            caption: "Не вчасно",
-                            dataField: "outTimeQty",
+                            caption: 'Не вчасно',
+                            dataField: 'outTimeQty',
                             alignment: 'center'
                         }, {
-                            caption: "Прострочено",
-                            dataField: "waitTimeQty",
+                            caption: 'Прострочено',
+                            dataField: 'waitTimeQty',
                             alignment: 'center'
                         }
                     ]
-                },  {
+                }, {
                     caption: 'Виконання звернень',
                     columns: [
                         {
-                            caption: "Виконано",
-                            dataField: "doneClosedQty",
+                            caption: 'Виконано',
+                            dataField: 'doneClosedQty',
                             alignment: 'center'
                         }, {
-                            caption: "Не виконано",
-                            dataField: "notDoneClosedQty",
+                            caption: 'Не виконано',
+                            dataField: 'notDoneClosedQty',
                             alignment: 'center'
                         }, {
-                            caption: "План/Програма",
-                            dataField: "PlanProg",
+                            caption: 'План/Програма',
+                            dataField: 'PlanProg',
                             alignment: 'center'
                         }, {
-                            caption: "На перевірці",
-                            dataField: "doneOnCheckQty",
+                            caption: 'На перевірці',
+                            dataField: 'doneOnCheckQty',
                             alignment: 'center'
                         }
                     ]
-                },  {
+                }, {
                     dataField: 'inWorkQty',
                     caption: 'В роботі',
-                    alignment: 'center',
-                },  {
+                    alignment: 'center'
+                }, {
                     dataField: 'inTimePercent',
                     caption: '% вчасно закритих',
                     alignment: 'center',
-                    format: function(value){
+                    format: function(value) {
                         return value + '%';
-                    },        
-                },  {
+                    }
+                }, {
                     dataField: 'donePercent',
                     caption: '% виконання без План/Програма',
                     alignment: 'center',
-                    format: function(value){
+                    format: function(value) {
                         return value + '%';
-                    },
-                },  {
+                    }
+                }, {
                     dataField: 'withPlanPercent',
                     caption: '% виконання з План/Програма',
                     alignment: 'center',
-                    format: function(value){
+                    format: function(value) {
                         return value + '%';
-                    },
-                } 
+                    }
+                }
             ],
             summary: {
                 totalItems: [
                     {
-                        column: "AllCount",
-                        summaryType: "sum",
+                        column: 'AllCount',
+                        summaryType: 'sum',
                         customizeText: function(data) {
-                            return "Разом: " + data.value;
+                            return 'Разом: ' + data.value;
                         }
-                    },  {
-                        column: "inTimeQty",
-                        summaryType: "sum",
+                    }, {
+                        column: 'inTimeQty',
+                        summaryType: 'sum',
                         customizeText: function(data) {
-                            return "Разом: " + data.value;
+                            return 'Разом: ' + data.value;
                         }
-                    },  {
-                        column: "outTimeQty",
-                        summaryType: "sum",
+                    }, {
+                        column: 'outTimeQty',
+                        summaryType: 'sum',
                         customizeText: function(data) {
-                            return "Разом: " + data.value;
+                            return 'Разом: ' + data.value;
                         }
-                    },  {
-                        column: "waitTimeQty",
-                        summaryType: "sum",
+                    }, {
+                        column: 'waitTimeQty',
+                        summaryType: 'sum',
                         customizeText: function(data) {
-                            return "Разом: " + data.value;
+                            return 'Разом: ' + data.value;
                         }
-                    },  {
-                        column: "doneClosedQty",
-                        summaryType: "sum",
+                    }, {
+                        column: 'doneClosedQty',
+                        summaryType: 'sum',
                         customizeText: function(data) {
-                            return "Разом: " + data.value;
+                            return 'Разом: ' + data.value;
                         }
-                    },  {
-                        column: "notDoneClosedQty",
-                        summaryType: "sum",
+                    }, {
+                        column: 'notDoneClosedQty',
+                        summaryType: 'sum',
                         customizeText: function(data) {
-                            return "Разом: " + data.value;
+                            return 'Разом: ' + data.value;
                         }
-                    },  {
-                        column: "PlanProg",
-                        summaryType: "sum",
+                    }, {
+                        column: 'PlanProg',
+                        summaryType: 'sum',
                         customizeText: function(data) {
-                            return "Разом: " + data.value;
+                            return 'Разом: ' + data.value;
                         }
-                    },  {
-                        column: "doneOnCheckQty",
-                        summaryType: "sum",
+                    }, {
+                        column: 'doneOnCheckQty',
+                        summaryType: 'sum',
                         customizeText: function(data) {
-                            return "Разом: " + data.value;
+                            return 'Разом: ' + data.value;
                         }
-                    },  {
-                        column: "inWorkQty",
-                        summaryType: "sum",
+                    }, {
+                        column: 'inWorkQty',
+                        summaryType: 'sum',
                         customizeText: function(data) {
-                            return "Разом: " + data.value;
+                            return 'Разом: ' + data.value;
                         }
-                    },  {
-                        column: "inTimePercent",
-                        summaryType: "avg",
-                        format: "percent",
+                    }, {
+                        column: 'inTimePercent',
+                        summaryType: 'avg',
+                        format: 'percent',
                         customizeText: function(data) {
-                            return "Середнє: " + data.value.toFixed(2);
+                            return 'Середнє: ' + data.value.toFixed(2);
                         }
-                    },  {
-                        column: "donePercent",
-                        summaryType: "avg",
-                        format: "percent",
+                    }, {
+                        column: 'donePercent',
+                        summaryType: 'avg',
+                        format: 'percent',
                         customizeText: function(data) {
-                            return "Середнє: " + data.value.toFixed(2);
+                            return 'Середнє: ' + data.value.toFixed(2);
                         }
-                    },  {
-                        column: "withPlanPercent",
-                        summaryType: "avg",
-                        format: "percent",
+                    }, {
+                        column: 'withPlanPercent',
+                        summaryType: 'avg',
+                        format: 'percent',
                         customizeText: function(data) {
-                            return "Середнє: " + data.value.toFixed(2);
+                            return 'Середнє: ' + data.value.toFixed(2);
                         }
                     }
                 ]
-                
             },
             keyExpr: 'Id',
             scrolling: {
@@ -170,7 +169,7 @@
             },
             filterRow: {
                 visible: true,
-                applyFilter: "auto"
+                applyFilter: 'auto'
             },
             showBorders: false,
             showColumnLines: true,
@@ -187,26 +186,22 @@
             showHeaderFilter: false,
             showColumnChooser: false,
             showColumnFixing: true,
-            groupingAutoExpandAll: null,
+            groupingAutoExpandAll: null
         },
-
         summary: [],
-
         init: function() {
             this.summary = [];
             this.dataGridInstance.height = window.innerHeight - 200;
-            this.sub = this.messageService.subscribe( 'GlobalFilterChanged', this.getFiltersParams, this );
+            this.sub = this.messageService.subscribe('GlobalFilterChanged', this.getFiltersParams, this);
             this.config.onToolbarPreparing = this.createTableButton.bind(this);
-
             this.config.onContentReady = this.afterRenderTable.bind(this);
         },
-
-        afterRenderTable: function (data) {
+        afterRenderTable: function() {
             this.summary = [];
             const collections = document.querySelectorAll('.dx-row');
-            collections.forEach( collection => {
-                const summary = Array.prototype.slice.call(collection.cells, 0 );
-                summary.forEach( cell => {
+            collections.forEach(collection => {
+                const summary = Array.prototype.slice.call(collection.cells, 0);
+                summary.forEach(cell => {
                     const sum = cell.innerText.slice(0, 5);
                     if(sum === 'Разом' || sum === 'Серед') {
                         this.summary.push(cell.innerText);
@@ -214,17 +209,15 @@
                 });
             });
         },
-
         createTableButton: function(e) {
             let toolbarItems = e.toolbarOptions.items;
-            
             toolbarItems.push({
-                widget: "dxButton", 
-                location: "after",
-                options: { 
-                    icon: "exportxlsx",
-                    type: "default",
-                    text: "Excel",
+                widget: 'dxButton',
+                location: 'after',
+                options: {
+                    icon: 'exportxlsx',
+                    type: 'default',
+                    text: 'Excel',
                     onClick: function(e) {
                         e.event.stopImmediatePropagation();
                         this.showPagePreloader('Зачекайте, формується документ');
@@ -236,13 +229,11 @@
                         this.queryExecutor(exportQuery, this.createExcelWorkbook, this);
                         this.showPreloader = false;
                     }.bind(this)
-                },
+                }
             });
         },
-
-        createExcelWorkbook: function (data) {
-            
-              workbook = this.createExcel();
+        createExcelWorkbook: function(data) {
+            let workbook = this.createExcel();
             let worksheet = workbook.addWorksheet('Заявки', {
                 pageSetup:{
                     orientation: 'landscape',
@@ -254,7 +245,6 @@
                     }
                 }
             });
-            
             const columns = this.config.columns;
             const columnsProperties = [];
             const rows = [];
@@ -264,15 +254,12 @@
             this.setTableValues(data, columns, worksheet, rows);
             this.setTableRowsStyles(worksheet, rows);
             this.setSummaryValues(worksheet);
-            
             this.helperFunctions.excel.save(workbook, 'Заявки', this.hidePagePreloader);
         },
-
-        setColumnsProperties: function (columns, columnsProperties, worksheet) {
+        setColumnsProperties: function(columns, columnsProperties, worksheet) {
             for (let i = 0; i < columns.length; i++) {
                 const column = columns[i];
-                
-                let header ;
+                let header;
                 let index = 0;
                 let width = column.dataField === 'orgName' ? 20 : 9;
                 let columnProp = { header, width, index };
@@ -281,56 +268,52 @@
                         const subColumn = column.columns[j];
                         columnProp.index += 1;
                         header = subColumn.caption;
-                        columnsProperties.push(columnProp); 
+                        columnsProperties.push(columnProp);
                     }
                 } else {
                     columnProp.header = column.caption;
                     columnProp.index += 1;
                     columnsProperties.push(columnProp);
                 }
-            }    
+            }
             worksheet.columns = columnsProperties;
         },
-
-        setWorksheetTitle: function (worksheet) {
-            worksheet.mergeCells( 1, 1, 1, this.lastPosition );
+        setWorksheetTitle: function(worksheet) {
+            worksheet.mergeCells(1, 1, 1, this.lastPosition);
             let title = worksheet.getCell(1, 1);
             title.value = 'Моніторинг та реагування на звернення громадян';
         },
-
-        setTableHeader: function (columns, worksheet) {
+        setTableHeader: function(columns, worksheet) {
             let position = 0;
             for (let i = 0; i < columns.length; i++) {
                 const column = columns[i];
-                
                 if(column.columns) {
                     let headerPositionTo = position + column.columns.length;
                     let headerPositionFrom = position + 1;
-                    worksheet.mergeCells( 3, headerPositionFrom, 3, headerPositionTo );
+                    worksheet.mergeCells(3, headerPositionFrom, 3, headerPositionTo);
                     let headerCaption = worksheet.getCell(3, headerPositionFrom);
                     headerCaption.value = column.caption;
                     for (let j = 0; j < column.columns.length; j++) {
                         const element = column.columns[j];
                         position += 1;
-                        worksheet.mergeCells( 4, position, 4, position );
+                        worksheet.mergeCells(4, position, 4, position);
                         let caption = worksheet.getCell(4, position);
                         caption.value = element.caption;
                     }
                 } else {
                     position += 1;
-                    worksheet.mergeCells( 3, position, 4, position );
+                    worksheet.mergeCells(3, position, 4, position);
                     let caption = worksheet.getCell(4, position);
                     caption.value = column.caption;
                 }
             }
             this.lastPosition = position;
         },
-
-        setTableValues: function (data, columns, worksheet, rows) {
+        setTableValues: function(data, columns, worksheet, rows) {
             for (let i = 0; i < data.rows.length; i++) {
                 let rowData = data.rows[i];
                 let rowValues = [];
-                rows.push( i + 5);
+                rows.push(i + 5);
                 for (let j = 2; j < rowData.values.length; j++) {
                     const value = rowData.values[j];
                     rowValues.push(value);
@@ -339,80 +322,68 @@
                 this.summaryStartRow = i + 7;
             }
         },
-
-        setTableRowsStyles: function (worksheet, rows) {
-
+        setTableRowsStyles: function(worksheet, rows) {
             worksheet.getRow(1).font = { name: 'Times New Roman', family: 4, size: 14, underline: false, bold: true , italic: false};
-            worksheet.getRow(1).alignment = { vertical: 'middle', horizontal: 'center', wrapText: true };    
+            worksheet.getRow(1).alignment = { vertical: 'middle', horizontal: 'center', wrapText: true };
             worksheet.getRow(3).font = { name: 'Times New Roman', family: 4, size: 10, underline: false, bold: true , italic: false};
-            worksheet.getRow(3).alignment = { vertical: 'middle', horizontal: 'center', wrapText: true };    
+            worksheet.getRow(3).alignment = { vertical: 'middle', horizontal: 'center', wrapText: true };
             worksheet.getRow(4).font = { name: 'Times New Roman', family: 4, size: 10, underline: false, bold: true , italic: false};
-            worksheet.getRow(4).alignment = { vertical: 'middle', horizontal: 'center', wrapText: true };  
+            worksheet.getRow(4).alignment = { vertical: 'middle', horizontal: 'center', wrapText: true };
             worksheet.getRow(1).height = 50;
             worksheet.getRow(3).height = 70;
             worksheet.getRow(4).height = 70;
-
-            rows.forEach( row => {
+            rows.forEach(row => {
                 worksheet.getRow(row).height = 100;
                 worksheet.getRow(row).font = { name: 'Times New Roman', family: 4, size: 10, underline: false, italic: false};
-                worksheet.getRow(row).alignment = { vertical: 'middle', horizontal: 'center', wrapText: true }; 
+                worksheet.getRow(row).alignment = { vertical: 'middle', horizontal: 'center', wrapText: true };
                 worksheet.getCell('A' + row).alignment = { vertical: 'middle', horizontal: 'left', wrapText: true };
             });
         },
-
-        setSummaryValues: function (worksheet) {
-            const values = [ " " ];
-            this.summary.forEach( value => values.push(value));
+        setSummaryValues: function(worksheet) {
+            const values = [ ' ' ];
+            this.summary.forEach(value => values.push(value));
             worksheet.addRow(values);
             const number = this.summaryStartRow - 1;
             this.setSummaryStyle(worksheet, number);
         },
-
-        setSummaryStyle: function (worksheet, number) {
+        setSummaryStyle: function(worksheet, number) {
             worksheet.getRow(number).height = 50;
             worksheet.getRow(number).font = { name: 'Times New Roman', family: 4, size: 10, underline: false, italic: false};
-            worksheet.getRow(number).alignment = { vertical: 'middle', horizontal: 'center', wrapText: true }; 
+            worksheet.getRow(number).alignment = { vertical: 'middle', horizontal: 'center', wrapText: true };
         },
-
         getFiltersParams: function(message) {
             let period = message.package.value.values.find(f => f.name === 'period').value;
             let questionType = message.package.value.values.find(f => f.name === 'questionType').value;
             let organization = message.package.value.values.find(f => f.name === 'organization').value;
-            if( period !== null ){
-                if( period.dateFrom !== '' && period.dateTo !== ''){
-                        
-                    this.dateFrom =  period.dateFrom;
+            if(period !== null) {
+                if(period.dateFrom !== '' && period.dateTo !== '') {
+                    this.dateFrom = period.dateFrom;
                     this.dateTo = period.dateTo;
                     this.questionType = questionType === null ? 0 : questionType === '' ? 0 : questionType.value;
-                    this.organization = organization === null ? 0 : organization === '' ? 0 : organization.value ;
-                    this.config.query.parameterValues = [ 
-                        {key: '@dateFrom' , value: this.dateFrom },  
-                        {key: '@dateTo', value: this.dateTo },  
-                        {key: '@question_type_id', value: this.questionType },  
-                        {key: '@org', value: this.organization }  
+                    this.organization = organization === null ? 0 : organization === '' ? 0 : organization.value;
+                    this.config.query.parameterValues = [
+                        {key: '@dateFrom' , value: this.dateFrom },
+                        {key: '@dateTo', value: this.dateTo },
+                        {key: '@question_type_id', value: this.questionType },
+                        {key: '@org', value: this.organization }
                     ];
                     this.loadData(this.afterLoadDataHandler);
                 }
             }
         },
-
         extractOrgValues: function(val) {
-            if(val !== ''){
+            if(val !== '') {
                 const valuesList = [];
                 valuesList.push(val.value);
-                return  valuesList.length > 0 ? valuesList : [];
-            } else {
-                return [];
-            };
-        },    
-        
-        afterLoadDataHandler: function(data) {
+                return valuesList.length > 0 ? valuesList : [];
+            }
+            return [];
+        },
+        afterLoadDataHandler: function() {
             this.render();
         },
-
         destroy: function() {
             this.sub.unsubscribe();
-        }, 
-        
+        }
     };
 }());

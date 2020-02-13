@@ -196,6 +196,7 @@ END
 								update Assignments 
 									set current_assignment_consideration_id = @new_con_id 
 										--,LogUpdated_Query =N'Prozvon_Close_ROW141'
+										,[edit_date]=GETUTCDATE()
 									where Id = @Id
 							end
 							else

@@ -1,8 +1,8 @@
-(function () {
+(function() {
     return {
         title: ' ',
         hint: ' ',
-        formatTitle: function () { },
+        formatTitle: function() { },
         customConfig:
             `
             <style>
@@ -18,8 +18,7 @@
             <div id='widgetTitle' ></div>
                 `
         ,
-        afterViewInit: function () {
-            // document.getElementById('widgetTitle').innerText = 'ТОП-10 найпроблемніших сфер життєдіяльності міста за перiод: ' +this.dateFromViewValues+ ' по: '+this.dateToViewValues;
+        afterViewInit: function() {
             document.getElementById('widgetTitle').innerText = 'ТОП-10 найпроблемніших сфер життєдіяльності міста за перiод: ';
         }
     };

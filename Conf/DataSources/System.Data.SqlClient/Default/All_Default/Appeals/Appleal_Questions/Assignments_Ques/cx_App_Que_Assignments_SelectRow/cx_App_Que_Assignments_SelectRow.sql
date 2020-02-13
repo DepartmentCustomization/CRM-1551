@@ -1,122 +1,247 @@
---declare @Id int =2231581;
 
-SELECT distinct top 1
-	   [Assignments].[Id]
-	   ,Questions.registration_number
-	   ,ReceiptSources.Id as receipt_source_id
-	   ,ReceiptSources.name as receipt_source_name
-	   ,Questions.registration_date as que_reg_date
-	   ,Applicants.full_name
-	   ,Applicants.ApplicantAdress LiveAddress
-	   ,[Objects].Id as [object_id]
-	   ,isnull(ObjectTypes.name+N' : ', N'')+
-	   isnull([Objects].Name+' ',N'') [object_name]
+--declare @Id int =2976051;
+--declare @user_Id nvarchar =N'  ';
+--DECLARE @user_id NVARCHAR(MAX)=N'40dd9fa3-7d58-418c-a2a0-38e9e100d3fd';
+DECLARE @org1761 TABLE (Id INT);
 
-	   ,isnull(sty.shortname+N' ', N'')+
-	   isnull(st.name+N' ', N'') +
-	   isnull(bl.name, N'') address_problem
 
-	   ,Organizations.Id as organization_id
-	   ,Organizations.name as organization_name
-	   ,QuestionTypes.Id as obj_type_id
-	   ,QuestionTypes.name as obj_type_name
-	   ,Questions.question_content
-	   ,Questions.control_date
+WITH
+     cte1 -- все подчиненные 3 и 3 1761
+   AS ( SELECT Id,
+         [parent_organization_id] ParentId
+         FROM [dbo].[Organizations] t
+         WHERE Id = 1761
+         UNION ALL
+         SELECT tp.Id,
+         tp.[parent_organization_id] ParentId
+         FROM [dbo].[Organizations] tp 
+         INNER JOIN cte1 curr ON tp.[parent_organization_id] = curr.Id ),
 
-      ,[Assignments].[registration_date]
-	  ,ast.id as ass_state_id
-	  ,ast.name as ass_state_name
-	  ,assR.name as result_name
-	  ,assR.Id as result_id
-	  ,assRn.name as resolution_name
-	  ,assRn.Id as resolution_id
-      ,[Assignments].[execution_date]
-      ,assC.short_answer
-      ,Assignments.question_id
-      ,aty.Id as ass_type_id
-      ,aty.name as ass_type_name
-      ,Assignments.main_executor
-	  ,perf.Id as performer_id
-	  ,case when len(perf.[head_name]) > 5 then perf.[head_name] + ' ( ' + perf.[short_name] + ')'
-					else perf.[short_name] end as performer_name
-	  ,case when len(responsible.[head_name]) > 5 then responsible.[head_name] + ' ( ' + responsible.[short_name] + ')'
-					else responsible.[short_name] end as responsible_name
-	  ,responsible.Id as responsible
-	  ,(select current_assignment_consideration_id from Assignments where Id = @Id) as assignmentConsiderations_id
-	  ,(select count( assg.main_executor)
-			 from  [Assignments] assg 
-			 where assg.question_id = Assignments.question_id and assg.main_executor = 1 and assg.close_date is null) as is_aktiv_true
-	  , ( SELECT TOP 1 	control_comment FROM AssignmentRevisions AS ar
-				JOIN AssignmentConsiderations AS ac ON ac.Id = ar.assignment_consideration_іd
-					WHERE ac.assignment_id = @Id ORDER BY ar.id DESC ) as control_comment
-	  ,(select count(id) from AssignmentRevisions where assignment_consideration_іd in
-	    (select Id from AssignmentConsiderations where assignment_id= @Id) and control_result_id = 5 )  as rework_counter
-	  ,assC.[transfer_to_organization_id]
+org_user AS
+(
+SELECT organizations_id FROM [dbo].[Positions]
+WHERE programuser_id=@user_id
+)
 
-	  ,case when len(org_tr.[head_name]) > 5 then org_tr.[head_name] + ' ( ' + org_tr.[short_name] + ')'
-					else org_tr.[short_name] end transfer_name
+INSERT INTO @org1761 (Id)
+SELECT Id 
+FROM cte1 INNER JOIN org_user ON cte1.Id=org_user.organizations_id;
 
-	    ,ast.id as old_assignment_state_id
-        ,assR.Id as old_assignment_result_id
-        ,assRn.Id as old_assignment_resolution_id
-        ,[Assignments].current_assignment_consideration_id as current_consid
+--SELECT * FROM @org1761
 
-		,stuff((select N','+[phone_number]
-				from [CRM_1551_Analitics].[dbo].[ApplicantPhones] p
-				 where p.applicant_id=[ApplicantPhones].[applicant_id]
-				for xml path('')), 1,1,N'') phones
 
-		,stuff((select N', '+[AnswerTypes].name+N'-'+
-				case when q.[answer_phone] is not null then q.[answer_phone]
-				when q.[answer_post] is not null then q.[answer_post]
-				  when q.[answer_mail] is not null then q.[answer_mail]
-				  end
-				  from [Assignments] a 
-				  left join [Questions] q on a.question_id=q.Id
-				  left join [AnswerTypes] on q.answer_form_id=[AnswerTypes].Id
-				  where a.Id=[Assignments].id
-				  for xml path('')
-				  ),1,2,N'') answer
-		,org_bal.short_name bal_name
-		,case when [ReceiptSources].code=N'UGL' then Appeals.[enter_number] end [enter_number]
-		,Assignments.edit_date as date_in_form
-		,Assignments.executor_person_id
-		-- ,pe.Id as executor_person_id
-		,concat(p.[name], ' (' + p.[position] +')') as executor_person_name
-  FROM [dbo].[Assignments]
-	left join AssignmentTypes aty on aty.Id = Assignments.assignment_type_id
-	left join AssignmentStates ast on ast.Id = Assignments.assignment_state_id
-	left join Questions on Questions.Id = Assignments.question_id
-	left join QuestionTypes on QuestionTypes.Id = Questions.question_type_id
-	left join Appeals on Appeals.Id = Questions.appeal_id
-	left join ReceiptSources on ReceiptSources.Id = Appeals.receipt_source_id
 
-	left join Applicants on Applicants.Id = Appeals.applicant_id
-	left join LiveAddress on LiveAddress.applicant_id = Applicants.Id  and LiveAddress.main = 1
-	left join Buildings buil on buil.Id = LiveAddress.building_id
-	left join Streets stre on stre.Id = buil.street_id
-	left join Districts dis on dis.Id = buil.district_id
-	left join StreetTypes on StreetTypes.Id = stre.street_type_id
-	
-	left join Organizations on Organizations.Id = Questions.organization_id
-	left join [Objects] on [Objects].Id = Questions.[object_id]
-	left join Buildings bl on bl.Id = [Objects].builbing_id
-	left join Streets st on st.Id = bl.street_id
-	left join StreetTypes sty on sty.Id = st.street_type_id
-	left join ObjectTypes on ObjectTypes.Id = [Objects].object_type_id
-	--left join AssignmentConsiderations assC on assC.assignment_id = Assignments.Id
-	left join AssignmentConsiderations assC on assC.Id = Assignments.current_assignment_consideration_id
-    left join AssignmentResults assR on assR.Id = Assignments.AssignmentResultsId
-	left join AssignmentResolutions assRn on assRn.Id = Assignments.AssignmentResolutionsId
-	left join AssignmentRevisions  assRev on assRev.assignment_consideration_іd = assC.Id
-	left join Organizations as perf on perf.Id = Assignments.executor_organization_id
-	left join Organizations as responsible on responsible.Id = Assignments.organization_id
-	left join Organizations  as org_tr on org_tr.Id = assC.transfer_to_organization_id
-	left join [ApplicantPhones] on Applicants.Id=[ApplicantPhones].applicant_id
-	left join (select [building_id], [executor_id]
-                from [CRM_1551_Analitics].[dbo].[ExecutorInRoleForObject]
-                    where [executor_role_id]=1 /*Балансоутримувач*/) balans on bl.Id=balans.building_id
-    left join [Organizations] org_bal on balans.executor_id=org_bal.Id
-	-- left join dbo.[PersonExecutorChoose] as pe on pe.Id = Assignments.executor_person_id
-	left join dbo.[Positions] as p on p.Id = Assignments.executor_person_id
- where Assignments.Id = @Id
+SELECT DISTINCT TOP 1
+	[Assignments].[Id]
+   ,Questions.registration_number
+   ,ReceiptSources.Id AS receipt_source_id
+   ,ReceiptSources.name AS receipt_source_name
+   ,Questions.registration_date AS que_reg_date
+   ,Applicants.full_name
+   --,Applicants.ApplicantAdress LiveAddress
+   ,Appeals.ApplicantAddress LiveAddress
+   ,[Objects].Id AS [object_id]
+   ,ISNULL(ObjectTypes.name + N' : ', N'') +
+	ISNULL([Objects].name + ' ', N'') [object_name]
+
+   ,ISNULL(sty.shortname + N' ', N'') +
+	ISNULL(st.name + N' ', N'') +
+	ISNULL(bl.name, N'') address_problem
+
+   ,Organizations.Id AS organization_id
+   ,Organizations.name AS organization_name
+   ,QuestionTypes.Id AS obj_type_id
+   ,QuestionTypes.name AS obj_type_name
+   ,Questions.question_content
+   ,Questions.control_date
+
+   ,[Assignments].[registration_date]
+   ,ast.Id AS ass_state_id
+   ,ast.name AS ass_state_name
+   ,assR.name AS result_name
+   ,assR.Id AS result_id
+   ,assRn.name AS resolution_name
+   ,assRn.Id AS resolution_id
+   ,[Assignments].[execution_date]
+   ,assC.short_answer
+   ,Assignments.question_id
+   ,aty.Id AS ass_type_id
+   ,aty.name AS ass_type_name
+   ,Assignments.main_executor
+   ,perf.Id AS performer_id
+   ,CASE
+		WHEN LEN(perf.[head_name]) > 5 THEN perf.[head_name] + ' ( ' + perf.[short_name] + ')'
+		ELSE perf.[short_name]
+	END AS performer_name
+   ,CASE
+		WHEN LEN(responsible.[head_name]) > 5 THEN responsible.[head_name] + ' ( ' + responsible.[short_name] + ')'
+		ELSE responsible.[short_name]
+	END AS responsible_name
+   ,responsible.Id AS responsible
+   ,(SELECT
+			current_assignment_consideration_id
+		FROM [dbo].Assignments
+		WHERE Id = @Id)
+	AS assignmentConsiderations_id
+   ,(SELECT
+			COUNT(assg.main_executor)
+		FROM [dbo].[Assignments] assg
+		WHERE assg.question_id = Assignments.question_id
+		AND assg.main_executor = 1
+		AND assg.close_date IS NULL)
+	AS is_aktiv_true
+   ,(SELECT TOP 1
+			control_comment
+		FROM [dbo].AssignmentRevisions AS ar
+		JOIN [dbo].AssignmentConsiderations AS ac
+			ON ac.Id = ar.assignment_consideration_іd
+		WHERE ac.assignment_id = @Id
+		ORDER BY ar.Id DESC)
+	AS control_comment
+--    ,(SELECT
+-- 			COUNT(Id)
+-- 		FROM [dbo].AssignmentRevisions
+-- 		WHERE assignment_consideration_іd IN (SELECT
+-- 				Id
+-- 			FROM [dbo].AssignmentConsiderations
+-- 			WHERE assignment_id = @Id)
+-- 		AND control_result_id in (5))
+-- 	AS rework_counter
+	,ISNULL((SELECT TOP 1 ar.rework_counter
+	FROM [dbo].[Assignments] a
+	INNER JOIN [dbo].[AssignmentConsiderations] ac ON a.Id=ac.assignment_id
+	INNER JOIN [dbo].[AssignmentRevisions] ar ON ar.assignment_consideration_іd=ac.Id
+	WHERE a.Id=@Id
+	ORDER BY ar.Id DESC),0) rework_counter
+	--,assRev.rework_counter
+   ,assC.[transfer_to_organization_id]
+
+   ,CASE
+		WHEN LEN(org_tr.[head_name]) > 5 THEN org_tr.[head_name] + ' ( ' + org_tr.[short_name] + ')'
+		ELSE org_tr.[short_name]
+	END transfer_name
+
+   ,ast.Id AS old_assignment_state_id
+   ,assR.Id AS old_assignment_result_id
+   ,assRn.Id AS old_assignment_resolution_id
+   ,[Assignments].current_assignment_consideration_id AS current_consid
+
+   ,STUFF((SELECT
+			N',' + [phone_number]
+		FROM [CRM_1551_Analitics].[dbo].[ApplicantPhones] p
+		WHERE p.applicant_id = [ApplicantPhones].[applicant_id]
+		FOR XML PATH (''))
+	, 1, 1, N'') phones
+
+   ,STUFF((SELECT
+			N', ' + [AnswerTypes].name + N'-' +
+			CASE
+				WHEN q.[answer_phone] IS NOT NULL THEN q.[answer_phone]
+				WHEN q.[answer_post] IS NOT NULL THEN q.[answer_post]
+				WHEN q.[answer_mail] IS NOT NULL THEN q.[answer_mail]
+			END
+		FROM [dbo].[Assignments] a
+		LEFT JOIN [dbo].[Questions] q
+			ON a.question_id = q.Id
+		LEFT JOIN [dbo].[AnswerTypes]
+			ON q.answer_form_id = [AnswerTypes].Id
+		WHERE a.Id = [Assignments].Id
+		FOR XML PATH (''))
+	, 1, 2, N'') answer
+   ,org_bal.short_name bal_name
+   ,CASE
+		WHEN [ReceiptSources].code = N'UGL' THEN Appeals.[enter_number]
+	END [enter_number]
+   ,Assignments.edit_date AS date_in_form
+   ,Assignments.executor_person_id
+	-- ,pe.Id as executor_person_id
+   ,CONCAT(p.[name], ' (' + p.[position] + ')') AS executor_person_name
+	--,isnull(orr.editable, 'false') editable
+   ,CASE
+		WHEN EXISTS(SELECT Id FROM @org1761) THEN 1 --2975208
+		WHEN orr.editable = 'true' THEN 1
+		WHEN orr.editable = 'false' THEN 2
+	END editable
+	--,2 editable
+	,[Questions].[geolocation_lat]
+	,[Questions].[geolocation_lon]
+FROM [dbo].[Assignments]
+LEFT JOIN [dbo].AssignmentTypes aty
+	ON aty.Id = Assignments.assignment_type_id
+LEFT JOIN [dbo].AssignmentStates ast
+	ON ast.Id = Assignments.assignment_state_id
+LEFT JOIN [dbo].Questions
+	ON Questions.Id = Assignments.question_id
+LEFT JOIN [dbo].QuestionTypes
+	ON QuestionTypes.Id = Questions.question_type_id
+LEFT JOIN [dbo].Appeals
+	ON Appeals.Id = Questions.appeal_id
+LEFT JOIN [dbo].ReceiptSources
+	ON ReceiptSources.Id = Appeals.receipt_source_id
+
+LEFT JOIN [dbo].Applicants
+	ON Applicants.Id = Appeals.applicant_id
+LEFT JOIN [dbo].LiveAddress
+	ON LiveAddress.applicant_id = Applicants.Id
+		AND LiveAddress.main = 1
+LEFT JOIN [dbo].Buildings buil
+	ON buil.Id = LiveAddress.building_id
+LEFT JOIN [dbo].Streets stre
+	ON stre.Id = buil.street_id
+LEFT JOIN [dbo].Districts dis
+	ON dis.Id = buil.district_id
+LEFT JOIN [dbo].StreetTypes
+	ON StreetTypes.Id = stre.street_type_id
+
+LEFT JOIN [dbo].Organizations
+	ON Organizations.Id = Questions.organization_id
+LEFT JOIN [dbo].[Objects]
+	ON [Objects].Id = Questions.[object_id]
+LEFT JOIN [dbo].Buildings bl
+	ON bl.Id = [Objects].builbing_id
+LEFT JOIN [dbo].Streets st
+	ON st.Id = bl.street_id
+LEFT JOIN [dbo].StreetTypes sty
+	ON sty.Id = st.street_type_id
+LEFT JOIN [dbo].ObjectTypes
+	ON ObjectTypes.Id = [Objects].object_type_id
+--left join AssignmentConsiderations assC on assC.assignment_id = Assignments.Id
+LEFT JOIN [dbo].AssignmentConsiderations assC
+	ON assC.Id = Assignments.current_assignment_consideration_id
+LEFT JOIN [dbo].AssignmentResults assR
+	ON assR.Id = Assignments.AssignmentResultsId
+LEFT JOIN [dbo].AssignmentResolutions assRn
+	ON assRn.Id = Assignments.AssignmentResolutionsId
+LEFT JOIN [dbo].AssignmentRevisions assRev
+	ON assRev.assignment_consideration_іd = assC.Id
+LEFT JOIN [dbo].Organizations AS perf
+	ON perf.Id = Assignments.executor_organization_id
+LEFT JOIN [dbo].Organizations AS responsible
+	ON responsible.Id = Assignments.organization_id
+LEFT JOIN [dbo].Organizations AS org_tr
+	ON org_tr.Id = assC.transfer_to_organization_id
+LEFT JOIN [dbo].[ApplicantPhones]
+	ON Applicants.Id = [ApplicantPhones].applicant_id
+LEFT JOIN (SELECT
+		[building_id]
+	   ,[executor_id]
+	FROM [dbo].[ExecutorInRoleForObject]
+	WHERE [executor_role_id] = 1 /*Балансоутримувач*/) balans
+	ON bl.Id = balans.building_id
+LEFT JOIN [dbo].[Organizations] org_bal
+	ON balans.executor_id = org_bal.Id
+-- left join dbo.[PersonExecutorChoose] as pe on pe.Id = Assignments.executor_person_id
+LEFT JOIN dbo.[Positions] AS p
+	ON p.Id = Assignments.executor_person_id
+LEFT JOIN (SELECT DISTINCT
+		o.organization_id
+	   ,o.editable
+	FROM [dbo].[Positions] p
+	INNER JOIN [dbo].[OrganizationInResponsibilityRights] o
+		ON p.Id = o.position_id
+	WHERE p.[programuser_id] = @user_Id --and o.organization_id=a.ex\
+--order by case when o.editable='true' then 1 else 2 end
+) orr
+	ON perf.Id = orr.organization_id
+WHERE Assignments.Id = @Id
+AND (CASE WHEN EXISTS(SELECT Id FROM @org1761) THEN 1 WHEN orr.editable IS NULL THEN 2 ELSE 1 END)=1;

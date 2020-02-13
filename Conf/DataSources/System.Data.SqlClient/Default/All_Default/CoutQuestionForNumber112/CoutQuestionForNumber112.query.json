@@ -1,0 +1,30 @@
+{
+  "ModelType": "Query",
+  "Code": "CoutQuestionForNumber112",
+  "Name": "CoutQuestionForNumber112",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0
+    },
+    {
+      "Code": "ApplicantId",
+      "Name": "ApplicantId",
+      "Position": 1
+    },
+    {
+      "Code": "count_questions",
+      "Name": "count_questions",
+      "Position": 2
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@Phone",
+      "Name": "Phone"
+    }
+  ]
+}

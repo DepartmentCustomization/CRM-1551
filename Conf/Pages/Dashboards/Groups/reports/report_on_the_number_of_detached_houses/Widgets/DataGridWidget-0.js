@@ -1,4 +1,4 @@
-(function () {
+(function() {
     return {
         title: 'Кількість звернень по відсутніх послугах',
         config: {
@@ -11,21 +11,21 @@
                 chunkSize: 1000
             },
             columns: [
-            {
+                {
                     dataField: 'district',
-                    caption: 'Район',
+                    caption: 'Район'
                 }, {
                     dataField: 'gvpQty',
-                    caption: 'Відсутність ГВП',
+                    caption: 'Відсутність ГВП'
                 }, {
                     dataField: 'hvpQty',
-                    caption: 'Відсутність ХВП',
+                    caption: 'Відсутність ХВП'
                 }, {
                     dataField: 'heatingQty',
-                    caption: 'Відсутність опалення',
+                    caption: 'Відсутність опалення'
                 }, {
                     dataField: 'electricityQty',
-                    caption: 'Відсутність електроенергії',
+                    caption: 'Відсутність електроенергії'
                 }
             ],
             keyExpr: 'Id',
@@ -44,30 +44,29 @@
             showHeaderFilter: false,
             showColumnChooser: false,
             showColumnFixing: true,
-            groupingAutoExpandAll: null,        
+            groupingAutoExpandAll: null
         },
         init: function() {
             this.dataGridInstance.height = window.innerHeight / 2 - 150;
-            this.sub = this.messageService.subscribe( 'GlobalFilterChanged', this.getFiltersParams, this );
+            this.sub = this.messageService.subscribe('GlobalFilterChanged', this.getFiltersParams, this);
         },
-        getFiltersParams: function(message){
+        getFiltersParams: function(message) {
             let period = message.package.value.values.find(f => f.name === 'period').value;
-            if( period !== null ){
-                this.dateFrom =  period.dateFrom;
+            if(period !== null) {
+                this.dateFrom = period.dateFrom;
                 this.dateTo = period.dateTo;
-                
-                this.config.query.parameterValues = [ 
-                    {key: '@dateFrom' , value: this.dateFrom },  
-                    {key: '@dateTo', value: this.dateTo },  
+                this.config.query.parameterValues = [
+                    {key: '@dateFrom' , value: this.dateFrom },
+                    {key: '@dateTo', value: this.dateTo }
                 ];
                 this.loadData(this.afterLoadDataHandler);
             }
-        }, 
-        afterLoadDataHandler: function(data) {
+        },
+        afterLoadDataHandler: function() {
             this.render();
         },
-        destroy: function(){
+        destroy: function() {
             this.sub.unsubscribe();
-        },
+        }
     };
 }());

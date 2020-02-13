@@ -1,0 +1,104 @@
+[
+  {
+    "Code": "last_name",
+    "Name": "last_name",
+    "Position": 0,
+    "IsPrintable": false
+  },
+  {
+    "Code": "first_name",
+    "Name": "first_name",
+    "Position": 1,
+    "IsPrintable": false
+  },
+  {
+    "Code": "middle_name",
+    "Name": "middle_name",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "person_phone",
+    "Name": "person_phone",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "birth_date",
+    "Name": "birth_date",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "building_id",
+    "Name": "building_id",
+    "Position": 5,
+    "IsPrintable": false
+  },
+  {
+    "Code": "entrance",
+    "Name": "entrance",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "entercode",
+    "Name": "entercode",
+    "Position": 7,
+    "IsPrintable": false
+  },
+  {
+    "Code": "storeysnumber",
+    "Name": "storeysnumber",
+    "Position": 8,
+    "IsPrintable": false
+  },
+  {
+    "Code": "floor",
+    "Name": "floor",
+    "Position": 9,
+    "IsPrintable": false
+  },
+  {
+    "Code": "flat",
+    "Name": "flat",
+    "Position": 10,
+    "IsPrintable": false
+  },
+  {
+    "Code": "exit",
+    "Name": "exit",
+    "Position": 11,
+    "IsPrintable": false
+  },
+  {
+    "Code": "moreinformation",
+    "Name": "moreinformation",
+    "Position": 12,
+    "IsPrintable": false
+  },
+  {
+    "Code": "longitude",
+    "Name": "longitude",
+    "Position": 13,
+    "IsPrintable": false
+  },
+  {
+    "Code": "latitude",
+    "Name": "latitude",
+    "Position": 14,
+    "IsPrintable": false
+  },
+  {
+    "Code": "event_address",
+    "Name": "event_address",
+    "Position": 15,
+    "IsPrintable": false
+  },
+  {
+    "Code": "applicant_classes_ids",
+    "Name": "applicant_classes_ids",
+    "Position": 16,
+    "IsPrintable": false
+  }
+]

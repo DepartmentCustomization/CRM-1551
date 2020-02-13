@@ -1,5 +1,5 @@
---  declare @dateFrom datetime = '2019-07-01 00:00:00';
---  declare @dateTo datetime = '2019-12-31 00:00:00';
+--   declare @dateFrom datetime = '2019-07-01 00:00:00';
+--   declare @dateTo datetime = '2019-12-31 00:00:00';
 
 --declare @filterTo datetime = dateadd(second,59,(dateadd(minute,59,(dateadd(hour,23,cast(cast(dateadd(day,0,@dateTo) as date) as datetime))))));
 

@@ -1,4 +1,4 @@
-declare @tab table (Id int)
+DECLARE @tab TABLE (Id INT);
 
   INSERT INTO [CRM_1551_Site_Integration].[dbo].[ApplicantsFromSite]
            ([Surname]
@@ -8,8 +8,9 @@ declare @tab table (Id int)
            ,[Sex]
            ,[SocialStateId]
            ,[ApplicantPrivilegeId]
-           ,[INN])
-    output inserted.Id into @tab(Id)       
+           ,[INN]
+           ,[is_verified])
+    OUTPUT inserted.Id INTO @tab(Id)       
            
      VALUES
            (@surname
@@ -19,10 +20,11 @@ declare @tab table (Id int)
            ,@sex
            ,@socialstate_id
            ,@applicantprivilage_id
-           ,@inn)
+           ,@inn
+           ,@is_verified);
            
-declare @applicant_id int
-set @applicant_id = (select Top(1) Id from @tab)
+DECLARE @applicant_id INT;
+SET @applicant_id = (SELECT TOP(1) Id FROM @tab);
 
-select @applicant_id as applicant_id
- return 
+SELECT @applicant_id AS applicant_id;
+ RETURN;

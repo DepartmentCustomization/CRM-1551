@@ -1,37 +1,69 @@
+DECLARE @Organization TABLE (
+	Id INT
+);
 
---declare @organization_id int =805;
-declare @Organization table(Id int);
+DECLARE @OrganizationId INT = @organization_id;
 
-declare @OrganizationId int =  @organization_id;
-
-declare @IdT table (Id int);
+DECLARE @IdT TABLE (
+	Id INT
+);
 
 -- НАХОДИМ ИД ОРГАНИЗАЦИЙ ГДЕ ИД И ПАРЕНТЫ ВЫБРАНОЙ И СРАЗУ ЗАЛИВАЕМ
-insert into @IdT(Id)
-select Id from [CRM_1551_Analitics].[dbo].[Organizations] 
-where (Id=@OrganizationId or [parent_organization_id]=@OrganizationId) and Id not in (select Id from @IdT)
+INSERT INTO @IdT (Id)
+	SELECT
+		Id
+	FROM [CRM_1551_Analitics].[dbo].[Organizations]
+	WHERE (Id = @OrganizationId
+	OR [parent_organization_id] = @OrganizationId)
+	AND Id NOT IN (SELECT
+			Id
+		FROM @IdT);
 
 --  НАХОДИМ ПАРЕНТЫ ОРГ, КОТОРЫХ ЗАЛИЛИ, <-- нужен цыкл
-while (select count(id) from (select Id from [CRM_1551_Analitics].[dbo].[Organizations]
-where [parent_organization_id] in (select Id from @IdT) --or Id in (select Id from @IdT)
-and Id not in (select Id from @IdT)) q)!=0
-begin
+WHILE (SELECT
+		COUNT(Id)
+	FROM (SELECT
+			Id
+		FROM [CRM_1551_Analitics].[dbo].[Organizations]
+		WHERE [parent_organization_id] IN (SELECT
+				Id
+			FROM @IdT) --or Id in (select Id from @IdT)
+		AND Id NOT IN (SELECT
+				Id
+			FROM @IdT)) q)
+!= 0
+BEGIN
 
-insert into @IdT
-select Id from [CRM_1551_Analitics].[dbo].[Organizations]
-where [parent_organization_id] in (select Id from @IdT) --or Id in (select Id from @IdT)
-and Id not in (select Id from @IdT)
-end 
+INSERT INTO @IdT
+	SELECT
+		Id
+	FROM [CRM_1551_Analitics].[dbo].[Organizations]
+	WHERE [parent_organization_id] IN (SELECT
+			Id
+		FROM @IdT) --or Id in (select Id from @IdT)
+	AND Id NOT IN (SELECT
+			Id
+		FROM @IdT);
+END
 
-insert into @Organization (Id)
-select Id from @IdT;
+INSERT INTO @Organization (Id)
 
-select id
-, name
--- ,short_name
-,concat([short_name], ' ( ' + address + ')') as [short_name]
-  from [CRM_1551_Analitics].[dbo].[Organizations]
-  where id not in (select Id from @Organization o)
-  and #filter_columns# 
+	SELECT
+		Id
+	FROM @IdT;
+
+SELECT
+	Id
+   ,name
+	-- ,short_name
+   ,CONCAT([short_name], ' ( ' + address + ')') AS [short_name]
+FROM [CRM_1551_Analitics].[dbo].[Organizations]
+WHERE Id NOT IN (SELECT
+		Id
+	FROM @Organization o)
+AND #filter_columns# 
   #sort_columns#
- offset @pageOffsetRows rows fetch next @pageLimitRows rows only
+ OFFSET @pageOffsetRows ROWS
+FETCH NEXT @pageLimitRows ROWS only
+
+

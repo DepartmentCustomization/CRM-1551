@@ -1,4 +1,4 @@
-(function () {
+(function() {
     return {
         placeholder: 'Групи питань',
         keyValue: 'Id',
@@ -11,19 +11,16 @@
             pageNumber: 1,
             sortColumns: [
                 {
-                key: 'Id',
-                value: 0
+                    key: 'Id',
+                    value: 0
                 }
             ]
         },
-
         onItemSelect: function(item) {
             this.yourFunctionName(item);
         },
-
         onClearFilter: function() {
         },
-        
         yourFunctionName: function(item) {
             let message = {
                 name: '',

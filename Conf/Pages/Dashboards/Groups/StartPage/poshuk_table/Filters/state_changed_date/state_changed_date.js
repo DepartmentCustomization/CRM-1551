@@ -1,6 +1,6 @@
-(function () {
+(function() {
     return {
-        showTime: true,   
+        showTime: true,
         placeholder: 'Дата Розглянуто',
         type: 'DateTime',
         stepMinute: 1,

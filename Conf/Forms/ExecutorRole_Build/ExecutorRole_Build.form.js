@@ -1,8 +1,7 @@
-(function () {
-  return {
-    init: function(vasya)
-    {
-        this.form.disableControl("executor_role_id")
-    }
-};
+(function() {
+    return {
+        init: function() {
+            this.form.disableControl('executor_role_id')
+        }
+    };
 }());

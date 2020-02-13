@@ -1,4 +1,4 @@
-(function () {
+(function() {
     return {
         placeholder: 'Дата за тиждень',
         type: 'Date',
@@ -20,30 +20,26 @@
             let year = currentDate.getFullYear();
             let monthFrom = currentDate.getMonth();
             let dayTo = currentDate.getDate();
-            let day =  currentDate.getDay();
+            let day = currentDate.getDay();
             let dayFromFact;
             let monthFromFact;
-            
-            if( dayTo - day >= 0 ){
+            if(dayTo - day >= 0) {
                 dayFromFact = dayTo - --day;
                 monthFromFact = monthFrom;
             }else{
-                
-                let cDate = new Date( year, monthFrom, 0 );
-                thisMonth = cDate.getMonth();
-                thisDay = cDate.getDate();
-                dayFromFact = ++thisDay + (  dayTo - day );
+                let cDate = new Date(year, monthFrom, 0);
+                let thisMonth = cDate.getMonth();
+                let thisDay = cDate.getDate();
+                dayFromFact = ++thisDay + (dayTo - day);
                 monthFromFact = thisMonth;
             }
-            
             let defaultValue = {
-                    dateFrom: new Date( year, monthFromFact, dayFromFact ),
-                    dateTo: new Date( year, monthFrom , dayTo )
-                }
-            this.setDefaultValue(defaultValue); 
+                dateFrom: new Date(year, monthFromFact, dayFromFact),
+                dateTo: new Date(year, monthFrom , dayTo)
+            }
+            this.setDefaultValue(defaultValue);
         },
-        destroy(){
-        // console.log('Destroy date filter');
+        destroy() {
         }
     };
 }());

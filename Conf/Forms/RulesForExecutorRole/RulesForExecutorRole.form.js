@@ -1,8 +1,7 @@
-(function () {
-  return {
-    init:function(vasya)
-    {
-        this.form.disableControl("Rules_Id");
-    }
-};
+(function() {
+    return {
+        init:function() {
+            this.form.disableControl('Rules_Id');
+        }
+    };
 }());

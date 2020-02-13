@@ -1,12 +1,12 @@
-(function () {
+(function() {
     return {
         chartConfig:{
             title: {
                 text: 'Швидкiсть виконання звернень'
-            },       
+            },
             xAxis: {
                 categories: []
-            }, 
+            },
             yAxis: {
                 title: {
                     text: ''
@@ -16,7 +16,7 @@
                 layout: 'vertical',
                 align: 'right',
                 verticalAlign: 'middle'
-            },        
+            },
             plotOptions: {
                 series: {
                     label: {
@@ -41,11 +41,9 @@
                 }]
             }
         },
-
         init: function() {
             this.sub = this.messageService.subscribe('FilterParams', this.setFilterValues, this);
         },
-
         setFilterValues: function(message) {
             this.dateFrom = message.dateFrom;
             this.dateTo = message.dateTo;
@@ -53,44 +51,39 @@
                 this.executeQuery();
             }
         },
-
-        executeQuery: function () {
+        executeQuery: function() {
             const query = {
-                "queryCode": "ak_CSI_graph1_7",
-                "limit": -1,
-                "parameterValues": [
+                'queryCode': 'ak_CSI_graph1_7',
+                'limit': -1,
+                'parameterValues': [
                     {
-                        "key": "@date_from",
-                        "value": this.dateFrom
+                        'key': '@date_from',
+                        'value': this.dateFrom
                     },
                     {
-                        "key": "@date_to",
-                        "value": this.dateTo
+                        'key': '@date_to',
+                        'value': this.dateTo
                     }
                 ]
             };
             this.queryExecutor(query, this.load, this);
         },
-
-        load: function (data) {
+        load: function(data) {
             this.fillIndexes(data);
             this.setChartSeries(data);
             this.render();
         },
-
-        fillIndexes: function (data) {
+        fillIndexes: function(data) {
             this.valueId = this.getIndex(data, 'id');
             this.calcDate = this.getIndex(data, 'calc_date');
             this.average = this.getIndex(data, 'average');
         },
-
-        getIndex: function (data, name) {
+        getIndex: function(data, name) {
             return data.columns.findIndex((el) => {
                 return el.code.toLowerCase() === name;
             })
         },
-
-        setChartSeries: function (data) {
+        setChartSeries: function(data) {
             const chartData = {
                 name: this.chartConfig.title.text,
                 colorByPoint: true,
@@ -99,8 +92,7 @@
             this.chartConfig.series = [];
             this.chartConfig.series.push(chartData);
         },
-
-        getSeriesData: function (data) {
+        getSeriesData: function(data) {
             let result = [];
             this.chartConfig.xAxis.categories = [];
             for (let i = 0; i < data.rows.length; i++) {
@@ -111,10 +103,8 @@
             }
             return result;
         },
-
-        destroy: function () {
+        destroy: function() {
             this.sub.unsubscribe();
         }
     };
 }());
-  

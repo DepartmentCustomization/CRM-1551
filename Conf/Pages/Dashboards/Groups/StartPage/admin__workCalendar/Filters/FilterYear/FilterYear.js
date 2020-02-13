@@ -1,4 +1,4 @@
-(function () {
+(function() {
     return {
         placeholder: 'Рік',
         keyValue: 'Id',
@@ -12,8 +12,8 @@
             pageNumber: 1,
             sortColumns: [
                 {
-                key: 'Id',
-                value: 0
+                    key: 'Id',
+                    value: 0
                 }
             ]
         },
@@ -22,9 +22,6 @@
         },
         onClearFilter: function() {
         },
-        // init: function(){
-        //     this.setDefaultValue('first');
-        // },
         yourFunctionName: function(item) {
             let message = {
                 name: '',

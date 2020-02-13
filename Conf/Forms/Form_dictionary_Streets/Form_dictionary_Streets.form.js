@@ -1,7 +1,7 @@
-(function () {
-  return {
-    init: function() {
-        this.form.disableControl('district');
-    }
-};
+(function() {
+    return {
+        init: function() {
+            this.form.disableControl('district');
+        }
+    };
 }());

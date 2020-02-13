@@ -289,5 +289,21 @@
         "Position": 50,
         "IsPrintable": false,
         "ReferenceKeyCode": "executor_person_id"
+    },
+    {
+        "Code": "editable",
+        "Name": "editable",
+        "Position": 51,
+        "IsPrintable": false
+    },
+    {
+      "Code": "geolocation_lat",
+      "Name": "geolocation_lat",
+      "Position": 52
+    },
+    {
+      "Code": "geolocation_lon",
+      "Name": "geolocation_lon",
+      "Position": 53
     }
 ]

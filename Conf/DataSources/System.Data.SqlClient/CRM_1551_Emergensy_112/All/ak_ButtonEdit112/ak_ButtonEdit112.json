@@ -1,0 +1,282 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_ButtonEdit112",
+    "Name": "ak_ButtonEdit112",
+    "ConnectionCode": "CRM_1551_Emergensy_112",
+    "IsUsedForRightsFilter": false,
+    "Parameters": [
+      {
+        "Code": "@applicant_id",
+        "Name": "applicant_id",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@pacient_id",
+        "Name": "pacient_id",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@event_id",
+        "Name": "event_id",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@user_id",
+        "Name": "user_id",
+        "ParameterType": "CurrentUserId"
+      },
+      {
+        "Code": "@applicant_last_name",
+        "Name": "applicant_last_name"
+      },
+      {
+        "Code": "@applicant_first_name",
+        "Name": "applicant_first_name"
+      },
+      {
+        "Code": "@applicant_middle_name",
+        "Name": "applicant_middle_name"
+      },
+      {
+        "Code": "@applicant_person_phone",
+        "Name": "applicant_person_phone"
+      },
+      {
+        "Code": "@applicant_sex",
+        "Name": "applicant_sex",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@applicant_birth_date",
+        "Name": "applicant_birth_date",
+        "ParameterType": "DateTime"
+      },
+      {
+        "Code": "@applicant_building_id",
+        "Name": "applicant_building_id",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@applicant_entrance",
+        "Name": "applicant_entrance",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@applicant_entercode",
+        "Name": "applicant_entercode"
+      },
+      {
+        "Code": "@applicant_storeysnumber",
+        "Name": "applicant_storeysnumber",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@applicant_floor",
+        "Name": "applicant_floor",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@applicant_flat",
+        "Name": "applicant_flat"
+      },
+      {
+        "Code": "@applicant_exit",
+        "Name": "applicant_exit"
+      },
+      {
+        "Code": "@applicant_moreinformation",
+        "Name": "applicant_moreinformation"
+      },
+      {
+        "Code": "@applicant_longitude",
+        "Name": "applicant_longitude"
+      }, 
+      {
+        "Code": "@applicant_latitude",
+        "Name": "applicant_latitude"
+      },
+      {
+        "Code": "@pacient_last_name",
+        "Name": "pacient_last_name"
+      },
+      {
+        "Code": "@pacient_first_name",
+        "Name": "pacient_first_name"
+      },
+      {
+        "Code": "@pacient_middle_name",
+        "Name": "pacient_middle_name"
+      },
+      {
+        "Code": "@pacient_person_phone",
+        "Name": "pacient_person_phone"
+      },
+      {
+        "Code": "@pacient_sex",
+        "Name": "pacient_sex",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@pacient_birth_date",
+        "Name": "pacient_birth_date",
+        "ParameterType": "DateTime"
+      },
+      {
+        "Code": "@pacient_building_id",
+        "Name": "pacient_building_id",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@pacient_entrance",
+        "Name": "pacient_entrance",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@pacient_entercode",
+        "Name": "pacient_entercode"
+      },
+      {
+        "Code": "@pacient_storeysnumber",
+        "Name": "pacient_storeysnumber",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@pacient_floor",
+        "Name": "pacient_floor",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@pacient_flat",
+        "Name": "pacient_flat"
+      },
+      {
+        "Code": "@pacient_exit",
+        "Name": "pacient_exit"
+      },
+      {
+        "Code": "@pacient_moreinformation",
+        "Name": "pacient_moreinformation"
+      },
+      {
+        "Code": "@pacient_longitude",
+        "Name": "pacient_longitude"
+      }, 
+      {
+        "Code": "@pacient_latitude",
+        "Name": "pacient_latitude"
+      },
+      {
+        "Code": "@event_receipt_date",
+        "Name": "event_receipt_date",
+        "ParameterType": "DateTime"
+      },
+      {
+        "Code": "@event_work_line_id",
+        "Name": "event_work_line_id",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@event_work_line_value",
+        "Name": "event_work_line_value"
+      },
+      {
+        "Code": "@event_category_id",
+        "Name": "event_category_id",
+        "ParameterType": "Integer"
+      }, 
+      {
+        "Code": "@event_event_date",
+        "Name": "event_event_date",
+        "ParameterType": "DateTime"
+      }, 
+      {
+        "Code": "@event_applicant_type_id",
+        "Name": "event_applicant_type_id",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@event_building_id",
+        "Name": "event_building_id",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@event_entrance",
+        "Name": "event_entrance",
+        "ParameterType": "Integer"
+      },
+      {
+        "Code": "@event_entercode",
+        "Name": "event_entercode"
+      }, 
+      {
+        "Code": "@event_storeysnumber",
+        "Name": "event_storeysnumber",
+        "ParameterType": "Integer"
+      }, 
+      {
+        "Code": "@event_floor",
+        "Name": "event_floor",
+        "ParameterType": "Integer"
+      }, 
+      {
+        "Code": "@event_flat_office",
+        "Name": "event_flat_office"
+      },
+      {
+        "Code": "@event_exit",
+        "Name": "event_exit"
+      },
+      {
+        "Code": "@event_moreinformation",
+        "Name": "event_moreinformation"
+      },
+      {
+        "Code": "@event_longitude",
+        "Name": "event_longitude"
+      }, 
+      {
+        "Code": "@event_latitude",
+        "Name": "event_latitude"
+      },
+      {
+        "Code": "@event_content",
+        "Name": "event_content"
+      }, 
+      {
+        "Code": "@event_sipcallid",
+        "Name": "event_sipcallid"
+      },
+      {
+        "Code": "@service_ids",
+        "Name": "service_ids"
+      }, 
+      {
+        "Code": "@applicant_classes_ids",
+        "Name": "applicant_classes_ids"
+      },
+      {
+        "Code": "@pacient_classes_ids",
+        "Name": "pacient_classes_ids"
+      },
+      {
+        "Code": "@fire",
+        "Name": "fire",
+        "ParameterType": "Boolean"
+      },
+      {
+        "Code": "@police",
+        "Name": "police",
+        "ParameterType": "Boolean"
+      },
+      {
+        "Code": "@medical",
+        "Name": "medical",
+        "ParameterType": "Boolean"
+      },
+      {
+        "Code": "@gas",
+        "Name": "gas",
+        "ParameterType": "Boolean"
+      }
+    ]
+  }

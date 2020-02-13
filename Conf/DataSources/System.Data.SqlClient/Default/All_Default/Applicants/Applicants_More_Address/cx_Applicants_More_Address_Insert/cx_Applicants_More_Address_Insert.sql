@@ -6,7 +6,7 @@ INSERT INTO [dbo].[LiveAddress]
            ,[flat]
            ,[main]
            ,[active])
-	output [inserted].[applicant_id]
+	--output [inserted].[applicant_id]
      VALUES
            (@applicant_id
            ,@building_address

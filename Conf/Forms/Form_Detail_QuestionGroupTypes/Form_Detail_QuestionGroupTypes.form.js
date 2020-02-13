@@ -1,8 +1,8 @@
-(function () {
-  return {
-init:function(){
-        this.form.disableControl('groupName');
-         }
-}
-        ;
+(function() {
+    return {
+        init:function() {
+            this.form.disableControl('groupName');
+        }
+    }
+    ;
 }());

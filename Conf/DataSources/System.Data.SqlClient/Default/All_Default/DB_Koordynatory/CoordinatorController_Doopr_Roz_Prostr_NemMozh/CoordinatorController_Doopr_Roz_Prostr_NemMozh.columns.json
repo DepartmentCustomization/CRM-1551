@@ -81,5 +81,10 @@
     "Code": "transfer_to_organization_name",
     "Name": "transfer_to_organization_name",
     "Position": 15
+  },
+  {
+    "Code": "event",
+    "Name": "event",
+    "Position": 16
   }
 ]

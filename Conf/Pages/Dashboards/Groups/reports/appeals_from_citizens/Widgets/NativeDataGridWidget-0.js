@@ -1,4 +1,4 @@
-(function () {
+(function() {
     return {
         config: {
             query: {
@@ -12,7 +12,7 @@
             columns: [
                 {
                     dataField: 'oper',
-                    caption: 'ПІП користувача',
+                    caption: 'ПІП користувача'
                 }, {
                     dataField: 'questionQ',
                     caption: 'Звернень',
@@ -33,40 +33,40 @@
                     dataField: 'notCallQ',
                     caption: 'Недозвон',
                     alignment: 'center'
-                },
+                }
             ],
             summary: {
-                    totalItems: [{
-                        column: "questionQ",
-                        summaryType: "sum",
-                        customizeText: function(data) {
-                        return "Сума: " + data.value;
+                totalItems: [{
+                    column: 'questionQ',
+                    summaryType: 'sum',
+                    customizeText: function(data) {
+                        return 'Сума: ' + data.value;
                     }
-                    }, {
-                        column: "assignmentQ",
-                        summaryType: "sum",
-                        customizeText: function(data) {
-                        return "Сума: " + data.value;
+                }, {
+                    column: 'assignmentQ',
+                    summaryType: 'sum',
+                    customizeText: function(data) {
+                        return 'Сума: ' + data.value;
                     }
-                    }, {
-                        column: "doneQ",
-                        summaryType: "sum",
-                        customizeText: function(data) {
-                        return "Сума: " + data.value;
+                }, {
+                    column: 'doneQ',
+                    summaryType: 'sum',
+                    customizeText: function(data) {
+                        return 'Сума: ' + data.value;
                     }
-                    }, {
-                        column: "reworkQ",
-                        summaryType: "sum",
-                        customizeText: function(data) {
-                        return "Сума: " + data.value;
+                }, {
+                    column: 'reworkQ',
+                    summaryType: 'sum',
+                    customizeText: function(data) {
+                        return 'Сума: ' + data.value;
                     }
-                    }, {
-                        column: "notCallQ",
-                        summaryType: "sum",
-                        customizeText: function(data) {
-                        return "Сума: " + data.value;
+                }, {
+                    column: 'notCallQ',
+                    summaryType: 'sum',
+                    customizeText: function(data) {
+                        return 'Сума: ' + data.value;
                     }
-                    }]
+                }]
             },
             keyExpr: 'Id',
             scrolling: {
@@ -74,7 +74,7 @@
             },
             filterRow: {
                 visible: true,
-                applyFilter: "auto"
+                applyFilter: 'auto'
             },
             showBorders: false,
             showColumnLines: false,
@@ -91,64 +91,57 @@
             showHeaderFilter: false,
             showColumnChooser: false,
             showColumnFixing: true,
-            groupingAutoExpandAll: null, 
+            groupingAutoExpandAll: null
         },
         init: function() {
             this.dataGridInstance.height = window.innerHeight - 200;
             this.sub = this.messageService.subscribe('GlobalFilterChanged', this.getFiltersParams, this);
         },
-        getFiltersParams: function(message){
-            
+        getFiltersParams: function(message) {
             let period = message.package.value.values.find(f => f.name === 'period').value;
             let citizenName = message.package.value.values.find(f => f.name === 'citizen_name').value;
-            if( period !== null ){
-                if( period.dateFrom !== '' && period.dateTo !== ''){
-                    
+            if(period !== null) {
+                if(period.dateFrom !== '' && period.dateTo !== '') {
                     this.dateFrom = period.dateFrom;
                     this.dateTo = period.dateTo;
-                    this.citizenName = extractOrgValues(citizenName);
-            
-                    this.config.query.parameterValues = [ 
-                        {key: '@dateFrom' , value: this.dateFrom },  
-                        {key: '@dateTo', value: this.dateTo }  
+                    this.citizenName = this.extractOrgValues(citizenName);
+                    this.config.query.parameterValues = [
+                        {key: '@dateFrom' , value: this.dateFrom },
+                        {key: '@dateTo', value: this.dateTo }
                     ];
                     this.config.query.filterColumns = [];
                     if (this.citizenName.length > 0) {
                         const filter = {
-                            key: "operId",
+                            key: 'operId',
                             value: {
                                 operation: 0,
                                 not: false,
                                 values: this.citizenName
                             }
                         };
-                            
                         this.config.query.filterColumns.push(filter);
-                    };
-                    this.loadData(this.afterLoadDataHandler);
-                    
-                    function extractOrgValues(val) {
-                        if(val != null){
-                            var valuesList = [];
-                            if (val.length > 0) {
-                                for (var i = 0; i < val.length; i++) {
-                                    valuesList.push(val[i].value);
-                                }
-                            }    
-                                return  valuesList.length > 0 ? valuesList : [];
-                        } else {
-                            return [];
-                        };
                     }
-            
-                }    
+                    this.loadData(this.afterLoadDataHandler);
+                }
             }
         },
-        afterLoadDataHandler: function(data) {
+        extractOrgValues: function(val) {
+            if(val != null) {
+                let valuesList = [];
+                if (val.length > 0) {
+                    for (let i = 0; i < val.length; i++) {
+                        valuesList.push(val[i].value);
+                    }
+                }
+                return valuesList.length > 0 ? valuesList : [];
+            }
+            return [];
+        },
+        afterLoadDataHandler: function() {
             this.render();
         },
-        destroy: function(){
+        destroy: function() {
             this.sub.unsubscribe();
-        },
+        }
     };
 }());

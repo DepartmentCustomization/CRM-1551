@@ -46,10 +46,25 @@
         "Name": "Номер питання",
         "Position": 5,
         "IsPrintable": false
+      },
+      {
+        "Code": "Uploaded",
+        "Name": "Uploaded",
+        "Position": 6,
+        "IsPrintable": false,
+        "SqlName": "Uploaded",
+        "FilterParameterCode": "@Uploaded"
+      },
+      {
+        "Code": "Processed",
+        "Name": "Processed",
+        "Position": 7,
+        "IsPrintable": false,
+        "SqlName": "Processed",
+        "FilterParameterCode": "@Processed"
       }
     ],
     "Parameters": [
-
         {
           "Code": "@dateFrom",
           "Name": "dateFrom",
@@ -64,6 +79,26 @@
           "Code": "@is_worked",
           "Name": "is_worked",
           "ParameterType": "Boolean"
+        },
+        {
+          "Code": "@uploaded",
+          "Name": "uploaded"
+        },
+        {
+          "Code": "@processed",
+          "Name": "processed"
+        },
+        {
+          "Code": "@pageOffsetRows",
+          "Name": "pageOffsetRows",
+          "ParameterType": "Integer",
+          "IsPageOffsetRows": true
+        },
+        {
+          "Code": "@pageLimitRows",
+          "Name": "pageLimitRows",
+          "ParameterType": "Integer",
+          "IsPageLimitRows": true
         }
       ]
   }

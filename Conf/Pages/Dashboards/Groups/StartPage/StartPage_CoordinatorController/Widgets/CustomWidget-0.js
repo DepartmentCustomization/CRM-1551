@@ -1,9 +1,6 @@
-(function () {
-  return {
-    // title: '',
-    // hint: '',
-    // formatTitle: function() {},
-    customConfig:
+(function() {
+    return {
+        customConfig:
                 `
                     <style>
                     
@@ -71,7 +68,7 @@
                       <!-- -->
                       
                       
-                      <div ="" class="group" tabindex="0" onclick="javascript:window.location='`+location.origin + localStorage.getItem('VirtualPath')+ `/dashboard/page/Coordinator_сontroller'">
+                      <div ="" class="group" tabindex="0" onclick="javascript:window.location='` + location.origin + localStorage.getItem('VirtualPath') + `/dashboard/page/Coordinator_сontroller'">
                         <div ="" class="icon">
                           <i ="" class="material-icons" style="color:#ff7961;"> assignment </i>
                         </div>
@@ -80,7 +77,7 @@
                         <div ="" class="border-right"></div>
                       </div>
                       
-                    <!--     <div ="" class="group" tabindex="0" onclick="javascript:window.location='`+location.origin + localStorage.getItem('VirtualPath')+ `/sections/Organizations'">
+                    <!--     <div ="" class="group" tabindex="0" onclick="javascript:window.location='` + location.origin + localStorage.getItem('VirtualPath') + `/sections/Organizations'">
                         <div ="" class="icon">
                           <i ="" class="material-icons" style="color: #2196F3;"> find_in_page </i>
                         </div>
@@ -89,7 +86,7 @@
                         <div ="" class="border-right"></div>
                       </div>
                       
-                   <div ="" class="group" tabindex="0"  onclick="javascript:window.location='`+location.origin + localStorage.getItem('VirtualPath')+ `/sections/CreateAppeal/add'">
+                   <div ="" class="group" tabindex="0"  onclick="javascript:window.location='` + location.origin + localStorage.getItem('VirtualPath') + `/sections/CreateAppeal/add'">
                         <div ="" class="icon">
                           <i ="" class="material-icons" style="color: #6ec6ff;"> contact_phone </i>
                         </div>
@@ -98,7 +95,7 @@
                         <div ="" class="border-right"></div>
                       </div>
                       
-                      <div ="" class="group" tabindex="0"  onclick="javascript:window.location='`+location.origin + localStorage.getItem('VirtualPath')+ `/sections/Polls/add'">
+                      <div ="" class="group" tabindex="0"  onclick="javascript:window.location='` + location.origin + localStorage.getItem('VirtualPath') + `/sections/Polls/add'">
                         <div ="" class="icon">
                           <i ="" class="material-icons" style="color:#FBC02D;"> event_note </i>
                         </div>
@@ -107,7 +104,7 @@
                         <div ="" class="border-right"></div>
                       </div>
                       
-                    <div ="" class="group" tabindex="0" onclick="javascript:window.location='`+location.origin + localStorage.getItem('VirtualPath')+ `/dashboard/home/CityPublicTransport'">
+                    <div ="" class="group" tabindex="0" onclick="javascript:window.location='` + location.origin + localStorage.getItem('VirtualPath') + `/dashboard/home/CityPublicTransport'">
                         <div ="" class="icon">
                           <i ="" class="material-icons" style="color: #FFB300;">directions_bus </i>
                         </div>
@@ -119,16 +116,10 @@
                     </section>
                 
                 `
-    ,
-    init: function() {
-        // let executeQuery = {
-        //     queryCode: '<Название источника>',
-        //     limit: -1,
-        //     parameterValues: []
-        // };
-        // this.queryExecutor(executeQuery, this.load);
-    },
-    load: function(data) {
-    }
-};
+        ,
+        init: function() {
+        },
+        load: function() {
+        }
+    };
 }());

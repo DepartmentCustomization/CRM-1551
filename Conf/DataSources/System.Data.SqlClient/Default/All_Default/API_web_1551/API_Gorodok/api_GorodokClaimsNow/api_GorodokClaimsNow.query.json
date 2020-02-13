@@ -1,0 +1,75 @@
+{
+  "ModelType": "Query",
+  "Code": "api_GorodokClaimsNow",
+  "Name": "api_GorodokClaimsNow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "claim_number",
+      "Name": "claim_number",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "claims_type",
+      "Name": "claims_type",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "status",
+      "Name": "status",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "object_name",
+      "Name": "object_name",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "executor",
+      "Name": "executor",
+      "Position": 4,
+      "IsPrintable": false
+    },
+    {
+      "Code": "plan_finish_date",
+      "Name": "plan_finish_date",
+      "Position": 5,
+      "IsPrintable": false
+    },
+    {
+      "Code": "display_name",
+      "Name": "display_name",
+      "Position": 6,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@service_type_id",
+      "Name": "service_type_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@object_id",
+      "Name": "object_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

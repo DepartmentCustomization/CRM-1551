@@ -1,311 +1,128 @@
-(function () {
+(function() {
     return {
-        chartConfig:{
-            title: {
-                text: 'Консультації'
-            },
+        chartConfig: {
             chart: {
                 type: 'column'
             },
-            accessibility: {
-                announceNewData: {
-                    enabled: true
-                }
+            title: {
+                text: 'Консультації'
+            },
+            subtitle: {
+                text: ''
             },
             xAxis: {
-                type: 'category'
+                categories: []
             },
             yAxis: {
                 title: {
-                    text: ' '
+                    text: 'Кількість'
                 }
-            },
-            legend: {
-                enabled: false
             },
             plotOptions: {
-                series: {
-                    borderWidth: 0,
+                line: {
                     dataLabels: {
-                        enabled: true,
-                        format: '{point.y:.1f}%'
-                    }
+                        enabled: true
+                    },
+                    enableMouseTracking: false
                 }
             },
-        
-            tooltip: {
-                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
-            },
-        
-            series: [
-                {
-                    name: "Browsers",
-                    colorByPoint: true,
-                    data: [
-                        {
-                            name: "Chrome",
-                            y: 62.74,
-                            drilldown: "Chrome"
-                        },
-                        {
-                            name: "Firefox",
-                            y: 10.57,
-                            drilldown: "Firefox"
-                        },
-                        {
-                            name: "Internet Explorer",
-                            y: 7.23,
-                            drilldown: "Internet Explorer"
-                        },
-                        {
-                            name: "Safari",
-                            y: 5.58,
-                            drilldown: "Safari"
-                        },
-                        {
-                            name: "Edge",
-                            y: 4.02,
-                            drilldown: "Edge"
-                        },
-                        {
-                            name: "Opera",
-                            y: 1.92,
-                            drilldown: "Opera"
-                        },
-                        {
-                            name: "Other",
-                            y: 7.62,
-                            drilldown: null
-                        }
-                    ]
+            series: []
+        },
+        init: function() {
+            const query = this.query('ak_NPS_Index1_2');
+            this.queryExecutor(query, this.getYesterdayIndex, this);
+            this.showPreloader = false;
+            this.sub = this.messageService.subscribe('GlobalFilterChanged', this.getFiltersParams, this);
+        },
+        getYesterdayIndex: function(data) {
+            let value = 0;
+            if (data.rows.length) {
+                value = data.rows[0].values[0];
+            }
+            this.chartConfig.subtitle.text = value;
+        },
+        getFiltersParams: function(message) {
+            let period = message.package.value.values.find((el) => {
+                return el.name.toLowerCase() === 'period';
+            });
+            const value = period.value;
+            if (value !== null) {
+                if (value.dateFrom !== '' && value.dateTo !== '') {
+                    this.dateFrom = value.dateFrom;
+                    this.dateTo = value.dateTo;
+                    this.executeQuery();
                 }
-            ],
-            drilldown: {
-                series: [
-                    {
-                        name: "Chrome",
-                        id: "Chrome",
-                        data: [
-                            [
-                                "v65.0",
-                                0.1
-                            ],
-                            [
-                                "v64.0",
-                                1.3
-                            ],
-                            [
-                                "v63.0",
-                                53.02
-                            ],
-                            [
-                                "v62.0",
-                                1.4
-                            ],
-                            [
-                                "v61.0",
-                                0.88
-                            ],
-                            [
-                                "v60.0",
-                                0.56
-                            ],
-                            [
-                                "v59.0",
-                                0.45
-                            ],
-                            [
-                                "v58.0",
-                                0.49
-                            ],
-                            [
-                                "v57.0",
-                                0.32
-                            ],
-                            [
-                                "v56.0",
-                                0.29
-                            ],
-                            [
-                                "v55.0",
-                                0.79
-                            ],
-                            [
-                                "v54.0",
-                                0.18
-                            ],
-                            [
-                                "v51.0",
-                                0.13
-                            ],
-                            [
-                                "v49.0",
-                                2.16
-                            ],
-                            [
-                                "v48.0",
-                                0.13
-                            ],
-                            [
-                                "v47.0",
-                                0.11
-                            ],
-                            [
-                                "v43.0",
-                                0.17
-                            ],
-                            [
-                                "v29.0",
-                                0.26
-                            ]
-                        ]
-                    },
-                    {
-                        name: "Firefox",
-                        id: "Firefox",
-                        data: [
-                            [
-                                "v58.0",
-                                1.02
-                            ],
-                            [
-                                "v57.0",
-                                7.36
-                            ],
-                            [
-                                "v56.0",
-                                0.35
-                            ],
-                            [
-                                "v55.0",
-                                0.11
-                            ],
-                            [
-                                "v54.0",
-                                0.1
-                            ],
-                            [
-                                "v52.0",
-                                0.95
-                            ],
-                            [
-                                "v51.0",
-                                0.15
-                            ],
-                            [
-                                "v50.0",
-                                0.1
-                            ],
-                            [
-                                "v48.0",
-                                0.31
-                            ],
-                            [
-                                "v47.0",
-                                0.12
-                            ]
-                        ]
-                    },
-                    {
-                        name: "Internet Explorer",
-                        id: "Internet Explorer",
-                        data: [
-                            [
-                                "v11.0",
-                                6.2
-                            ],
-                            [
-                                "v10.0",
-                                0.29
-                            ],
-                            [
-                                "v9.0",
-                                0.27
-                            ],
-                            [
-                                "v8.0",
-                                0.47
-                            ]
-                        ]
-                    },
-                    {
-                        name: "Safari",
-                        id: "Safari",
-                        data: [
-                            [
-                                "v11.0",
-                                3.39
-                            ],
-                            [
-                                "v10.1",
-                                0.96
-                            ],
-                            [
-                                "v10.0",
-                                0.36
-                            ],
-                            [
-                                "v9.1",
-                                0.54
-                            ],
-                            [
-                                "v9.0",
-                                0.13
-                            ],
-                            [
-                                "v5.1",
-                                0.2
-                            ]
-                        ]
-                    },
-                    {
-                        name: "Edge",
-                        id: "Edge",
-                        data: [
-                            [
-                                "v16",
-                                2.6
-                            ],
-                            [
-                                "v15",
-                                0.92
-                            ],
-                            [
-                                "v14",
-                                0.4
-                            ],
-                            [
-                                "v13",
-                                0.1
-                            ]
-                        ]
-                    },
-                    {
-                        name: "Opera",
-                        id: "Opera",
-                        data: [
-                            [
-                                "v50.0",
-                                0.96
-                            ],
-                            [
-                                "v49.0",
-                                0.82
-                            ],
-                            [
-                                "v12.1",
-                                0.14
-                            ]
-                        ]
-                    }
-                ]
             }
         },
-
-        init: function() {
+        executeQuery: function() {
+            const query = this.query('ak_NPS_Graf1_2');
+            this.queryExecutor(query, this.load, this);
+            this.showPreloader = false;
+        },
+        query: function(queryCode) {
+            return {
+                'queryCode': queryCode,
+                'limit': -1,
+                'parameterValues': [
+                    { 'key': '@date_from', 'value': this.dateFrom },
+                    { 'key': '@date_to', 'value': this.dateTo }
+                ]
+            };
+        },
+        load: function(data) {
+            this.fillIndexes(data);
+            this.setChartSeries(data);
             this.render();
         },
+        fillIndexes: function(data) {
+            this.id = this.getIndex(data, 'id');
+            this.grade = this.getIndex(data, 'grade');
+            this.countPeople = this.getIndex(data, 'count_people');
+        },
+        getIndex: function(data, name) {
+            return data.columns.findIndex(el => {
+                return el.code.toLowerCase() === name;
+            })
+        },
+        setChartSeries: function(data) {
+            const chartData = {
+                name: 'Оцінка',
+                data: this.getSeriesData(data)
+            };
+            const categories = this.getCategories(data);
+            this.chartConfig.series = [];
+            this.chartConfig.series.push(chartData);
+            this.chartConfig.xAxis.categories = [];
+            this.chartConfig.xAxis.categories = categories;
+        },
+        getSeriesData: function(data) {
+            let result = [];
+            for (let i = 0; i < data.rows.length; i++) {
+                let value = data.rows[i].values[this.countPeople];
+                value = value === null ? 0 : value;
+                result.push(value);
+            }
+            return result;
+        },
+        getCategories: function(data) {
+            let result = [];
+            for (let i = 0; i < data.rows.length; i++) {
+                let value = data.rows[i].values[this.grade];
+                result.push(value);
+            }
+            return result;
+        },
+        setDete: function(value) {
+            let date = new Date(value);
+            let dd = date.getDate().toString();
+            let mm = (date.getMonth() + 1).toString();
+            let yy = date.getFullYear().toString().slice(-2);
+            dd = dd.length === 1 ? '0' + dd : dd;
+            mm = mm.length === 1 ? '0' + mm : mm;
+            return dd + '-' + mm + '-' + yy;
+        },
+        destroy: function() {
+            this.sub.unsubscribe();
+        }
     };
 }());
-  

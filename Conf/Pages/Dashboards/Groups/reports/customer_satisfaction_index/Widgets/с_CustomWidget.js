@@ -1,4 +1,4 @@
-(function () {
+(function() {
     return {
         title: ' ',
         hint: '',
@@ -21,18 +21,18 @@
         ,
         init: function() {
             const query = {
-                "queryCode": "ak_CSI_yesterday_indicator",
-                "limit": -1,
-                "parameterValues": []
+                'queryCode': 'ak_CSI_yesterday_indicator',
+                'limit': -1,
+                'parameterValues': []
             };
             this.queryExecutor(query, this.load, this);
             this.showPreloader = false;
         },
-        load: function (data) {
+        load: function(data) {
             const CONTAINER = document.getElementById('container');
             if (data.rows.length) {
-                CONTAINER.innerText = data.rows[0].values[0]; 
+                CONTAINER.innerText = data.rows[0].values[0];
             }
-        },
+        }
     };
 }());

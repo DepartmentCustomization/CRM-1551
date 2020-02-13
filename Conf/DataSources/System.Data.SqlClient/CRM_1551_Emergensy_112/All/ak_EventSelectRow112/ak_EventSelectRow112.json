@@ -1,0 +1,14 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_EventSelectRow112",
+    "Name": "ak_EventSelectRow112",
+    "ConnectionCode": "CRM_1551_Emergensy_112",
+    "IsUsedForRightsFilter": false,
+    "Parameters": [
+      {
+        "Code": "@event_id",
+        "Name": "event_id",
+        "ParameterType": "Integer"
+      }
+    ]
+}

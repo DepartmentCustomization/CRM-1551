@@ -1,0 +1,49 @@
+[
+  {
+    "Code": "@fathername",
+    "Name": "fathername"
+  },
+  {
+    "Code": "@sex",
+    "Name": "sex"
+  },
+  {
+    "Code": "@socialstate_id",
+    "Name": "socialstate_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@inn",
+    "Name": "inn",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@surname",
+    "Name": "surname"
+  },
+  {
+    "Code": "@birthdate",
+    "Name": "birthdate",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@applicantprivilage_id",
+    "Name": "applicantprivilage_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@firstname",
+    "Name": "firstname"
+  },
+  {
+    "Code": "@is_verified",
+    "Name": "is_verified",
+    "ParameterType": "Boolean"
+  },
+  {
+    "Code": "@Id",
+    "Name": "Id",
+    "ParameterType": "Integer",
+    "IsPrimaryKey": true
+  }
+]

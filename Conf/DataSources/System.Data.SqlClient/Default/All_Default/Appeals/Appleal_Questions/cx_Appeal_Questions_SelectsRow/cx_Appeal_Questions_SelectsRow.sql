@@ -64,27 +64,29 @@ SELECT
 			question_id = @Id
 			AND main_executor = 1
 	) AS flag_is_state
+	,[Questions].[geolocation_lat]
+	,[Questions].[geolocation_lon]
 FROM
 	[dbo].[Questions]
-	LEFT JOIN Appeals ON Appeals.Id = Questions.appeal_id
-	LEFT JOIN Applicants ON Applicants.Id = Appeals.applicant_id
-	LEFT JOIN QuestionStates ON QuestionStates.Id = Questions.question_state_id
-	LEFT JOIN QuestionTypes ON QuestionTypes.Id = Questions.question_type_id
-	LEFT JOIN AnswerTypes ON AnswerTypes.Id = Questions.answer_form_id
-	LEFT JOIN Organizations ON Organizations.Id = Questions.organization_id
+	LEFT JOIN [dbo].[Appeals] ON Appeals.Id = Questions.appeal_id
+	LEFT JOIN [dbo].[Applicants] ON Applicants.Id = Appeals.applicant_id
+	LEFT JOIN [dbo].[QuestionStates] ON QuestionStates.Id = Questions.question_state_id
+	LEFT JOIN [dbo].[QuestionTypes] ON QuestionTypes.Id = Questions.question_type_id
+	LEFT JOIN [dbo].[AnswerTypes] ON AnswerTypes.Id = Questions.answer_form_id
+	LEFT JOIN [dbo].[Organizations] ON Organizations.Id = Questions.organization_id
 	LEFT JOIN [Objects] ON [Objects].Id = Questions.[object_id]
-	LEFT JOIN Buildings ON Buildings.Id = [Objects].builbing_id
-	LEFT JOIN Streets ON Streets.Id = Buildings.street_id
-	LEFT JOIN StreetTypes ON StreetTypes.Id = Streets.street_type_id
-	LEFT JOIN ObjectTypes ON ObjectTypes.Id = [Objects].object_type_id
-	LEFT JOIN Districts ON Districts.Id = [Buildings].district_id
-	LEFT JOIN Assignments ON Assignments.question_id = Questions.Id
+	LEFT JOIN [dbo].[Buildings] ON Buildings.Id = [Objects].builbing_id
+	LEFT JOIN [dbo].[Streets] ON Streets.Id = Buildings.street_id
+	LEFT JOIN [dbo].[StreetTypes] ON StreetTypes.Id = Streets.street_type_id
+	LEFT JOIN [dbo].[ObjectTypes] ON ObjectTypes.Id = [Objects].object_type_id
+	LEFT JOIN [dbo].[Districts] ON Districts.Id = [Buildings].district_id
+	LEFT JOIN [dbo].[Assignments] ON Assignments.question_id = Questions.Id
 	AND Assignments.main_executor = 1 --and Assignments.close_date is null
 	-- 	left join AssignmentConsiderations assC on assC.assignment_id = Assignments.Id
-	LEFT JOIN AssignmentConsiderations assC ON assC.Id = Assignments.current_assignment_consideration_id
-	LEFT JOIN AssignmentResults assR ON assR.Id = Assignments.AssignmentResultsId
-	LEFT JOIN AssignmentResolutions assRn ON assRn.Id = Assignments.AssignmentResolutionsId
-	LEFT JOIN Organizations perfom ON perfom.Id = Assignments.[executor_organization_id]
+	LEFT JOIN [dbo].[AssignmentConsiderations] assC ON assC.Id = Assignments.current_assignment_consideration_id
+	LEFT JOIN [dbo].[AssignmentResults] assR ON assR.Id = Assignments.AssignmentResultsId
+	LEFT JOIN [dbo].[AssignmentResolutions] assRn ON assRn.Id = Assignments.AssignmentResolutionsId
+	LEFT JOIN [dbo].[Organizations] perfom ON perfom.Id = Assignments.[executor_organization_id]
 	LEFT JOIN [#system_database_name#].[dbo].[User] ON [Questions].[user_id] = [User].UserId
 WHERE
 	[Questions].[Id] = @Id

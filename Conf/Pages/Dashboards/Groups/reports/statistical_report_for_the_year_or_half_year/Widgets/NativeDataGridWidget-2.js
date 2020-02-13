@@ -1,4 +1,4 @@
-(function () {
+(function() {
     return {
         config: {
             query: {
@@ -14,7 +14,7 @@
                     dataField: 'source',
                     caption: ' ',
                     width: 200
-                }, 
+                },
                 {
                     caption: 'у тому числі питання:',
                     columns: [
@@ -27,9 +27,8 @@
                                     caption: 'previousYear',
                                     dataField: 'prevCommunal',
                                     alignment: 'center',
-                                    
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }, {
@@ -37,7 +36,7 @@
                                     dataField: 'curCommunal',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }
@@ -51,7 +50,7 @@
                                     dataField: 'prevResidential',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }, {
@@ -59,7 +58,7 @@
                                     dataField: 'curResidential',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }
@@ -73,7 +72,7 @@
                                     dataField: 'prevEcology',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }, {
@@ -81,7 +80,7 @@
                                     dataField: 'curEcology',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }
@@ -95,7 +94,7 @@
                                     dataField: 'prevLaw',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }, {
@@ -103,7 +102,7 @@
                                     dataField: 'curLaw',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }
@@ -117,7 +116,7 @@
                                     dataField: 'prevFamily',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }, {
@@ -125,7 +124,7 @@
                                     dataField: 'curFamily',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }
@@ -139,7 +138,7 @@
                                     dataField: 'prevHealth',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }, {
@@ -147,49 +146,44 @@
                                     dataField: 'curSince',
                                     alignment: 'center',
                                     customizeText: function(cellInfo) {
-                                        let value = cellInfo.value === null ? ' - ' :  cellInfo.value ;
+                                        let value = cellInfo.value === null ? ' - ' : cellInfo.value;
                                         return value;
                                     }
                                 }
                             ]
                         }
                     ]
-                }, 
+                }
             ],
             keyExpr: 'source'
         },
-
         init: function() {
-            this.sub =  this.messageService.subscribe( 'FiltersParams', this.setFilterParams, this );
+            this.sub = this.messageService.subscribe('FiltersParams', this.setFilterParams, this);
             this.config.onContentReady = this.afterRenderTable.bind(this);
         },
-
-        setFilterParams: function (message) {
+        setFilterParams: function(message) {
             this.config.query.parameterValues = [
-                {key: '@dateFrom' , value:  message.dateFrom },  
-                {key: '@dateTo', value: message.dateTo } 
+                {key: '@dateFrom' , value:  message.dateFrom },
+                {key: '@dateTo', value: message.dateTo }
             ];
             this.loadData(this.afterLoadDataHandler);
-        }, 
-
+        },
         afterLoadDataHandler: function(data) {
             const name = 'setData';
             const columns = this.config.columns;
-            const position = 2;
-            this.messageService.publish( {name, data, columns, position} );
+            const position = 3;
+            this.messageService.publish({name, data, columns, position});
             this.render(this.afterRenderTable());
-        },   
-
-        afterRenderTable: function (params) {
+        },
+        afterRenderTable: function() {
             this.messageService.publish({ name: 'setStyles'});
             this.messageService.publish({
                 name: 'setYears',
                 columns: this.config.columns[1].columns
             });
         },
-
         destroy: function() {
             this.sub.unsubscribe();
-        },
+        }
     };
 }());

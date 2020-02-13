@@ -34,5 +34,10 @@
   {
     "Code": "@firstname",
     "Name": "firstname"
+  },
+  {
+    "Code": "@is_verified",
+    "Name": "is_verified",
+    "ParameterType": "Boolean"
   }
 ]

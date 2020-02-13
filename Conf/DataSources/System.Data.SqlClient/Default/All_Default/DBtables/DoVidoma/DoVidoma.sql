@@ -2,126 +2,182 @@
 declare @user_id nvarchar(300)=N'02ece542-2d75-479d-adad-fd333d09604d';
 declare @organization_id int =2350;
 declare @navigation nvarchar(400)=N'Інші доручення';
-*/
-declare @NavigationTable table(Id nvarchar(400));
+*/ 
 
-if @navigation=N'Усі'
-	begin
-		insert into @NavigationTable (Id)
-		select N'Інші доручення' n union all select N'УГЛ' n union all
-		select N'Зауваження' n union all select N'Електронні джерела' n union all select N'Пріоритетне'
-	end 
-else 
-	begin
-		insert into @NavigationTable (Id)
-		select @navigation
-	end;
+IF EXISTS (SELECT orr.*
+  FROM [dbo].[OrganizationInResponsibilityRights] orr
+  INNER JOIN dbo.Positions p ON orr.position_id=P.Id
+  WHERE orr.organization_id=@organization_Id 
+  AND P.programuser_id=@user_id)
 
-/*
-declare @Organization table(Id int);
+	BEGIN
+		DECLARE @NavigationTable TABLE (
+	Id NVARCHAR(400)
+);
 
+IF @navigation = N'Усі'
+BEGIN
+	INSERT INTO @NavigationTable (Id)
+		SELECT
+			N'Інші доручення' n
+		UNION ALL
+		SELECT
+			N'УГЛ' n
+		UNION ALL
+		SELECT
+			N'Зауваження' n
+		UNION ALL
+		SELECT
+			N'Електронні джерела' n
+		UNION ALL
+		SELECT
+			N'Пріоритетне';
+END
+ELSE
+BEGIN
+	INSERT INTO @NavigationTable (Id)
+		SELECT
+			@navigation;
+END;
 
+WITH main
+AS
+(SELECT
+		[Assignments].Id
+	   ,[Organizations].Id OrganizationsId
+	   ,[Organizations].name OrganizationsName
+	   ,[Applicants].full_name zayavnyk
+	   ,
+		--[StreetTypes].shortname+N' '+Streets.name+N', '+[Buildings].name adress, 
+		ISNULL([Districts].name + N' р-н, ', N'')
+		+ ISNULL([StreetTypes].shortname, N'')
+		+ ISNULL([Streets].name, N'')
+		+ ISNULL(N', ' + [Buildings].name, N'')
+		+ ISNULL(N', п. ' + [Questions].[entrance], N'')
+		+ ISNULL(N', кв. ' + [Questions].flat, N'') adress
+	   ,[Questions].registration_number
+	   ,[QuestionTypes].name QuestionType
+	   ,CASE
+			WHEN [ReceiptSources].code = N'UGL' THEN N'УГЛ'
+			WHEN [ReceiptSources].code = N'Website_mob.addition' THEN N'Електронні джерела'
+			WHEN [QuestionTypes].emergency = N'true' THEN N'Пріоритетне'
+			WHEN [QuestionTypes].parent_organization_is = N'true' THEN N'Зауваження'
+			ELSE N'Інші доручення'
+		END navigation
+	   ,CASE
+			WHEN [AssignmentTypes].code = N'ToAttention' AND
+				[AssignmentStates].code = N'Registered' THEN 1
+			ELSE 0
+		END dovidima
+	   ,
+		/*
+	    case when [AssignmentStates].code=N'NotFulfilled' and [AssignmentResults].code=N'ForWork' then 1 else 0 end naDoopratsiyvanni,
+	    case when [AssignmentStates].code=N'NotFulfilled' and [AssignmentResults].code=N'ItIsNotPossibleToPerformThisPeriod' then 1 else 0 end neVykonNeMozhl,
+	    null NotUse,*/[Applicants].Id zayavnykId
+	   ,[Questions].Id QuestionId
+	   ,[Applicants].[ApplicantAdress] zayavnyk_adress
+	   ,[Questions].question_content zayavnyk_zmist
+	   ,[Organizations3].short_name balans_name
 
-declare @OrganizationId int = 
-case 
-when @organization_id is not null
-then @organization_id
-else (select Id
-  from [CRM_1551_Analitics].[dbo].[Organizations]
-  where Id in (select organization_id
-  from [CRM_1551_Analitics].[dbo].[Workers]
-  where worker_user_id=@user_id))
- end
+	FROM [dbo].[Assignments]
+	LEFT JOIN [dbo].[Questions]
+		ON [Assignments].question_id = [Questions].Id
+	LEFT JOIN [dbo].[Appeals]
+		ON [Questions].appeal_id = [Appeals].Id
+	LEFT JOIN [dbo].[ReceiptSources]
+		ON [Appeals].receipt_source_id = [ReceiptSources].Id
+	LEFT JOIN [dbo].[QuestionTypes]
+		ON [Questions].question_type_id = [QuestionTypes].Id
+	LEFT JOIN [dbo].[AssignmentTypes]
+		ON [Assignments].assignment_type_id = [AssignmentTypes].Id
+	LEFT JOIN [dbo].[AssignmentStates]
+		ON [Assignments].assignment_state_id = [AssignmentStates].Id
+	--left join [dbo].[AssignmentConsiderations] on [Assignments].Id=[AssignmentConsiderations].assignment_id
+	LEFT JOIN [dbo].[AssignmentResults]
+		ON [Assignments].[AssignmentResultsId] = [AssignmentResults].Id -- +
+	LEFT JOIN [dbo].[AssignmentResolutions]
+		ON [Assignments].[AssignmentResolutionsId] = [AssignmentResolutions].Id
+	LEFT JOIN [dbo].[Organizations]
+		ON [Assignments].executor_organization_id = [Organizations].Id
+	LEFT JOIN [dbo].[Objects]
+		ON [Questions].[object_id] = [Objects].Id
+	LEFT JOIN [dbo].[Buildings]
+		ON [Objects].builbing_id = [Buildings].Id
+	LEFT JOIN [dbo].[Streets]
+		ON [Buildings].street_id = [Streets].Id
+	LEFT JOIN [dbo].[StreetTypes]
+		ON [Streets].street_type_id = [StreetTypes].Id
+	LEFT JOIN [dbo].[Applicants]
+		ON [Appeals].applicant_id = [Applicants].Id
+	LEFT JOIN [dbo].[Districts]
+		ON [Buildings].district_id = [Districts].Id
 
+	LEFT JOIN (SELECT
+			[building_id]
+		   ,[executor_id]
+		FROM [dbo].[ExecutorInRoleForObject]
+		WHERE [executor_role_id] = 1 /*Балансоутримувач*/) balans
+		ON [Buildings].Id = balans.building_id
 
-declare @IdT table (Id int);
+	LEFT JOIN [dbo].[Organizations] [Organizations3]
+		ON balans.executor_id = [Organizations3].Id
 
--- НАХОДИМ ИД ОРГАНИЗАЦИЙ ГДЕ ИД И ПАРЕНТЫ ВЫБРАНОЙ И СРАЗУ ЗАЛИВАЕМ
-insert into @IdT(Id)
-select Id from [CRM_1551_Analitics].[dbo].[Organizations] 
-where (Id=@OrganizationId or [parent_organization_id]=@OrganizationId) and Id not in (select Id from @IdT)
+	--left join [dbo].[AssignmentRevisions] on [AssignmentResolutions].Id=[AssignmentRevisions].assignment_resolution_id
+	WHERE [Assignments].[executor_organization_id] = @organization_id),
 
---  НАХОДИМ ПАРЕНТЫ ОРГ, КОТОРЫХ ЗАЛИЛИ, <-- нужен цыкл
-while (select count(id) from (select Id from [CRM_1551_Analitics].[dbo].[Organizations]
-where [parent_organization_id] in (select Id from @IdT) --or Id in (select Id from @IdT)
-and Id not in (select Id from @IdT)) q)!=0
-begin
+nav
+AS
+(SELECT
+		1 Id
+	   ,N'УГЛ' name
+	UNION ALL
+	SELECT
+		2 Id
+	   ,N'Електронні джерела' name
+	UNION ALL
+	SELECT
+		3 Id
+	   ,N'Пріоритетне' name
+	UNION ALL
+	SELECT
+		4 Id
+	   ,N'Інші доручення' name
+	UNION ALL
+	SELECT
+		5 Id
+	   ,N'Зауваження' name)
 
-insert into @IdT
-select Id from [CRM_1551_Analitics].[dbo].[Organizations]
-where [parent_organization_id] in (select Id from @IdT) --or Id in (select Id from @IdT)
-and Id not in (select Id from @IdT)
-end 
+SELECT
+	Id
+   ,registration_number
+   ,QuestionType
+   ,zayavnyk
+   ,adress
+   ,zayavnykId
+   ,QuestionId--, null vykonavets
+   ,zayavnyk_adress
+   ,zayavnyk_zmist
+   ,balans_name
+FROM main
+WHERE dovidima = 1 
+AND navigation IN (SELECT
+		Id
+	FROM @NavigationTable);
+	END
 
-insert into @Organization (Id)
-select Id from @IdT;
-  */
- with
-
-main as
-(
-select [Assignments].Id, [Organizations].Id OrganizationsId, [Organizations].name OrganizationsName,
-[Applicants].full_name zayavnyk, 
---[StreetTypes].shortname+N' '+Streets.name+N', '+[Buildings].name adress, 
-isnull([Districts].name+N' р-н, ', N'')
-  +isnull([StreetTypes].shortname, N'')
-  +isnull([Streets].name,N'')
-  +isnull(N', '+[Buildings].name,N'')
-  +isnull(N', п. '+[Questions].[entrance], N'')
-  +isnull(N', кв. '+[Questions].flat, N'') adress,
-[Questions].registration_number,
-[QuestionTypes].name QuestionType,
-case when [ReceiptSources].code=N'UGL' then N'УГЛ' 
-when [ReceiptSources].code=N'Website_mob.addition' then N'Електронні джерела'
-when [QuestionTypes].emergency=N'true' then N'Пріоритетне'
-when [QuestionTypes].parent_organization_is=N'true' then N'Зауваження'
-else N'Інші доручення'
-end navigation,
-
- case when [AssignmentTypes].code=N'ToAttention' and [AssignmentStates].code=N'Registered' then 1 else 0 end dovidima,
- /*
- case when [AssignmentStates].code=N'NotFulfilled' and [AssignmentResults].code=N'ForWork' then 1 else 0 end naDoopratsiyvanni,
- case when [AssignmentStates].code=N'NotFulfilled' and [AssignmentResults].code=N'ItIsNotPossibleToPerformThisPeriod' then 1 else 0 end neVykonNeMozhl,
- null NotUse,*/ [Applicants].Id zayavnykId, [Questions].Id QuestionId
-  , [Applicants].[ApplicantAdress] zayavnyk_adress, [Questions].question_content zayavnyk_zmist
-  ,[Organizations3].short_name balans_name
-
-from 
-[CRM_1551_Analitics].[dbo].[Assignments] left join 
-[CRM_1551_Analitics].[dbo].[Questions] on [Assignments].question_id=[Questions].Id
-left join [CRM_1551_Analitics].[dbo].[Appeals] on [Questions].appeal_id=[Appeals].Id
-left join [CRM_1551_Analitics].[dbo].[ReceiptSources] on [Appeals].receipt_source_id=[ReceiptSources].Id
-left join [CRM_1551_Analitics].[dbo].[QuestionTypes] on [Questions].question_type_id=[QuestionTypes].Id
-left join [CRM_1551_Analitics].[dbo].[AssignmentTypes] on [Assignments].assignment_type_id=[AssignmentTypes].Id
-left join [CRM_1551_Analitics].[dbo].[AssignmentStates] on [Assignments].assignment_state_id=[AssignmentStates].Id
---left join [CRM_1551_Analitics].[dbo].[AssignmentConsiderations] on [Assignments].Id=[AssignmentConsiderations].assignment_id
-left join [CRM_1551_Analitics].[dbo].[AssignmentResults] on [Assignments].[AssignmentResultsId]=[AssignmentResults].Id -- +
-left join [CRM_1551_Analitics].[dbo].[AssignmentResolutions] on [Assignments].[AssignmentResolutionsId]=[AssignmentResolutions].Id
-left join [CRM_1551_Analitics].[dbo].[Organizations] on [Assignments].executor_organization_id=[Organizations].Id
-left join [CRM_1551_Analitics].[dbo].[Objects] on [Questions].[object_id]=[Objects].Id
-left join [CRM_1551_Analitics].[dbo].[Buildings] on [Objects].builbing_id=[Buildings].Id
-left join [CRM_1551_Analitics].[dbo].[Streets] on [Buildings].street_id=[Streets].Id
-left join [CRM_1551_Analitics].[dbo].[StreetTypes] on [Streets].street_type_id=[StreetTypes].Id
-left join [CRM_1551_Analitics].[dbo].[Applicants] on [Appeals].applicant_id=[Applicants].Id
- left join [CRM_1551_Analitics].[dbo].[Districts] on [Buildings].district_id=[Districts].Id
-
- left join (select [building_id], [executor_id]
-  from [CRM_1551_Analitics].[dbo].[ExecutorInRoleForObject]
-  where [executor_role_id]=1 /*Балансоутримувач*/) balans on [Buildings].Id=balans.building_id
-
-left join [CRM_1551_Analitics].[dbo].[Organizations] [Organizations3] on balans.executor_id=[Organizations3].Id
-
---left join [CRM_1551_Analitics].[dbo].[AssignmentRevisions] on [AssignmentResolutions].Id=[AssignmentRevisions].assignment_resolution_id
-where [Assignments].[executor_organization_id]=@organization_id
-),
-
-nav as 
-(
-select 1 Id, N'УГЛ' name union all select 2 Id, N'Електронні джерела' name union all select 3	Id, N'Пріоритетне' name union all select 4 Id, N'Інші доручення' name union all select 5 Id, N'Зауваження' name 
-)
-
-select Id, registration_number, QuestionType, zayavnyk, adress, zayavnykId, QuestionId--, null vykonavets
-, zayavnyk_adress, zayavnyk_zmist, balans_name
- from main where dovidima=1 --navigation, registration_number, from main
-and navigation in (select Id from @NavigationTable)
---select nav.name from nav left join main on nav.name=main.navigation
+ELSE
+	
+	BEGIN
+	SELECT
+	1 Id
+   , NULL registration_number
+   , NULL QuestionType
+   , NULL zayavnyk
+   , NULL adress
+   , NULL zayavnykId
+   , NULL QuestionId
+   , NULL zayavnyk_adress
+   , NULL zayavnyk_zmist
+   , NULL balans_name
+   WHERE 1=3;
+	END

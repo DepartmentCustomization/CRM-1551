@@ -1,3 +1,8 @@
+  DELETE
+  FROM [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts]
+  WHERE [ApplicantFromSiteId]=@applicant_id
+
+
 INSERT INTO [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts]
            ([ApplicantFromSiteId]
            ,[MoreContactTypeId]

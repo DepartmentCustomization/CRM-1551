@@ -1,0 +1,36 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_NPS_Graf1_1",
+    "Name": "1.1 Діаграма Звернення за телефоном",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 0
+      },
+      {
+        "Code": "Grade",
+        "Name": "Grade",
+        "Position": 1
+      },
+      {
+        "Code": "Count_people",
+        "Name": "Count_people",
+        "Position": 2
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@date_from",
+        "Name": "date_from",
+        "ParameterType": "Datetime"
+      },
+      {
+        "Code": "@date_to",
+        "Name": "date_to",
+        "ParameterType": "Datetime"
+      }
+    ]
+  }

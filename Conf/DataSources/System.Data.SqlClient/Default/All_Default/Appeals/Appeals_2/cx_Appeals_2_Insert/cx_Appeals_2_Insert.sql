@@ -1,6 +1,6 @@
-declare @output table (Id int);
-declare @outputAppeals table (Id int);
-declare @outputQuestion table (Id int);
+DECLARE @output TABLE (Id INT);
+DECLARE @outputAppeals TABLE (Id INT);
+DECLARE @outputQuestion TABLE (Id INT);
 
 INSERT INTO [dbo].[Applicants]
            ([registration_date]
@@ -16,7 +16,7 @@ INSERT INTO [dbo].[Applicants]
            ,[user_id]
            ,[edit_date]
            ,[user_edit_id])
-		output inserted.Id into @output (Id)
+		OUTPUT inserted.Id INTO @output (Id)
      VALUES
            (getutcdate()
            ,@full_name
@@ -26,17 +26,17 @@ INSERT INTO [dbo].[Applicants]
            ,@mail
            ,@sex
            ,@birth_date
-           ,isnull(@age, DATEDIFF(year,isnull(@birth_date, null),getutcdate()) )
+           ,ISNULL(@age, DATEDIFF(year,isnull(@birth_date, NULL),getutcdate()) )
            ,@comment
            ,@user_id
            ,GETUTCDATE()
            ,@user_edit_id
-		   )
+		   );
 
-declare @applicant_id int
-set @applicant_id = (select top 1 Id from @output)
+DECLARE @applicant_id INT;
+SET @applicant_id = (SELECT TOP 1 Id FROM @output);
 
-insert into [dbo].[ApplicantPhones]
+INSERT INTO [dbo].[ApplicantPhones]
 			([applicant_id]
            ,[phone_type_id]
            ,[phone_number])
@@ -45,7 +45,7 @@ insert into [dbo].[ApplicantPhones]
            (@applicant_id
            ,@phone_type_id
            ,@phone_number 
-		   )
+		   );
 
 INSERT INTO [dbo].[LiveAddress]
            ([applicant_id]
@@ -63,7 +63,7 @@ INSERT INTO [dbo].[LiveAddress]
            ,@flat
            ,@main
            ,@active
-		   )
+		   );
 
 
 
@@ -86,7 +86,7 @@ INSERT INTO [dbo].[Appeals]
            ,[user_id]
            ,[edit_date]
            ,[user_edit_id])
-output [inserted].[Id] into @outputAppeals (Id)
+OUTPUT [inserted].[Id] INTO @outputAppeals (Id)
      VALUES
            (@applicant_id
            ,getutcdate() --@registration_date
@@ -106,11 +106,14 @@ output [inserted].[Id] into @outputAppeals (Id)
            ,@user_id
            ,getutcdate() -- @edit_date
            ,@user_edit_id
-		   )
-declare @appeal_id int
-set @appeal_id = (select top 1 Id from @outputAppeals)
+		   );
+DECLARE @appeal_id INT;
+SET @appeal_id = (SELECT TOP 1 Id FROM @outputAppeals);
 
-update [dbo].[Appeals] set registration_number =  concat( YEAR(getdate()),'-',MONTH(getdate()),'/',@appeal_id  ) where Id =  @appeal_id
+UPDATE [dbo].[Appeals] 
+SET registration_number =  CONCAT( YEAR(GETDATE()),'-',MONTH(GETDATE()),'/',@appeal_id  ) 
+,edit_date=GETUTCDATE()
+WHERE Id =  @appeal_id;
 
 INSERT INTO [dbo].[Questions]
            ([appeal_id]
@@ -132,7 +135,7 @@ INSERT INTO [dbo].[Questions]
            ,[user_id]
            ,[edit_date]
            ,[user_edit_id])
-output [inserted].[Id] into @outputQuestion (Id)
+OUTPUT [inserted].[Id] INTO @outputQuestion (Id)
      VALUES
            (@appeal_id
            ,GETUTCDATE()
@@ -153,15 +156,24 @@ output [inserted].[Id] into @outputQuestion (Id)
            ,@user_id
            ,GETUTCDATE() -- @edit_date
            ,@user_edit_id
-		   )
+		   );
 
-declare @quest_id int;
-SET @quest_id = (select top 1 Id from @outputQuestion)
+DECLARE @quest_id INT;
+SET @quest_id = (SELECT TOP 1 Id FROM @outputQuestion);
 
-update [dbo].[Questions] set [registration_number] = concat ( (select registration_number from Appeals where Id = @appeal_id ),'/',
-																(select case when count(*) = 0 then 1 else count(*) end 
-																	from [Questions] where appeal_id = @appeal_id) )
-															where Id = @quest_id;
+UPDATE [dbo].[Questions] 
+SET [registration_number] = 
+CONCAT ( 
+      (SELECT registration_number 
+      FROM Appeals Appeals
+      WHERE Id = @appeal_id ) 
+      ,'/',
+      (SELECT CASE WHEN COUNT(*) = 0 THEN 1 ELSE count(*) END 
+      FROM [Questions] Questions
+      WHERE appeal_id = @appeal_id) ),
+      [edit_date]=getutcdate()
 
-select @applicant_id as Id
-return;
+WHERE Id = @quest_id;
+
+SELECT @applicant_id AS Id;
+RETURN;

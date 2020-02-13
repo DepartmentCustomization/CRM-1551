@@ -1,0 +1,68 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_LastCard112",
+    "Name": "ak_LastCard112",
+    "ConnectionCode": "CRM_1551_Emergensy_112",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 0
+      },
+      {
+        "Code": "receipt_date",
+        "Name": "receipt_date",
+        "Position": 1
+      },
+      {
+        "Code": "longitude",
+        "Name": "longitude",
+        "Position": 2
+      },
+      {
+        "Code": "latitude",
+        "Name": "latitude",
+        "Position": 3
+      },
+      {
+        "Code": "person_phone",
+        "Name": "person_phone",
+        "Position": 4
+      },
+      {
+        "Code": "content",
+        "Name": "content",
+        "Position": 5
+      },
+      {
+        "Code": "FIO",
+        "Name": "FIO",
+        "Position": 6
+      },
+      {
+        "Code": "event_address",
+        "Name": "event_address",
+        "Position": 7
+      },
+      {
+        "Code": "category_name",
+        "Name": "category_name",
+        "Position": 8
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@pageOffsetRows",
+        "Name": "pageOffsetRows",
+        "ParameterType": "Integer",
+        "IsPageOffsetRows": true
+      },
+      {
+        "Code": "@pageLimitRows",
+        "Name": "pageLimitRows",
+        "ParameterType": "Integer",
+        "IsPageLimitRows": true
+      }
+    ]
+  }

@@ -1,0 +1,19 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_NPS_Index1_2",
+    "Name": "1.2 Число Індексу",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 0
+      },
+      {
+        "Code": "Integral_indicator",
+        "Name": "Integral_indicator",
+        "Position": 1
+      }
+    ]
+  }

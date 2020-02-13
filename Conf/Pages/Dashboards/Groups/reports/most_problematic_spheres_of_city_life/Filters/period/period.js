@@ -1,15 +1,12 @@
-(function () {
+(function() {
     return {
-
         placeholder: 'Період',
-        type: "Date",
-        onItemSelect: function (date) {
+        type: 'Date',
+        onItemSelect: function() {
         },
-
-        init: function () {
+        init: function() {
         },
-
-        initValue: function () {
+        initValue: function() {
             let currentDate = new Date();
             let year = currentDate.getFullYear();
             let monthFrom = currentDate.getMonth();

@@ -40,7 +40,15 @@
     "Code": "@geolocation_lon",
     "Name": "geolocation_lon",
     "ParameterType": "Text"
+  },
+  {
+    "Code": "@SystemIP",
+    "Name": "SystemIP",
+    "ParameterType": "Text"
+  },
+  {
+    "Code": "@is_verified",
+    "Name": "is_verified",
+    "ParameterType": "Boolean"
   }
-
-  
 ]

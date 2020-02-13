@@ -1,0 +1,58 @@
+{
+  "ModelType": "Query",
+  "Code": "Filters_uploaded_UGL",
+  "Name": "Filters_uploaded_UGL",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "UserId",
+      "Name": "UserId",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "UserId",
+      "FilterParameterCode": "@UserId"
+    },
+    {
+      "Code": "UserName",
+      "Name": "UserName",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "UserName",
+      "FilterParameterCode": "@UserName"
+    },
+    {
+      "Code": "UserFIO",
+      "Name": "UserFIO",
+      "Position": 3,
+      "IsPrintable": false,
+      "SqlName": "ISNULL([LastName]+N' ', N'')+ISNULL([FirstName], N'')+ISNULL(N' '+[Patronymic], N'')",
+      "FilterParameterCode": "@UserFIO"
+    }
+  ],
+  "Parameters": [
+      {
+        "Code": "@pageOffsetRows",
+        "Name": "pageOffsetRows",
+        "ParameterType": "Integer",
+        "IsPageOffsetRows": true
+      },
+      {
+        "Code": "@pageLimitRows",
+        "Name": "pageLimitRows",
+        "ParameterType": "Integer",
+        "IsPageLimitRows": true
+      },
+      {
+          "Code": "@user_id",
+          "Name": "user_id",
+          "ParameterType": "CurrentUserId"
+      }
+  ]
+}

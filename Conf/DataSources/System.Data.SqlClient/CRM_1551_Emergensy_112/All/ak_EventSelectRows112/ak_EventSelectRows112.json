@@ -1,0 +1,39 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_EventSelectRows112",
+    "Name": "ak_EventSelectRows112",
+    "ConnectionCode": "CRM_1551_Emergensy_112",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 0
+      },
+      {
+        "Code": "number",
+        "Name": "number",
+        "Position": 1
+      },
+      {
+        "Code": "category_name",
+        "Name": "category_name",
+        "Position": 2
+      },
+      {
+        "Code": "event_date",
+        "Name": "event_date",
+        "Position": 3
+      },
+      {
+        "Code": "longitude",
+        "Name": "longitude",
+        "Position": 4
+      },
+      {
+        "Code": "latitude",
+        "Name": "latitude",
+        "Position": 5
+      }
+    ]
+  }

@@ -1,0 +1,36 @@
+{
+    "ModelType": "Query",
+    "Code": "ak_NPS_Graf0_0",
+    "Name": "Загальний графік",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 0
+      },
+      {
+        "Code": "Integral_indicator",
+        "Name": "Integral_indicator",
+        "Position": 1
+      },
+      {
+        "Code": "Calc_date",
+        "Name": "Calc_date",
+        "Position": 2
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@date_from",
+        "Name": "date_from",
+        "ParameterType": "Datetime"
+      },
+      {
+        "Code": "@date_to",
+        "Name": "date_to",
+        "ParameterType": "Datetime"
+      }
+    ]
+  }

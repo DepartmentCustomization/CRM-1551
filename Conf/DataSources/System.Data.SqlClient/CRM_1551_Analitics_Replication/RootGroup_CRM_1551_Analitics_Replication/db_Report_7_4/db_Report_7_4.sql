@@ -22,14 +22,27 @@ declare @tab_Sin2 table (source nvarchar(200) COLLATE DATABASE_DEFAULT, prev_val
 
 IF OBJECT_ID('tempdb..#sources') IS NOT NULL DROP TABLE #sources
 CREATE TABLE #sources (
-    source_name VARCHAR(MAX) COLLATE Ukrainian_CI_AS
+    source_name VARCHAR(MAX) COLLATE Ukrainian_CI_AS,
+	row# nvarchar(3) null
 );
 begin
-insert into #sources (source_name)
-select name from ReceiptSources
+insert into #sources 
+(source_name)
+select name 
+from ReceiptSources 
 where Id not in (5,6,7)
 Union 
 select  'КБУ'
+
+UPDATE #sources
+set row# = case [source_name]
+                  when 'КБУ' then '1.'
+                  when 'Дзвінок в 1551' then '1.1'
+				  when 'Сайт/моб. додаток' then '1.2'
+				  when 'УГЛ' then '1.3'
+                  when 'Телеефір' then '1.4'
+end
+
 --select * from #sources
 end
 
@@ -402,7 +415,7 @@ UPDATE @tab_Sin SET source = 'Сайт/моб. додаток' WHERE source = 'E
 DELETE from #sources WHERE source_name = 'E-mail'
 
 begin
-declare @result table (source nvarchar(200),
+declare @result table (source nvarchar(200), row# nvarchar(3),
                        prevCommunal nvarchar(10), curCommunal nvarchar(10), prevResidential nvarchar(10),
 					   curResidential nvarchar(10), prevEcology nvarchar(10), curEcology nvarchar(10),
 					   prevLaw nvarchar(10), curLaw nvarchar(10), prevFamily nvarchar(10),
@@ -526,7 +539,9 @@ end
 
  -------------> Получить конечный результат <--------------
 	              insert into @result 
-				  select source_name, 
+				  select 
+				  source_name,    
+				  row#,
 				  t_com.prev_val prevCommunal, t_com.cur_val curCommunal,
 				  t_res.prev_val prevResidential, t_res.cur_val curResidential,
 				  t_eco.prev_val prevEcology, t_eco.cur_val curEcology,
@@ -544,9 +559,7 @@ end
 end
 
      select 
-     ROW_NUMBER() OVER (
-     ORDER BY [source]
-   ) as row#,
+     row#,
      case when [source] = 'КБУ' then 'Питання, що надійшли до КБУ «Контактний центр міста Києва»'
 	 when [source] = 'Дзвінок в 1551' then 'з них, через гарячу лінію 1551'
 	 when [source] = 'Сайт/моб. додаток' then 'з них, через офіційний веб-портал та додатки для мобільних пристроїв'
@@ -561,4 +574,4 @@ end
 	 IIF(prevFamily = '0', '-', prevFamily) prevFamily, IIF(curFamily = '0', '-', curFamily) curFamily,
 	 IIF(prevSince = '0', '-', prevSince) prevHealth, IIF(curSince = '0', '-', curSince) curSince
 	 from @result	 
-	 order by source desc
+	 order by row#

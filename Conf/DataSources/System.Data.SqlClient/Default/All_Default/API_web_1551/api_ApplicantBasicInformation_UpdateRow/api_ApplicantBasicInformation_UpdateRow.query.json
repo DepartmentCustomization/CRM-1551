@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "api_ApplicantBasicInformation_UpdateRow",
+  "Name": "api_ApplicantBasicInformation_UpdateRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

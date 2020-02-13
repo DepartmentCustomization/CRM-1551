@@ -31,6 +31,6 @@
         "Name": "pageLimitRows",
         "ParameterType": "Integer",
         "IsPageLimitRows": true
-      },
+      }
   ]
 }
