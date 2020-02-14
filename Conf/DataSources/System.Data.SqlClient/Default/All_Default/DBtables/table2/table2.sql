@@ -84,67 +84,62 @@ INSERT INTO @Organization (Id)
 
 ------------для плана/програми---
 IF OBJECT_ID('tempdb..#temp_main_end') IS NOT NULL
-BEGIN
-	DROP TABLE #temp_main_end;
-END;
-
-SELECT
-	Id INTO #temp_main_end
-FROM [dbo].[Assignments] WITH (NOLOCK)
-WHERE assignment_state_id = 5
-AND AssignmentResultsId = 7
-AND executor_organization_id = @organization_id;
-
-
-IF OBJECT_ID('tempdb..#temp_end_state') IS NOT NULL
-BEGIN
-	DROP TABLE #temp_end_state;
-END;
-
-SELECT
-	[Assignment_History].Id
-   ,[Assignment_History].assignment_id
-   ,[Assignment_History].assignment_state_id 
-   INTO #temp_end_state
-FROM [Assignment_History] WITH (NOLOCK)
-INNER JOIN #temp_main_end
-	ON [Assignment_History].assignment_id = #temp_main_end.Id
-INNER JOIN [AssignmentStates]
-	ON [Assignment_History].assignment_state_id = [AssignmentStates].Id
-
-WHERE [AssignmentStates].code = N'OnCheck'
-AND [AssignmentStates].code <> N'Closed'
-AND [Assignment_History].Id IN (SELECT
-		MAX([Assignment_History].Id) id_max
-	FROM [Assignment_History] WITH (NOLOCK)
-	INNER JOIN #temp_main_end
-		ON [Assignment_History].assignment_id = #temp_main_end.Id
-	WHERE [Assignment_History].assignment_state_id <> 5
-	GROUP BY [Assignment_History].assignment_id);
+			BEGIN
+				DROP TABLE #temp_main_end;
+			END;
+			SELECT
+				Id INTO #temp_main_end
+			FROM [dbo].[Assignments] WITH (NOLOCK)
+			WHERE assignment_state_id = 5
+			AND AssignmentResultsId = 7
+			AND executor_organization_id = @organization_id;
 
 
-IF OBJECT_ID('tempdb..#temp_end_result') IS NOT NULL
-BEGIN
-	DROP TABLE #temp_end_result;
-END;
-SELECT
-	[Assignment_History].Id
-   ,[Assignment_History].assignment_id
-   ,[Assignment_History].AssignmentResultsId INTO #temp_end_result
-FROM [Assignment_History] WITH (NOLOCK)
-INNER JOIN #temp_main_end
-	ON [Assignment_History].assignment_id = #temp_main_end.Id
-INNER JOIN [AssignmentResults]
-	ON [Assignment_History].AssignmentResultsId = [AssignmentResults].Id
-WHERE [AssignmentResults].code = N'ItIsNotPossibleToPerformThisPeriod'
-AND [AssignmentResults].code <> N'WasExplained '
-AND [Assignment_History].Id IN (SELECT
-		MAX([Assignment_History].Id) id_max
-	FROM [Assignment_History] WITH (NOLOCK)
-	INNER JOIN #temp_main_end
-		ON [Assignment_History].assignment_id = #temp_main_end.Id
-	WHERE [Assignment_History].AssignmentResultsId <> 7
-	GROUP BY [Assignment_History].assignment_id);
+			IF OBJECT_ID('tempdb..#temp_TempAssHistory') IS NOT NULL
+			BEGIN
+				DROP TABLE #temp_TempAssHistory;
+			END;
+			SELECT
+				[Assignment_History].Id id,
+				[Assignment_History].assignment_id,
+				[Assignment_History].AssignmentResultsId,
+				[Assignment_History].assignment_state_id
+			into #temp_TempAssHistory
+			FROM [dbo].[Assignment_History] WITH (NOLOCK)
+			WHERE [Assignment_History].assignment_id in (select Id FROM #temp_main_end);
+
+
+			IF OBJECT_ID('tempdb..#temp_end_state') IS NOT NULL
+			BEGIN
+				DROP TABLE #temp_end_state;
+			END;
+			SELECT
+				[Assignment_History].Id
+			   ,[Assignment_History].assignment_id
+			   ,[Assignment_History].assignment_state_id INTO #temp_end_state
+			FROM [dbo].[Assignment_History] WITH (NOLOCK)
+			INNER JOIN [dbo].[AssignmentStates]
+				ON [Assignment_History].assignment_state_id = [AssignmentStates].Id
+			WHERE [AssignmentStates].code = N'OnCheck'
+			AND [AssignmentStates].code <> N'Closed'
+			AND [Assignment_History].Id IN (SELECT MAX(id) FROM #temp_TempAssHistory WHERE assignment_state_id <> 5 GROUP BY assignment_id);
+
+		
+
+			IF OBJECT_ID('tempdb..#temp_end_result') IS NOT NULL
+			BEGIN
+				DROP TABLE #temp_end_result;
+			END;
+			SELECT
+				[Assignment_History].Id
+			   ,[Assignment_History].assignment_id
+			   ,[Assignment_History].AssignmentResultsId INTO #temp_end_result
+			FROM [dbo].[Assignment_History] WITH (NOLOCK)
+			INNER JOIN [dbo].[AssignmentResults]
+				ON [Assignment_History].AssignmentResultsId = [AssignmentResults].Id
+			WHERE [AssignmentResults].code = N'ItIsNotPossibleToPerformThisPeriod'
+			AND [AssignmentResults].code <> N'WasExplained '
+			AND [Assignment_History].Id IN (SELECT max(id) FROM #temp_TempAssHistory WHERE AssignmentResultsId <> 7 GROUP BY assignment_id);
 
 
 -----------------основное-----
