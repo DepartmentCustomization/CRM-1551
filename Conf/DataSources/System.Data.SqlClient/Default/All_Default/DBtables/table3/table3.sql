@@ -222,7 +222,7 @@ INSERT INTO @Organization_nevkonp (Id)
 			FROM [dbo].[Assignments] WITH (NOLOCK)
 			WHERE assignment_state_id = 5
 			AND AssignmentResultsId = 7
-			AND executor_organization_id = @organization_id;
+			AND executor_organization_id IN (SELECT Id FROM @Organizations_is);
 
 
 			IF OBJECT_ID('tempdb..#temp_TempAssHistory') IS NOT NULL
