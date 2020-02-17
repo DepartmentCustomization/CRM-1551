@@ -1,68 +1,106 @@
 --declare @uglId int = 15371;
-declare @outId table (Id int);
-declare @Is_AppealCreated bit; 
+DECLARE @outId TABLE (Id INT);
 
-set @Is_AppealCreated = (
-select case when Appeals_Id is not null then 1 else 0 end
-from [Звернення УГЛ] 
-where Id = @uglId
-)
+DECLARE @Is_AppealCreated BIT;
 
-If (@Is_AppealCreated = 0)
-begin
-    declare @phone nvarchar(15);
-    set @phone = ( 
-    select 
-    IIF(
-    charindex(',', Телефон) > 0, 
-    (substring(Телефон, 1, 10)),
-    Телефон) 
-    from [Звернення УГЛ] 
-    where Id = @uglId
-    )
+SET
+    @Is_AppealCreated = (
+        SELECT
+            CASE
+                WHEN Appeals_Id IS NOT NULL THEN 1
+                ELSE 0
+            END
+        FROM
+            dbo.[Звернення УГЛ]
+        WHERE
+            Id = @uglId
+    ) ;
+    IF (@Is_AppealCreated = 0) BEGIN 
+    DECLARE @phone NVARCHAR(15);
 
-Insert into dbo.Appeals (
-    registration_date,
-    receipt_source_id,
-    phone_number,
-    receipt_date,
-    [start_date], 
-    [user_id],
-    edit_date,
-    user_edit_id )
+SET
+    @phone = (
+        SELECT
+            IIF(
+                charindex(',', Телефон) > 0,
+                (substring(Телефон, 1, 10)),
+                Телефон
+            )
+        FROM
+             dbo.[Звернення УГЛ]
+        WHERE
+            Id = @uglId
+    );
+INSERT INTO
+    dbo.Appeals (
+        registration_date,
+        receipt_source_id,
+        phone_number,
+        receipt_date,
+        [start_date],
+        [user_id],
+        edit_date,
+        user_edit_id
+    ) output inserted.Id INTO @outId (Id)
+VALUES
+    (
+        getutcdate(),
+        3,
+        @phone,
+        getutcdate(),
+        getutcdate(),
+        @user_id,
+        getutcdate(),
+        @user_id
+    ) ;
+    DECLARE @newId INT = (
+        SELECT
+            TOP 1 Id
+        FROM
+            @outId
+    );
 
-output inserted.Id into @outId (Id)
-Values ( 
-    getutcdate(),
-    3,
-    @phone,
-    getutcdate(),
-    getutcdate(),
-    @user_id,
-    getutcdate(),
-    @user_id )
+UPDATE
+    [dbo].[Appeals]
+SET
+    registration_number = concat(
+        SUBSTRING (rtrim(YEAR(getutcdate())), 4, 1),
+        '-',
+        (
+            SELECT
+                count(Id)
+            FROM
+                 dbo.Appeals
+            WHERE
+                year(Appeals.registration_date) = year(getutcdate())
+        )
+    ),
+    enter_number = (SELECT [№ звернення] FROM dbo.[Звернення УГЛ] WHERE Id = @uglId)
+WHERE
+    Id = @newId ;
 
-declare @newId int = (select top 1 Id from @outId)
-update [dbo].[Appeals] 
- set registration_number =  concat( SUBSTRING ( rtrim(YEAR(getutcdate())),4,1),'-',
-(select count(Id) from Appeals where year(Appeals.registration_date) = year(getutcdate())) )
- where Id =  @newId
+UPDATE
+    [dbo].[Звернення УГЛ]
+SET
+    Appeals_id = @newId,
+    [Опрацював] = @user_id,
+    [Дата опрацювання] = GETUTCDATE(),
+    [Опрацьовано] = 1
+WHERE
+    Id = @uglId ;
 
-update [dbo].[Звернення УГЛ]
- set Appeals_id = @newId
- ,[Опрацював]=@user_id
- ,[Дата опрацювання]=GETUTCDATE()
- ,[Опрацьовано]=1
- where Id = @uglId;
-  
-select @newId as [Id]
-return;
-end
+SELECT
+    @newId AS [Id] ;
+    RETURN;
 
-Else 
-begin 
-select Appeals_Id as Id
-from [Звернення УГЛ] 
-where Id = @uglId
-return;
-end
+END
+ELSE BEGIN
+SELECT
+    Appeals_Id AS Id
+FROM
+     dbo.[Звернення УГЛ]
+WHERE
+    Id = @uglId;
+     RETURN;
+
+END
