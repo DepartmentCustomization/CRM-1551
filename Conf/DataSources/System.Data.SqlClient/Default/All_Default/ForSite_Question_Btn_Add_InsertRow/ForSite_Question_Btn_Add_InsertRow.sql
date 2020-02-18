@@ -79,7 +79,7 @@ where Id = @AppealsFromSite_Id
 			NULL as [category_type_id],
 			@ApplicantFromSite_SocialState as [social_state_id],
 			(select top 1 Mail from [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts] where ApplicantFromSiteId = (select top 1 ApplicantFromSiteId from [CRM_1551_Site_Integration].[dbo].[AppealsFromSite] where Id = @AppealsFromSite_Id) and Mail is not null) as [mail],
-			case when @ApplicantFromSite_Sex = N'ч' then 1
+			case when @ApplicantFromSite_Sex = N'ж' then 1
 				 when @ApplicantFromSite_Sex = N'ч' then 2
 				 else NULL end as [sex],
 			@ApplicantFromSite_Birthdate as [birth_date],
