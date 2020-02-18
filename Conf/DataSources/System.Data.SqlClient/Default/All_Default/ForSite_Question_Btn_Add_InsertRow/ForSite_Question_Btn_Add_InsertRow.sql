@@ -164,10 +164,10 @@ where Id = @AppealsFromSite_Id
             										 ,[CreatedAt])
             	select @Applicant_Id as [applicant_id]
             		   ,1 as [phone_type_id]
-            		   ,PhoneNumber as [phone_number]
+            		   ,PhoneNumber collate Ukrainian_CI_AS as [phone_number] 
             		   ,0 as [IsMain]
             		   ,getutcdate() as [CreatedAt]
-            	from #temp_OUT where PhoneNumber not in (select [phone_number] from [dbo].[ApplicantPhones] where [applicant_id] = @Applicant_Id)
+            	from #temp_OUT where PhoneNumber collate Ukrainian_CI_AS not in (select [phone_number] from [dbo].[ApplicantPhones] where [applicant_id] = @Applicant_Id)
             end
  	
 	 
