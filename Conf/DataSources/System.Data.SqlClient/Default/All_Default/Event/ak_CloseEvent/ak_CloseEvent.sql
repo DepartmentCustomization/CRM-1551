@@ -18,7 +18,7 @@ BEGIN
 	)
 
 	INSERT INTO @table_id (question_id, assignment_id, consideration_id)
-		SELECT
+		/*SELECT
 			q.id
 		   ,Assignments.id
 		   ,Assignments.current_assignment_consideration_id
@@ -45,6 +45,13 @@ BEGIN
 		AND Assignments.main_executor = 1
 		--AND Assignments.assignment_state_id <> 5;
 		AND NOT (Assignments.assignment_state_id = 5 AND Assignments.AssignmentResultsId=3 AND Assignments.AssignmentResolutionsId=3);
+		*/
+		SELECT q.Id, a.Id, a.current_assignment_consideration_id
+		FROM [dbo].[Events] e
+		INNER JOIN [dbo].Questions q ON e.Id=q.event_id
+		INNER JOIN [dbo].Assignments a ON a.question_id=q.Id
+		WHERE e.Id = @Id
+		AND NOT (a.assignment_state_id=5 AND a.AssignmentResultsId IN (3,4) AND a.AssignmentResolutionsId IN (3,9));
 
 	UPDATE [dbo].[Events]
 	SET [real_end_date] = @real_end_date
