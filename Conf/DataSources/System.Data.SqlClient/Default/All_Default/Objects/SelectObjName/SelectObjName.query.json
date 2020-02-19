@@ -1,0 +1,29 @@
+{
+    "ModelType": "Query",
+    "Code": "SelectObjName",
+    "Name": "SelectObjName",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [ 
+        {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 0,
+        "IsPrintable": false
+      },
+      {
+        "Code": "objName",
+        "Name": "objName",
+        "Position": 1,
+        "IsPrintable": false
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@buildingId",
+        "Name": "buildingId",
+        "ParameterType": "Integer",
+        "IsPrimaryKey": true
+      }
+    ]
+  }
