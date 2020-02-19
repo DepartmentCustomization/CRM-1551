@@ -116,14 +116,15 @@ SELECT
 ,
   @entrance -- art
 ,
-  @flat -- art
+  @flat -- art 
+  ;
 SET
   @app_id = (
     SELECT
-      top 1 Id
+      TOP 1 Id
     FROM
       @output
-  )
+  ) ;
 UPDATE
   [dbo].[Appeals]
 SET
@@ -136,6 +137,6 @@ WHERE
   @app_id,
   @Question_TypeId,
   @Question_Building,
-  @Question_Organization,
+  @Question_OrganizationId,
   @CreatedUser,
   @Question_ControlDate ; 
