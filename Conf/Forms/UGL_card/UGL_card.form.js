@@ -400,6 +400,7 @@
                 this.form.onControlValueChanged('Question_Building', this.checkQuestionRegistrationAvailable);
                 this.form.onControlValueChanged('Question_Organization', this.checkQuestionRegistrationAvailable);
                 this.form.onControlValueChanged('Question_Organization', this.getOrgExecut);
+                this.form.onControlValueChanged('Question_Building', this.getOrgExecut);
                 const AppealUGL = {
                     queryCode: 'AppealUGL_Info',
                     parameterValues: [
@@ -552,7 +553,9 @@
                 }.bind(this));
                 document.getElementById('Question_Aplicant_Btn_Add').addEventListener('click', function() {
                     let build = this.form.getControlValue('Applicant_Building');
-                    this.getBuildingInfo(build);
+                    let flat = this.form.getControlValue('Applicant_Flat');
+                    let entrance = this.form.getControlValue('Applicant_Entrance');
+                    this.getBuildingInfo(build, flat, entrance);
                     this.form.setGroupVisibility('UGL_Group_CreateQuestion', true);
                     this.form.setGroupExpanding('UGL_Group_Aplicant', false);
                     this.form.setGroupExpanding('UGL_Group_Appeal', false);
@@ -684,6 +687,7 @@
                 this.form.setControlValue('Question_OrganizationId', {});
                 this.form.setControlValue('Question_ControlDate', '');
                 this.form.setControlValue('Question_EventId', null);
+                this.form.markAsSaved();
             }.bind(this));
             this.form.onControlValueChanged('Search_Appeals_Input', this.onChanged_Search_Appeals_Input.bind(this));
             document.getElementById('Search_Appeals_Search').disabled = true;
@@ -948,27 +952,30 @@
             }
         },
         getOrgExecut: function() {
-            const objAndOrg = {
-                queryCode: 'getOrganizationExecutor',
-                parameterValues: [
-                    {
-                        key: '@question_type_id',
-                        value: this.form.getControlValue('Question_TypeId')
-                    },
-                    {
-                        key: '@object_id',
-                        value: this.form.getControlValue('Question_Building')
-                    },
-                    {
-                        key: '@organization_id',
-                        value: this.form.getControlValue('Question_Organization')
-                    }
-                ]
-            };
-            this.queryExecutor.getValues(objAndOrg).subscribe(data => {
-                this.form.setControlValue('Question_OrganizationId',
-                    { key: data.rows[0].values[0], value: data.rows[0].values[1] });
-            });
+            if(this.form.getControlValue('Question_Building') === null
+            || typeof (this.form.getControlValue('Question_Building')) === 'number') {
+                const objAndOrg = {
+                    queryCode: 'getOrganizationExecutor',
+                    parameterValues: [
+                        {
+                            key: '@question_type_id',
+                            value: this.form.getControlValue('Question_TypeId')
+                        },
+                        {
+                            key: '@object_id',
+                            value: this.form.getControlValue('Question_Building')
+                        },
+                        {
+                            key: '@organization_id',
+                            value: this.form.getControlValue('Question_Organization')
+                        }
+                    ]
+                };
+                this.queryExecutor.getValues(objAndOrg).subscribe(data => {
+                    this.form.setControlValue('Question_OrganizationId',
+                        { key: data.rows[0].values[0], value: data.rows[0].values[1] });
+                });
+            }
         },
         onQuestionControlDate: function(ques_type_id) {
             if (ques_type_id === null) {
@@ -1052,11 +1059,11 @@
                 }
             }
         },
-        getBuildingInfo: function(building) {
+        getBuildingInfo: function(building, flat, entrance) {
             const findBuilding = {
-                queryCode: 'SelectBuildName',
+                queryCode: 'SelectObjName',
                 parameterValues: [{
-                    key: '@Id',
+                    key: '@buildingId',
                     value: building
                 }]
             };
@@ -1064,8 +1071,8 @@
                 this.form.setControlValue('Question_Building',
                     { key: data.rows[0].values[0], value: data.rows[0].values[1] });
             });
-            this.form.setControlValue('flat', this.form.getControlValue('Applicant_Flat'));
-            this.form.setControlValue('entrance', this.form.getControlValue('Applicant_Entrance'));
+            this.form.setControlValue('flat', flat);
+            this.form.setControlValue('entrance', entrance);
         },
         convertDateNull: function(value) {
             if (!value) {
