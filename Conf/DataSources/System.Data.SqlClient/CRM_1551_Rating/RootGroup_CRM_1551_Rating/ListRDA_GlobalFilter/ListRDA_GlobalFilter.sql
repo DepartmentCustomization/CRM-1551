@@ -1,28 +1,103 @@
-
-select * from (
-SELECT 0 as [Id], N'Усі РДА' as [Name]
-union all
-SELECT [Id], [short_name] as [Name] FROM [CRM_1551_Analitics].[dbo].[Organizations] where Id =  2000
-union all
-SELECT [Id], [short_name] as [Name] FROM [CRM_1551_Analitics].[dbo].[Organizations] where Id =  2001
-union all
-SELECT [Id], [short_name] as [Name] FROM [CRM_1551_Analitics].[dbo].[Organizations] where Id =  2002
-union all
-SELECT [Id], [short_name] as [Name] FROM [CRM_1551_Analitics].[dbo].[Organizations] where Id =  2003
-union all
-SELECT [Id], [short_name] as [Name] FROM [CRM_1551_Analitics].[dbo].[Organizations] where Id =  2004
-union all
-SELECT [Id], [short_name] as [Name] FROM [CRM_1551_Analitics].[dbo].[Organizations] where Id =  2005
-union all
-SELECT [Id], [short_name] as [Name] FROM [CRM_1551_Analitics].[dbo].[Organizations] where Id =  2006
-union all
-SELECT [Id], [short_name] as [Name] FROM [CRM_1551_Analitics].[dbo].[Organizations] where Id =  2007
-union all
-SELECT [Id], [short_name] as [Name] FROM [CRM_1551_Analitics].[dbo].[Organizations] where Id =  2008
-union all
-SELECT [Id], [short_name] as [Name] FROM [CRM_1551_Analitics].[dbo].[Organizations] where Id =  2009
-) as t
-  WHERE 
-    #filter_columns#
-    #sort_columns#
-    offset @pageOffsetRows rows fetch next @pageLimitRows rows only
+SELECT
+    *
+FROM
+    (
+        SELECT
+            0 AS [Id],
+            N'Усі РДА' AS [Name]
+        UNION
+        ALL
+        SELECT
+            [Id],
+            [short_name] AS [Name]
+        FROM
+            [CRM_1551_Analitics].[dbo].[Organizations]
+        WHERE
+            Id = 2000
+        UNION
+        ALL
+        SELECT
+            [Id],
+            [short_name] AS [Name]
+        FROM
+            [CRM_1551_Analitics].[dbo].[Organizations]
+        WHERE
+            Id = 2001
+        UNION
+        ALL
+        SELECT
+            [Id],
+            [short_name] AS [Name]
+        FROM
+            [CRM_1551_Analitics].[dbo].[Organizations]
+        WHERE
+            Id = 2002
+        UNION
+        ALL
+        SELECT
+            [Id],
+            [short_name] AS [Name]
+        FROM
+            [CRM_1551_Analitics].[dbo].[Organizations]
+        WHERE
+            Id = 2003
+        UNION
+        ALL
+        SELECT
+            [Id],
+            [short_name] AS [Name]
+        FROM
+            [CRM_1551_Analitics].[dbo].[Organizations]
+        WHERE
+            Id = 2004
+        UNION
+        ALL
+        SELECT
+            [Id],
+            [short_name] AS [Name]
+        FROM
+            [CRM_1551_Analitics].[dbo].[Organizations]
+        WHERE
+            Id = 2005
+        UNION
+        ALL
+        SELECT
+            [Id],
+            [short_name] AS [Name]
+        FROM
+            [CRM_1551_Analitics].[dbo].[Organizations]
+        WHERE
+            Id = 2006
+        UNION
+        ALL
+        SELECT
+            [Id],
+            [short_name] AS [Name]
+        FROM
+            [CRM_1551_Analitics].[dbo].[Organizations]
+        WHERE
+            Id = 2007
+        UNION
+        ALL
+        SELECT
+            [Id],
+            [short_name] AS [Name]
+        FROM
+            [CRM_1551_Analitics].[dbo].[Organizations]
+        WHERE
+            Id = 2008
+        UNION
+        ALL
+        SELECT
+            [Id],
+            [short_name] AS [Name]
+        FROM
+            [CRM_1551_Analitics].[dbo].[Organizations]
+        WHERE
+            Id = 2009
+    ) AS t
+-- WHERE
+--     #filter_columns#
+--     #sort_columns#
+-- OFFSET @pageOffsetRows ROWS FETCH NEXT @pageLimitRows ROWS ONLY 
+;

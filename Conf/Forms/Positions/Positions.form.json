@@ -3,8 +3,10 @@
   "Code": "Positions",
   "Name": "Посади",
   "Details": [
-    "string:Details\\helper.detail.json",
-    "string:Details\\OrganizationIn.detail.json"
+    "string:Details\\OrganizationIn.detail.json",
+    "string:Details\\main_position1.detail.json",
+    "string:Details\\add_position1.detail.json",
+    "string:Details\\helper.detail.json"
   ],
   "Config": {
     "FieldGroups": [

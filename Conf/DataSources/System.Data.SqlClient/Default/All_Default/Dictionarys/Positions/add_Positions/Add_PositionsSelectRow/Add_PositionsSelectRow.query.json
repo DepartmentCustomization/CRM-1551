@@ -1,0 +1,55 @@
+{
+  "ModelType": "Query",
+  "Code": "Add_PositionsSelectRow",
+  "Name": "Add_PositionsSelectRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ],
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 1,
+      "IsPrimaryKey": true,
+      "IsPrintable": false
+    },
+    {
+      "Code": "position",
+      "Name": "position",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "organization_id",
+      "Name": "organization_id",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "active",
+      "Name": "active",
+      "Position": 4,
+      "IsPrintable": false
+    },
+    {
+      "Code": "position_id",
+      "Name": "position_id",
+      "Position": 5,
+      "IsPrintable": false
+    },
+    {
+      "Code": "short_name",
+      "Name": "short_name",
+      "Position": 6,
+      "IsPrintable": false,
+      "ReferenceKeyCode": "organization_id"
+    }
+  ]
+}

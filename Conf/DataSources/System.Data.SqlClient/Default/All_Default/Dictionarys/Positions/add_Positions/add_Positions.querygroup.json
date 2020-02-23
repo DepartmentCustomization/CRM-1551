@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "add_Positions",
+  "Name": "Додаткові Посади",
+  "ConnectionCode": "Default"
+}

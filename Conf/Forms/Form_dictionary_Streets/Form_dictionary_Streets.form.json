@@ -6,8 +6,7 @@
   "Details": [
     "string:Details\\StreetObjects.detail.json",
     "string:Details\\UrbioStreet.detail.json",
-    "string:Details\\StreetBuildings.detail.json",
-    "string:Details\\StreetHistory.detail.json"
+    "string:Details\\StreetBuildings.detail.json"
   ],
   "Config": {
     "FieldGroups": [

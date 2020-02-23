@@ -143,6 +143,10 @@
                 this.form.enableControl('control_comment');
                 this.form.disableControl('performer_id');
             }
+            if(ass_state_id !== 1) {
+                this.form.disableControl('performer_id');
+                this.form.disableControl('executor_person_id');
+            }
             if (result_id === 3) {
                 this.form.setControlVisibility('transfer_to_organization_id', true);
                 this.form.disableControl('performer_id');
@@ -178,7 +182,8 @@
                 this.queryExecutor.getValue(compareExecutor).subscribe(data => {
                     this.form.setControlValue('is_exe', data);
                     if (data === 1) {
-                        this.form.enableControl('performer_id');
+                        // eslint-disable-next-line line-comment-position
+                        // this.form.enableControl('performer_id');
                     } else {
                         this.form.disableControl('performer_id');
                     }

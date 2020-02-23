@@ -12,7 +12,7 @@ select distinct [Positions].[organizations_id] [Id], [Organizations].short_name 
   from [Positions] --inner join [PositionsHelpers] on ([Positions].Id=[PositionsHelpers].main_position_id or [Positions].Id=[PositionsHelpers].helper_position_id)
   where [programuser_id]=@user_id
   union 
-  select [main_position_id]
+  select [PositionsHelpers].[main_position_id]
   from [PositionsHelpers] inner join [Positions] on [PositionsHelpers].helper_position_id=[Positions].Id
   where [Positions].[programuser_id]=@user_id)
   and [Organizations].Id<>@org

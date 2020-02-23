@@ -3,30 +3,30 @@
 --расспарсивание @ids в таблицу начало
 
 -- наша входная строка с айдишниками
-declare @input_str nvarchar(max) = @ids+N','
+DECLARE @input_str NVARCHAR(max) = @ids+N',';
 -- создаем таблицу в которую будем
 -- записывать наши айдишники
-declare @table table (id int)
+DECLARE @table TABLE (id INT);
 -- создаем переменную, хранящую разделитель
-declare @delimeter nvarchar(1) = ','
+DECLARE @delimeter NVARCHAR(1) = ',';
 -- определяем позицию первого разделителя
-declare @pos int = charindex(@delimeter,@input_str)
+DECLARE @pos INT = charindex(@delimeter,@input_str);
 -- создаем переменную для хранения
 -- одного айдишника
-declare @id nvarchar(10)
-while (@pos != 0)
-begin
+DECLARE @id NVARCHAR(10);
+WHILE (@pos != 0)
+BEGIN
     -- получаем айдишник
-    set @id = SUBSTRING(@input_str, 1, @pos-1)
+    SET @id = SUBSTRING(@input_str, 1, @pos-1);
     -- записываем в таблицу
-    insert into @table (id) values(cast(@id as int))
+    INSERT INTO @table (id) VALUES(CAST(@id AS INT));
     -- сокращаем исходную строку на
     -- размер полученного айдишника
     -- и разделителя
-    set @input_str = SUBSTRING(@input_str, @pos+1, LEN(@input_str))
+    SET @input_str = SUBSTRING(@input_str, @pos+1, LEN(@input_str));
     -- определяем позицию след. разделителя
-    set @pos = CHARINDEX(@delimeter,@input_str)
-end
+    SET @pos = CHARINDEX(@delimeter,@input_str);
+END;
 
 --select * from @table
 
@@ -64,8 +64,10 @@ and [Assignments].Id in (select Id from @table t)
     ,edit_date = GETUTCDATE()
     ,LogUpdated_Query = N'Coordinator_Button_Rozyasneno_Row9' 
     ,user_edit_id = @user 
+    ,[state_change_date] = GETUTCDATE()
   where Id in (select Id from @tabIds)
   
+  /*
   update [CRM_1551_Analitics].[dbo].[AssignmentConsiderations]
   set 
    [assignment_result_id] = 7 
@@ -73,7 +75,7 @@ and [Assignments].Id in (select Id from @table t)
   ,edit_date = GETUTCDATE()
   ,user_edit_id =@user
   where Id in ( select current_assignment_consideration_id from Assignments where Id in (select Id from @tabIds) )
-
+  */
   
   UPDATE dbo.AssignmentRevisions
       SET

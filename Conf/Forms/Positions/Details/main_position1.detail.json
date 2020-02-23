@@ -1,0 +1,15 @@
+{
+  "ModelType": "Detail",
+  "Code": "main_position1",
+  "Name": "Головна посада",
+  "SelectRowsQueryCode": "det_Main_PositionsSelectRows",
+  "SectionCode": "",
+  "Position": 3,
+  "IsExpand": true,
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@position_id"
+    }
+  ]
+}

@@ -1057,6 +1057,9 @@
                         document.getElementById('Question_Btn_Add').disabled = false;
                     }
                 }
+                if (this.is_obj === false && this.is_org === false) {
+                    document.getElementById('Question_Btn_Add').disabled = false;
+                }
             }
         },
         getBuildingInfo: function(building, flat, entrance) {

@@ -1,0 +1,24 @@
+{
+  "ModelType": "Form",
+  "Code": "Add_Positions",
+  "Name": "Додаткові посади",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\main.fieldgroup.json"
+    ],
+    "DefaultFields": [
+      {
+        "Code": "position",
+        "ParentFormFieldCodeForKeyValue": "position",
+        "ParentFormFieldCodeForDisplayValue": "position"
+      },
+      {
+        "Code": "position_id",
+        "ParentFormFieldCodeForKeyValue": "Id",
+        "ParentFormFieldCodeForDisplayValue": "Id"
+      }
+    ],
+    "Script": "string:Add_Positions.form.js"
+  }
+}

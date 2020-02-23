@@ -40,6 +40,10 @@
                     width: 100
                 }
             ],
+            filterRow: {
+                visible: true,
+                applyFilter: 'auto'
+            },
             wordWrapEnabled: true,
             selection: {
                 mode: 'multiple'
@@ -54,6 +58,7 @@
             },
             keyExpr: 'Id'
         },
+        firstLoad: true,
         init: function() {
             this.dataGridInstance.height = window.innerHeight - 200;
             this.sub = this.messageService.subscribe('GlobalFilterChanged', this.getFiltersParams, this);
@@ -116,7 +121,10 @@
                         };
                         this.config.query.filterColumns.push(filter);
                     }
-                    this.loadData(this.afterLoadDataHandler);
+                    if(this.firstLoad) {
+                        this.firstLoad = false;
+                        this.loadData(this.afterLoadDataHandler);
+                    }
                 }
             }
         },
@@ -189,14 +197,17 @@
             return dd + '.' + mm + '.' + yyyy;
         },
         applyChanges: function() {
+            this.sendMessageFilterPanelState(false);
+            this.loadData(this.afterLoadDataHandler);
+        },
+        sendMessageFilterPanelState: function(state) {
             const msg = {
                 name: 'SetFilterPanelState',
                 package: {
-                    value: false
+                    value: state
                 }
             };
             this.messageService.publish(msg);
-            this.loadData(this.afterLoadDataHandler);
         },
         showTable: function() {
             this.hidePagePreloader();

@@ -1,18 +1,39 @@
-SELECT [Objects].[Id]
-      ,ObjectTypes.name as obj_type_name
-	  ,ObjectTypes.Id as obj_type_id
-      ,Objects.name as object_name
-      ,Districts.name as district_name
-	  ,[Objects].district_id as district_id
-      ,[Buildings].[street_id]
-      --,concat(Streets.name, ' ', Buildings.number,Buildings.letter) as build_name
-      , concat(StreetTypes.shortname, N' ', Streets.name, N' ', Buildings.number,isnull(Buildings.letter, null)) as build_name
-      ,Buildings.Id as builbing_id
-      ,Objects.is_active
-  FROM [dbo].[Objects]
-	left join Buildings on Buildings.Id = [Objects].[builbing_id]
-	left join Streets on Streets.Id = Buildings.street_id
-	left join ObjectTypes on ObjectTypes.Id = Objects.object_type_id
-	left join Districts on Districts.Id = [Objects].district_id
-	left join [CRM_1551_Analitics].[dbo].[StreetTypes] on Streets.street_type_id=StreetTypes.Id
-where Objects.Id = @Id
+-- DECLARE @Id INT = 125350 ;
+SELECT
+  obj.[Id],
+  objt.name AS obj_type_name,
+  objt.Id AS obj_type_id,
+  obj.name AS object_name,
+  d.name AS district_name,
+  obj.district_id AS district_id,
+  b.street_id,
+  IIF(
+    concat(
+      st.shortname,
+      N' ',
+      s.name,
+      N' ',
+      b.number,
+      isnull(b.letter, NULL)
+    ) = '  ',
+    NULL,
+    concat(
+      st.shortname,
+      N' ',
+      s.name,
+      N' ',
+      b.number,
+      isnull(b.letter, NULL)
+    )
+  ) AS build_name,
+  b.Id AS builbing_id,
+  obj.is_active
+FROM
+  [dbo].[Objects] obj
+  LEFT JOIN dbo.Buildings b ON b.Id = obj.[builbing_id]
+  LEFT JOIN dbo.Streets s ON s.Id = b.street_id
+  LEFT JOIN dbo.ObjectTypes objt ON objt.Id = obj.object_type_id
+  LEFT JOIN dbo.Districts d ON d.Id = obj.district_id
+  LEFT JOIN dbo.[StreetTypes] st ON s.street_type_id = st.Id
+WHERE
+  obj.Id = @Id ;

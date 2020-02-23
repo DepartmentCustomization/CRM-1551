@@ -2,7 +2,7 @@
     return {
         config: {
             query: {
-                code: 'NaDooprNemaMozhlVyk',
+                code: 'NaDooprNemaMozhlVyk_686',
                 parameterValues: [],
                 filterColumns: [],
                 sortColumns: [],
@@ -93,7 +93,7 @@
             this.config.masterDetail.template = this.createMasterDetail.bind(this);
             this.dataGridInstance.onCellClick.subscribe(e => {
                 if(e.column) {
-                    if(e.column.dataField == 'registration_number' && e.row != undefined) {
+                    if(e.column.dataField === 'registration_number' && e.row !== undefined) {
                         window.open(String(location.origin + localStorage.getItem('VirtualPath') + '/sections/Assignments/edit/' + e.key));
                     }
                 }
@@ -101,31 +101,88 @@
         },
         createMasterDetail: function(container, options) {
             let currentEmployeeData = options.data;
-            if(currentEmployeeData.short_answer == null || currentEmployeeData.short_answer == undefined) {
+            if(currentEmployeeData.short_answer === null || currentEmployeeData.short_answer === undefined) {
                 currentEmployeeData.short_answer = '';
             }
-            if(currentEmployeeData.zayavnyk_zmist == null || currentEmployeeData.zayavnyk_zmist == undefined) {
+            if(currentEmployeeData.zayavnyk_zmist === null || currentEmployeeData.zayavnyk_zmist === undefined) {
                 currentEmployeeData.zayavnyk_zmist = '';
             }
-            if(currentEmployeeData.zayavnyk_adress == null || currentEmployeeData.zayavnyk_adress == undefined) {
+            if(currentEmployeeData.zayavnyk_adress === null || currentEmployeeData.zayavnyk_adress === undefined) {
                 currentEmployeeData.zayavnyk_adress = '';
             }
-            if(currentEmployeeData.balans_name == null || currentEmployeeData.balans_name == undefined) {
+            if(currentEmployeeData.balans_name === null || currentEmployeeData.balans_name === undefined) {
                 currentEmployeeData.balans_name = '';
             }
-            let elementAdress__content = this.createElement('div', { className: 'elementAdress__content content', innerText: String(String(currentEmployeeData.zayavnyk_adress))});
-            let elementAdress__caption = this.createElement('div', { className: 'elementAdress__caption caption', innerText: 'Адреса заявника'});
-            let elementAdress = this.createElement('div', { className: 'elementAdress element'}, elementAdress__caption, elementAdress__content);
-            let elementСontent__content = this.createElement('div', { className: 'elementСontent__content content', innerText: String(String(currentEmployeeData.zayavnyk_zmist))});
-            let elementСontent__caption = this.createElement('div', { className: 'elementСontent__caption caption', innerText: 'Зміст'});
-            let elementСontent = this.createElement('div', { className: 'elementСontent element'}, elementСontent__caption, elementСontent__content);
-            let elementComment__content = this.createElement('div', { className: 'elementComment__content content', innerText: String(String(currentEmployeeData.short_answer))});
-            let elementComment__caption = this.createElement('div', { className: 'elementComment__caption caption', innerText: 'Коментар виконавця'});
-            let elementComment = this.createElement('div', { className: 'elementСontent element'}, elementComment__caption, elementComment__content);
-            let elementBalance__content = this.createElement('div', { className: 'elementBalance__content content', innerText: String(String(currentEmployeeData.balans_name))});
-            let elementBalance__caption = this.createElement('div', { className: 'elementBalance__caption caption', innerText: 'Балансоутримувач'});
-            let elementBalance = this.createElement('div', { className: 'elementСontent element'}, elementBalance__caption, elementBalance__content);
-            let elementsWrapper = this.createElement('div', { className: 'elementsWrapper'}, elementAdress, elementСontent, elementComment, elementBalance);
+            let elementAdress__content = this.createElement('div',
+                {
+                    className: 'elementAdress__content content', innerText: String(String(currentEmployeeData.zayavnyk_adress))
+                }
+            );
+            let elementAdress__caption = this.createElement('div',
+                {
+                    className: 'elementAdress__caption caption', innerText: 'Адреса заявника'
+                }
+            );
+            let elementAdress = this.createElement('div',
+                {
+                    className: 'elementAdress element'
+                },
+                elementAdress__caption, elementAdress__content
+            );
+            let elementСontent__content = this.createElement('div',
+                {
+                    className: 'elementСontent__content content', innerText: String(String(currentEmployeeData.zayavnyk_zmist))
+                }
+            );
+            let elementСontent__caption = this.createElement('div',
+                {
+                    className: 'elementСontent__caption caption', innerText: 'Зміст'
+                }
+            );
+            let elementСontent = this.createElement('div',
+                {
+                    className: 'elementСontent element'
+                },
+                elementСontent__caption, elementСontent__content
+            );
+            let elementComment__content = this.createElement('div',
+                {
+                    className: 'elementComment__content content', innerText: String(String(currentEmployeeData.short_answer))
+                }
+            );
+            let elementComment__caption = this.createElement('div',
+                {
+                    className: 'elementComment__caption caption', innerText: 'Коментар виконавця'
+                }
+            );
+            let elementComment = this.createElement('div',
+                {
+                    className: 'elementСontent element'
+                },
+                elementComment__caption, elementComment__content
+            );
+            let elementBalance__content = this.createElement('div',
+                {
+                    className: 'elementBalance__content content', innerText: String(String(currentEmployeeData.balans_name))
+                }
+            );
+            let elementBalance__caption = this.createElement('div',
+                {
+                    className: 'elementBalance__caption caption', innerText: 'Балансоутримувач'
+                }
+            );
+            let elementBalance = this.createElement('div',
+                {
+                    className: 'elementСontent element'
+                },
+                elementBalance__caption, elementBalance__content
+            );
+            let elementsWrapper = this.createElement('div',
+                {
+                    className: 'elementsWrapper'
+                },
+                elementAdress, elementСontent, elementComment, elementBalance
+            );
             container.appendChild(elementsWrapper);
             let elementsAll = document.querySelectorAll('.element');
             elementsAll = Array.from(elementsAll);
@@ -140,11 +197,10 @@
             })
         },
         changeOnTable: function(message) {
-            if(message.column != 'План/Програма') {
+            if(message.column !== 'План/Програма') {
                 document.getElementById('table10_Plan_Programs').style.display = 'none';
             }else{
                 document.getElementById('table10_Plan_Programs').style.display = 'block';
-                this.config.query.queryCode = 'NaDooprNemaMozhlVyk';
                 this.config.query.parameterValues = [{ key: '@organization_id', value: message.orgId},
                     { key: '@column', value: message.column},
                     { key: '@navigation', value: message.navigation}];

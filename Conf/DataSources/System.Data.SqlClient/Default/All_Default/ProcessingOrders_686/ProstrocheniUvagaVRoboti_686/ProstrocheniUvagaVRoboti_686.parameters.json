@@ -1,0 +1,24 @@
+[
+  {
+    "Code": "@navigation",
+    "Name": "navigation"
+  },
+  {
+    "Code": "@organization_id",
+    "Name": "organization_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@user_id",
+    "Name": "user_id",
+    "ParameterType": "CurrentUserId"
+  },
+  {
+    "Code": "@organizationName",
+    "Name": "organizationName"
+  },
+  {
+    "Code": "@column",
+    "Name": "column"
+  }
+]

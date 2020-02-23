@@ -1,0 +1,36 @@
+{
+  "Code": "main",
+  "Name": "Зміст",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "position",
+      "Name": "Назва посади",
+      "FieldType": "text",
+      "Position": 1
+    },
+    {
+      "Code": "organization_id",
+      "Name": "Організація",
+      "FieldType": "select",
+      "Position": 2,
+      "QueryCode": "cx_OrganizationSelectRows",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "short_name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "active",
+      "Name": "Активність посади",
+      "FieldType": "checkbox",
+      "Position": 3
+    },
+    {
+      "Code": "position_id",
+      "Name": "position_id",
+      "FieldType": "number",
+      "Position": 4,
+      "IsHidden": true
+    }
+  ]
+}

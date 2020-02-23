@@ -16,4 +16,9 @@ values ( @question_id
 
 set @QuestionDocFileId = (select top 1 [Id] from @output);
 
+if len(isnull(@link, N'')) > 0
+begin
+    exec [dbo].[sp_UpdateFile_for_QuestionFileLink] @QuestionDocFileId, @link 
+end
+
 select @QuestionDocFileId

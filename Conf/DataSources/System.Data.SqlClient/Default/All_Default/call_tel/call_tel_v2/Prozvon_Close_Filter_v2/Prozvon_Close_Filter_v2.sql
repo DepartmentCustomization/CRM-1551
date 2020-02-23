@@ -299,6 +299,7 @@ BEGIN
 	   ,[AssignmentResolutionsId] = @assignment_resolution_id
 	   ,[user_edit_id] = @user_id
 	   ,[edit_date] = GETUTCDATE()
+	   ,[state_change_date] = GETUTCDATE()
 	   ,[close_date] =
 		CASE
 			WHEN @state_id = 5 THEN GETUTCDATE()
@@ -308,7 +309,7 @@ BEGIN
 	WHERE [Assignments].Id IN (SELECT
 			Id
 		FROM @assigments_table);
-
+	/*
 	UPDATE [CRM_1551_Analitics].[dbo].[AssignmentConsiderations]
 	SET [assignment_result_id] = @control_result_id
 	   ,[assignment_resolution_id] = @assignment_resolution_id
@@ -316,7 +317,7 @@ BEGIN
 	   ,[user_edit_id] = @user_id
 	WHERE Id IN (SELECT
 			curent_consid_id
-		FROM @assigments_table);
+		FROM @assigments_table);*/
 END
 
 IF @control_result_id <> 13
@@ -344,4 +345,3 @@ SELECT
 			WHERE Id = @Id))
 	AS control_result_id;
 RETURN;
-

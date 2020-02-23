@@ -2,7 +2,7 @@
     return {
         config: {
             query: {
-                code: 'Nadiyshlo',
+                code: 'Nadiyshlo_686',
                 parameterValues: [],
                 filterColumns: [],
                 sortColumns: [],
@@ -114,7 +114,7 @@
             this.config.masterDetail.template = this.createMasterDetail.bind(this);
             this.dataGridInstance.onCellClick.subscribe(e => {
                 if(e.column) {
-                    if(e.column.dataField == 'registration_number' && e.row != undefined) {
+                    if(e.column.dataField === 'registration_number' && e.row !== undefined) {
                         window.open(String(
                             location.origin +
                             localStorage.getItem('VirtualPath') +
@@ -127,7 +127,7 @@
         },
         exportToExcel: function() {
             let exportQuery = {
-                queryCode: 'Nadiyshlo',
+                queryCode: this.config.query.code,
                 limit: -1,
                 parameterValues: [
                     { key: '@organization_id', value: this.orgId},
@@ -417,16 +417,16 @@
         },
         createMasterDetail: function(container, options) {
             let currentEmployeeData = options.data;
-            if(currentEmployeeData.short_answer == null || currentEmployeeData.short_answer == undefined) {
+            if(currentEmployeeData.short_answer === null || currentEmployeeData.short_answer === undefined) {
                 currentEmployeeData.short_answer = '';
             }
-            if(currentEmployeeData.zayavnyk_zmist == null || currentEmployeeData.zayavnyk_zmist == undefined) {
+            if(currentEmployeeData.zayavnyk_zmist === null || currentEmployeeData.zayavnyk_zmist === undefined) {
                 currentEmployeeData.zayavnyk_zmist = '';
             }
-            if(currentEmployeeData.zayavnyk_adress == null || currentEmployeeData.zayavnyk_adress == undefined) {
+            if(currentEmployeeData.zayavnyk_adress === null || currentEmployeeData.zayavnyk_adress === undefined) {
                 currentEmployeeData.zayavnyk_adress = '';
             }
-            if(currentEmployeeData.balans_name == null || currentEmployeeData.balans_name == undefined) {
+            if(currentEmployeeData.balans_name === null || currentEmployeeData.balans_name === undefined) {
                 currentEmployeeData.balans_name = '';
             }
             let elementAdress__content = this.createElement('div', {
@@ -479,9 +479,9 @@
             })
         },
         changeOnTable: function(message) {
-            if(message.column != 'Надійшло') {
+            if(message.column !== 'Надійшло') {
                 document.getElementById('table41__arrived').style.display = 'none';
-            }else if (this.distribute == 1) {
+            }else if (this.distribute === 1) {
                 this.column = message.column;
                 this.navigator = message.navigation;
                 this.targetId = message.targetId;

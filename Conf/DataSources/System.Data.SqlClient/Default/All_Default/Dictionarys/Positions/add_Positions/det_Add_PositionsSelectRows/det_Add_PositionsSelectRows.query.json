@@ -1,0 +1,70 @@
+{
+  "ModelType": "Query",
+  "Code": "det_Add_PositionsSelectRows",
+  "Name": "det_Add_PositionsSelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrimaryKey": true,
+      "ViewState": "Hidden",
+      "IsPrintable": false
+    },
+    {
+      "Code": "position",
+      "Name": "Посада",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "p.[position]",
+      "FilterParameterCode": "@position",
+      "ReferenceKeyCode": "Id",
+      "ReferenceSectionCode": "Positions"
+    },
+    {
+      "Code": "short_name",
+      "Name": "Організація",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "o.short_name",
+      "FilterParameterCode": "@short_name"
+    },
+    {
+      "Code": "additional",
+      "Name": "Додаткова",
+      "Position": 3,
+      "IsPrintable": false,
+      "SqlName": "CASE WHEN p.[main_position_id] IS NOT NULL THEN 'Так' ELSE 'Ні' END",
+      "FilterParameterCode": "@additional"
+    },
+    {
+      "Code": "active",
+      "Name": "Активна",
+      "Position": 4,
+      "IsPrintable": false,
+      "SqlName": "CASE WHEN p.active='true' THEN 'Так' ELSE 'Ні' END",
+      "FilterParameterCode": "@active"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@position_id",
+      "Name": "position_id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

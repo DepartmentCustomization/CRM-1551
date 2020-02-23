@@ -1,0 +1,20 @@
+{
+  "ModelType": "Query",
+  "Code": "Add_PositionsUpdatetRow",
+  "Name": "Add_PositionsUpdatetRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@active",
+      "Name": "active",
+      "ParameterType": "Boolean"
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

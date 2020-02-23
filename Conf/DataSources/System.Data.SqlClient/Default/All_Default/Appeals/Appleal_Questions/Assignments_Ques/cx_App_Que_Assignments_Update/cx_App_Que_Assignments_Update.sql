@@ -507,7 +507,8 @@ BEGIN
 							first_executor_organization_id
 						FROM AssignmentConsiderations
 						WHERE Id = @current_consid);
-
+					-- Стан = зареєстровано	
+                    SET @ass_state_id = 1;
 					-- закрываем Ревижн, + новый AssignmentConsiderations на того же самого исполнителя.
 					UPDATE [dbo].[AssignmentRevisions]
 					SET [assignment_resolution_id] = @resolution_id
@@ -523,7 +524,7 @@ BEGIN
 					UPDATE Assignments
 					SET AssignmentResultsId = @result_id -- Какие результат и резолучия должны быть????
 					   ,AssignmentResolutionsId = @resolution_id
-					   ,assignment_state_id = @ass_state_id -- 04_04
+					   ,assignment_state_id = @ass_state_id
 					   ,edit_date = GETUTCDATE()
 					   ,user_edit_id = @user_edit_id
 					   ,[LogUpdated_Query] = N'cx_App_Que_Assignments_Update_Row404'
@@ -860,7 +861,9 @@ BEGIN
 						executor_organization_id
 					FROM Assignments
 					WHERE Id = @Id);
-
+			-- Стан = зареєстровано	
+                SET @ass_state_id = 1;
+				
 				UPDATE Assignments
 				SET AssignmentResultsId = @result_id
 				   ,AssignmentResolutionsId = @resolution_id

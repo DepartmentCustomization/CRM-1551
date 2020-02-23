@@ -2,7 +2,7 @@
     return {
         config: {
             query: {
-                code: 'DoVidoma',
+                code: 'DoVidoma_686',
                 parameterValues: [],
                 filterColumns: [],
                 sortColumns: [],
@@ -87,7 +87,7 @@
             this.config.masterDetail.template = this.createMasterDetail.bind(this);
             this.dataGridInstance.onCellClick.subscribe(e => {
                 if(e.column) {
-                    if(e.column.dataField == 'registration_number' && e.row != undefined) {
+                    if(e.column.dataField === 'registration_number' && e.row !== undefined) {
                         window.open(String(location.origin + localStorage.getItem('VirtualPath') + '/sections/Assignments/edit/' + e.key));
                     }
                 }
@@ -104,28 +104,72 @@
         },
         createMasterDetail: function(container, options) {
             let currentEmployeeData = options.data;
-            if(currentEmployeeData.short_answer == null || currentEmployeeData.short_answer == undefined) {
+            if(currentEmployeeData.short_answer === null || currentEmployeeData.short_answer === undefined) {
                 currentEmployeeData.short_answer = '';
             }
-            if(currentEmployeeData.zayavnyk_zmist == null || currentEmployeeData.zayavnyk_zmist == undefined) {
+            if(currentEmployeeData.zayavnyk_zmist === null || currentEmployeeData.zayavnyk_zmist === undefined) {
                 currentEmployeeData.zayavnyk_zmist = '';
             }
-            if(currentEmployeeData.zayavnyk_adress == null || currentEmployeeData.zayavnyk_adress == undefined) {
+            if(currentEmployeeData.zayavnyk_adress === null || currentEmployeeData.zayavnyk_adress === undefined) {
                 currentEmployeeData.zayavnyk_adress = '';
             }
-            if(currentEmployeeData.balans_name == null || currentEmployeeData.balans_name == undefined) {
+            if(currentEmployeeData.balans_name === null || currentEmployeeData.balans_name === undefined) {
                 currentEmployeeData.balans_name = '';
             }
-            let elementAdress__content = this.createElement('div', { className: 'elementAdress__content content', innerText: String(String(currentEmployeeData.zayavnyk_adress))});
-            let elementAdress__caption = this.createElement('div', { className: 'elementAdress__caption caption', innerText: 'Адреса заявника'});
-            let elementAdress = this.createElement('div', { className: 'elementAdress element'}, elementAdress__caption, elementAdress__content);
-            let elementСontent__content = this.createElement('div', { className: 'elementСontent__content content', innerText: String(String(currentEmployeeData.zayavnyk_zmist))});
-            let elementСontent__caption = this.createElement('div', { className: 'elementСontent__caption caption', innerText: 'Зміст'});
-            let elementСontent = this.createElement('div', { className: 'elementСontent element'}, elementСontent__caption, elementСontent__content);
-            let elementBalance__content = this.createElement('div', { className: 'elementBalance__content content', innerText: String(String(currentEmployeeData.balans_name))});
-            let elementBalance__caption = this.createElement('div', { className: 'elementBalance__caption caption', innerText: 'Балансоутримувач'});
-            let elementBalance = this.createElement('div', { className: 'elementСontent element'}, elementBalance__caption, elementBalance__content);
-            let elementsWrapper = this.createElement('div', { className: 'elementsWrapper'}, elementAdress, elementСontent, elementBalance);
+            let elementAdress__content = this.createElement('div',
+                {
+                    className: 'elementAdress__content content', innerText: String(String(currentEmployeeData.zayavnyk_adress))
+                }
+            );
+            let elementAdress__caption = this.createElement('div',
+                {
+                    className: 'elementAdress__caption caption', innerText: 'Адреса заявника'
+                }
+            );
+            let elementAdress = this.createElement('div',
+                {
+                    className: 'elementAdress element'
+                },
+                elementAdress__caption, elementAdress__content
+            );
+            let elementСontent__content = this.createElement('div',
+                {
+                    className: 'elementСontent__content content', innerText: String(String(currentEmployeeData.zayavnyk_zmist))
+                }
+            );
+            let elementСontent__caption = this.createElement('div',
+                {
+                    className: 'elementСontent__caption caption', innerText: 'Зміст'
+                }
+            );
+            let elementСontent = this.createElement('div',
+                {
+                    className: 'elementСontent element'
+                },
+                elementСontent__caption, elementСontent__content
+            );
+            let elementBalance__content = this.createElement('div',
+                {
+                    className: 'elementBalance__content content', innerText: String(String(currentEmployeeData.balans_name))
+                }
+            );
+            let elementBalance__caption = this.createElement('div',
+                {
+                    className: 'elementBalance__caption caption', innerText: 'Балансоутримувач'
+                }
+            );
+            let elementBalance = this.createElement('div',
+                {
+                    className: 'elementСontent element'
+                },
+                elementBalance__caption, elementBalance__content
+            );
+            let elementsWrapper = this.createElement('div',
+                {
+                    className: 'elementsWrapper'
+                },
+                elementAdress, elementСontent, elementBalance
+            );
             container.appendChild(elementsWrapper);
             let elementsAll = document.querySelectorAll('.element');
             elementsAll = Array.from(elementsAll);
@@ -159,7 +203,7 @@
             this.column = message.column;
             this.navigator = message.navigation;
             this.targetId = message.targetId;
-            if(message.column != 'До відома') {
+            if(message.column !== 'До відома') {
                 document.getElementById('table7__doVidoma').style.display = 'none';
             }else{
                 document.getElementById('table7__doVidoma').style.display = 'block';
@@ -180,7 +224,12 @@
                 };
                 this.queryExecutor(executeQuery);
                 this.loadData(this.afterLoadDataHandler);
-                this.messageService.publish({ name: 'reloadMainTable', column: this.column, navigator: this.navigator, targetId: this.targetId });
+                this.messageService.publish({
+                    name: 'reloadMainTable',
+                    column: this.column,
+                    navigator: this.navigator,
+                    targetId: this.targetId
+                });
             }
         },
         afterLoadDataHandler: function() {

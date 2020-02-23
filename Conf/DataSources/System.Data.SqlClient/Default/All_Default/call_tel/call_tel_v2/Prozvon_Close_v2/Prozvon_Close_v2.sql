@@ -181,17 +181,20 @@ END
 							,[AssignmentResultsId]=@control_result_id
 							,[AssignmentResolutionsId]=@assignment_resolution_id
 							,[user_edit_id]=@user_id
+							,[state_change_date] = GETUTCDATE()
 							,[edit_date]=GETUTCDATE()
 							,[close_date]= CASE WHEN @state_id=5 THEN GETUTCDATE() ELSE [close_date] END
 							,LogUpdated_Query = N'Prozvon_Close_ROW199'											
 						WHERE [Assignments].Id IN (SELECT Id FROM @assigments_table);
 
+						/*
 						UPDATE [dbo].[AssignmentConsiderations]
 						SET	   [assignment_result_id] = @control_result_id
 							,[assignment_resolution_id]=@assignment_resolution_id
 							,[edit_date]=GETUTCDATE()
 							,[user_edit_id]=@user_id
 						WHERE Id IN (SELECT curent_consid_id FROM @assigments_table);
+						*/
 					END
 
 					IF @control_result_id<>13

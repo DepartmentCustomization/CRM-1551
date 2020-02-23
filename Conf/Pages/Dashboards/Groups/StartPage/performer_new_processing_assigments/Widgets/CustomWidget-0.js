@@ -38,7 +38,7 @@
                 this.organizationId = [];
                 this.organizationId = (tabInd);
                 let executeQueryValues = {
-                    queryCode: 'table2',
+                    queryCode: 'table2_686',
                     limit: -1,
                     parameterValues: [ { key: '@organization_id', value: this.organizationId} ]
                 };
@@ -248,7 +248,7 @@
                 tableContainer.removeChild(tableContainer.childNodes[0]);
             }
             let executeQueryValues = {
-                queryCode: 'table2',
+                queryCode: 'table2_686',
                 limit: -1,
                 parameterValues: [ { key: '@organization_id', value: this.organizationId} ]
             };

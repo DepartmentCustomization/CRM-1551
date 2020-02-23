@@ -1,0 +1,27 @@
+{
+  "ModelType": "Query",
+  "Code": "DoVidoma_686",
+  "Name": "DoVidoma_686",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@organizationName",
+      "Name": "organizationName"
+    },
+    {
+      "Code": "@organization_id",
+      "Name": "organization_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    },
+    {
+      "Code": "@navigation",
+      "Name": "navigation"
+    }
+  ]
+}

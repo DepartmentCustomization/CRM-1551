@@ -1,5 +1,5 @@
-update [CRM_1551_Analitics].[dbo].[Positions]
-	  set [parent_id]=@parent_id
+UPDATE [CRM_1551_Analitics].[dbo].[Positions]
+	  SET [parent_id]=@parent_id
       ,[position_code]=@position_code
       ,[position]=@position
       ,[phone_number]=@phone_number
@@ -14,32 +14,32 @@ update [CRM_1551_Analitics].[dbo].[Positions]
       ,[programuser_id]=@programuser_id
       ,[is_main] = @is_main
       
-	  where Id=@Id
+	  WHERE Id=@Id OR [main_position_id]=@Id;
 
-exec [dbo].[Calc_OrganizationInResponsibilityRights_byPosition] @Id, @user_id
+EXEC [dbo].[Calc_OrganizationInResponsibilityRights_byPosition] @Id, @user_id;
 
-if  @active = 0
-begin
-        delete from [dbo].[OrganizationInResponsibilityRights] where [position_id] = @Id
+IF  @active = 0
+BEGIN
+        DELETE FROM [dbo].[OrganizationInResponsibilityRights] WHERE [position_id] = @Id;
         
         /*НАЧАЛО - пересчитать права его помичникив*/
-            DECLARE @helper_position_id INT
-        	DECLARE @CURSOR CURSOR
+            DECLARE @helper_position_id INT;
+        	DECLARE @CURSOR CURSOR;
         	SET @CURSOR  = CURSOR SCROLL
         	FOR
         	    SELECT [helper_position_id]
         		FROM [CRM_1551_Analitics].[dbo].[PositionsHelpers]
-        		where [main_position_id] = @Id
+        		WHERE [main_position_id] = @Id
         	OPEN @CURSOR
         	FETCH NEXT FROM @CURSOR INTO  @helper_position_id
         	WHILE @@FETCH_STATUS = 0
         	BEGIN
-        	    exec [dbo].[Calc_OrganizationInResponsibilityRights_byPosition] @helper_position_id, @user_id	
+        	    EXEC [dbo].[Calc_OrganizationInResponsibilityRights_byPosition] @helper_position_id, @user_id;	
         	FETCH NEXT FROM @CURSOR INTO @helper_position_id
         	END
         	CLOSE @CURSOR
         /*КОНЕЦ - пересчитать права его помичникив*/
-end
+END;
 
 
 

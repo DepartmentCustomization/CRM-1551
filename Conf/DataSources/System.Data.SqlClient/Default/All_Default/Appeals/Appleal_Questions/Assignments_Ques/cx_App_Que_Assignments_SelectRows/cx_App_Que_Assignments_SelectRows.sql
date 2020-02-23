@@ -1,23 +1,31 @@
-SELECT 
-	   [Assignments].[Id]
-      ,[Assignments].[registration_date]
-	  ,at.name as ass_type_name
-    --   ,Organizations.short_name as performer
-      ,IIF (len([head_name]) > 5,  concat([head_name] , ' ( ' , [short_name] , ')'),  [short_name]) as performer
-      ,[Assignments].[main_executor]
-      ,ast.name as ass_state_name
-     ,Assignments.execution_date
-    -- ,Questions.control_date as execution_date
-    ,'Перегляд' as ed
-  FROM [dbo].[Assignments]
-	left join AssignmentTypes at on at.Id = Assignments.assignment_type_id
-	left join AssignmentStates ast on ast.Id = Assignments.assignment_state_id
-	left join Organizations on Organizations.Id =Assignments.executor_organization_id
-	left join Questions on Questions.Id = Assignments.question_id
-	where Assignments.question_id = @question
-	    
-     order by case when ast.name <> 'Закрито' then 1
-		           when ast.name = 'Закрито' then  2 
-		           end,  
-		           main_executor desc   
- offset @pageOffsetRows rows fetch next @pageLimitRows rows only
+SELECT
+  ass.[Id],
+  ass.[registration_date],
+  asst.name AS ass_type_name --   ,Organizations.short_name as performer
+,
+  IIF (
+    len([head_name]) > 5,
+    concat([head_name], ' ( ', [short_name], ')'),
+    [short_name]
+  ) AS performer,
+  ass.[main_executor],
+  ast.name AS ass_state_name,
+  ass.execution_date 
+  -- ,Questions.control_date as execution_date
+,
+  N'Перегляд' AS ed
+FROM
+  [dbo].[Assignments] ass
+  LEFT JOIN dbo.AssignmentTypes asst ON asst.Id = ass.assignment_type_id
+  LEFT JOIN dbo.AssignmentStates ast ON ast.Id = ass.assignment_state_id
+  LEFT JOIN dbo.Organizations org ON org.Id = ass.executor_organization_id
+  LEFT JOIN dbo.Questions q ON q.Id = ass.question_id
+WHERE
+  ass.question_id = @question
+ORDER BY
+  CASE
+    WHEN ast.name <> N'Закрито' THEN 1
+    WHEN ast.name = N'Закрито' THEN 2
+  END,
+  main_executor DESC 
+  OFFSET @pageOffsetRows ROWS FETCH NEXT @pageLimitRows ROWS ONLY ;

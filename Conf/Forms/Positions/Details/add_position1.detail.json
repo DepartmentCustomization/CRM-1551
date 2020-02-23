@@ -1,0 +1,21 @@
+{
+  "ModelType": "Detail",
+  "Code": "add_position1",
+  "Name": "Додаткові посади",
+  "FormCode": "Add_Positions",
+  "SelectRowsQueryCode": "det_Add_PositionsSelectRows",
+  "SelectRowQueryCode": "Add_PositionsSelectRow",
+  "UpdateQueryCode": "Add_PositionsUpdatetRow",
+  "SectionCode": "",
+  "Position": 4,
+  "IsExpand": true,
+  "Add": {
+    "InsertQueryCode": "Add_PositionsInsertRow" 
+  },
+  "QueryParameters": [
+    {
+      "FormFieldName": "Id",
+      "ParameterCode": "@position_id"
+    }
+  ]
+}

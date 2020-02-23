@@ -15,44 +15,56 @@
         "Code": "EnterNumber",
         "Name": "Вихідний номер УГЛ",
         "Position": 1,
-        "IsPrintable": false
+        "IsPrintable": false,
+        "SqlName": "Z.[№ звернення]",
+        "FilterParameterCode": "@EnterNumber"
       },
       {
         "Code": "RegistrationDate",
         "Name": "Дата реєстрації",
         "Position": 2,
-        "IsPrintable": false
+        "IsPrintable": false,
+        "SqlName": "Z.[Створено]",
+        "FilterParameterCode": "@RegistrationDate"
       },
       {
         "Code": "Applicant",
         "Name": "Заявник",
         "Position": 3,
-        "IsPrintable": false
+        "IsPrintable": false,
+        "SqlName": "Z.[Заявник]",
+        "FilterParameterCode": "@Applicant"
       },
       {
         "Code": "Address",
         "Name": "Адреса",
         "Position": 4,
-        "IsPrintable": false
+        "IsPrintable": false,
+        "SqlName": "Z.[Адреса]",
+        "FilterParameterCode": "@Address"
       },
       {
         "Code": "Content",
         "Name": "Зміст",
         "Position": 5,
-        "IsPrintable": false
+        "IsPrintable": false,
+        "SqlName": "Z.[Зміст]",
+        "FilterParameterCode": "@Content"
       },
       {
         "Code": "QuestionNumber",
         "Name": "Номер питання",
         "Position": 5,
-        "IsPrintable": false
+        "IsPrintable": false,
+        "SqlName": "q.registration_number",
+        "FilterParameterCode": "@Uploaded"
       },
       {
         "Code": "Uploaded",
         "Name": "Uploaded",
         "Position": 6,
         "IsPrintable": false,
-        "SqlName": "Uploaded",
+        "SqlName": "Z.[Завантажив]",
         "FilterParameterCode": "@Uploaded"
       },
       {
@@ -60,7 +72,7 @@
         "Name": "Processed",
         "Position": 7,
         "IsPrintable": false,
-        "SqlName": "Processed",
+        "SqlName": "Z.[Опрацював]",
         "FilterParameterCode": "@Processed"
       }
     ],

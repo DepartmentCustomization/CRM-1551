@@ -1,10 +1,11 @@
-SELECT [Streets].[Id]
-      ,concat(StreetTypes.shortname,' ', [Streets].[name]) as name
-	  --,[Streets].[name]
-  FROM [dbo].[Streets]
-	left join StreetTypes on StreetTypes.Id = Streets.street_type_id
-    WHERE 
-    #filter_columns#
-    -- #sort_columns#
-    order by name desc
-    offset @pageOffsetRows rows fetch next @pageLimitRows rows only
+SELECT
+  [Streets].[Id],
+  concat(StreetTypes.shortname, ' ', [Streets].[name]) AS name --,[Streets].[name]
+FROM
+  [dbo].[Streets]
+  LEFT JOIN StreetTypes ON StreetTypes.Id = Streets.street_type_id
+WHERE
+  #filter_columns#
+  -- #sort_columns#
+ORDER BY NAME DESC
+ OFFSET @pageOffsetRows ROWS FETCH NEXT @pageLimitRows ROWS ONLY ;

@@ -1,6 +1,9 @@
-  DELETE
-  FROM [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts]
-  WHERE [ApplicantFromSiteId]=@applicant_id
+IF NOT EXISTS(SELECT Id
+	FROM [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts]
+	WHERE [ApplicantFromSiteId]=@applicant_id AND ISNULL([PhoneNumber],N'')=ISNULL(@phonenumber,N'')
+	AND ISNULL([Mail],N'')=ISNULL(@mail,N''))
+
+	BEGIN
 
 
 INSERT INTO [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts]
@@ -12,4 +15,7 @@ INSERT INTO [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts]
            (@applicant_id
            ,@сontacttype_id
            ,@phonenumber
-           ,@mail)
+           ,@mail);
+		   
+
+	END

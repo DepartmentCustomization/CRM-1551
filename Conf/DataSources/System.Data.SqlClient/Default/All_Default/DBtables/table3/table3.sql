@@ -353,7 +353,7 @@ INSERT INTO @Organization_nevkonp (Id)
 			END;
 			SELECT
 				Id
-			   ,OrganizationsId
+			   ,turn_organization_id as OrganizationsId
 			   ,turn_organization_name as OrganizationsName
 			INTO #temp_nevkomp
 			FROM #temp_AllAss
