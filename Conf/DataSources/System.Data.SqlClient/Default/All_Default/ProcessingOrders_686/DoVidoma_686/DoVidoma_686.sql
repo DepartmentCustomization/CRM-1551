@@ -1,7 +1,7 @@
 /*
-declare @user_id nvarchar(300)=N'  ';
-declare @organization_id int =2001;
-declare @navigation nvarchar(400)=N'Усі';
+DECLARE @user_id NVARCHAR(128) = N'cd01fea0-760c-4b66-9006-152e5b2a87e9';
+DECLARE @organization_id INT = 2008;
+DECLARE @navigation NVARCHAR(40) = N'Усі';
  */
 
 IF EXISTS (SELECT orr.*
@@ -118,12 +118,13 @@ AS
 			WHEN [QuestionTypes].parent_organization_is = N'true' THEN N'Зауваження'
 			ELSE N'Інші доручення'
 		END navigation
-	   ,CASE
+	   /*,CASE
 			WHEN [AssignmentTypes].code = N'ToAttention' AND
 				[AssignmentStates].code = N'Registered' THEN 1
 			ELSE 0
 		END dovidima
-	   ,
+	   ,*/
+	   ,1 dovidima,
 		/*
 	    case when [AssignmentStates].code=N'NotFulfilled' and [AssignmentResults].code=N'ForWork' then 1 else 0 end naDoopratsiyvanni,
 	    case when [AssignmentStates].code=N'NotFulfilled' and [AssignmentResults].code=N'ItIsNotPossibleToPerformThisPeriod' then 1 else 0 end neVykonNeMozhl,
@@ -134,23 +135,39 @@ AS
 	   ,[Organizations3].short_name balans_name
 
 	FROM [dbo].[Assignments]
-	LEFT JOIN [dbo].[Questions]
+	INNER JOIN [dbo].[AssignmentStates]
+		ON [Assignments].assignment_state_id = [AssignmentStates].Id
+	LEFT JOIN [dbo].[AssignmentTypes]
+		ON [Assignments].assignment_type_id = [AssignmentTypes].Id
+	--
+	LEFT JOIN #tpu_organization tpuo 
+	ON [Assignments].executor_organization_id=tpuo.organizations_id
+	LEFT JOIN #tpu_position tpuop 
+	ON [Assignments].executor_person_id=tpuop.position_id
+	--
+	INNER JOIN [dbo].[Questions]
 		ON [Assignments].question_id = [Questions].Id
-	LEFT JOIN [dbo].[Appeals]
+	INNER JOIN [dbo].[Appeals]
 		ON [Questions].appeal_id = [Appeals].Id
-	LEFT JOIN [dbo].[ReceiptSources]
+	INNER JOIN [dbo].[ReceiptSources]
 		ON [Appeals].receipt_source_id = [ReceiptSources].Id
 	LEFT JOIN [dbo].[QuestionTypes]
 		ON [Questions].question_type_id = [QuestionTypes].Id
-	LEFT JOIN [dbo].[AssignmentTypes]
-		ON [Assignments].assignment_type_id = [AssignmentTypes].Id
-	LEFT JOIN [dbo].[AssignmentStates]
-		ON [Assignments].assignment_state_id = [AssignmentStates].Id
+
+	INNER JOIN @NavigationTable nt 
+		ON CASE
+			WHEN [ReceiptSources].code = N'UGL' THEN N'УГЛ'
+			WHEN [ReceiptSources].code = N'Website_mob.addition' THEN N'Електронні джерела'
+			WHEN [QuestionTypes].emergency = N'true' THEN N'Пріоритетне'
+			WHEN [QuestionTypes].parent_organization_is = N'true' THEN N'Зауваження'
+			ELSE N'Інші доручення'
+		END=nt.Id
+
 	--left join [dbo].[AssignmentConsiderations] on [Assignments].Id=[AssignmentConsiderations].assignment_id
 	LEFT JOIN [dbo].[AssignmentResults]
 		ON [Assignments].[AssignmentResultsId] = [AssignmentResults].Id -- +
-	LEFT JOIN [dbo].[AssignmentResolutions]
-		ON [Assignments].[AssignmentResolutionsId] = [AssignmentResolutions].Id
+	--LEFT JOIN [dbo].[AssignmentResolutions]
+	--	ON [Assignments].[AssignmentResolutionsId] = [AssignmentResolutions].Id
 	LEFT JOIN [dbo].[Organizations]
 		ON [Assignments].executor_organization_id = [Organizations].Id
 	LEFT JOIN [dbo].[Objects]
@@ -175,14 +192,12 @@ AS
 
 	LEFT JOIN [dbo].[Organizations] [Organizations3]
 		ON balans.executor_id = [Organizations3].Id
-	--
-LEFT JOIN #tpu_organization tpuo 
-	ON [Assignments].executor_organization_id=tpuo.organizations_id
-LEFT JOIN #tpu_position tpuop 
-	ON [Assignments].executor_person_id=tpuop.position_id
-	--
+	
 	--left join [dbo].[AssignmentRevisions] on [AssignmentResolutions].Id=[AssignmentRevisions].assignment_resolution_id
 	WHERE 
+	[AssignmentStates].code = N'Registered' AND
+	[AssignmentTypes].code = N'ToAttention' AND
+
 	--[Assignments].[executor_organization_id] = @organization_id
  ((tpuo.organizations_id IS NOT NULL AND [Assignments].executor_person_id IS NULL)
 OR (tpuop.position_id IS NOT NULL))
@@ -221,11 +236,7 @@ SELECT
    ,zayavnyk_adress
    ,zayavnyk_zmist
    ,balans_name
-FROM main
-WHERE dovidima = 1 
-AND navigation IN (SELECT
-		Id
-	FROM @NavigationTable);
+FROM main;
 	END
 
 ELSE

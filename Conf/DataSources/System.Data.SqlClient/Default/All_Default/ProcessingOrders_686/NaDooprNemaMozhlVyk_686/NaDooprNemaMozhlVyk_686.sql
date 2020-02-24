@@ -1,8 +1,8 @@
 /* 
- declare @user_id nvarchar(300)=N'  ';
- declare @organization_id int =2001;
- declare @navigation nvarchar(400)=N'Усі';
- declare @column nvarchar(400)=N'На доопрацюванні';
+DECLARE @user_id NVARCHAR(128) = N'cd01fea0-760c-4b66-9006-152e5b2a87e9';
+DECLARE @organization_id INT = 2008;
+DECLARE @navigation NVARCHAR(40) = N'Усі';
+ declare @column nvarchar(400)=N'План/Програма'; --План/Програма
 */
 
 IF EXISTS (SELECT orr.*
@@ -27,9 +27,13 @@ DECLARE @comment_planProg NVARCHAR(6) = (SELECT
 DECLARE @NavigationTable TABLE (
 	Id NVARCHAR(400)
 );
+DECLARE @Nav_Ids NVARCHAR(200);
 
 IF @navigation = N'Усі'
 BEGIN
+SET @Nav_Ids=N'SELECT N''Інші доручення'' Id UNION SELECT N''УГЛ'' Id UNION SELECT N''Електронні джерела'' Id 
+UNION SELECT N''Зауваження'' Id UNION SELECT N''Пріоритетне'' Id'
+
 	INSERT INTO @NavigationTable (Id)
 		SELECT
 			N'Інші доручення' n
@@ -48,11 +52,14 @@ BEGIN
 END
 ELSE
 BEGIN
+SET @Nav_Ids=N'SELECT N'''+ISNULL(@navigation,N'')+N'Id'
 	INSERT INTO @NavigationTable (Id)
 		SELECT
 			@navigation;
 END;
 
+--SELECT @Nav_Ids
+--END
 DECLARE @IdS NVARCHAR(MAX) = (SELECT
 		STUFF((SELECT
 				N',' + N'''' + Id + ''''
@@ -128,9 +135,12 @@ DECLARE @qcode NVARCHAR(MAX) = N'
 
 
  -----------------основное-----
+ nav as 
+(
+'+@Nav_Ids+N' 
+)
 
-
-main as
+,main as
 (
 select [Assignments].Id, [Organizations].Id OrganizationsId, [Organizations].name OrganizationsName,
 [Applicants].full_name zayavnyk,  
@@ -169,18 +179,36 @@ ORDER BY ar.id DESC ) as short_answer,
 	,[Organizations3].short_name balans_name
 from 
 [Assignments] with (nolock)
+--
+LEFT JOIN tpu_organization tpuo 
+	ON [Assignments].executor_organization_id=tpuo.organizations_id
+LEFT JOIN tpu_position tpuop 
+	ON [Assignments].executor_person_id=tpuop.position_id
+	--
 
 left join end_result on [Assignments].Id=end_result.assignment_id
- left join end_state on [Assignments].Id=end_state.assignment_id
- 
-left join [Questions] with (nolock) on [Assignments].question_id=[Questions].Id
-left join [Appeals] with (nolock) on [Questions].appeal_id=[Appeals].Id
-left join [ReceiptSources] with (nolock) on [Appeals].receipt_source_id=[ReceiptSources].Id
-left join [QuestionTypes] with (nolock) on [Questions].question_type_id=[QuestionTypes].Id
-left join [AssignmentTypes] with (nolock) on [Assignments].assignment_type_id=[AssignmentTypes].Id
-left join [AssignmentStates] with (nolock) on [Assignments].assignment_state_id=[AssignmentStates].Id
-left join [AssignmentConsiderations] with (nolock) on [Assignments].current_assignment_consideration_id=[AssignmentConsiderations].Id
+left join end_state on [Assignments].Id=end_state.assignment_id
+
+INNER JOIN [AssignmentStates] with (nolock) on [Assignments].assignment_state_id=[AssignmentStates].Id
 left join [AssignmentResults] with (nolock) on [Assignments].[AssignmentResultsId]=[AssignmentResults].Id -- +
+
+INNER JOIN [Questions] with (nolock) on [Assignments].question_id=[Questions].Id
+INNER JOIN [Appeals] with (nolock) on [Questions].appeal_id=[Appeals].Id
+INNER JOIN [ReceiptSources] with (nolock) on [Appeals].receipt_source_id=[ReceiptSources].Id
+left join [QuestionTypes] with (nolock) on [Questions].question_type_id=[QuestionTypes].Id
+
+INNER JOIN nav ON
+case when [ReceiptSources].code=N''UGL'' then N''УГЛ'' 
+when [ReceiptSources].code=N''Website_mob.addition'' then N''Електронні джерела''
+when [QuestionTypes].emergency=N''true'' then N''Пріоритетне''
+when [QuestionTypes].parent_organization_is=N''true'' then N''Зауваження''
+else N''Інші доручення''
+end	= nav.Id
+
+left join [AssignmentTypes] with (nolock) on [Assignments].assignment_type_id=[AssignmentTypes].Id
+
+left join [AssignmentConsiderations] with (nolock) on [Assignments].current_assignment_consideration_id=[AssignmentConsiderations].Id
+
 left join [AssignmentResolutions] with (nolock) on [Assignments].[AssignmentResolutionsId]=[AssignmentResolutions].Id
 left join [Organizations] with (nolock) on [Assignments].executor_organization_id=[Organizations].Id
 left join [Objects] with (nolock) on [Questions].[object_id]=[Objects].Id
@@ -206,29 +234,18 @@ inner join AssignmentConsiderations with (nolock) on AssignmentRevisions.assignm
 where AssignmentRevisions.control_result_id = 5
 group by AssignmentConsiderations.assignment_id) rework_counter on Assignments.Id=rework_counter.assignment_id
 
---
-LEFT JOIN tpu_organization tpuo 
-	ON [Assignments].executor_organization_id=tpuo.organizations_id
-LEFT JOIN tpu_position tpuop 
-	ON [Assignments].executor_person_id=tpuop.position_id
-	--
+
 where 
 
  ' + @comment_naDoopr + N'((tpuo.organizations_id IS NOT NULL AND [Assignments].executor_person_id IS NULL) OR (tpuop.position_id IS NOT NULL)) and ([AssignmentStates].code=N''NotFulfilled'' and ([AssignmentResults].code=N''ForWork'' or [AssignmentResults].code=N''Actually''))
  ' + @comment_planProg + N' end_result.assignment_id is not null and end_result.assignment_id is not null and [Questions].event_id is null
  
-),
-
-nav as 
-(
-select 1 Id, N''УГЛ'' name union all select 2 Id, N''Електронні джерела'' name union all select 3	Id, N''Пріоритетне'' name union all select 4 Id, N''Інші доручення'' name union all select 5 Id, N''Зауваження'' name 
 )
 
 
 select /*ROW_NUMBER() over(order by registration_number)*/ main.Id, registration_number, QuestionType, zayavnyk, adress, control_date, zayavnykId,
 zayavnyk_adress, zayavnyk_zmist, short_answer, rework_counter, balans_name
- from main where --navigation, registration_number, from main
-  navigation in (' + @IdS + N')
+ from main 
  order by case when rework_counter=2 then 1 else 2 end, Id'
 
 EXEC (@qcode);

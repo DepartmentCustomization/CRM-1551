@@ -1,8 +1,8 @@
 /*
- declare @user_id nvarchar(300)=N'02ece542-2d75-479d-adad-fd333d09604d';
- declare @organization_id int =2006;
- declare @navigation nvarchar(400)=N'Усі';
- */
+DECLARE @user_id NVARCHAR(128) = N'cd01fea0-760c-4b66-9006-152e5b2a87e9';
+DECLARE @organization_id INT = 2008;
+DECLARE @navigation NVARCHAR(40) = N'Усі';
+*/ 
 
 IF EXISTS (SELECT orr.*
   FROM [dbo].[OrganizationInResponsibilityRights] orr
@@ -213,41 +213,16 @@ AS
 
 	--,[Organizations3].short_name balans_name
 	FROM [dbo].[Assignments]
-	LEFT JOIN [dbo].[Questions]
-		ON [Assignments].question_id = [Questions].Id
-	LEFT JOIN [dbo].[Appeals]
-		ON [Questions].appeal_id = [Appeals].Id
-	LEFT JOIN [dbo].[ReceiptSources]
-		ON [Appeals].receipt_source_id = [ReceiptSources].Id
-	LEFT JOIN [dbo].[QuestionTypes]
-		ON [Questions].question_type_id = [QuestionTypes].Id
-	LEFT JOIN [dbo].[AssignmentTypes]
-		ON [Assignments].assignment_type_id = [AssignmentTypes].Id
-	LEFT JOIN [dbo].[AssignmentStates]
+	INNER JOIN [dbo].[AssignmentStates]
 		ON [Assignments].assignment_state_id = [AssignmentStates].Id
-	-- left join [dbo].[AssignmentConsiderations] on [Assignments].Id=[AssignmentConsiderations].assignment_id
+	INNER JOIN [dbo].[AssignmentResults]
+		ON [Assignments].[AssignmentResultsId] = [AssignmentResults].Id -- +
+	INNER JOIN [dbo].[AssignmentResolutions]
+		ON [Assignments].[AssignmentResolutionsId] = [AssignmentResolutions].Id
+	INNER JOIN [dbo].[AssignmentTypes]
+		ON [Assignments].assignment_type_id = [AssignmentTypes].Id
 	LEFT JOIN [dbo].[AssignmentConsiderations]
 		ON [Assignments].current_assignment_consideration_id = [AssignmentConsiderations].Id
-	LEFT JOIN [dbo].[AssignmentResults]
-		ON [Assignments].[AssignmentResultsId] = [AssignmentResults].Id -- +
-	LEFT JOIN [dbo].[AssignmentResolutions]
-		ON [Assignments].[AssignmentResolutionsId] = [AssignmentResolutions].Id
-	LEFT JOIN [dbo].[Objects]
-		ON [Questions].[object_id] = [Objects].Id
-
-	LEFT JOIN [dbo].[Applicants]
-		ON [Appeals].applicant_id = [Applicants].Id
-	LEFT JOIN [dbo].[Organizations]
-		ON [Assignments].executor_organization_id = [Organizations].Id
-
-	LEFT JOIN [dbo].[Buildings]
-		ON [Objects].builbing_id = [Buildings].Id
-	LEFT JOIN [dbo].[Streets]
-		ON [Buildings].street_id = [Streets].Id
-	LEFT JOIN [dbo].[StreetTypes]
-		ON [Streets].street_type_id = [StreetTypes].Id
-	LEFT JOIN [dbo].[Organizations] [Organizations2]
-		ON [AssignmentConsiderations].[transfer_to_organization_id] = [Organizations2].Id
 	--
 	LEFT JOIN #tpu_organization tpuo 
 		--ON [Assignments].executor_organization_id=tpuo.organizations_id
@@ -257,6 +232,39 @@ AS
 	INNER JOIN #user_organizations uo 
 		ON [AssignmentConsiderations].turn_organization_id=uo.organizations_id
 	--
+	INNER JOIN [dbo].[Questions]
+		ON [Assignments].question_id = [Questions].Id	
+	LEFT JOIN [dbo].[QuestionTypes]
+		ON [Questions].question_type_id = [QuestionTypes].Id
+	INNER JOIN [dbo].[Appeals]
+		ON [Questions].appeal_id = [Appeals].Id
+	INNER JOIN [dbo].[ReceiptSources]
+		ON [Appeals].receipt_source_id = [ReceiptSources].Id
+	
+	INNER JOIN @NavigationTable nt 
+		ON CASE
+			WHEN [ReceiptSources].code = N'UGL' THEN N'УГЛ'
+			WHEN [ReceiptSources].code = N'Website_mob.addition' THEN N'Електронні джерела'
+			WHEN [QuestionTypes].emergency = N'true' THEN N'Пріоритетне'
+			WHEN [QuestionTypes].parent_organization_is = N'true' THEN N'Зауваження'
+			ELSE N'Інші доручення'
+		END=nt.Id
+	-- left join [dbo].[AssignmentConsiderations] on [Assignments].Id=[AssignmentConsiderations].assignment_id	
+	LEFT JOIN [dbo].[Objects]
+		ON [Questions].[object_id] = [Objects].Id
+	LEFT JOIN [dbo].[Applicants]
+		ON [Appeals].applicant_id = [Applicants].Id
+	LEFT JOIN [dbo].[Organizations]
+		ON [Assignments].executor_organization_id = [Organizations].Id
+	LEFT JOIN [dbo].[Buildings]
+		ON [Objects].builbing_id = [Buildings].Id
+	LEFT JOIN [dbo].[Streets]
+		ON [Buildings].street_id = [Streets].Id
+	LEFT JOIN [dbo].[StreetTypes]
+		ON [Streets].street_type_id = [StreetTypes].Id
+	LEFT JOIN [dbo].[Organizations] [Organizations2]
+		ON [AssignmentConsiderations].[transfer_to_organization_id] = [Organizations2].Id
+	
 	WHERE [AssignmentTypes].code <> N'ToAttention'
 	AND [AssignmentStates].code <> N'Closed'
 	AND [AssignmentResults].code = N'NotInTheCompetence'
@@ -295,10 +303,7 @@ SELECT
    ,[transfer_to_organization_id]
    ,[transfer_to_organization_name]
    ,[balans_name]
-FROM main
-WHERE navigation IN (SELECT
-		Id
-	FROM @NavigationTable);
+FROM main;
 	END
 
 ELSE
