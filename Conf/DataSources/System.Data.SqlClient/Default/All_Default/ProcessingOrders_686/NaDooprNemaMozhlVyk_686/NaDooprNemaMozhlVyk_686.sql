@@ -52,7 +52,7 @@ UNION SELECT N''Зауваження'' Id UNION SELECT N''Пріоритетне
 END
 ELSE
 BEGIN
-SET @Nav_Ids=N'SELECT N'''+ISNULL(@navigation,N'')+N'Id'
+SET @Nav_Ids=N'SELECT N'''+ISNULL(@navigation,N'')+N''' Id'
 	INSERT INTO @NavigationTable (Id)
 		SELECT
 			@navigation;

@@ -77,7 +77,7 @@ DECLARE @navigation NVARCHAR(40) = N'Пріоритетне';
   SELECT DISTINCT Id position_id
   INTO #tpu_position
   FROM #temp_positions_user
-
+   --SELECT * FROM #tpu_position
 
   IF OBJECT_ID('tempdb..#temp_Assignments') IS NOT NULL
 			BEGIN
@@ -90,8 +90,14 @@ FROM [CRM_1551_Analitics].[dbo].[Assignments]
 LEFT JOIN #tpu_organization tpuo ON [Assignments].executor_organization_id=tpuo.organizations_id
 LEFT JOIN #tpu_position tpuop ON [Assignments].executor_person_id=tpuop.position_id
 WHERE (tpuo.organizations_id IS NOT NULL AND [Assignments].executor_person_id IS NULL)
-			OR (tpuop.position_id IS NOT NULL)
-  --SELECT * FROM #tpu_position
+OR (tpuop.position_id IS NOT NULL)
+
+--индексы на доручення
+CREATE INDEX index_Id ON #temp_Assignments(Id)
+--CREATE INDEX index_Id ON #temp_Assignments(Id)
+
+
+--SELECT * FROM  #temp_Assignments
 
 
 	/*
@@ -168,7 +174,7 @@ IF OBJECT_ID('tempdb..#temp_main_end') IS NOT NULL
 			END;
 			SELECT
 				Id INTO #temp_main_end
-			FROM [dbo].[Assignments] WITH (NOLOCK)
+			FROM #temp_Assignments WITH (NOLOCK)
 			--LEFT JOIN #tpu_organization tpuo ON [Assignments].executor_organization_id=tpuo.organizations_id
 			--LEFT JOIN #tpu_position tpuop ON [Assignments].executor_person_id=tpuop.position_id
 			WHERE assignment_state_id = 5
@@ -194,6 +200,8 @@ IF OBJECT_ID('tempdb..#temp_main_end') IS NOT NULL
 			FROM [dbo].[Assignment_History] WITH (NOLOCK)
 			WHERE [Assignment_History].assignment_id in (select Id FROM #temp_main_end);
 
+			--SELECT * FROM #temp_main_end
+			--END
 
 			IF OBJECT_ID('tempdb..#temp_end_state') IS NOT NULL
 			BEGIN
@@ -318,10 +326,10 @@ SELECT
 		ELSE 4
 	END navigation INTO #temp_nevkomp
 FROM [dbo].[Assignments] WITH (NOLOCK)
-INNER JOIN [dbo].[AssignmentTypes] WITH (NOLOCK)
-	ON [Assignments].assignment_type_id = [AssignmentTypes].Id
 INNER JOIN [dbo].[AssignmentStates] WITH (NOLOCK)
 	ON [Assignments].assignment_state_id = [AssignmentStates].Id
+INNER JOIN [dbo].[AssignmentTypes] WITH (NOLOCK)
+	ON [Assignments].assignment_type_id = [AssignmentTypes].Id
 INNER JOIN [dbo].[AssignmentResults] WITH (NOLOCK)
 	ON [Assignments].[AssignmentResultsId] = [AssignmentResults].Id -- +
 INNER JOIN [dbo].[AssignmentResolutions] WITH (NOLOCK)
@@ -658,12 +666,13 @@ BEGIN
 	DROP TABLE #temp_main;
 END;
 
+
 SELECT
 	Id
    ,navigation
    ,N'nadiishlo' name INTO #temp_main
 FROM #temp_nadiishlo
-UNION ALL
+UNION
 SELECT
 	Id
    ,navigation
@@ -706,7 +715,7 @@ SELECT
    ,N'neVykonNeMozhl' name
 FROM #temp_plan_p;
 
-
+--select * from #temp_main
 
 SELECT
 	Id
@@ -736,8 +745,10 @@ FROM (SELECT
 PIVOT
 (SUM(cc) FOR main_name IN ([nadiishlo], [nevkomp], [prostr], [uvaga], [vroboti], [dovidoma], [nadoopr], [neVykonNeMozhl])
 ) pvt;
+	
 	END
    
+
    ELSE 
 
 	BEGIN
