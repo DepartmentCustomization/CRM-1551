@@ -45,6 +45,8 @@
             keyExpr: 'Id'
         },
         init: function() {
+            debugger
+            debugger
             this.mainRowId = undefined;
             this.tableId = undefined;
             this.loadData(this.afterLoadDataHandler);
