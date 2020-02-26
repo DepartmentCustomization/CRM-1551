@@ -1,16 +1,16 @@
--- declare @building_id int = 7702;
+-- DECLARE @building_id INT = 15828;
 
-select top 1
-d.Id,
-d.[name],
-o.[short_name] as execOrg
-
-from Streets s 
-join Buildings b on b.street_id = s.Id 
-join Districts d on d.Id = s.district_id
-left join [Objects] obj on obj.builbing_id = b.Id 
-left join ExecutorInRoleForObject exo on exo.[object_id] = obj.Id 
-left join Organizations o on o.Id = exo.executor_id
-where b.Id = @building_id
-and o.organization_type_id in (3,6,7,11)
-order by organization_type_id desc
+SELECT
+    TOP 1 
+	d.Id,
+    d.[name],
+    o.[short_name] AS execOrg
+FROM dbo.[Objects] obj 
+INNER JOIN dbo.[Districts] d ON d.Id = obj.district_id
+LEFT JOIN dbo.ExecutorInRoleForObject exo ON exo.[object_id] = obj.Id
+LEFT JOIN dbo.Organizations o ON o.Id = exo.executor_id
+WHERE
+   obj.builbing_id = @building_id
+    AND o.organization_type_id IN (3, 6, 7, 11)
+ORDER BY
+    organization_type_id DESC ;
