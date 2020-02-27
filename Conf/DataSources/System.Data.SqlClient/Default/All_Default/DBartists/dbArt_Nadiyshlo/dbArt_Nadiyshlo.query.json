@@ -1,0 +1,27 @@
+{
+  "ModelType": "Query",
+  "Code": "dbArt_Nadiyshlo",
+  "Name": "dbArt_Nadiyshlo",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@organization_id",
+      "Name": "organization_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@navigation",
+      "Name": "navigation"
+    },
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    },
+    {
+      "Code": "@organizationName",
+      "Name": "organizationName"
+    }
+  ]
+}

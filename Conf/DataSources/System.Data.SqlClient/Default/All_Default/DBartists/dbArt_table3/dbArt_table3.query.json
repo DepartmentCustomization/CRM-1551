@@ -1,0 +1,14 @@
+{
+  "ModelType": "Query",
+  "Code": "dbArt_table3",
+  "Name": "dbArt_table3",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    }
+  ]
+}

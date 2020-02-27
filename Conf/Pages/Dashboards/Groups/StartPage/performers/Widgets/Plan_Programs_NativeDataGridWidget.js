@@ -1,8 +1,8 @@
-(function() {
-    return {
+(function () {
+  return {
         config: {
             query: {
-                code: 'NaDooprNemaMozhlVyk',
+                code: 'dbArt_NaDooprNemaMozhlVyk',
                 parameterValues: [],
                 filterColumns: [],
                 sortColumns: [],
@@ -30,10 +30,6 @@
                     format: 'dd.MM.yyyy HH:mm'
                 }
             ],
-            filterRow: {
-                visible: true,
-                applyFilter: 'auto'
-            },
             export: {
                 enabled: true,
                 fileName: 'Excel'
@@ -46,9 +42,9 @@
                 enabled: true
             },
             pager: {
-                showPageSizeSelector: false,
+                showPageSizeSelector: true,
                 allowedPageSizes: [10, 15, 30],
-                showInfo: false,
+                showInfo: true,
                 pageSize: 10
             },
             editing: {
@@ -67,6 +63,10 @@
             sorting: {
                 mode: 'multiple'
             },
+            filterRow: {
+                visible: true,
+                applyFilter: 'auto'
+            },
             keyExpr: 'Id',
             focusedRowEnabled: true,
             showBorders: false,
@@ -74,6 +74,7 @@
             showRowLines: true,
             remoteOperations: null,
             allowColumnReordering: null,
+            allowFiltering: false,
             rowAlternationEnabled: null,
             columnAutoWidth: null,
             hoverStateEnabled: true,
@@ -86,6 +87,8 @@
             showColumnFixing: true,
             groupingAutoExpandAll: null
         },
+        sub: [],
+        containerForChackedBox: [],
         init: function() {
             this.dataGridInstance.height = window.innerHeight - 300;
             document.getElementById('table10_Plan_Programs').style.display = 'none';
@@ -98,6 +101,19 @@
                     }
                 }
             });
+        },
+        changeOnTable: function(message) {
+            if(message.column !== 'План/Програма') {
+                document.getElementById('table10_Plan_Programs').style.display = 'none';
+            }else{
+                document.getElementById('table10_Plan_Programs').style.display = 'block';
+                this.config.query.parameterValues = [
+                    { key: '@organization_id', value: message.orgId},
+                    { key: '@column', value: message.column},
+                    { key: '@navigation', value: message.navigation}
+                ];
+                this.loadData(this.afterLoadDataHandler);
+            }
         },
         createMasterDetail: function(container, options) {
             let currentEmployeeData = options.data;
@@ -125,9 +141,7 @@
             );
             let elementAdress = this.createElement('div',
                 {
-                    className: 'elementAdress element'
-                },
-                elementAdress__caption, elementAdress__content
+                    className: 'elementAdress element'}, elementAdress__caption, elementAdress__content
             );
             let elementСontent__content = this.createElement('div',
                 {
@@ -141,9 +155,7 @@
             );
             let elementСontent = this.createElement('div',
                 {
-                    className: 'elementСontent element'
-                },
-                elementСontent__caption, elementСontent__content
+                    className: 'elementСontent element'}, elementСontent__caption, elementСontent__content
             );
             let elementComment__content = this.createElement('div',
                 {
@@ -157,9 +169,7 @@
             );
             let elementComment = this.createElement('div',
                 {
-                    className: 'elementСontent element'
-                },
-                elementComment__caption, elementComment__content
+                    className: 'elementСontent element'}, elementComment__caption, elementComment__content
             );
             let elementBalance__content = this.createElement('div',
                 {
@@ -173,40 +183,22 @@
             );
             let elementBalance = this.createElement('div',
                 {
-                    className: 'elementСontent element'
-                },
-                elementBalance__caption, elementBalance__content
+                    className: 'elementСontent element'}, elementBalance__caption, elementBalance__content
             );
             let elementsWrapper = this.createElement('div',
                 {
-                    className: 'elementsWrapper'
-                },
-                elementAdress, elementСontent, elementComment, elementBalance
+                    className: 'elementsWrapper'}, elementAdress, elementСontent, elementComment, elementBalance
             );
             container.appendChild(elementsWrapper);
             let elementsAll = document.querySelectorAll('.element');
-            elementsAll = Array.from(elementsAll);
             elementsAll.forEach(el => {
                 el.style.display = 'flex';
                 el.style.margin = '15px 10px';
             })
             let elementsCaptionAll = document.querySelectorAll('.caption');
-            elementsCaptionAll = Array.from(elementsCaptionAll);
             elementsCaptionAll.forEach(el => {
                 el.style.minWidth = '200px';
             })
-        },
-        changeOnTable: function(message) {
-            if(message.column !== 'План/Програма') {
-                document.getElementById('table10_Plan_Programs').style.display = 'none';
-            }else{
-                document.getElementById('table10_Plan_Programs').style.display = 'block';
-                this.config.query.queryCode = 'NaDooprNemaMozhlVyk';
-                this.config.query.parameterValues = [{ key: '@organization_id', value: message.orgId},
-                    { key: '@column', value: message.column},
-                    { key: '@navigation', value: message.navigation}];
-                this.loadData(this.afterLoadDataHandler);
-            }
         },
         createElement: function(tag, props, ...children) {
             const element = document.createElement(tag);

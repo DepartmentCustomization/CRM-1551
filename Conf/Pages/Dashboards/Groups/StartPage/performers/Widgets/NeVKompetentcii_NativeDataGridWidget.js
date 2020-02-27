@@ -1,8 +1,8 @@
-(function() {
-    return {
+(function () {
+  return {
         config: {
             query: {
-                code: 'NeVKompetentcii',
+                code: 'dbArt_NeVKompetentcii',
                 parameterValues: [],
                 filterColumns: [],
                 sortColumns: [],
@@ -63,7 +63,7 @@
                 pageSize: 10
             },
             editing: {
-                mode: 'cell',
+                mode: 'row',
                 allowUpdating: true,
                 useIcons: true
             },
@@ -74,9 +74,6 @@
                 showScrollbar: null
             },
             sorting: {
-                mode: 'multiple'
-            },
-            selection: {
                 mode: 'multiple'
             },
             keyExpr: 'Id',
@@ -98,6 +95,9 @@
             showColumnFixing: true,
             groupingAutoExpandAll: null
         },
+        childs: [],
+        OrganizationId: [],
+        elements: [],
         init: function() {
             this.dataGridInstance.height = window.innerHeight - 300;
             this.changedRows = [];
@@ -151,7 +151,7 @@
                     name: 'reloadMainTable',
                     column: this.column,
                     navigator: this.navigator,
-                    targetId: this.targetId
+                    targetId: this.targetI
                 });
             }
         },
@@ -221,13 +221,11 @@
             }
             let elementAdress__content = this.createElement('div',
                 {
-                    className: 'elementAdress__content content', innerText: String(String(currentEmployeeData.zayavnyk_adress))
-                }
+                    className: 'elementAdress__content content', innerText: String(String(currentEmployeeData.zayavnyk_adress))}
             );
             let elementAdress__caption = this.createElement('div',
                 {
-                    className: 'elementAdress__caption caption', innerText: 'Адреса заявника'
-                }
+                    className: 'elementAdress__caption caption', innerText: 'Адреса заявника'}
             );
             let elementAdress = this.createElement('div',
                 {
@@ -237,13 +235,11 @@
             );
             let elementСontent__content = this.createElement('div',
                 {
-                    className: 'elementСontent__content content', innerText: String(String(currentEmployeeData.zayavnyk_zmist))
-                }
+                    className: 'elementСontent__content content', innerText: String(String(currentEmployeeData.zayavnyk_zmist))}
             );
             let elementСontent__caption = this.createElement('div',
                 {
-                    className: 'elementСontent__caption caption', innerText: 'Зміст'
-                }
+                    className: 'elementСontent__caption caption', innerText: 'Зміст'}
             );
             let elementСontent = this.createElement('div',
                 {
@@ -253,8 +249,7 @@
             );
             let elementBalance__content = this.createElement('div',
                 {
-                    className: 'elementBalance__content content', innerText: String(String(currentEmployeeData.balans_name))
-                }
+                    className: 'elementBalance__content content', innerText: String(String(currentEmployeeData.balans_name))}
             );
             let elementBalance__caption = this.createElement('div',
                 {
@@ -269,9 +264,7 @@
             );
             let elementsWrapper = this.createElement('div',
                 {
-                    className: 'elementsWrapper'
-                },
-                elementAdress, elementСontent, elementBalance
+                    className: 'elementsWrapper'}, elementAdress, elementСontent, elementBalance
             );
             container.appendChild(elementsWrapper);
             let elementsAll = document.querySelectorAll('.element');

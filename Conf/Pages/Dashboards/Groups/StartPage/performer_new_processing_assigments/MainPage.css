@@ -1,0 +1,312 @@
+.dx-datagrid-group-opened{
+    margin: 10px;
+    font: 18px/18px DXIcons;
+    height: 18px;
+    background-position: 0 0;
+    background-size: 10px 8px;
+    padding: 0;
+    text-align: center;
+    color: #959595;
+    background-image: url('assets/img/1551/crm1551_arrow_open.png');
+    background-repeat: no-repeat;
+}
+.dx-datagrid-group-opened::before{
+    display:none;
+}
+.dx-datagrid-group-closed::before{
+    display:none;
+}
+.dx-datagrid-group-closed{
+    margin: 10px;
+    font: 18px/18px DXIcons;
+    height: 18px;
+    background-position: 0 0;
+    background-size: 10px 10px;
+    padding: 0;
+    text-align: center;
+    color: #959595;
+    background-image: url('assets/img/1551/crm1551_arrow_close.png');
+    background-repeat: no-repeat;
+    
+}
+.dx-datagrid-text-content{
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    color: #999999;
+    text-align: left;
+}
+.dx-data-row{
+    font-weight: 400;
+    font-style: normal;
+    text-align: left;
+    font-size: 14px;
+    color: #000000;
+}
+.dx-master-detail-cell{
+    background-color: rgba(239, 247, 249, 1)!important;    
+}
+.dx-button-default{
+    background-color: rgba(21, 189, 244, 1)!important;
+}
+
+.dx-datagrid-export-button{
+    background-color: rgba(21, 189, 244, 1)!important;
+    color: #fff!important;
+    padding: 0 8px!important;
+}
+.dx-icon-export-excel-button{
+    color: #fff!important;
+    margin-right: 9px!important;
+}
+.dx-header-row>td>.dx-datagrid-text-content {
+    text-transform: uppercase;
+    text-align: center;
+}
+#heaeder1{
+    z-index: 100;
+}
+
+/*   triangle */
+.orgLinksWrapper__triangle {
+    width: 13px;
+    height: 19px;
+    border-bottom: solid 8px #e2e2e2;
+    border-left: solid 8px transparent;
+    border-right: solid 8px transparent;
+    position: absolute;
+    top: -18px;
+    right: 4px;
+}
+
+.triangle{
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-bottom: 24px solid transparent;
+    border-top: 24px solid transparent;
+    border-left: 14px solid white;
+    right: -14px;
+    top: -1px;
+}
+.triangle4, .triangle5, .triangle6, .triangle2, .triangle3, .triangle6, .triangle7, .triangle8{
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-bottom: 24px solid transparent;
+    border-top: 24px solid transparent;
+    border-left: 14px solid white;
+    right: -14px;
+    top: -1px;
+}
+.triangle4:before, .triangle5:before, .triangle2:before, .triangle3:before, .triangle6:before, .triangle7:before, .triangle8:before, .triangle:before, .orgLinksWrapper__triangle:before, .orgLinksWrapper__triangle:before{
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-bottom: 20px solid transparent;
+    border-top: 20px solid transparent;
+    top: -20px;
+    left: -14px;
+}
+
+.triangle:before{
+    border-left: 12px solid rgb(211, 211, 211);
+}
+.triangle2:before{
+    border-left: 12px solid rgb(74, 193, 197);
+}
+.triangle3:before{
+    border-left: 12px solid rgb(173, 118, 205);
+}
+.triangle4:before{
+    border-left: 12px solid rgb(240, 114, 93);
+}
+.triangle5:before{
+    border-left: 12px solid rgb(238, 163, 54);
+}
+.triangle6:before{
+    border-left: 12px solid rgb(132, 199, 96);
+}
+.triangle7:before{
+    border-left: 12px solid rgb(248, 195, 47);
+}
+.triangle8:before{
+    border-left: 12px solid rgb(94, 202, 162);
+}
+/*     table styles*/
+#container{
+    margin: 30px auto 0 auto;                  
+}
+.tableContainer{
+    display: flex;
+    flex-direction: row;
+}
+.tabTitle{
+    text-transform: uppercase;
+}
+#organizationName{
+    font-size: 18px;
+    font-weight: 600;
+}
+#filtersWrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 0;
+    align-items: center;
+}
+.columnHeader{
+    background-position-x: -93px;
+    width: 100%;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+.columnCategorie{
+    border-width: 0px;
+    background: inherit;
+    background-color: rgba(255, 255, 255, 1);
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(228, 228, 228, 1);
+    border-radius: 3px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.247058823529412);
+    font-size: 12px;   
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    cursor: pointer;
+    height: 46px;
+    margin: 5px;
+    padding: 5px;
+}
+.columnCategorie__title{
+    margin-right: 5px;
+}
+.columnCategorie__yellow{
+    margin: 65px 16px 0 3px;
+}
+.column{
+    width: 12.5%;
+    position: relative;
+}
+.column_2{
+    z-index: 180;
+}
+.column_3{
+    z-index: 170;
+}
+.column_4{
+    z-index: 160;
+}
+.column_5{
+    z-index: 150;
+}
+.column_6{
+    z-index: 140;
+}
+.column_7{
+    z-index: 130;
+}
+.column_8{
+    z-index: 120;
+}
+.column_9{
+    z-index: 110;
+}
+#columnHeader_3, #columnHeader_9, #columnHeader_8{
+    padding-left: 16px!important;
+}
+#tabsWrapper{
+    display: flex;
+    justify-content: space-between;    
+    border-bottom: 1px solid rgba(204 204 204);                    
+}
+.tabsContainer{
+    display: flex;
+}
+.tab{
+    color: #15BDF4; 
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px; 
+    cursor: pointer;
+    padding: 0 20px 6px;
+    text-transform: uppercase;
+}
+.tabHover{
+    border-bottom: 3px solid #15BDF4;         
+}
+#orgLinksWrapper{
+    background-color: #e2e2e2;
+    position: absolute;
+    z-index: 999999;     
+    margin: 10px 0 0;
+    right: 0px;
+    border-radius: 7px;
+}
+#orgLinkСhangerBox__icon{
+   cursor: pointer;
+}
+.organizationLink{
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;                   
+}
+#filtersContainer{
+    display: flex;
+}
+.filter{
+    cursor: pointer;
+    max-width: 300px;
+    display: flex;
+    justify-content: space-between;
+    height: 34px;
+    font-size: 12px;
+    border-width: 0px;
+    color: rgba(0, 0, 0, 0.537254901960784);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;  
+    background-color: rgba(239, 247, 249, 1); 
+    margin: 0 10px;
+}
+.filterIcon{
+    width: 31px;
+    height: 31px;
+    background-color: #fff;
+    border-radius: 50%;
+    margin-left: 2px;
+    color: rgb(132, 220, 249);
+    display: flex;
+    justify-content: center;
+    align-items: center;                    
+}
+.filterTitle{
+    margin: 0 10px 0 25px;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+    color: #333333;
+    text-align: center;
+    line-height: normal;                    
+}
+.searchContainer__input{
+    height: 34px;
+    width: 220px;
+    padding: 5px;
+    outline-style: none;
+}
+#header1{
+    z-index: 100;
+}

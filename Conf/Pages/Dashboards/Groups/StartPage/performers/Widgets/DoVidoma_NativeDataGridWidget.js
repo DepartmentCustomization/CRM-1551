@@ -1,8 +1,8 @@
-(function() {
-    return {
+(function () {
+  return {
         config: {
             query: {
-                code: 'DoVidoma',
+                code: 'dbArt_DoVidoma',
                 parameterValues: [],
                 filterColumns: [],
                 sortColumns: [],
@@ -28,17 +28,13 @@
             masterDetail: {
                 enabled: true
             },
-            filterRow: {
-                visible: true,
-                applyFilter: 'auto'
-            },
             export: {
                 enabled: true,
                 fileName: 'Excel'
             },
             pager: {
                 showPageSizeSelector:  true,
-                allowedPageSizes: [ 10, 15, 30],
+                allowedPageSizes: [10, 15, 30],
                 showInfo: true
             },
             paging: {
@@ -60,6 +56,10 @@
             sorting: {
                 mode: 'multiple'
             },
+            filterRow: {
+                visible: true,
+                applyFilter: 'auto'
+            },
             keyExpr: 'Id',
             focusedRowEnabled: true,
             showBorders: false,
@@ -79,6 +79,7 @@
             showColumnFixing: true,
             groupingAutoExpandAll: null
         },
+        sub: [],
         init: function() {
             this.dataGridInstance.height = window.innerHeight - 300;
             document.getElementById('table7__doVidoma').style.display = 'none';
@@ -93,14 +94,54 @@
                 }
             });
         },
-        createElement: function(tag, props, ...children) {
-            const element = document.createElement(tag);
-            Object.keys(props).forEach(key => element[key] = props[key]);
-            if(children.length > 0) {
-                children.forEach(child =>{
-                    element.appendChild(child);
+        changeOnTable: function(message) {
+            this.column = message.column;
+            this.navigator = message.navigation;
+            this.targetId = message.targetId;
+            if(message.column !== 'До відома') {
+                document.getElementById('table7__doVidoma').style.display = 'none';
+            }else{
+                document.getElementById('table7__doVidoma').style.display = 'block';
+                this.config.query.parameterValues = [{ key: '@organization_id', value: message.orgId},
+                    { key: '@organizationName', value: message.orgName},
+                    { key: '@navigation', value: message.navigation}];
+                this.loadData(this.afterLoadDataHandler);
+            }
+        },
+        findAllSelectRowsDoVidoma: function() {
+            let rows = this.dataGridInstance.selectedRowKeys;
+            if(rows.length > 0) {
+                let arrivedSendValueRows = rows.join(', ');
+                let executeQuery = {
+                    queryCode: 'Button_DoVidoma_Oznayomyvzya',
+                    parameterValues: [ {key: '@Ids', value: arrivedSendValueRows} ],
+                    limit: -1
+                };
+                this.queryExecutor(executeQuery);
+                this.loadData(this.afterLoadDataHandler);
+                this.messageService.publish({
+                    name: 'reloadMainTable',
+                    column: this.column,
+                    navigator: this.navigator,
+                    targetId: this.targetId
                 });
-            } return element;
+            }
+        },
+        createTableButton: function(e) {
+            let toolbarItems = e.toolbarOptions.items;
+            toolbarItems.push({
+                widget: 'dxButton',
+                options: {
+                    icon: 'check',
+                    type: 'default',
+                    text: 'Ознайомився',
+                    onClick: function(e) {
+                        e.event.stopImmediatePropagation();
+                        this.findAllSelectRowsDoVidoma();
+                    }.bind(this)
+                },
+                location: 'after'
+            });
         },
         createMasterDetail: function(container, options) {
             let currentEmployeeData = options.data;
@@ -118,7 +159,8 @@
             }
             let elementAdress__content = this.createElement('div',
                 {
-                    className: 'elementAdress__content content', innerText: String(String(currentEmployeeData.zayavnyk_adress))
+                    className: 'elementAdress__content content',
+                    innerText: String(String(currentEmployeeData.zayavnyk_adress))
                 }
             );
             let elementAdress__caption = this.createElement('div',
@@ -164,12 +206,7 @@
                 },
                 elementBalance__caption, elementBalance__content
             );
-            let elementsWrapper = this.createElement('div',
-                {
-                    className: 'elementsWrapper'
-                },
-                elementAdress, elementСontent, elementBalance
-            );
+            let elementsWrapper = this.createElement('div', { className: 'elementsWrapper'}, elementAdress, elementСontent, elementBalance);
             container.appendChild(elementsWrapper);
             let elementsAll = document.querySelectorAll('.element');
             elementsAll = Array.from(elementsAll);
@@ -183,55 +220,6 @@
                 el.style.minWidth = '200px';
             })
         },
-        createTableButton: function(e) {
-            let toolbarItems = e.toolbarOptions.items;
-            toolbarItems.push({
-                widget: 'dxButton',
-                options: {
-                    icon: 'check',
-                    type: 'default',
-                    text: 'Ознайомився',
-                    onClick: function(e) {
-                        e.event.stopImmediatePropagation();
-                        this.findAllSelectRowsDoVidoma();
-                    }.bind(this)
-                },
-                location: 'after'
-            });
-        },
-        changeOnTable: function(message) {
-            this.column = message.column;
-            this.navigator = message.navigation;
-            this.targetId = message.targetId;
-            if(message.column !== 'До відома') {
-                document.getElementById('table7__doVidoma').style.display = 'none';
-            }else{
-                document.getElementById('table7__doVidoma').style.display = 'block';
-                this.config.query.parameterValues = [{ key: '@organization_id', value: message.orgId},
-                    { key: '@organizationName', value: message.orgName},
-                    { key: '@navigation', value: message.navigation}];
-                this.loadData(this.afterLoadDataHandler);
-            }
-        },
-        findAllSelectRowsDoVidoma: function() {
-            let rows = this.dataGridInstance.selectedRowKeys;
-            if(rows.length > 0) {
-                let arrivedSendValueRows = rows.join(', ');
-                let executeQuery = {
-                    queryCode: 'Button_DoVidoma_Oznayomyvzya',
-                    parameterValues: [ {key: '@Ids', value: arrivedSendValueRows} ],
-                    limit: -1
-                };
-                this.queryExecutor(executeQuery);
-                this.loadData(this.afterLoadDataHandler);
-                this.messageService.publish({
-                    name: 'reloadMainTable',
-                    column: this.column,
-                    navigator: this.navigator,
-                    targetId: this.targetId
-                });
-            }
-        },
         afterLoadDataHandler: function() {
             this.render();
             this.createCustomStyle();
@@ -243,6 +231,15 @@
                 let spanElement = this.createElement('span', { className: 'dx-button-text', innerText: 'Excel'});
                 element.firstElementChild.appendChild(spanElement);
             }.bind(this));
+        },
+        createElement: function(tag, props, ...children) {
+            const element = document.createElement(tag);
+            Object.keys(props).forEach(key => element[key] = props[key]);
+            if(children.length > 0) {
+                children.forEach(child =>{
+                    element.appendChild(child);
+                });
+            } return element;
         },
         destroy: function() {
             this.sub.unsubscribe();

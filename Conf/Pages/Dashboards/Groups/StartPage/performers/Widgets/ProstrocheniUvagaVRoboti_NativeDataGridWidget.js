@@ -1,8 +1,8 @@
-(function() {
-    return {
+(function () {
+  return {
         config: {
             query: {
-                code: 'ProstrocheniUvagaVRoboti',
+                code: 'dbArt_ProstrocheniUvagaVRoboti',
                 parameterValues: [],
                 filterColumns: [],
                 sortColumns: [],
@@ -32,17 +32,12 @@
                     dataField: 'control_date',
                     caption: 'Дата контролю',
                     sortOrder: 'desc',
-                    allowSorting: true,
                     dataType: 'datetime',
                     format: 'dd.MM.yyyy HH:mm'
                 }
             ],
             masterDetail: {
                 enabled: true
-            },
-            filterRow: {
-                visible: true,
-                applyFilter: 'auto'
             },
             pager: {
                 showPageSizeSelector:  true,
@@ -65,6 +60,10 @@
             sorting: {
                 mode: 'multiple'
             },
+            filterRow: {
+                visible: true,
+                applyFilter: 'auto'
+            },
             keyExpr: 'Id',
             focusedRowEnabled: true,
             showBorders: false,
@@ -84,6 +83,7 @@
             showColumnFixing: true,
             groupingAutoExpandAll: null
         },
+        sub: [],
         init: function() {
             this.dataGridInstance.height = window.innerHeight - 300;
             document.getElementById('table6__ProstrocheniUvagaVRoboti').style.display = 'none';
@@ -93,12 +93,7 @@
             this.dataGridInstance.onCellClick.subscribe(e => {
                 if(e.column) {
                     if(e.column.dataField === 'registration_number' && e.row !== undefined) {
-                        window.open(String(
-                            location.origin +
-                            localStorage.getItem('VirtualPath') +
-                            '/sections/Assignments/edit/' +
-                            e.key
-                        ));
+                        window.open(String(location.origin + localStorage.getItem('VirtualPath') + '/sections/Assignments/edit/' + e.key));
                     }
                 }
             });
@@ -121,7 +116,7 @@
         },
         exportToExcel: function() {
             let exportQuery = {
-                queryCode: 'ProstrocheniUvagaVRoboti',
+                queryCode: this.config.query.code,
                 limit: -1,
                 parameterValues: [
                     { key: '@organization_id', value: this.orgId},
@@ -140,7 +135,13 @@
             let column_ZayavnykZmist = { name: 'zayavnyk_zmist', index: 2 };
             let column_vykonavets = { name: 'vykonavets', index: 3 };
             let column_adress = { name: 'adress', index: 4 };
-            this.indexArr = [ column_registration_number, column_zayavnyk, column_ZayavnykZmist, column_vykonavets, column_adress];
+            this.indexArr = [
+                column_registration_number,
+                column_zayavnyk,
+                column_ZayavnykZmist,
+                column_vykonavets,
+                column_adress
+            ];
             const workbook = this.createExcel();
             const worksheet = workbook.addWorksheet('Заявки', {
                 pageSetup:{
@@ -211,24 +212,24 @@
             captions.push(rowNumber);
             indexArr.forEach(el => {
                 let obj = {}
-                if(el.name === 'registration_number') {
+                if (el.name === 'registration_number') {
                     obj.key = 'registration_number';
                     obj.width = 10;
                     obj.height = 20;
                     captions.push('Номер, дата, час');
-                }else if(el.name === 'zayavnyk_zmist') {
+                } else if(el.name === 'zayavnyk_zmist') {
                     obj.key = 'zayavnyk_zmist';
                     obj.width = 44;
                     captions.push('Суть питання');
-                }else if(el.name === 'zayavnyk') {
+                } else if(el.name === 'zayavnyk') {
                     obj.key = 'zayavnyk';
                     obj.width = 30;
                     captions.push('Заявник');
-                }else if(el.name === 'vykonavets') {
+                } else if(el.name === 'vykonavets') {
                     obj.key = 'vykonavets';
                     obj.width = 16;
                     captions.push('Виконавець');
-                }else if(el.name === 'adress') {
+                } else if(el.name === 'adress') {
                     obj.key = 'adress';
                     obj.width = 21;
                     captions.push('Місце проблеми (Об\'єкт)');
@@ -257,9 +258,14 @@
                             '. Надійшло: ' +
                             this.changeDateTimeValues(row.values[indexReceiptDate]);
                     } else if(el.name === 'zayavnyk') {
-                        rowItem.zayavnyk = row.values[indexZayavnikName] + ', ' + row.values[indexAdressZ];
+                        rowItem.zayavnyk =
+                            row.values[indexZayavnikName] +
+                            ', ' +
+                            row.values[indexAdressZ];
                     } else if(el.name === 'zayavnyk_zmist') {
-                        rowItem.zayavnyk_zmist = 'Зміст: ' + row.values[indexQuestionContent];
+                        rowItem.zayavnyk_zmist =
+                            'Зміст: ' +
+                            row.values[indexQuestionContent];
                     } else if(el.name === 'vykonavets') {
                         rowItem.vykonavets =
                             row.values[indexVykonavets] +
@@ -341,7 +347,8 @@
             if((mm.toString()).length === 1) {
                 mm = '0' + mm;
             }
-            return dd + '.' + MM + '.' + yyyy;
+            let trueDate = dd + '.' + MM + '.' + yyyy;
+            return trueDate;
         },
         createElement: function(tag, props, ...children) {
             const element = document.createElement(tag);
@@ -363,8 +370,8 @@
             if(currentEmployeeData.zayavnyk_adress === null || currentEmployeeData.zayavnyk_adress === undefined) {
                 currentEmployeeData.zayavnyk_adress = '';
             }
-            if(currentEmployeeData.balans_name === null || currentEmployeeData.balans_name === undefined) {
-                currentEmployeeData.balans_name = '';
+            if(currentEmployeeData.elementBalance === null || currentEmployeeData.elementBalance === undefined) {
+                currentEmployeeData.elementBalance = '';
             }
             let elementAdress__content = this.createElement('div', {
                 className: 'elementAdress__content content',

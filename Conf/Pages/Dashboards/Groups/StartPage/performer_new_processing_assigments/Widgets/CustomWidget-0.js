@@ -1,5 +1,5 @@
-(function() {
-    return {
+(function () {
+  return {
         title: ' ',
         hint: '',
         formatTitle: function() {},
@@ -115,48 +115,53 @@
             }
         },
         createTabs: function(tabsWrapper) {
-            let tabInformation__title = this.createElement('div',
-                { className: 'tabInformation tab_title', innerText: 'ЗАГАЛЬНА ІНФОРМАЦІЯ'}
-            );
-            let tabAction__title = this.createElement('div', { className: 'tabAction tab_title', innerText: 'ЗАХІД'});
-            let tabProcessingOrders__title = this.createElement('div',
-                { className: 'tabProcessingOrders tab_title', innerText: 'ОБРОБКА ДОРУЧЕНЬ'}
-            );
-            let tabOrganizations__title = this.createElement('div', { className: 'tabOrganizations tab_title', innerText: 'ОРГАНІЗАЦІЇ'});
             let tabFinder__title = this.createElement('div', { className: ' tab_title', innerText: 'Розширений пошук'});
-            let tabExecutivePosition__title = this.createElement('div', { className: ' tab_title', innerText: 'Вибір посади-виконавця'});
-            let tabTemplates__title = this.createElement('div', { className: ' tab_title', innerText: 'Шаблони'});
             const tabFinder = this.createElement('div',
                 { id: 'tabFinder', url: 'poshuk_table', className: 'tabFinder tab tabTo'},
                 tabFinder__title
             );
+            let tabTemplates__title = this.createElement('div', { className: ' tab_title', innerText: 'Шаблони'});
             const tabTemplates = this.createElement('div',
                 { id: 'tabTemplates', url: 'Templates', className: 'tabTemplates tab tabTo'},
                 tabTemplates__title
             );
+            let tabExecutivePosition__title = this.createElement('div', { className: ' tab_title', innerText: 'Вибір посади-виконавця'});
             const tabExecutivePosition = this.createElement('div',
                 { id: 'tabExecutivePosition', url: 'PersonExecutorChoose', className: 'tabExecutivePosition tab tabTo'},
                 tabExecutivePosition__title
+            );
+            let tabInformation__title = this.createElement('div',
+                { className: 'tabInformation tab_title', innerText: 'ЗАГАЛЬНА ІНФОРМАЦІЯ'}
             );
             const tabInformation = this.createElement('div',
                 { id: 'tabInformation', url: 'monitoring_and_responding', className: 'tabInformation tab tabTo'},
                 tabInformation__title
             );
+            let tabAction__title = this.createElement('div', { className: 'tabAction tab_title', innerText: 'ЗАХІД'});
             const tabAction = this.createElement('div',
                 { id: 'tabAction', url: 'performer_new_actions', className: 'tabAction tab tabTo'},
                 tabAction__title
+            );
+            let tabProcessingOrders__title = this.createElement('div',
+                { className: 'tabProcessingOrders tab_title', innerText: 'ОБРОБКА ДОРУЧЕНЬ'}
             );
             const tabProcessingOrders = this.createElement('div',
                 { id: 'tabProcessingOrders', url: 'performer_new_processing_assigments', className: 'tabHover tabProcessingOrders tab'},
                 tabProcessingOrders__title
             );
+            let tabOrganizations__title = this.createElement('div', { className: 'tabOrganizations tab_title', innerText: 'ОРГАНІЗАЦІЇ'});
             const tabOrganizations = this.createElement('div',
                 { id: 'tabOrganizations', url: 'performer_new_organizations', className: 'tabOrganizations tab tabTo'},
                 tabOrganizations__title
             );
+            let tabPerformers__title = this.createElement('div', { className: ' tab_title', innerText: 'Виконавці'});
+            const tabPerformers = this.createElement('div',
+                { id: 'tabPerformers', url: 'performers', className: 'tabPerformers  tab tabTo'},
+                tabPerformers__title
+            );
             const tabsContainer = this.createElement('div',
                 { id: 'tabsContainer', className: 'tabsContainer'},
-                tabInformation, tabAction, tabProcessingOrders, tabOrganizations, tabFinder, tabExecutivePosition, tabTemplates
+                tabInformation, tabAction, tabProcessingOrders, tabOrganizations, tabPerformers, tabFinder, tabExecutivePosition, tabTemplates
             );
             const orgLinkСhangerBox__icon = this.createElement('div',
                 { id: 'orgLinkСhangerBox__icon', className:'material-icons', innerText:'more_vert' }

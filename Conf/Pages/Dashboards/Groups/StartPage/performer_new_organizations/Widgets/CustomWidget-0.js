@@ -1,5 +1,5 @@
-(function() {
-    return {
+(function () {
+  return {
         title: ' ',
         hint: '',
         formatTitle: function() {},
@@ -108,19 +108,6 @@
                     innerText: 'ЗАГАЛЬНА ІНФОРМАЦІЯ'
                 }
             );
-            let tabAction__title = this.createElement('div',
-                {
-                    className: 'tabAction tab_title',
-                    innerText: 'ЗАХІД'
-                }
-            );
-            let tabProcessingOrders__title = this.createElement('div',
-                {
-                    className: 'tabProcessingOrders tab_title',
-                    innerText: 'ОБРОБКА ДОРУЧЕНЬ'
-                }
-            );
-            let tabOrganizations__title = this.createElement('div', { className: 'tabOrganizations tab_title', innerText: 'ОРГАНІЗАЦІЇ'});
             let tabFinder__title = this.createElement('div', { className: ' tab_title', innerText: 'Розширений пошук'});
             const tabInformation = this.createElement('div',
                 {
@@ -130,44 +117,35 @@
                 },
                 tabInformation__title
             );
+            let tabAction__title = this.createElement('div', { className: 'tabAction tab_title', innerText: 'ЗАХІД' });
             const tabAction = this.createElement('div',
-                {
-                    id: 'tabAction',
-                    url: 'performer_new_actions',
-                    className: 'tabAction tab tabTo'
-                },
+                { id: 'tabAction', url: 'performer_new_actions', className: 'tabAction tab tabTo' },
                 tabAction__title
             );
+            let tabProcessingOrders__title = this.createElement('div',
+                { className: 'tabProcessingOrders tab_title', innerText: 'ОБРОБКА ДОРУЧЕНЬ' }
+            );
             const tabProcessingOrders = this.createElement('div',
-                {
-                    id: 'tabProcessingOrders',
-                    url: 'performer_new_processing_assigments',
-                    className: 'tabProcessingOrders tab tabTo'
-                },
+                { id: 'tabProcessingOrders', url: 'performer_new_processing_assigments', className: 'tabProcessingOrders tab tabTo' },
                 tabProcessingOrders__title
             );
+            let tabOrganizations__title = this.createElement('div', { className: 'tabOrganizations tab_title', innerText: 'ОРГАНІЗАЦІЇ'});
             const tabOrganizations = this.createElement('div',
-                {
-                    id: 'tabOrganizations',
-                    url: 'performer_new_organizations',
-                    className: 'tabOrganizations tab tabHover'
-                },
+                {id: 'tabOrganizations', url: 'performer_new_organizations',  className: 'tabOrganizations tab tabHover' },
                 tabOrganizations__title
             );
             const tabFinder = this.createElement('div',
-                {
-                    id: 'tabFinder',
-                    url: 'poshuk_table',
-                    className: 'tabFinder tab tabTo'
-                },
+                { id: 'tabFinder', url: 'poshuk_table', className: 'tabFinder tab tabTo'},
                 tabFinder__title
             );
+            let tabPerformers__title = this.createElement('div', { className: ' tab_title', innerText: 'Виконавці'});
+            const tabPerformers = this.createElement('div',
+                { id: 'tabPerformers', url: 'performers', className: 'tabPerformers  tab tabTo'},
+                tabPerformers__title
+            );
             const tabsContainer = this.createElement('div',
-                {
-                    id: 'tabsContainer',
-                    className: 'tabsContainer'
-                },
-                tabInformation, tabAction, tabProcessingOrders, tabOrganizations, tabFinder
+                { id: 'tabsContainer', className: 'tabsContainer'},
+                tabInformation, tabAction, tabProcessingOrders, tabOrganizations, tabPerformers, tabFinder
             );
             const orgLinkСhangerBox__icon = this.createElement('div',
                 {

@@ -1,5 +1,5 @@
-(function() {
-    return {
+(function () {
+  return {
         config: {
             query: {
                 code: 'Poshuk',
@@ -42,8 +42,9 @@
                 visible: true,
                 applyFilter: 'auto'
             },
-            masterDetail: {
-                enabled: true
+            export: {
+                enabled: false,
+                fileName: 'Пошук__'
             },
             searchPanel: {
                 visible: false,
@@ -52,8 +53,7 @@
             pager: {
                 showPageSizeSelector:  true,
                 allowedPageSizes: [10, 15, 30],
-                showInfo: true,
-                pageSize: 10
+                showInfo: true
             },
             paging: {
                 pageSize: 10
@@ -67,8 +67,8 @@
                 columnRenderingMode: null,
                 showScrollbar: null
             },
-            sorting: {
-                mode: 'multiple'
+            masterDetail: {
+                enabled: true
             },
             keyExpr: 'Id',
             focusedRowEnabled: true,
@@ -89,6 +89,8 @@
             showColumnFixing: true,
             groupingAutoExpandAll: null
         },
+        sub: [],
+        sub1: [],
         init: function() {
             this.dataGridInstance.height = window.innerHeight - 300;
             document.getElementById('searchTable').style.display = 'none';
@@ -99,8 +101,8 @@
         },
         createMasterDetail: function(container, options) {
             let currentEmployeeData = options.data;
-            if(currentEmployeeData.short_answer === null || currentEmployeeData.short_answer === undefined) {
-                currentEmployeeData.short_answer = '';
+            if(currentEmployeeData.balans_name === null || currentEmployeeData.balans_name === undefined) {
+                currentEmployeeData.balans_name = '';
             }
             if(currentEmployeeData.question_content === null || currentEmployeeData.question_content === undefined) {
                 currentEmployeeData.question_content = '';
@@ -108,17 +110,16 @@
             if(currentEmployeeData.adressZ === null || currentEmployeeData.adressZ === undefined) {
                 currentEmployeeData.adressZ = '';
             }
-            if(currentEmployeeData.balans_name === null || currentEmployeeData.balans_name === undefined) {
-                currentEmployeeData.balans_name = '';
-            }
             let elementAdress__content = this.createElement('div',
                 {
-                    className: 'elementAdress__content content', innerText: String(String(currentEmployeeData.adressZ))
+                    className: 'elementAdress__content content',
+                    innerText: String(String(currentEmployeeData.adressZ))
                 }
             );
             let elementAdress__caption = this.createElement('div',
                 {
-                    className: 'elementAdress__caption caption', innerText: 'Адреса заявника'
+                    className: 'elementAdress__caption caption',
+                    innerText: 'Адреса заявника'
                 }
             );
             let elementAdress = this.createElement('div',
@@ -129,12 +130,14 @@
             );
             let elementСontent__content = this.createElement('div',
                 {
-                    className: 'elementСontent__content content', innerText: String(String(currentEmployeeData.question_content))
+                    className: 'elementСontent__content content',
+                    innerText: String(String(currentEmployeeData.question_content))
                 }
             );
             let elementСontent__caption = this.createElement('div',
                 {
-                    className: 'elementСontent__caption caption', innerText: 'Зміст'
+                    className: 'elementСontent__caption caption',
+                    innerText: 'Зміст'
                 }
             );
             let elementСontent = this.createElement('div',
@@ -145,12 +148,14 @@
             );
             let elementBalance__content = this.createElement('div',
                 {
-                    className: 'elementBalance__content content', innerText: String(String(currentEmployeeData.balans_name))
+                    className: 'elementBalance__content content',
+                    innerText: String(String(currentEmployeeData.balans_name))
                 }
             );
             let elementBalance__caption = this.createElement('div',
                 {
-                    className: 'elementBalance__caption caption', innerText: 'Балансоутримувач'
+                    className: 'elementBalance__caption caption',
+                    innerText: 'Балансоутримувач'
                 }
             );
             let elementBalance = this.createElement('div',
@@ -198,6 +203,7 @@
                 this.dataGridInstance.onCellClick.subscribe(e => {
                     if(e.column.dataField === 'registration_number' && e.row !== undefined) {
                         window.open(String(location.origin + localStorage.getItem('VirtualPath') + '/sections/Assignments/edit/' + e.key));
+                        this.goToSection(String('Assignments/edit/' + e.row.data.Id));
                     }
                 });
             }

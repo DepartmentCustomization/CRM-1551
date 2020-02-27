@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "dbArt_ProstrocheniUvagaVRoboti",
+  "Name": "dbArt_ProstrocheniUvagaVRoboti",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false
+}

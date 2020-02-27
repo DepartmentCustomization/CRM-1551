@@ -1,5 +1,5 @@
-(function() {
-    return {
+(function () {
+  return {
         init: function() {
             this.showMyPreloader();
             this.sub = this.messageService.subscribe('showPagePreloader', this.showMyPreloader, this);

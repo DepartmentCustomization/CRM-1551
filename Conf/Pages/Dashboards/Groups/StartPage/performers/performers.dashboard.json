@@ -1,7 +1,5 @@
 {
   "DashboardGroupCode": "StartPage",
-  "Description": "",
-  "DescriptionUrl": "",
   "ModelType": "Dashboard",
   "Code": "performers",
   "Name": "Виконавці"

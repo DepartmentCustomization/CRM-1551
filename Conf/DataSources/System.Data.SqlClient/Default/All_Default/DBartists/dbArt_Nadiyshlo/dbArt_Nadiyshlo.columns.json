@@ -1,0 +1,95 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 1,
+    "IsPrimaryKey": true,
+    "IsPrintable": false
+  },
+  {
+    "Code": "navigation",
+    "Name": "navigation",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "registration_number",
+    "Name": "registration_number",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "QuestionType",
+    "Name": "QuestionType",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "zayavnyk",
+    "Name": "zayavnyk",
+    "Position": 5,
+    "IsPrintable": false
+  },
+  {
+    "Code": "adress",
+    "Name": "adress",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "vykonavets",
+    "Name": "vykonavets",
+    "Position": 7,
+    "IsPrintable": false
+  },
+  {
+    "Code": "zayavnykId",
+    "Name": "zayavnykId",
+    "Position": 8
+  },
+  {
+    "Code": "QuestionId",
+    "Name": "QuestionId",
+    "Position": 9
+  },
+  {
+    "Code": "zayavnyk_adress",
+    "Name": "zayavnyk_adress",
+    "Position": 10
+  },
+  {
+    "Code": "zayavnyk_zmist",
+    "Name": "zayavnyk_zmist",
+    "Position": 11
+  },
+  {
+    "Code": "transfer_to_organization_id",
+    "Name": "transfer_to_organization_id",
+    "Position": 12
+  },
+  {
+    "Code": "transfer_to_organization_name",
+    "Name": "transfer_to_organization_name",
+    "Position": 13
+  },
+  {
+    "Code": "ass_registration_date",
+    "Name": "ass_registration_date",
+    "Position": 14
+  },
+  {
+    "Code": "balans_name",
+    "Name": "balans_name",
+    "Position": 15
+  },
+  {
+    "Code": "control_date",
+    "Name": "control_date",
+    "Position": 16
+  },
+  {
+    "Code": "is_rights",
+    "Name": "is_rights",
+    "Position": 17
+  }
+]

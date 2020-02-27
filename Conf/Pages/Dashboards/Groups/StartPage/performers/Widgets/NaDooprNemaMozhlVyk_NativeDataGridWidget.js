@@ -1,8 +1,8 @@
-(function() {
-    return {
+(function () {
+  return {
         config: {
             query: {
-                code: 'NaDooprNemaMozhlVyk',
+                code: 'dbArt_NaDooprNemaMozhlVyk',
                 parameterValues: [],
                 filterColumns: [],
                 sortColumns: [],
@@ -36,10 +36,6 @@
             masterDetail: {
                 enabled: true
             },
-            filterRow: {
-                visible: true,
-                applyFilter: 'auto'
-            },
             export: {
                 enabled: false,
                 fileName: 'Excel'
@@ -65,6 +61,10 @@
             sorting: {
                 mode: 'multiple'
             },
+            filterRow: {
+                visible: true,
+                applyFilter: 'auto'
+            },
             keyExpr: 'Id',
             focusedRowEnabled: true,
             showBorders: false,
@@ -78,12 +78,15 @@
             columnWidth: null,
             wordWrapEnabled: true,
             allowColumnResizing: true,
+            allowFiltering: false,
             showFilterRow: true,
             showHeaderFilter: false,
             showColumnChooser: false,
             showColumnFixing: true,
             groupingAutoExpandAll: null
         },
+        sub: [],
+        containerForChackedBox: [],
         init: function() {
             this.dataGridInstance.height = window.innerHeight - 300;
             document.getElementById('table9_dooproc').style.display = 'none';
@@ -103,15 +106,6 @@
                 }
             });
         },
-        createElement: function(tag, props, ...children) {
-            const element = document.createElement(tag);
-            Object.keys(props).forEach(key => element[key] = props[key]);
-            if(children.length > 0) {
-                children.forEach(child =>{
-                    element.appendChild(child);
-                });
-            } return element;
-        },
         createTableButton: function(e) {
             let toolbarItems = e.toolbarOptions.items;
             toolbarItems.push({
@@ -130,7 +124,7 @@
         },
         exportToExcel: function() {
             let exportQuery = {
-                queryCode: 'NaDooprNemaMozhlVyk',
+                queryCode: this.config.query.code,
                 limit: -1,
                 parameterValues: [
                     { key: '@organization_id', value: this.orgId},
@@ -225,24 +219,24 @@
             captions.push(rowNumber);
             indexArr.forEach(el => {
                 let obj = {}
-                if (el.name === 'registration_number') {
+                if(el.name === 'registration_number') {
                     obj.key = 'registration_number';
                     obj.width = 10;
                     obj.height = 20;
                     captions.push('Номер, дата, час');
-                } else if(el.name === 'zayavnyk_zmist') {
+                }else if(el.name === 'zayavnyk_zmist') {
                     obj.key = 'zayavnyk_zmist';
                     obj.width = 44;
                     captions.push('Суть питання');
-                } else if(el.name === 'zayavnyk') {
+                }else if(el.name === 'zayavnyk') {
                     obj.key = 'zayavnyk';
                     obj.width = 30;
                     captions.push('Заявник');
-                } else if(el.name === 'controlDate') {
+                }else if(el.name === 'controlDate') {
                     obj.key = 'controlDate';
                     obj.width = 16;
                     captions.push('Дата контролю');
-                } else if(el.name === 'adress') {
+                }else if(el.name === 'adress') {
                     obj.key = 'adress';
                     obj.width = 21;
                     captions.push('Місце проблеми (Об\'єкт)');
@@ -353,10 +347,19 @@
             }
             return trueDate;
         },
+        createElement: function(tag, props, ...children) {
+            const element = document.createElement(tag);
+            Object.keys(props).forEach(key => element[key] = props[key]);
+            if(children.length > 0) {
+                children.forEach(child =>{
+                    element.appendChild(child);
+                });
+            } return element;
+        },
         createMasterDetail: function(container, options) {
             let currentEmployeeData = options.data;
-            if(currentEmployeeData.comment === null || currentEmployeeData.comment === undefined) {
-                currentEmployeeData.comment = '';
+            if(currentEmployeeData.short_answer === null || currentEmployeeData.short_answer === undefined) {
+                currentEmployeeData.short_answer = '';
             }
             if(currentEmployeeData.zayavnyk_zmist === null || currentEmployeeData.zayavnyk_zmist === undefined) {
                 currentEmployeeData.zayavnyk_zmist = '';

@@ -12,12 +12,12 @@
     "children": [
       {
         "width": "auto",
-        "margin": "0 5px 10px",
+        "margin": "0 5px",
         "flexWrap": "wrap",
         "flexDirection": "row",
         "order": 1,
         "flexGrow": 1,
-        "alignSelf": "flex-start",
+        "alignSelf": "auto",
         "border": "none",
         "children": [
           {
@@ -33,36 +33,36 @@
               {
                 "code": "CustomWidget-0",
                 "type": "CustomWidgetComponent",
-                "name": "header_processing_assigments"
+                "name": "header_organizations"
               }
             ],
-            "id": "Container-1",
-            "height": "130px",
-            "minHeight": "130px",
+            "id": "Container-2",
+            "height": "180px",
+            "minHeight": "10px",
             "minWidth": "100px",
             "backgroundColor": "white"
           }
         ],
         "id": "Container-0",
-        "height": "auto",
-        "minHeight": "100px",
+        "height": "220px",
+        "minHeight": "220px",
         "minWidth": "calc(100% - 10px)",
         "backgroundColor": "white",
         "containerId": "header1"
       },
       {
-        "width": "calc(100% - 10px)",
-        "margin": "0 5px 10px 0",
+        "width": "calc(100% - 30px)",
+        "margin": "0px 15px",
         "flexWrap": "wrap",
         "flexDirection": "column",
         "order": 1,
         "flexGrow": 1,
-        "alignSelf": "flex-start",
+        "alignSelf": "auto",
         "border": "none",
         "children": [
           {
             "width": "auto",
-            "margin": "0 5px",
+            "margin": "0 5px 10px",
             "flexWrap": "wrap",
             "flexDirection": "row",
             "order": 1,
@@ -71,9 +71,9 @@
             "border": "none",
             "children": [
               {
-                "code": "Nadiyshlo1_NativeDataGridWidget",
+                "code": "Poshuk_NativeDataGridWidget",
                 "type": "NativeDataGridWidgetComponent",
-                "name": "table_Nadiyshlo_disturbe_1"
+                "name": "poshuk_performer"
               }
             ],
             "id": "Container-2",
@@ -81,11 +81,11 @@
             "minHeight": "10px",
             "minWidth": "calc(100% - 10px)",
             "backgroundColor": "white",
-            "containerId": "table41__arrived"
+            "containerId": "searchTable"
           },
           {
             "width": "auto",
-            "margin": "0 5px",
+            "margin": "0 5px 10px",
             "flexWrap": "wrap",
             "flexDirection": "row",
             "order": 1,
@@ -94,9 +94,9 @@
             "border": "none",
             "children": [
               {
-                "code": "NadiyshloNull_NativeDataGridWidget",
+                "code": "Nadiyshlo_NativeDataGridWidget",
                 "type": "NativeDataGridWidgetComponent",
-                "name": "table4__Nadiyshlo_distribute_null"
+                "name": "table4__Nadiyshlo"
               }
             ],
             "id": "Container-2",
@@ -107,8 +107,8 @@
             "containerId": "table4__arrived"
           },
           {
-            "width": "auto",
-            "margin": "0 5px",
+            "width": "calc( 100% - 10px)",
+            "margin": "0 5px 10px",
             "flexWrap": "wrap",
             "flexDirection": "row",
             "order": 1,
@@ -125,13 +125,13 @@
             "id": "Container-2",
             "height": "auto",
             "minHeight": "10px",
-            "minWidth": "calc(100% - 10px)",
+            "minWidth": "100px",
             "backgroundColor": "white",
             "containerId": "table5__NeVKompetentcii"
           },
           {
-            "width": "auto",
-            "margin": "0 5px",
+            "width": "calc(100% - 10px)",
+            "margin": "0 5px 10px",
             "flexWrap": "wrap",
             "flexDirection": "row",
             "order": 1,
@@ -148,13 +148,13 @@
             "id": "Container-2",
             "height": "auto",
             "minHeight": "10px",
-            "minWidth": "calc(100% - 10px)",
+            "minWidth": "100px",
             "backgroundColor": "white",
             "containerId": "table6__ProstrocheniUvagaVRoboti"
           },
           {
-            "width": "auto",
-            "margin": "0 5px",
+            "width": "calc(100% - 10px)",
+            "margin": "0 5px 10px",
             "flexWrap": "wrap",
             "flexDirection": "row",
             "order": 1,
@@ -171,13 +171,13 @@
             "id": "Container-2",
             "height": "auto",
             "minHeight": "10px",
-            "minWidth": "calc(100% - 10px)",
+            "minWidth": "100px",
             "backgroundColor": "white",
             "containerId": "table7__doVidoma"
           },
           {
-            "width": "auto",
-            "margin": "0 5px",
+            "width": "calc(100% - 10px)",
+            "margin": "0 5px 10px",
             "flexWrap": "wrap",
             "flexDirection": "row",
             "order": 1,
@@ -188,19 +188,19 @@
               {
                 "code": "NaDooprNemaMozhlVyk_NativeDataGridWidget",
                 "type": "NativeDataGridWidgetComponent",
-                "name": "table9_dooproc_nemaMozhl"
+                "name": "table9_dooproc"
               }
             ],
             "id": "Container-2",
             "height": "auto",
             "minHeight": "10px",
-            "minWidth": "calc(100% - 10px)",
+            "minWidth": "100px",
             "backgroundColor": "white",
             "containerId": "table9_dooproc"
           },
           {
             "width": "calc(100% - 10px)",
-            "margin": "0 5px",
+            "margin": "0 5px 10px",
             "flexWrap": "wrap",
             "flexDirection": "row",
             "order": 1,
@@ -220,43 +220,20 @@
             "minWidth": "100px",
             "backgroundColor": "white",
             "containerId": "table10_Plan_Programs"
-          },
-          {
-            "width": "auto",
-            "margin": "0 5px",
-            "flexWrap": "wrap",
-            "flexDirection": "row",
-            "order": 1,
-            "flexGrow": 1,
-            "alignSelf": "auto",
-            "border": "none",
-            "children": [
-              {
-                "code": "Poshuk_NativeDataGridWidget",
-                "type": "NativeDataGridWidgetComponent",
-                "name": "poshuk_table"
-              }
-            ],
-            "id": "Container-2",
-            "height": "auto",
-            "minHeight": "10px",
-            "minWidth": "calc(100% - 10px)",
-            "backgroundColor": "white",
-            "containerId": "searchTable"
           }
         ],
         "id": "Container-1",
         "height": "auto",
-        "minHeight": "100px",
-        "minWidth": "calc(100% -100px)",
-        "backgroundColor": "white"
+        "minHeight": "calc(100% - 300px)",
+        "minWidth": "calc(100% - 30px)",
+        "backgroundColor": "white",
+        "containerId": ""
       }
     ],
     "id": "Container-0",
-    "height": "100%",
-    "minHeight": "100%",
+    "height": "calc( 100% - 10px)",
+    "minHeight": "calc( 100% - 10px)",
     "minWidth": "100%",
-    "backgroundColor": "white",
-    "containerId": "allTable"
+    "backgroundColor": "#fff"
   }
 }

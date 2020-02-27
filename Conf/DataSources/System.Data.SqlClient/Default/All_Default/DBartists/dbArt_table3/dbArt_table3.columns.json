@@ -1,0 +1,61 @@
+[
+  {
+    "Code": "OrganizationId",
+    "Name": "OrganizationId",
+    "Position": 1,
+    "IsPrintable": false
+  },
+  {
+    "Code": "OrganizationName",
+    "Name": "OrganizationName",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "nadiyshlo",
+    "Name": "nadiyshlo",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "neVKompetentsii",
+    "Name": "neVKompetentsii",
+    "Position": 4
+  },
+  {
+    "Code": "prostrocheni",
+    "Name": "prostrocheni",
+    "Position": 5,
+    "IsPrintable": false
+  },
+  {
+    "Code": "uvaga",
+    "Name": "uvaga",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "vroboti",
+    "Name": "vroboti",
+    "Position": 7,
+    "IsPrintable": false
+  },
+  {
+    "Code": "dovidoma",
+    "Name": "dovidoma",
+    "Position": 8,
+    "IsPrintable": false
+  },
+  {
+    "Code": "naDoopratsiyvanni",
+    "Name": "naDoopratsiyvanni",
+    "Position": 9,
+    "IsPrintable": false
+  },
+  {
+    "Code": "neVykonNeMozhl",
+    "Name": "neVykonNeMozhl",
+    "Position": 10,
+    "IsPrintable": false
+  }
+]

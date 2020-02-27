@@ -1,0 +1,100 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 0,
+    "IsPrintable": false
+  },
+  {
+    "Code": "navigation",
+    "Name": "navigation",
+    "Position": 1,
+    "IsPrintable": false
+  },
+  {
+    "Code": "registration_number",
+    "Name": "registration_number",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "QuestionType",
+    "Name": "QuestionType",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "zayavnyk",
+    "Name": "zayavnyk",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "adress_place",
+    "Name": "adress_place",
+    "Position": 5,
+    "IsPrintable": false
+  },
+  {
+    "Code": "pidlegliy",
+    "Name": "pidlegliy",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "zayavnikId",
+    "Name": "zayavnikId",
+    "Position": 7,
+    "IsPrintable": false
+  },
+  {
+    "Code": "QuestionId",
+    "Name": "QuestionId",
+    "Position": 8,
+    "IsPrintable": false
+  },
+  {
+    "Code": "Id2",
+    "Name": "Id2",
+    "Position": 9,
+    "IsPrintable": false
+  },
+  {
+    "Code": "zayavnyk_adress",
+    "Name": "zayavnyk_adress",
+    "Position": 10,
+    "IsPrintable": false
+  },
+  {
+    "Code": "zayavnyk_zmist",
+    "Name": "zayavnyk_zmist",
+    "Position": 11,
+    "IsPrintable": false
+  },
+  {
+    "Code": "comment",
+    "Name": "comment",
+    "Position": 12,
+    "IsPrintable": false
+  },
+  {
+    "Code": "transfer_to_organization_id",
+    "Name": "transfer_to_organization_id",
+    "Position": 13
+  },
+  {
+    "Code": "transfer_to_organization_name",
+    "Name": "transfer_to_organization_name",
+    "Position": 14
+  },
+  {
+    "Code": "balans_name",
+    "Name": "balans_name",
+    "Position": 15
+  },
+  {
+    "Code": "is_rights",
+    "Name": "is_rights",
+    "Position": 16
+  }
+]

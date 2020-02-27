@@ -1,0 +1,23 @@
+{
+  "ModelType": "Query",
+  "Code": "dbArt_table2",
+  "Name": "dbArt_table2",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@organization_id",
+      "Name": "organization_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@organizationName",
+      "Name": "organizationName"
+    },
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    }
+  ]
+}
