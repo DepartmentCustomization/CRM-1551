@@ -78,6 +78,7 @@ IF OBJECT_ID('tempdb..#temp_positions_user') IS NOT NULL
 			END;
 
   --пункт1 подивився до яких посад має відношення користувач #temp_positions_user
+  /* версия 1 начало
   SELECT *
   INTO #temp_positions_user
   FROM
@@ -99,7 +100,40 @@ IF OBJECT_ID('tempdb..#temp_positions_user') IS NOT NULL
   INNER JOIN [dbo].[Positions] p2 ON ph.main_position_id=p2.Id
   LEFT JOIN [dbo].[Roles] r ON p2.role_id=r.Id
   WHERE p.[programuser_id]=@user_id) t
+версия1 конец*/
+-- в2
 
+--   select po.Id, po.position, po.organizations_id, r.name role_name
+--   INTO #temp_positions_user
+--   from [dbo].[Positions] po 
+--   INNER JOIN
+--   (
+--   --посади, які зв.язані з тим, хто зайшов
+--   SELECT p.Id position_id
+--   FROM [dbo].[Positions] p
+--   WHERE p.[programuser_id]=@user_id
+--   UNION 
+--   SELECT p2.Id position_id
+--   FROM [dbo].[Positions] p
+--   INNER JOIN [dbo].[PositionsHelpers] ph ON p.Id=ph.main_position_id
+--   INNER JOIN [dbo].[Positions] p2 ON ph.helper_position_id=p2.Id
+--   WHERE p.[programuser_id]=@user_id
+--   UNION 
+--   SELECT p2.Id position_id
+--   FROM [dbo].[Positions] p
+--   INNER JOIN [dbo].[PositionsHelpers] ph ON p.Id=ph.helper_position_id
+--   INNER JOIN [dbo].[Positions] p2 ON ph.main_position_id=p2.Id
+--   WHERE p.[programuser_id]=@user_id) pp ON po.Id=pp.position_id
+--   LEFT JOIN [Roles] r ON po.role_id=r.Id
+select p.id, p.position, p.organizations_id, r.name role_name
+INTO #temp_positions_user
+from [dbo].[Positions] p
+left join [dbo].[Roles] r on p.role_id=r.id
+where organizations_id IN
+(
+select organizations_id
+from [dbo].[Positions]
+where programuser_id=@user_id)
   --select * from #temp_positions_user --ок
   --end
 
