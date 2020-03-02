@@ -161,5 +161,41 @@
     "Code": "AppealFromSite_geolocation_lon",
     "Name": "AppealFromSite_geolocation_lon",
     "Position": 26
+  },
+  {
+    "Code": "ApplicantFromSite_Address_Building",
+    "Name": "ApplicantFromSite_Address_Building",
+    "Position": 27,
+    "IsPrintable": false
+  },
+  {
+    "Code": "ApplicantFromSite_Address_BuildingName",
+    "Name": "ApplicantFromSite_Address_BuildingName",
+    "Position": 28,
+    "IsPrintable": false,
+    "ReferenceKeyCode": "ApplicantFromSite_Address_Building"
+  },
+  {
+    "Code": "isVerify",
+    "Name": "isVerify",
+    "Position": 29
+  },
+  {
+    "Code": "question_content",
+    "Name": "question_content",
+    "Position": 30
+  },
+  {
+    "Code": "Question_Building",
+    "Name": "Question_Building",
+    "Position": 31,
+    "IsPrintable": false
+  },
+  {
+    "Code": "Question_BuildingName",
+    "Name": "Question_BuildingName",
+    "Position": 32,
+    "IsPrintable": false,
+    "ReferenceKeyCode": "Question_Building"
   }
 ]

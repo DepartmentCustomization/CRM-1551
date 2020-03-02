@@ -1,5 +1,5 @@
-(function () {
-  return {
+(function() {
+    return {
         title: ' ',
         hint: '',
         formatTitle: function() {},
@@ -131,7 +131,7 @@
             );
             let tabOrganizations__title = this.createElement('div', { className: 'tabOrganizations tab_title', innerText: 'ОРГАНІЗАЦІЇ'});
             const tabOrganizations = this.createElement('div',
-                {id: 'tabOrganizations', url: 'performer_new_organizations',  className: 'tabOrganizations tab tabHover' },
+                {id: 'tabOrganizations', url: 'performer_new_organizations', className: 'tabOrganizations tab tabHover' },
                 tabOrganizations__title
             );
             const tabFinder = this.createElement('div',

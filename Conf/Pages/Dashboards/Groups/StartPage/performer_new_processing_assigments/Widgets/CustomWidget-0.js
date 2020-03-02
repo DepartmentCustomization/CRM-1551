@@ -1,5 +1,5 @@
-(function () {
-  return {
+(function() {
+    return {
         title: ' ',
         hint: '',
         formatTitle: function() {},
@@ -161,7 +161,8 @@
             );
             const tabsContainer = this.createElement('div',
                 { id: 'tabsContainer', className: 'tabsContainer'},
-                tabInformation, tabAction, tabProcessingOrders, tabOrganizations, tabPerformers, tabFinder, tabExecutivePosition, tabTemplates
+                tabInformation, tabAction, tabProcessingOrders, tabOrganizations,
+                tabPerformers, tabFinder, tabExecutivePosition, tabTemplates
             );
             const orgLinkСhangerBox__icon = this.createElement('div',
                 { id: 'orgLinkСhangerBox__icon', className:'material-icons', innerText:'more_vert' }

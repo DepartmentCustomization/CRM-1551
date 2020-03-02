@@ -5,7 +5,6 @@
                     <div id='container'></div>
                 `
         ,
-        container: {},
         init: function() {
             let executeQuery = {
                 queryCode: 'GetReceiptSources',
@@ -16,7 +15,6 @@
             this.showPreloader = false;
         },
         showTypesList: function(data) {
-            this.container = document.getElementById('container');
             const modalBtnTrue = this.createElement('button', { id:'modalBtnTrue', className: 'btn', innerText: 'Закрити'});
             const modalBtnWrapper = this.createElement('div', { id:'modalBtnWrapper' }, modalBtnTrue);
             const listItems = this.createElement('div', { id:'listItems' });
@@ -47,7 +45,7 @@
             });
         },
         load: function(data) {
-            const CONTAINER = document.getElementById('container');
+            this.container = document.getElementById('container');
             let title = this.createElement('div', { className: 'header-label', innerText: 'КБУ "Контактний центр міста Києва 1551"'});
             let groupRegByPhone__icon = this.createElement('div',
                 {
@@ -180,8 +178,8 @@
                 },
                 groupRegByPhone, groupViewAppeals, groupRegAppeals, groupSearchTable, groupCall, groupLetter
             );
-            CONTAINER.appendChild(title);
-            CONTAINER.appendChild(groupsWrapper);
+            this.container.appendChild(title);
+            this.container.appendChild(groupsWrapper);
         },
         createElement: function(tag, props, ...children) {
             const element = document.createElement(tag);
@@ -193,7 +191,6 @@
             } return element;
         },
         showModalWindow: function() {
-            let CONTAINER = document.getElementById('container');
             const modalBtnClose = this.createElement('button', { id:'modalBtnClose', className: 'btn', innerText: 'Закрити'});
             const modalBtnTrue = this.createElement('button', { id:'modalBtnTrue', className: 'btn', innerText: 'Підтвердити'});
             const modalBtnWrapper = this.createElement('div', { id:'modalBtnWrapper' }, modalBtnTrue, modalBtnClose);
@@ -207,9 +204,9 @@
             );
             const modalWindow = this.createElement('div', { id:'modalWindow', className: 'modalWindow'}, modalNumber, modalBtnWrapper);
             const modalWindowWrapper = this.createElement('div', { id:'modalWindowWrapper', className: 'modalWindowWrapper'}, modalWindow);
-            CONTAINER.appendChild(modalWindowWrapper);
+            this.container.appendChild(modalWindowWrapper);
             modalBtnTrue.addEventListener('click', () => {
-                let number = modalNumber.value
+                let number = modalNumber.value;
                 window.open(
                     location.origin +
                     localStorage.getItem('VirtualPath') +

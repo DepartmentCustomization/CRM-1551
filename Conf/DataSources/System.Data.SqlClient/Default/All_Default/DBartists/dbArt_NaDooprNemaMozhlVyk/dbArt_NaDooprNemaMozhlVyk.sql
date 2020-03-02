@@ -36,7 +36,7 @@ DECLARE @comment_planProg NVARCHAR(6) = (SELECT
 DECLARE @NavigationTable TABLE (
 	Id NVARCHAR(400)
 );
-DECLARE @Nav_Ids NVARCHAR(200);
+DECLARE @Nav_Ids NVARCHAR(max);
 
 IF @navigation = N'Усі'
 BEGIN
@@ -84,13 +84,21 @@ DECLARE @qcode NVARCHAR(MAX) = N'
     --основные для организаций
  temp_positions_user as
  (
- select p.id, p.organizations_id
+select p.id, p.organizations_id
 from [dbo].[Positions] p
 where organizations_id IN
 (
-select organizations_id
-from [dbo].[Positions]
-where programuser_id=N'''+@user_id+''')
+select p.organizations_id
+from [dbo].[Positions] p
+where p.programuser_id=N'''+@user_id+N'''
+union
+select pm.organizations_id
+from [dbo].[PositionsHelpers] ph
+inner join [dbo].[Positions] pm on ph.main_position_id=pm.id
+where ph.helper_position_id in
+(select p.Id
+from [dbo].[Positions] p
+where p.programuser_id=N'''+@user_id+N'''))
  )
 
  ,tpu_organization as

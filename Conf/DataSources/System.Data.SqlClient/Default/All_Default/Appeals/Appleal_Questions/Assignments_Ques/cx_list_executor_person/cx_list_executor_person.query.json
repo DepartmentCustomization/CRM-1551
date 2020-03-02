@@ -32,6 +32,11 @@
             "ParameterType": "Integer"
         },
         {
+            "Code": "@ass_id",
+            "Name": "ass_id",
+            "ParameterType": "Integer"
+        },
+        {
             "Code": "@pageOffsetRows",
             "Name": "pageOffsetRows",
             "ParameterType": "Integer",

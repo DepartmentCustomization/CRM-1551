@@ -27,6 +27,7 @@
             let indexVykon_date = values[0].findIndex(el => el.code.toLowerCase() === 'vykon_date');
             let indexClose_date = values[0].findIndex(el => el.code.toLowerCase() === 'close_date');
             let indexQuestionState = values[0].findIndex(el => el.code.toLowerCase() === 'questionstate');
+            let indexAssignmentState = values[0].findIndex(el => el.code.toLowerCase() === 'assignmentstate');
             let indexCount = values[0].findIndex(el => el.code === 'Count_');
             let indexСount_prostr = values[0].findIndex(el => el.code.toLowerCase() === 'сount_prostr');
             let indexOrgExecutName = values[0].findIndex(el => el.code.toLowerCase() === 'orgexecutname');
@@ -44,7 +45,8 @@
             let indexQuestionStateInWork = values[0].findIndex(el => el.code.toLowerCase() === 'stateinwork');
             let indexQuestionStateOnCheck = values[0].findIndex(el => el.code.toLowerCase() === 'stateoncheck');
             let indexQuestionStateOnRefinement = values[0].findIndex(el =>
-                el.code.toLowerCase() === 'stateonrefinement');
+                el.code.toLowerCase() === 'stateonrefinement'
+            );
             let indexQuestionStateClose = values[0].findIndex(el => el.code.toLowerCase() === 'stateclose');
             let indexQuestionObject = values[0].findIndex(el => el.code.toLowerCase() === 'objectname');
             let indexQuestionResolution = values[0].findIndex(el => el.code.toLowerCase() === 'resolution');
@@ -54,10 +56,11 @@
                 'Батькiвська 2 рiвень': values[index][indexOrgatization_Level_2],
                 'Батькiвська 3 рiвень': values[index][indexOrgatization_Level_3],
                 'Батькiвська 4 рiвень': values[index][indexOrgatization_Level_4],
-                'Дата регистрации': values[index][indexRegistration_date],
+                'Дата реєстрації': values[index][indexRegistration_date],
                 'Дата виконання': values[index][indexVykon_date],
                 'Дата закриття': values[index][indexClose_date],
                 'Стан питання': values[index][indexQuestionState],
+                'Стан доручення': values[index][indexAssignmentState],
                 'Загальна кiлькiсть': values[index][indexCount],
                 'Кiлькость прострочено': values[index][indexСount_prostr],
                 'Виконавець': values[index][indexOrgExecutName],
@@ -117,6 +120,8 @@
             let organization = message.package.value.find(f => f.name === 'organization').value;
             let groupOrganization = message.package.value.find(f => f.name === 'group_organization').value;
             let receiptSource = message.package.value.find(f => f.name === 'receipt_source').value;
+            let questionState = message.package.value.find(f => f.name === 'questions').value;
+            this.queryCode = questionState ? 'ak_ConstructrQuestionTable' : 'ConstructrtAssignmentTable';
             if(dateReceipt !== null) {
                 if(dateReceipt.dateFrom !== '' && dateReceipt.dateTo !== '') {
                     this.dateReceipt__from = dateReceipt.dateFrom;
@@ -174,7 +179,7 @@
         },
         getQueryOptions: function() {
             return {
-                code: 'ak_ConstructrQuestionTable',
+                code: this.queryCode,
                 parameterValues: [
                     { key: '@RegistrationDateFrom', value: this.dateReceipt__from},
                     { key: '@RegistrationDateTo', value: this.dateReceipt__to},

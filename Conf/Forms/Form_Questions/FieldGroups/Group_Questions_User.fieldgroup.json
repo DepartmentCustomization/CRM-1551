@@ -35,7 +35,7 @@
       "Name": "receipt_source_id",
       "FieldType": "number",
       "Position": 199,
-      "IsHidden": true
+      "IsHidden": false
     },
     {
       "Code": "flag_is_state",

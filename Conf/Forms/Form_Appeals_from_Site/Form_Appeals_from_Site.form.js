@@ -39,6 +39,8 @@
             this.queryFor_Applicant1551(this.form.getControlValue('Applicant_Id'));
         },
         init: function() {
+            let btn_newQuestion = document.getElementById('Question_Btn_Add');
+            btn_newQuestion.disabled = true;
             if (this.form.getControlValue('AppealFromSite_geolocation_lat')) {
                 this.form.enableControl('btn_searchAdressByCoordinate');
                 document.getElementById('btn_searchAdressByCoordinate').disabled = false;
@@ -47,10 +49,13 @@
                 document.getElementById('btn_searchAdressByCoordinate').disabled = true;
             }
             document.getElementsByClassName('float_r')[0].children[1].style.display = 'none';
-            this.form.onControlValueChanged('Question_TypeId', this.onChanged_Question_TypeId_Input.bind(this));
+            this.form.onControlValueChanged('Question_TypeId', this.onChanged_Question_TypeId.bind(this));
             this.form.onControlValueChanged('Question_Building', this.onChanged_Question_Building_Input.bind(this));
+            this.form.onControlValueChanged('Question_Building', this.checkQuestionRegistrationAvailable.bind(this));
             this.form.onControlValueChanged('Question_Organization',
                 this.onChanged_Question_Organization_Input.bind(this));
+            this.form.onControlValueChanged('Question_Organization',
+                this.checkQuestionRegistrationAvailable.bind(this));
             this.form.onControlValueChanged('Applicant_Id', this.onChangedApplicant_Id.bind(this));
             this.form.disableControl('Question_ControlDate');
             this.details.setVisibility('Site_Applicant', true);
@@ -82,6 +87,7 @@
             this.form.disableControl('AppealFromSite_geolocation_lon');
             this.form.disableControl('1551_ApplicantFromSite_PIB');
             this.form.disableControl('1551_ApplicantFromSite_Phone');
+            this.form.disableControl('isVerify');
             this.form.setControlValue('1551_ApplicantFromSite_PIB',this.form.getControlValue('ApplicantFromSite_PIB'));
             this.form.setControlValue('1551_ApplicantFromSite_Phone',
                 this.form.getControlValue('ApplicantFromSite_Phone'));
@@ -94,29 +100,16 @@
                 this.details.setVisibility('Site_Applicant', true);
                 this.form.setControlValue('Applicant_INFO', 'Буде створено новий заявник в системі "'
                     + this.form.getControlValue('ApplicantFromSite_PIB') + '"');
-                if (this.form.getControlValue('1551_ApplicantFromSite_Address_Building')) {
-                    const queryFor_Applicant1551_Build = {
-                        queryCode: 'GetOrgById',
-                        parameterValues: [
-                            {
-                                key: '@Id',
-                                value: this.form.getControlValue('1551_ApplicantFromSite_Address_Building')
-                            }
-                        ]
-                    };
-                    this.queryExecutor.getValues(queryFor_Applicant1551_Build).subscribe(data => {
-                        this.form.setControlValue('Question_Building',
-                            {key: data.rows[0].values[0], value: data.rows[0].values[1]});
-                    });
-                }
             }.bind(this));
             document.getElementById('btn_person1551_question').addEventListener('click', function() {
                 this.CreateApplicant1551();
                 this.details.setVisibility('Site_Applicant', true);
+                this.form.setGroupExpanding('Group_PreviewApplicant', false);
             }.bind(this));
             document.getElementById('btn_searchPerson').addEventListener('click', function() {
                 this.form.setGroupVisibility('Group2', true);
                 this.form.setControlVisibility('btn_CreateApplicant1551', false);
+                this.form.setGroupExpanding('Group_App_site', false);
             }.bind(this));
             document.getElementById('btn_searchAdressByCoordinate').addEventListener('click', function() {
                 window.open(String(location.origin + localStorage.getItem('VirtualPath')
@@ -207,7 +200,7 @@
                         },
                         {
                             key: '@1551_ApplicantFromSite_Address_Building',
-                            value: this.form.getControlValue('1551_ApplicantFromSite_Address_Building')
+                            value: this.form.getControlValue('ApplicantFromSite_Address_Building')
                         },
                         {
                             key: '@1551_ApplicantFromSite_Address_Entrance',
@@ -241,6 +234,93 @@
                 this.IsFormReturnModerated();
             }
         },
+        checkQuestionRegistrationAvailable: function() {
+            let questionBuilding = this.form.getControlValue('Question_Building');
+            let questionOrg = this.form.getControlValue('Question_Organization');
+            let questionContent = this.form.getControlValue('question_content');
+            if (this.form.getControlValue('Question_TypeId') !== null) {
+                if (this.is_obj === true && this.is_org === true) {
+                    if (
+                        ((questionBuilding === undefined) || (questionBuilding === null))
+                        ||
+                        ((questionOrg === undefined) || (questionOrg === null))
+                        ||
+                        ((questionContent === '') || (questionContent === null))
+                    ) {
+                        document.getElementById('Question_Btn_Add').disabled = true;
+                        this.form.setControlValue('flat', null);
+                        this.form.setControlValue('entrance', null);
+                    } else {
+                        document.getElementById('Question_Btn_Add').disabled = false;
+                    }
+                }
+                if (this.is_obj === true && this.is_org === false) {
+                    if ((questionBuilding === undefined) || (questionBuilding === null)
+                        ||
+                        ((questionContent === undefined) || (questionContent === null))
+                    ) {
+                        document.getElementById('Question_Btn_Add').disabled = true;
+                        this.form.setControlValue('flat', null);
+                        this.form.setControlValue('entrance', null);
+                    } else {
+                        document.getElementById('Question_Btn_Add').disabled = false;
+                    }
+                }
+                if (this.is_obj === false && this.is_org === true) {
+                    if ((questionOrg === undefined) || (questionOrg === null)
+                        ||
+                        ((questionContent === undefined) || (questionContent === null))
+                    ) {
+                        document.getElementById('Question_Btn_Add').disabled = true;
+                        this.form.setControlValue('flat', null);
+                        this.form.setControlValue('entrance', null);
+                    } else {
+                        document.getElementById('Question_Btn_Add').disabled = false;
+                    }
+                }
+                if (this.is_obj === false && this.is_org === false) {
+                    document.getElementById('Question_Btn_Add').disabled = false;
+                }
+            }
+        },
+        questionObjectOrg: function() {
+            let q_type_id = this.form.getControlValue('Question_TypeId');
+            if (q_type_id === undefined) {
+                this.form.setControlVisibility('Question_Building', false);
+                this.form.setControlVisibility('entrance', false);
+                this.form.setControlVisibility('flat', false);
+                this.form.setControlVisibility('Question_Organization', false);
+            } else {
+                const objAndOrg = {
+                    queryCode: 'QuestionTypes_HideColumns',
+                    parameterValues: [
+                        {
+                            key: '@question_type_id',
+                            value: q_type_id
+                        }
+                    ]
+                };
+                this.queryExecutor.getValues(objAndOrg).subscribe(data => {
+                    this.is_org = data.rows[0].values[0];
+                    this.is_obj = data.rows[0].values[1];
+                    if (this.is_obj === true) {
+                        this.form.setControlVisibility('Question_Building', true);
+                        this.form.setControlVisibility('entrance', true);
+                        this.form.setControlVisibility('flat', true);
+                    } else if (this.is_obj !== true) {
+                        this.form.setControlVisibility('Question_Building', false);
+                        this.form.setControlVisibility('entrance', false);
+                        this.form.setControlVisibility('flat', false);
+                    }
+                    if (this.is_org === true) {
+                        this.form.setControlVisibility('Question_Organization', true);
+                    } else if (this.is_org !== true) {
+                        this.form.setControlVisibility('Question_Organization', false);
+                    }
+                    this.checkQuestionRegistrationAvailable();
+                });
+            }
+        },
         onQuestionControlDate:function(ques_type_id) {
             if (ques_type_id === null) {
                 this.form.setControlValue('Question_ControlDate',null)
@@ -258,74 +338,22 @@
                 });
             }
         },
-        onChanged_Question_TypeId_Input: function(value) {
-            this.onQuestionControlDate(value);
-            this.Question_TypeId_Input = value;
-            this.onChanged_Question_Btn_Add_Input();
-            this.getOrgExecut();
-            const objAndOrg = {
-                queryCode: 'QuestionTypes_HideColumns',
-                parameterValues: [
-                    {
-                        key: '@question_type_id',
-                        value: this.form.getControlValue('Question_TypeId')
-                    }
-                ]
-            };
-            this.queryExecutor.getValues(objAndOrg).subscribe(data => {
-                if (data.rows.length > 0) {
-                    if (data.rows[0].values[0]) {
-                        this.form.setControlVisibility('Question_Organization', true);
-                    } else {
-                        this.form.setControlVisibility('Question_Organization', false);
-                    }
-                    if (data.rows[0].values[1]) {
-                        this.form.setControlVisibility('Question_Building', true);
-                        const objAndFlat = {
-                            queryCode: 'QuestionFlat_HideColumns',
-                            parameterValues: [
-                                {
-                                    key: '@Question_BuildingId',
-                                    value: this.form.getControlValue('Question_Building')
-                                }
-                            ]
-                        };
-                        this.queryExecutor.getValues(objAndFlat).subscribe(data => {
-                            if (data.rows.length > 0) {
-                                if (this.form.getControlValue('Question_TypeId') === null) {
-                                    this.form.setControlVisibility('entrance', false);
-                                    this.form.setControlVisibility('flat', false);
-                                } else {
-                                    if (data.rows.length > 0) {
-                                        if (data.rows[0].values === 1 || data.rows[0].values === 112) {
-                                            this.form.setControlVisibility('entrance', true);
-                                            this.form.setControlVisibility('flat', true);
-                                        } else {
-                                            this.form.setControlVisibility('entrance', false);
-                                            this.form.setControlVisibility('flat', false);
-                                        }
-                                    } else {
-                                        this.form.setControlVisibility('entrance', false);
-                                        this.form.setControlVisibility('flat', false);
-                                    }
-                                }
-                            } else {
-                                this.form.setControlVisibility('entrance', false);
-                                this.form.setControlVisibility('flat', false);
-                            }
-                        });
-                    } else {
-                        this.form.setControlVisibility('Question_Building', false);
-                        this.form.setControlVisibility('entrance', false);
-                        this.form.setControlVisibility('flat', false);
-                    }
-                } else {
-                    this.form.setControlVisibility('Question_Building', false);
-                    this.form.setControlVisibility('Question_Organization', false);
-                    this.form.setControlVisibility('entrance', false);
-                    this.form.setControlVisibility('flat', false);
-                }
-            });
+        onChanged_Question_TypeId: function() {
+            let questionType = this.form.getControlValue('Question_TypeId');
+            if (questionType === '' || questionType === undefined || questionType === null) {
+                this.form.setControlValue('Question_Organization', { key: null, value: null });
+                this.form.setControlValue('flat', null);
+                this.form.setControlValue('entrance', null);
+                this.form.setControlVisibility('flat', false);
+                this.form.setControlVisibility('entrance', false);
+                this.form.setControlVisibility('Question_Building', false);
+                this.form.setControlVisibility('Question_Organization', false);
+                document.getElementById('Question_Btn_Add').disabled = true;
+            } else {
+                this.getOrgExecut();
+                this.onQuestionControlDate(questionType);
+                this.questionObjectOrg();
+            }
         },
         onChanged_Question_Building_Input: function(value) {
             if (value) {
@@ -426,7 +454,7 @@
         SerchApplicant1551:function() {
             const parameters = [
                 { key: '@AppealFromSite_Id', value: this.id },
-                { key: '@BuildingId', value: this.form.getControlValue('1551_ApplicantFromSite_Address_Building') },
+                { key: '@BuildingId', value: this.form.getControlValue('ApplicantFromSite_Address_Building') },
                 { key: '@Flat', value: this.form.getControlValue('1551_ApplicantFromSite_Address_Flat') }
             ];
             const filters = [

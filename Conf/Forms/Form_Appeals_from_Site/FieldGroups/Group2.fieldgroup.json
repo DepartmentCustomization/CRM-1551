@@ -18,7 +18,7 @@
       "Width": "100%"
     },
     {
-      "Code": "1551_ApplicantFromSite_Address_Building",
+      "Code": "ApplicantFromSite_Address_Building",
       "Name": "Об'єкт",
       "FieldType": "select",
       "Position": 3,

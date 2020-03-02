@@ -57,11 +57,14 @@
                     return new L.Icon(options);
                 };
                 if(data.rows.length) {
-                    let marker = L.marker([data.rows[0].values[indexOfLatitude], data.rows[0].values[indexOfLongitude]], {icon: yellowIcon}).addTo(this.map);
+                    let marker = L.marker(
+                        [data.rows[0].values[indexOfLatitude], data.rows[0].values[indexOfLongitude]],
+                        {icon: yellowIcon}
+                    ).addTo(this.map);
                     this.dataForMap.search.push(marker);
                     this.initMap(13, data.rows[0].values[indexOfLatitude], data.rows[0].values[indexOfLongitude]);
                 }
             }
-        },
+        }
     };
 }());

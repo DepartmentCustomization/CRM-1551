@@ -1,4 +1,5 @@
 {
   "Type": "SelectFilterComponent",
-  "Owner": "receipt_source"
+  "Owner": "receipt_source",
+  "Position": 6
 }

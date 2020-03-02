@@ -1,4 +1,7 @@
-update [CRM_1551_Analitics].[dbo].[Events]
-   set [File]=@File,
-        [FileName] = @Name
-   where Id=@EventId
+UPDATE
+     [CRM_1551_Analitics].[dbo].[Events]
+SET
+     [File] = @File,
+     [FileName] = @Name
+WHERE
+     Id = @EventId ;

@@ -50,7 +50,6 @@
             this.loadData(this.afterLoadDataHandler);
             this.sub = this.messageService.subscribe('showApplicants', this.showApplicants, this);
             this.config.onToolbarPreparing = this.createTableButton.bind(this);
-            
             this.dataGridInstance.onRowUpdating.subscribe(row => {
                 this.mainRowId = row.key;
             });

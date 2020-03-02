@@ -7,6 +7,14 @@
             this.details.loadData('Question_History', parameters);
             this.details.setVisibility('Question_History', true);
         },
+        validate: function() {
+            let controlDate = this.form.getControlValue('control_date');
+            let today = new Date();
+            if(controlDate > today) {
+                return true;
+            }
+            return 'Дата контролю менша за поточну';
+        },
         init:function() {
             this.form.disableControl('geolocation_lat');
             this.form.disableControl('geolocation_lon');
@@ -53,6 +61,7 @@
             this.form.disableControl('districts_id');
             this.form.disableControl('question_type_id');
             this.form.disableControl('perfom_id');
+            this.onQuestionFromSiteAppeal();
             let flag_is_state = this.form.getControlValue('flag_is_state');
             if (flag_is_state === 1) {
                 this.form.enableControl('object_id');
@@ -199,6 +208,26 @@
             }.bind(this));
             this.form.onControlValueChanged('question_type_id', this.onChanged_Question_TypeId);
             this.form.onControlValueChanged('answer_type_id', this.onChangedQuestion_AnswerType);
+        },
+        onQuestionFromSiteAppeal: function() {
+            let source = this.form.getControlValue('receipt_source_id');
+            let siteVal = 2;
+            if(source === siteVal) {
+                const getMail = {
+                    queryCode: 'setMailAnswerForSiteAppeal',
+                    parameterValues: [{
+                        key: '@Id',
+                        value: this.id
+                    }]
+                };
+                this.queryExecutor.getValue(getMail).subscribe(data => {
+                    if(data) {
+                        let mailAnswer = 3;
+                        this.form.setControlValue('answer_type_id',{ key: mailAnswer, value: 'На E-mail'});
+                        this.form.setControlValue('answer_mail', data);
+                    }
+                });
+            }
         },
         onChangedQuestion_AnswerType:function(value) {
             const allp_info = {

@@ -124,13 +124,21 @@ DECLARE @exec_ruzult NVARCHAR(MAX) =
 N'with
 temp_positions_user as
  (
- select p.id, p.organizations_id
+select p.id, p.organizations_id
 from [dbo].[Positions] p
 where organizations_id IN
 (
-select organizations_id
-from [dbo].[Positions]
-where programuser_id=N'''+@user_id+''')
+select p.organizations_id
+from [dbo].[Positions] p
+where p.programuser_id=N'''+@user_id+'''
+union
+select pm.organizations_id
+from [dbo].[PositionsHelpers] ph
+inner join [dbo].[Positions] pm on ph.main_position_id=pm.id
+where ph.helper_position_id in
+(select p.Id
+from [dbo].[Positions] p
+where p.programuser_id=N'''+@user_id+'''))
  )
 
  ,tpu_organization as

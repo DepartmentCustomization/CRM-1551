@@ -181,5 +181,11 @@
     "Name": "result",
     "Position":28,
     "IsPrintable": false
+  },
+  {
+    "Code": "AssignmentState",
+    "Name": "AssignmentState",
+    "Position": 29,
+    "IsPrintable": false
   }
 ]

@@ -2,7 +2,8 @@
     "Code": "Group_Assigments_Assigments",
     "Name": "Доручення",
     "Position": 2,
-    "Fields": [{
+    "Fields": [
+        {
             "Code": "registration_date",
             "Name": "Дата надходження",
             "FieldType": "date-time",
@@ -126,7 +127,8 @@
             "Width": "75%"
         },
         {
-            "PatternDescription": "максимальна кількість знаків - 500",
+            "PatternDescription": "Максимальна кількість знаків - 500. Мінімальна - 50. ",
+            "Minlength": 50,
             "Maxlength": 500,
             "Code": "short_answer",
             "Name": "Коментар виконавця",
@@ -147,7 +149,8 @@
             "FieldType": "radio",
             "Position": 1222,
             "IsHidden": true,
-            "Items": [{
+            "Items": [
+                {
                     "Code": "0",
                     "Name": "Не в компетенції"
                 },

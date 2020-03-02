@@ -1,0 +1,337 @@
+.dx-datagrid-group-opened{
+    margin: 10px;
+    font: 18px/18px DXIcons;
+    height: 18px;
+    background-position: 0 0;
+    background-size: 10px 8px;
+    padding: 0;
+    text-align: center;
+    color: #959595;
+    background-image: url('assets/img/1551/crm1551_arrow_open.png');
+    background-repeat: no-repeat;
+}
+.dx-datagrid-group-opened::before{
+    display:none;
+}
+.dx-datagrid-group-closed::before{
+    display:none;
+}
+.dx-datagrid-group-closed{
+    margin: 10px;
+    font: 18px/18px DXIcons;
+    height: 18px;
+    background-position: 0 0;
+    background-size: 10px 10px;
+    padding: 0;
+    text-align: center;
+    color: #959595;
+    background-image: url('assets/img/1551/crm1551_arrow_close.png');
+    background-repeat: no-repeat;
+    
+}
+.dx-datagrid-text-content{
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    color: #999999;
+    text-align: left;
+}
+.dx-data-row{
+    font-weight: 400;
+    font-style: normal;
+    text-align: left;
+    font-size: 14px;
+    color: #000000;
+}
+.dx-master-detail-cell{
+    background-color: rgba(239, 247, 249, 1)!important;    
+}
+.dx-button-default{
+    background-color: rgba(21, 189, 244, 1)!important;
+}
+
+.dx-datagrid-export-button{
+    background-color: rgba(21, 189, 244, 1)!important;
+    color: #fff!important;
+    padding: 0 8px!important;
+}
+.dx-icon-export-excel-button{
+    color: #fff!important;
+    margin-right: 9px!important;
+}
+.dx-header-row>td>.dx-datagrid-text-content {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+
+
+/*   triangle */
+
+.overdue_triangle, .notActive_triangle, .triangle{
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-bottom: 24px solid transparent;
+    border-top: 24px solid transparent;
+    border-left: 14px solid white;
+    right: -14px;
+    top: -1px;
+}
+.overdue_triangle:before, .notActive_triangle:before, .triangle:before {
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    border-bottom: 20px solid transparent;
+    border-top: 20px solid transparent;
+    top: -20px;
+    left: -14px;
+}
+.triangle:before {
+    border-left: 12px solid rgb(211, 211, 211);
+}
+.overdue_triangle:before{
+    border-left: 12px solid rgb(74, 193, 197);
+}
+.notActive_triangle:before{
+    border-left: 12px solid rgb(132, 199, 96);
+}
+
+
+/* columns style  */
+
+
+
+#container{
+    margin: 30px auto 0 auto;                  
+}
+.tableContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;   
+    margin-top: 10px;
+}
+#table{
+    display: flex;
+    flex-direction: column;
+    min-width: 700px;
+}
+.columnWrapper{
+    position: relative;
+}
+#btnContainer{
+    min-width: 185px;        
+}
+#createNewEventBtn{
+    text-align: center;
+    color: #fff;
+    border: none;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    background-color: rgb(21, 189, 244);
+    cursor: pointer;
+    border-radius: 10px; 
+    max-width: 150px;
+}
+#organizationName{
+    font-size: 18px;
+    font-weight: 600;
+}
+#filtersWrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 0 10px;
+}
+.columnHeader{
+    width: 268px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;     
+    background-repeat: no-repeat;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    color: #fff;
+    background-size: 100%;
+    cursor: pointer;
+}
+.columnCategorie{
+    border-width: 0px;
+    height: 46px;
+    background: inherit;
+    background-color: rgba(255, 255, 255, 1);
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(228, 228, 228, 1);
+    border-radius: 3px;
+    -moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.247058823529412);
+    -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.247058823529412);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.247058823529412);
+    font-size: 14px;   
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    margin: 10px 10px 0 16px;
+    cursor: pointer;
+}
+.columnCategorie__title{
+    margin-right: 5px;
+}
+.columnCategorie__yellow{
+    margin: 10px 16px 0 3px;
+}
+.column{
+    position: absolute
+}
+.column_2{
+    z-index: 50;
+    left: 30px;
+}
+.column_3{
+    z-index: 40;
+    left: 276px;
+}
+.column_4{
+    z-index: 30;
+    left: 528px; 
+}
+.column_5{
+    z-index: 20;
+    left: 780px;
+}
+.column_6{
+    left: 1034px;
+    height: 42px!important;
+}
+#tabsWrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;        
+}
+#eventWrapper{
+    flex-direction: column;
+}
+.tabsContainer{
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid rgba(204 204 204);
+          
+}
+.tab{
+    color: #15BDF4; 
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px; 
+    cursor: pointer;
+    padding: 0 20px 6px;
+}
+.tabHover{
+    border-bottom: 3px solid #15BDF4;         
+}
+.eventElementsСounter {
+    width: 100%;    
+}
+.event{
+    height: 100%;
+    background-color: rgba(240, 240, 240, 1);
+    margin: 3px 0;
+}
+.orgElements{
+    flex-direction: column;
+}
+.eventTitle {
+    min-width: 200px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+.eventTitle __icon{
+    cursor: pointer;
+    margin: 0 7px;
+    display: flex;
+    align-items: center;                    
+}
+.counter{
+    height: 50px;
+    width: 33.3333%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 5px 12px 5px 4px;  
+    cursor: pointer;
+}
+.counterBorder{
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.247058823529412);
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(228, 228, 228, 1);
+    border-radius: 3px;    
+}
+.refItem__value{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.referalColumn{
+    height: 100%;
+    align-items: center;
+    justify-content: center;                    
+    flex-direction: column;
+}
+.referalItem{
+    margin: 5px;
+}
+.emptyBox{
+    width: 100px;
+    margin: 5px;
+}                
+#eventsHeader{
+    margin: 0 0 9px;                   
+}
+#headerTitle{
+    width: 200px;
+}
+
+.headerItems{
+    position: relative;
+    height: 46px;
+    cursor: pointer;
+}
+#headerItems{
+    width: 100%;    
+}
+.headerItem{
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    color: #FFFFFF;
+    background-repeat: no-repeat;
+    height: 100%;
+    align-items: center;
+    justify-content: center;  
+    width: 33.33333%;
+    position: relative;
+} 
+.overdue{
+    z-index: 30;
+}
+.notActive{
+    z-index: 20;
+}
+.inWork{
+    z-index: 10;
+}
+.displayNone{
+    display: none;                    
+}
+.displayFlex{
+    display: flex;
+}

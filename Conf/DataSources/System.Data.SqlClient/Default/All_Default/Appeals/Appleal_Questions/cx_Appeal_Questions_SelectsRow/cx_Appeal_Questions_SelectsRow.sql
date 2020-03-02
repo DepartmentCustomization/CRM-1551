@@ -14,7 +14,7 @@ SELECT
 	[Questions].[control_date],
 	[Questions].[question_content],
 	[Objects].Id AS [object_id],
-	isnull(ObjectTypes.name + N' : ', N'') + isnull([Objects].Name + ' ', N'') [object_name] --,concat(Districts.name + ' р-н., ',StreetTypes.shortname,' ',Streets.name, ' ', Buildings.number,Buildings.letter) as address_problem0
+	isnull(ObjectTypes.name + N' : ', N'') + isnull([Objects].Name + ' ', N'') [object_name] 
 ,
 	isnull(Districts.name + N' р-н., ', N'') + isnull(StreetTypes.shortname + N' ', N'') + isnull(Streets.name + N' ', N'') + isnull(Buildings.name, N'') address_problem,
 	ObjectTypes.name AS object_type_name,
@@ -34,7 +34,7 @@ SELECT
 	[Questions].[user_id],
 	[Questions].[edit_date],
 	[Questions].[user_edit_id],
-	perfom.Id AS perfom_id -- ,perfom.short_name as perfom_name
+	perfom.Id AS perfom_id 
 ,
 	IIF (
 		len(perfom.[head_name]) > 5,
@@ -56,7 +56,7 @@ SELECT
 		SELECT
 			top 1 CASE
 				WHEN assignment_state_id = 1 THEN 1
-				ELSE 0 -- when assignment_state_id <> 1 then 2
+				ELSE 0
 			END
 		FROM
 			Assignments
@@ -65,7 +65,8 @@ SELECT
 			AND main_executor = 1
 	) AS flag_is_state
 	,[Questions].[geolocation_lat]
-	,[Questions].[geolocation_lon]
+	,[Questions].[geolocation_lon],
+	Appeals.receipt_source_id 
 FROM
 	[dbo].[Questions]
 	LEFT JOIN [dbo].[Appeals] ON Appeals.Id = Questions.appeal_id
@@ -81,8 +82,7 @@ FROM
 	LEFT JOIN [dbo].[ObjectTypes] ON ObjectTypes.Id = [Objects].object_type_id
 	LEFT JOIN [dbo].[Districts] ON Districts.Id = [Buildings].district_id
 	LEFT JOIN [dbo].[Assignments] ON Assignments.question_id = Questions.Id
-	AND Assignments.main_executor = 1 --and Assignments.close_date is null
-	-- 	left join AssignmentConsiderations assC on assC.assignment_id = Assignments.Id
+	AND Assignments.main_executor = 1 
 	LEFT JOIN [dbo].[AssignmentConsiderations] assC ON assC.Id = Assignments.current_assignment_consideration_id
 	LEFT JOIN [dbo].[AssignmentResults] assR ON assR.Id = Assignments.AssignmentResultsId
 	LEFT JOIN [dbo].[AssignmentResolutions] assRn ON assRn.Id = Assignments.AssignmentResolutionsId

@@ -105,11 +105,14 @@
             this.sub1 = this.messageService.subscribe('search', this.searchRelust, this);
             this.dataGridInstance.onCellClick.subscribe(e => {
                 if(e.column) {
-                    if (e.column.dataField == 'EventId' && e.row != undefined) {
+                    if (e.column.dataField === 'EventId' && e.row !== undefined) {
                         if (e.data.gorodok_id === 0) {
                             window.open(String(location.origin + localStorage.getItem('VirtualPath') + '/sections/Events/edit/' + e.key));
                         } else if (e.data.gorodok_id === 1) {
-                            window.open(String(location.origin + localStorage.getItem('VirtualPath') + '/sections/Gorodok_global/view/' + e.key));
+                            window.open(String(location.origin +
+                                localStorage.getItem('VirtualPath') +
+                                '/sections/Gorodok_global/view/' + e.key
+                            ));
                         }
                     }
                 }
@@ -127,25 +130,65 @@
         },
         createMasterDetail: function(container, options) {
             let currentEmployeeData = options.data;
-            if (currentEmployeeData.short_answer == null || currentEmployeeData.short_answer == undefined) {
+            if (currentEmployeeData.short_answer === null || currentEmployeeData.short_answer === undefined) {
                 currentEmployeeData.short_answer = '';
             }
-            if (currentEmployeeData.zayavnyk_zmist == null || currentEmployeeData.zayavnyk_zmist == undefined) {
+            if (currentEmployeeData.zayavnyk_zmist === null || currentEmployeeData.zayavnyk_zmist === undefined) {
                 currentEmployeeData.zayavnyk_zmist = '';
             }
-            if (currentEmployeeData.zayavnyk_adress == null || currentEmployeeData.zayavnyk_adress == undefined) {
+            if (currentEmployeeData.zayavnyk_adress === null || currentEmployeeData.zayavnyk_adress === undefined) {
                 currentEmployeeData.zayavnyk_adress = '';
             }
-            let elementAdress__content = this.createElement('div', { className: 'elementAdress__content content', innerText: String(String(currentEmployeeData.zayavnyk_adress)) });
-            let elementAdress__caption = this.createElement('div', { className: 'elementAdress__caption caption', innerText: 'Адреса заявника' });
-            let elementAdress = this.createElement('div', { className: 'elementAdress element' }, elementAdress__caption, elementAdress__content);
-            let elementСontent__content = this.createElement('div', { className: 'elementСontent__content content', innerText: String(String(currentEmployeeData.zayavnyk_zmist)) });
-            let elementСontent__caption = this.createElement('div', { className: 'elementСontent__caption caption', innerText: 'Зміст' });
-            let elementСontent = this.createElement('div', { className: 'elementСontent element' }, elementСontent__caption, elementСontent__content);
-            let elementComment__content = this.createElement('div', { className: 'elementComment__content content', innerText: String(String(currentEmployeeData.short_answer)) });
-            let elementComment__caption = this.createElement('div', { className: 'elementComment__caption caption', innerText: 'Коментар виконавця' });
-            let elementComment = this.createElement('div', { className: 'elementСontent element' }, elementComment__caption, elementComment__content);
-            let elementsWrapper = this.createElement('div', { className: 'elementsWrapper' }, elementAdress, elementСontent, elementComment);
+            let elementAdress__content = this.createElement('div',
+                {
+                    className: 'elementAdress__content content',
+                    innerText: String(String(currentEmployeeData.zayavnyk_adress))
+                });
+            let elementAdress__caption = this.createElement('div',
+                {
+                    className: 'elementAdress__caption caption',
+                    innerText: 'Адреса заявника'
+                });
+            let elementAdress = this.createElement('div',
+                {
+                    className: 'elementAdress element'
+                },
+                elementAdress__caption, elementAdress__content
+            );
+            let elementСontent__content = this.createElement('div',
+                {
+                    className: 'elementСontent__content content', innerText: String(String(currentEmployeeData.zayavnyk_zmist))
+                }
+            );
+            let elementСontent__caption = this.createElement('div',
+                {
+                    className: 'elementСontent__caption caption', innerText: 'Зміст'
+                }
+            );
+            let elementСontent = this.createElement('div',
+                {
+                    className: 'elementСontent element'
+                },
+                elementСontent__caption, elementСontent__content
+            );
+            let elementComment__content = this.createElement('div',
+                {
+                    className: 'elementComment__content content', innerText: String(String(currentEmployeeData.short_answer))
+                }
+            );
+            let elementComment__caption = this.createElement('div',
+                {
+                    className: 'elementComment__caption caption', innerText: 'Коментар виконавця'
+                }
+            );
+            let elementComment = this.createElement('div',
+                {
+                    className: 'elementСontent element' }, elementComment__caption, elementComment__content
+            );
+            let elementsWrapper = this.createElement('div',
+                {
+                    className: 'elementsWrapper' }, elementAdress, elementСontent, elementComment
+            );
             container.appendChild(elementsWrapper);
             let elementsAll = document.querySelectorAll('.element');
             elementsAll.forEach(el => {
@@ -160,7 +203,7 @@
         changeOnTable: function(message) {
             let typeEvent = message.typeEvent.trim();
             let source = message.source;
-            if (typeEvent != 'Прострочені' && typeEvent != 'Не активні' && typeEvent != 'В роботі') {
+            if (typeEvent !== 'Прострочені' && typeEvent !== 'Не активні' && typeEvent !== 'В роботі') {
                 document.getElementById('table_events').style.display = 'none';
             } else {
                 document.getElementById('table_events').style.display = 'block';

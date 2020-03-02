@@ -1,5 +1,5 @@
-(function () {
-  return {
+(function() {
+    return {
         config: {
             query: {
                 code: 'NeVKompetentcii_686',

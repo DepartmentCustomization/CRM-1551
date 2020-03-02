@@ -31,6 +31,7 @@
                 { parameterCode: '@ass_id', parameterValue: this.id }
             ];
             this.form.setControlParameterValues('performer_id', param_ass_id);
+            this.form.setControlParameterValues('executor_person_id', param_ass_id);
             this.date_in_form = this.form.getControlValue('date_in_form')
             this.previous_result = this.form.getControlValue('result_id')
             this.details.setVisibility('detal_history', false);

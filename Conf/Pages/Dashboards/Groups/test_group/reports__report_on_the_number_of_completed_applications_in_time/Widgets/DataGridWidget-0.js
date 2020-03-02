@@ -3,7 +3,11 @@
         config: {
             query: {
                 code: 'db_second',
-                parameterValues: [{key: '@date_start', value: this.start_date},{key: '@date_end', value: this.finish_date},{key: '@place_id', value: this.place}],
+                parameterValues: [
+                    {key: '@date_start', value: this.start_date},
+                    {key: '@date_end', value: this.finish_date},
+                    {key: '@place_id', value: this.place}
+                ],
                 filterColumns: [],
                 sortColumns: [],
                 skipNotVisibleColumns: true,
@@ -189,7 +193,11 @@
             this.filter_dataEnd = currentDate;
             this.sub = this.messageService.subscribe('GlobalFilterChanged', this.chengeFilters, this);
             this.config.query.queryCode = 'db_second';
-            this.config.query.parameterValues = [{key: '@date_start', value: this.filter_dataStart},{key: '@date_end', value: this.filter_dataEnd},{key: '@place_id', value: this.place}];
+            this.config.query.parameterValues = [
+                {key: '@date_start', value: this.filter_dataStart},
+                {key: '@date_end', value: this.filter_dataEnd},
+                {key: '@place_id', value: this.place}
+            ];
             this.loadData();
         },
         chengeFilters:function(message) {

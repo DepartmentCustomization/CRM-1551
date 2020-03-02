@@ -123,7 +123,10 @@
             this.filter_dataEnd = currentDate;
             this.sub = this.messageService.subscribe('GlobalFilterChanged', this.chengeFilters, this);
             this.config.query.queryCode = 'db_first';
-            this.config.query.parameterValues = [{key: '@date_start', value: this.filter_dataStart},{key: '@date_end', value: this.filter_dataEnd}];
+            this.config.query.parameterValues = [
+                {key: '@date_start', value: this.filter_dataStart},
+                {key: '@date_end', value: this.filter_dataEnd}
+            ];
             this.loadData();
         },
         chengeFilters:function(message) {

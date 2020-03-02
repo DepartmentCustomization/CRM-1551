@@ -1,98 +1,238 @@
---declare @Id int = 39
+ -- DECLARE @Id INT = 15;
 
+SELECT
+	TOP 1
+	afs.Id,
+	ltrim(
+		rtrim(
+			isnull(abi.surname, N'') + ' ' + isnull(abi.firstname, N'') + ' ' + isnull(abi.fathername, N'')
+		)
+	) AS ApplicantFromSite_PIB,
+CASE
+		WHEN len(
+			isnull(
+				stuff(
+					(
+						SELECT
+							N' ,' + p.[PhoneNumber]
+						FROM
+							[CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts] p
+						WHERE
+							p.ApplicantFromSiteId = abi.Id
+							AND len(isnull(p.PhoneNumber, N'')) > 0
+							AND p.MoreContactTypeId = 1 FOR XML PATH('')
+					),
+					2,
+					1,
+					N''
+				),
+				N''
+			)
+		) > 0 THEN N'Основний: (' + isnull(
+			stuff(
+				(
+					SELECT
+						N' ,' + p.[PhoneNumber]
+					FROM
+						[CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts] p
+					WHERE
+						p.ApplicantFromSiteId = abi.Id
+						AND len(isnull(p.PhoneNumber, N'')) > 0
+						AND p.MoreContactTypeId = 1 FOR XML PATH('')
+				),
+				2,
+				1,
+				N''
+			),
+			N''
+		) + N'); '
+		ELSE N''
+	END + CASE
+		WHEN len(
+			isnull(
+				stuff(
+					(
+						SELECT
+							N' ,' + p.[PhoneNumber]
+						FROM
+							[CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts] p
+						WHERE
+							p.ApplicantFromSiteId = abi.Id
+							AND len(isnull(p.PhoneNumber, N'')) > 0
+							AND p.MoreContactTypeId = 2 FOR XML PATH('')
+					),
+					2,
+					1,
+					N''
+				),
+				N''
+			)
+		) > 0 THEN N'Додатковий: (' + isnull(
+			stuff(
+				(
+					SELECT
+						N' ,' + p.[PhoneNumber]
+					FROM
+						[CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts] p
+					WHERE
+						p.ApplicantFromSiteId = abi.Id
+						AND len(isnull(p.PhoneNumber, N'')) > 0
+						AND p.MoreContactTypeId = 2 FOR XML PATH('')
+				),
+				2,
+				1,
+				N''
+			),
+			N''
+		) + N'); '
+		ELSE N''
+	END AS [ApplicantFromSite_Phone],
+CASE
+		WHEN len(
+			isnull(
+				stuff(
+					(
+						SELECT
+							N' ,' + p.[Mail]
+						FROM
+							[CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts] p
+						WHERE
+							p.ApplicantFromSiteId = abi.Id
+							AND len(isnull(p.[Mail], N'')) > 0
+							AND p.MoreContactTypeId = 1 FOR XML PATH('')
+					),
+					2,
+					1,
+					N''
+				),
+				N''
+			)
+		) > 0 THEN N'Основний: (' + isnull(
+			stuff(
+				(
+					SELECT
+						N' ,' + p.[Mail]
+					FROM
+						[CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts] p
+					WHERE
+						p.ApplicantFromSiteId = abi.Id
+						AND len(isnull(p.[Mail], N'')) > 0
+						AND p.MoreContactTypeId = 1 FOR XML PATH('')
+				),
+				2,
+				1,
+				N''
+			),
+			N''
+		) + N'); '
+		ELSE N''
+	END + CASE
+		WHEN len(
+			isnull(
+				stuff(
+					(
+						SELECT
+							N' ,' + p.[Mail]
+						FROM
+							[CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts] p
+						WHERE
+							p.ApplicantFromSiteId = abi.Id
+							AND len(isnull(p.[Mail], N'')) > 0
+							AND p.MoreContactTypeId = 2 FOR XML PATH('')
+					),
+					2,
+					1,
+					N''
+				),
+				N''
+			)
+		) > 0 THEN N'Додатковий: (' + isnull(
+			stuff(
+				(
+					SELECT
+						N' ,' + p.[Mail]
+					FROM
+						[CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts] p
+					WHERE
+						p.ApplicantFromSiteId = abi.Id
+						AND len(isnull(p.[Mail], N'')) > 0
+						AND p.MoreContactTypeId = 2 FOR XML PATH('')
+				),
+				2,
+				1,
+				N''
+			),
+			N''
+		) + N'); '
+		ELSE N''
+	END AS [ApplicantFromSite_Mail],
 
-SELECT afs.Id
-	   ,ltrim(rtrim(isnull(abi.surname,N'') + ' ' + isnull(abi.firstname,N'') + ' ' + isnull(abi.fathername,N''))) as ApplicantFromSite_PIB
-	   ,case when len(isnull(stuff((select N' ,'+p.[PhoneNumber]
-									from [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts] p
-										where p.ApplicantFromSiteId=abi.Id
-										and len(isnull(p.PhoneNumber,N'')) > 0
-										and p.MoreContactTypeId = 1
-										for xml path('')), 2,1,N''),N'')) > 0
-					then N'Основний: ('+isnull(stuff((select N' ,'+p.[PhoneNumber]
-										from [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts] p
-										where p.ApplicantFromSiteId=abi.Id
-										and len(isnull(p.PhoneNumber,N'')) > 0
-										and p.MoreContactTypeId = 1
-										for xml path('')), 2,1,N''),N'')+N'); ' 
-					else N'' end
-					+
-					case when len(isnull(stuff((select N' ,'+p.[PhoneNumber]
-										from [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts] p
-										where p.ApplicantFromSiteId=abi.Id
-										and len(isnull(p.PhoneNumber,N'')) > 0
-										and p.MoreContactTypeId = 2
-										for xml path('')), 2,1,N''),N'')) > 0
-					then  N'Додатковий: ('+isnull(stuff((select N' ,'+p.[PhoneNumber]
-										from [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts] p
-										where p.ApplicantFromSiteId=abi.Id
-										and len(isnull(p.PhoneNumber,N'')) > 0
-										and p.MoreContactTypeId = 2
-										for xml path('')), 2,1,N''),N'')+N'); ' 
-					else N'' end as [ApplicantFromSite_Phone]
-
-      ,case when len(isnull(stuff((select N' ,'+p.[Mail]
-									from [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts] p
-										where p.ApplicantFromSiteId=abi.Id
-										and len(isnull(p.[Mail],N'')) > 0
-										and p.MoreContactTypeId = 1
-										for xml path('')), 2,1,N''),N'')) > 0
-					then N'Основний: ('+isnull(stuff((select N' ,'+p.[Mail]
-										from [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts] p
-										where p.ApplicantFromSiteId=abi.Id
-										and len(isnull(p.[Mail],N'')) > 0
-										and p.MoreContactTypeId = 1
-										for xml path('')), 2,1,N''),N'')+N'); ' 
-					else N'' end
-					+
-					case when len(isnull(stuff((select N' ,'+p.[Mail]
-										from [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts] p
-										where p.ApplicantFromSiteId=abi.Id
-										and len(isnull(p.[Mail],N'')) > 0
-										and p.MoreContactTypeId = 2
-										for xml path('')), 2,1,N''),N'')) > 0
-					then  N'Додатковий: ('+isnull(stuff((select N' ,'+p.[Mail]
-										from [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteMoreContacts] p
-										where p.ApplicantFromSiteId=abi.Id
-										and len(isnull(p.[Mail],N'')) > 0
-										and p.MoreContactTypeId = 2
-										for xml path('')), 2,1,N''),N'')+N'); ' 
-					else N'' end as [ApplicantFromSite_Mail]
-      ,isnull(stuff((select N';'+isnull(aa.Region + ' обл., ', N'') + isnull(aa.District + ' р-н, ', N'') 
-								   + isnull(' місто ' + aa.CityName +',', N'') + isnull(' вул. ' + aa.StreetName, N'') 
-								   + isnull(' буд. ' + aa.BuildingName, N'')
-										from [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteAddresses] aa
-										where aa.ApplicantFromSiteId=abi.Id
-										for xml path('')), 1,1,N''),N'') as [ApplicantFromSite_Address]
-	  ,abi.sex as [ApplicantFromSite_Sex]
-	  ,abi.birthdate as [ApplicantFromSite_Birthdate]
-	  ,(year(current_timestamp) - year(abi.birthdate)) as [ApplicantFromSite_Age]
-	  ,ss.id as [ApplicantFromSite_SocialState]
-	  ,ss.name as [ApplicantFromSite_SocialStateName]
-	  ,ap.id as [Applicant_Privilege]
-	  ,ap.name as [Applicant_PrivilegeName]
-
-	  ,afs.Id as [AppealFromSite_Id]
-      ,afs.[ReceiptDate] as [AppealFromSite_ReceiptDate]
-	  ,wdt.id as [AppealFromSite_WorkDirectionType]
-      ,wdt.name as [AppealFromSite_WorkDirectionTypeName]
-      ,obj.id as [AppealFromSite_Object]
-	  ,obj.name as [AppealFromSite_ObjectName]
-      ,afs.[Content] as [AppealFromSite_Content]
-      ,afs.[Appeal_Id] as [Appeal_Id]
-	  ,res.[Id] as [AppealFromSite_SiteAppealsResult]
-      ,res.[name] as [AppealFromSite_SiteAppealsResultName]
-      ,afs.[CommentModerator] as [AppealFromSite_CommentModerator]
-      ,afs.[ProcessingDate] as [AppealFromSite_ProcessingDate]
-      ,(select top 1 ApplicantId from [CRM_1551_Site_Integration].[dbo].[AppealsFromSite] where Id = @Id) as [Applicant_Id]
-	  ,afs.[geolocation_lat] as [AppealFromSite_geolocation_lat]
-	  ,afs.[geolocation_lon] as [AppealFromSite_geolocation_lon]
-  FROM [CRM_1551_Site_Integration].[dbo].[AppealsFromSite] afs
-  left join [CRM_1551_Site_Integration].[dbo].[ApplicantsFromSite] abi on abi.Id = afs.ApplicantFromSiteId 
-  left join [CRM_1551_Analitics].[dbo].[SocialStates] ss on ss.Id = abi.SocialStateId
-  left join [CRM_1551_Analitics].[dbo].[ApplicantPrivilege] ap on ap.Id = abi.ApplicantPrivilegeId
-  left join [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteAddresses] aa on aa.ApplicantFromSiteId = abi.Id
-  left join [CRM_1551_Analitics].[dbo].[SiteAppealsResults] res on res.id = afs.AppealFromSiteResultId
-  left join [CRM_1551_Site_Integration].[dbo].[WorkDirectionTypes] wdt on wdt.id = afs.WorkDirectionTypeId
-  left join [CRM_1551_Analitics].[dbo].[Objects] obj on obj.Id = afs.ObjectId
-	where afs.Id = @Id
+   IIF(aa.BuildingId IS NULL, 	
+   stuff(
+			(
+							SELECT TOP 1
+								N';' + isnull(aa.Region + N' обл., ', N'') + isnull(aa.District + N' р-н, ', N'') + isnull(N' місто ' + aa.CityName + ',', N'') + isnull(N' вул. ' + aa.StreetName, N'') + isnull(N' буд. ' + aa.BuildingName, N'')
+							FROM
+								[CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteAddresses] aa
+							WHERE
+								aa.ApplicantFromSiteId = abi.Id FOR XML PATH('')
+						),
+						1,
+						1,
+						N''
+					),
+			 d.name + N' р-н, ' + st.name + N' ' + s.name + N', буд. ' + b.name
+			) AS ApplicantFromSite_Address,
+	aa.ApplicantFromSiteId,
+	abi.sex AS [ApplicantFromSite_Sex],
+	abi.birthdate AS [ApplicantFromSite_Birthdate],
+(year(CURRENT_TIMESTAMP) - year(abi.birthdate)) AS [ApplicantFromSite_Age],
+	ss.id AS [ApplicantFromSite_SocialState],
+	ss.name AS [ApplicantFromSite_SocialStateName],
+	ap.id AS [Applicant_Privilege],
+	ap.name AS [Applicant_PrivilegeName],
+	afs.Id AS [AppealFromSite_Id],
+	afs.[ReceiptDate] AS [AppealFromSite_ReceiptDate],
+	wdt.id AS [AppealFromSite_WorkDirectionType],
+	wdt.name AS [AppealFromSite_WorkDirectionTypeName],
+	obj.id AS [AppealFromSite_Object],
+	obj.name AS [AppealFromSite_ObjectName],
+	afs.[Content] AS [AppealFromSite_Content],
+	afs.[Appeal_Id] AS [Appeal_Id],
+	res.[Id] AS [AppealFromSite_SiteAppealsResult],
+	res.[name] AS [AppealFromSite_SiteAppealsResultName],
+	afs.[CommentModerator] AS [AppealFromSite_CommentModerator],
+	afs.[ProcessingDate] AS [AppealFromSite_ProcessingDate],
+(
+		SELECT
+			TOP 1 ApplicantId
+		FROM
+			[CRM_1551_Site_Integration].[dbo].[AppealsFromSite]
+		WHERE
+			Id = @Id
+	) AS [Applicant_Id],
+	afs.[geolocation_lat] AS [AppealFromSite_geolocation_lat],
+	afs.[geolocation_lon] AS [AppealFromSite_geolocation_lon],
+	applicantObj.Id	AS ApplicantFromSite_Address_Building,
+	applicantObj.name AS ApplicantFromSite_Address_BuildingName,
+	abi.is_verified AS isVerify,
+	afs.Content AS question_content,
+	afs.ObjectId AS Question_Building,
+	obj.[name] AS Question_BuildingName
+FROM
+	[CRM_1551_Site_Integration].[dbo].[AppealsFromSite] afs
+	LEFT JOIN [CRM_1551_Site_Integration].[dbo].[ApplicantsFromSite] abi ON abi.Id = afs.ApplicantFromSiteId
+	LEFT JOIN [CRM_1551_Analitics].[dbo].[SocialStates] ss ON ss.Id = abi.SocialStateId
+	LEFT JOIN [CRM_1551_Analitics].[dbo].[ApplicantPrivilege] ap ON ap.Id = abi.ApplicantPrivilegeId
+	LEFT JOIN [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteAddresses] aa ON aa.ApplicantFromSiteId = abi.Id
+	LEFT JOIN [CRM_1551_Analitics].[dbo].[SiteAppealsResults] res ON res.id = afs.AppealFromSiteResultId
+	LEFT JOIN [CRM_1551_Site_Integration].[dbo].[WorkDirectionTypes] wdt ON wdt.id = afs.WorkDirectionTypeId
+	LEFT JOIN [CRM_1551_Analitics].[dbo].[Objects] obj ON obj.Id = afs.ObjectId
+	LEFT JOIN [CRM_1551_Analitics].[dbo].[Objects] applicantObj ON applicantObj.builbing_id = aa.BuildingId
+	LEFT JOIN CRM_1551_Analitics.dbo.Buildings b ON b.Id = aa.BuildingId
+	LEFT JOIN CRM_1551_Analitics.dbo.Streets s ON s.Id = b.street_id
+	LEFT JOIN CRM_1551_Analitics.dbo.StreetTypes st ON st.Id = s.street_type_id
+	LEFT JOIN CRM_1551_Analitics.dbo.Districts d ON d.Id = s.district_id
+WHERE
+	afs.Id = @Id
+	ORDER BY 5 DESC ;

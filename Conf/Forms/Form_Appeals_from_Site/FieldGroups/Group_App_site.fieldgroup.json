@@ -7,7 +7,15 @@
       "Code": "ApplicantFromSite_PIB",
       "Name": "ПІП",
       "FieldType": "text",
-      "Position": 2
+      "Position": 1,
+      "Width": "60%"
+    },
+    {
+      "Code": "isVerify",
+      "Name": "Верифікований",
+      "FieldType": "checkbox",
+      "Position": 2,
+      "Width": "40%"
     },
     {
       "Code": "ApplicantFromSite_Mail",
