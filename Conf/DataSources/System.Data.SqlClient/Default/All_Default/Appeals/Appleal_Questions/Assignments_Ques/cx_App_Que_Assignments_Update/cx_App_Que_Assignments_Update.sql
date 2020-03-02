@@ -432,7 +432,7 @@ BEGIN
 
 				BEGIN
 				BEGIN TRY 
-				BEGIN TRANSACTION ;
+				BEGIN TRANSACTION
 					SET @result_id = 3; -- Не в компетенції
 					SET @resolution_id = 1; -- Повернуто в 1551
 					SET @ass_state_id = 3; -- На перевірці
@@ -474,14 +474,14 @@ BEGIN
 						-- ,@rework_counter_count
 						, @rework_counter, GETUTCDATE() --@edit_date
 						, @user_edit_id);
-				COMMIT ;
+				COMMIT
 				 RETURN;
             END TRY
 
 			BEGIN CATCH
 				ROLLBACK;
 				RAISERROR (N'Произошла ошибка! Данные не изменены.', 15, 1);
-			END CATCH ; 
+			END CATCH
 			END 
 			
 			-- 3 Не в компетенції	NotInTheCompetence  
@@ -490,7 +490,7 @@ BEGIN
 				AND @resolution_id = 1)
 			BEGIN 
 			BEGIN TRY 
-				BEGIN TRANSACTION ;
+				BEGIN TRANSACTION
 				UPDATE AssignmentConsiderations
 				SET consideration_date = GETUTCDATE()
 				   ,short_answer = @short_answer
@@ -530,14 +530,14 @@ BEGIN
 					, @user_edit_id);
 				-- 			execute define_status_Question @question_id
 				-- exec pr_chech_in_status_assignment @Id, @result_id, @resolution_id
-			COMMIT ;
+			COMMIT
 				 RETURN;
             END TRY
 
 			BEGIN CATCH
 				ROLLBACK;
 				RAISERROR (N'Произошла ошибка! Данные не изменены.', 15, 1);
-			END CATCH ; 
+			END CATCH
 			END 
 
 			-- Если перенаправлено за належністю из 1551
@@ -1328,4 +1328,5 @@ IF (SELECT ar.code
 		WHERE [assignment_consideration_іd]=@current_consid;
 	END*/
 END
-END;
+END
+END 
