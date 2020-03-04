@@ -6,30 +6,30 @@ declare @column nvarchar(400)=N'Прострочені';
 */
 
 IF EXISTS (SELECT orr.*
-  FROM [OrganizationInResponsibilityRights] orr
-  INNER JOIN dbo.Positions p ON orr.position_id=P.Id
+  FROM [OrganizationInResponsibilityRights] orr with (nolock)
+  INNER JOIN dbo.Positions p with (nolock) ON orr.position_id=P.Id
   WHERE orr.organization_id=@organization_Id 
   AND P.programuser_id=@user_id)
 
 	BEGIN
 		
-DECLARE @comment_prost NVARCHAR(6) = (SELECT
+DECLARE @comment_prost NVARCHAR(max) = (SELECT
 		CASE
 			WHEN @column = N'Прострочені' THEN N' '
 			ELSE N'--'
 		END);
-DECLARE @comment_uvaga NVARCHAR(6) = (SELECT
+DECLARE @comment_uvaga NVARCHAR(max) = (SELECT
 		CASE
 			WHEN @column = N'Увага' THEN N' '
 			ELSE N'--'
 		END);
-DECLARE @comment_vroboti NVARCHAR(6) = (SELECT
+DECLARE @comment_vroboti NVARCHAR(max) = (SELECT
 		CASE
 			WHEN @column = N'В роботі' THEN N' '
 			ELSE N'--'
 		END);
 
-DECLARE @Nav_Ids NVARCHAR(400);
+DECLARE @Nav_Ids NVARCHAR(max);
 
 IF @navigation = N'Усі'
 BEGIN
@@ -69,11 +69,11 @@ end navigation,
   ,[Organizations3].short_name balans_name, [Questions].[receipt_date]
 
 from 
-[Assignments]
-INNER JOIN [dbo].[Questions] on [Assignments].question_id=[Questions].Id
-INNER JOIN [dbo].[Appeals] on [Questions].appeal_id=[Appeals].Id
-INNER JOIN [dbo].[ReceiptSources] on [Appeals].receipt_source_id=[ReceiptSources].Id
-left JOIN [dbo].[QuestionTypes] on [Questions].question_type_id=[QuestionTypes].Id
+[Assignments] with (nolock)
+INNER JOIN [dbo].[Questions] with (nolock) on [Assignments].question_id=[Questions].Id
+INNER JOIN [dbo].[Appeals] with (nolock) on [Questions].appeal_id=[Appeals].Id
+INNER JOIN [dbo].[ReceiptSources] with (nolock) on [Appeals].receipt_source_id=[ReceiptSources].Id
+left JOIN [dbo].[QuestionTypes] with (nolock) on [Questions].question_type_id=[QuestionTypes].Id
 INNER JOIN nav ON
 case when [ReceiptSources].code=N''UGL'' then N''УГЛ'' 
 when [ReceiptSources].code=N''Website_mob.addition'' then N''Електронні джерела''
@@ -82,29 +82,29 @@ when [QuestionTypes].parent_organization_is=N''true'' then N''Зауваженн
 else N''Інші доручення''
 end	= nav.Id
 
-INNER JOIN [dbo].[AssignmentStates] on [Assignments].assignment_state_id=[AssignmentStates].Id
-INNER JOIN [dbo].[AssignmentTypes] on [Assignments].assignment_type_id=[AssignmentTypes].Id
+INNER JOIN [dbo].[AssignmentStates] with (nolock) on [Assignments].assignment_state_id=[AssignmentStates].Id
+INNER JOIN [dbo].[AssignmentTypes] with (nolock) on [Assignments].assignment_type_id=[AssignmentTypes].Id
 
 LEFT JOIN tpu_organization tpuo 
 	ON [Assignments].executor_organization_id=tpuo.organizations_id
 LEFT JOIN tpu_position tpuop 
 	ON [Assignments].executor_person_id=tpuop.position_id
 
-left JOIN [dbo].[AssignmentResults] on [Assignments].[AssignmentResultsId]=[AssignmentResults].Id 
-left JOIN [dbo].[AssignmentResolutions] on [Assignments].[AssignmentResolutionsId]=[AssignmentResolutions].Id
-left JOIN [dbo].[Organizations] on [Assignments].executor_organization_id=[Organizations].Id
-left JOIN [dbo].[Objects] on [Questions].[object_id]=[Objects].Id
-left JOIN [dbo].[Buildings] on [Objects].builbing_id=[Buildings].Id
-left JOIN [dbo].[Streets] on [Buildings].street_id=[Streets].Id
-left JOIN [dbo].[Applicants] on [Appeals].applicant_id=[Applicants].Id
-left JOIN [dbo].[StreetTypes] on [Streets].street_type_id=[StreetTypes].Id
-left JOIN [dbo].[Districts] on [Buildings].district_id=[Districts].Id
+left JOIN [dbo].[AssignmentResults] with (nolock) on [Assignments].[AssignmentResultsId]=[AssignmentResults].Id 
+left JOIN [dbo].[AssignmentResolutions] with (nolock) on [Assignments].[AssignmentResolutionsId]=[AssignmentResolutions].Id
+left JOIN [dbo].[Organizations] with (nolock) on [Assignments].executor_organization_id=[Organizations].Id
+left JOIN [dbo].[Objects] with (nolock) on [Questions].[object_id]=[Objects].Id
+left JOIN [dbo].[Buildings] with (nolock) on [Objects].builbing_id=[Buildings].Id
+left JOIN [dbo].[Streets] with (nolock) on [Buildings].street_id=[Streets].Id
+left JOIN [dbo].[Applicants] with (nolock) on [Appeals].applicant_id=[Applicants].Id
+left JOIN [dbo].[StreetTypes] with (nolock) on [Streets].street_type_id=[StreetTypes].Id
+left JOIN [dbo].[Districts] with (nolock) on [Buildings].district_id=[Districts].Id
 
 left join (select [building_id], [executor_id]
-  from [ExecutorInRoleForObject]
+  from [ExecutorInRoleForObject] with (nolock)
   where [executor_role_id]=1) balans on [Buildings].Id=balans.building_id
 
-left JOIN [dbo].[Organizations] [Organizations3] on balans.executor_id=[Organizations3].Id
+left JOIN [dbo].[Organizations] [Organizations3] with (nolock) on balans.executor_id=[Organizations3].Id
 
 
 where
@@ -119,19 +119,19 @@ N'with
 temp_positions_user as
  (
  SELECT p.Id, [is_main], organizations_id
-  FROM [Positions] p
+  FROM [Positions] p with (nolock)
   WHERE p.[programuser_id]=N'''+@user_id+N'''
   UNION 
   SELECT p2.Id, p2.is_main, p2.organizations_id
-  FROM [Positions] p
-  INNER JOIN [dbo].[PositionsHelpers] ph ON p.Id=ph.main_position_id
-  INNER JOIN [dbo].[Positions] p2 ON ph.helper_position_id=p2.Id
+  FROM [Positions] p with (nolock)
+  INNER JOIN [dbo].[PositionsHelpers] ph with (nolock) ON p.Id=ph.main_position_id
+  INNER JOIN [dbo].[Positions] p2 with (nolock) ON ph.helper_position_id=p2.Id
   WHERE p.[programuser_id]=N'''+@user_id+N'''
   UNION 
   SELECT p2.Id, p2.is_main, p2.organizations_id
-  FROM [Positions] p
-  INNER JOIN [dbo].[PositionsHelpers] ph ON p.Id=ph.helper_position_id
-  INNER JOIN [dbo].[Positions] p2 ON ph.main_position_id=p2.Id
+  FROM [Positions] p with (nolock)
+  INNER JOIN [dbo].[PositionsHelpers] ph with (nolock) ON p.Id=ph.helper_position_id
+  INNER JOIN [dbo].[Positions] p2 with (nolock) ON ph.main_position_id=p2.Id
   WHERE p.[programuser_id]=N'''+@user_id+N'''
  )
 
