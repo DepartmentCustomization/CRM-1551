@@ -1,4 +1,6 @@
 -- DECLARE @user_edit_id NVARCHAR(128)=N'bc1b17e2-ffee-41b1-860a-41e1bae57ffd';
+SET @executor_person_id = IIF(IIF(@executor_person_id = '',NULL,@executor_person_id) = 0,NULL,IIF(@executor_person_id = '',NULL,@executor_person_id));
+
 
 DECLARE @org1761 TABLE (Id INT);
 WITH
@@ -92,6 +94,7 @@ BEGIN
 END
 ---> иначе - го дальше
 ELSE 
+
 BEGIN
 EXEC [dbo].pr_check_right_choice_result_resolution @Id
 												  ,@result_id
@@ -132,6 +135,7 @@ BEGIN
 	END
 	ELSE
 	BEGIN
+
 		--если результат, резолюция не изменились и...
 		IF @result_id = (SELECT
 					AssignmentResultsId
@@ -429,7 +433,8 @@ BEGIN
 				END
 
 				ELSE
-				BEGIN
+				BEGIN TRY
+				BEGIN TRANSACTION;
 					SET @result_id = 3; -- Не в компетенції
 					SET @resolution_id = 1; -- Повернуто в 1551
 					SET @ass_state_id = 3; -- На перевірці
@@ -471,15 +476,23 @@ BEGIN
 						-- ,@rework_counter_count
 						, @rework_counter, GETUTCDATE() --@edit_date
 						, @user_edit_id);
-			END
+				COMMIT;
 			RETURN;
-			END
+			END TRY
+
+			BEGIN CATCH
+				ROLLBACK;
+				RAISERROR (N'Произошла ошибка! Данные не изменены.', 15, 1);
+			END CATCH;
+			END 
 			
 			-- 3 Не в компетенції	NotInTheCompetence  
 			-- 1 Повернуто в 1551	returnedIn1551
 			IF (@result_id = 3
 				AND @resolution_id = 1)
-			BEGIN 
+			BEGIN
+			BEGIN TRY
+				BEGIN TRANSACTION; 
 
 				UPDATE AssignmentConsiderations
 				SET consideration_date = GETUTCDATE()
@@ -520,6 +533,14 @@ BEGIN
 					, @user_edit_id);
 				-- 			execute define_status_Question @question_id
 				-- exec pr_chech_in_status_assignment @Id, @result_id, @resolution_id
+			COMMIT;
+			RETURN;
+			END TRY
+
+			BEGIN CATCH
+				ROLLBACK;
+				RAISERROR (N'Произошла ошибка! Данные не изменены.', 15, 1);
+			END CATCH;
 			END
 
 			-- Если перенаправлено за належністю из 1551
