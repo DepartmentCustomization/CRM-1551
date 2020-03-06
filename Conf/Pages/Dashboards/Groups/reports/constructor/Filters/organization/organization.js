@@ -2,9 +2,9 @@
     return {
         placeholder: 'Організація',
         keyValue: 'Id',
-        displayValue: 'Name',
+        displayValue: 'orgName',
         baseQueryOptions: {
-            queryCode: 'ak_Filter_ConstructorOrganizationExec',
+            queryCode: 'OrganizationsByUser',
             filterColumns: null,
             limit: -1,
             parameterValues: [],

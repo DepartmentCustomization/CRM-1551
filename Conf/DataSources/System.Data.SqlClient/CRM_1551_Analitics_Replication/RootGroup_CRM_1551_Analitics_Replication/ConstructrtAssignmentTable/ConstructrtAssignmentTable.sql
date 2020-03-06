@@ -103,14 +103,21 @@ SELECT
 FROM
   dbo.[QuestionTypes];
 END 
--- select group_question_id,type_question_id from [QGroupIncludeQTypes]
---select * from #temp_OUT
---select * from [OrganizationGroups]
+
+DECLARE @targettimezone AS sysname = 'E. Europe Standard Time';
 SELECT
   Ass.Id AS AssignmentId,
-  CONVERT(VARCHAR(16),[Que].Registration_date, 120) AS Registration_date,
-  CONVERT(VARCHAR(16),[Vykon].Log_Date, 120) AS Vykon_date,
-  CONVERT(VARCHAR(16),[Closed].Log_Date, 120) Close_date,
+  CONVERT(VARCHAR(16),dateadd(MINUTE,datepart(tz, [Ass].registration_date 
+  AT TIME ZONE @targettimezone), [Ass].registration_date), 120)
+  AS Registration_date,
+
+  CONVERT(VARCHAR(16),dateadd(MINUTE,datepart(tz, [Vykon].Log_Date
+  AT TIME ZONE @targettimezone), [Vykon].Log_Date), 120) 
+  AS Vykon_date,
+
+  CONVERT(VARCHAR(16),dateadd(MINUTE,datepart(tz, [Closed].Log_Date
+  AT TIME ZONE @targettimezone), [Closed].Log_Date), 120)  
+  AS Close_date,
   [AssState].[name] [AssignmentState],
   1 Count_,
   CASE
@@ -267,9 +274,9 @@ FROM
           n = 1
       ) Closed ON [Ass].Id = Closed.assignment_id
     WHERE 
-      CAST([Que].Registration_date AS DATE)
-      BETWEEN CAST(@RegistrationDateFrom AS DATE)
-      AND CAST(@RegistrationDateTo AS DATE)
+      [Que].Registration_date  
+      BETWEEN @RegistrationDateFrom
+      AND @RegistrationDateTo
       AND (
         [Ass].[executor_organization_id] IN (
           SELECT
@@ -285,4 +292,4 @@ FROM
                 QueTypeId
               FROM
                 #temp_OUT_QuestionGroup)
-             AND  #filter_columns# 
+             AND  #filter_columns# ;

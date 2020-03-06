@@ -27,7 +27,6 @@
             let indexVykon_date = values[0].findIndex(el => el.code.toLowerCase() === 'vykon_date');
             let indexClose_date = values[0].findIndex(el => el.code.toLowerCase() === 'close_date');
             let indexQuestionState = values[0].findIndex(el => el.code.toLowerCase() === 'questionstate');
-            let indexAssignmentState = values[0].findIndex(el => el.code.toLowerCase() === 'assignmentstate');
             let indexCount = values[0].findIndex(el => el.code === 'Count_');
             let indexСount_prostr = values[0].findIndex(el => el.code.toLowerCase() === 'сount_prostr');
             let indexOrgExecutName = values[0].findIndex(el => el.code.toLowerCase() === 'orgexecutname');
@@ -44,13 +43,14 @@
             let indexQuestionStateRegistered = values[0].findIndex(el => el.code.toLowerCase() === 'stateregistered');
             let indexQuestionStateInWork = values[0].findIndex(el => el.code.toLowerCase() === 'stateinwork');
             let indexQuestionStateOnCheck = values[0].findIndex(el => el.code.toLowerCase() === 'stateoncheck');
-            let indexQuestionStateOnRefinement = values[0].findIndex(el =>
-                el.code.toLowerCase() === 'stateonrefinement'
-            );
+            let indexQuestionStateOnRefinement = values[0].findIndex(el => el.code.toLowerCase() === 'stateonrefinement');
             let indexQuestionStateClose = values[0].findIndex(el => el.code.toLowerCase() === 'stateclose');
+            let indexAssignmentState = values[0].findIndex(el => el.code.toLowerCase() === 'assignmentstate');
             let indexQuestionObject = values[0].findIndex(el => el.code.toLowerCase() === 'objectname');
             let indexQuestionResolution = values[0].findIndex(el => el.code.toLowerCase() === 'resolution');
             let indexQuestionResult = values[0].findIndex(el => el.code.toLowerCase() === 'result');
+            const columns = values.shift();
+            columns.index;
             const reportData = values.map((row, index) => ({
                 'Батькiвська 1 рiвень': values[index][indexOrgatization_Level_1],
                 'Батькiвська 2 рiвень': values[index][indexOrgatization_Level_2],
