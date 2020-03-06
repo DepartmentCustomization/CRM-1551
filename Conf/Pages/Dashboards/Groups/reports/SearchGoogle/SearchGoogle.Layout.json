@@ -21,9 +21,9 @@
         "border": "none",
         "children": [
           {
-            "code": "GoogleMapWidget-0",
-            "type": "GoogleMapWidgetComponent",
-            "name": "google"
+            "code": "search_LeafletMapWidget",
+            "type": "LeafletMapWidgetComponent",
+            "name": "allAppealLeafLetMap"
           }
         ],
         "id": "Container-0",
