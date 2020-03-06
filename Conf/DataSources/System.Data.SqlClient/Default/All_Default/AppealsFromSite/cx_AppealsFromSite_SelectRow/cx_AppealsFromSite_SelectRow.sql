@@ -171,7 +171,9 @@ CASE
    stuff(
 			(
 							SELECT TOP 1
-								N';' + isnull(aa.Region + N' обл., ', N'') + isnull(aa.District + N' р-н, ', N'') + isnull(N' місто ' + aa.CityName + ',', N'') + isnull(N' вул. ' + aa.StreetName, N'') + isnull(N' буд. ' + aa.BuildingName, N'')
+								N';' + isnull(aa.Region + N' обл., ', N'') + isnull(aa.District + N' р-н, ', N'') + 
+								isnull(N' місто ' + aa.CityName + ',', N'') + isnull(N' вул. ' + aa.StreetName, N'') + 
+								isnull(N' буд. ' + aa.BuildingName, N'') + isnull(N', кв. ' + aa.flat, N'')
 							FROM
 								[CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteAddresses] aa
 							WHERE
@@ -181,7 +183,7 @@ CASE
 						1,
 						N''
 					),
-			 d.name + N' р-н, ' + st.name + N' ' + s.name + N', буд. ' + b.name
+			 d.name + N' р-н, ' + st.name + N' ' + s.name + N', буд. ' + b.name  + isnull(N', кв. ' +aa.flat, N'')
 			) AS ApplicantFromSite_Address,
 	aa.ApplicantFromSiteId,
 	abi.sex AS [ApplicantFromSite_Sex],
