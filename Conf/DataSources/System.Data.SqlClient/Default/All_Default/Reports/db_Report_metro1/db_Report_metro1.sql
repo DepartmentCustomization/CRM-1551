@@ -1,83 +1,153 @@
-declare @sources table (Id int, source nvarchar(200));
-declare @call_q int;
-declare @site_q int;
-declare @ugl_q int;
-declare @result table (source nvarchar(200), val int);
+-- DECLARE @dateFrom DATETIME = '2020-01-01 00:00:00';
+-- DECLARE @dateTo DATETIME = getutcdate();
 
- --declare @dateFrom datetime = '2019-01-05 00:00:00';
- --declare @dateTo datetime = '2019-12-05 00:00:00';
+DECLARE @sources TABLE (Id INT, source NVARCHAR(200));
+DECLARE @call_q INT;
+DECLARE @site_q INT;
+DECLARE @ugl_q INT;
+DECLARE @result TABLE (source NVARCHAR(200), val INT);
 
- declare @filterTo datetime = dateadd(second,59,(dateadd(minute,59,(dateadd(hour,23,cast(cast(dateadd(day,0,@dateTo) as date) as datetime))))));
+DECLARE @filterTo DATETIME = dateadd(
+    SECOND,
+    59,
+(
+        dateadd(
+            MINUTE,
+            59,
+(
+                dateadd(
+                    HOUR,
+                    23,
+                    cast(cast(dateadd(DAY, 0, @dateTo) AS DATE) AS DATETIME)
+                )
+            )
+        )
+    )
+);
+
+INSERT INTO
+    @sources (Id, source)
+SELECT
+    Id,
+    [name]
+FROM
+    dbo.ReceiptSources
+WHERE
+    Id IN (1, 2, 3) ;
+    
+SET
+    @call_q = (
+        SELECT
+            isnull(COUNT(ass.Id), 0)
+        FROM
+            @sources s
+            JOIN dbo.ReceiptSources rs ON s.Id = rs.Id
+            JOIN dbo.Appeals a ON a.receipt_source_id = rs.Id
+            JOIN dbo.Questions q ON q.appeal_id = a.Id
+            JOIN dbo.Assignments ass ON ass.question_id = q.Id
+        WHERE
+            rs.Id = 1
+            AND ass.executor_organization_id = 51
+            AND q.registration_date BETWEEN @dateFrom
+            AND @filterTo
+        GROUP BY
+            s.Id
+    ) ;
+
+SET
+    @site_q = (
+        SELECT
+            isnull(COUNT(ass.Id), 0)
+        FROM
+            @sources s
+            JOIN dbo.ReceiptSources rs ON s.Id = rs.Id
+            JOIN dbo.Appeals a ON a.receipt_source_id = rs.Id
+            JOIN dbo.Questions q ON q.appeal_id = a.Id
+            JOIN dbo.Assignments ass ON ass.question_id = q.Id
+        WHERE
+            rs.Id = 2
+            AND ass.executor_organization_id = 51
+            AND q.registration_date BETWEEN @dateFrom
+            AND @filterTo
+        GROUP BY
+            s.Id
+    ) ;
+
+SET
+    @ugl_q = (
+        SELECT
+            isnull(COUNT(ass.Id), 0)
+        FROM
+            @sources s
+            JOIN dbo.ReceiptSources rs ON s.Id = rs.Id
+            JOIN dbo.Appeals a ON a.receipt_source_id = rs.Id
+            JOIN dbo.Questions q ON q.appeal_id = a.Id
+            JOIN dbo.Assignments ass ON ass.question_id = q.Id
+        WHERE
+            rs.Id = 3
+            AND ass.executor_organization_id = 51
+            AND q.registration_date BETWEEN @dateFrom
+            AND @filterTo
+        GROUP BY
+            s.Id
+    ) ;
+
+INSERT INTO
+    @result (source, val)
+SELECT
+    source,
+    isnull(@call_q, 0) call_q
+FROM
+    @sources
+WHERE
+    Id = 1;
+
+INSERT INTO
+    @result (source, val)
+SELECT
+    source,
+    isnull(@site_q, 0) site_q
+FROM
+    @sources
+WHERE
+    Id = 2;
+
+INSERT INTO
+    @result (source, val)
+SELECT
+    source,
+    isnull(@ugl_q, 0) ugl_q
+FROM
+    @sources
+WHERE
+    Id = 3;
 
 
-insert into @sources (Id, source)
-select Id, [name] from ReceiptSources
-where Id in (1,2,3)
-
-begin
-set @call_q = (
-select isnull(COUNT(a.Id),0) 
-from @sources s
-join ReceiptSources rs on s.Id = rs.Id 
-join Appeals a on a.receipt_source_id = rs.Id 
-join Questions q on q.appeal_id = a.Id 
-join [Objects] o on o.Id = q.[object_id]
-where rs.Id = 1 and o.Id = 125342
-and q.registration_date between @dateFrom and @filterTo
-group by s.Id )
-end
-begin
-set @site_q = (
-select isnull(COUNT(a.Id),0) 
-from @sources s
-join ReceiptSources rs on s.Id = rs.Id 
-join Appeals a on a.receipt_source_id = rs.Id 
-join Questions q on q.appeal_id = a.Id 
-join [Objects] o on o.Id = q.[object_id]
-where rs.Id = 2 and o.Id = 125342
-and q.registration_date between @dateFrom and @filterTo
-group by s.Id )
-end
-begin
-set @ugl_q = (
-select isnull(COUNT(a.Id),0) 
-from @sources s
-join ReceiptSources rs on s.Id = rs.Id 
-join Appeals a on a.receipt_source_id = rs.Id 
-join Questions q on q.appeal_id = a.Id 
-join [Objects] o on o.Id = q.[object_id]
-where rs.Id = 3 and o.Id = 125342
-and q.registration_date between @dateFrom and @filterTo
-group by s.Id )
-end
-
-begin
-insert into @result (source, val)
-select source, isnull(@call_q, 0) call_q
-from @sources 
-where Id = 1;
-end
-begin
-insert into @result (source, val)
-select source, isnull(@site_q, 0) site_q
-from @sources 
-where Id = 2;
-end
-begin 
-insert into @result (source, val)
-select source, isnull(@ugl_q, 0) ugl_q
-from @sources 
-where Id = 3;
-end
-
-select ROW_NUMBER() OVER(ORDER BY z.val asc) AS Id, * 
-from (           
-select 'Отримано дзвінків на лінію з питань метрополітену' [source] , '         ' val
-UNION ALL
-select 'Надано усних консультацій' [source] , '         ' val
-UNION ALL
-select case 
-when [source] = 'Сайт/моб. додаток' then 'Зареєстровано звернень через сайт/мобільний додаток'
-when [source] = 'УГЛ' then 'Зареєстровано звернень через УГЛ' 
-when [source] = 'Дзвінок в 1551' then 'Зареєстровано звернень через дзвінок 1551' end, val
-from @result ) z
+SELECT
+    ROW_NUMBER() OVER(
+        ORDER BY
+            Zidan.val ASC
+    ) AS Id,
+    *
+FROM
+    (
+        SELECT
+            N'Отримано дзвінків на лінію з питань метрополітену' [source],
+            '         ' val
+        UNION
+        ALL
+        SELECT
+            N'Надано усних консультацій' [source],
+            '         ' val
+        UNION
+        ALL
+        SELECT
+            CASE
+                WHEN [source] = N'Сайт/моб. додаток' THEN N'Зареєстровано звернень через сайт/мобільний додаток'
+                WHEN [source] = N'УГЛ' THEN N'Зареєстровано звернень через УГЛ'
+                WHEN [source] = N'Дзвінок в 1551' THEN N'Зареєстровано звернень через дзвінок 1551'
+            END,
+            val
+        FROM
+            @result
+    ) Zidan ;
