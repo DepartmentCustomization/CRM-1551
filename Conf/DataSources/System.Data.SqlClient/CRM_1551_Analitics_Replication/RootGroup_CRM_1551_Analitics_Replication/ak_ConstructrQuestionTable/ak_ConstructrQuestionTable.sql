@@ -1,9 +1,12 @@
-  --declare @RegistrationDateFrom datetime = '2020-01-01 06:00';
-  --declare @RegistrationDateTo datetime = '2020-02-24 14:25';
-  --declare @OrganizationExecId int = 1;
-  --declare @OrganizationExecGroupId int;
-  --declare @ReceiptSourcesId int = null;
-  --declare @QuestionGroupId int;
+ -- DECLARE @RegistrationDateFrom DATETIME = '2020-03-10 00:00';
+  -- DECLARE @RegistrationDateTo DATETIME = '2020-03-11 00:00';
+  -- DECLARE @OrganizationExecId INT = NULL;
+  -- DECLARE @OrganizationExecGroupId INT = NULL;
+  -- DECLARE @ReceiptSourcesId INT = NULL;
+  -- DECLARE @QuestionGroupId INT = NULL;
+
+  SET @RegistrationDateFrom = Dateadd(hh, Datediff(hh, Getutcdate(), Getdate()), @RegistrationDateFrom);
+  SET @RegistrationDateTo = Dateadd(hh, Datediff(hh, Getutcdate(), Getdate()), @RegistrationDateTo);
 
 IF object_id('tempdb..#temp_OUT') IS NOT NULL 
 BEGIN
@@ -272,7 +275,7 @@ FROM
           n = 1
       ) Closed ON [Ass].Id = Closed.assignment_id
     WHERE 
-      [Que].Registration_date  
+      DATEADD(hh, DATEDIFF(hh, GETUTCDATE(), GETDATE()), [Que].Registration_date)  
       BETWEEN @RegistrationDateFrom
       AND @RegistrationDateTo
       AND (
@@ -290,5 +293,5 @@ FROM
                 QueTypeId
               FROM
                 #temp_OUT_QuestionGroup)
-            AND #filter_columns# 
+           AND #filter_columns# 
 	;

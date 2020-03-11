@@ -1,153 +1,83 @@
--- DECLARE @dateFrom DATETIME = '2020-01-01 00:00:00';
--- DECLARE @dateTo DATETIME = getutcdate();
+-- DECLARE @dateFrom DATETIME = '2020-03-10 00:00';
+    -- DECLARE @dateTo DATETIME = '2020-03-11 00:00';
 
-DECLARE @sources TABLE (Id INT, source NVARCHAR(200));
-DECLARE @call_q INT;
-DECLARE @site_q INT;
-DECLARE @ugl_q INT;
-DECLARE @result TABLE (source NVARCHAR(200), val INT);
+  DECLARE @targettimezone AS sysname = 'E. Europe Standard Time';
+  ---> преобразование параметров дата-время из UTC в локальные значения
+  SET @dateFrom = Dateadd(hh, Datediff(hh, Getutcdate(), Getdate()), @dateFrom);
+  SET @dateTo = Dateadd(hh, Datediff(hh, Getutcdate(), Getdate()), @dateTo);
 
-DECLARE @filterTo DATETIME = dateadd(
-    SECOND,
-    59,
-(
-        dateadd(
-            MINUTE,
-            59,
-(
-                dateadd(
-                    HOUR,
-                    23,
-                    cast(cast(dateadd(DAY, 0, @dateTo) AS DATE) AS DATETIME)
-                )
-            )
-        )
-    )
-);
+  DECLARE @rsNames TABLE (sourceID INT, souceName NVARCHAR(100), pos TINYINT);
+  INSERT INTO @rsNames (sourceID, souceName)
+  SELECT 
+		Id,
+		CASE 
+		WHEN [name] = N'УГЛ' THEN N'Зареєстровано звернень через УГЛ'
+		WHEN [name] = N'Сайт/моб. додаток' THEN N'Зареєстровано звернень через сайт/мобільний додаток'
+		WHEN [name] = N'Дзвінок в 1551' THEN N'Зареєстровано звернень через дзвінок 1551' 
+		END 
+ FROM dbo.ReceiptSources
+ WHERE Id IN (1,2,3)
 
-INSERT INTO
-    @sources (Id, source)
-SELECT
-    Id,
-    [name]
-FROM
-    dbo.ReceiptSources
-WHERE
-    Id IN (1, 2, 3) ;
-    
-SET
-    @call_q = (
-        SELECT
-            isnull(COUNT(ass.Id), 0)
-        FROM
-            @sources s
-            JOIN dbo.ReceiptSources rs ON s.Id = rs.Id
-            JOIN dbo.Appeals a ON a.receipt_source_id = rs.Id
-            JOIN dbo.Questions q ON q.appeal_id = a.Id
-            JOIN dbo.Assignments ass ON ass.question_id = q.Id
-        WHERE
-            rs.Id = 1
-            AND ass.executor_organization_id = 51
-            AND q.registration_date BETWEEN @dateFrom
-            AND @filterTo
-        GROUP BY
-            s.Id
-    ) ;
+ UNION ALL
+ SELECT 4, N'Надано усних консультацій'
 
-SET
-    @site_q = (
-        SELECT
-            isnull(COUNT(ass.Id), 0)
-        FROM
-            @sources s
-            JOIN dbo.ReceiptSources rs ON s.Id = rs.Id
-            JOIN dbo.Appeals a ON a.receipt_source_id = rs.Id
-            JOIN dbo.Questions q ON q.appeal_id = a.Id
-            JOIN dbo.Assignments ass ON ass.question_id = q.Id
-        WHERE
-            rs.Id = 2
-            AND ass.executor_organization_id = 51
-            AND q.registration_date BETWEEN @dateFrom
-            AND @filterTo
-        GROUP BY
-            s.Id
-    ) ;
+ UNION ALL 
+ SELECT 5, N'Отримано дзвінків на лінію з питань метрополітену';
 
-SET
-    @ugl_q = (
-        SELECT
-            isnull(COUNT(ass.Id), 0)
-        FROM
-            @sources s
-            JOIN dbo.ReceiptSources rs ON s.Id = rs.Id
-            JOIN dbo.Appeals a ON a.receipt_source_id = rs.Id
-            JOIN dbo.Questions q ON q.appeal_id = a.Id
-            JOIN dbo.Assignments ass ON ass.question_id = q.Id
-        WHERE
-            rs.Id = 3
-            AND ass.executor_organization_id = 51
-            AND q.registration_date BETWEEN @dateFrom
-            AND @filterTo
-        GROUP BY
-            s.Id
-    ) ;
+ UPDATE @rsNames
+ SET pos = CASE
+ WHEN sourceID = 5 THEN 1
+ WHEN sourceID = 4 THEN 2
+ WHEN sourceID = 3 THEN 4
+ WHEN sourceID = 2 THEN 3
+ WHEN sourceID = 1 THEN 5 
+ END
+ FROM @rsNames ;
 
-INSERT INTO
-    @result (source, val)
-SELECT
-    source,
-    isnull(@call_q, 0) call_q
-FROM
-    @sources
-WHERE
-    Id = 1;
+DROP TABLE IF EXISTS ##tempData;
 
-INSERT INTO
-    @result (source, val)
-SELECT
-    source,
-    isnull(@site_q, 0) site_q
-FROM
-    @sources
-WHERE
-    Id = 2;
-
-INSERT INTO
-    @result (source, val)
-SELECT
-    source,
-    isnull(@ugl_q, 0) ugl_q
-FROM
-    @sources
-WHERE
-    Id = 3;
-
-
-SELECT
-    ROW_NUMBER() OVER(
+ SELECT 
+	    ROW_NUMBER() OVER(
         ORDER BY
-            Zidan.val ASC
-    ) AS Id,
-    *
-FROM
-    (
-        SELECT
-            N'Отримано дзвінків на лінію з питань метрополітену' [source],
-            '         ' val
-        UNION
-        ALL
-        SELECT
-            N'Надано усних консультацій' [source],
-            '         ' val
-        UNION
-        ALL
-        SELECT
-            CASE
-                WHEN [source] = N'Сайт/моб. додаток' THEN N'Зареєстровано звернень через сайт/мобільний додаток'
-                WHEN [source] = N'УГЛ' THEN N'Зареєстровано звернень через УГЛ'
-                WHEN [source] = N'Дзвінок в 1551' THEN N'Зареєстровано звернень через дзвінок 1551'
-            END,
-            val
-        FROM
-            @result
-    ) Zidan ;
+            app.receipt_source_id ASC
+       ) AS Id,
+		COUNT(ass.Id) qty,
+		app.receipt_source_id
+
+		INTO ##tempData 
+
+	FROM dbo.Assignments ass
+	INNER JOIN dbo.Questions q ON q.Id = ass.question_id
+	INNER JOIN dbo.Appeals app ON app.Id = q.appeal_id
+	WHERE executor_organization_id = 51 
+	AND DATEADD(hh, DATEDIFF(hh, GETUTCDATE(), GETDATE()), ass.registration_date) 
+	BETWEEN @dateFrom AND  @dateTo
+	GROUP BY app.receipt_source_id ;
+
+
+	DECLARE @otherVal INT  =  (
+	SELECT 
+		COUNT(ass.Id) 
+	FROM dbo.Assignments ass
+	INNER JOIN dbo.Questions q ON q.Id = ass.question_id
+	INNER JOIN dbo.Appeals app ON app.Id = q.appeal_id
+	WHERE executor_organization_id = 51 
+	AND DATEADD(hh, DATEDIFF(hh, GETUTCDATE(), GETDATE()), ass.registration_date)
+	BETWEEN @dateFrom AND  @dateTo 
+	AND app.receipt_source_id > 3 
+	   );
+ 
+    IF(@otherVal > 0)
+	BEGIN 
+	UPDATE ##tempData
+	SET qty = ISNULL(qty, 0) + @otherVal 
+	WHERE ##tempData.receipt_source_id = 1 ;
+	END
+
+	SELECT 
+		rs.sourceID AS Id,
+		rs.souceName AS [source],
+		ISNULL(td.qty, 0) AS val 
+	FROM @rsNames rs
+	LEFT JOIN ##tempData td ON td.receipt_source_id = rs.sourceID
+	ORDER BY pos ;
