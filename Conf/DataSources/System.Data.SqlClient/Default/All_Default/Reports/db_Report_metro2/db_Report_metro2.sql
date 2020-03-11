@@ -1,47 +1,30 @@
---   DECLARE @dateFrom DATETIME = '2020-01-01 00:00:00';
---   DECLARE @dateTo DATETIME = getutcdate();
+--   DECLARE @dateFrom DATETIME = '2020-03-10';
+--   DECLARE @dateTo DATETIME = '2020-03-11';
 
-DECLARE @sources TABLE (Id INT, source NVARCHAR(200));
-DECLARE @call_q INT;
-DECLARE @site_q INT;
-DECLARE @ugl_q INT;
-DECLARE @result TABLE (source NVARCHAR(200), val INT);
-
-DECLARE @filterTo DATETIME = dateadd(
-    SECOND,
-    59,
-(
-        dateadd(
-            MINUTE,
-            59,
-(
-                dateadd(
-                    HOUR,
-                    23,
-                    cast(cast(dateadd(DAY, 0, @dateTo) AS DATE) AS DATETIME)
-                )
-            )
-        )
-    )
-);
-
-SELECT
-    qt.Id AS Id,
-    qt.[name] AS qType,
-    COUNT(ass.Id) qty
-FROM
-    dbo.Questions q
-	JOIN dbo.Appeals a ON a.Id = q.appeal_id
-    JOIN dbo.QuestionTypes qt ON qt.Id = q.question_type_id
-    JOIN dbo.Assignments ass ON ass.question_id = q.Id 
-WHERE
-    ass.executor_organization_id = 51
-	AND a.receipt_source_id IN (1,2,3)
-    AND q.registration_date BETWEEN @dateFrom
-    AND @filterTo
-    AND #filter_columns#
-GROUP BY
-    qt.[name],
-    qt.Id
-ORDER BY
-    qty DESC ;
+  DECLARE @targettimezone AS sysname = 'E. Europe Standard Time';
+  ---> преобразование параметров дата-время из UTC в локальные значения
+  SET @dateFrom = Dateadd(hh, Datediff(hh, Getutcdate(), Getdate()), @dateFrom);
+  SET @dateTo = Dateadd(hh, Datediff(hh, Getutcdate(), Getdate()), @dateTo);
+  
+  SELECT 
+    Id, 
+	qty,
+	qType
+  FROM (
+  SELECT 
+  	   ROW_NUMBER() OVER(
+        ORDER BY
+            qt.[name] ASC
+       ) AS Id,
+		COUNT(ass.Id) AS qty,
+		qt.[name] AS qType
+	FROM dbo.Assignments ass
+	INNER JOIN dbo.Questions q ON q.Id = ass.question_id
+	INNER JOIN dbo.QuestionTypes qt ON qt.Id = q.question_type_id
+	WHERE executor_organization_id = 51 
+	AND DATEADD(hh, DATEDIFF(hh, GETUTCDATE(), GETDATE()), ass.registration_date)
+	BETWEEN @dateFrom AND  @dateTo
+	GROUP BY qt.name 
+	) Messi 
+	ORDER BY qty
+	DESC ;
