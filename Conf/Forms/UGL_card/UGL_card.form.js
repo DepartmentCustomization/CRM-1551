@@ -399,8 +399,6 @@
                 this.form.onControlValueChanged('Question_AnswerType', this.onChangedQuestion_AnswerType.bind(this));
                 this.form.onControlValueChanged('Question_Building', this.checkQuestionRegistrationAvailable);
                 this.form.onControlValueChanged('Question_Organization', this.checkQuestionRegistrationAvailable);
-                this.form.onControlValueChanged('Question_Organization', this.getOrgExecut);
-                this.form.onControlValueChanged('Question_Building', this.getOrgExecut);
                 const AppealUGL = {
                     queryCode: 'AppealUGL_Info',
                     parameterValues: [
@@ -946,7 +944,6 @@
                 this.form.setControlVisibility('Question_Organization', false);
                 document.getElementById('Question_Btn_Add').disabled = true;
             } else {
-                this.getOrgExecut();
                 this.onQuestionControlDate(questionType);
                 this.questionObjectOrg();
             }
@@ -972,8 +969,12 @@
                     ]
                 };
                 this.queryExecutor.getValues(objAndOrg).subscribe(data => {
-                    this.form.setControlValue('Question_OrganizationId',
-                        { key: data.rows[0].values[0], value: data.rows[0].values[1] });
+                    if(data) {
+                        this.form.setControlValue('Question_OrganizationId',
+                            { key: data.rows[0].values[0],
+                                value: data.rows[0].values[1] });
+                        document.getElementById('Question_Btn_Add').disabled = false;
+                    }
                 });
             }
         },
@@ -1028,6 +1029,7 @@
                         this.form.setControlValue('flat', null);
                         this.form.setControlValue('entrance', null);
                     } else {
+                        this.getOrgExecut();
                         document.getElementById('Question_Btn_Add').disabled = false;
                     }
                 }
@@ -1041,7 +1043,7 @@
                         this.form.setControlValue('flat', null);
                         this.form.setControlValue('entrance', null);
                     } else {
-                        document.getElementById('Question_Btn_Add').disabled = false;
+                        this.getOrgExecut();
                     }
                 }
                 if (this.is_obj === false && this.is_org === true) {
@@ -1054,11 +1056,11 @@
                         this.form.setControlValue('flat', null);
                         this.form.setControlValue('entrance', null);
                     } else {
-                        document.getElementById('Question_Btn_Add').disabled = false;
+                        this.getOrgExecut();
                     }
                 }
                 if (this.is_obj === false && this.is_org === false) {
-                    document.getElementById('Question_Btn_Add').disabled = false;
+                    this.getOrgExecut();
                 }
             }
         },
@@ -1101,14 +1103,11 @@
                     }]
                 };
                 this.queryExecutor.getValues(query).subscribe(function(data) {
-                    if (data.rows[0] !== undefined) {
-                        this.form.setControlValue('Applicant_District', data.rows[0].values[1]);
-                        this.form.setControlValue('ExecutorInRoleForObject', data.rows[0].values[2]);
+                    if (data) {
+                        this.form.setControlValue('Applicant_District', data.rows[0].values[0]);
+                        this.form.setControlValue('ExecutorInRoleForObject', data.rows[0].values[1]);
                     }
                 }.bind(this));
-            } else {
-                this.form.setControlValue('Applicant_District', null);
-                this.form.setControlValue('ExecutorInRoleForObject', null);
             }
         }
     };

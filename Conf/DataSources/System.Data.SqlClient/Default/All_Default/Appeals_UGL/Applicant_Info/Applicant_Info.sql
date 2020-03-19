@@ -73,7 +73,6 @@ SELECT
   house_block AS Applicant_HouseBlock,
   entrance AS Applicant_Entrance,
   flat AS Applicant_Flat,
-  d.[name] AS Applicant_District,
   ap.Id AS privilegeId,
   ap.[Name] AS privilegeName,
   ss.Id AS socialId,
