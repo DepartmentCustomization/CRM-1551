@@ -44,85 +44,85 @@
   {
     "Code": "privilegeId",
     "Name": "privilegeId",
-    "Position": 7,
+    "Position": 6,
     "IsPrintable": false
   },
   {
     "Code": "privilegeName",
     "Name": "privilegeName",
-    "Position": 8,
+    "Position": 7,
     "IsPrintable": false
   },
   {
     "Code": "socialId",
     "Name": "socialId",
-    "Position": 9,
+    "Position": 8,
     "IsPrintable": false
   },
   {
     "Code": "socialName",
     "Name": "socialName",
-    "Position": 10,
+    "Position": 9,
     "IsPrintable": false
   },
   {
     "Code": "applicantTypeId",
     "Name": "applicantTypeId",
-    "Position": 11,
+    "Position": 10,
     "IsPrintable": false
   },
   {
     "Code": "applicantTypeName",
     "Name": "applicantTypeName",
-    "Position": 12,
+    "Position": 11,
     "IsPrintable": false
   },
   {
     "Code": "Applicant_Sex",
     "Name": "Applicant_Sex",
-    "Position": 13,
+    "Position": 12,
     "IsPrintable": false
   },
   {
     "Code": "Applicant_BirthDate",
     "Name": "Applicant_BirthDate",
-    "Position": 14,
+    "Position": 13,
     "IsPrintable": false
   },
   {
     "Code": "Applicant_Email",
     "Name": "Applicant_Email",
-    "Position": 15,
+    "Position": 14,
     "IsPrintable": false
   },
   {
     "Code": "Applicant_Comment",
     "Name": "Applicant_Comment",
-    "Position": 16,
+    "Position": 15,
     "IsPrintable": false
   },
   {
     "Code": "ApplicantId",
     "Name": "ApplicantId",
-    "Position": 17,
+    "Position": 16,
     "IsPrintable": false
   },
   {
     "Code": "Applicant_Age",
     "Name": "Applicant_Age",
-    "Position": 18,
+    "Position": 17,
     "IsPrintable": false
   },
   {
     "Code": "execOrg",
     "Name": "execOrg",
-    "Position": 19,
+    "Position": 18,
     "IsPrintable": false
   },
   {
     "Code": "CardPhone",
     "Name": "CardPhone",
-    "Position": 20,
+    "Position": 19,
     "IsPrintable": false
   }
   ],
