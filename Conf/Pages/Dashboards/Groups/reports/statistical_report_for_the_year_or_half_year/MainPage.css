@@ -1,0 +1,174 @@
+.dx-datagrid-group-opened{
+    margin: 10px;
+    font: 18px/18px DXIcons;
+    height: 18px;
+    background-position: 0 0;
+    background-size: 10px 8px;
+    padding: 0;
+    text-align: center;
+    color: #959595;
+    background-image: url('assets/img/1551/crm1551_arrow_open.png');
+    background-repeat: no-repeat;
+}
+.dx-datagrid-group-opened::before{
+    display:none;
+}
+.dx-datagrid-group-closed::before{
+    display:none;
+}
+.dx-datagrid-group-closed{
+    margin: 10px;
+    font: 18px/18px DXIcons;
+    height: 18px;
+    background-position: 0 0;
+    background-size: 10px 10px;
+    padding: 0;
+    text-align: center;
+    color: #959595;
+    background-image: url('assets/img/1551/crm1551_arrow_close.png');
+    background-repeat: no-repeat;
+    
+}
+.dx-datagrid-text-content{
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    color: #999999;
+    text-align: left;
+}
+.dx-data-row{
+    font-weight: 400;
+    font-style: normal;
+    text-align: left;
+    font-size: 14px;
+    color: #000000;
+}
+.dx-master-detail-cell{
+    background-color: rgba(239, 247, 249, 1)!important;    
+}
+.dx-button-default{
+    background-color: rgba(21, 189, 244, 1)!important;
+}
+
+.dx-datagrid-export-button{
+    background-color: rgba(21, 189, 244, 1)!important;
+    color: #fff!important;
+    padding: 0 8px!important;
+}
+.dx-icon-export-excel-button{
+    color: #fff!important;
+    margin-right: 9px!important;
+}
+.dx-header-row>td>.dx-datagrid-text-content, .dx-datagrid-headers .dx-datagrid-table .dx-row>td  {
+    text-transform: uppercase;
+    text-align: center!important;
+}
+.dx-datagrid-content .dx-datagrid-table .dx-row>td, .dx-datagrid-content>.dx-datagrid-table>.dx-row>tr>td {
+    font-size: 17px!important;
+}
+
+.dx-datagrid-text-content {
+    white-space: wrap!important; 
+}
+.dx-datagrid-wrap{
+    white-space: wrap!important;     
+}
+
+
+
+#container{
+    display: flex;
+    justify-content: center;
+}
+#searchContainer{
+    /*width: 50%;*/
+}
+.searchContainer__input{
+    height: 34px;
+    width: 220px;
+    padding: 5px;
+    outline-style: none;
+}
+#modalWindowWrapper{
+    position:fixed;
+    display:flex;
+    width:100%;
+    height:100%;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,.7);
+    z-index:100;   
+    top: 44px;  
+    left: 0;
+}
+#modalWindow{
+    position: fixed;
+    top: 140px;
+    margin-left: 50%;
+    left: -450px;
+    z-index: 100;
+    background: #fafafa;
+    width: 100%;
+    max-width: 900px;
+    padding: 15px;
+}
+
+#modalBtnWrapper{
+    display: flex;
+    justify-content: center;                        
+}
+#btnWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;                        
+}
+#renderBtn, #modalBtnTrue{
+    background-color: #ff6e40;
+}
+#modalBtnExit{
+    background-color: #ffffff;
+    color: #333;
+}
+#modalBtnTrue, #modalBtnExit{
+    margin: 8px 10px;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);                        
+}
+#modalTitle{
+      font-weight: 600;
+   text-align: center;
+    font-size: 16px;
+    margin: 10px 0;    
+}
+.btn{
+    border-radius: 4px;
+    padding: 5px 20px;
+    color: #fff;
+    height: 28px;
+    font-size: 16px;
+    min-width: 60px!important;
+    border: 0;
+    font-weight: 600;
+    outline: none;
+}
+
+#reportTitle{
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+.btnWrap{
+    text-align: center;
+}
+#btnExcel{
+    background-color: rgba(21, 189, 244, 1)!important;
+    border-color: transparent;
+    color: #fff;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    padding: 7px 18px 8px;
+    border-radius: 5px;  
+    margin: 10px;
+    outline: none;
+}        

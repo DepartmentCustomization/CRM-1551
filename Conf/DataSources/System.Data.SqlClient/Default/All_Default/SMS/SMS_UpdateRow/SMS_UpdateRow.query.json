@@ -1,0 +1,30 @@
+{
+  "ModelType": "Query",
+  "Code": "SMS_UpdateRow",
+  "Name": "SMS_UpdateRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@HouseId",
+      "Name": "HouseId",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@FlatId",
+      "Name": "FlatId",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    },
+    {
+      "Code": "@SendClaims",
+      "Name": "SendClaims",
+      "ParameterType": "Boolean"
+    }
+  ]
+}

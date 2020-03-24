@@ -35,7 +35,7 @@
     {
       "Code": "Applicant_Id",
       "Name": "Applicant_Id",
-      "FieldType": "text",
+      "FieldType": "number",
       "Position": 999,
       "IsHidden": true
     }

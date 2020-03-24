@@ -1,5 +1,6 @@
 {
-  "IsMain": true,
+  "IsMain": false,
   "Type": "MultiSelectFilterComponent",
-  "Owner": "citizen_name"
+  "Owner": "citizen_name",
+  "Position": 50
 }

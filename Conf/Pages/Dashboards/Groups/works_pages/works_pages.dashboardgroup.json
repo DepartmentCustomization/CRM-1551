@@ -1,0 +1,8 @@
+{
+  "Icon": "computer",
+  "Position": 10,
+  "IconColor": "#cddc39",
+  "ModelType": "DashboardGroup",
+  "Code": "works_pages",
+  "Name": "Робочі сторінки"
+}

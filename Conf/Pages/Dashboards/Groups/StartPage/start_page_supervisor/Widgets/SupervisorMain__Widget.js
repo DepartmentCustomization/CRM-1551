@@ -211,7 +211,7 @@
                 {
                     className: 'group',
                     tabindex: '0',
-                    url: 'dashboard/page/prozvon_v2'
+                    url: 'dashboard/page/prozvon'
                 },
                 groupCall__icon, groupCall__description, groupCall__borderBottom, groupCall__borderRight
             );
@@ -255,7 +255,7 @@
                 {
                     className: 'group',
                     tabindex: '0',
-                    url: 'dashboard/page/сombining_duplicate_applicants'
+                    url: 'dashboard/page/combining_duplicate_applicants'
                 },
                 groupDoubled__icon, groupDoubled__description, groupDoubled__borderBottom, groupDoubled__borderRight
             );

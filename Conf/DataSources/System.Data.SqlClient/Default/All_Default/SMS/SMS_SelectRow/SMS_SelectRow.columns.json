@@ -1,0 +1,113 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 0,
+    "IsPrintable": false
+  },
+  {
+    "Code": "ContactId",
+    "Name": "ContactId",
+    "Position": 1,
+    "IsPrintable": false
+  },
+  {
+    "Code": "FlatId",
+    "Name": "FlatId",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "HouseId",
+    "Name": "HouseId",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "Name",
+    "Name": "Name",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "Phone",
+    "Name": "Phone",
+    "Position": 5,
+    "IsPrintable": false
+  },
+  {
+    "Code": "CreatedAt_Gorodok",
+    "Name": "CreatedAt_Gorodok",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "UpdatedAt_Gorodok",
+    "Name": "UpdatedAt_Gorodok",
+    "Position": 7,
+    "IsPrintable": false
+  },
+  {
+    "Code": "UpdatedAt",
+    "Name": "UpdatedAt",
+    "Position": 8,
+    "IsPrintable": false
+  },
+  {
+    "Code": "ContactType",
+    "Name": "ContactType",
+    "Position": 9,
+    "IsPrintable": false
+  },
+  {
+    "Code": "SendClaims",
+    "Name": "SendClaims",
+    "Position": 10,
+    "IsPrintable": false
+  },
+  {
+    "Code": "ChangedBy1557Web",
+    "Name": "ChangedBy1557Web",
+    "Position": 11,
+    "IsPrintable": false
+  },
+  {
+    "Code": "ChangedBy1551Web",
+    "Name": "ChangedBy1551Web",
+    "Position": 12,
+    "IsPrintable": false
+  },
+  {
+    "Code": "UpdatedAt_1551",
+    "Name": "UpdatedAt_1551",
+    "Position": 13,
+    "IsPrintable": false
+  },
+  {
+    "Code": "FlatName",
+    "Name": "FlatName",
+    "Position": 14,
+    "IsPrintable": false,
+    "ReferenceKeyCode": "FlatId"
+  },
+  {
+    "Code": "HouseName",
+    "Name": "HouseName",
+    "Position": 13,
+    "IsPrintable": false,
+    "ReferenceKeyCode": "HouseId"
+  },
+  {
+    "Code": "StreetId",
+    "Name": "StreetId",
+    "Position": 14,
+    "IsPrintable": false
+  },
+  {
+    "Code": "StreetName",
+    "Name": "StreetName",
+    "Position": 14,
+    "IsPrintable": false,
+    "ReferenceKeyCode": "StreetId"
+  }
+]

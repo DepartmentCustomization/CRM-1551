@@ -205,13 +205,10 @@ CASE
 	res.[name] AS [AppealFromSite_SiteAppealsResultName],
 	afs.[CommentModerator] AS [AppealFromSite_CommentModerator],
 	afs.[ProcessingDate] AS [AppealFromSite_ProcessingDate],
-(
-		SELECT
-			TOP 1 ApplicantId
-		FROM
-			[CRM_1551_Site_Integration].[dbo].[AppealsFromSite]
-		WHERE
-			Id = @Id
+   (SELECT 
+		applicant_id
+    FROM dbo.Appeals 
+	WHERE Id = (SELECT Appeal_Id FROM [CRM_1551_Site_Integration].[dbo].[AppealsFromSite] WHERE Id = @Id)
 	) AS [Applicant_Id],
 	afs.[geolocation_lat] AS [AppealFromSite_geolocation_lat],
 	afs.[geolocation_lon] AS [AppealFromSite_geolocation_lon],

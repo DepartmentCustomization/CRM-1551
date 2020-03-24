@@ -4,16 +4,8 @@
         hint: '',
         formatTitle: function() {},
         customConfig:
-                `
-                <style>
-                #reportTitle{
-                    text-align: center;
-                    font-size: 20px;
-                    font-weight: 600;
-                }
-                </style>
-                
-                 <div id='reportTitle'>Моніторинг та реагування на звернення громадян</div>
+                `                
+                <div id='reportTitle'>Моніторинг та реагування на звернення громадян</div>
                 `
         ,
         init: function() {

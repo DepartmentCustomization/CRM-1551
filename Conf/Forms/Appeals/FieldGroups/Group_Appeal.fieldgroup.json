@@ -68,6 +68,13 @@
       "Position": 8,
       "Icon": "search",
       "IconHint": "Пошук за № Звернення"
+    },
+    {
+      "Code": "Btn_SMS",
+      "Name": "Управління SMS оповіщенням",
+      "FieldType": "button",
+      "Position": 9,
+      "Width": "100%"
     }
   ]
 }

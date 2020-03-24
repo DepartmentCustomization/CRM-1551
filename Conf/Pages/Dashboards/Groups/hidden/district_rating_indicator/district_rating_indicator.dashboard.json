@@ -1,0 +1,9 @@
+{
+  "IsVisible": true,
+  "DashboardGroupCode": "hidden",
+  "Description": "",
+  "DescriptionUrl": "",
+  "ModelType": "Dashboard",
+  "Code": "district_rating_indicator",
+  "Name": "Рейтинг по району"
+}

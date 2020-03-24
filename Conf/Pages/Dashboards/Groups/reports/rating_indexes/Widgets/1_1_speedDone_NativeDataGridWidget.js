@@ -48,7 +48,23 @@
                 }
             };
             this.messageService.publish(msg);
-            this.dataGridInstance.onCellClick.subscribe(() => {
+            this.dataGridInstance.onCellClick.subscribe(e => {
+                if(e.column) {
+                    const executor = this.executor;
+                    const date = this.period;
+                    const ratingId = this.rating;
+                    const rdaId = e.row.data.Id;
+                    const question = e.row.dataField;
+                    const columnSliced = e.column.dataField.slice(0, 7);
+                    if(columnSliced === 'Percent') {
+                        const params = 'executor=' + executor + '&date=' + date + '&ratingId=' +
+                        ratingId + '&rdaId=' + rdaId + '&question=' + question;
+                        window.open(
+                            location.origin + localStorage.getItem('VirtualPath') +
+                            '/dashboard/page/rating_indexes_by_rda_question?' + params
+                        );
+                    }
+                }
             });
             this.sub = this.messageService.subscribe('showTable', this.showTable, this);
             this.sub1 = this.messageService.subscribe('FilterParameters', this.executeQuery, this);

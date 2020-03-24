@@ -59,6 +59,17 @@ declare @registration_date_fromP nvarchar(200)=
  else N'' end;
 
 
+declare @registration_date_question_fromP nvarchar(200)=
+ case when @registration_date_question_from is not null 
+ then N' and registration_date_question>= '''+format(convert(datetime2, @registration_date_question_from), 'yyyy-MM-dd HH:mm:00')+N'.000'''
+ else N'' end;
+
+ declare @registration_date_question_toP nvarchar(200)=
+ case when @registration_date_question_to is not null 
+ then N' and registration_date_question<= '''+format(convert(datetime2, @registration_date_question_to), 'yyyy-MM-dd HH:mm:59')+N'.999'''
+ else N'' end;
+
+
 
   declare @transfer_date_fromP nvarchar(200)=
  case when @transfer_date_from is not null 
@@ -145,7 +156,7 @@ ELSE N'1=1' END
  --select @execution_term_fromP, @execution_term_toP 
 
 
- declare @param4 nvarchar(max)=@registration_date_fromP+@registration_date_toP+@transfer_date_fromP+@transfer_date_toP
+ declare @param4 nvarchar(max)=@registration_date_question_fromP+@registration_date_question_toP+@registration_date_fromP+@registration_date_toP+@transfer_date_fromP+@transfer_date_toP
  +@state_changed_date_fromP+@state_changed_date_toP
  +@state_changed_date_done_fromP+@state_changed_date_done_toP
  +@execution_term_fromP+@execution_term_toP
@@ -689,6 +700,8 @@ when [Applicants].[birth_date] is null then year(getdate())-[Applicants].birth_y
 
   ,[Assignments].registration_date  as  [registration_date] -- good
   ,[AssignmentConsiderations].transfer_date [transfer_date] -- good
+
+  ,[Questions].[registration_date] as [registration_date_question]
 
   --,case when [Assignments].assignment_state_id=3
   --then [AssignmentConsiderations].consideration_date end [state_changed_date] -- good

@@ -1,0 +1,19 @@
+{
+  "ModelType": "Detail",
+  "Code": "Detail_SMS",
+  "Name": "Detail_SMS",
+  "FormCode": "SMS",
+  "SelectRowsQueryCode": "SMS_SelectRows",
+  "SelectRowQueryCode": "SMS_SelectRow",
+  "UpdateQueryCode": "SMS_UpdateRow",
+  "SectionCode": "",
+  "Position": 1,
+  "IsExpand": true,
+  "PrintType": "None",
+  "QueryParameters": [
+    {
+      "FormFieldName": "Phone",
+      "ParameterCode": "@phone_number"
+    }
+  ]
+}

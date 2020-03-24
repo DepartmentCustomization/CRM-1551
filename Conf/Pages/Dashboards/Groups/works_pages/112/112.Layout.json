@@ -1,0 +1,352 @@
+{
+  "css": "",
+  "rootContainer": {
+    "width": "auto",
+    "margin": "0",
+    "flexWrap": "nowrap",
+    "flexDirection": "row",
+    "order": 1,
+    "flexGrow": 1,
+    "alignSelf": "auto",
+    "border": "none",
+    "children": [
+      {
+        "width": "calc(53% - 10px)",
+        "margin": "0 5px 10px",
+        "flexWrap": "nowrap",
+        "flexDirection": "column",
+        "order": 1,
+        "flexGrow": 1,
+        "alignSelf": "auto",
+        "border": "none",
+        "children": [
+          {
+            "width": "auto",
+            "margin": "0 0 10px 0",
+            "flexWrap": "nowrap",
+            "flexDirection": "row",
+            "order": 1,
+            "flexGrow": 1,
+            "alignSelf": "auto",
+            "border": "none",
+            "children": [
+              {
+                "code": "accident_info_CustomWidget",
+                "type": "CustomWidgetComponent",
+                "name": "accident_info"
+              }
+            ],
+            "id": "Container-3",
+            "height": "auto",
+            "minHeight": "calc(69% - 10px)",
+            "minWidth": "300px",
+            "backgroundColor": "#e8e7e7"
+          },
+          {
+            "width": "auto",
+            "margin": "0 0 10px",
+            "flexWrap": "wrap",
+            "flexDirection": "row",
+            "order": 3,
+            "flexGrow": 1,
+            "alignSelf": "auto",
+            "border": "none",
+            "children": [
+              {
+                "code": "accident_caller_CustomWidget",
+                "type": "CustomWidgetComponent",
+                "name": "accident_caller"
+              }
+            ],
+            "id": "Container-3",
+            "height": "auto",
+            "minHeight": "calc(55% - 10px)",
+            "minWidth": "300px",
+            "backgroundColor": "#e8e7e7",
+            "containerId": "accident_caller"
+          },
+          {
+            "width": "auto",
+            "margin": "0 0 10px",
+            "flexWrap": "wrap",
+            "flexDirection": "row",
+            "order": 2,
+            "flexGrow": 1,
+            "alignSelf": "auto",
+            "border": "none",
+            "children": [
+              {
+                "code": "accident_patient_CustomWidget",
+                "type": "CustomWidgetComponent",
+                "name": "accident_patient"
+              }
+            ],
+            "id": "Container-3",
+            "height": "auto",
+            "minHeight": "calc(45% - 10px)",
+            "minWidth": "300px",
+            "backgroundColor": "#e8e7e7",
+            "containerId": "accident_patient"
+          }
+        ],
+        "id": "Container-0",
+        "height": "calc(100% - 10px)",
+        "minHeight": "calc(100% - 10px)",
+        "minWidth": "300px",
+        "backgroundColor": "#e8e7e7"
+      },
+      {
+        "width": "calc(33% - 10px)",
+        "margin": "0 5px 10px",
+        "flexWrap": "wrap",
+        "flexDirection": "row",
+        "order": 1,
+        "flexGrow": 1,
+        "alignSelf": "auto",
+        "border": "none",
+        "children": [
+          {
+            "width": "calc(100% - 10px)",
+            "margin": "0 0 10px",
+            "flexWrap": "nowrap",
+            "flexDirection": "row",
+            "order": 2,
+            "flexGrow": 1,
+            "alignSelf": "auto",
+            "border": "none",
+            "children": [
+              {
+                "width": "auto",
+                "margin": "0 0 10px",
+                "flexWrap": "wrap",
+                "flexDirection": "row",
+                "order": 2,
+                "flexGrow": 1,
+                "alignSelf": "auto",
+                "border": "none",
+                "children": [
+                  {
+                    "code": "all_appeal_LeafletMapWidget",
+                    "type": "CustomWidgetComponent",
+                    // "type": "LeafletMapWidgetComponent",
+                    "name": "allAppealLeafLetMap"
+                  }
+                ],
+                "id": "Container-3",
+                "height": "calc(100% - 10px)",
+                "minHeight": "50px",
+                "minWidth": "100px",
+                "backgroundColor": "#e8e7e7",
+                "containerId": "allAppealLeafLetMap"
+              },
+              {
+                "width": "auto",
+                "margin": "0",
+                "flexWrap": "wrap",
+                "flexDirection": "column",
+                "order": 2,
+                "flexGrow": 1,
+                "alignSelf": "auto",
+                "border": "none",
+                "children": [
+                  {
+                    "width": "auto",
+                    "margin": "0 5px",
+                    "flexWrap": "wrap",
+                    "flexDirection": "row",
+                    "order": 1,
+                    "flexGrow": 1,
+                    "alignSelf": "auto",
+                    "border": "none",
+                    "children": [
+                      {
+                        "code": "search_LeafletMapWidget",
+                        "type": "LeafletMapWidgetComponent",
+                        "name": "searchLeafLetMap"
+                      }
+                    ],
+                    "id": "Container-3",
+                    "height": "calc(50% - 10px)",
+                    "minHeight": "100px",
+                    "minWidth": "100px",
+                    "backgroundColor": "#e8e7e7"
+                  },
+                  {
+                    "width": "auto",
+                    "margin": "0 5px",
+                    "flexWrap": "wrap",
+                    "flexDirection": "row",
+                    "order": 1,
+                    "flexGrow": 1,
+                    "alignSelf": "auto",
+                    "border": "none",
+                    "children": [
+                      {
+                        "code": "search_address_CustomWidget",
+                        "type": "CustomWidgetComponent",
+                        "name": "searchAddressContainer"
+                      }
+                    ],
+                    "id": "Container-3",
+                    "height": "calc(50% - 10px)",
+                    "minHeight": "100px",
+                    "minWidth": "100px",
+                    "backgroundColor": "#e8e7e7"
+                  }
+                ],
+                "id": "Container-3",
+                "height": "calc(100% - 10px)",
+                "minHeight": "50px",
+                "minWidth": "100px",
+                "backgroundColor": "#e8e7e7",
+                "containerId": "searchAddressContainer"
+              }
+            ],
+            "id": "Container-3",
+            "height": "calc(100% - 10px)",
+            "minHeight": "50px",
+            "minWidth": "100px",
+            "backgroundColor": "#e8e7e7"
+          }
+        ],
+        "id": "Container-1",
+        "height": "calc(100% - 10px)",
+        "minHeight": "calc(100% - 10px)",
+        "minWidth": "100px",
+        "backgroundColor": "#e8e7e7"
+      },
+      {
+        "width": "calc(33% - 10px)",
+        "margin": "0 5px 10px",
+        "flexWrap": "wrap",
+        "flexDirection": "row",
+        "order": 1,
+        "flexGrow": 1,
+        "alignSelf": "auto",
+        "border": "none",
+        "children": [
+          {
+            "width": "calc(100% - 10px)",
+            "margin": "0",
+            "flexWrap": "wrap",
+            "flexDirection": "row",
+            "order": 1,
+            "flexGrow": 1,
+            "alignSelf": "auto",
+            "border": "none",
+            "children": [
+              {
+                "code": "card_algorithm_CustomWidget",
+                "type": "CustomWidgetComponent",
+                "name": "cardAlgorithmContainer"
+              }
+            ],
+            "id": "Container-3",
+            "height": "46px",
+            "minHeight": "30px",
+            "minWidth": "100px",
+            "backgroundColor": "white",
+            "containerId": "cardAlgorithmContainer"
+          },
+          {
+            "width": "calc(100% - 10px)",
+            "margin": "0",
+            "flexWrap": "wrap",
+            "flexDirection": "row",
+            "order": 1,
+            "flexGrow": 1,
+            "alignSelf": "auto",
+            "border": "none",
+            "children": [
+              {
+                "width": "calc(100% - 10px)",
+                "margin": "0",
+                "flexWrap": "wrap",
+                "flexDirection": "row",
+                "order": 1,
+                "flexGrow": 1,
+                "alignSelf": "auto",
+                "border": "none",
+                "children": [
+                  {
+                    "code": "event_cards_CustomWidget",
+                    "type": "CustomWidgetComponent",
+                    "name": "eventCardsContainer"
+                  }
+                ],
+                "id": "Container-3",
+                "height": "calc(100% - 60px)",
+                "minHeight": "100px",
+                "minWidth": "100px",
+                "backgroundColor": "white",
+                "containerId": "eventCardsContainer"
+              },
+              {
+                "width": "calc(100% - 10px)",
+                "margin": "0",
+                "flexWrap": "wrap",
+                "flexDirection": "row",
+                "order": 1,
+                "flexGrow": 1,
+                "alignSelf": "auto",
+                "border": "none",
+                "children": [
+                  {
+                    "code": "event_algorithm_CustomWidget",
+                    "type": "CustomWidgetComponent",
+                    "name": "eventAlgorithmContainer"
+                  }
+                ],
+                "id": "Container-3",
+                "height": "calc(100% - 60px)",
+                "minHeight": "100px",
+                "minWidth": "100px",
+                "backgroundColor": "white",
+                "containerId": "eventAlgorithmContainer"
+              }
+            ],
+            "id": "Container-3",
+            "height": "calc(100% - 120px)",
+            "minHeight": "100px",
+            "minWidth": "100px",
+            "backgroundColor": "white",
+            "containerId": "cardAlgorithmContainer"
+          },
+          {
+            "width": "calc(100% - 10px)",
+            "margin": "0 5px",
+            "flexWrap": "wrap",
+            "flexDirection": "row",
+            "order": 1,
+            "flexGrow": 1,
+            "alignSelf": "auto",
+            "border": "none",
+            "children": [
+              {
+                "code": "save_button_CustomWidget",
+                "type": "CustomWidgetComponent",
+                "name": "saveButtonContainer"
+              }
+            ],
+            "id": "Container-3",
+            "height": "10px",
+            "minHeight": "10px",
+            "minWidth": "100px",
+            "backgroundColor": "transparent",
+            "containerId": "saveButtonContainer"
+          }
+        ],
+        "id": "Container-2",
+        "height": "calc(100% - 10px)",
+        "minHeight": "calc(100% - 10px)",
+        "minWidth": "100px",
+        "backgroundColor": "#fff"
+      }
+    ],
+    "id": "Container-0",
+    "height": "auto",
+    "minHeight": "100%",
+    "minWidth": "100%",
+    "backgroundColor": "#e8e7e7"
+  }
+}

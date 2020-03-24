@@ -5,29 +5,6 @@
         formatTitle: function() {},
         customConfig:
                 `
-                <style>
-                // #selectionWrapper{
-                //     display: flex;
-                //     justify-content: space-around;    
-                //     align-items: center;
-                //     width: 50%;
-                //     margin: 0 auto;                    
-                // }
-                // #questionDefaultSelect{
-                //     border: 1px solid black;
-                //     padding: 10px;
-                //     background-color: #dddddd;                    
-                // }
-                // #questionGroupSelect{
-                //     border: 1px solid black;
-                //     background-color:  rgba(21, 189, 244, 1);
-                //     padding: 11px;
-                // }
-                // .radio{
-                //     width: 20px;
-                //     height: 20px;                    
-                // }
-                </style>
                 <div id='tabsContainer' ></div>
                 `
         ,

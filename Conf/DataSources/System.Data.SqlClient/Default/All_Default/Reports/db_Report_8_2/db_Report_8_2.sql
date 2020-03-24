@@ -1,57 +1,171 @@
- --declare @dateFrom datetime = '2019-11-05 00:00:00';
- --declare @dateTo datetime = current_timestamp;
- --declare @typeId int = 3;
+-- DECLARE @dateFrom DATE = '2019-12-01';
+-- DECLARE @dateTo DATE = cast(CURRENT_TIMESTAMP AS DATE);
+-- DECLARE @typeId INT = 3;
+-- DECLARE @organization INT = 0;
+-- DECLARE @organizationGroup INT = 0;
 
- declare @filterTo datetime = dateadd(second,59,(dateadd(minute,59,(dateadd(hour,23,cast(cast(dateadd(day,0,@dateTo) as date) as datetime))))));
+DECLARE @organization_t TABLE (questionOrg INT);
 
-if object_id('tempdb..#temp_OUT') is not null drop table #temp_OUT
-create table #temp_OUT(
-GroupQuestionId    int,
-QuestionTypeName  nvarchar(200),
-QuestionTypeId     int
-)
+SET @organization = IIF(@organization = 0, 1, @organization);
+SET @organizationGroup = IIF(@organizationGroup = 0, NULL, @organization);
 
-
-DECLARE @QuestionRowId INT
-DECLARE @CURSOR CURSOR
-SET @CURSOR  = CURSOR SCROLL
-FOR
-  select Id from [dbo].[QuestionTypes] where question_type_id = @typeId
-OPEN @CURSOR
-FETCH NEXT FROM @CURSOR INTO @QuestionRowId
-WHILE @@FETCH_STATUS = 0
 BEGIN
-
-		;WITH  QuestionTypesH (ParentId, Id, [Name], level, Label) AS
-		  (
-		      SELECT question_type_id as ParentId, Id, name as [Name], 0, 
-			  CAST(rtrim(Id)+ '/' AS NVARCHAR(MAX)) As Label
-		      FROM [dbo].[QuestionTypes]
-		      WHERE Id = @QuestionRowId
-		      UNION ALL
-		    SELECT o.question_type_id as ParentId, o.Id, o.name as [Name], level + 1,
-			  CAST(rtrim(h.Label)  + rtrim(o.Id) + '/' AS NVARCHAR(MAX)) As Label
-		      FROM [dbo].[QuestionTypes]  o 
-		      JOIN QuestionTypesH h ON o.question_type_id = h.Id
-		  )
-		  insert into #temp_OUT (GroupQuestionId, QuestionTypeId, QuestionTypeName)
-		  SELECT @QuestionRowId, Id, Name
-		  FROM QuestionTypesH
-
-FETCH NEXT FROM @CURSOR INTO @QuestionRowId
+WITH RecursiveOrg (Id, parentID) AS (
+    SELECT
+        o.Id,
+        parent_organization_id
+    FROM
+       [dbo].[Organizations] o
+    WHERE
+        o.Id = @organization
+    UNION
+    ALL
+    SELECT
+        o.Id,
+        o.parent_organization_id
+    FROM
+        [dbo].[Organizations] o
+        JOIN RecursiveOrg r ON o.parent_organization_id = r.Id
+)
+INSERT INTO
+    @organization_t
+SELECT
+     Id
+FROM
+    RecursiveOrg r ;
 END
-CLOSE @CURSOR
 
-  select top 10 QuestionTypeId as Id,
-   case when QuestionTypeId is not null then 
-   (select name from QuestionTypes where Id = QuestionTypeId) else '' end
-   as qName, isnull(sum(val),0) qty
-  from #temp_OUT o
-  left join (select count(q.Id) val, qt.Id 
-             from Questions q
-			 JOIN QuestionTypes qt ON q.question_type_id = qt.Id
-			 where q.registration_date between @dateFrom and @filterTo
-			 group by qt.Id  
-			 ) z on z.Id = o.QuestionTypeId		 
-			 group by o.QuestionTypeId
-			 order by qty desc
+IF(@organizationGroup IS NOT NULL)
+BEGIN
+INSERT INTO @organization_t(questionOrg)
+SELECT 
+	organization_id
+FROM dbo.OGroupIncludeOrganizations 
+WHERE organization_group_id = @organizationGroup ;
+END
+
+DECLARE @filterTo DATETIME = dateadd(
+	SECOND,
+	59,
+(
+		dateadd(
+			MINUTE,
+			59,
+(
+				dateadd(
+					HOUR,
+					23,
+					cast(cast(dateadd(DAY, 0, @dateTo) AS DATE) AS DATETIME)
+				)
+			)
+		)
+	)
+);
+
+IF object_id('tempdb..#temp_OUT') IS NOT NULL 
+BEGIN
+DROP TABLE #temp_OUT ;
+END
+
+CREATE TABLE #temp_OUT(
+GroupQuestionId INT,
+QuestionTypeName NVARCHAR(200),
+QuestionTypeId INT
+) WITH (DATA_COMPRESSION = PAGE);
+
+DECLARE @QuestionRowId INT; 
+DECLARE @CURSOR CURSOR;
+SET
+	@CURSOR = CURSOR SCROLL FOR
+SELECT
+	Id
+FROM
+	[dbo].[QuestionTypes]
+WHERE
+	question_type_id = @typeId;
+
+OPEN @CURSOR FETCH NEXT
+FROM
+	@CURSOR INTO @QuestionRowId ;
+
+WHILE @@FETCH_STATUS = 0 
+BEGIN
+WITH QuestionTypesH (ParentId, Id, [Name], LEVEL, Label) AS (
+	SELECT
+		question_type_id AS ParentId,
+		Id,
+		name AS [Name],
+		0,
+		CAST(rtrim(Id) + '/' AS NVARCHAR(MAX)) AS Label
+	FROM
+		[dbo].[QuestionTypes]
+	WHERE
+		Id = @QuestionRowId
+	UNION
+	ALL
+	SELECT
+		o.question_type_id AS ParentId,
+		o.Id,
+		o.name AS [Name],
+		LEVEL + 1,
+		CAST(
+			rtrim(h.Label) + rtrim(o.Id) + '/' AS NVARCHAR(MAX)
+		) AS Label
+	FROM
+		[dbo].[QuestionTypes] o
+		JOIN QuestionTypesH h ON o.question_type_id = h.Id
+)
+INSERT INTO
+	#temp_OUT (GroupQuestionId, QuestionTypeId, QuestionTypeName)
+SELECT
+	@QuestionRowId,
+	Id,
+	Name
+FROM
+	QuestionTypesH ;
+
+FETCH NEXT
+FROM
+	@CURSOR INTO @QuestionRowId
+END 
+CLOSE @CURSOR;
+
+SELECT
+	TOP 10 QuestionTypeId AS Id,
+	CASE
+		WHEN QuestionTypeId IS NOT NULL THEN (
+			SELECT
+				name
+			FROM
+				dbo.QuestionTypes 
+			WHERE
+				Id = QuestionTypeId
+		)
+		ELSE ''
+	END AS qName,
+	isnull(sum(val), 0) qty
+FROM
+	#temp_OUT o
+	LEFT JOIN (
+		SELECT
+			count(q.Id) val,
+			qt.Id
+		FROM
+			dbo.Questions q
+			INNER JOIN [dbo].[Assignments] a (nolock) ON q.last_assignment_for_execution_id = a.id
+			INNER JOIN dbo.[Organizations] org ON org.Id = a.executor_organization_id
+			INNER JOIN dbo.QuestionTypes qt ON q.question_type_id = qt.Id 
+		WHERE
+			q.registration_date BETWEEN @dateFrom
+			AND @filterTo
+			AND a.executor_organization_id IN (SELECT 
+														 DISTINCT 
+															questionOrg
+														FROM @organization_t)
+		GROUP BY
+			qt.Id
+	) z ON z.Id = o.QuestionTypeId
+GROUP BY
+	o.QuestionTypeId
+ORDER BY
+	qty DESC ;

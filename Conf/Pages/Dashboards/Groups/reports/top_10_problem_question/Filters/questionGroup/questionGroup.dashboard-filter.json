@@ -1,5 +1,6 @@
 {
-  "IsMain": true,
+  "IsMain": false,
   "Type": "SelectFilterComponent",
-  "Owner": "questionGroup"
+  "Owner": "questionGroup",
+  "Position": 20
 }

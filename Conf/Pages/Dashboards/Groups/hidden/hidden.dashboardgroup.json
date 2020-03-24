@@ -1,0 +1,8 @@
+{
+  "Icon": "visibility_off",
+  "Position": 50,
+  "IconColor": "#cddc39",
+  "ModelType": "DashboardGroup",
+  "Code": "hidden",
+  "Name": "Приховані сторінки"
+}

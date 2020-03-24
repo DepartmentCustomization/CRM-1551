@@ -57,7 +57,7 @@
                             this.counter += 2;
                         }
                     }else if(filter.name === 'organization') {
-                        this.organization = extractOrgValues(message.package.value.find(f => f.name === 'organization').value);
+                        this.organization = this.extractOrgValues(message.package.value.find(f => f.name === 'organization').value);
                     }
                 }
             });
@@ -88,18 +88,14 @@
                     this.loadData(this.afterLoadDataHandler);
                 }
             }
-            function extractOrgValues(val) {
-                if(val !== null) {
-                    let valuesList = [];
-                    if (val.length > 0) {
-                        for (let i = 0; i < val.length; i++) {
-                            valuesList.push(val[i].value);
-                        }
-                    }
-                    return valuesList.length > 0 ? valuesList : [];
-                }
-                return [];
+        },
+        extractOrgValues: function(items) {
+            if(items.length && items !== '') {
+                const valuesList = [];
+                items.forEach(item => valuesList.push(item.value));
+                return valuesList;
             }
+            return [];
         },
         changeDateTimeValues: function(value) {
             if (value === null) {

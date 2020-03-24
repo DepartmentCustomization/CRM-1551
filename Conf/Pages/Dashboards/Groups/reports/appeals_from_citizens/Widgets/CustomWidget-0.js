@@ -5,18 +5,17 @@
         formatTitle: function() {},
         customConfig:
                     `
-                    <style>
-                    #reportTitle{
-                        text-align: center;
-                        font-size: 20px;
-                        font-weight: 600;
-                    }
-                    </style>
-                    
                     <div id='reportTitle'>Звіт щодо перевірки виконання звернень від громадян</div>
                     `
         ,
         init: function() {
+            const msg = {
+                name: 'SetFilterPanelState',
+                package: {
+                    value: true
+                }
+            };
+            this.messageService.publish(msg);
         },
         afterViewInit: function() {
             const reportTitle = document.getElementById('reportTitle');

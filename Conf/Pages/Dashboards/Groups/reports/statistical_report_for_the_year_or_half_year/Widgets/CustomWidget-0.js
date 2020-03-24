@@ -5,30 +5,6 @@
         formatTitle: function() {},
         customConfig:
                     `
-                    <style>
-                    #reportTitle{
-                        text-align: center;
-                        font-size: 20px;
-                        font-weight: 600;
-                    }
-                    .btnWrap{
-                        text-align: center;
-                    }
-                    #btnExcel{
-                        background-color: rgba(21, 189, 244, 1)!important;
-                        border-color: transparent;
-                        color: #fff;
-                        display: inline-block;
-                        cursor: pointer;
-                        text-align: center;
-                        vertical-align: middle;
-                        padding: 7px 18px 8px;
-                        border-radius: 5px;  
-                        margin: 10px;
-                        outline: none;
-                    }                
-                    </style>
-                    
                     <div id='reportTitle'>Статистичний звіт за рік чи півріччя</div>
                     <div id='container'></div>
                     `
@@ -238,7 +214,8 @@
             this.setHeaderRowValues(data, worksheet, headerHeight);
             this.startStep += this.step + 3;
         },
-        setSubHeaders: function(column, worksheet, position, startStep) {
+        setSubHeaders: function(column, worksheet, positionLast, startStep) {
+            let position = positionLast;
             for (let i = 0; i < column.columns.length; i++) {
                 position += 2;
                 const subHeader = column.columns[i];

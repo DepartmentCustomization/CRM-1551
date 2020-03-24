@@ -156,6 +156,7 @@
         },
         init: function() {
             this.sub1 = this.messageService.subscribe('GlobalFilterChanged', this.getFiltersParams, this);
+            this.sub2 = this.messageService.subscribe('ApplyGlobalFilters', this.applyChanges, this);
             this.arrayColor = [
                 '63be7b',
                 '85c87d',
@@ -183,14 +184,9 @@
                     onClick: function(e) {
                         e.event.stopImmediatePropagation();
                         let exportQuery = {
-                            queryCode: 'db_Report_3',
+                            queryCode: this.config.query.code,
                             limit: -1,
-                            parameterValues: [
-                                {key: '@dateFrom' , value: this.dateFrom },
-                                {key: '@dateTo', value: this.dateTo },
-                                {key: '@questionGroup', value: this.questionGroup },
-                                {key: '@questionType', value: this.questionType }
-                            ]
+                            parameterValues: this.config.query.parameterValues
                         };
                         this.queryExecutor(exportQuery, this.myCreateExcel, this);
                     }.bind(this)
@@ -511,23 +507,38 @@
             let period = message.package.value.values.find(f => f.name === 'period').value;
             let questionGroup = message.package.value.values.find(f => f.name === 'questionGroup').value;
             let questionType = message.package.value.values.find(f => f.name === 'questionType').value;
+            let organization = message.package.value.values.find(f => f.name === 'organization').value;
+            let organizationGroup = message.package.value.values.find(f => f.name === 'organizationGroup').value;
             if(period !== null) {
                 if(period.dateFrom !== '' && period.dateTo !== '') {
                     this.dateFrom = period.dateFrom;
                     this.dateTo = period.dateTo;
                     this.questionGroup = questionGroup === null ? 0 : questionGroup === '' ? 0 : questionGroup.value;
                     this.questionType = questionType === null ? 0 : questionType === '' ? 0 : questionType.value;
+                    this.organization = organization === null ? 0 : organization === '' ? 0 : organization.value;
+                    this.organizationGroup = organizationGroup === null ? 0 : organizationGroup === '' ? 0 : organizationGroup.value;
                     if(this.questionType !== 0) {
                         this.config.query.parameterValues = [
                             {key: '@dateFrom' , value: this.dateFrom },
                             {key: '@dateTo', value: this.dateTo },
                             {key: '@questionGroup', value: this.questionGroup },
-                            {key: '@questionType', value: this.questionType }
+                            {key: '@questionType', value: this.questionType },
+                            {key: '@organization', value: this.organization },
+                            {key: '@organizationGroup', value: this.organizationGroup }
                         ];
-                        this.loadData(this.afterLoadDataHandler);
                     }
                 }
             }
+        },
+        applyChanges: function() {
+            const msg = {
+                name: 'SetFilterPanelState',
+                package: {
+                    value: false
+                }
+            };
+            this.messageService.publish(msg);
+            this.loadData(this.afterLoadDataHandler);
         },
         afterLoadDataHandler: function(data) {
             this.data = data;
@@ -535,6 +546,7 @@
         },
         destroy: function() {
             this.sub1.unsubscribe();
+            this.sub2.unsubscribe();
         }
     };
 }());

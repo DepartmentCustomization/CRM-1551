@@ -5,37 +5,7 @@
         formatTitle: function() {},
         customConfig:
                     `
-                    <style>
-                    #reportTitle{
-                        text-align: center;
-                        font-size: 20px;
-                        font-weight: 600;
-                        margin: 10px;
-                    }
-                    #subTitle{
-                        text-align: center;
-                        font-size: 14px;
-                        font-weight: 600;
-                    }
-                    .btnWrap{
-                        text-align: center;
-                    }
-                    #btnExcel{
-                        background-color: rgba(21, 189, 244, 1)!important;
-                        border-color: transparent;
-                        color: #fff;
-                        display: inline-block;
-                        cursor: pointer;
-                        text-align: center;
-                        vertical-align: middle;
-                        padding: 7px 18px 8px;
-                        border-radius: 5px;                        
-                        margin: 10px;
-                    }
-                    </style>
-                    
                     <div id='container'></div>
-                    
                     `
         ,
         init: function() {
@@ -49,7 +19,9 @@
             let subTitle = this.createElement('div', { id: 'subTitle' });
             CONTAINER.appendChild(reportTitle);
             CONTAINER.appendChild(subTitle);
-            subTitle.innerText = 'Статистична інформація за період з ' + this.changeDateTimeValues(this.dateFrom) + 'до ' + this.changeDateTimeValues(this.dateTo) + ' Виконавець: КП «Київський метрополітен»';
+            subTitle.innerText = 'Статистична інформація за період з ' +
+                this.changeDateTimeValues(this.dateFrom) + 'до ' +
+                this.changeDateTimeValues(this.dateTo) + ' Виконавець: КП «Київський метрополітен»';
             this.subTitle = subTitle;
             let btnExcel = this.createElement('button', { id: 'btnExcel', innerText: 'Вигрузити в Excel', disabled: true });
             let btnWrap = this.createElement('div', { className: 'btnWrap' }, btnExcel);
@@ -68,7 +40,9 @@
                 }
                 let subTitle = document.getElementById('subTitle');
                 if(subTitle !== null) {
-                    subTitle.innerText = 'Статистична інформація за період з ' + this.changeDateTimeValues(this.dateFrom) + 'до ' + this.changeDateTimeValues(this.dateTo) + ' Виконавець: КП «Київський метрополітен»';
+                    subTitle.innerText = 'Статистична інформація за період з ' +
+                    this.changeDateTimeValues(this.dateFrom) + 'до ' +
+                    this.changeDateTimeValues(this.dateTo) + ' Виконавець: КП «Київський метрополітен»';
                 }
             }
         },
@@ -213,12 +187,17 @@
                 };
             }
             worksheet.getCell('A5').border = { top: {style:'thin'}, left: {style:'thin'}, bottom: {style:'thin'}, right: {style:'thin'} };
-            worksheet.getCell('A' + (this.sumLength)).border = { top: {style:'thin'}, left: {style:'thin'}, bottom: {style:'thin'}, right: {style:'thin'} };
+            worksheet.getCell('A' + (this.sumLength)).border = {
+                top: {style:'thin'}, left: {style:'thin'}, bottom: {style:'thin'}, right: {style:'thin'}
+            };
             worksheet.getCell('B5').border = { top: {style:'thin'}, left: {style:'thin'}, bottom: {style:'thin'}, right: {style:'thin'} };
-            worksheet.getCell('B' + (this.sumLength)).border = { top: {style:'thin'}, left: {style:'thin'}, bottom: {style:'thin'}, right: {style:'thin'} };
+            worksheet.getCell('B' + (this.sumLength)).border = {
+                top: {style:'thin'}, left: {style:'thin'}, bottom: {style:'thin'}, right: {style:'thin'}
+            };
             mainHeaders.forEach(number => {
                 worksheet.getRow(number).height = 50;
-                worksheet.getRow(number).font = { name: 'Times New Roman', family: 4, size: 10, underline: false, bold: true , italic: false};
+                worksheet.getRow(number).font =
+                    { name: 'Times New Roman', family: 4, size: 10, underline: false, bold: true , italic: false};
                 worksheet.getRow(number).alignment = { vertical: 'middle', horizontal: 'center', wrapText: true };
             });
             this.helperFunctions.excel.save(workbook, 'Заявки', this.hidePagePreloader);

@@ -8,13 +8,6 @@
       "Name": "Назва",
       "FieldType": "text",
       "Position": 1
-    },
-    {
-      "Code": "Id",
-      "Name": "Id",
-      "FieldType": "number",
-      "Position": 1,
-      "IsHidden": true
     }
   ]
 }

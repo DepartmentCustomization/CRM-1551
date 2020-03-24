@@ -150,7 +150,7 @@
                 groupCall__icon, groupCall__description, groupCall__borderBottom, groupCall__borderRight
             );
             groupCall.addEventListener('click', () => {
-                window.open(location.origin + localStorage.getItem('VirtualPath') + '/dashboard/page/prozvon_v2');
+                window.open(location.origin + localStorage.getItem('VirtualPath') + '/dashboard/page/prozvon');
             });
             let groupLetter__icon = this.createElement('div', { className: 'icon letterIcon material-icons', innerText: 'mail' });
             let groupLetter__description = this.createElement('div',

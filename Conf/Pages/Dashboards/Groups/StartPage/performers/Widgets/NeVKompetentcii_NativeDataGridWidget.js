@@ -105,14 +105,20 @@
             this.sub = this.messageService.subscribe('clickOnTable2', this.changeOnTable, this);
             this.sub1 = this.messageService.subscribe('messageWithOrganizationId', this.takeOrganizationId, this);
             this.config.masterDetail.template = this.createMasterDetail.bind(this);
+            this.config.onCellPrepared = this.onCellPrepared.bind(this);
             this.dataGridInstance.onCellClick.subscribe(e => {
-                if(e.column) {
-                    if(e.column.dataField === 'registration_number' && e.row !== undefined) {
-                        window.open(String(location.origin + localStorage.getItem('VirtualPath') + '/sections/Assignments/edit/' + e.key));
-                    }
-                }
+                this.messageService.publish({
+                    name: 'openForm',
+                    row: e
+                });
             });
             this.config.onToolbarPreparing = this.createTableButton.bind(this);
+        },
+        onCellPrepared: function(options) {
+            this.messageService.publish({
+                name: 'onCellPrepared',
+                options: options
+            });
         },
         changeOnTable: function(message) {
             this.column = message.column;

@@ -1,26 +1,19 @@
--- declare @result_t table (res int)
--- if @result = null
--- begin  
---  insert into @result_t (res)
---  SELECT top 1 [Id] from SiteAppealsResults
---  end
---  else 
---  begin insert into @result_t (res) 
--- select @result
--- end
-select	afs.Id as Id, 
-		ReceiptDate as receiptDate, 
-		wdt.[name] as workDirection,
-		obj.[name] as appealObject, 
-		afs.Content as content, 
-		sar.[name] as result,
-		CommentModerator as moderComment 
-from [CRM_1551_Site_Integration].[dbo].[AppealsFromSite] afs
-left join [CRM_1551_Site_Integration].[dbo].WorkDirectionTypes wdt on afs.WorkDirectionTypeId = wdt.id
-left join CRM_1551_Analitics.[dbo].[Objects] obj on obj.Id = afs.[ObjectId]
-left join SiteAppealsResults sar on sar.id = afs.AppealFromSiteResultId
-
-where Appeal_Id is null --and sar.id in ( @result ) 
-and #filter_columns#
-    #sort_columns#
- offset @pageOffsetRows rows fetch next @pageLimitRows rows only
+SELECT
+	afs.Id AS Id,
+	ReceiptDate AS receiptDate,
+	wdt.[name] AS workDirection,
+	obj.[name] AS appealObject,
+	afs.Content AS content,
+	sar.[name] AS result,
+	CommentModerator AS moderComment
+FROM
+	[CRM_1551_Site_Integration].[dbo].[AppealsFromSite] afs
+	LEFT JOIN [CRM_1551_Site_Integration].[dbo].WorkDirectionTypes wdt ON afs.WorkDirectionTypeId = wdt.id
+	LEFT JOIN CRM_1551_Analitics.[dbo].[Objects] obj ON obj.Id = afs.[ObjectId]
+	LEFT JOIN SiteAppealsResults sar ON sar.id = afs.AppealFromSiteResultId
+WHERE
+	afs.AppealFromSiteResultId = @result
+	AND #filter_columns#
+		#sort_columns#
+	OFFSET @pageOffsetRows ROWS FETCH next @pageLimitRows ROWS ONLY 
+	;

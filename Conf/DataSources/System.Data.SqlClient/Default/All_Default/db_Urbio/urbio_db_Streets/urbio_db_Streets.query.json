@@ -1,0 +1,97 @@
+{
+  "ModelType": "Query",
+  "Code": "urbio_db_Streets",
+  "Name": "urbio_db_Streets",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Analitics_Id",
+      "Name": "Analitics_Id",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Urbio_Id",
+      "Name": "Urbio_Id",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "operations",
+      "Name": "operations",
+      "Position": 3,
+      "IsPrintable": false,
+      "SqlName": "operations",
+      "FilterParameterCode": "@operations"
+    },
+    {
+      "Code": "UrbioName",
+      "Name": "UrbioName",
+      "Position": 4,
+      "IsPrintable": false,
+      "SqlName": "UrbioName",
+      "FilterParameterCode": "@UrbioName"
+    },
+    {
+      "Code": "1551Name",
+      "Name": "1551Name",
+      "Position": 5,
+      "IsPrintable": false,
+      "SqlName": "1551Name",
+      "FilterParameterCode": "@1551Name"
+    },
+    {
+      "Code": "is_done",
+      "Name": "is_done",
+      "Position": 6,
+      "IsPrintable": false,
+      "SqlName": "is_done",
+      "FilterParameterCode": "@is_done"
+    },
+    {
+      "Code": "comment",
+      "Name": "comment",
+      "Position": 7,
+      "IsPrintable": false,
+      "SqlName": "comment",
+      "FilterParameterCode": "@comment"
+    },
+    {
+      "Code": "is_done_filter",
+      "Name": "is_done_filter",
+      "Position": 8,
+      "IsPrintable": false,
+      "SqlName": "is_done_filter",
+      "FilterParameterCode": "@is_done_filter"
+    },
+    {
+      "Code": "StreetName_filter",
+      "Name": "StreetName_filter",
+      "Position": 9,
+      "IsPrintable": false,
+      "SqlName": "StreetName_filter",
+      "FilterParameterCode": "@StreetName_filter"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

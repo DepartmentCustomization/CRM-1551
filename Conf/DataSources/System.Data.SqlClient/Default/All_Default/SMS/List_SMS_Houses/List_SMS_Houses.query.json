@@ -1,0 +1,42 @@
+{
+  "ModelType": "Query",
+  "Code": "List_SMS_Houses",
+  "Name": "List_SMS_Houses",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Name",
+      "Name": "Name",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "Name",
+      "FilterParameterCode": "@Name"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@street_id",
+      "Name": "street_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

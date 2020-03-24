@@ -5,19 +5,10 @@
         formatTitle: function() {},
         customConfig:
                     `
-                    <style>
-                    #reportTitle{
-                        text-align: center;
-                        font-size: 20px;
-                        font-weight: 600;
-                    }
-                    </style>
-                    
                     <div id='reportTitle'>Звіт щодо кількості відключених будинків по комунальним послугам</div>
                     `
         ,
-        init: function() {
-        },
+        init: function() {},
         afterViewInit: function() {
             const reportTitle = document.getElementById('reportTitle');
             const organizationNameInput = document.createElement('span');

@@ -1,5 +1,5 @@
 {
-  "IsVisible": false,
+  "IsVisible": true,
   "DashboardGroupCode": "ingerrationGorodOk",
   "ModelType": "Dashboard",
   "Code": "int_claimsTypePageTable",

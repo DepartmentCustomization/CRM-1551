@@ -1,9 +1,9 @@
 -- declare @user_id nvarchar(128) = 'eb6d56d2-e217-45e4-800b-c851666ce795';
-declare @user_org TABLE (Id int);
+DECLARE @user_org TABLE (Id INT);
 
-declare @kbu_orgs TABLE (Id int);
+DECLARE @kbu_orgs TABLE (Id INT);
 
-declare @is_root smallint;
+DECLARE @is_root SMALLINT;
 
 INSERT INTO
     @user_org
@@ -39,7 +39,7 @@ INSERT INTO
 SELECT
     DISTINCT Id
 FROM
-    RecursiveOrg r
+    RecursiveOrg r ;
 SET
     @is_root = (
         SELECT
@@ -62,7 +62,11 @@ SET
             ) x
         WHERE
             x.x = 'One'
-    ) IF object_id('tempdb..#orgList') IS NOT NULL DROP TABLE #orgList
+    ) ;
+    IF object_id('tempdb..#orgList') IS NOT NULL 
+    BEGIN
+    DROP TABLE #orgList ;
+    END
     CREATE TABLE #orgList
     (
         Id int,
@@ -79,9 +83,9 @@ WITH RecursiveOrg (Id, parentID, orgName) AS (
         parent_organization_id,
         short_name
     FROM
-        Organizations o
+        dbo.Organizations o 
     WHERE
-        o.Id > 1
+        o.Id = 1
     UNION
     ALL
     SELECT
@@ -89,7 +93,7 @@ WITH RecursiveOrg (Id, parentID, orgName) AS (
         o.parent_organization_id,
         o.short_name
     FROM
-        Organizations o
+        dbo.Organizations o
         JOIN RecursiveOrg r ON o.parent_organization_id = r.Id
 )
 INSERT INTO
@@ -99,10 +103,10 @@ SELECT
     parentID,
     orgName
 FROM
-    RecursiveOrg r
-END 
---- Иначе выборка по должности
-ELSE IF (@is_root = 0) BEGIN;
+    RecursiveOrg r ;
+END --- Иначе выборка по должности
+ELSE IF (@is_root = 0)
+BEGIN
 
 WITH RecursiveOrg (Id, parentID, orgName) AS (
     SELECT
@@ -110,8 +114,8 @@ WITH RecursiveOrg (Id, parentID, orgName) AS (
         parent_organization_id,
         short_name
     FROM
-        Organizations o
-        JOIN Positions p ON p.organizations_id = o.Id
+        dbo.Organizations o
+        JOIN dbo.Positions p ON p.organizations_id = o.Id
     WHERE
         p.programuser_id = @user_id
     UNION
@@ -121,7 +125,7 @@ WITH RecursiveOrg (Id, parentID, orgName) AS (
         o.parent_organization_id,
         o.short_name
     FROM
-        Organizations o
+        dbo.Organizations o
         JOIN RecursiveOrg r ON o.parent_organization_id = r.Id
 )
 INSERT INTO
@@ -131,7 +135,7 @@ SELECT
     parentID,
     orgName
 FROM
-    RecursiveOrg r
+    RecursiveOrg r ;
 END
 SELECT
     Id,
@@ -141,4 +145,4 @@ FROM
 WHERE
     #filter_columns#
 ORDER BY
-    Id OFFSET @pageOffsetRows ROWS FETCH next @pageLimitRows ROWS ONLY
+    Id OFFSET @pageOffsetRows ROWS FETCH next @pageLimitRows ROWS ONLY ;

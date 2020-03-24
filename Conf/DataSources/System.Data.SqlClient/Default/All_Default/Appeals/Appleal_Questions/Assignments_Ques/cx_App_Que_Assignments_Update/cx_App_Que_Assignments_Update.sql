@@ -1,7 +1,6 @@
 -- DECLARE @user_edit_id NVARCHAR(128)=N'bc1b17e2-ffee-41b1-860a-41e1bae57ffd';
 SET @executor_person_id = IIF(IIF(@executor_person_id = '',NULL,@executor_person_id) = 0,NULL,IIF(@executor_person_id = '',NULL,@executor_person_id));
 
-
 DECLARE @org1761 TABLE (Id INT);
 WITH
      cte1 -- все подчиненные 3 и 3 1761
@@ -134,8 +133,8 @@ BEGIN
 		RETURN;
 	END
 	ELSE
+	
 	BEGIN
-
 		--если результат, резолюция не изменились и...
 		IF @result_id = (SELECT
 					AssignmentResultsId
@@ -433,8 +432,8 @@ BEGIN
 				END
 
 				ELSE
-				BEGIN TRY
-				BEGIN TRANSACTION;
+
+				BEGIN
 					SET @result_id = 3; -- Не в компетенції
 					SET @resolution_id = 1; -- Повернуто в 1551
 					SET @ass_state_id = 3; -- На перевірці
@@ -476,24 +475,17 @@ BEGIN
 						-- ,@rework_counter_count
 						, @rework_counter, GETUTCDATE() --@edit_date
 						, @user_edit_id);
-				COMMIT;
-			RETURN;
-			END TRY
+				END
+				-- exec pr_chech_in_status_assignment @Id, @result_id, @resolution_id
+				RETURN;
+			END
 
-			BEGIN CATCH
-				ROLLBACK;
-				RAISERROR (N'Произошла ошибка! Данные не изменены.', 15, 1);
-			END CATCH;
-			END 
-			
+
 			-- 3 Не в компетенції	NotInTheCompetence  
 			-- 1 Повернуто в 1551	returnedIn1551
-			IF (@result_id = 3
-				AND @resolution_id = 1)
+			IF @result_id = 3
+				AND @resolution_id = 1
 			BEGIN
-			BEGIN TRY
-				BEGIN TRANSACTION; 
-
 				UPDATE AssignmentConsiderations
 				SET consideration_date = GETUTCDATE()
 				   ,short_answer = @short_answer
@@ -533,14 +525,7 @@ BEGIN
 					, @user_edit_id);
 				-- 			execute define_status_Question @question_id
 				-- exec pr_chech_in_status_assignment @Id, @result_id, @resolution_id
-			COMMIT;
-			RETURN;
-			END TRY
-
-			BEGIN CATCH
-				ROLLBACK;
-				RAISERROR (N'Произошла ошибка! Данные не изменены.', 15, 1);
-			END CATCH;
+				RETURN;
 			END
 
 			-- Если перенаправлено за належністю из 1551
@@ -1075,7 +1060,6 @@ BEGIN
 				, [rework_counter]
 				, [edit_date]
 				, [user_edit_id]
-
 				--,create_date
 				)
 					VALUES (@current_consid --@ass_cons_id
@@ -1132,17 +1116,6 @@ BEGIN
 				   ,assignment_state_id = @ass_state_id
 				   ,[LogUpdated_Query] = N'cx_App_Que_Assignments_Update_Row837'
 				WHERE Id = @Id;
-
-				--update dbo.AssignmentConsiderations 
-				--		set	
-				--			 consideration_date = GETUTCDATE()
-				--			,assignment_result_id = @result_id
-				--			,assignment_resolution_id = @resolution_id
-				--			,transfer_to_organization_id = @transfer_to_organization_id
-				--			,edit_date = GETUTCDATE()
-				--			,user_edit_id = @user_edit_id
-				--			,[short_answer] = @short_answer
-				--		 where Id = @current_consid
 
 				DELETE FROM @output_con;
 
@@ -1256,6 +1229,7 @@ BEGIN
 				RETURN;
 			END
 
+
 			IF @ass_state_id = 5
 			BEGIN
 
@@ -1320,14 +1294,5 @@ BEGIN
 		END --(F11)
 	END
 END
-/*
-IF (SELECT ar.code
-  FROM [dbo].[AssignmentResults] ar 
-  WHERE ar.Id=@result_id)=N'Actually' --фактично
-	BEGIN
-		UPDATE [dbo].[AssignmentRevisions]
-		SET [rework_counter]=ISNULL([rework_counter],0)+1
-		WHERE [assignment_consideration_іd]=@current_consid;
-	END*/
 END
-END
+END;

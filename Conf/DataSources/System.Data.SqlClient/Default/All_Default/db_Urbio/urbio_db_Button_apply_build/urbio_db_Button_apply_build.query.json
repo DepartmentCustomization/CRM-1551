@@ -1,0 +1,31 @@
+{
+  "ModelType": "Query",
+  "Code": "urbio_db_Button_apply_build",
+  "Name": "urbio_db_Button_apply_build",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@Analitics_Id",
+      "Name": "Analitics_Id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@Urbio_Id",
+      "Name": "Urbio_Id"
+    },
+    {
+      "Code": "@Operation",
+      "Name": "Operation"
+    },
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    },
+    {
+      "Code": "@comment",
+      "Name": "comment"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "ModelType": "Query",
+  "Code": "SMS_SelectRows",
+  "Name": "SMS_SelectRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@phone_number",
+      "Name": "phone_number"
+    }
+  ]
+}

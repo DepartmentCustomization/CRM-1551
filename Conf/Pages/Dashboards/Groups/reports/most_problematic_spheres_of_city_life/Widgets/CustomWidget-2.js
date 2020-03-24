@@ -5,23 +5,6 @@
         formatTitle: function() { },
         customConfig:
             `
-            <style>
-                #sumWrapper{
-                    height: 100%;
-                }
-                .sumText{
-                    font-size: 22px;
-                    font-weight: 600;
-                    text-align: center;
-                    height: 100%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-weight: 600;
-                    font-size: 20px;
-                    margin: 0 auto;
-                }
-            </style>
             <div id='sumInfo' class='contentBox' ></div>
             `
         ,

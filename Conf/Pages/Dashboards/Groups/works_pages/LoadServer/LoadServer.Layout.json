@@ -1,0 +1,42 @@
+{
+  "css": ".wrapper{\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -ms-flexbox;\r\n\tdisplay: flex;\r\n\twidth: 100%;\r\n\tmargin: 10vh auto 0;\r\n\t-ms-flex-wrap: wrap;\r\n\t    flex-wrap: wrap;\r\n\t-webkit-transform: translateY(-50%);\r\n\t        transform: translateY(-50%);\r\n}\r\n\r\n.switch_box{\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -ms-flexbox;\r\n\tdisplay: flex;\r\n\tmax-width: 30%;\r\n\tmin-width: 200px;\r\n\theight: 200px;\r\n\t-webkit-box-pack: center;\r\n\t    -ms-flex-pack: center;\r\n\t        justify-content: center;\r\n\t-webkit-box-align: center;\r\n\t    -ms-flex-align: center;\r\n\t        align-items: center;\r\n\t-webkit-box-flex: 1;\r\n\t    -ms-flex: 1;\r\n\t        flex: 1;\r\n}\r\n\r\n\t\r\n/* Switch 3 Specific Style Start */\r\n\r\n.box_3{\r\n\tbackground: rgb(238, 238, 238);\r\n}\r\n\r\n.toggle_switch{\r\n  width: 100px;\r\n  height: 45px;\r\n  position: relative;\r\n}\r\n\r\ninput[type=\"checkbox\"].switch_3{\r\n  -webkit-appearance: none;\r\n     -moz-appearance: none;\r\n          appearance: none;\r\n  position: absolute;\r\n  top: 0;\r\n  right: 0;\r\n  bottom: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  cursor: pointer;\r\n  outline: 0;\r\n  z-index: 1;\r\n}\r\n\r\nsvg.checkbox .outer-ring{\r\n  stroke-dasharray: 375;\r\n  stroke-dashoffset: 375;\r\n  -webkit-animation: resetRing .75s ease-in-out forwards;\r\n          animation: resetRing .75s ease-in-out forwards;\r\n}\r\n\r\ninput[type=\"checkbox\"].switch_3:checked + svg.checkbox .outer-ring{\r\n  -webkit-animation: animateRing .75s ease-in-out forwards;\r\n          animation: animateRing .75s ease-in-out forwards;\r\n}\r\n\r\ninput[type=\"checkbox\"].switch_3:checked + svg.checkbox .is_checked{\r\n  opacity: 1;\r\n  -webkit-transform: translateX(0) rotate(0deg);\r\n          transform: translateX(0) rotate(0deg);\r\n}\r\n\r\ninput[type=\"checkbox\"].switch_3:checked + svg.checkbox .is_unchecked{\r\n  opacity: 0;\r\n  -webkit-transform: translateX(-200%) rotate(180deg);\r\n          transform: translateX(-200%) rotate(180deg);\r\n}\r\n\r\n\r\nsvg.checkbox{\r\n  position: absolute;\r\n  top: 0;\r\n  right: 0;\r\n  bottom: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\nsvg.checkbox .is_checked{\r\n  opacity: 0;\r\n  fill: #4CAF50;\r\n  -webkit-transform-origin: 50% 50%;\r\n          transform-origin: 50% 50%;\r\n  -webkit-transform: translateX(200%) rotate(45deg);\r\n          transform: translateX(200%) rotate(45deg);\r\n  -webkit-transition: all .75s;\r\n  transition: all .75s;\r\n}\r\n\r\nsvg.checkbox .is_unchecked{\r\n  opacity: 1;\r\n  fill: #ff4b4b69;\r\n  -webkit-transform-origin: 50% 50%;\r\n          transform-origin: 50% 50%;\r\n  -webkit-transform: translateX(0) rotate(0deg);\r\n          transform: translateX(0) rotate(0deg);\r\n  -webkit-transition: all .75s;\r\n  transition: all .75s;\r\n}\r\n\r\n@-webkit-keyframes animateRing{\r\n  to{\r\n    stroke-dashoffset: 0;\r\n    stroke: #b0aa28;\r\n  }\r\n}\r\n\r\n@keyframes animateRing{\r\n  to{\r\n    stroke-dashoffset: 0;\r\n    stroke: #b0aa28;\r\n  }\r\n}\r\n\r\n@-webkit-keyframes resetRing{\r\n  to{\r\n    stroke-dashoffset: 0;\r\n    stroke: #233043;\r\n  }\r\n}\r\n\r\n@keyframes resetRing{\r\n  to{\r\n    stroke-dashoffset: 0;\r\n    stroke: #233043;\r\n  }\r\n}\r\n\r\n/* Switch 3 Specific Style End */\r\n\r\n",
+  "rootContainer": {
+    "width": "auto",
+    "margin": "0 5px 10px",
+    "flexWrap": "wrap",
+    "flexDirection": "row",
+    "order": 1,
+    "flexGrow": 1,
+    "alignSelf": "auto",
+    "border": "none",
+    "children": [
+      {
+        "width": "auto",
+        "margin": "0 5px 10px",
+        "flexWrap": "wrap",
+        "flexDirection": "row",
+        "order": 1,
+        "flexGrow": 1,
+        "alignSelf": "auto",
+        "border": "none",
+        "children": [
+          {
+            "code": "CustomWidget-0",
+            "type": "CustomWidgetComponent",
+            "name": "Kast1"
+          }
+        ],
+        "id": "Container-0",
+        "height": "calc(100% - 10px)",
+        "minHeight": "100px",
+        "minWidth": "100px",
+        "backgroundColor": "rgb(238, 238, 238)"
+      }
+    ],
+    "id": "Container-0",
+    "height": "100%",
+    "minHeight": "100%",
+    "minWidth": "100%",
+    "backgroundColor": "#eee"
+  }
+}

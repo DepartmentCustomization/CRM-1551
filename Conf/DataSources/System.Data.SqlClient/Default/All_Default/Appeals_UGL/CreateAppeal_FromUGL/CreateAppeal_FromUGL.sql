@@ -7,7 +7,8 @@ SET
     @Is_AppealCreated = (
         SELECT
             CASE
-                WHEN Appeals_Id IS NOT NULL THEN 1
+                WHEN Appeals_Id IS NOT NULL 
+				THEN 1
                 ELSE 0
             END
         FROM
@@ -15,8 +16,12 @@ SET
         WHERE
             Id = @uglId
     ) ;
-    IF (@Is_AppealCreated = 0) BEGIN 
-    DECLARE @phone NVARCHAR(15);
+IF (@Is_AppealCreated = 0) 
+BEGIN 
+BEGIN TRY
+BEGIN TRANSACTION;
+
+DECLARE @phone NVARCHAR(15);
 
 SET
     @phone = (
@@ -41,7 +46,8 @@ INSERT INTO
         [user_id],
         edit_date,
         user_edit_id
-    ) output inserted.Id INTO @outId (Id)
+    ) 
+output inserted.Id INTO @outId (Id)
 VALUES
     (
         getutcdate(),
@@ -91,10 +97,16 @@ WHERE
 
 SELECT
     @newId AS [Id] ;
-    RETURN;
-
+    
+	COMMIT;
+	END TRY
+BEGIN CATCH 
+	ROLLBACK;
+	RAISERROR (N'Помилка обробки! Дані не змінено.', 15, 1);
+END CATCH;
 END
-ELSE BEGIN
+ELSE 
+BEGIN
 SELECT
     Appeals_Id AS Id
 FROM
@@ -102,5 +114,4 @@ FROM
 WHERE
     Id = @uglId;
      RETURN;
-
 END

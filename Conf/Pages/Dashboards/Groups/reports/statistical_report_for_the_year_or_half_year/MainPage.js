@@ -4,6 +4,7 @@
             this.sub = this.messageService.subscribe('GlobalFilterChanged', this.getFilterParams, this);
             this.sub1 = this.messageService.subscribe('setYears', this.setYears, this);
             this.sub2 = this.messageService.subscribe('setStyles', this.setStyles, this);
+            this.sub3 = this.messageService.subscribe('applyTableChanges', this.applyChanges, this);
         },
         getFilterParams: function(message) {
             const period = message.package.value.values.find(f => f.name === 'period').value;
@@ -20,12 +21,27 @@
                         previousYear -= 1;
                         this.previousYear = previousYear;
                         this.currentYear = currentYear;
-                        this.messageService.publish({ name, dateFrom, dateTo, previousYear, currentYear, dateFromViewValues, dateToViewValues })
+                        this.messageService.publish(
+                            {
+                                name, dateFrom, dateTo, previousYear, currentYear, dateFromViewValues, dateToViewValues
+                            }
+                        );
                     } else {
                         this.messageService.publish({ name: 'showWarning' });
                     }
                 }
             }
+        },
+        applyChanges: function(message) {
+            const self = message.self;
+            const msg = {
+                name: 'SetFilterPanelState',
+                package: {
+                    value: false
+                }
+            };
+            this.messageService.publish(msg);
+            self.loadData(self.afterLoadDataHandler);
         },
         setStyles: function() {
             let tds = document.querySelectorAll('td');
@@ -62,6 +78,7 @@
             this.sub.unsubscribe();
             this.sub1.unsubscribe();
             this.sub2.unsubscribe();
+            this.sub3.unsubscribe();
         }
     };
 }());

@@ -13,7 +13,8 @@
     "string:Details\\Detail_QuestionObjectAplicant.detail.json",
     "string:Details\\Detail_GorodokClaim.detail.json",
     "string:Details\\Detail_QuestionReestration.detail.json",
-    "string:Details\\Detail_QuestionPhone.detail.json"
+    "string:Details\\Detail_QuestionPhone.detail.json",
+    "string:Details\\Detail_SMS.detail.json"
   ],
   "Config": {
     "FieldGroups": [

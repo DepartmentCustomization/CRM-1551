@@ -96,6 +96,7 @@
         init: function() {
             this.dataGridInstance.height = window.innerHeight - 200;
             this.sub = this.messageService.subscribe('GlobalFilterChanged', this.getFiltersParams, this);
+            this.sub1 = this.messageService.subscribe('ApplyGlobalFilters', this.applyChanges, this);
         },
         getFiltersParams: function(message) {
             let period = message.package.value.values.find(f => f.name === 'period').value;
@@ -121,19 +122,24 @@
                         };
                         this.config.query.filterColumns.push(filter);
                     }
-                    this.loadData(this.afterLoadDataHandler);
                 }
             }
         },
-        extractOrgValues: function(val) {
-            if(val != null) {
-                let valuesList = [];
-                if (val.length > 0) {
-                    for (let i = 0; i < val.length; i++) {
-                        valuesList.push(val[i].value);
-                    }
+        applyChanges: function() {
+            const msg = {
+                name: 'SetFilterPanelState',
+                package: {
+                    value: false
                 }
-                return valuesList.length > 0 ? valuesList : [];
+            };
+            this.messageService.publish(msg);
+            this.loadData(this.afterLoadDataHandler);
+        },
+        extractOrgValues: function(items) {
+            if(items.length && items !== '') {
+                const valuesList = [];
+                items.forEach(item => valuesList.push(item.value));
+                return valuesList;
             }
             return [];
         },

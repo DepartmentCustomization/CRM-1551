@@ -1,4 +1,4 @@
- -- DECLARE @RegistrationDateFrom DATETIME = '2020-03-10 00:00';
+  -- DECLARE @RegistrationDateFrom DATETIME = '2020-03-10 00:00';
   -- DECLARE @RegistrationDateTo DATETIME = '2020-03-11 00:00';
   -- DECLARE @OrganizationExecId INT = NULL;
   -- DECLARE @OrganizationExecGroupId INT = NULL;

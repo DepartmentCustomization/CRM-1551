@@ -46,9 +46,11 @@
             showColumnFixing: true,
             groupingAutoExpandAll: null
         },
+        firstLoad: true,
         init: function() {
             this.dataGridInstance.height = window.innerHeight / 2 - 150;
             this.sub = this.messageService.subscribe('GlobalFilterChanged', this.getFiltersParams, this);
+            this.sub1 = this.messageService.subscribe('ApplyGlobalFilters', this.applyChanges, this);
         },
         getFiltersParams: function(message) {
             let period = message.package.value.values.find(f => f.name === 'period').value;
@@ -59,14 +61,28 @@
                     {key: '@dateFrom' , value: this.dateFrom },
                     {key: '@dateTo', value: this.dateTo }
                 ];
-                this.loadData(this.afterLoadDataHandler);
+                if (this.firstLoad) {
+                    this.firstLoad = false;
+                    this.loadData(this.afterLoadDataHandler);
+                }
             }
+        },
+        applyChanges: function() {
+            const msg = {
+                name: 'SetFilterPanelState',
+                package: {
+                    value: false
+                }
+            };
+            this.messageService.publish(msg);
+            this.loadData(this.afterLoadDataHandler);
         },
         afterLoadDataHandler: function() {
             this.render();
         },
         destroy: function() {
             this.sub.unsubscribe();
+            this.sub1.unsubscribe();
         }
     };
 }());

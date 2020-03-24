@@ -5,25 +5,8 @@
         formatTitle: function() { },
         customConfig:
             `
-            <style>
-                .contentBox{
-                    height: 100%;
-                }
-                #chartInfo, .sphere{
-                    display: flex;
-                    align-items: center;
-                }
-                .sphere__text{
-                    display: flex;
-                    align-items: center;
-                    font-size: 14px;
-                    font-weight: 600;
-                    margin-left: 10px;
-                    padding: 10px;
-                }
-            </style>
             <div id='chartInfo' class='contentBox' ></div>
-                `
+            `
         ,
         MESSAGES: {
             CHART_INFO: 'CHART_INFO'

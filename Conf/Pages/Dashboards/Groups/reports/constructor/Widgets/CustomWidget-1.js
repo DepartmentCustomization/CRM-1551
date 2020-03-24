@@ -5,22 +5,6 @@
         formatTitle: function() {},
         customConfig:
                 `
-                <style>
-                    .btnWrap{
-                        text-align: center;
-                    }
-                    #btnReturn{
-                        background-color: rgba(21, 189, 244, 1)!important;
-                        border-color: transparent;
-                        color: #fff;
-                        display: inline-block;
-                        cursor: pointer;
-                        text-align: center;
-                        vertical-align: middle;
-                        padding: 7px 18px 8px;
-                        border-radius: 5px;                        
-                    }
-                </style>
                 <div id='container'></div>
                 `
         ,

@@ -21,6 +21,16 @@
       "ParameterType": "Integer"
     },
     {
+      "Code": "@organization",
+      "Name": "organization",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@organizationGroup",
+      "Name": "organizationGroup",
+      "ParameterType": "Integer"
+    },
+    {
       "Code": "@dateTo",
       "Name": "dateTo",
       "ParameterType": "DateTime"

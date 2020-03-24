@@ -1,0 +1,78 @@
+.dx-datagrid-group-opened{
+    margin: 10px;
+    font: 18px/18px DXIcons;
+    height: 18px;
+    background-position: 0 0;
+    background-size: 10px 8px;
+    padding: 0;
+    text-align: center;
+    color: #959595;
+    background-image: url('assets/img/1551/crm1551_arrow_open.png');
+    background-repeat: no-repeat;
+}
+.dx-datagrid-group-opened::before{
+    display:none;
+}
+.dx-datagrid-group-closed::before{
+    display:none;
+}
+.dx-datagrid-group-closed{
+    margin: 10px;
+    font: 18px/18px DXIcons;
+    height: 18px;
+    background-position: 0 0;
+    background-size: 10px 10px;
+    padding: 0;
+    text-align: center;
+    color: #959595;
+    background-image: url('assets/img/1551/crm1551_arrow_close.png');
+    background-repeat: no-repeat;
+    
+}
+.dx-datagrid-text-content{
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    color: #999999;
+    text-align: left;
+}
+.dx-data-row{
+    font-weight: 400;
+    font-style: normal;
+    text-align: left;
+    font-size: 14px;
+    color: #000000;
+}
+.dx-master-detail-cell{
+    background-color: rgba(239, 247, 249, 1)!important;    
+}
+.dx-button-default{
+    background-color: rgba(21, 189, 244, 1)!important;
+}
+
+.dx-datagrid-export-button{
+    background-color: rgba(21, 189, 244, 1)!important;
+    color: #fff!important;
+    padding: 0 8px!important;
+}
+.dx-icon-export-excel-button{
+    color: #fff!important;
+    margin-right: 9px!important;
+}
+.dx-header-row>td>.dx-datagrid-text-content, .dx-datagrid-headers .dx-datagrid-table .dx-row>td  {
+    text-transform: uppercase;
+    text-align: center!important;
+}
+
+.dx-datagrid-content .dx-datagrid-table .dx-row>td, .dx-datagrid-content>.dx-datagrid-table>.dx-row>tr>td {
+    font-size: 17px!important;
+}
+.select-widget>.select-widget-list>ul{
+    width: calc( 230% + 10px)!important;   
+}
+
+#reportTitle{
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}

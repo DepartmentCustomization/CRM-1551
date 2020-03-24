@@ -1,0 +1,112 @@
+{
+  "ModelType": "Query",
+  "Code": "urbio_db_Builds",
+  "Name": "urbio_db_Builds",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Analitics_Id",
+      "Name": "Analitics_Id",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "Urbio_Id",
+      "Name": "Urbio_Id",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "operations",
+      "Name": "operations",
+      "Position": 3,
+      "IsPrintable": false,
+      "SqlName": "operations",
+      "FilterParameterCode": "@operations"
+    },
+    {
+      "Code": "Urbio_build",
+      "Name": "Urbio_build",
+      "Position": 4,
+      "IsPrintable": false,
+      "SqlName": "Urbio_build",
+      "FilterParameterCode": "@Urbio_build"
+    },
+    {
+      "Code": "Urbio_District",
+      "Name": "Urbio_District",
+      "Position": 5,
+      "IsPrintable": false,
+      "SqlName": "Urbio_District",
+      "FilterParameterCode": "@Urbio_District"
+    },
+    {
+      "Code": "1551_District",
+      "Name": "1551_District",
+      "Position": 6,
+      "IsPrintable": false,
+      "SqlName": "1551_District",
+      "FilterParameterCode": "@1551_District"
+    },
+    {
+      "Code": "1551_Build",
+      "Name": "1551_Build",
+      "Position": 7,
+      "IsPrintable": false,
+      "SqlName": "1551_Build",
+      "FilterParameterCode": "@1551_Build"
+    },
+    {
+      "Code": "is_done",
+      "Name": "is_done",
+      "Position": 8,
+      "IsPrintable": false,
+      "SqlName": "is_done_filter",
+      "FilterParameterCode": "@is_done"
+    },
+    {
+      "Code": "comment",
+      "Name": "comment",
+      "Position": 9,
+      "IsPrintable": false,
+      "SqlName": "comment",
+      "FilterParameterCode": "@comment"
+    },
+    {
+      "Code": "is_done_filter",
+      "Name": "is_done_filter",
+      "Position": 10,
+      "IsPrintable": false,
+      "SqlName": "is_done_filter",
+      "FilterParameterCode": "@is_done_filter"
+    },
+    {
+      "Code": "BuildName_filter",
+      "Name": "BuildName_filter",
+      "Position": 11,
+      "IsPrintable": false,
+      "SqlName": "name_fullName_filter",
+      "FilterParameterCode": "@BuildName_filter"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer"
+    }
+  ]
+}

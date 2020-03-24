@@ -157,8 +157,10 @@
             ],
             keyExpr: 'source'
         },
+        firstLoad: true,
         init: function() {
             this.sub = this.messageService.subscribe('FiltersParams', this.setFilterParams, this);
+            this.sub1 = this.messageService.subscribe('ApplyGlobalFilters', this.applyChanges, this);
             this.config.onContentReady = this.afterRenderTable.bind(this);
         },
         setFilterParams: function(message) {
@@ -166,7 +168,15 @@
                 {key: '@dateFrom' , value:  message.dateFrom },
                 {key: '@dateTo', value: message.dateTo }
             ];
-            this.loadData(this.afterLoadDataHandler);
+            if (this.firstLoad) {
+                this.firstLoad = false;
+                this.loadData(this.afterLoadDataHandler);
+            }
+        },
+        applyChanges: function() {
+            const self = this;
+            const name = 'applyTableChanges';
+            this.messageService.publish({ name, self });
         },
         afterLoadDataHandler: function(data) {
             const name = 'setData';
@@ -184,6 +194,7 @@
         },
         destroy: function() {
             this.sub.unsubscribe();
+            this.sub1.unsubscribe();
         }
     };
 }());

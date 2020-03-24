@@ -1,0 +1,62 @@
+{
+  "Code": "Group1",
+  "Name": "Основна інформація",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "Name",
+      "Name": "ПІБ",
+      "FieldType": "text"
+    },
+    {
+      "Code": "Phone",
+      "Name": "Phone",
+      "FieldType": "text"
+    },
+    {
+      "Code": "StreetId",
+      "Name": "Вулиця",
+      "FieldType": "select",
+      "Position": 1,
+      "Width": "100%",
+      "QueryCode": "List_SMS_Streets",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "HouseId",
+      "Name": "Будинок",
+      "FieldType": "select",
+      "IsRequired": true,
+      "Position": 2,
+      "QueryCode": "List_SMS_Houses",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "FlatId",
+      "Name": "Квартира",
+      "FieldType": "select",
+      "IsRequired": true,
+      "Position": 3,
+      "QueryCode": "List_SMS_Flats",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "SendClaims",
+      "Name": "Активовано?",
+      "FieldType": "checkbox",
+      "Position": 4
+    },
+    {
+      "Code": "ContactType",
+      "Name": "ContactType",
+      "FieldType": "text",
+      "Position": 6
+    }
+  ]
+}

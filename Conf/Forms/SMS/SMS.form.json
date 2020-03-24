@@ -1,0 +1,13 @@
+{
+  "ModelType": "Form",
+  "Code": "SMS",
+  "Name": "Управління SMS оповіщенням",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\Group1.fieldgroup.json"
+    ],
+    "DefaultFields": [],
+    "Script": "string:SMS.form.js"
+  }
+}

@@ -1,4 +1,4 @@
--- DECLARE @dateFrom DATETIME = '2020-03-10 00:00';
+    -- DECLARE @dateFrom DATETIME = '2020-03-10 00:00';
     -- DECLARE @dateTo DATETIME = '2020-03-11 00:00';
 
   DECLARE @targettimezone AS sysname = 'E. Europe Standard Time';
