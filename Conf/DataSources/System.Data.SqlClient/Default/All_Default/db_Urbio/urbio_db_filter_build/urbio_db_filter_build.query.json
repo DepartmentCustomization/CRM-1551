@@ -22,7 +22,7 @@
       "Name": "Name",
       "Position": 2,
       "IsPrintable": false,
-      "SqlName": "ISNULL(ao.ofStreet_name_shortName+N' ', N'')+ISNULL(ao.[name_ofFirstLevel_fullName],N'')",
+      "SqlName": "Name",
       "FilterParameterCode": "@Name"
     }
   ],

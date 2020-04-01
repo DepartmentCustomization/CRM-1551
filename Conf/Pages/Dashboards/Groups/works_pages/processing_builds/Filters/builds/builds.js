@@ -1,7 +1,7 @@
 (function() {
     return {
         placeholder: 'Об\'єкт',
-        keyValue: 'UrdioId',
+        keyValue: 'UrbioId',
         displayValue: 'Name',
         baseQueryOptions: {
             queryCode: 'urbio_db_filter_build',
