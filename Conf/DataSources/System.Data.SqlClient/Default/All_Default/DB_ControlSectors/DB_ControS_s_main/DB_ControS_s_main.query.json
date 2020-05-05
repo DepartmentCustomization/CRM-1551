@@ -1,0 +1,85 @@
+{
+  "ModelType": "Query",
+  "Code": "DB_ControS_s_main",
+  "Name": "DB_ControS_s_main",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "IsAnonymousAccess": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "sector_name",
+      "Name": "sector_name",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "sector_name",
+      "FilterParameterCode": "@sector_name"
+    },
+    {
+      "Code": "count_arrived",
+      "Name": "count_arrived",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "count_in_work",
+      "Name": "count_in_work",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "count_overdue",
+      "Name": "count_overdue",
+      "Position": 4,
+      "IsPrintable": false
+    },
+    {
+      "Code": "count_clarified",
+      "Name": "count_clarified",
+      "Position": 5,
+      "IsPrintable": false
+    },
+    {
+      "Code": "count_done",
+      "Name": "count_done",
+      "Position": 6,
+      "IsPrintable": false
+    },
+    {
+      "Code": "count_for_revision",
+      "Name": "count_for_revision",
+      "Position": 7,
+      "IsPrintable": false
+    },
+    {
+      "Code": "count_plan_program",
+      "Name": "count_plan_program",
+      "Position": 8,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    }
+  ]
+}

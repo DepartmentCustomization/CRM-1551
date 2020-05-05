@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "DB_ControlSectors",
+  "Name": "ДБ Контроль Секторів",
+  "ConnectionCode": "Default"
+}

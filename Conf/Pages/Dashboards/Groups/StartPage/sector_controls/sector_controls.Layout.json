@@ -1,0 +1,102 @@
+{
+  "css": "string:MainPage.css",
+  "rootContainer": {
+    "width": "auto",
+    "margin": "0 5px 10px",
+    "flexWrap": "wrap",
+    "flexDirection": "column",
+    "order": 1,
+    "flexGrow": 1,
+    "alignSelf": "auto",
+    "border": "none",
+    "children": [
+      {
+        "width": "auto",
+        "margin": "0 5px",
+        "flexWrap": "wrap",
+        "flexDirection": "row",
+        "order": 1,
+        "flexGrow": 1,
+        "alignSelf": "auto",
+        "border": "none",
+        "children": [
+          {
+            "width": "auto",
+            "margin": "0 5px 10px",
+            "flexWrap": "wrap",
+            "flexDirection": "row",
+            "order": 1,
+            "flexGrow": 1,
+            "alignSelf": "auto",
+            "border": "none",
+            "children": [
+              {
+                "code": "sector_controls_CustomWidget",
+                "type": "CustomWidgetComponent",
+                "name": "header_organizations"
+              }
+            ],
+            "id": "Container-2",
+            "height": "180px",
+            "minHeight": "10px",
+            "minWidth": "100px",
+            "backgroundColor": "white"
+          }
+        ],
+        "id": "Container-0",
+        "height": "220px",
+        "minHeight": "220px",
+        "minWidth": "calc(100% - 10px)",
+        "backgroundColor": "white",
+        "containerId": "header1"
+      },
+      {
+        "width": "calc(100% - 30px)",
+        "margin": "0px 15px",
+        "flexWrap": "wrap",
+        "flexDirection": "column",
+        "order": 1,
+        "flexGrow": 1,
+        "alignSelf": "auto",
+        "border": "none",
+        "children": [
+          {
+            "width": "auto",
+            "margin": "0 5px 10px",
+            "flexWrap": "wrap",
+            "flexDirection": "row",
+            "order": 1,
+            "flexGrow": 1,
+            "alignSelf": "auto",
+            "border": "none",
+            "children": [
+              {
+                "code": "select_info_table_NativeDataGridWidget",
+                "type": "NativeDataGridWidgetComponent",
+                "name": "selectInfoTable",
+                "containerId": "selectInfoTable"
+              }
+            ],
+            "id": "Container-2",
+            "height": "auto",
+            "minHeight": "10px",
+            "minWidth": "calc(100% - 10px)",
+            "backgroundColor": "white",
+            "containerId": "searchTable"
+          }
+        ],
+        "id": "Container-1",
+        "height": "auto",
+        "minHeight": "calc(100% - 300px)",
+        "minWidth": "calc(100% - 30px)",
+        "backgroundColor": "white",
+        "containerId": ""
+      }
+    ],
+    "id": "Container-0",
+    "height": "calc( 100% - 10px)",
+    "minHeight": "calc( 100% - 10px)",
+    "minWidth": "100%",
+    "backgroundColor": "#fff"
+  }
+}

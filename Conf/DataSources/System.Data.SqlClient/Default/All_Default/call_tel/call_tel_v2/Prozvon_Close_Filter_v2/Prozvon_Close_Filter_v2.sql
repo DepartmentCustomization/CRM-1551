@@ -27,12 +27,17 @@ DECLARE @question_id INT = (SELECT
 		question_id
 	FROM [dbo].[Assignments]
 	WHERE [Id] = @Id);
+
 -- таблица для хранения йд ассегмента, счетчика на доопрацювання, и актуальный сонсидерейшн
 DECLARE @assigments_table TABLE (
 	Id INT
    ,rework_counter INT
    ,curent_consid_id INT
+   ,question_id INT
+   ,main_executor BIT
 );
+DECLARE @assigments_consideration_table TABLE (Id INT); -- все Id записи из таблицы AssignmentConsiderations если вопрос- главный
+
 
 DECLARE @out TABLE (
 	Id INT
@@ -50,16 +55,28 @@ BEGIN
 	IF @result_of_checking = 0
 	BEGIN
 
-		INSERT INTO @assigments_table (Id, rework_counter, curent_consid_id)
+		INSERT INTO @assigments_table (Id, rework_counter, curent_consid_id, question_id, main_executor)
 			SELECT
 				Id
 			   ,NULL
 			   ,current_assignment_consideration_id
+			   ,question_id
+			   ,main_executor
 			FROM [dbo].[Assignments]
 			WHERE Id = @Id
 			AND [Assignments].assignment_state_id <> 5;
 
-		IF @control_result_id = 4
+			IF (SELECT main_executor FROM @assigments_table WHERE Id =@Id)='true'
+			BEGIN
+				INSERT INTO @assigments_consideration_table (Id)
+				SELECT [Assignments].current_assignment_consideration_id
+				FROM [dbo].[Assignments]
+				INNER JOIN @assigments_table atab ON [Assignments].question_id=atab.question_id
+				where atab.Id=@Id and [Assignments].assignment_state_id<>5;--ограничение на закрытое
+			END
+
+
+		IF @control_result_id IN (4,10)
 			AND @assignment_resolution_id = 9
 		BEGIN
 			UPDATE [dbo].[Assignments]
@@ -74,6 +91,8 @@ BEGIN
 					Id
 				FROM @assigments_table);
 
+				IF @state_id<>5
+					BEGIN
 			UPDATE [dbo].[AssignmentConsiderations]
 			SET [assignment_result_id] = @control_result_id
 			   ,[assignment_resolution_id] = @assignment_resolution_id
@@ -82,6 +101,7 @@ BEGIN
 			WHERE Id IN (SELECT
 					curent_consid_id
 				FROM @assigments_table);
+					END
 
 
 			IF NOT EXISTS (SELECT
@@ -120,6 +140,53 @@ BEGIN
 						curent_consid_id
 					FROM @assigments_table);
 			END
+
+			--добавление в ревижен записей, которых нет начало
+					INSERT INTO [dbo].[AssignmentRevisions]
+					  (
+					  [assignment_consideration_іd]
+						  ,[control_type_id]
+						  ,[assignment_resolution_id]
+						  ,[control_result_id]
+						  ,[organization_id]
+						  ,[control_comment]
+						  ,[control_date]
+						  ,[user_id]
+						  ,[grade]
+						  ,[grade_comment]
+						  ,[rework_counter]
+						  ,[missed_call_counter]
+						  ,[edit_date]
+						  ,[user_edit_id]
+					  )
+
+					  SELECT act.Id [assignment_consideration_іd]
+						  ,2 [control_type_id]
+						  ,@assignment_resolution_id [assignment_resolution_id]
+						  ,@control_result_id [control_result_id]
+						  ,null [organization_id]
+						  ,@control_comment [control_comment]
+						  ,GETUTCDATE() [control_date]
+						  ,@user_id [user_id]
+						  ,@grade [grade]
+						  ,null [grade_comment]
+						  ,null [rework_counter]
+						  ,null [missed_call_counter]
+						  ,getutcdate() [edit_date]
+						  ,@user_id [user_edit_id]
+					 FROM @assigments_consideration_table act
+					 LEFT JOIN [AssignmentRevisions] r ON act.Id=r.assignment_consideration_іd
+					 WHERE r.assignment_consideration_іd IS NULL
+
+							--добавление в ревижен записей, которых нет конец
+
+					 -- проставляется комментарий не главным вопросам
+							UPDATE [CRM_1551_Analitics].[dbo].[AssignmentRevisions]
+							SET [control_comment]=@control_comment
+							WHERE [assignment_consideration_іd] IN (SELECT id FROM  @assigments_consideration_table);
+
+				
+							--добавление в ревижен записей, которых нет конец
 		END
 		RETURN;
 	END
@@ -144,15 +211,26 @@ BEGIN
 END
 ELSE
 BEGIN
-	INSERT INTO @assigments_table (Id, rework_counter, curent_consid_id)
+	INSERT INTO @assigments_table (Id, rework_counter, curent_consid_id, question_id, main_executor)
 		SELECT
 			Id
 		   ,NULL
 		   ,current_assignment_consideration_id
+		   ,question_id
+		   ,main_executor
 		FROM [dbo].[Assignments]
 		WHERE Id = @Id
 		AND [Assignments].assignment_state_id <> 5;--ограничение на закрытое
 END
+
+IF (SELECT main_executor FROM @assigments_table WHERE Id =@Id)='true'
+			BEGIN
+				INSERT INTO @assigments_consideration_table (Id)
+				SELECT [Assignments].current_assignment_consideration_id
+				FROM [dbo].[Assignments]
+				INNER JOIN @assigments_table atab ON [Assignments].question_id=atab.question_id
+				where atab.Id=@Id and [Assignments].assignment_state_id<>5;--ограничение на закрытое
+			END
 
 
 --какие-то мутки, начало
@@ -182,6 +260,7 @@ BEGIN
 			curent_consid_id
 		FROM @assigments_table);
 END
+
 
 
 IF @control_result_id <> 13
@@ -262,6 +341,8 @@ BEGIN
 	END
 	ELSE
 	BEGIN
+			IF @state_id<>5
+				BEGIN
 		UPDATE [dbo].[AssignmentConsiderations]
 		SET [assignment_result_id] = (CASE
 				WHEN ast.rework_counter < 2 THEN 5
@@ -275,11 +356,51 @@ BEGIN
 		WHERE [AssignmentConsiderations].Id IN (SELECT
 				curent_consid_id
 			FROM @assigments_table);
+				END
 	END
 END
 
 IF @control_result_id IN (4, 10, 11)-- виконано 11 10
 BEGIN
+
+					--добавление в ревижен записей, которых нет начало
+					INSERT INTO [dbo].[AssignmentRevisions]
+					  (
+					  [assignment_consideration_іd]
+						  ,[control_type_id]
+						  ,[assignment_resolution_id]
+						  ,[control_result_id]
+						  ,[organization_id]
+						  ,[control_comment]
+						  ,[control_date]
+						  ,[user_id]
+						  ,[grade]
+						  ,[grade_comment]
+						  ,[rework_counter]
+						  ,[missed_call_counter]
+						  ,[edit_date]
+						  ,[user_edit_id]
+					  )
+
+					  SELECT act.Id [assignment_consideration_іd]
+						  ,2 [control_type_id]
+						  ,@assignment_resolution_id [assignment_resolution_id]
+						  ,@control_result_id [control_result_id]
+						  ,null [organization_id]
+						  ,@control_comment [control_comment]
+						  ,GETUTCDATE() [control_date]
+						  ,@user_id [user_id]
+						  ,@grade [grade]
+						  ,null [grade_comment]
+						  ,null [rework_counter]
+						  ,null [missed_call_counter]
+						  ,getutcdate() [edit_date]
+						  ,@user_id [user_edit_id]
+					 FROM @assigments_consideration_table act
+					 LEFT JOIN [AssignmentRevisions] r ON act.Id=r.assignment_consideration_іd
+					 WHERE r.assignment_consideration_іd IS NULL
+
+							--добавление в ревижен записей, которых нет конец
 
 	UPDATE [CRM_1551_Analitics].[dbo].[AssignmentRevisions]
 	SET [assignment_resolution_id] = @assignment_resolution_id
@@ -292,6 +413,12 @@ BEGIN
 	WHERE [assignment_consideration_іd] IN (SELECT
 			curent_consid_id
 		FROM @assigments_table);
+
+						-- проставляется комментарий не главным вопросам
+							UPDATE [CRM_1551_Analitics].[dbo].[AssignmentRevisions]
+							SET [control_comment]=@control_comment
+							WHERE [assignment_consideration_іd] IN (SELECT id FROM  @assigments_consideration_table);
+
 
 	UPDATE [CRM_1551_Analitics].[dbo].[Assignments]
 	SET [assignment_state_id] = @state_id

@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "DB_ControlSectorInspecrot",
+  "Name": "ДБ Контролю Сектору Інспектора",
+  "ConnectionCode": "Default"
+}
