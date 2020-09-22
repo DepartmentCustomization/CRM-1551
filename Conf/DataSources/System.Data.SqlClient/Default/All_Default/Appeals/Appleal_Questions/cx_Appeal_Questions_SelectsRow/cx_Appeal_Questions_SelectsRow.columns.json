@@ -251,8 +251,13 @@
     "Position": 44
   },
   {
+    "Code": "attention_val",
+    "Name": "attention_val",
+    "Position": 45
+  },
+  {
     "Code": "receipt_source_id",
     "Name": "receipt_source_id",
-    "Position": 27
+    "Position": 46
   }
 ]

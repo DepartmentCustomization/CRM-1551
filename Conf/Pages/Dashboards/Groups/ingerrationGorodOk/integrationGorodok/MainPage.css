@@ -1,0 +1,54 @@
+.header-label {
+    text-align: center;
+    color: #131313;
+    margin: 32.5px;
+    font-size: 30px;
+    line-height: 18px;
+}
+.group-btns {
+    margin-top: 3em;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: space-around;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.group-btns .group {
+    width: 15.00%;
+    height: 200px;
+    cursor: pointer;
+    position: relative;
+    background-color: #F8F8F8;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 2% 5%;
+}
+.group-btns .group .icon {
+    text-align: center;
+}
+.letterIcon{
+    font-size: 70px;
+}
+.group-btns .group .description {
+    text-align: center;
+    color: #131313;
+    font-size: 20px;
+    line-height: 18px;
+}
+.group-btns .group .border-bottom {
+    position: absolute;
+    width: calc(100% - 40px);
+    bottom: 0;
+    left: 20px;
+    box-shadow: 0 0 1px 1px rgba(0,0,0,.1);
+}
+.group-btns .group .border-right {
+    position: absolute;
+    height: calc(100% - 40px);
+    top: 20px;
+    right: 0;
+    box-shadow: 0 0 1px 1px rgba(0,0,0,.1);
+}

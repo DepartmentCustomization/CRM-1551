@@ -355,23 +355,27 @@
             let period = message.package.value.values.find(f => f.name === 'period').value;
             let questionType = message.package.value.values.find(f => f.name === 'questionType').value;
             let organization = message.package.value.values.find(f => f.name === 'organization').value;
+            let sources = message.package.value.values.find(f => f.name === 'sources').value;
             if(period !== null) {
                 if(period.dateFrom !== '' && period.dateTo !== '') {
+                    this.sources = this.extractValues(sources);
                     this.dateFrom = period.dateFrom;
                     this.dateTo = period.dateTo;
                     this.questionType = questionType === null ? 0 : questionType === '' ? 0 : questionType.value;
                     this.organization = organization === null ? 0 : organization === '' ? 0 : organization.value;
+                    this.sources = sources.toString() === '' ? '0' : this.sources.toString();
                     this.config.query.parameterValues = [
                         {key: '@dateFrom' , value: this.dateFrom },
                         {key: '@dateTo', value: this.dateTo },
                         {key: '@question_type_id', value: this.questionType },
-                        {key: '@org', value: this.organization }
+                        {key: '@org', value: this.organization },
+                        { key: '@sourceId', value: this.sources.toString() }
                     ];
                     this.loadData(this.afterLoadDataHandler);
                 }
             }
         },
-        extractOrgValues: function(items) {
+        extractValues: function(items) {
             if(items.length && items !== '') {
                 const valuesList = [];
                 items.forEach(item => valuesList.push(item.value));

@@ -112,16 +112,16 @@
         },
         changeTab: function(tab) {
             switch (tab.id) {
-            case 'tabCards':
-                this.addActiveTabBorder('tabAlgorithm');
-                this.removeActiveTabBorder(tab.id);
-                break;
-            case 'tabAlgorithm':
-                this.addActiveTabBorder('tabCards');
-                this.removeActiveTabBorder(tab.id);
-                break;
-            default:
-                break;
+                case 'tabCards':
+                    this.addActiveTabBorder('tabAlgorithm');
+                    this.removeActiveTabBorder(tab.id);
+                    break;
+                case 'tabAlgorithm':
+                    this.addActiveTabBorder('tabCards');
+                    this.removeActiveTabBorder(tab.id);
+                    break;
+                default:
+                    break;
             }
         }
     };

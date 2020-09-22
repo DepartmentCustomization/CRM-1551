@@ -4,7 +4,8 @@
     "Name": "EventsTable",
     "ConnectionCode": "Default",
     "IsUsedForRightsFilter": false,
-    "Columns": [{
+    "Columns": [
+        {
             "Code": "EventId",
             "Name": "EventId",
             "Position": 1,
@@ -23,21 +24,27 @@
             "IsPrintable": false
         },
         {
+            "Code": "objectName",
+            "Name": "objectName",
+            "Position": 4,
+            "IsPrintable": false
+        },
+        {
             "Code": "start_date",
             "Name": "start_date",
-            "Position": 4,
+            "Position": 5,
             "IsPrintable": false
         },
         {
             "Code": "plan_end_date",
             "Name": "plan_end_date",
-            "Position": 5,
+            "Position": 6,
             "IsPrintable": false
         },
         {
             "Code": "CountQuestions",
             "Name": "CountQuestions",
-            "Position": 6,
+            "Position": 7,
             "IsPrintable": false
         },
         {
@@ -49,11 +56,12 @@
         {
             "Code": "gorodok_id",
             "Name": "gorodok_id",
-            "Position": 8,
+            "Position": 9,
             "IsPrintable": false
         }
     ],
-    "Parameters": [{
+    "Parameters": [
+        {
             "Code": "@TypeEvent",
             "Name": "TypeEvent"
         },
@@ -70,6 +78,18 @@
             "Code": "@organization_id",
             "Name": "organization_id",
             "ParameterType": "Integer"
-        }
+        },
+        {
+            "Code": "@pageLimitRows",
+            "Name": "pageLimitRows",
+            "ParameterType": "Integer",
+            "IsPageLimitRows": true
+          },
+          {
+            "Code": "@pageOffsetRows",
+            "Name": "pageOffsetRows",
+            "ParameterType": "Integer",
+            "IsPageOffsetRows": true
+          }
     ]
 }

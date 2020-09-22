@@ -28,7 +28,7 @@
       "IsRequired": true,
       "Position": 4,
       "Width": "30%",
-      "QueryCode": "dir_EventTypes_SelectRows",
+      "QueryCode": "EventTypesByClass",
       "KeyColumnCode": "Id",
       "DisplayColumnCode": "name",
       "QueryParameters": []
@@ -75,7 +75,8 @@
       "Name": "Зміст",
       "FieldType": "textarea",
       "Position": 8,
-      "Width": "100%"
+      "Width": "100%",
+      "IsRequired": true
     },
     {
       "Code": "start_date",
@@ -120,6 +121,21 @@
       "Name": "Закрити захід",
       "FieldType": "button",
       "Position": 16
+    },
+    {
+      "Code": "btn_Attention",
+      "Name": "Контроль",
+      "FieldType": "button",
+      "Position": 17,
+      "Width": "40%"
+    },
+    {
+      "Code": "attention_val",
+      "Name": "attention_val",
+      "FieldType": "number",
+      "Position": 344,
+      "Width": "15%",
+      "IsHidden": true
     },
     {
       "Code": "registration_date",

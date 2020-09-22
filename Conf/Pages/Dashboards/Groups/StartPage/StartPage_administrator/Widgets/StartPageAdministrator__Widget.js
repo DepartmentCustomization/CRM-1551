@@ -1,5 +1,5 @@
-(function() {
-    return {
+(function () {
+  return {
         customConfig:
                 `
                     <style>
@@ -162,6 +162,5 @@
         },
         afterViewInit:function() {
         }
-    }
-    ;
+    };
 }());

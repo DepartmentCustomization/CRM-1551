@@ -1,0 +1,15 @@
+{
+    "ModelType": "Detail",
+    "Code": "Detail_ArchiveEventQuestions",
+    "Name": "Архівні питання",
+    "SelectRowsQueryCode": "det_ArchiveEventQue",
+    "SectionCode": "",
+    "Position": 5,
+    "IsExpand": false,
+    "QueryParameters": [
+      {
+        "FormFieldName": "event_id",
+        "ParameterCode": "@event_id"
+      }
+    ]
+  }

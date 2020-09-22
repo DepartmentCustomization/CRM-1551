@@ -1,0 +1,165 @@
+{
+  "css": "string:MainPage.css",
+  "rootContainer": {
+    "width": "auto",
+    "margin": "0",
+    "flexWrap": "wrap",
+    "flexDirection": "column",
+    "order": 1,
+    "flexGrow": 1,
+    "alignSelf": "auto",
+    "border": "none",
+    "children": [
+      {
+        "width": "calc(100% - 10px)",
+        "margin": "0 ",
+        "flexWrap": "nowrap",
+        "flexDirection": "column",
+        "order": "1",
+        "flexGrow": 1,
+        "alignSelf": "auto",
+        "border": "none",
+        "children": [
+          {
+            "width": "auto",
+            "margin": "0 5px 10px",
+            "flexWrap": "wrap",
+            "flexDirection": "row",
+            "order": 1,
+            "flexGrow": 1,
+            "alignSelf": "auto",
+            "border": "none",
+            "children": [
+              {
+                "code": "headerCustomWidget",
+                "type": "CustomWidgetComponent",
+                "name": "header"
+              }
+            ],
+            "id": "Container-2",
+            "height": "auto",
+            "minHeight": "calc(100% - 10px)",
+            "minWidth": "calc(100% - 10px)",
+            "backgroundColor": "white",
+            "containerId": ""
+          },
+          {
+            "width": "auto",
+            "margin": "0 5px",
+            "flexWrap": "wrap",
+            "flexDirection": "row",
+            "order": 1,
+            "flexGrow": 1,
+            "alignSelf": "auto",
+            "border": "none",
+            "children": [
+              {
+                "code": "modalCustomWidget",
+                "type": "CustomWidgetComponent",
+                "name": "modalWindow"
+              }
+            ],
+            "id": "Container-2",
+            "height": "0px",
+            "minHeight": "0px",
+            "minWidth": "calc(100% - 10px)",
+            "backgroundColor": "white",
+            "containerId": ""
+          }
+        ],
+        "id": "Container-0",
+        "height": "220px",
+        "minHeight": "220px",
+        "minWidth": "calc(100% - 10px)",
+        "backgroundColor": "white",
+        "containerId": "modalWindowWidget"
+      },
+      {
+        "width": "auto",
+        "margin": "0 5px 10px",
+        "flexWrap": "wrap",
+        "flexDirection": "row",
+        "order": "2",
+        "flexGrow": 1,
+        "alignSelf": "auto",
+        "border": "none",
+        "children": [
+          {
+            "width": "auto",
+            "margin": "0 5px 10px",
+            "flexWrap": "wrap",
+            "flexDirection": "row",
+            "order": 1,
+            "flexGrow": 1,
+            "alignSelf": "auto",
+            "border": "none",
+            "children": [
+              {
+                "code": "findAppealNativeDataGridWidget",
+                "type": "NativeDataGridWidgetComponent",
+                "name": "finder"
+              }
+            ],
+            "id": "Container-3",
+            "height": "auto",
+            "minHeight": "100px",
+            "minWidth": "100px",
+            "backgroundColor": "white"
+          }
+        ],
+        "id": "Container-2",
+        "height": "auto",
+        "minHeight": "100px",
+        "minWidth": "100px",
+        "backgroundColor": "white",
+        "containerId": "finder"
+      },
+      {
+        "width": "auto",
+        "margin": "0 5px 10px",
+        "flexWrap": "wrap",
+        "flexDirection": "column",
+        "order": "3",
+        "flexGrow": 1,
+        "alignSelf": "auto",
+        "border": "none",
+        "children": [
+          {
+            "width": "auto",
+            "margin": "0 5px 10px",
+            "flexWrap": "wrap",
+            "flexDirection": "row",
+            "order": 1,
+            "flexGrow": 1,
+            "alignSelf": "auto",
+            "border": "none",
+            "children": [
+              {
+                "code": "subTableNativeDataGridWidget",
+                "type": "NativeDataGridWidgetComponent",
+                "name": "subTable"
+              }
+            ],
+            "id": "Container-2",
+            "height": "auto",
+            "minHeight": "100px",
+            "minWidth": "calc(100% - 10px)",
+            "backgroundColor": "white",
+            "containerId": "subTable"
+          }
+        ],
+        "id": "Container-1",
+        "height": "auto",
+        "minHeight": "calc(100% -  350px)",
+        "minWidth": "100px",
+        "backgroundColor": "white",
+        "containerId": "subTable"
+      }
+    ],
+    "id": "Container-0",
+    "height": "100%",
+    "minHeight": "100%",
+    "minWidth": "100%",
+    "backgroundColor": "white"
+  }
+}

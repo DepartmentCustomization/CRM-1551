@@ -1,0 +1,28 @@
+[
+  {
+    "Code": "@questiondirection_id",
+    "Name": "questiondirection_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@Id",
+    "Name": "Id",
+    "ParameterType": "Integer",
+    "IsPrimaryKey": true
+  },
+  {
+    "Code": "@district_id",
+    "Name": "district_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@user_id",
+    "Name": "user_id",
+    "ParameterType": "CurrentUserId"
+  },
+  {
+    "Code": "@emergensy_id",
+    "Name": "emergensy_id",
+    "ParameterType": "Integer"
+  }
+]

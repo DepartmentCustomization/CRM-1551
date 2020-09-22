@@ -1,0 +1,22 @@
+{
+  "ModelType": "Query",
+  "Code": "SearchTableFilters_IRow",
+  "Name": "SearchTableFilters_IRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    },
+    {
+      "Code": "@filter_name",
+      "Name": "filter_name"
+    },
+    {
+      "Code": "@filters",
+      "Name": "filters"
+    }
+  ]
+}

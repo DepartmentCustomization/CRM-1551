@@ -4,6 +4,7 @@
     "Name": "Пов'язані питання",
     "SelectRowsQueryCode": "list_Related_question",
     "SectionCode": "",
+    "DeleteQueryCode": "det_RelatedEventQue_clear",
     "Position": 2,
     "IsExpand": true,
     "Add": {

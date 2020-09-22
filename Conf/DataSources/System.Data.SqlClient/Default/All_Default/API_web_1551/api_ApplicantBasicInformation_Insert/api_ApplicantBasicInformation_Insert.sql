@@ -9,7 +9,8 @@ DECLARE @tab TABLE (Id INT);
            ,[SocialStateId]
            ,[ApplicantPrivilegeId]
            ,[INN]
-           ,[is_verified])
+           ,[is_verified]
+           ,[external_data_sources_id])
     OUTPUT inserted.Id INTO @tab(Id)       
            
      VALUES
@@ -21,7 +22,8 @@ DECLARE @tab TABLE (Id INT);
            ,@socialstate_id
            ,@applicantprivilage_id
            ,@inn
-           ,@is_verified);
+           ,@is_verified
+           ,@external_data_sources_id);
            
 DECLARE @applicant_id INT;
 SET @applicant_id = (SELECT TOP(1) Id FROM @tab);

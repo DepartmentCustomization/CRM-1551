@@ -1,16 +1,24 @@
---declare @phone_number nvarchar(50)=(select [PhoneNumber] from [ApplicantDublicate] where id=@Id)
 
-  select distinct [Applicants].Id, replace([ApplicantPhones].[phone_number], N'+38', N'') [Phone_number], [Applicants].full_name Full_name, isnull(StreetTypes.shortname+N' ', N'')+isnull(Streets.name+N'. ', N'')+isnull(Buildings.name, N'') Address,
+  --declare @Id int =38;
+
+  declare @phone_number nvarchar(50)=(select [PhoneNumber] from [ApplicantDublicate] where id=@Id)
+
+  select distinct [Applicants].Id, replace([ApplicantPhones].[phone_number], N'+38', N'') [Phone_number], [Applicants].full_name Full_name, isnull(StreetTypes.shortname+N' ', N'')+isnull(Streets.name+N'. ', N'')+isnull(Buildings.name, N'')
+  +ISNULL(N', П '+LTRIM([LiveAddress].[entrance]), N'')+ISNULL(N', кв '+LTRIM([LiveAddress].flat),N'') Address,
   case
   when [Applicants].birth_date is null and [Applicants].birth_year is null then null
   when [Applicants].birth_date is null and [Applicants].birth_year is not null then YEAR(getdate())-[Applicants].birth_year+1
   when month([Applicants].birth_date)*100+day([Applicants].birth_date)<month(getdate())*100+day(getdate()) then YEAR(getdate())-[Applicants].birth_year+1
   when month([Applicants].birth_date)*100+day([Applicants].birth_date)>=month(getdate())*100+day(getdate()) then YEAR(getdate())-[Applicants].birth_year
   end Years, 
-  [SocialStates].name SocialState, [ApplicantPrivilege].Name Privilege
+  [SocialStates].name SocialState, [ApplicantPrivilege].Name Privilege,
+  [Applicants].mail Email,
+  (select top 1 phone_number from [ApplicantPhones] where IsMain='false' and applicant_id=[Applicants].Id) Main_number
+
   from [ApplicantPhones]
   inner join [ApplicantDublicate] on replace([ApplicantPhones].[phone_number], N'+38', N'')=[ApplicantDublicate].PhoneNumber
   inner join [Applicants] on [ApplicantPhones].applicant_id=[Applicants].Id
+  --left join (select applicant_id from [ApplicantPhones] where IsMain='false')
   left join [LiveAddress] on [Applicants].Id=[LiveAddress].applicant_id
   left join [Buildings] on [LiveAddress].[building_id]=[Buildings].id
   left join [Streets] on [Buildings].street_id=[Streets].Id

@@ -1,0 +1,80 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 0,
+    "IsPrintable": false
+  },
+  {
+    "Code": "user_name",
+    "Name": "user_name",
+    "Position": 1,
+    "IsPrintable": false
+  },
+  {
+    "Code": "count_call",
+    "Name": "count_call",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "count_10sec",
+    "Name": "count_10sec",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "count_appeals",
+    "Name": "count_appeals",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "count_questions",
+    "Name": "count_questions",
+    "Position": 5,
+    "IsPrintable": false
+  },
+  {
+    "Code": "consult3",
+    "Name": "consult3",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "consult2",
+    "Name": "consult2",
+    "Position": 7,
+    "IsPrintable": false
+  },
+  {
+    "Code": "consult1",
+    "Name": "consult1",
+    "Position": 8,
+    "IsPrintable": false
+  },
+  {
+    "Code": "consult4",
+    "Name": "consult4",
+    "Position": 9,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_cons_sec",
+    "Name": "avg_cons_sec",
+    "Position": 10,
+    "IsPrintable": false
+  },
+  {
+    "Code": "count_appeal_call",
+    "Name": "count_appeal_call",
+    "Position": 11,
+    "IsPrintable": false
+  },
+  {
+    "Code": "pro_appeal_call",
+    "Name": "pro_appeal_call",
+    "Position": 12,
+    "IsPrintable": false
+  }
+]

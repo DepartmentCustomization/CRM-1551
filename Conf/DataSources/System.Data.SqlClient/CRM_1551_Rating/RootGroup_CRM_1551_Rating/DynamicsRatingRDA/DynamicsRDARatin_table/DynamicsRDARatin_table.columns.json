@@ -1,0 +1,140 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 0,
+    "IsPrintable": false
+  },
+  {
+    "Code": "OrganizationName",
+    "Name": "OrganizationName",
+    "Position": 1,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_PercentClosedOnTime_with_1",
+    "Name": "avg_PercentClosedOnTime_with_1",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_PercentClosedOnTime_with_filter",
+    "Name": "avg_PercentClosedOnTime_with_filter",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_PercentClosedOnTime_dyn",
+    "Name": "avg_PercentClosedOnTime_dyn",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_PercentOfExecution_with_1",
+    "Name": "avg_PercentOfExecution_with_1",
+    "Position": 5,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_PercentOfExecution_with_filter",
+    "Name": "avg_PercentOfExecution_with_filter",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_PercentOfExecution_dyn",
+    "Name": "avg_PercentOfExecution_dyn",
+    "Position": 7,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_PercentOnVeracity_with_1",
+    "Name": "avg_PercentOnVeracity_with_1",
+    "Position": 8,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_PercentOnVeracity_with_filter",
+    "Name": "avg_PercentOnVeracity_with_filter",
+    "Position": 9,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_PercentOnVeracity_dyn",
+    "Name": "avg_PercentOnVeracity_dyn",
+    "Position": 10,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_IndexOfSpeedToExecution_with_1",
+    "Name": "avg_IndexOfSpeedToExecution_with_1",
+    "Position": 11,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_IndexOfSpeedToExecution_with_filter",
+    "Name": "avg_IndexOfSpeedToExecution_with_filter",
+    "Position": 12,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_IndexOfSpeedToExecution_dyn",
+    "Name": "avg_IndexOfSpeedToExecution_dyn",
+    "Position": 13,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_IndexOfSpeedToExplain_with_1",
+    "Name": "avg_IndexOfSpeedToExplain_with_1",
+    "Position": 14,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_IndexOfSpeedToExplain_with_filter",
+    "Name": "avg_IndexOfSpeedToExplain_with_filter",
+    "Position": 15,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_IndexOfSpeedToExplain_dyn",
+    "Name": "avg_IndexOfSpeedToExplain_dyn",
+    "Position": 16,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_IndexOfFactToExecution_with_1",
+    "Name": "avg_IndexOfFactToExecution_with_1",
+    "Position": 17,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_IndexOfFactToExecution_with_filter",
+    "Name": "avg_IndexOfFactToExecution_with_filter",
+    "Position": 18,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_IndexOfFactToExecution_dyn",
+    "Name": "avg_IndexOfFactToExecution_dyn",
+    "Position": 19,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_PercentPleasureOfExecution_with_1",
+    "Name": "avg_PercentPleasureOfExecution_with_1",
+    "Position": 20,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_PercentPleasureOfExecution_with_filter",
+    "Name": "avg_PercentPleasureOfExecution_with_filter",
+    "Position": 21,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_PercentPleasureOfExecution_dyn",
+    "Name": "avg_PercentPleasureOfExecution_dyn",
+    "Position": 22,
+    "IsPrintable": false
+  }
+]

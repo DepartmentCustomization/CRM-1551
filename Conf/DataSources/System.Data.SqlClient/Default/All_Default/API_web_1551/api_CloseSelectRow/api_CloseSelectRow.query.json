@@ -12,16 +12,20 @@
       "IsPageOffsetRows": true
     },
     {
-      "Code": "@ApplicantFromSiteId",
-      "Name": "ApplicantFromSiteId",
-      "ParameterType": "Integer",
-      "IsPrimaryKey": true
-    },
-    {
       "Code": "@pageLimitRows",
       "Name": "pageLimitRows",
       "ParameterType": "Integer",
       "IsPageLimitRows": true
+    },
+    {
+      "Code": "@ApplicantFromSiteId",
+      "Name": "ApplicantFromSiteId",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@ApplicantFromSitePhone",
+      "Name": "ApplicantFromSitePhone",
+      "ParameterType": "text"
     }
   ]
 }

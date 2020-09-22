@@ -1,0 +1,110 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 0,
+    "IsPrintable": false
+  },
+  {
+    "Code": "territories_name",
+    "Name": "territories_name",
+    "Position": 1,
+    "IsPrintable": false
+  },
+  {
+    "Code": "count_all",
+    "Name": "count_all",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "count_registered",
+    "Name": "count_registered",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "count_in_work",
+    "Name": "count_in_work",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "count_on_inspection",
+    "Name": "count_on_inspection",
+    "Position": 5,
+    "IsPrintable": false
+  },
+  {
+    "Code": "count_closed_performed",
+    "Name": "count_closed_performed",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "count_closed_clear",
+    "Name": "count_closed_clear",
+    "Position": 7,
+    "IsPrintable": false
+  },
+  {
+    "Code": "count_for_completion",
+    "Name": "count_for_completion",
+    "Position": 8,
+    "IsPrintable": false
+  },
+  {
+    "Code": "count_not_competence",
+    "Name": "count_not_competence",
+    "Position": 9,
+    "IsPrintable": false
+  },
+  {
+    "Code": "count_built",
+    "Name": "count_built",
+    "Position": 10,
+    "IsPrintable": false
+  },
+  {
+    "Code": "count_not_processed_in_time",
+    "Name": "count_not_processed_in_time",
+    "Position": 11,
+    "IsPrintable": false
+  },
+  {
+    "Code": "speed_of_employment",
+    "Name": "speed_of_employment",
+    "Position": 12,
+    "IsPrintable": false
+  },
+  {
+    "Code": "timely_processed",
+    "Name": "timely_processed",
+    "Position": 13,
+    "IsPrintable": false
+  },
+  {
+    "Code": "implementation",
+    "Name": "implementation",
+    "Position": 14,
+    "IsPrintable": false
+  },
+  {
+    "Code": "reliability",
+    "Name": "reliability",
+    "Position": 15,
+    "IsPrintable": false
+  },
+  {
+    "Code": "in_color",
+    "Name": "in_color",
+    "Position": 16,
+    "IsPrintable": false
+  },
+  {
+    "Code": "count_act",
+    "Name": "count_act",
+    "Position": 17,
+    "IsPrintable": false
+  }
+]

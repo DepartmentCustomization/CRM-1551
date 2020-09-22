@@ -15,8 +15,24 @@
                     caption: 'Дата надходження',
                     width: 200
                 }, {
-                    dataField: 'workDirection',
-                    caption: 'Напрямок робіт',
+                    dataField: 'SystemIP',
+                    caption: 'Система',
+                    width: 200
+                }, {
+                    dataField: 'Surname',
+                    caption: 'Прізвище',
+                    width: 200
+                }, {
+                    dataField: 'Firstname',
+                    caption: 'Ім`я',
+                    width: 200
+                }, {
+                    dataField: 'ApplicantPhone',
+                    caption: 'Номер телефону',
+                    width: 200
+                }, {
+                    dataField: 'ApplicantMail',
+                    caption: 'E-mail',
                     width: 200
                 }, {
                     dataField: 'appealObject',
@@ -24,10 +40,7 @@
                     width: 180
                 }, {
                     dataField: 'content',
-                    caption: 'Зміст'
-                }, {
-                    dataField: 'result',
-                    caption: 'Результат',
+                    caption: 'Зміст',
                     width: 200
                 }, {
                     dataField: 'moderComment',

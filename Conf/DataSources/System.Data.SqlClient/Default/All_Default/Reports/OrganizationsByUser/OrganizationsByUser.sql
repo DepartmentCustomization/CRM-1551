@@ -1,111 +1,63 @@
--- declare @user_id nvarchar(128) = 'eb6d56d2-e217-45e4-800b-c851666ce795';
+-- DECLARE @user_id NVARCHAR(128) = 'deae23d5-b957-48de-b2c6-63960db3622c';
 DECLARE @user_org TABLE (Id INT);
 
-DECLARE @kbu_orgs TABLE (Id INT);
-
-DECLARE @is_root SMALLINT;
-
+---> Получить организации юзера
 INSERT INTO
     @user_org
 SELECT
     OrganisationStructureId
 FROM
-    [#system_database_name#].[dbo].[UserInOrganisation]
+    [#system_database_name#].[dbo].[UserInOrganisation] 
 WHERE
     UserId = @user_id --- Получить организации дочерние от КБУ
 ;
 
-WITH RecursiveOrg (Id, parentID, orgName) AS (
-    SELECT
-        o.Id,
-        ParentId,
-        Name
-    FROM
-        [#system_database_name#].[dbo].[OrganisationStructure] o
-    WHERE
-        o.Id = 4
-    UNION
-    ALL
-    SELECT
-        o.Id,
-        o.ParentId,
-        o.Name
-    FROM
-        [#system_database_name#].[dbo].[OrganisationStructure] o
-        JOIN RecursiveOrg r ON o.ParentId = r.Id
-)
-INSERT INTO
-    @kbu_orgs
-SELECT
-    DISTINCT Id
-FROM
-    RecursiveOrg r ;
-SET
-    @is_root = (
-        SELECT
-            count(x) xqty
-        FROM
-            (
-                SELECT
-                    CASE
-                        WHEN Id IN (2)
-                        OR Id IN (
-                            SELECT
-                                Id
-                            FROM
-                                @kbu_orgs
-                        ) THEN 'One'
-                        ELSE 'Zero'
-                    END AS x
-                FROM
-                    @user_org
-            ) x
-        WHERE
-            x.x = 'One'
-    ) ;
-    IF object_id('tempdb..#orgList') IS NOT NULL 
-    BEGIN
-    DROP TABLE #orgList ;
-    END
-    CREATE TABLE #orgList
-    (
-        Id int,
-        parentID int,
-        orgName nvarchar(255)
-    );
+---> Выбрать организации администратора и КБУ с их дочерними
+DECLARE @root_orgs TABLE (Id INT);
+INSERT INTO @root_orgs
+SELECT 2
+UNION 
+SELECT 4
+UNION 
+SELECT 
+	Id 
+FROM 
+    [#system_database_name#].[dbo].[OrganisationStructure]
+WHERE ParentId IN (2, 4);
+
+DECLARE @isRoot BIT = IIF(
+						(SELECT 
+							COUNT(Id) 
+					   FROM @user_org 
+					   WHERE Id IN 
+								(SELECT Id FROM @root_orgs)) > 0,
+								1,
+								0);
+
+IF OBJECT_ID('tempdb..#orgList') IS NOT NULL
+BEGIN
+	DROP TABLE #orgList;
+END
+
+CREATE TABLE #orgList (Id INT, 
+					   parentID INT, 
+					   orgName NVARCHAR(300) 
+					   ) WITH (DATA_COMPRESSION = PAGE);
 
 --- Если юзер из структуры админов или КБУ - показывать все
-IF(@is_root > 0) BEGIN;
+IF(@isRoot = 1) 
+BEGIN;
 
-WITH RecursiveOrg (Id, parentID, orgName) AS (
-    SELECT
-        o.Id,
-        parent_organization_id,
-        short_name
-    FROM
-        dbo.Organizations o 
-    WHERE
-        o.Id = 1
-    UNION
-    ALL
-    SELECT
-        o.Id,
-        o.parent_organization_id,
-        o.short_name
-    FROM
-        dbo.Organizations o
-        JOIN RecursiveOrg r ON o.parent_organization_id = r.Id
-)
-INSERT INTO
-    #orgList
+INSERT INTO #orgList (Id, parentID, orgName)
 SELECT
-    DISTINCT Id,
-    parentID,
-    orgName
+	Id,
+	parent_organization_id,
+	short_name 
 FROM
-    RecursiveOrg r ;
-END --- Иначе выборка по должности
-ELSE IF (@is_root = 0)
+    dbo.[Organizations];
+END 
+--- Иначе выборка по должности
+ELSE IF (@isRoot = 0)
 BEGIN
 
 WITH RecursiveOrg (Id, parentID, orgName) AS (
@@ -128,21 +80,23 @@ WITH RecursiveOrg (Id, parentID, orgName) AS (
         dbo.Organizations o
         JOIN RecursiveOrg r ON o.parent_organization_id = r.Id
 )
-INSERT INTO
-    #orgList
+
+INSERT INTO #orgList (Id, parentID, orgName)
 SELECT
-    DISTINCT Id,
+DISTINCT 
+	Id,
     parentID,
     orgName
 FROM
     RecursiveOrg r ;
 END
+
 SELECT
     Id,
     orgName
 FROM
     #orgList
 WHERE
-    #filter_columns#
-ORDER BY
-    Id OFFSET @pageOffsetRows ROWS FETCH next @pageLimitRows ROWS ONLY ;
+   #filter_columns#
+ORDER BY Id 
+OFFSET @pageOffsetRows ROWS FETCH next @pageLimitRows ROWS ONLY ;

@@ -601,21 +601,21 @@
         setTrueItemsList: function(id, input) {
             let listItems = undefined;
             switch (id) {
-            case '_valueCat':
-                this._categoryValueId = input.valueId;
-                listItems = this.categoryList;
-                break;
-            case '_valueCallerType':
-                this._callerTypeValueId = input.valueId;
-                listItems = this.callerTypeList;
-                break;
-            case '_valueWorkLine':
-                this._workLineValueId = input.valueId;
-                this._workLineValue = input.value;
-                listItems = this.workLineList;
-                break;
-            default:
-                break;
+                case '_valueCat':
+                    this._categoryValueId = input.valueId;
+                    listItems = this.categoryList;
+                    break;
+                case '_valueCallerType':
+                    this._callerTypeValueId = input.valueId;
+                    listItems = this.callerTypeList;
+                    break;
+                case '_valueWorkLine':
+                    this._workLineValueId = input.valueId;
+                    this._workLineValue = input.value;
+                    listItems = this.workLineList;
+                    break;
+                default:
+                    break;
             }
             return listItems;
         },
@@ -645,24 +645,24 @@
                                 const id = Number(target.id);
                                 const value = target.innerText;
                                 switch (inputId) {
-                                case 'btnExtern':
-                                    this.changeExternBtn(inputId);
-                                    this.getItemProps(id);
-                                    this.changeCategoryInput(value, id);
-                                    break;
-                                case '_valueCat':
-                                    this.getItemProps(id);
-                                    this.changeCategoryInput(value, id);
-                                    this.messageService.publish({name: 'sendCategoryId', id: id});
-                                    break;
-                                case '_valueCallerType':
-                                    this.changeCallerTypeInput(value, id);
-                                    break;
-                                case '_valueWorkLine':
-                                    this.changeWorkLineInput(value, id);
-                                    break;
-                                default:
-                                    break;
+                                    case 'btnExtern':
+                                        this.changeExternBtn(inputId);
+                                        this.getItemProps(id);
+                                        this.changeCategoryInput(value, id);
+                                        break;
+                                    case '_valueCat':
+                                        this.getItemProps(id);
+                                        this.changeCategoryInput(value, id);
+                                        this.messageService.publish({name: 'sendCategoryId', id: id});
+                                        break;
+                                    case '_valueCallerType':
+                                        this.changeCallerTypeInput(value, id);
+                                        break;
+                                    case '_valueWorkLine':
+                                        this.changeWorkLineInput(value, id);
+                                        break;
+                                    default:
+                                        break;
                                 }
                                 this.removeSelectBackground(wrapper, '1');
                             });
@@ -738,20 +738,20 @@
         getServiceBtnId: function(service) {
             let value = undefined;
             switch (service) {
-            case '101':
-                value = 'btnFire'
-                break;
-            case '102':
-                value = 'btnPolice'
-                break;
-            case '103':
-                value = 'btnMedical'
-                break;
-            case '104':
-                value = 'btnGas'
-                break;
-            default:
-                break;
+                case '101':
+                    value = 'btnFire'
+                    break;
+                case '102':
+                    value = 'btnPolice'
+                    break;
+                case '103':
+                    value = 'btnMedical'
+                    break;
+                case '104':
+                    value = 'btnGas'
+                    break;
+                default:
+                    break;
             }
             return value
         },
@@ -761,20 +761,20 @@
             data.rows.forEach(service => {
                 const name = service.values[indexName];
                 switch (name) {
-                case '101':
-                    this.fire = service.values[indexService];
-                    break;
-                case '102':
-                    this.police = service.values[indexService];
-                    break;
-                case '103':
-                    this.medical = service.values[indexService];
-                    break;
-                case '104':
-                    this.gas = service.values[indexService];
-                    break;
-                default:
-                    break;
+                    case '101':
+                        this.fire = service.values[indexService];
+                        break;
+                    case '102':
+                        this.police = service.values[indexService];
+                        break;
+                    case '103':
+                        this.medical = service.values[indexService];
+                        break;
+                    case '104':
+                        this.gas = service.values[indexService];
+                        break;
+                    default:
+                        break;
                 }
             });
         },
@@ -786,23 +786,23 @@
         getList: function(type, data) {
             let list = undefined;
             switch (type) {
-            case 'externListType':
-                list = this.externList
-                break;
-            case 'callerTypeList':
-                list = this.callerTypeList
-                break;
-            case 'workLineList':
-                list = this.workLineList
-                break;
-            case 'categoryListType':
-                if(this.categoryList.length) {
-                    this.categoryList = [];
-                }
-                list = this.categoryList
-                break;
-            default:
-                break;
+                case 'externListType':
+                    list = this.externList
+                    break;
+                case 'callerTypeList':
+                    list = this.callerTypeList
+                    break;
+                case 'workLineList':
+                    list = this.workLineList
+                    break;
+                case 'categoryListType':
+                    if(this.categoryList.length) {
+                        this.categoryList = [];
+                    }
+                    list = this.categoryList
+                    break;
+                default:
+                    break;
             }
             if(list) {
                 data.rows.forEach(row => {
@@ -904,16 +904,16 @@
         },
         setDateTimeValues: function() {
             let date = new Date();
-            let DD = date.getDate().toString();
-            let MM = (date.getMonth() + 1).toString();
-            let YYYY = date.getFullYear().toString();
-            let hh = date.getHours().toString();
-            let mm = date.getMinutes().toString();
-            DD = DD.length === 1 ? '0' + DD : DD;
-            MM = MM.length === 1 ? '0' + MM : MM;
-            hh = hh.length === 1 ? '0' + hh : hh;
+            let dd = date.getDate().toString();
+            let mm = (date.getMonth() + 1).toString();
+            let yyyy = date.getFullYear().toString();
+            let HH = date.getHours().toString();
+            let MM = date.getMinutes().toString();
+            dd = dd.length === 1 ? '0' + dd : dd;
             mm = mm.length === 1 ? '0' + mm : mm;
-            return YYYY + '-' + MM + '-' + DD + 'T' + hh + ':' + mm;
+            HH = HH.length === 1 ? '0' + HH : HH;
+            MM = MM.length === 1 ? '0' + MM : MM;
+            return `${yyyy}-${mm}-${dd}T${HH}:${MM}`;
         },
         setDateTimeDefaultValue: function() {
             this.accidentDateTimeValue = this.setDateTimeValues();

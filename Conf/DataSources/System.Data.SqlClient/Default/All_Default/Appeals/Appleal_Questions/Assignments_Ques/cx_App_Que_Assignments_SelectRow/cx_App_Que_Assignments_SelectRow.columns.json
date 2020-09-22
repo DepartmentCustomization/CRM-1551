@@ -305,5 +305,11 @@
       "Code": "geolocation_lon",
       "Name": "geolocation_lon",
       "Position": 53
+    },
+    {
+      "Code": "attention_val",
+      "Name": "attention_val",
+      "Position": 54,
+      "IsPrintable": false
     }
 ]

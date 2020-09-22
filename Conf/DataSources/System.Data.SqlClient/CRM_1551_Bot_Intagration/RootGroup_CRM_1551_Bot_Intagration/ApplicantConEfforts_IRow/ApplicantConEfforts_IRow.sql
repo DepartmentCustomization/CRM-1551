@@ -44,9 +44,9 @@ values (@task_for_bot_id
 		  ,@chanel_id [chanel_id]
 		  ,@chat_id [chat_id]
 		  ,case when @chat_id is not null then 'true' else 'false' end [chat_is]
-		  ,case when (select [communication_attempt_is] from [Answers] where Id=@answer_id)='true' then 1 end [count_communication_attempt] --количество попыток связи
-		  ,case when (select [successful_delivery_is] from [Answers] where Id=@answer_id)='true' then 1 end [count_successful_delivery] --Кол-во успешных доставок
-		  ,case when (select [view_message_is] from [Answers] where Id=@answer_id)='true' then 1 end [count_view_message] --Кол-во просмотров сообщения
+		  ,case when (select [communication_attempt_is] from [Answers] where Id=@answer_id)='true' then 1 else 0 end [count_communication_attempt] --количество попыток связи
+		  ,case when (select [successful_delivery_is] from [Answers] where Id=@answer_id)='true' then 1 else 0 end [count_successful_delivery] --Кол-во успешных доставок
+		  ,case when (select [view_message_is] from [Answers] where Id=@answer_id)='true' then 1 else 0 end [count_view_message] --Кол-во просмотров сообщения
 		  ,GETUTCDATE() [create_date]
 		  ,GETUTCDATE() [edit_date]
 end

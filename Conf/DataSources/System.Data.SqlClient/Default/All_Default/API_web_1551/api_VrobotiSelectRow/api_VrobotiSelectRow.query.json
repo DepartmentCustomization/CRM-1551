@@ -12,15 +12,20 @@
       "IsPageLimitRows": true
     },
     {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
       "Code": "@ApplicantFromSiteId",
       "Name": "ApplicantFromSiteId",
       "ParameterType": "Integer"
     },
     {
-      "Code": "@pageOffsetRows",
-      "Name": "pageOffsetRows",
-      "ParameterType": "Integer",
-      "IsPageOffsetRows": true
+      "Code": "@ApplicantFromSitePhone",
+      "Name": "ApplicantFromSitePhone",
+      "ParameterType": "text"
     }
   ]
 }

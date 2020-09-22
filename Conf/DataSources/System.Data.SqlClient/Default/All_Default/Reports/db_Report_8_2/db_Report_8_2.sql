@@ -1,13 +1,30 @@
--- DECLARE @dateFrom DATE = '2019-12-01';
--- DECLARE @dateTo DATE = cast(CURRENT_TIMESTAMP AS DATE);
--- DECLARE @typeId INT = 3;
--- DECLARE @organization INT = 0;
--- DECLARE @organizationGroup INT = 0;
+--  DECLARE @dateFrom DATE = '2019-12-01';
+--  DECLARE @dateTo DATE = cast(CURRENT_TIMESTAMP AS DATE);
+--  DECLARE @typeId INT = 3;
+--  DECLARE @organization INT = 0;
+--  DECLARE @organizationGroup INT = 0;
+--  DECLARE @sourceId NVARCHAR(50) = N'0';
 
 DECLARE @organization_t TABLE (questionOrg INT);
+DECLARE @source_t TABLE (Id INT);
 
 SET @organization = IIF(@organization = 0, 1, @organization);
 SET @organizationGroup = IIF(@organizationGroup = 0, NULL, @organization);
+
+IF(@sourceId = N'0')
+BEGIN
+INSERT INTO @source_t(Id)
+SELECT
+	Id
+FROM dbo.[ReceiptSources] ;
+END
+ELSE IF(@sourceId != N'0')
+BEGIN
+INSERT INTO @source_t(Id)
+SELECT 
+	value 
+FROM STRING_SPLIT(@sourceId, ',');
+END
 
 BEGIN
 WITH RecursiveOrg (Id, parentID) AS (
@@ -84,7 +101,8 @@ FROM
 WHERE
 	question_type_id = @typeId;
 
-OPEN @CURSOR FETCH NEXT
+OPEN @CURSOR ;
+FETCH NEXT
 FROM
 	@CURSOR INTO @QuestionRowId ;
 
@@ -126,7 +144,7 @@ FROM
 
 FETCH NEXT
 FROM
-	@CURSOR INTO @QuestionRowId
+	@CURSOR INTO @QuestionRowId ;
 END 
 CLOSE @CURSOR;
 
@@ -152,12 +170,15 @@ FROM
 			qt.Id
 		FROM
 			dbo.Questions q
+			INNER JOIN dbo.[Appeals] ap ON ap.Id = q.appeal_id
+			INNER JOIN dbo.[ReceiptSources] rs ON rs.Id = ap.receipt_source_id
 			INNER JOIN [dbo].[Assignments] a (nolock) ON q.last_assignment_for_execution_id = a.id
 			INNER JOIN dbo.[Organizations] org ON org.Id = a.executor_organization_id
 			INNER JOIN dbo.QuestionTypes qt ON q.question_type_id = qt.Id 
-		WHERE
-			q.registration_date BETWEEN @dateFrom
-			AND @filterTo
+		WHERE 
+			rs.Id IN (SELECT Id FROM @source_t)
+			AND q.registration_date 
+			BETWEEN @dateFrom AND @filterTo
 			AND a.executor_organization_id IN (SELECT 
 														 DISTINCT 
 															questionOrg

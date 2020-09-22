@@ -80,7 +80,8 @@
             groupingAutoExpandAll: null
         },
         init: function() {
-            this.dataGridInstance.height = window.innerHeight - 300;
+            const context = this;
+            this.messageService.publish({ name: 'checkDisplayWidth', context});
             document.getElementById('table7__doVidoma').style.display = 'none';
             this.sub = this.messageService.subscribe('clickOnTable2', this.changeOnTable, this);
             this.config.onToolbarPreparing = this.createTableButton.bind(this);
@@ -103,85 +104,16 @@
             } return element;
         },
         createMasterDetail: function(container, options) {
-            let currentEmployeeData = options.data;
-            if(currentEmployeeData.short_answer === null || currentEmployeeData.short_answer === undefined) {
-                currentEmployeeData.short_answer = '';
-            }
-            if(currentEmployeeData.zayavnyk_zmist === null || currentEmployeeData.zayavnyk_zmist === undefined) {
-                currentEmployeeData.zayavnyk_zmist = '';
-            }
-            if(currentEmployeeData.zayavnyk_adress === null || currentEmployeeData.zayavnyk_adress === undefined) {
-                currentEmployeeData.zayavnyk_adress = '';
-            }
-            if(currentEmployeeData.balans_name === null || currentEmployeeData.balans_name === undefined) {
-                currentEmployeeData.balans_name = '';
-            }
-            let elementAdress__content = this.createElement('div',
-                {
-                    className: 'elementAdress__content content', innerText: String(String(currentEmployeeData.zayavnyk_adress))
-                }
-            );
-            let elementAdress__caption = this.createElement('div',
-                {
-                    className: 'elementAdress__caption caption', innerText: 'Адреса заявника'
-                }
-            );
-            let elementAdress = this.createElement('div',
-                {
-                    className: 'elementAdress element'
-                },
-                elementAdress__caption, elementAdress__content
-            );
-            let elementСontent__content = this.createElement('div',
-                {
-                    className: 'elementСontent__content content', innerText: String(String(currentEmployeeData.zayavnyk_zmist))
-                }
-            );
-            let elementСontent__caption = this.createElement('div',
-                {
-                    className: 'elementСontent__caption caption', innerText: 'Зміст'
-                }
-            );
-            let elementСontent = this.createElement('div',
-                {
-                    className: 'elementСontent element'
-                },
-                elementСontent__caption, elementСontent__content
-            );
-            let elementBalance__content = this.createElement('div',
-                {
-                    className: 'elementBalance__content content', innerText: String(String(currentEmployeeData.balans_name))
-                }
-            );
-            let elementBalance__caption = this.createElement('div',
-                {
-                    className: 'elementBalance__caption caption', innerText: 'Балансоутримувач'
-                }
-            );
-            let elementBalance = this.createElement('div',
-                {
-                    className: 'elementСontent element'
-                },
-                elementBalance__caption, elementBalance__content
-            );
-            let elementsWrapper = this.createElement('div',
-                {
-                    className: 'elementsWrapper'
-                },
-                elementAdress, elementСontent, elementBalance
-            );
-            container.appendChild(elementsWrapper);
-            let elementsAll = document.querySelectorAll('.element');
-            elementsAll = Array.from(elementsAll);
-            elementsAll.forEach(el => {
-                el.style.display = 'flex';
-                el.style.margin = '15px 10px';
-            })
-            let elementsCaptionAll = document.querySelectorAll('.caption');
-            elementsCaptionAll = Array.from(elementsCaptionAll);
-            elementsCaptionAll.forEach(el => {
-                el.style.minWidth = '200px';
-            })
+            const currentEmployeeData = options.data;
+            const name = 'createMasterDetail';
+            const fields = {
+                zayavnyk_adress: 'Адреса заявника',
+                zayavnyk_zmist: 'Зміст',
+                balans_name: 'Балансоутримувач'
+            };
+            this.messageService.publish({
+                name, currentEmployeeData, fields, container
+            });
         },
         createTableButton: function(e) {
             let toolbarItems = e.toolbarOptions.items;

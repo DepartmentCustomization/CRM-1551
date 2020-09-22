@@ -38,7 +38,26 @@
             this.form.setGroupVisibility('Appeal', true);
             this.queryFor_Applicant1551(this.form.getControlValue('Applicant_Id'));
         },
+        set1551_building() {
+            let buildId = this.form.getControlValue('ApplicantFromSite_Address_Building');
+            const getBuild = {
+                queryCode: 'SelectBuildName',
+                parameterValues: [
+                    {
+                        key: '@Id',
+                        value: buildId
+                    }
+                ]
+            };
+            this.queryExecutor.getValues(getBuild).subscribe(data => {
+                this.form.setControlValue('1551_ApplicantFromSite_Address_Building',
+                    {key: buildId, value: data.rows[0].values[1]});
+            });
+            this.form.setControlValue('1551_ApplicantFromSite_Address_Flat',
+                this.form.getControlValue('ApplicantFromSite_Address_Flat'));
+        },
         init: function() {
+            this.set1551_building();
             let btn_newQuestion = document.getElementById('Question_Btn_Add');
             btn_newQuestion.disabled = true;
             if (this.form.getControlValue('AppealFromSite_geolocation_lat')) {
@@ -196,11 +215,11 @@
                         },
                         {
                             key: '@flat',
-                            value: this.form.getControlValue('1551_ApplicantFromSite_Address_Flat')
+                            value: this.form.getControlValue('flat')
                         },
                         {
                             key: '@1551_ApplicantFromSite_Address_Building',
-                            value: this.form.getControlValue('ApplicantFromSite_Address_Building')
+                            value: this.form.getControlValue('1551_ApplicantFromSite_Address_Building')
                         },
                         {
                             key: '@1551_ApplicantFromSite_Address_Entrance',
@@ -237,6 +256,52 @@
             if (this.form.getControlValue('AppealFromSite_SiteAppealsResult') === 2) {
                 this.IsFormReturnModerated();
             }
+            const menuDetail_Aplicant = [{
+                'title': 'Додати до списку дублікатів',
+                'icon': 'fa fa-random',
+                'functionName': 'Dublicate_Aplicant'
+            }];
+            this.details.setActionMenu('Site_Applicant', menuDetail_Aplicant);
+        },
+        Dublicate_Aplicant: function() {
+            const queryForGetValueDublicate = {
+                queryCode: 'ApplicantDublicateInsertRow',
+                parameterValues: [
+                    {
+                        key: '@PhoneNumber',
+                        value: this.form.getControlValue('1551_Applicant_Phone')
+                    },
+                    {
+                        key: '@ApplicantId',
+                        value: this.form.getControlValue('Applicant_Id')
+                    }
+                ]
+            };
+            this.queryExecutor.getValue(queryForGetValueDublicate).subscribe(data => {
+                if (data) {
+                    if (typeof data === 'string') {
+                        const fieldsForm_Error = {
+                            title: ' ',
+                            text: data,
+                            singleButton: true,
+                            acceptBtnText: 'ok'
+                        };
+                        this.openModalForm(fieldsForm_Error, this.afterModalFormClose.bind(this),
+                            this.afterModalFormClose.bind(this));
+                    } else {
+                        const fieldsForm_Ok = {
+                            title: ' ',
+                            text: 'Поточний номер додано до списку дублікатів',
+                            singleButton: true,
+                            acceptBtnText: 'ok'
+                        };
+                        this.openModalForm(fieldsForm_Ok, this.afterModalFormClose.bind(this),
+                            this.afterModalFormClose.bind(this));
+                    }
+                }
+            });
+        },
+        afterModalFormClose: function() {
         },
         checkQuestionRegistrationAvailable: function() {
             let questionBuilding = this.form.getControlValue('Question_Building');
@@ -458,7 +523,7 @@
         SerchApplicant1551:function() {
             const parameters = [
                 { key: '@AppealFromSite_Id', value: this.id },
-                { key: '@BuildingId', value: this.form.getControlValue('ApplicantFromSite_Address_Building') },
+                { key: '@BuildingId', value: this.form.getControlValue('1551_ApplicantFromSite_Address_Building') },
                 { key: '@Flat', value: this.form.getControlValue('1551_ApplicantFromSite_Address_Flat') }
             ];
             const filters = [

@@ -16,7 +16,7 @@
 -- DECLARE @Applicant_Phone NVARCHAR(200) = '0634385429, 0965262445, 0445137276';
 -- DECLARE @Applicant_Email INT = null;
 -- DECLARE @Applicant_TypePhone INT = 1;
--- DECLARE @CreatedUser NVARCHAR(128) = (SELECT TOP 1 UserId FROM CRM_1551_System.dbo.[User] );
+-- DECLARE @CreatedUser NVARCHAR(128) = (SELECT TOP 1 UserId FROM [#system_database_name#].dbo.[User] );
 
 DECLARE @output TABLE (Id INT);
 

@@ -90,6 +90,7 @@
             const sphereId = Number(getUrlParams.id);
             const organization = Number(getUrlParams.organization);
             const organizationGroup = Number(getUrlParams.organizationGroup);
+            const sources = getUrlParams.sourceId;
             this.sphereName = getUrlParams.name;
             this.dateFromViewValues = this.changeDateTimeValues(getUrlParams.dateFrom);
             this.dateToViewValues = this.changeDateTimeValues(getUrlParams.dateTo);
@@ -105,7 +106,8 @@
                     { key: '@dateTo', value: dateTo},
                     { key: '@typeId', value: sphereId},
                     { key: '@organization', value: organization},
-                    { key: '@organizationGroup', value: organizationGroup}
+                    { key: '@organizationGroup', value: organizationGroup},
+                    { key: '@sourceId', value: sources }
                 ]
             };
             this.queryExecutor(queryLoadPie, this.load, this);

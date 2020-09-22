@@ -54,6 +54,12 @@
       "Name": "applicantprivilage_id",
       "FieldType": "number",
       "Position": 11
+    },
+    {
+      "Code": "external_data_sources_id",
+      "Name": "external_data_sources_id",
+      "FieldType": "number",
+      "Position": 12
     }
   ]
 }

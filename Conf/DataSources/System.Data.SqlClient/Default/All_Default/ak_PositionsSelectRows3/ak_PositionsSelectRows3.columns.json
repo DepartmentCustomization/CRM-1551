@@ -21,7 +21,9 @@
     "Code": "position",
     "Name": "position",
     "Position": 3,
-    "IsPrintable": false
+    "IsPrintable": false,
+    "SqlName": "[position]",
+    "FilterParameterCode": "@position"
   },
   {
     "Code": "phone_number",

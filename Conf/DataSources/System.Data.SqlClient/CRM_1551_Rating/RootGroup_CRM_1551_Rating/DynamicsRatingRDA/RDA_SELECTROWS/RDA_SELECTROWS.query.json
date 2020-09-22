@@ -1,0 +1,27 @@
+{
+  "ModelType": "Query",
+  "Code": "RDA_SELECTROWS",
+  "Name": "RDA_SELECTROWS",
+  "ConnectionCode": "CRM_1551_Rating",
+  "IsUsedForRightsFilter": false,
+  "IsAnonymousAccess": false,
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    }
+  ]
+}

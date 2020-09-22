@@ -1,0 +1,35 @@
+{
+  "ModelType": "Query",
+  "Code": "h_FilterSRowsEmergensy",
+  "Name": "h_FilterSRowsEmergensy",
+  "ConnectionCode": "CRM_KHARKIV1551_Analytics",
+  "IsUsedForRightsFilter": false,
+  "IsAnonymousAccess": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "emergensy_id",
+      "Name": "emergensy_id",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "emergensy_name",
+      "Name": "emergensy_name",
+      "Position": 2,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 	select [Id], [Name] from
-	OPENQUERY([193.84.77.194,11433],'select * from OPENQUERY([ODS_KIEV],''select distinct streets.id as Id, streets.name as Name 
+	OPENQUERY([213.186.192.201,1433],'select * from OPENQUERY([ODS_KIEV],''select distinct streets.id as Id, streets.name as Name 
 			from streets
 			where streets.name <> ""
 			order by 2 asc'')')

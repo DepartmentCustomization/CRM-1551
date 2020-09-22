@@ -4,7 +4,8 @@
     "Name": "cx_NEW_Que_Doc_File_SelectRows",
     "ConnectionCode": "Default",
     "IsUsedForRightsFilter": false,
-    "Columns": [{
+    "Columns": [
+        {
             "Code": "Id",
             "Name": "Id",
             "Position": 0,
@@ -35,11 +36,11 @@
             "SqlName": "File"
         }
     ],
-    "Parameters": [{
+    "Parameters": [
+        {
             "Code": "@Id",
             "Name": "Id",
-            "ParameterType": "Integer",
-            "IsPrimaryKey": true
+            "ParameterType": "Integer"
         },
         {
             "Code": "@pageLimitRows",

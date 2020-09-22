@@ -1,4 +1,7 @@
 {
+  "Add": {
+    "InsertQueryCode": "api_ComChannelsForPhone"
+  },
   "ModelType": "Section",
   "Code": "API_ComChannelsForPhone",
   "Name": "API_ComChannelsForPhone",

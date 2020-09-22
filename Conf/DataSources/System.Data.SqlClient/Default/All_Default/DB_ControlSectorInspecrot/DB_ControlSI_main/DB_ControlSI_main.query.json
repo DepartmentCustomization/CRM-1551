@@ -27,39 +27,45 @@
       "IsPrintable": false
     },
     {
+      "Code": "count_not_competence",
+      "Name": "count_not_competence",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
       "Code": "count_in_work",
       "Name": "count_in_work",
-      "Position": 3,
+      "Position": 4,
       "IsPrintable": false
     },
     {
       "Code": "count_overdue",
       "Name": "count_overdue",
-      "Position": 4,
+      "Position": 5,
       "IsPrintable": false
     },
     {
       "Code": "count_clarified",
       "Name": "count_clarified",
-      "Position": 5,
+      "Position": 6,
       "IsPrintable": false
     },
     {
       "Code": "count_done",
       "Name": "count_done",
-      "Position": 6,
+      "Position": 7,
       "IsPrintable": false
     },
     {
       "Code": "count_for_revision",
       "Name": "count_for_revision",
-      "Position": 7,
+      "Position": 8,
       "IsPrintable": false
     },
     {
       "Code": "count_plan_program",
       "Name": "count_plan_program",
-      "Position": 8,
+      "Position": 9,
       "IsPrintable": false
     }
   ],

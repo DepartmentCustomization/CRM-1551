@@ -1,0 +1,31 @@
+{
+  "ModelType": "Query",
+  "Code": "db_ReferenceEtalonDays",
+  "Name": "db_ReferenceEtalonDays",
+  "ConnectionCode": "CRM_1551_Rating",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows ",
+      "Name": "pageLimitRows ",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@dateFrom",
+      "Name": "dateFrom",
+      "ParameterType": "DateTime"
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@dateTo",
+      "Name": "dateTo",
+      "ParameterType": "DateTime"
+    }
+  ]
+}

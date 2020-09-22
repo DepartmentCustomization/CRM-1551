@@ -49,7 +49,6 @@
                 pageSize: 10
             },
             export: {
-                enabled: true,
                 fileName: 'File_name'
             },
             editing: {
@@ -61,7 +60,6 @@
                 visible: false,
                 applyFilter: 'auto'
             },
-            height: '550',
             keyExpr: 'Id',
             showBorders: true,
             showColumnLines: true,
@@ -82,6 +80,7 @@
         },
         elements: [],
         init: function() {
+            this.dataGridInstance.height = window.innerHeight - 100;
             this.loadData(this.afterLoadDataHandler);
             this.dataGridInstance.onRowUpdating.subscribe(function(e) {
                 let is_done = e.newData.is_done;
@@ -109,6 +108,7 @@
                 };
                 this.queryExecutor(saveChange);
             }.bind(this));
+            this.config.onToolbarPreparing = this.createTableButton.bind(this);
         },
         afterLoadDataHandler: function() {
             this.render();
@@ -130,11 +130,20 @@
             element.firstElementChild.lastElementChild.style.color = '#fff';
             element.parentElement.parentElement.classList.remove('dx-toolbar-text-auto-hide');
         },
-        subscribeToDataGridActions: function() {
-        },
-        onDataGridEditorPreparing: function() {
-        },
-        destroy: function() {
+        createTableButton: function(e) {
+            let toolbarItems = e.toolbarOptions.items;
+            toolbarItems.push({
+                widget: 'dxButton',
+                options: {
+                    icon: 'exportxlsx',
+                    type: 'default',
+                    text: 'Excel',
+                    onClick: function() {
+                        this.dataGridInstance.instance.exportToExcel();
+                    }.bind(this)
+                },
+                location: 'after'
+            });
         }
     };
 }());

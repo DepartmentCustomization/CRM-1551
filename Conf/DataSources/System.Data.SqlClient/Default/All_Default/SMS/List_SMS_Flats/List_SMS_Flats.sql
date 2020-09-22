@@ -10,7 +10,7 @@ create table #addressObject(
 
 declare @sql nvarchar(max)
 	set @sql = 'select * from
-	OPENQUERY([193.84.77.194,11433],
+	OPENQUERY([213.186.192.201,1433],
 	''select * from OPENQUERY([ODS_KIEV],''''select flats.id as value, flats.name as label from flats
 	where house_id = '+convert(nvarchar(max),@house_id)+'
 	order by LENGTH(flats.name),flats.name '''')'')'

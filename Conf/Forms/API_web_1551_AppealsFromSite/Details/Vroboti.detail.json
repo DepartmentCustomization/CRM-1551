@@ -10,6 +10,10 @@
     {
       "FormFieldName": "Id",
       "ParameterCode": "@ApplicantFromSiteId"
+    },
+    {
+      "FormFieldName": "phone",
+      "ParameterCode": "@ApplicantFromSitePhone"
     }
   ]
 }

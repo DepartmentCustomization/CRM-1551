@@ -193,6 +193,18 @@
       "Name": "QuestionState",
       "Position": 29,
       "IsPrintable": false
+    },
+    {
+      "Code": "question_content",
+      "Name": "question_content",
+      "Position": 30,
+      "IsPrintable": false
+    },
+    {
+      "Code": "registration_number",
+      "Name": "registration_number",
+      "Position": 31,
+      "IsPrintable": false
     }
   ],
   "Parameters": [

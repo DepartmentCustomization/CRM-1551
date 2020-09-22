@@ -20,8 +20,12 @@
     {
       "Code": "@ApplicantFromSiteId",
       "Name": "ApplicantFromSiteId",
-      "ParameterType": "Integer",
-      "IsPrimaryKey": true
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@ApplicantFromSitePhone",
+      "Name": "ApplicantFromSitePhone",
+      "ParameterType": "text"
     }
   ]
 }

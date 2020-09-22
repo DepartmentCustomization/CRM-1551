@@ -1,0 +1,25 @@
+{
+  "ModelType": "Query",
+  "Code": "h_ButtonTransferred",
+  "Name": "h_ButtonTransferred",
+  "ConnectionCode": "CRM_KHARKIV1551_Analytics",
+  "IsUsedForRightsFilter": false,
+  "IsAnonymousAccess": false,
+  "Parameters": [
+    {
+      "Code": "@comment",
+      "Name": "comment"
+    },
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "Add": {
+    "InsertQueryCode": "test_bag_insert"
+  },
+  "ModelType": "Section",
+  "Code": "Test_Bag",
+  "Name": "Тестування",
+  "FormCode": "Form_TestBag",
+  "SelectRowsQueryCode": "test_bag_rows",
+  "SelectRowQueryCode": "test_bag_row",
+  "UpdateQueryCode": "test_bag_update",
+  "DeleteQueryCode": "test_bag_delete"
+}
+

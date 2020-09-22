@@ -30,7 +30,8 @@
                     format: 'dd.MM.yyyy HH:mm'
                 }, {
                     dataField: 'rework_counter',
-                    caption: 'Лічильник'
+                    caption: 'Лічильник',
+                    alignment: 'center'
                 }
             ],
             masterDetail: {

@@ -5,7 +5,7 @@ create table #addressObject(
 )
 	declare @sql nvarchar(max)
 	set @sql = 'select * from
-	OPENQUERY([193.84.77.194,11433],
+	OPENQUERY([213.186.192.201,1433],
 	''select * from OPENQUERY([ODS_KIEV],''''select houses.id as value, concat(houses.number,houses.letter) as label from houses
 	where street_id = '+convert(nvarchar(max),@street_id)+'
 	order by 2 asc'''')'')'

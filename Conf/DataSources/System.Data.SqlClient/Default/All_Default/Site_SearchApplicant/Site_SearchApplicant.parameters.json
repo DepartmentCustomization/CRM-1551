@@ -25,5 +25,10 @@
     "Name": "pageLimitRows",
     "ParameterType": "Integer",
     "IsPageLimitRows": true
+  },
+  {
+    "Code": "@AppealFromSite_Id_Search",
+    "Name": "AppealFromSite_Id_Search",
+    "ParameterType": "Integer"
   }
 ]

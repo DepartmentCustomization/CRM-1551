@@ -65,16 +65,16 @@ delete from ##temp_RatingPlace
 		delete from ##temp_RatingPlace where Inticator_Fact is null
 		
 		insert into #temp_RatingPlace_TEMP (IdRow, PlaceRating)
-		select Id, case when RANK() OVER(PARTITION BY QuestionTypeId ORDER BY Inticator_Fact) = 1 then 1
-						when RANK() OVER(PARTITION BY QuestionTypeId ORDER BY Inticator_Fact) = 2 then 2
-						when RANK() OVER(PARTITION BY QuestionTypeId ORDER BY Inticator_Fact) = 3 then 3
-						when RANK() OVER(PARTITION BY QuestionTypeId ORDER BY Inticator_Fact) = 4 then 4
-						when RANK() OVER(PARTITION BY QuestionTypeId ORDER BY Inticator_Fact) = 5 then 5
-						when RANK() OVER(PARTITION BY QuestionTypeId ORDER BY Inticator_Fact) = 6 then 6
-						when RANK() OVER(PARTITION BY QuestionTypeId ORDER BY Inticator_Fact) = 7 then 7
-						when RANK() OVER(PARTITION BY QuestionTypeId ORDER BY Inticator_Fact) = 8 then 8
-						when RANK() OVER(PARTITION BY QuestionTypeId ORDER BY Inticator_Fact) = 9 then 9
-						when RANK() OVER(PARTITION BY QuestionTypeId ORDER BY Inticator_Fact) = 10 then 10
+		select Id, case when RANK() OVER(PARTITION BY QuestionTypeId, RatingId ORDER BY Inticator_Fact desc) = 1 then 1
+						when RANK() OVER(PARTITION BY QuestionTypeId, RatingId ORDER BY Inticator_Fact desc) = 2 then 2
+						when RANK() OVER(PARTITION BY QuestionTypeId, RatingId ORDER BY Inticator_Fact desc) = 3 then 3
+						when RANK() OVER(PARTITION BY QuestionTypeId, RatingId ORDER BY Inticator_Fact desc) = 4 then 4
+						when RANK() OVER(PARTITION BY QuestionTypeId, RatingId ORDER BY Inticator_Fact desc) = 5 then 5
+						when RANK() OVER(PARTITION BY QuestionTypeId, RatingId ORDER BY Inticator_Fact desc) = 6 then 6
+						when RANK() OVER(PARTITION BY QuestionTypeId, RatingId ORDER BY Inticator_Fact desc) = 7 then 7
+						when RANK() OVER(PARTITION BY QuestionTypeId, RatingId ORDER BY Inticator_Fact desc) = 8 then 8
+						when RANK() OVER(PARTITION BY QuestionTypeId, RatingId ORDER BY Inticator_Fact desc) = 9 then 9
+						when RANK() OVER(PARTITION BY QuestionTypeId, RatingId ORDER BY Inticator_Fact desc) = 10 then 10
 				end
 		from ##temp_RatingPlace
 		where Inticator_Place is null
@@ -91,12 +91,12 @@ delete from ##temp_RatingPlace
 
 
 
-update [dbo].[Rating_IndexToFactExecution] set IndicatorPlace = t2.Inticator_Place
-	from [dbo].[Rating_IndexToFactExecution] 
-	inner join ##temp_RatingPlace as t2 on t2.RatingId = [Rating_IndexToFactExecution].RatingId
-										and t2.QuestionTypeId = [Rating_IndexToFactExecution].QuestionTypeId
-										and t2.RDAId = [Rating_IndexToFactExecution].RDAId
-	where [Rating_IndexToFactExecution].DateCalc = @DateCalc
+-- update [dbo].[Rating_IndexToFactExecution] set IndicatorPlace = t2.Inticator_Place
+-- 	from [dbo].[Rating_IndexToFactExecution] 
+-- 	inner join ##temp_RatingPlace as t2 on t2.RatingId = [Rating_IndexToFactExecution].RatingId
+-- 										and t2.QuestionTypeId = [Rating_IndexToFactExecution].QuestionTypeId
+-- 										and t2.RDAId = [Rating_IndexToFactExecution].RDAId
+-- 	where [Rating_IndexToFactExecution].DateCalc = @DateCalc
 
 
 

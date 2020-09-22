@@ -2,124 +2,99 @@
     return {
         customConfig:
                 `
-                    <style>
-                    
-                        .header-label {
-                            text-align: center;
-                            color: #131313;
-                            margin: 32.5px;
-                            font-size: 30px;
-                            line-height: 18px;
-                        }
-                        .group-btns {
-                            margin-top: 3em;
-                            display: -webkit-box;
-                            display: -ms-flexbox;
-                            display: flex;
-                            justify-content: space-around;
-                            -ms-flex-wrap: wrap;
-                            flex-wrap: wrap;
-                        }
-                        
-                        .group-btns .group {
-                            
-                            width: 20.00%;
-                            height: 200px;
-                            cursor: pointer;
-                            position: relative;
-                            background-color: #F8F8F8;
-                            border-radius: 15px;
-                            
-                        }
-                        .group-btns .group .icon {
-                            height: 75%;
-                            text-align: center;
-                        }
-                        .group-btns .group .icon i {
-                            font-size: 70px;
-                            margin-top: 40px;
-                        }
-                        .group-btns .group .description {
-                            text-align: center;
-                            color: #131313;
-                            font-size: 20px;
-                            line-height: 18px;
-                        }
-                        .group-btns .group .border-bottom {
-                            position: absolute;
-                            width: calc(100% - 40px);
-                            bottom: 0;
-                            left: 20px;
-                            box-shadow: 0 0 1px 1px rgba(0,0,0,.1);
-                        }
-                        .group-btns .group .border-right {
-                            position: absolute;
-                            height: calc(100% - 40px);
-                            top: 20px;
-                            right: 0;
-                            box-shadow: 0 0 1px 1px rgba(0,0,0,.1);
-                        }
-                    
-                    </style>
-                
-                
-                        <div ="" class="header-label"> Інтергація з систємою "ГородОк" </div>
-                    <section ="" class="group-btns">
-                      <!-- -->
-                      
-                      
-                      <div ="" class="group" tabindex="0" onclick="javascript:window.location='` + location.origin + localStorage.getItem('VirtualPath') + `/dashboard/page/int_streetsPageTable'">
-                        <div ="" class="icon">
-                          <i ="" class="material-icons" style="color:#ff7961;"> location_city </i>
-                        </div>
-                        <div ="" class="description"> Довідник Вулиці </div>
-                        <div ="" class="border-bottom"></div>
-                        <div ="" class="border-right"></div>
-                      </div>
-                      
-                      <div ="" class="group" tabindex="0" onclick="javascript:window.location='` + location.origin + localStorage.getItem('VirtualPath') + `/dashboard/page/int_housesPageTable'">
-                        <div ="" class="icon">
-                          <i ="" class="material-icons" style="color: #2196F3;"> home </i>
-                        </div>
-                        <div ="" class="description"> Довідник Будинки </div>
-                        <div ="" class="border-bottom"></div>
-                        <div ="" class="border-right"></div>
-                      </div>
-                      
-                       <div ="" class="group" tabindex="0" onclick="javascript:window.location='` + location.origin + localStorage.getItem('VirtualPath') + `/dashboard/page/int_organizationPageTable'">
-                        <div ="" class="icon">
-                          <i ="" class="material-icons" style="color: #2196F3;"> person_pin_circle </i>
-                        </div>
-                        <div ="" class="description"> Довідник організацій </div>
-                        <div ="" class="border-bottom"></div>
-                        <div ="" class="border-right"></div>
-                      </div>
-                      
-                     <div ="" class="group" tabindex="0"  onclick="javascript:window.location='` + location.origin + localStorage.getItem('VirtualPath') + `/dashboard/page/int_claimsTypePageTable'">
-                        <div ="" class="icon">
-                          <i ="" class="material-icons" style="color:#FBC02D;"> event_note </i>
-                        </div>
-                        <div ="" class="description"> Довідник типов заявок </div>
-                        <div ="" class="border-bottom"></div>
-                        <div ="" class="border-right"></div>
-                      </div>
-                      
-                     <!--<div ="" class="group" tabindex="0" onclick="javascript:window.location='` + location.origin + localStorage.getItem('VirtualPath') + `/dashboard/home/CityPublicTransport'">
-                        <div ="" class="icon">
-                          <i ="" class="material-icons" style="color: #FFB300;">directions_bus </i>
-                        </div>
-                        <div ="" class="description"> Київпастранс </div>
-                        <div ="" class="border-bottom"></div>
-                        <div ="" class="border-right"></div>
-                      </div>-->
-                    
-                    </section>
-                
+                <div id='container'></div>
                 `
         ,
-        init: function() {
+        dashboards: [
+            {
+                description: 'Довідник Вулиці',
+                url: 'int_streetsPageTable',
+                location: 'page',
+                icon: 'location_city',
+                color: '#ff7961'
+            },
+            {
+                description: 'Довідник Будинки',
+                url: 'int_housesPageTable',
+                location: 'page',
+                icon: 'home',
+                color: '#2196F3'
+            },
+            {
+                description: 'Довідник організацій',
+                url: 'int_organizationPageTable',
+                location: 'page',
+                icon: 'person_pin_circle',
+                color: '#2196F3'
+            },
+            {
+                description: 'Довідник типов заявок',
+                url: 'int_claimsTypePageTable',
+                location: 'page',
+                icon: 'event_note',
+                color: '#FBC02D'
+            },
+            {
+                description: 'Київпастранс',
+                url: 'CityPublicTransport',
+                location: 'home',
+                icon: 'directions_bus',
+                color: '#FFB300'
+            }
+        ],
+        afterViewInit: function() {
+            const CONTAINER = document.getElementById('container');
+            let groupsWrapper = this.createElement('div',
+                {
+                    className: 'group-btns'
+                }
+            );
+            this.dashboards.forEach(dashboard => {
+                let groupLetter__icon = this.createElement('i',
+                    {
+                        className: 'icon letterIcon material-icons', innerText: dashboard.icon
+                    }
+                );
+                groupLetter__icon.style.color = dashboard.color;
+                let groupLetter__description = this.createElement('div',
+                    {
+                        className: 'description',
+                        innerText: dashboard.description
+                    }
+                );
+                let groupBorderBottom = this.createElement('div', { className: 'border-bottom' });
+                let groupBorderRight = this.createElement('div', { className: 'border-right'});
+                let group = this.createElement('div',
+                    {
+                        className: 'group',
+                        tabindex: '0'
+                    },
+                    groupLetter__icon, groupLetter__description, groupBorderBottom, groupBorderRight
+                );
+                group.addEventListener('click', () => {
+                    window.open(
+                        String(
+                            location.origin
+                            + localStorage.getItem('VirtualPath')
+                            + '/dashboard/'
+                            + `${dashboard.location}`
+                            + '/'
+                            + `${dashboard.url}`
+                        )
+                    );
+                });
+                groupsWrapper.appendChild(group);
+            });
+            CONTAINER.appendChild(groupsWrapper);
         },
-        load: function() {
+        createElement: function(tag, props, ...children) {
+            const element = document.createElement(tag);
+            Object.keys(props).forEach(key => element[key] = props[key]);
+            if(children.length > 0) {
+                children.forEach(child =>{
+                    element.appendChild(child);
+                });
+            } return element;
         }
     };
 }());

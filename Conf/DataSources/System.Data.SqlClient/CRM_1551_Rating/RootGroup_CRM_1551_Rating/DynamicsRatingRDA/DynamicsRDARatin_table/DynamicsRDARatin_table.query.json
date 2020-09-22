@@ -1,0 +1,30 @@
+{
+  "ModelType": "Query",
+  "Code": "DynamicsRDARatin_table",
+  "Name": "DynamicsRDARatin_table",
+  "ConnectionCode": "CRM_1551_Rating",
+  "IsUsedForRightsFilter": false,
+  "IsAnonymousAccess": false,
+  "Parameters": [
+    {
+      "Code": "@date_from",
+      "Name": "date_from",
+      "ParameterType": "DateTime"
+    },
+    {
+      "Code": "@date_to",
+      "Name": "date_to",
+      "ParameterType": "DateTime"
+    },
+    {
+      "Code": "@rda_id",
+      "Name": "rda_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@rating_id",
+      "Name": "rating_id",
+      "ParameterType": "Integer"
+    }
+  ]
+}

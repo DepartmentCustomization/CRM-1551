@@ -1,5 +1,19 @@
--- DECLARE @user_edit_id NVARCHAR(128)=N'bc1b17e2-ffee-41b1-860a-41e1bae57ffd';
+--  DECLARE @user_edit_id NVARCHAR(128)=N'bc1b17e2-ffee-41b1-860a-41e1bae57ffd';
 SET @executor_person_id = IIF(IIF(@executor_person_id = '',NULL,@executor_person_id) = 0,NULL,IIF(@executor_person_id = '',NULL,@executor_person_id));
+
+DECLARE @sertors TABLE (Id INT);
+
+INSERT INTO @sertors (Id)
+
+SELECT [Assignments].Id
+  FROM [dbo].[Positions] [Positions] 
+  INNER JOIN [dbo].[PersonExecutorChoose] [PersonExecutorChoose] ON [PersonExecutorChoose].position_id=[Positions].id
+  INNER JOIN [dbo].[PersonExecutorChooseObjects] [PersonExecutorChooseObjects] ON [PersonExecutorChooseObjects].person_executor_choose_id=[PersonExecutorChoose].Id
+  INNER JOIN [dbo].[Territories] [Territories] ON [PersonExecutorChooseObjects].object_id=[Territories].object_id
+  INNER JOIN [dbo].[QuestionsInTerritory] [QuestionsInTerritory] ON [Territories].Id=[QuestionsInTerritory].territory_id
+  INNER JOIN [dbo].[Questions] [Questions] ON [QuestionsInTerritory].question_id=[Questions].Id
+  INNER JOIN [dbo].[Assignments] [Assignments] ON [Questions].Id=[Assignments].question_id
+  WHERE [Positions].programuser_id=@user_edit_id  AND [Positions].role_id=8 AND [Assignments].Id=@Id;
 
 DECLARE @org1761 TABLE (Id INT);
 WITH
@@ -31,7 +45,7 @@ FROM [dbo].[Assignments] a INNER JOIN
 [dbo].[OrganizationInResponsibilityRights] oirr ON a.[executor_organization_id]=oirr.organization_id
 INNER JOIN [dbo].[Positions] p ON oirr.position_id=p.Id
 WHERE a.Id=@Id AND P.programuser_id=@user_edit_id)='true'
-OR EXISTS(SELECT TOP 1 id FROM @org1761)
+OR EXISTS(SELECT TOP 1 id FROM @org1761) OR EXISTS(SELECT TOP 1 Id FROM @sertors)
 
 BEGIN
 
@@ -57,12 +71,12 @@ DECLARE @is_main_exec BIT;
 ---> Проверка изменений state, result, resolution, executor_organization_id
 DECLARE @currentState INT = (SELECT assignment_state_id FROM dbo.Assignments WHERE Id = @Id);
 DECLARE @currentResult INT = (SELECT AssignmentResultsId FROM dbo.Assignments WHERE Id = @Id);
-DECLARE @currentResolution INT = (SELECT AssignmentResolutionsId FROM dbo.Assignments WHERE Id = @Id);
+DECLARE @currentResolution INT = (SELECT ISNULL(AssignmentResolutionsId, 0) FROM dbo.Assignments WHERE Id = @Id);
 DECLARE @currentOrgExecutor INT = (SELECT executor_organization_id FROM dbo.Assignments WHERE Id = @Id);
 	
 DECLARE @IsStateChange BIT = (SELECT IIF(@currentState = @ass_state_id, 0, 1));
 DECLARE @IsResultChange BIT = (SELECT IIF(@currentResult = @result_id, 0, 1));
-DECLARE @IsResolutionChange BIT = (SELECT IIF(@currentResolution = @resolution_id, 0, 1));
+DECLARE @IsResolutionChange BIT = (SELECT IIF(@currentResolution = ISNULL(@resolution_id, 0), 0, 1));
 DECLARE @IsOrgExecutorChange BIT = (SELECT IIF(@currentOrgExecutor = @performer_id, 0, 1));
 ---> Если стан, результат, резолюция и орг.исполнителя остались прежними, то
 -- процедуру проверки переходов пропускаем, а только апдейтим поля executor_person_id и short_answer (если они изменились) 
@@ -70,7 +84,25 @@ IF (@IsStateChange = 0 AND @IsResultChange = 0 AND @IsResolutionChange = 0 AND @
 BEGIN
 	DECLARE @currentPersonExecutor INT = (SELECT executor_person_id FROM dbo.Assignments  WHERE Id = @Id);
 	DECLARE @currentShortAnswer NVARCHAR(500) = (SELECT short_answer FROM dbo.AssignmentConsiderations WHERE Id = @ass_cons_id);
+	DECLARE @mainAssId INT = (SELECT last_assignment_for_execution_id FROM dbo.[Questions] WHERE Id = @question_id);
+	
+	---> сделать текущий Assignment главным
+	IF(@mainAssId <> @Id) 
+		AND (@main_executor = 1)
+	  BEGIN
+		UPDATE dbo.[Assignments]
+			SET main_executor = 0 
+		WHERE Id = @mainAssId;
 
+		UPDATE dbo.[Assignments]
+			SET main_executor = 1
+		WHERE Id = @Id;
+
+		UPDATE dbo.[Questions] 
+			SET last_assignment_for_execution_id = @Id
+		WHERE Id = @question_id;
+	  END
+	---> замена "Виконавець в організації"
 	IF(@executor_person_id IS NOT NULL)
 	  BEGIN
 		UPDATE [dbo].[Assignments]
@@ -80,7 +112,7 @@ BEGIN
 					   ,[LogUpdated_Query] = N'cx_App_Que_Assignments_Update_Row82'
 					WHERE Id = @Id;
 	  END
-
+	---> проставить "Коментар виконавця"
 	 IF(@short_answer IS NOT NULL)
 	 BEGIN
 	 UPDATE AssignmentConsiderations
@@ -587,9 +619,11 @@ BEGIN
 					OUTPUT INSERTED.Id INTO @output_con ([Id])
 						VALUES (@Id, GETUTCDATE(), @result_id, @resolution_id, @user_edit_id, GETUTCDATE(), @user_edit_id, @transfer_to_organization_id, GETUTCDATE(), GETUTCDATE(), @short_answer);
 
-					SET @new_con = (SELECT TOP (1)
-							Id
-						FROM @output_con);
+					SET @new_con = (SELECT
+										max(Id)
+									FROM
+										dbo.[AssignmentConsiderations] 
+									WHERE assignment_id = @Id);
 					UPDATE [Assignments]
 					SET current_assignment_consideration_id = @new_con
 					   ,[edit_date] = GETUTCDATE()
@@ -886,6 +920,12 @@ BEGIN
 							   ,user_edit_id = @user_edit_id
 							WHERE question_id = @question_id
 							AND Id <> @New_Ass;
+
+							---> last_assignment_for_execution_id под новый Assignment
+							UPDATE dbo.[Questions]
+							SET last_assignment_for_execution_id = @New_Ass
+							WHERE Id = (SELECT question_id FROM Assignments WHERE Id = @New_Ass);
+							
 						END
 					END
 					RETURN;
@@ -1007,9 +1047,11 @@ BEGIN
 					FROM AssignmentConsiderations
 					WHERE Id = @current_consid;
 
-				SET @new_con = (SELECT TOP (1)
-						Id
-					FROM @output_con);
+				SET @new_con = (SELECT
+									max(Id)
+								FROM
+									dbo.[AssignmentConsiderations] 
+								WHERE assignment_id = @Id);
 				UPDATE [Assignments]
 				SET current_assignment_consideration_id = @new_con
 				   ,[edit_date] = GETUTCDATE()
@@ -1147,9 +1189,11 @@ BEGIN
 					FROM AssignmentConsiderations
 					WHERE Id = @current_consid;
 
-				SET @new_con = (SELECT TOP (1)
-						Id
-					FROM @output_con);
+				SET @new_con = (SELECT
+									max(Id)
+								FROM
+									dbo.[AssignmentConsiderations] 
+								WHERE assignment_id = @Id);
 				UPDATE [Assignments]
 				SET current_assignment_consideration_id = @new_con
 				   ,[edit_date] = GETUTCDATE()
@@ -1289,7 +1333,6 @@ BEGIN
 			   ,[LogUpdated_Query] = N'cx_App_Que_Assignments_Update_Row1000'
 			--  ,close_date = GETUTCDATE()
 			WHERE Id = @Id;
-
 
 		END --(F11)
 	END

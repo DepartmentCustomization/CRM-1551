@@ -17,6 +17,10 @@
       "Name": "PhoneNumber"
     },
     {
+      "Code": "@ApplicantId",
+      "Name": "ApplicantId"
+    },
+    {
       "Code": "@CreatedById",
       "Name": "CreatedById",
       "ParameterType": "CurrentUserId"

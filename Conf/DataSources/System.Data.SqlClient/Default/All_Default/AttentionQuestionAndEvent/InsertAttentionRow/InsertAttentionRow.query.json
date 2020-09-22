@@ -1,0 +1,36 @@
+{
+    "ModelType": "Query",
+    "Code": "InsertAttentionRow",
+    "Name": "InsertAttentionRow",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Parameters": [
+        {
+            "Code": "@question_id",
+            "Name": "question_id",
+            "ParameterType": "Integer"
+        },
+        {
+            "Code": "@assignment_id",
+            "Name": "assignment_id",
+            "ParameterType": "Integer"
+        },
+        {
+            "Code": "@event_id",
+            "Name": "event_id",
+            "ParameterType": "Integer"
+        },
+        {
+            "Code": "@user_id",
+            "Name": "user_id",
+            "ParameterType": "CurrentUserId"
+        }
+    ],
+    "Columns": [
+        {
+            "Code": "result",
+            "Name": "result",
+            "Position": 1
+        }
+    ]
+}

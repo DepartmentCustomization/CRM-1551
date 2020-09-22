@@ -1,0 +1,71 @@
+{
+  "ModelType": "Query",
+  "Code": "h_DB_ProApp_MainTable",
+  "Name": "h_DB_ProApp_MainTable",
+  "ConnectionCode": "CRM_KHARKIV1551_Analytics",
+  "IsUsedForRightsFilter": false,
+  "IsAnonymousAccess": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "name",
+      "Name": "name",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "arrived",
+      "Name": "arrived",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "in_work",
+      "Name": "in_work",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "attention",
+      "Name": "attention",
+      "Position": 4,
+      "IsPrintable": false
+    },
+    {
+      "Code": "overdue",
+      "Name": "overdue",
+      "Position": 5,
+      "IsPrintable": false
+    },
+    {
+      "Code": "for_revision",
+      "Name": "for_revision",
+      "Position": 6,
+      "IsPrintable": false
+    },
+    {
+      "Code": "future",
+      "Name": "future",
+      "Position": 7,
+      "IsPrintable": false
+    },
+    {
+      "Code": "without_executor",
+      "Name": "without_executor",
+      "Position": 8,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@user_Id",
+      "Name": "user_Id",
+      "ParameterType": "CurrentUserId"
+    }
+  ]
+}

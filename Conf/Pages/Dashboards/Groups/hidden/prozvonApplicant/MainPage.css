@@ -29,7 +29,6 @@
     background-repeat: no-repeat;
 }
 .dx-datagrid-text-content{
-    font-family: 'Roboto';
     font-weight: 400;
     font-style: normal;
     font-size: 14px;
@@ -49,6 +48,7 @@
 .dx-button-default{
     background-color: rgba(21, 189, 244, 1)!important;
 }
+
 .dx-datagrid-export-button{
     background-color: rgba(21, 189, 244, 1)!important;
     color: #fff!important;
@@ -62,6 +62,7 @@
     text-transform: uppercase;
     text-align: center;
 }
+
 #modalWrapper{
     position: fixed;
     display: flex;
@@ -99,7 +100,7 @@
 }
 .select2-selection{
     border-radius: 0px!important;
-    outline: none;
+    outline: none; 
     border: none!important;
     border-bottom: 1px solid #acada8!important;
 }
@@ -194,7 +195,7 @@ input.radio{
 .container:hover input ~ .checkmark {
     background-color: #ccc;
 }
-.container input:checked ~ .checkmark {
+.container input:checked ~ .checkmark {  
     background-color: #2196F3;
 }
 .checkmark:after {

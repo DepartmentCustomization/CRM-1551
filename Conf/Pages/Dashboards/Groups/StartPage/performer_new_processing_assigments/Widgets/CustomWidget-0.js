@@ -35,8 +35,7 @@
                     }, {}
                     );
                 let tabInd = Number(getUrlParams.id);
-                this.organizationId = [];
-                this.organizationId = (tabInd);
+                this.organizationId = tabInd;
                 let executeQueryValues = {
                     queryCode: 'table2_686',
                     limit: -1,

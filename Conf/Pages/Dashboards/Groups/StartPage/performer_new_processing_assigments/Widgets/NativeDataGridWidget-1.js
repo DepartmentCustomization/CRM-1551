@@ -89,7 +89,8 @@
             groupingAutoExpandAll: null
         },
         init: function() {
-            this.dataGridInstance.height = window.innerHeight - 300;
+            const context = this;
+            this.messageService.publish({ name: 'checkDisplayWidth', context});
             document.getElementById('table4__arrived').style.display = 'none';
             this.sub = this.messageService.subscribe('clickOnTable2', this.changeOnTable, this);
             this.sub1 = this.messageService.subscribe('messageWithOrganizationId', this.orgIdDistribute, this);
@@ -379,6 +380,18 @@
             } return element;
         },
         createMasterDetail: function(container, options) {
+            const currentEmployeeData = options.data;
+            const name = 'createMasterDetail';
+            const fields = {
+                zayavnyk_adress: 'Адреса заявника',
+                zayavnyk_zmist: 'Зміст',
+                balans_name: 'Балансоутримувач'
+            };
+            this.messageService.publish({
+                name, currentEmployeeData, fields, container
+            });
+        },
+        /* createMasterDetail: function(container, options) {
             let currentEmployeeData = options.data;
             if (currentEmployeeData.short_answer === null || currentEmployeeData.short_answer === undefined) {
                 currentEmployeeData.short_answer = '';
@@ -440,7 +453,7 @@
             elementsCaptionAll.forEach(el => {
                 el.style.minWidth = '200px';
             });
-        },
+        }, */
         changeOnTable: function(message) {
             if(message.column !== 'Надійшло') {
                 document.getElementById('table4__arrived').style.display = 'none';

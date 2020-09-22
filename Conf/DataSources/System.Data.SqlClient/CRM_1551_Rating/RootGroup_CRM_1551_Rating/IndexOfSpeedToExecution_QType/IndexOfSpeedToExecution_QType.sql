@@ -1,13 +1,13 @@
 
--- declare  @DateCalc date = N'2019-11-01' 
--- ,@RatingId int = 1
--- ,@RDAId int = 2000
+--  declare  @DateCalc date = N'2020-07-20' 
+--  ,@RatingId int = 1
+--  ,@RDAId int = 0
+
 
 
 if isnull(@RDAId,0) = 0
 begin 
 	if object_id('tempdb..#temp_RatingResultData2') is not null drop table #temp_RatingResultData2
-
 	SELECT	 [id] as [QuestionTypeId],
 			 [name] as [QuestionTypeName]
 	into #temp_RatingResultData2
@@ -40,10 +40,7 @@ begin
 	 select t0.QuestionTypeId, t0.QuestionTypeName, t1.EtalonDaysToExecution as [EtalonDays]
 	 from #temp_RatingResultData2 as t0
 	 left join [CRM_1551_Rating].[dbo].[Rating_EtalonDaysToExecution] as t1 on t1.QuestionTypeId = t0.QuestionTypeId
-																		and t1.Id in (select max(Id) 
-																						from [CRM_1551_Rating].[dbo].[Rating_EtalonDaysToExecution]
-																						where DateStart <= @DateCalc
-																						group by QuestionTypeId)
+	 inner join (select max(DateStart) as DateStart, QuestionTypeId from [CRM_1551_Rating].[dbo].[Rating_EtalonDaysToExecution] where cast(DateStart as date) <= cast(getdate() as date) and cast(DateStart as date) <= cast(@DateCalc as date) group by QuestionTypeId)  as t3 on t3.QuestionTypeId = t1.QuestionTypeId and t3.DateStart = t1.DateStart
 end
 else 
 begin
@@ -74,11 +71,10 @@ begin
 	
 	select t0.QuestionTypeId, t0.QuestionTypeName, t1.EtalonDaysToExecution as [EtalonDays]
 	from ##temp_RatingResultData as t0
-	left join [CRM_1551_Rating].[dbo].[Rating_EtalonDaysToExecution] as t1 on t1.QuestionTypeId = t0.QuestionTypeId 
-																		and t1.Id in (select max(Id) 
-																						from [CRM_1551_Rating].[dbo].[Rating_EtalonDaysToExecution]
-																						where DateStart <= @DateCalc
-																						group by QuestionTypeId)
+	left join [CRM_1551_Rating].[dbo].[Rating_EtalonDaysToExecution] as t1 on t1.QuestionTypeId = t0.QuestionTypeId
+	 inner join (select max(DateStart) as DateStart, QuestionTypeId from [CRM_1551_Rating].[dbo].[Rating_EtalonDaysToExecution] where cast(DateStart as date) <= cast(getdate() as date) and cast(DateStart as date) <= cast(@DateCalc as date) group by QuestionTypeId)  as t3 on t3.QuestionTypeId = t1.QuestionTypeId and t3.DateStart = t1.DateStart
 	order by t0.QuestionTypeId
 end
+
+
 

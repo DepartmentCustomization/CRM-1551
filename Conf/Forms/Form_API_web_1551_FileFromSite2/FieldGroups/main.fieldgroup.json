@@ -26,6 +26,12 @@
       "Name": "appeal_content",
       "FieldType": "text",
       "Position": 1
+    },
+    {
+      "Code": "external_data_sources_id",
+      "Name": "external_data_sources_id",
+      "FieldType": "number",
+      "Position": 5
     }
   ]
 }

@@ -1,0 +1,175 @@
+.header-label {
+    text-align: center;
+    color: #131313;
+    margin: 32.5px;
+    font-size: 30px;
+    line-height: 18px;
+}
+.group-btns {
+    margin-top: 3em;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: space-around; /* просто не хватило этого */
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.group-btns .group {
+    width: 15.00%;
+    height: 200px;
+    cursor: pointer;
+    position: relative;
+    background-color: #F8F8F8;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 2% 5%;
+}
+.group-btns .group .icon {
+    text-align: center;
+}
+.letterIcon{
+    font-size: 70px;
+}
+.group-btns .group .description {
+    text-align: center;
+    color: #131313;
+    font-size: 20px;
+    line-height: 18px;
+}
+.group-btns .group .border-bottom {
+    position: absolute;
+    width: calc(100% - 40px);
+    bottom: 0;
+    left: 20px;
+    box-shadow: 0 0 1px 1px rgba(0,0,0,.1);
+}
+.group-btns .group .border-right {
+    position: absolute;
+    height: calc(100% - 40px);
+    top: 20px;
+    right: 0;
+    box-shadow: 0 0 1px 1px rgba(0,0,0,.1);
+}
+.elementIcon{
+    padding-top: 25px;
+}
+#listWrapper{
+    display: flex;
+    flex-direction: column;
+}
+#listTitle{
+    text-align: center;
+    font-size: 16px;
+}
+#listPhoneNumberInput{
+    padding: 5px 10px;
+    width: 22%;
+    margin: 12px auto 0;
+}
+#listItems{
+    width: 22%;
+    margin: 15px auto;
+}
+.listItem{
+    font-size: 16px;
+    border-bottom: 1px solid black;
+    padding: 5px 0;
+    cursor: pointer;
+}
+.listItem:hover{
+    background-color: #69a5d636;
+}
+/* modal */
+
+#container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+#searchContainer{
+    /*width: 50%;*/
+}
+.searchContainer__input{
+    height: 34px;
+    width: 220px;
+    padding: 5px;
+    outline-style: none;
+}
+#modalWindowWrapper{
+    position:fixed;
+    display:flex;
+    width:100%;
+    height:100%;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,.7);
+    z-index:100;   
+    top: 44px;  
+    left: 0;
+}
+#modalWindow{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 140px;
+    margin-left: 50%;
+    left: -450px;
+    z-index: 100;
+    background: #fafafa;
+    width: 100%;
+    max-width: 900px;
+    padding: 15px;
+}
+
+#modalBtnWrapper{
+    display: flex;
+    justify-content: center; 
+    width: 55%;
+    margin: 0 auto;                    
+}
+#btnWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;                        
+}
+#renderBtn, #modalBtnTrue{
+    width: 30%;
+    margin: 10px auto;
+    background-color: #ff6e40;
+}
+#modalNumber{
+    width: 45%;
+    margin: 10px auto;
+    padding: 5px 5px;
+    font-size: 16px;
+}
+#modalBtnClose{
+    width: 30%;
+    margin: 10px auto;
+}
+#modalBtnExit{
+    background-color: #ffffff;
+    color: #333;
+}
+#modalBtnTrue, #modalBtnExit{
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);                        
+}
+#modalTitle{
+    text-align: center;
+    font-size: 16px;
+    margin: 10px 0;    
+}
+.btn{
+    border-radius: 4px;
+    padding: 5px 20px;
+    color: #fff;
+    height: 28px;
+    font-size: 16px;
+    min-width: 60px!important;
+    border: 0;
+    font-weight: 600;
+    outline: none;
+}

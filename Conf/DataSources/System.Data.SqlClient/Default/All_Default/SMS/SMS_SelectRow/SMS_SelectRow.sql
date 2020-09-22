@@ -12,7 +12,7 @@ create table #address_House(
 )
 	declare @sql nvarchar(max)
 	set @sql = 'select * from
-	OPENQUERY([193.84.77.194,11433],
+	OPENQUERY([213.186.192.201,1433],
 	''select * from OPENQUERY([ODS_KIEV],''''select houses.id as value, concat(houses.number,houses.letter) as label, street_id from houses
 	where houses.id = '+convert(nvarchar(max),@HouseId)+'
 	'''')'')'
@@ -29,7 +29,7 @@ create table #address_Flat(
 )
 	declare @sql2 nvarchar(max)
 	set @sql2 = 'select * from
-	OPENQUERY([193.84.77.194,11433],
+	OPENQUERY([213.186.192.201,1433],
 	''select * from OPENQUERY([ODS_KIEV],''''select flats.id as value, flats.name as label from flats
 	where flats.id = '+convert(nvarchar(max),@FlatId)+'
 	order by LENGTH(flats.name),flats.name '''')'')'
@@ -47,7 +47,7 @@ create table #address_Street(
 
 declare @sql3 nvarchar(max)
 	set @sql3 = 'select * from
-	OPENQUERY([193.84.77.194,11433],
+	OPENQUERY([213.186.192.201,1433],
 	''select * from OPENQUERY([ODS_KIEV],''''select distinct streets.id as value, streets.name as label 
 	from streets
 	where streets.id = '+convert(nvarchar(max),@StreetId)+' '''')'')'

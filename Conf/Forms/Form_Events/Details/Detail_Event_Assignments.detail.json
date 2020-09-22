@@ -1,0 +1,16 @@
+{
+    "ModelType": "Detail",
+    "Code": "Detail_Event_Assignments",
+    "Name": "Доручення Заходу",
+    "FormCode": "Form_Assignments",
+    "SelectRowsQueryCode": "Event_Assignments_SelectRows",
+    "SectionCode": "Assignments",
+    "Position": 0,
+    "IsExpand": true,
+    "QueryParameters": [
+      {
+        "FormFieldName": "Id",
+        "ParameterCode": "@Id"
+      }
+    ]
+  }

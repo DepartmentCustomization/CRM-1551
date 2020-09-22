@@ -167,7 +167,22 @@
             "Name": "Додати скаргу",
             "FieldType": "button",
             "Position": 18,
-            "Width": "25%"
+            "Width": "40%"
+        },
+        {
+            "Code": "btn_Attention",
+            "Name": "Контроль",
+            "FieldType": "button",
+            "Position": 19,
+            "Width": "40%"
+        },
+        {
+            "Code": "attention_val",
+            "Name": "attention_val",
+            "FieldType": "number",
+            "Position": 344,
+            "Width": "15%",
+            "IsHidden": true
         },
         {
             "Code": "question_id",

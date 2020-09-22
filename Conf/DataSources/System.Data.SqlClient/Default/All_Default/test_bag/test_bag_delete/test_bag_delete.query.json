@@ -1,0 +1,13 @@
+{
+    "ModelType": "Query",
+    "Code": "test_bag_delete",
+    "Name": "test_bag_delete",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Parameters": [
+        {
+          "Code": "@Id",
+          "Name": "Id"
+        }
+      ]
+  }

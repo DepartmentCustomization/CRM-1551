@@ -1,0 +1,7 @@
+{
+  "ModelType": "Query",
+  "Code": "db_ReferenceEtalonDays_apply",
+  "Name": "db_ReferenceEtalonDays_apply",
+  "ConnectionCode": "CRM_1551_Rating",
+  "IsUsedForRightsFilter": false
+}

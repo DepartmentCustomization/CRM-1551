@@ -1,0 +1,25 @@
+{
+  "ModelType": "Query",
+  "Code": "h_Coordinator_Poshuk",
+  "Name": "h_Coordinator_Poshuk",
+  "ConnectionCode": "CRM_KHARKIV1551_Analytics",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@appealNum",
+      "Name": "appealNum"
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

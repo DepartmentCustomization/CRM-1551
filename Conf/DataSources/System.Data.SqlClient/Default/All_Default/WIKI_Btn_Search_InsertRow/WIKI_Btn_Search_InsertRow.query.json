@@ -3,5 +3,12 @@
   "Code": "WIKI_Btn_Search_InsertRow",
   "Name": "WIKI_Btn_Search_InsertRow",
   "ConnectionCode": "Default",
-  "IsUsedForRightsFilter": false
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "result",
+      "Name": "result",
+      "Position": 1
+    }
+  ]
 }

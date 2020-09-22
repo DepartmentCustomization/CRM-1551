@@ -6,6 +6,7 @@
   "Details": [
     "string:Details\\Consultation.detail.json",
     "string:Details\\Questions.detail.json",
+    "string:Details\\ArchiveQuestions.detail.json",
     "string:Details\\ApplicantAdress.detail.json",
     "string:Details\\Phone.detail.json",
     "string:Details\\ApplicantHistory.detail.json",

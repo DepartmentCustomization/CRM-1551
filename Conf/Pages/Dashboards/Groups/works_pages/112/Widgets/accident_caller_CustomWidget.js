@@ -192,23 +192,23 @@
                 const element = data.rows[i];
                 const name = element.values[indexName];
                 switch (name) {
-                case 'Глухонімий':
-                    this.statusCaller.DeafAndDumb.id = element.values[indexId];
-                    break;
-                case 'Глухий':
-                    this.statusCaller.Deaf.id = element.values[indexId];
-                    break;
-                case 'Німий':
-                    this.statusCaller.Dumb.id = element.values[indexId];
-                    break;
-                case 'Сліпий':
-                    this.statusCaller.Blind.id = element.values[indexId];
-                    break;
-                case 'Неадекватний':
-                    this.statusCaller.Inadequate.id = element.values[indexId];
-                    break;
-                default:
-                    break;
+                    case 'Глухонімий':
+                        this.statusCaller.DeafAndDumb.id = element.values[indexId];
+                        break;
+                    case 'Глухий':
+                        this.statusCaller.Deaf.id = element.values[indexId];
+                        break;
+                    case 'Німий':
+                        this.statusCaller.Dumb.id = element.values[indexId];
+                        break;
+                    case 'Сліпий':
+                        this.statusCaller.Blind.id = element.values[indexId];
+                        break;
+                    case 'Неадекватний':
+                        this.statusCaller.Inadequate.id = element.values[indexId];
+                        break;
+                    default:
+                        break;
                 }
             }
         },
@@ -346,34 +346,34 @@
         },
         setTextInputValue: function(id, input) {
             switch (id) {
-            case 'CallerName':
-                this.callerName = input;
-                this.callerNameValue = input.value;
-                this.checkedAnonymousStatus();
-                this.fullName.push(input);
-                break;
-            case 'CallerSecondName':
-                this.callerSecondName = input;
-                this.callerSecondNameValue = input.value;
-                this.checkedAnonymousStatus();
-                this.fullName.push(input);
-                break;
-            case 'CallerFatherName':
-                this.callerFatherName = input;
-                this.callerFatherNameValue = input.value;
-                this.checkedAnonymousStatus();
-                this.fullName.push(input);
-                break;
-            case 'CallerBirthday':
-                this.callerBirthday = input;
-                this.callerBirthdayValue = input.value;
-                break;
-            case 'CallerPhone':
-                this.callerPhone = input;
-                this.callerPhoneValue = input.value;
-                break;
-            default:
-                break;
+                case 'CallerName':
+                    this.callerName = input;
+                    this.callerNameValue = input.value;
+                    this.checkedAnonymousStatus();
+                    this.fullName.push(input);
+                    break;
+                case 'CallerSecondName':
+                    this.callerSecondName = input;
+                    this.callerSecondNameValue = input.value;
+                    this.checkedAnonymousStatus();
+                    this.fullName.push(input);
+                    break;
+                case 'CallerFatherName':
+                    this.callerFatherName = input;
+                    this.callerFatherNameValue = input.value;
+                    this.checkedAnonymousStatus();
+                    this.fullName.push(input);
+                    break;
+                case 'CallerBirthday':
+                    this.callerBirthday = input;
+                    this.callerBirthdayValue = input.value;
+                    break;
+                case 'CallerPhone':
+                    this.callerPhone = input;
+                    this.callerPhoneValue = input.value;
+                    break;
+                default:
+                    break;
             }
         },
         checkedAnonymousStatus: function() {
@@ -430,23 +430,23 @@
         changeButtonStatus: function(btn, value) {
             const zero = 0;
             switch (btn.id) {
-            case 'btnDeafAndDumb':
-                this.setBtnDeafAndDumbStatus(value, zero);
-                break;
-            case 'btnDeaf':
-                this.setBtnDeafStatus(value, zero);
-                break;
-            case 'btnDumb':
-                this.setBtnDumbStatus(value, zero);
-                break;
-            case 'btnBlind':
-                this.setBtnBlindStatus(btn, value, zero);
-                break;
-            case 'btnInadequate':
-                this.setBtnInadequateStatus(btn, value, zero);
-                break;
-            default:
-                break;
+                case 'btnDeafAndDumb':
+                    this.setBtnDeafAndDumbStatus(value, zero);
+                    break;
+                case 'btnDeaf':
+                    this.setBtnDeafStatus(value, zero);
+                    break;
+                case 'btnDumb':
+                    this.setBtnDumbStatus(value, zero);
+                    break;
+                case 'btnBlind':
+                    this.setBtnBlindStatus(btn, value, zero);
+                    break;
+                case 'btnInadequate':
+                    this.setBtnInadequateStatus(btn, value, zero);
+                    break;
+                default:
+                    break;
             }
         },
         setBtnDeafAndDumbStatus: function(value, zero) {

@@ -26,6 +26,11 @@
                     icon: 'pie_chart'
                 },
                 {
+                    title: 'Еталонні дні',
+                    url: 'reference_days',
+                    icon: 'report'
+                },
+                {
                     title: 'Статистичний звіт за рік чи півріччя',
                     url: 'statistical_report_for_the_year_or_half_year',
                     icon: 'view_week'

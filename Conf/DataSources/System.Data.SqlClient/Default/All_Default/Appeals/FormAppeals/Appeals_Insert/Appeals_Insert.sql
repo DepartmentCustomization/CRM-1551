@@ -10,12 +10,25 @@ INSERT INTO [dbo].[Appeals]
            ,[user_id]
            ,[edit_date]
            ,[user_edit_id]
-           ,[sipcallid])
+           ,[sipcallid]
+           ,[LogUpdated_Query])
 output [inserted].[Id] into @output (Id)
      VALUES
            (getutcdate() --@registration_date
-           --,@registration_number
-		   ,concat( SUBSTRING ( rtrim(YEAR(getutcdate())),4,1),'-',(select count(Id)+1 from Appeals where year(Appeals.registration_date) = year(getutcdate())) ) 
+           --,@registration_number 222
+		   --,concat( SUBSTRING ( rtrim(YEAR(getutcdate())),4,1),'-',(select count(Id)+1 from Appeals where year(Appeals.registration_date) = year(getutcdate())) )
+            ,case when not exists(
+				select top 1 LTRIM(RIGHT(YEAR(getutcdate()),1))+N'-'+ltrim(substring(registration_number, 3, len(registration_number)-2)*1+1)
+				from [dbo].[Appeals]
+				where left(registration_number, 1) in (right(ltrim(year(getutcdate())),1))
+				order by id desc
+				)
+			then LTRIM(RIGHT(YEAR(getutcdate()),1))+N'-1'
+			else (select top 1 LTRIM(RIGHT(YEAR(getutcdate()),1))+N'-'+ltrim(substring(registration_number, 3, len(registration_number)-2)*1+1)
+				from [dbo].[Appeals]
+				where left(registration_number, 1) in (right(ltrim(year(getutcdate())),1))
+				order by id desc)
+			end 
            ,@receipt_source_id
            ,@phone_number
            ,getutcdate() -- @receipt_date
@@ -24,7 +37,7 @@ output [inserted].[Id] into @output (Id)
            ,getutcdate() -- @edit_date
            ,@user_id
            ,@sipcallid
-		   )
+	      ,N'query_Appeals_Insert'   )
 
 declare @app_id int
 set @app_id = (select top 1 Id from @output)

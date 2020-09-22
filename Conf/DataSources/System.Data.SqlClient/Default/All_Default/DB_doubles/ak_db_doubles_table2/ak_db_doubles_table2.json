@@ -47,6 +47,18 @@
             "Name": "Privilege",
             "Position": 7,
             "IsPrintable": false
+        },
+        {
+            "Code": "Email",
+            "Name": "Email",
+            "Position": 8,
+            "IsPrintable": false
+        },
+        {
+            "Code": "Main_number",
+            "Name": "Main_number",
+            "Position": 9,
+            "IsPrintable": false
         }
     ],
     "Parameters": [

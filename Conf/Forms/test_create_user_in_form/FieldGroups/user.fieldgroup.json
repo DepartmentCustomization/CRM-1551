@@ -1,0 +1,28 @@
+{
+  "Code": "user",
+  "Name": "User",
+  "Position": 1,
+  "Fields": [
+    {
+      "Pattern": "",
+      "Code": "UserName",
+      "Name": "UserName",
+      "FieldType": "text",
+      "Position": 1
+    },
+    {
+      "Pattern": "",
+      "Code": "userLastName",
+      "Name": "UserLastName",
+      "FieldType": "text",
+      "Position": 1
+    },
+    {
+      "Code": "showModalWrapper",
+      "Name": "click me to show modal",
+      "FieldType": "button",
+      "Position": 18,
+      "Width": "40%"
+  }
+  ]
+}

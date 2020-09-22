@@ -15,7 +15,6 @@
             this.showPreloader = false;
         },
         showTypesList: function(data) {
-            const CONTAINER = document.getElementById('container');
             const modalBtnTrue = this.createElement('button', { id:'modalBtnTrue', className: 'btn', innerText: 'Закрити'});
             const modalBtnWrapper = this.createElement('div', { id:'modalBtnWrapper' }, modalBtnTrue);
             const listItems = this.createElement('div', { id:'listItems' });
@@ -38,14 +37,13 @@
             const listWrapper = this.createElement('div', { id:'listWrapper' }, listTitle, listPhoneNumberInput, listItems);
             const modalWindow = this.createElement('div', { id:'modalWindow', className: 'modalWindow'}, listWrapper, modalBtnWrapper);
             const modalWindowWrapper = this.createElement('div', { id:'modalWindowWrapper', className: 'modalWindowWrapper'}, modalWindow);
-            CONTAINER.appendChild(modalWindowWrapper);
+            this.container.appendChild(modalWindowWrapper);
             modalBtnTrue.addEventListener('click', event => {
                 event.stopImmediatePropagation();
-                CONTAINER.removeChild(CONTAINER.lastElementChild);
+                this.container.removeChild(this.container.lastElementChild);
             });
         },
         showModalWindow: function() {
-            let CONTAINER = document.getElementById('container');
             const modalBtnClose = this.createElement('button', { id:'modalBtnClose', className: 'btn', innerText: 'Закрити'});
             const modalBtnTrue = this.createElement('button', { id:'modalBtnTrue', className: 'btn', innerText: 'Підтвердити'});
             const modalBtnWrapper = this.createElement('div', { id:'modalBtnWrapper' }, modalBtnTrue, modalBtnClose);
@@ -59,7 +57,7 @@
             );
             const modalWindow = this.createElement('div', { id:'modalWindow', className: 'modalWindow'}, modalNumber, modalBtnWrapper);
             const modalWindowWrapper = this.createElement('div', { id:'modalWindowWrapper', className: 'modalWindowWrapper'}, modalWindow);
-            CONTAINER.appendChild(modalWindowWrapper);
+            this.container.appendChild(modalWindowWrapper);
             modalBtnTrue.addEventListener('click', event => {
                 event.stopImmediatePropagation();
                 let number = modalNumber.value
@@ -69,15 +67,15 @@
                     '/sections/CreateAppeal/add?phone=' + number +
                     '&type=1'
                 );
-                CONTAINER.removeChild(CONTAINER.lastElementChild);
+                this.container.removeChild(this.container.lastElementChild);
             });
             modalBtnClose.addEventListener('click', event => {
                 event.stopImmediatePropagation();
-                CONTAINER.removeChild(CONTAINER.lastElementChild);
+                this.container.removeChild(this.container.lastElementChild);
             });
         },
         load: function(data) {
-            const CONTAINER = document.getElementById('container');
+            this.container = document.getElementById('container');
             let title = this.createElement('div', { className: 'header-label', innerText: 'КБУ "Контактний центр міста Києва 1551"'});
             let groupRegByPhone__icon = this.createElement('div',
                 {
@@ -277,8 +275,8 @@
                 groupLetter,
                 groupDoubled
             );
-            CONTAINER.appendChild(title);
-            CONTAINER.appendChild(groupsWrapper);
+            this.container.appendChild(title);
+            this.container.appendChild(groupsWrapper);
         },
         openNewTab: function(url) {
             window.open(location.origin + localStorage.getItem('VirtualPath') + '/' + url);

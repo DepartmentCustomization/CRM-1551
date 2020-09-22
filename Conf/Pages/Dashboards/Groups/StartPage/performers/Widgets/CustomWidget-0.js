@@ -593,33 +593,33 @@
                     }
                     this.targetOrgId = target.orgId;
                     let column = target.column;
-                    switch(column) {
-                    case 'Надійшло':
-                        target = document.getElementById('headerItem__arrived')
-                        break;
-                    case 'Не в компетенції':
-                        target = document.getElementById('headerItem__notCompetence')
-                        break;
-                    case 'Прострочені':
-                        target = document.getElementById('headerItem__overdue')
-                        break;
-                    case 'Увага':
-                        target = document.getElementById('headerItem__warning')
-                        break;
-                    case 'В роботі':
-                        target = document.getElementById('headerItem__inWork')
-                        break;
-                    case 'До відома':
-                        target = document.getElementById('headerItem__toAttention')
-                        break;
-                    case 'На доопрацюванні':
-                        target = document.getElementById('headerItem__onRefinement')
-                        break;
-                    case 'План/Програма':
-                        target = document.getElementById('headerItem__planOrProgram')
-                        break;
-                    default:
-                        break;
+                    switch (column) {
+                        case 'Надійшло':
+                            target = document.getElementById('headerItem__arrived')
+                            break;
+                        case 'Не в компетенції':
+                            target = document.getElementById('headerItem__notCompetence')
+                            break;
+                        case 'Прострочені':
+                            target = document.getElementById('headerItem__overdue')
+                            break;
+                        case 'Увага':
+                            target = document.getElementById('headerItem__warning')
+                            break;
+                        case 'В роботі':
+                            target = document.getElementById('headerItem__inWork')
+                            break;
+                        case 'До відома':
+                            target = document.getElementById('headerItem__toAttention')
+                            break;
+                        case 'На доопрацюванні':
+                            target = document.getElementById('headerItem__onRefinement')
+                            break;
+                        case 'План/Програма':
+                            target = document.getElementById('headerItem__planOrProgram')
+                            break;
+                        default:
+                            break;
                     }
                     this.showTable(target, column, navigator, thisName, 'item');
                 });
@@ -628,33 +628,33 @@
         },
         chooseColumnName: function(i) {
             let column = '';
-            switch(i) {
-            case 2:
-                column = 'Надійшло'
-                break;
-            case 3:
-                column = 'Не в компетенції'
-                break;
-            case 4:
-                column = 'Прострочені'
-                break;
-            case 5:
-                column = 'Увага'
-                break;
-            case 6:
-                column = 'В роботі'
-                break;
-            case 7:
-                column = 'До відома'
-                break;
-            case 8:
-                column = 'На доопрацюванні'
-                break;
-            case 9:
-                column = 'План/Програма'
-                break;
-            default:
-                break;
+            switch (i) {
+                case 2:
+                    column = 'Надійшло'
+                    break;
+                case 3:
+                    column = 'Не в компетенції'
+                    break;
+                case 4:
+                    column = 'Прострочені'
+                    break;
+                case 5:
+                    column = 'Увага'
+                    break;
+                case 6:
+                    column = 'В роботі'
+                    break;
+                case 7:
+                    column = 'До відома'
+                    break;
+                case 8:
+                    column = 'На доопрацюванні'
+                    break;
+                case 9:
+                    column = 'План/Програма'
+                    break;
+                default:
+                    break;
             }
             return column
         },

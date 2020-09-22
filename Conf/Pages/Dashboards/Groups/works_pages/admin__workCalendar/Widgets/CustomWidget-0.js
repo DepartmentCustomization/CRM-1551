@@ -136,45 +136,45 @@
                     }
                 }
                 let title;
-                switch(month.month) {
-                case 1:
-                    title = 'Січень'
-                    break
-                case 2:
-                    title = 'Лютий'
-                    break
-                case 3:
-                    title = 'Березень'
-                    break
-                case 4:
-                    title = 'Квітень'
-                    break
-                case 5:
-                    title = 'Травень'
-                    break
-                case 6:
-                    title = 'Червень'
-                    break
-                case 7:
-                    title = 'Липень'
-                    break
-                case 8:
-                    title = 'Серпень'
-                    break
-                case 9:
-                    title = 'Вересень'
-                    break
-                case 10:
-                    title = 'Жовтень'
-                    break
-                case 11:
-                    title = 'Листопад'
-                    break
-                case 12:
-                    title = 'Грудень'
-                    break
-                default:
-                    break
+                switch (month.month) {
+                    case 1:
+                        title = 'Січень'
+                        break
+                    case 2:
+                        title = 'Лютий'
+                        break
+                    case 3:
+                        title = 'Березень'
+                        break
+                    case 4:
+                        title = 'Квітень'
+                        break
+                    case 5:
+                        title = 'Травень'
+                        break
+                    case 6:
+                        title = 'Червень'
+                        break
+                    case 7:
+                        title = 'Липень'
+                        break
+                    case 8:
+                        title = 'Серпень'
+                        break
+                    case 9:
+                        title = 'Вересень'
+                        break
+                    case 10:
+                        title = 'Жовтень'
+                        break
+                    case 11:
+                        title = 'Листопад'
+                        break
+                    case 12:
+                        title = 'Грудень'
+                        break
+                    default:
+                        break
                 }
                 let monthTitle = this.createElement('div', { className: 'monthTitle', innerText: title});
                 let monthWrapper = this.createElement('div', { className: 'monthWrapper' }, monthTitle, monthBox);

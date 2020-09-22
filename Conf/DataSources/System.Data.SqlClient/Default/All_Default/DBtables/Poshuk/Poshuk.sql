@@ -1,170 +1,348 @@
 /*
-declare @user_id nvarchar(300)=N'02ece542-2d75-479d-adad-fd333d09604d';
-declare @organization_id int =1762;
-declare @navigation nvarchar(400)=N'Усі';
-declare @appealNum nvarchar(400)=N'9-811';
+DECLARE @user_id NVARCHAR(128) = N'40dd9fa3-7d58-418c-a2a0-38e9e100d3fd';
+DECLARE @organization_id INT = 1;
+DECLARE @appealNum NVARCHAR(400) = N'0-328';
+DECLARE @navigation NVARCHAR(400) = N'Усі';
 */
 
---declare @appealNum nvarchar(400)=N'9-1000, 9-994, 9-986, Вася привет,Вася пока';
-
-declare @input_str nvarchar(2000) = replace(@appealNum, N', ', N',')+N', ';
+DECLARE @input_str NVARCHAR(2000) = REPLACE(@appealNum, N', ', N',') + N', ';
 
 -- создаем таблицу в которую будем
 -- записывать наши айдишники
-declare @table table (id nvarchar(500))
- 
--- создаем переменную, хранящую разделитель
-declare @delimeter nvarchar(2) = ','
- 
--- определяем позицию первого разделителя
-declare @pos int = charindex(@delimeter,@input_str)
- 
--- создаем переменную для хранения
--- одного айдишника
-declare @id nvarchar(500)
-    
-while (@pos != 0)
-begin
-    -- получаем айдишник
-    set @id = SUBSTRING(@input_str, 1, @pos-1)
-    -- записываем в таблицу
-    insert into @table (id) values(@id)
-    -- сокращаем исходную строку на
-    -- размер полученного айдишника
-    -- и разделителя
-    set @input_str = SUBSTRING(@input_str, @pos+1, LEN(@input_str))
-    -- определяем позицию след. разделителя
-    set @pos = CHARINDEX(@delimeter,@input_str)
-end
+DECLARE @table TABLE (id NVARCHAR(500)) ; -- создаем переменную, хранящую разделитель
+DECLARE @delimeter NVARCHAR(2) = N',' ; -- определяем позицию первого разделителя
+DECLARE @pos INT = charindex(@delimeter, @input_str) ; -- создаем переменную для хранения одного айдишника
+DECLARE @id NVARCHAR(500) ;
 
---select * from @table
+WHILE (@pos != 0) 
+BEGIN -- получаем айдишник
+SET
+  @id = SUBSTRING(@input_str, 1, @pos -1) ; 
+  -- записываем в таблицу
+INSERT INTO
+  @table (id)
+VALUES
+(@id) ;
+ -- сокращаем исходную строку на
+  -- размер полученного айдишника
+  -- и разделителя
+SET
+  @input_str = SUBSTRING(@input_str, @pos + 1, LEN(@input_str)) ;
+   -- определяем позицию след. разделителя
+SET
+  @pos = CHARINDEX(@delimeter, @input_str) ;
+END 
 
-declare @Organization table(Id int);
+-- select id from @table
 
+DECLARE @Archive NVARCHAR(400) = '['+(SELECT TOP 1 [IP]+'].['+[DatabaseName]+'].' FROM [dbo].[SetingConnetDatabase] WHERE Code = N'Archive');
 
-declare @OrganizationId int = 
-case 
-when @organization_id is not null
-then @organization_id
-else (select Id
-  from [CRM_1551_Analitics].[dbo].[Organizations]
-  where Id in (select organization_id
-  from [CRM_1551_Analitics].[dbo].[Workers]
-  where worker_user_id=@user_id))
- end
+DECLARE @IsHere BIT = IIF(
+   (
+      SELECT
+         COUNT(1)
+      FROM
+         dbo.Appeals
+      WHERE
+         registration_number IN (SELECT id FROM @table)
+   ) = 0,
+   0,
+   1
+);
 
+IF(@IsHere = 1)
+BEGIN
+	SET @Archive = SPACE(1);
+END
+DECLARE @Query NVARCHAR(MAX) =
+N'DECLARE @input_str NVARCHAR(2000) = REPLACE(@appealNum, N'', '', N'','') + N'', '';
+DECLARE @table TABLE (id NVARCHAR(500)) ; 
+DECLARE @delimeter NVARCHAR(2) = N'','' ; -- создаем переменную, хранящую разделитель
+DECLARE @pos INT = charindex(@delimeter, @input_str) ; -- определяем позицию первого разделителя
+DECLARE @id NVARCHAR(500) ; -- создаем переменную для хранения одного айдишника
 
-declare @IdT table (Id int);
+WHILE (@pos != 0) 
+BEGIN -- получаем айдишник
+SET
+  @id = SUBSTRING(@input_str, 1, @pos -1) ; 
+  -- записываем в таблицу
+INSERT INTO
+  @table (id)
+VALUES
+(@id) ;
+ -- сокращаем исходную строку на
+  -- размер полученного айдишника
+  -- и разделителя
+SET
+  @input_str = SUBSTRING(@input_str, @pos + 1, LEN(@input_str)) ;
+   -- определяем позицию след. разделителя
+SET
+  @pos = CHARINDEX(@delimeter, @input_str) ;
+END
+DECLARE @Organization TABLE(Id INT);
+DECLARE @OrganizationId INT = CASE
+  WHEN @organization_id IS NOT NULL THEN @organization_id
+  ELSE (
+    SELECT
+      Id
+    FROM
+      [dbo].[Organizations]
+    WHERE
+      Id IN (
+        SELECT
+          organization_id
+        FROM
+          [dbo].[Workers]
+        WHERE
+          worker_user_id = @user_id
+      )
+  ) 
+END ;
+
+DECLARE @IdT TABLE (Id INT);
 
 -- НАХОДИМ ИД ОРГАНИЗАЦИЙ ГДЕ ИД И ПАРЕНТЫ ВЫБРАНОЙ И СРАЗУ ЗАЛИВАЕМ
-insert into @IdT(Id)
-select Id from [CRM_1551_Analitics].[dbo].[Organizations] 
-where (Id=@OrganizationId or [parent_organization_id]=@OrganizationId) and Id not in (select Id from @IdT)
+INSERT INTO
+  @IdT(Id)
+SELECT
+  Id
+FROM
+  [dbo].[Organizations]
+WHERE
+  (
+    Id = @OrganizationId
+    OR [parent_organization_id] = @OrganizationId
+  )
+  AND Id NOT IN (
+    SELECT
+      Id
+    FROM
+      @IdT
+  ) ;
+   --  НАХОДИМ ПАРЕНТЫ ОРГ, КОТОРЫХ ЗАЛИЛИ, <-- нужен цыкл
+  WHILE (
+    SELECT
+      count(id)
+    FROM
+      (
+        SELECT
+          Id
+        FROM
+          [dbo].[Organizations]
+        WHERE
+          [parent_organization_id] IN (
+            SELECT
+              Id
+            FROM
+              @IdT
+          )
+          AND Id NOT IN (
+            SELECT
+              Id
+            FROM
+              @IdT
+          )
+      ) q
+  ) != 0 BEGIN
+INSERT INTO
+  @IdT
+SELECT
+  Id
+FROM
+  [dbo].[Organizations]
+WHERE
+  [parent_organization_id] IN (
+    SELECT
+      Id
+    FROM
+      @IdT
+  ) 
+  AND Id NOT IN (
+    SELECT
+      Id
+    FROM
+      @IdT
+  ) ;
+END
+INSERT INTO
+  @Organization (Id)
+SELECT
+  Id
+FROM
+  @IdT;
 
---  НАХОДИМ ПАРЕНТЫ ОРГ, КОТОРЫХ ЗАЛИЛИ, <-- нужен цыкл
-while (select count(id) from (select Id from [CRM_1551_Analitics].[dbo].[Organizations]
-where [parent_organization_id] in (select Id from @IdT) --or Id in (select Id from @IdT)
-and Id not in (select Id from @IdT)) q)!=0
-begin
-
-insert into @IdT
-select Id from [CRM_1551_Analitics].[dbo].[Organizations]
-where [parent_organization_id] in (select Id from @IdT) --or Id in (select Id from @IdT)
-and Id not in (select Id from @IdT)
-end 
-
-insert into @Organization (Id)
-select Id from @IdT;
-
-
-
-  
- with
-
-main as
-(
-select [Assignments].Id, [Organizations].Id OrganizationsId, [Organizations].name OrganizationsName,
-[Applicants].full_name zayavnyk, N'Вул.'+Streets.name+N', буд.'+[Buildings].name adress, [Questions].registration_number,
-[QuestionTypes].name QuestionType,
---стало
-case when [ReceiptSources].name=N'УГЛ' then N'УГЛ' 
-when [ReceiptSources].name=N'Сайт/моб. додаток' then N'Електронні джерела'
-when [QuestionTypes].emergency=N'true' then N'Пріоритетне'
-when [QuestionTypes].parent_organization_is=N'true' then N'Зауваження'
-else N'Інші доручення'
-end navigation,
---стало
-
-case when [AssignmentTypes].code<>N'ToAttention' and [AssignmentStates].code=N'Registered' then 1 else 0 end nadiyshlo,
-case when [AssignmentTypes].code<>N'ToAttention' and [AssignmentStates].code=N'Closed' and [AssignmentResults].code=N'NotInTheCompetence' then 1 else 0 end neVKompetentsii,
-case when [AssignmentTypes].code<>N'ToAttention' and [AssignmentStates].code=N'InWork' and 
-
-dateadd(HH, [execution_term], [Assignments].registration_date)<getdate() 
-
-then 1 else 0 end prostrocheni, 
-
-
-case when [AssignmentTypes].code<>N'ToAttention' and [AssignmentStates].code=N'InWork' and 
-
-datediff(HH, [Assignments].registration_date, getdate())>[Attention_term_hours]
-and datediff(HH, [Assignments].registration_date, getdate())<=[execution_term]
-
-then 1 else 0 end uvaga,
-
-case when [AssignmentTypes].code<>N'ToAttention' and [AssignmentStates].code=N'InWork' and 
-datediff(HH, [Assignments].registration_date, getdate())<=[Attention_term_hours]
-
- then 1 else 0 end vroboti,
-
- case when [AssignmentTypes].code=N'ToAttention' then 1 else 0 end dovidima,
-
- case when [AssignmentStates].code=N'NotFulfilled' and [AssignmentResults].code=N'ForWork' then 1 else 0 end naDoopratsiyvanni,
- case when [AssignmentStates].code=N'NotFulfilled' and [AssignmentResults].code=N'ItIsNotPossibleToPerformThisPeriod' then 1 else 0 end neVykonNeMozhl,
- null NotUse
-
- , [Applicants].Id zayavnykId, [Questions].Id QuestionId, Appeals.registration_number Appealregistration_number,
- [Organizations].short_name vykonavets
- , [AssignmentConsiderations].short_answer, [Questions].question_content
-, 
- [Applicants].[ApplicantAdress] adressZ
- ,[AssignmentStates].name AssignmentStates
-,[Questions].control_date
-from 
-[CRM_1551_Analitics].[dbo].[Assignments] left join 
-[CRM_1551_Analitics].[dbo].[Questions] on [Assignments].question_id=[Questions].Id
-left join [CRM_1551_Analitics].[dbo].[Appeals] on [Questions].appeal_id=[Appeals].Id
-left join [CRM_1551_Analitics].[dbo].[ReceiptSources] on [Appeals].receipt_source_id=[ReceiptSources].Id
-left join [CRM_1551_Analitics].[dbo].[QuestionTypes] on [Questions].question_type_id=[QuestionTypes].Id
-left join [CRM_1551_Analitics].[dbo].[AssignmentTypes] on [Assignments].assignment_type_id=[AssignmentTypes].Id
-left join [CRM_1551_Analitics].[dbo].[AssignmentStates] on [Assignments].assignment_state_id=[AssignmentStates].Id
-left join [CRM_1551_Analitics].[dbo].[AssignmentConsiderations] on [Assignments].current_assignment_consideration_id=[AssignmentConsiderations].id
-left join [CRM_1551_Analitics].[dbo].[AssignmentResults] on [Assignments].[AssignmentResultsId]=[AssignmentResults].Id -- +
-left join [CRM_1551_Analitics].[dbo].[AssignmentResolutions] on [Assignments].[AssignmentResolutionsId]=[AssignmentResolutions].Id
-left join [CRM_1551_Analitics].[dbo].[Organizations] on [Assignments].executor_organization_id=[Organizations].Id
-left join [CRM_1551_Analitics].[dbo].[Objects] on [Questions].[object_id]=[Objects].Id
-left join [CRM_1551_Analitics].[dbo].[Buildings] on [Objects].builbing_id=[Buildings].Id
-left join [CRM_1551_Analitics].[dbo].[Streets] on [Buildings].street_id=[Streets].Id
-left join [CRM_1551_Analitics].[dbo].[Applicants] on [Appeals].applicant_id=[Applicants].Id
-where [Assignments].[executor_organization_id] in (select id from @Organization)
+WITH main AS (
+  SELECT
+    [Assignments].Id,
+    [Organizations].Id OrganizationsId,
+    [Organizations].name OrganizationsName,
+    [Applicants].full_name zayavnyk,
+    N''Вул.'' + Streets.name + N'', буд.'' + [Buildings].name adress,
+    [Questions].registration_number,
+    [QuestionTypes].name QuestionType,
+    --стало
+    CASE
+      WHEN [ReceiptSources].name = N''УГЛ'' THEN N''УГЛ''
+      WHEN [ReceiptSources].name = N''Сайт/моб. додаток'' THEN N''Електронні джерела''
+      WHEN [QuestionTypes].emergency = N''true'' THEN N''Пріоритетне''
+      WHEN [QuestionTypes].parent_organization_is = N''true'' THEN N''Зауваження''
+      ELSE N''Інші доручення''
+    END navigation,
+    --стало
+    CASE
+      WHEN [AssignmentTypes].code <> N''ToAttention''
+      AND [AssignmentStates].code = N''Registered'' THEN 1
+      ELSE 0
+    END nadiyshlo,
+    CASE
+      WHEN [AssignmentTypes].code <> N''ToAttention''
+      AND [AssignmentStates].code = N''Closed''
+      AND [AssignmentResults].code = N''NotInTheCompetence'' THEN 1
+      ELSE 0
+    END neVKompetentsii,
+    CASE
+      WHEN [AssignmentTypes].code <> N''ToAttention''
+      AND [AssignmentStates].code = N''InWork''
+      AND dateadd(
+        HH,
+        [execution_term],
+        [Assignments].registration_date
+      ) < getdate() THEN 1
+      ELSE 0
+    END prostrocheni,
+    CASE
+      WHEN [AssignmentTypes].code <> N''ToAttention''
+      AND [AssignmentStates].code = N''InWork''
+      AND datediff(HH, [Assignments].registration_date, getdate()) > [Attention_term_hours]
+      AND datediff(HH, [Assignments].registration_date, getdate()) <= [execution_term] THEN 1
+      ELSE 0
+    END uvaga,
+    CASE
+      WHEN [AssignmentTypes].code <> N''ToAttention''
+      AND [AssignmentStates].code = N''InWork''
+      AND datediff(HH, [Assignments].registration_date, getdate()) <= [Attention_term_hours] THEN 1
+      ELSE 0
+    END vroboti,
+    CASE
+      WHEN [AssignmentTypes].code = N''ToAttention'' THEN 1
+      ELSE 0
+    END dovidima,
+    CASE
+      WHEN [AssignmentStates].code = N''NotFulfilled''
+      AND [AssignmentResults].code = N''ForWork'' THEN 1
+      ELSE 0
+    END naDoopratsiyvanni,
+    CASE
+      WHEN [AssignmentStates].code = N''NotFulfilled''
+      AND [AssignmentResults].code = N''ItIsNotPossibleToPerformThisPeriod'' THEN 1
+      ELSE 0
+    END neVykonNeMozhl,
+    NULL NotUse,
+    [Applicants].Id zayavnykId,
+    [Questions].Id QuestionId,
+    Appeals.registration_number Appealregistration_number,
+    [Organizations].short_name vykonavets,
+    [AssignmentConsiderations].short_answer,
+    [Questions].question_content,
+    [Applicants].[ApplicantAdress] adressZ,
+    [AssignmentStates].name AssignmentStates,
+    [Questions].control_date
+  FROM
+    '+@Archive+N'[dbo].[Assignments] [Assignments] 
+    LEFT JOIN '+@Archive+N'[dbo].[Questions] [Questions] ON [Assignments].question_id = [Questions].Id
+    LEFT JOIN '+@Archive+N'[dbo].[Appeals] [Appeals] ON [Questions].appeal_id = [Appeals].Id
+    LEFT JOIN [dbo].[ReceiptSources] [ReceiptSources] ON [Appeals].receipt_source_id = [ReceiptSources].Id 
+    LEFT JOIN [dbo].[QuestionTypes] [QuestionTypes] ON [Questions].question_type_id = [QuestionTypes].Id
+    LEFT JOIN [dbo].[AssignmentTypes] [AssignmentTypes] ON [Assignments].assignment_type_id = [AssignmentTypes].Id
+    LEFT JOIN [dbo].[AssignmentStates] [AssignmentStates] ON [Assignments].assignment_state_id = [AssignmentStates].Id
+    LEFT JOIN '+@Archive+N'[dbo].[AssignmentConsiderations] [AssignmentConsiderations] ON [Assignments].current_assignment_consideration_id = [AssignmentConsiderations].id
+    LEFT JOIN [dbo].[AssignmentResults] [AssignmentResults] ON [Assignments].[AssignmentResultsId] = [AssignmentResults].Id -- +
+    LEFT JOIN '+@Archive+N'[dbo].[AssignmentResolutions] [AssignmentResolutions] ON [Assignments].[AssignmentResolutionsId] = [AssignmentResolutions].Id
+    LEFT JOIN [dbo].[Organizations] [Organizations] ON [Assignments].executor_organization_id = [Organizations].Id
+    LEFT JOIN [dbo].[Objects] [Objects] ON [Questions].[object_id] = [Objects].Id
+    LEFT JOIN [dbo].[Buildings] [Buildings] ON [Objects].builbing_id = [Buildings].Id
+    LEFT JOIN [dbo].[Streets] [Streets] ON [Buildings].street_id = [Streets].Id
+    LEFT JOIN [dbo].[Applicants] [Applicants] ON [Appeals].applicant_id = [Applicants].Id
+  WHERE
+    [Assignments].[executor_organization_id] IN (
+      SELECT
+        id
+      FROM
+        @Organization
+    )
 ),
-
-nav as 
-(
-select 1 Id, N'УГЛ' name union all select 2 Id, N'Сайт' name union all select 3	Id, N'Пріоритетне' name union all select 4 Id, N'Інші доручення' name union all select 5 Id, N'Зауваження' name 
+nav AS (
+  SELECT
+    1 Id,
+    N''УГЛ'' name
+  UNION
+  ALL
+  SELECT
+    2 Id,
+    N''Сайт'' name
+  UNION
+  ALL
+  SELECT
+    3 Id,
+    N''Пріоритетне'' name
+  UNION
+  ALL
+  SELECT
+    4 Id,
+    N''Інші доручення'' name
+  UNION
+  ALL
+  SELECT
+    5 Id,
+    N''Зауваження'' name
 ),
-
-table2 as
-(
-select nav.Id, nav.name navigation, sum(nadiyshlo) nadiyshlo, sum(neVKompetentsii) neVKompetentsii, sum(prostrocheni) prostrocheni, sum(uvaga) uvaga,
-sum(vroboti) vroboti, sum(dovidima) dovidoma, sum(naDoopratsiyvanni) naDoopratsiyvanni, sum(neVykonNeMozhl) neVykonNeMozhl
-from nav left join main on nav.name=main.navigation
-group by nav.Id, nav.name
+table2 AS (
+  SELECT
+    nav.Id,
+    nav.name navigation,
+    sum(nadiyshlo) nadiyshlo,
+    sum(neVKompetentsii) neVKompetentsii,
+    sum(prostrocheni) prostrocheni,
+    sum(uvaga) uvaga,
+    sum(vroboti) vroboti,
+    sum(dovidima) dovidoma,
+    sum(naDoopratsiyvanni) naDoopratsiyvanni,
+    sum(neVykonNeMozhl) neVykonNeMozhl
+  FROM
+    nav
+    LEFT JOIN main ON nav.name = main.navigation
+  GROUP BY
+    nav.Id,
+    nav.name
 )
+SELECT
+  /*ROW_NUMBER() over(order by registration_number)*/
+  main.Id,
+  navigation,
+  registration_number,
+  QuestionType,
+  zayavnyk,
+  adress,
+  vykonavets,
+  zayavnykId,
+  QuestionId,
+  short_answer,
+  question_content,
+  adressZ,
+  AssignmentStates states,
+  control_date
+FROM
+  main 
+WHERE
+  Appealregistration_number
+  IN (
+    SELECT
+      Id
+    FROM
+      @table
+  ) ; ' ;
 
-
-
-select /*ROW_NUMBER() over(order by registration_number)*/ main.Id, navigation, registration_number, QuestionType, zayavnyk, adress, vykonavets, zayavnykId, QuestionId 
-,short_answer, question_content, adressZ, AssignmentStates states, control_date
- from main --where nadiyshlo=1 --navigation, registration_number, from main
- where Appealregistration_number--=@appealNum
- in (select Id from @table)
+  EXEC sp_executesql @Query, N'@appealNum NVARCHAR(400), @user_id NVARCHAR(128), @organization_id INT ', 
+							@appealNum = @appealNum,
+							@organization_id = @organization_id,
+							@user_id = @user_id ;

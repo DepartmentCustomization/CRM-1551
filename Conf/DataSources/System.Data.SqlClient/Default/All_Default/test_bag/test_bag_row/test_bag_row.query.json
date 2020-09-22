@@ -1,0 +1,36 @@
+{
+    "ModelType": "Query",
+    "Code": "test_bag_row",
+    "Name": "test_bag_row",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+        {
+            "Code": "Id",
+            "Name": "Id",
+            "Position": 0,
+            "IsPrintable": false
+        },
+        {
+            "Code": "SystemUserId",
+            "Name": "SystemUserId",
+            "Position": 1,
+            "IsPrintable": false
+        },
+        {
+            "Code": "UserName",
+            "Name": "UserName",
+            "Position": 1,
+            "IsPrintable": false,
+            "ReferenceKeyCode": "SystemUserId"
+        }
+    ],
+    "Parameters": [
+        {
+            "Code": "@Id",
+            "Name": "Id",
+            "ParameterType": "Integer",
+            "IsPrimaryKey": true
+        }
+    ]
+}

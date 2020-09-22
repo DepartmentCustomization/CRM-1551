@@ -1,0 +1,9 @@
+{
+  "DashboardGroupCode": "reports",
+  "Position": 1,
+  "Description": "",
+  "DescriptionUrl": "",
+  "ModelType": "Dashboard",
+  "Code": "operator_statistics",
+  "Name": "Статистика по операторах"
+}

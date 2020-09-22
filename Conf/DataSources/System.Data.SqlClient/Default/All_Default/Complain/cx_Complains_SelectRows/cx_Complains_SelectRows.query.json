@@ -18,7 +18,7 @@
       "Name": "Дата реєстрації скарги",
       "Position": 2,
       "IsPrintable": false,
-      "SqlName": "[Complain].[registration_date]",
+      "SqlName": "[registration_date]",
       "FilterParameterCode": "@date"
     },
     {
@@ -26,7 +26,7 @@
       "Name": "Тип скарги",
       "Position": 3,
       "IsPrintable": false,
-      "SqlName": "ComplainTypes.name",
+      "SqlName": "[complain_type_name]",
       "FilterParameterCode": "@Name"
     },
     {
@@ -34,7 +34,7 @@
       "Name": "Скаржник",
       "Position": 4,
       "IsPrintable": false,
-      "SqlName": "[Complain].[culpritname]",
+      "SqlName": "[culpritname]",
       "FilterParameterCode": "@culpritname"
     },
     {
@@ -42,7 +42,7 @@
       "Name": "Винуватець",
       "Position": 5,
       "IsPrintable": false,
-      "SqlName": "[Complain].[guilty]",
+      "SqlName": "[guilty]",
       "FilterParameterCode": "@guilty"
     },
     {
@@ -50,7 +50,7 @@
       "Name": "Коментар",
       "Position": 6,
       "IsPrintable": false,
-      "SqlName": "[Complain].[text]",
+      "SqlName": "[text]",
       "FilterParameterCode": "@name_param"
     },
     {
@@ -58,11 +58,16 @@
       "Name": "Хто зареєстрував скаргу",
       "Position": 7,
       "IsPrintable": false,
-      "SqlName": "Workers.name",
+      "SqlName": "[user_name]",
       "FilterParameterCode": "@name"
     }
   ],
   "Parameters": [
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    },
     {
       "Code": "@pageOffsetRows",
       "Name": "pageOffsetRows",

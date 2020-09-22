@@ -58,7 +58,6 @@
                 pageSize: 10
             },
             export: {
-                enabled: true,
                 fileName: 'File_name'
             },
             editing: {
@@ -70,7 +69,6 @@
                 visible: false,
                 applyFilter: 'auto'
             },
-            height: '550',
             keyExpr: 'Id',
             showBorders: true,
             showColumnLines: true,
@@ -91,7 +89,7 @@
         },
         elements: [],
         init: function() {
-            this.loadData(this.afterLoadDataHandler);
+            this.dataGridInstance.height = window.innerHeight - 100;
             let executeQuery = {
                 queryCode: 'int_list_organization_1551',
                 parameterValues: [],
@@ -132,6 +130,7 @@
                 };
                 this.queryExecutor(saveChange);
             }.bind(this));
+            this.config.onToolbarPreparing = this.createTableButton.bind(this);
         },
         lookupFoo: function(data) {
             this.elements = [];
@@ -149,11 +148,20 @@
         afterLoadDataHandler: function() {
             this.render();
         },
-        subscribeToDataGridActions: function() {
-        },
-        onDataGridEditorPreparing: function() {
-        },
-        destroy: function() {
+        createTableButton: function(e) {
+            let toolbarItems = e.toolbarOptions.items;
+            toolbarItems.push({
+                widget: 'dxButton',
+                options: {
+                    icon: 'exportxlsx',
+                    type: 'default',
+                    text: 'Excel',
+                    onClick: function() {
+                        this.dataGridInstance.instance.exportToExcel();
+                    }.bind(this)
+                },
+                location: 'after'
+            });
         }
     };
 }());

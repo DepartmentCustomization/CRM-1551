@@ -1,0 +1,76 @@
+{
+    "ModelType": "Query",
+    "Code": "det_ArchiveEventQue",
+    "Name": "det_ArchiveEventQue",
+    "ConnectionCode": "Default",
+    "IsUsedForRightsFilter": false,
+    "Columns": [
+      {
+        "Code": "Id",
+        "Name": "Id",
+        "Position": 1,
+        "IsPrimaryKey": true,
+        "ViewState": "Hidden",
+        "IsPrintable": false
+      },
+      {
+        "Code": "registration_date",
+        "Name": "Дата реєстрації",
+        "Position": 2,
+        "ViewState": "Hidden",
+        "IsPrintable": false
+      },
+      {
+        "Code": "registration_number",
+        "Name": "Номер питання",
+        "Position": 3,
+        "SqlName": "Questions.registration_number",
+        "FilterParameterCode": "@Number",
+        "ReferenceKeyCode": "Id",
+        "ReferenceSectionCode": "Questions"
+      },
+      {
+        "Code": "QuestionStates",
+        "Name": "Стан питання",
+        "Position": 4,
+        "IsPrintable": false
+      },
+      {
+        "Code": "QuestionType",
+        "Name": "Тип питання",
+        "Position": 5,
+        "IsPrintable": false
+      },
+      {
+        "Code": "control_date",
+        "Name": "Дата контролю",
+        "Position": 6,
+        "IsPrintable": false
+      },
+      {
+        "Code": "short_name",
+        "Name": "Виконавець",
+        "Position": 7
+      }
+    ],
+    "Parameters": [
+      {
+        "Code": "@pageOffsetRows",
+        "Name": "pageOffsetRows",
+        "ParameterType": "Integer",
+        "IsPageOffsetRows": true
+      },
+      {
+        "Code": "@pageLimitRows",
+        "Name": "pageLimitRows",
+        "ParameterType": "Integer",
+        "IsPageLimitRows": true
+      },
+      {
+        "Code": "@event_id",
+        "Name": "event_id",
+        "ParameterType": "Integer",
+        "IsPrimaryKey": true
+      }
+    ]
+  }

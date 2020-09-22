@@ -1,0 +1,42 @@
+{
+  "css": "",
+  "rootContainer": {
+    "width": "auto",
+    "margin": "0 5px 10px",
+    "flexWrap": "wrap",
+    "flexDirection": "row",
+    "order": 1,
+    "flexGrow": 1,
+    "alignSelf": "auto",
+    "border": "none",
+    "children": [
+      {
+        "width": "auto",
+        "margin": "0 5px",
+        "flexWrap": "wrap",
+        "flexDirection": "row",
+        "order": 1,
+        "flexGrow": 1,
+        "alignSelf": "auto",
+        "border": "none",
+        "children": [
+          {
+            "code": "1CustomWidget",
+            "type": "CustomWidgetComponent",
+            "name": "123"
+          }
+        ],
+        "id": "Container-1",
+        "height": "30px",
+        "minHeight": "30px",
+        "minWidth": "100px",
+        "backgroundColor": "white"
+      }
+    ],
+    "id": "Container-0",
+    "height": "100%",
+    "minHeight": "100%",
+    "minWidth": "100%",
+    "backgroundColor": "#eee"
+  }
+}

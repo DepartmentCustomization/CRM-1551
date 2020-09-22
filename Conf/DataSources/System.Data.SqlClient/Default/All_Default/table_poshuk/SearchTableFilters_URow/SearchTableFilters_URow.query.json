@@ -1,0 +1,24 @@
+{
+  "ModelType": "Query",
+  "Code": "SearchTableFilters_URow",
+  "Name": "SearchTableFilters_URow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Parameters": [
+    {
+      "Code": "@filters",
+      "Name": "filters"
+    },
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

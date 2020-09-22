@@ -5,7 +5,7 @@
   "SelectRowsQueryCode": "QestionHistory_SelectRows",
   "SectionCode": "",
   "Position": 40,
-  "IsExpand": true,
+  "IsExpand": false,
   "QueryParameters": [
     {
       "FormFieldName": "Id",

@@ -1,0 +1,48 @@
+{
+  "ModelType": "Query",
+  "Code": "SearchTableFilters_SRows",
+  "Name": "SearchTableFilters_SRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "filter_name",
+      "Name": "filter_name",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "filter_name",
+      "FilterParameterCode": "@filter_name"
+    },
+    {
+      "Code": "filters",
+      "Name": "filters",
+      "Position": 2,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    },
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    },
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    }
+  ]
+}

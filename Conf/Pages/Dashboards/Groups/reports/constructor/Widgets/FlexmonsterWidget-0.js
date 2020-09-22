@@ -49,6 +49,8 @@
             let indexQuestionObject = values[0].findIndex(el => el.code.toLowerCase() === 'objectname');
             let indexQuestionResolution = values[0].findIndex(el => el.code.toLowerCase() === 'resolution');
             let indexQuestionResult = values[0].findIndex(el => el.code.toLowerCase() === 'result');
+            let indexRegistrationNumber = values[0].findIndex(el => el.code.toLowerCase() === 'registration_number');
+            let indexQuestionContent = values[0].findIndex(el => el.code.toLowerCase() === 'question_content');
             const columns = values.shift();
             columns.index;
             const reportData = values.map((row, index) => ({
@@ -77,9 +79,11 @@
                 'Стан питання. Закрито': values[index][indexQuestionStateClose],
                 'Об\'єкт питання': values[index][indexQuestionObject],
                 'Резолюція': values[index][indexQuestionResolution],
-                'Результат': values[index][indexQuestionResult]
+                'Результат': values[index][indexQuestionResult],
+                'Номер питання': values[index][indexRegistrationNumber],
+                'Текст звернення': values[index][indexQuestionContent]
             }));
-            const report = {
+            let report = {
                 dataSource: {
                     data: reportData
                 }

@@ -5,7 +5,7 @@
   "SelectRowsQueryCode": "cx_Ass_History_SelectRows",
   "SectionCode": "",
   "Position": 40,
-  "IsExpand": true,
+  "IsExpand": false,
   "PrintType": "None",
   "QueryParameters": [
     {

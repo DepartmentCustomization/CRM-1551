@@ -4,7 +4,7 @@
   "Name": "Консультація заявника",
   "SelectRowsQueryCode": "det_ConsultationApplication",
   "SectionCode": "",
-  "Position": 2,
+  "Position": 3,
   "QueryParameters": [
     {
       "FormFieldName": "Id",

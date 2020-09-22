@@ -11,12 +11,16 @@
       "Width": "20%"
     },
     {
-      "Code": "complain_type_name",
+      "Code": "complain_type_id",
       "Name": "Тип скарги",
-      "FieldType": "text",
+      "FieldType": "select",
       "Position": 2,
       "Width": "40%",
-      "Icon": "turned_in"
+      "Icon": "turned_in",
+      "QueryCode": "list_complain_type",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
     },
     {
       "Code": "culpritname",
@@ -33,17 +37,35 @@
       "Position": 5
     },
     {
-      "Code": "text",
-      "Name": "Коментар",
-      "FieldType": "textarea",
-      "Position": 6,
-      "Width": "100%"
-    },
-    {
       "Code": "user_name",
       "Name": "Хто зареєстрував скаргу",
       "FieldType": "text",
-      "Position": 5
+      "Position": 6
+    },
+    {
+      "Code": "text",
+      "Name": "Коментар",
+      "FieldType": "textarea",
+      "Position": 7,
+      "Width": "100%"
+    },
+    {
+      "Code": "complain_state_id",
+      "Name": "Стан скарги",
+      "FieldType": "select",
+      "IsRequired": false,
+      "Position": 8,
+      "QueryCode": "list_complain_state",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "revision_comment",
+      "Name": "Коментар перевіряючого",
+      "FieldType": "textarea",
+      "Position": 9,
+      "Width": "100%"
     }
   ]
 }

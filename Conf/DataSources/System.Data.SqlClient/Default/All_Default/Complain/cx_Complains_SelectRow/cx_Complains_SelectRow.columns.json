@@ -12,17 +12,17 @@
     "IsPrintable": false
   },
   {
-    "Code": "complain_type_name",
-    "Name": "complain_type_name",
-    "Position": 2,
-    "IsPrintable": false,
-    "ReferenceKeyCode": "complain_type_id"
-  },
-  {
     "Code": "complain_type_id",
     "Name": "complain_type_id",
-    "Position": 3,
+    "Position": 2,
     "IsPrintable": false
+  },
+  {
+    "Code": "complain_type_name",
+    "Name": "complain_type_name",
+    "Position": 3,
+    "IsPrintable": false,
+    "ReferenceKeyCode": "complain_type_id"
   },
   {
     "Code": "culpritname",
@@ -61,5 +61,24 @@
     "Position": 9,
     "IsPrintable": false,
     "ReferenceKeyCode": "guilty_id"
+  },
+  {
+    "Code": "complain_state_id",
+    "Name": "complain_state_id",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "complain_state_name",
+    "Name": "complain_state_name",
+    "Position": 11,
+    "IsPrintable": false,
+    "ReferenceKeyCode": "complain_state_id"
+  },
+  {
+    "Code": "revision_comment",
+    "Name": "revision_comment",
+    "Position": 12,
+    "IsPrintable": false
   }
 ]

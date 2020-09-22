@@ -108,16 +108,9 @@
             header1.parentElement.style.flexFlow = 'column nowrap';
             header1.firstElementChild.style.overflow = 'visible';
             header1.firstElementChild.firstElementChild.firstElementChild.style.overflow = 'visible';
-            /*
-            Version 2.2
             this.subscribers.push(this.messageService.subscribe('reloadMainTable', this.reloadMainTable, this));
-            */
-            this.sub = this.messageService.subscribe('reloadMainTable', this.reloadMainTable, this);
             this.executeMainTableQuery(false, null);
             this.executeOrganizationQuery();
-        },
-        destroy: function() {
-            this.sub.unsubscribe();
         },
         executeOrganizationQuery: function() {
             let executeQuery = {

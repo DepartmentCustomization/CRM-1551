@@ -15,7 +15,9 @@
       "Code": "Name",
       "Name": "Name",
       "Position": 1,
-      "IsPrintable": false
+      "IsPrintable": false,
+      "SqlName": "Name",
+      "FilterParameterCode": "@Name"
     }
   ],
   "Parameters": [

@@ -9,7 +9,21 @@
         },
         date_in_form: '',
         previous_result: '',
+        checkAttentionVal() {
+            let attentionVal = this.form.getControlValue('attention_val');
+            if(attentionVal === 1) {
+                document.getElementById('btn_Attention').style.background = '#3498DB';
+                document.getElementById('btn_Attention').style.color = 'white';
+                document.getElementById('btn_Attention').innerHTML = 'Зняти з контролю';
+            } else if(attentionVal === 0) {
+                document.getElementById('btn_Attention').style.background = 'white';
+                document.getElementById('btn_Attention').style.color = 'black';
+                document.getElementById('btn_Attention').innerHTML = 'Взяти на контроль';
+            }
+        },
         init: function() {
+            this.checkAttentionVal();
+            let btn_Attention = document.getElementById('btn_Attention');
             this.form.disableControl('geolocation_lat');
             this.form.disableControl('geolocation_lon');
             if (this.form.getControlValue('geolocation_lat')) {
@@ -71,7 +85,6 @@
             this.form.disableControl('control_date');
             this.form.disableControl('question_content');
             this.form.disableControl('bal_name');
-            this.form.disableControl('main_executor');
             this.form.disableControl('registration_date');
             this.form.disableControl('resolution_id');
             this.form.disableControl('ass_state_id');
@@ -95,6 +108,32 @@
             let resolution_id = this.form.getControlValue('resolution_id');
             const noChoose1 = [{ parameterCode: '@AssignmentId', parameterValue: this.id },{ parameterCode: '@res_id', parameterValue: 0 }];
             this.form.setControlParameterValues('result_id', noChoose1);
+            btn_Attention.addEventListener('click', function() {
+                let attention_val = this.form.getControlValue('attention_val');
+                let queryCode;
+                if(attention_val === 0) {
+                    queryCode = 'InsertAttentionRow';
+                } else if(attention_val === 1) {
+                    queryCode = 'DeleteAttentionRow';
+                }
+                const queryForAttention = {
+                    queryCode: queryCode,
+                    parameterValues: [
+                        {
+                            key: '@assignment_id',
+                            value: this.id
+                        }
+                    ]
+                };
+                this.queryExecutor.getValue(queryForAttention).subscribe((val) => {
+                    if(val === 1) {
+                        this.form.setControlValue('attention_val', 1);
+                    } else if(val === 0) {
+                        this.form.setControlValue('attention_val', 0);
+                    }
+                    this.checkAttentionVal();
+                })
+            }.bind(this));
             const execute = {
                 queryCode: 'dir_tree_day_assigments',
                 parameterValues: [{
@@ -169,7 +208,7 @@
             if (main === 0) {
                 this.form.enableControl('main_executor');
             } else if (main > 0 && check === true) {
-                this.form.enableControl('main_executor');
+                this.form.disableControl('main_executor');
             }
             if (this.form.getControlValue('registration_date') === null) {
                 this.form.setControlValue('ass_state_id', { key: 1, value: 'Зареєстровано' });

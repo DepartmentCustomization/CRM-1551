@@ -1,4 +1,5 @@
 
+
 --DECLARE @user_id nvarchar(128)=N'8cbd0469-56f1-474b-8ea6-904d783a0941';
 
 DECLARE @sertor_table TABLE (Id int);
@@ -22,8 +23,8 @@ SELECT Organization_id Id, organization_name,
   SUM([count_clarified]) [count_clarified], --5
   SUM([count_done]) [count_done], --6
   SUM([count_for_revision]) [count_for_revision], --7
-  SUM([count_plan_program]) [count_plan_program] --8
-
+  SUM([count_plan_program]) [count_plan_program], --8
+  SUM([count_not_competence]) [count_not_competence]
   FROM
   (
   SELECT [Assignments].Id, [Organizations].Id Organization_id, [Organizations].short_name Organization_name,
@@ -35,7 +36,8 @@ SELECT Organization_id Id, organization_name,
   CASE WHEN [Assignments].assignment_state_id=4 /*не виконано*/ AND [Assignments].AssignmentResultsId=5 /*на доопрацюванні*/ THEN 1 ELSE 0 END [count_for_revision], --7
   CASE WHEN [Assignments].assignment_state_id=5 /*закрито*/ AND [Assignments].AssignmentResultsId=7 /*роз.яснено*/ 
   AND last_state_tab.last_state_id=3/*на перевірці*/ AND last_result_tab.last_result_id=8 /*неможливо виконати в даний період*/
-  THEN 1 ELSE 0 END [count_plan_program] --8
+  THEN 1 ELSE 0 END [count_plan_program], --8
+  CASE WHEN [Assignments].assignment_state_id IN (1 /*зареєстровано*/, 3 /*на перевірці*/) AND [Assignments].AssignmentResultsId=3/*НЕ В КОМПЕТЕНЦІЇ*/ THEN 1 ELSE 0 END [count_not_competence]
   FROM [dbo].[QuestionsInTerritory]
   INNER JOIN @sertor_table st ON [QuestionsInTerritory].territory_id=st.Id
   INNER JOIN [dbo].[Questions] ON [QuestionsInTerritory].question_id=[Questions].Id
@@ -65,10 +67,11 @@ SELECT Organization_id Id, organization_name,
   WHERE [Assignments].assignment_state_id=5 AND [Assignments].AssignmentResultsId=7
   GROUP BY [Assignment_History].assignment_id) tab_last_result ON [Assignment_History].Id=tab_last_result.Id_result) last_result_tab ON [Assignments].Id=last_result_tab.assignment_id
   ) t
-  WHERE #filter_columns#
+  --WHERE #filter_columns#
   
   GROUP BY Organization_id, Organization_name
-
+  HAVING SUM([count_arrived])+SUM([count_in_work])+SUM([count_overdue])+SUM([count_clarified])+SUM([count_done])+
+  SUM([count_for_revision])+SUM([count_plan_program])+SUM([count_not_competence])>0
   --#sort_columns#
   ORDER BY 1
-  offset @pageOffsetRows rows fetch next @pageLimitRows rows only
+  --offset @pageOffsetRows rows fetch next @pageLimitRows rows only

@@ -65,6 +65,7 @@
             const dateTo = this.dateTo;
             const organization = this.organization;
             const organizationGroup = this.organizationGroup;
+            const sources = this.sources;
             window.open(
                 location.origin +
                 localStorage.getItem('VirtualPath') +
@@ -74,7 +75,8 @@
                 '&dateFrom=' + dateFrom +
                 '&dateTo=' + dateTo +
                 '&organization=' + organization +
-                '&organizationGroup=' + organizationGroup
+                '&organizationGroup=' + organizationGroup +
+                '&sourceId=' + sources
             );
         },
         applyChanges: function() {
@@ -95,7 +97,8 @@
                     { 'key': '@dateFrom','value': this.dateFrom },
                     { 'key': '@dateTo', 'value': this.dateTo },
                     { 'key': '@organization', 'value': this.organization },
-                    { 'key': '@organizationGroup', 'value': this.organizationGroup }
+                    { 'key': '@organizationGroup', 'value': this.organizationGroup },
+                    { 'key': '@sourceId', 'value': this.sources.toString() }
                 ]
             };
             if (this.firstLoad) {
@@ -117,6 +120,7 @@
                     groupQuestionId: this.groupQuestionId,
                     groupQuestionName: this.groupQuestionName,
                     qty: this.qty,
+                    sources: this.sources,
                     chartData: data
                 }
             };
@@ -126,15 +130,26 @@
             let period = message.package.value.values.find(f => f.name === 'period').value;
             let organization = message.package.value.values.find(f => f.name === 'organization').value;
             let organizationGroup = message.package.value.values.find(f => f.name === 'organizationGroup').value;
+            let sources = message.package.value.values.find(f => f.name === 'sources').value;
             if (period !== null) {
                 if (period.dateFrom !== '' && period.dateTo !== '') {
+                    this.sources = this.extractValues(sources);
                     this.dateFrom = period.dateFrom;
                     this.dateTo = period.dateTo;
                     this.organization = organization === null ? 0 : organization === '' ? 0 : organization.value;
                     this.organizationGroup = organizationGroup === null ? 0 : organizationGroup === '' ? 0 : organizationGroup.value;
+                    this.sources = sources.toString() === '' ? '0' : this.sources.toString();
                     this.executeQuery();
                 }
             }
+        },
+        extractValues: function(items) {
+            if (items.length && items !== '') {
+                const valuesList = [];
+                items.forEach(item => valuesList.push(item.value));
+                return valuesList;
+            }
+            return [];
         },
         fillIndexes: function(data) {
             this.groupQuestionId = this.getIndex(data, 'groupquestionid');

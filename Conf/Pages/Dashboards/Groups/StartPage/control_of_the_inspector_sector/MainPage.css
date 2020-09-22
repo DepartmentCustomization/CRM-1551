@@ -81,7 +81,7 @@
     right: 4px;
 }
 
-.triangle, .arrived_triangle, .inWork_triangle, .overdue_triangle, .checked_triangle, .done_triangle, .onRefinement_triangle{
+.triangle, .not_competence_triangle, .arrived_triangle, .in_work_triangle, .overdue_triangle, .clarified_triangle, .done_triangle, .for_revision_triangle{
     width: 0;
     height: 0;
     position: absolute;
@@ -91,7 +91,7 @@
     right: -14px;
     top: -1px;
 }
-.triangle:before, .arrived_triangle:before, .inWork_triangle:before,  .overdue_triangle:before, .checked_triangle:before, .done_triangle:before, .onRefinement_triangle:before{
+.triangle:before, .not_competence_triangle:before, .arrived_triangle:before, .in_work_triangle:before,  .overdue_triangle:before, .clarified_triangle:before, .done_triangle:before, .for_revision_triangle:before{
     content: '';
     width: 0;
     height: 0;
@@ -105,19 +105,24 @@
 .arrived_triangle:before{
     border-left: 12px solid rgb(74, 193, 197);
 }
-.inWork_triangle:before{
+
+.not_competence_triangle:before{
+    border-left: 12px solid rgb(173, 118, 205);
+}
+
+.in_work_triangle:before{
     border-left: 12px solid rgb(132, 199, 96);
 }
 .overdue_triangle:before{
     border-left: 12px solid rgb(240, 114, 93);
 }
-.checked_triangle:before{
+.clarified_triangle:before{
     border-left: 12px solid rgb(248, 195, 47);
 }
 .done_triangle:before{
     border-left: 12px solid rgb(86 162 78);
 }
-.onRefinement_triangle:before{
+.for_revision_triangle:before{
     border-left: 12px solid rgb(94, 202, 162);
 }
 .triangle:before{
@@ -131,9 +136,10 @@
     flex-direction: row;
     justify-content: center; 
     margin-right: 10px;
+    justify-content: space-evenly;
 }
 .headerItem{
-    width: 14.5%;
+    width: 100%;
     height: 46px;
     align-items: center;
     justify-content: center;
@@ -148,6 +154,11 @@
 #headerItem__arrived{
     z-index: 180;
 }
+#headerItem__notCompetent{
+    z-index: 175;
+    padding-left: 14px;
+}
+
 #headerItem__inWork{
     z-index: 170;
     padding-left: 14px;
@@ -358,6 +369,7 @@
 .orgElementsCounter{
     height: 100%;
     align-items: center;
+    justify-content: space-evenly;
 }
 .orgTitle{
     max-width: 200px;
@@ -412,11 +424,12 @@
     align-items: center;
     flex-direction: row;
     margin: 5px 10px 5px 3px;
-    width: 14.5%!Important;
+    width: 100%;
 }
 #orgHeader{
     display: flex;
-    flex-direction: row;            
+    flex-direction: row;
+    margin-top: 10px;        
 }
 #headerTitle{
     background-color: rgba(240 240 240);
@@ -437,4 +450,22 @@
     height: 100%;
 }
 
-                
+/* MEDIA */
+
+@media screen and (max-width: 960px) {
+    .headerItem {
+        font-size: 9px;
+    }
+    #headerTitle {
+        max-width: 150px;
+        min-width: 150px;
+    }
+    .orgTitle {
+        max-width: 150px;
+        min-width: 150px;
+    }
+    #orgContainer{
+        overflow-y: scroll;
+        height: calc(100vh - 320px)!important;    
+    }
+}

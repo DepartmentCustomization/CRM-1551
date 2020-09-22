@@ -1,46 +1,93 @@
+--  DECLARE @Id INT = 2810750;
 
-SELECT 
-	   [Assignments].[Id]
-	   ,Assignments.question_id
+DECLARE @Archive NVARCHAR(400) = '['+(SELECT TOP 1 [IP]+'].['+[DatabaseName]+'].' FROM [dbo].[SetingConnetDatabase] WHERE Code = N'Archive');
 
-      ,[Assignments].[registration_date]
-	  ,ast.id as ass_state_id
-	  ,ast.name as ass_state_name
-	  ,assR.name as result_name
-	  ,assR.Id as result_id
-	  ,assRn.name as resolution_name
-	  ,assRn.Id as resolution_id
-      ,[Assignments].[execution_date]
-      ,assC.short_answer
-      ,aty.Id as ass_type_id
-      ,aty.name as ass_type_name
-      ,Assignments.main_executor
-	  ,perf.Id as performer_id
-	  ,case when len(perf.[head_name]) > 5 then perf.[head_name] + ' ( ' + perf.[short_name] + ')'
-					else perf.[short_name] end as performer_name
-	  ,case when len(responsible.[head_name]) > 5 then responsible.[head_name] + ' ( ' + responsible.[short_name] + ')'
-					else responsible.[short_name] end as responsible_name
-	  ,responsible.Id as responsible
-	  ,(select Id from AssignmentConsiderations where Id = 
-					(select current_assignment_consideration_id from Assignments where Id = @Id)) as assignmentConsiderations_id
-	  ,(select count( assg.main_executor)
-			 from  [Assignments] assg 
-			 where assg.question_id = Assignments.question_id and assg.main_executor = 1 and assg.close_date is null) as is_aktiv_true
-	  ,assRev.control_comment
-	  ,isnull(assRev.rework_counter,0) as rework_counter
-	  ,assC.[transfer_to_organization_id]
-	  ,org_tr.short_name as transfer_name
-	  ,'1' as is_view
-  FROM [dbo].[Assignments]
-	left join AssignmentTypes aty on aty.Id = Assignments.assignment_type_id
-	left join AssignmentStates ast on ast.Id = Assignments.assignment_state_id
+DECLARE @IsHere BIT = IIF(
+   (
+      SELECT
+         COUNT(1)
+      FROM
+         dbo.Assignments
+      WHERE
+        Id = @Id
+   ) = 0,
+   0,
+   1
+);
 
--- 	left join AssignmentConsiderations assC on assC.assignment_id = Assignments.Id
-	left join AssignmentConsiderations assC on assC.Id = Assignments.current_assignment_consideration_id
-    left join AssignmentResults assR on assR.Id = Assignments.AssignmentResultsId
-	left join AssignmentResolutions assRn on assRn.Id = Assignments.AssignmentResolutionsId
-	left join AssignmentRevisions  assRev on assRev.assignment_consideration_іd = assC.Id
-	left join Organizations as perf on perf.Id = Assignments.executor_organization_id
-	left join Organizations as responsible on responsible.Id = Assignments.organization_id
-	left join Organizations  as org_tr on org_tr.Id = assC.transfer_to_organization_id
- where Assignments.Id = @Id
+IF(@IsHere = 1)
+BEGIN
+	SET @Archive = SPACE(0);
+END
+DECLARE @Query NVARCHAR(MAX) = 
+N'SELECT
+	[Assignments].[Id],
+	Assignments.question_id,
+	[Assignments].[registration_date],
+	ast.id AS ass_state_id,
+	ast.name AS ass_state_name,
+	assR.name AS result_name,
+	assR.Id AS result_id,
+	assRn.name AS resolution_name,
+	assRn.Id AS resolution_id,
+	[Assignments].[execution_date],
+	assC.short_answer,
+	aty.Id AS ass_type_id,
+	aty.name AS ass_type_name,
+	Assignments.main_executor,
+	perf.Id AS performer_id,
+CASE
+		WHEN len(perf.[head_name]) > 5 THEN perf.[head_name] + N'' ( '' + perf.[short_name] + N'')''
+		ELSE perf.[short_name]
+	END AS performer_name,
+CASE
+		WHEN len(responsible.[head_name]) > 5 THEN responsible.[head_name] + N'' ( '' + responsible.[short_name] + N'')''
+		ELSE responsible.[short_name]
+	END AS responsible_name,
+	responsible.Id AS responsible,
+(
+		SELECT
+			Id
+		FROM
+			'+@Archive+N'[dbo].[AssignmentConsiderations]
+		WHERE
+			Id = (
+				SELECT
+					current_assignment_consideration_id
+				FROM
+					'+@Archive+N'[dbo].[Assignments]
+				WHERE
+					Id = @Id
+			)
+	) AS assignmentConsiderations_id,
+(
+		SELECT
+			count(assg.main_executor)
+		FROM
+			'+@Archive+N'[dbo].[Assignments] assg
+		WHERE
+			assg.question_id = Assignments.question_id
+			AND assg.main_executor = 1
+			AND assg.close_date IS NULL
+	) AS is_aktiv_true,
+	assRev.control_comment,
+	isnull(assRev.rework_counter, 0) AS rework_counter,
+	assC.[transfer_to_organization_id],
+	org_tr.short_name AS transfer_name,
+	N''1'' AS is_view
+FROM
+	'+@Archive+N'dbo.[Assignments] [Assignments]
+	LEFT JOIN dbo.AssignmentTypes aty ON aty.Id = Assignments.assignment_type_id
+	LEFT JOIN dbo.AssignmentStates ast ON ast.Id = Assignments.assignment_state_id 
+	LEFT JOIN '+@Archive+N'[dbo].AssignmentConsiderations assC ON assC.Id = Assignments.current_assignment_consideration_id
+	LEFT JOIN dbo.AssignmentResults assR ON assR.Id = Assignments.AssignmentResultsId
+	LEFT JOIN dbo.AssignmentResolutions assRn ON assRn.Id = Assignments.AssignmentResolutionsId
+	LEFT JOIN '+@Archive+N'dbo.AssignmentRevisions assRev ON assRev.assignment_consideration_іd = assC.Id
+	LEFT JOIN dbo.Organizations AS perf ON perf.Id = Assignments.executor_organization_id
+	LEFT JOIN dbo.Organizations AS responsible ON responsible.Id = Assignments.organization_id
+	LEFT JOIN dbo.Organizations AS org_tr ON org_tr.Id = assC.transfer_to_organization_id
+WHERE
+	Assignments.Id = @Id ;';
+
+	EXEC sp_executesql @Query, N'@Id INT', 
+								@Id = @Id;

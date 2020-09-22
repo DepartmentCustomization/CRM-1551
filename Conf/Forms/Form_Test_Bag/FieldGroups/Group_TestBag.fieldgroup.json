@@ -1,0 +1,26 @@
+{
+  "Code": "Group_Object",
+  "Name": "Об'єкт",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "FieldType": "number",
+      "Position": 1,
+      "Width": "25%",
+      "Icon": "home"
+    },
+    {
+      "Code": "SystemUserId",
+      "Name": "Користувач",
+      "FieldType": "select",
+      "Position": 2,
+      "QueryCode": "ak_SysUsers",
+      "KeyColumnCode": "UserId",
+      "DisplayColumnCode": "fio",
+      "QueryParameters": [],
+      "IsRequired": true
+    }
+  ]
+}

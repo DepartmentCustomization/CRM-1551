@@ -1,25 +1,11 @@
 [
   {
-    "Code": "@fathername",
-    "Name": "fathername"
-  },
-  {
-    "Code": "@sex",
-    "Name": "sex"
-  },
-  {
-    "Code": "@socialstate_id",
-    "Name": "socialstate_id",
-    "ParameterType": "Integer"
-  },
-  {
-    "Code": "@inn",
-    "Name": "inn",
-    "ParameterType": "Integer"
-  },
-  {
     "Code": "@surname",
     "Name": "surname"
+  },
+  {
+    "Code": "@fathername",
+    "Name": "fathername"
   },
   {
     "Code": "@birthdate",
@@ -27,13 +13,32 @@
     "ParameterType": "DateTime"
   },
   {
-    "Code": "@applicantprivilage_id",
-    "Name": "applicantprivilage_id",
+    "Code": "@inn",
+    "Name": "inn",
     "ParameterType": "Integer"
   },
   {
     "Code": "@firstname",
     "Name": "firstname"
+  },
+  {
+    "Code": "@socialstate_id",
+    "Name": "socialstate_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@sex",
+    "Name": "sex"
+  },
+  {
+    "Code": "@applicantprivilage_id",
+    "Name": "applicantprivilage_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@external_data_sources_id",
+    "Name": "external_data_sources_id",
+    "ParameterType": "Integer"
   },
   {
     "Code": "@is_verified",

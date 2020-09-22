@@ -41,7 +41,7 @@
                 "border": "none",
                 "children": [
                   {
-                    "code": "filtersName_CustomWidget",
+                    "code": "mainCustomWidget",
                     "type": "CustomWidgetComponent",
                     "name": "filters_place"
                   }
@@ -63,13 +63,13 @@
                 "border": "none",
                 "children": [
                   {
-                    "code": "poshuk_table_NativeDataGridWidget",
+                    "code": "poshukTableNativeDataGridWidget",
                     "type": "NativeDataGridWidgetComponent",
                     "name": "poshuk_table_main"
                   }
                 ],
                 "id": "Container-1",
-                "height": "auto",
+                "height": "calc(82%)",
                 "minHeight": "auto",
                 "minWidth": "calc(100% - 10px)",
                 "backgroundColor": "white",
@@ -86,13 +86,13 @@
                 "border": "none",
                 "children": [
                   {
-                    "code": "counter_CustomWidget",
+                    "code": "counterCustomWidget",
                     "type": "CustomWidgetComponent",
                     "name": "counter"
                   }
                 ],
                 "id": "Container-1",
-                "height": "30px",
+                "height": "calc(3%)",
                 "minHeight": "10px",
                 "minWidth": "50px",
                 "backgroundColor": "white",
@@ -109,7 +109,7 @@
                 "border": "none",
                 "children": [
                   {
-                    "code": "notification_CustomWidget",
+                    "code": "notificationCustomWidget",
                     "type": "CustomWidgetComponent",
                     "name": "notification"
                   }

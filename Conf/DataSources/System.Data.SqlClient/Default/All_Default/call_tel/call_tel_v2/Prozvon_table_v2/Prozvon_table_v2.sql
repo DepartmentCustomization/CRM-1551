@@ -15,7 +15,7 @@
   ---перелік параметры конец
   --select @comment_qls, @de_comment
 
- declare @sort1 nvarchar(3000)=case when @sort=N'1=1' then N'QuestionType_sort' 
+ declare @sort1 nvarchar(max)=case when @sort=N'1=1' then N'QuestionType_sort' 
  else replace(replace(@sort, N' asc', N'_sort asc'), N' desc', N'_sort desc') end;
 
  --select @sort1
@@ -129,7 +129,7 @@ end
   ,[QuestionTypes].Id question_type
   '+@comment_qls+N',[Rating].Id [question_list_state] --@comment_qls
   '+@de_comment+N' , null [question_list_state]
-  ,[Assignments].registration_date
+  ,[Questions].registration_date
   ,[AssignmentRevisions].[edit_date]
   ,[AssignmentRevisions].[control_comment]
 

@@ -18,6 +18,10 @@
                     caption: 'Кількість заявникiв'
                 }
             ],
+            filterRow: {
+                visible: true,
+                applyFilter: 'auto'
+            },
             keyExpr: 'Id',
             focusedRowEnabled: true
         },

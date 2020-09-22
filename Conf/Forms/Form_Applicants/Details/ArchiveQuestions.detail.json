@@ -1,0 +1,15 @@
+{
+    "ModelType": "Detail",
+    "Code": "ArchiveQuestions",
+    "Name": "Архівні питання заявника",
+    "SelectRowsQueryCode": "det_ArchiveApplicantQue",
+    "SectionCode": "",
+    "Position": 2,
+    "IsExpand": false,
+    "QueryParameters": [
+      {
+        "FormFieldName": "Id",
+        "ParameterCode": "@ApplicantsId"
+      }
+    ]
+  }

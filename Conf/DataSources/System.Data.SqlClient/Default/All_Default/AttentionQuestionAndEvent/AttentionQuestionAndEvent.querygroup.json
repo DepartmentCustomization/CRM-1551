@@ -1,0 +1,6 @@
+{
+    "ModelType": "QueryGroup",
+    "Code": "AttentionQuestionAndEvent",
+    "Name": "Контроль",
+    "ConnectionCode": "Default"
+  }

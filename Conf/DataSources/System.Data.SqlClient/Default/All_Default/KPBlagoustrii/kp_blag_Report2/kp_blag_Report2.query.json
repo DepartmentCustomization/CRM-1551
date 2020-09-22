@@ -1,0 +1,30 @@
+{
+  "ModelType": "Query",
+  "Code": "kp_blag_Report2",
+  "Name": "kp_blag_Report2",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "IsAnonymousAccess": false,
+  "Parameters": [
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    },
+    {
+      "Code": "@sector_id",
+      "Name": "sector_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@date_to",
+      "Name": "date_to",
+      "ParameterType": "DateTime"
+    },
+    {
+      "Code": "@date_from",
+      "Name": "date_from",
+      "ParameterType": "DateTime"
+    }
+  ]
+}

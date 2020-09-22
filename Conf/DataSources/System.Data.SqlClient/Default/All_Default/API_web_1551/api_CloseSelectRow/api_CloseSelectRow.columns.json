@@ -60,15 +60,75 @@
     "IsPrintable": false
   },
   {
-    "Code": "content",
-    "Name": "content",
-    "Position": 10,
-    "IsPrintable": false
-  },
-  {
     "Code": "CountFiles",
     "Name": "CountFiles",
     "Position": 11,
+    "IsPrintable": false
+  },
+  {
+    "Code": "Assignment_executor_organization_name",
+    "Name": "Assignment_executor_organization_name",
+    "Position": 12,
+    "IsPrintable": false
+  },
+  {
+    "Code": "object_id",
+    "Name": "object_id",
+    "Position": 13,
+    "IsPrintable": false
+  },
+  {
+    "Code": "geolocation_lat",
+    "Name": "geolocation_lat",
+    "Position": 14,
+    "IsPrintable": false
+  },
+  {
+    "Code": "geolocation_lon",
+    "Name": "geolocation_lon",
+    "Position": 15,
+    "IsPrintable": false
+  },
+  {
+    "Code": "Assignment_state_change_date",
+    "Name": "Assignment_state_change_date",
+    "Position": 15,
+    "IsPrintable": false
+  },
+  {
+    "Code": "has_files",
+    "Name": "has_files",
+    "Position": 16,
+    "IsPrintable": false
+  },
+  {
+    "Code": "grade",
+    "Name": "grade",
+    "Position": 16,
+    "IsPrintable": false
+  },
+  {
+    "Code": "main_content",
+    "Name": "main_content",
+    "Position": 17,
+    "IsPrintable": false
+  },
+  {
+    "Code": "Question_id",
+    "Name": "Question_id",
+    "Position": 18,
+    "IsPrintable": false
+  },
+  {
+    "Code": "Question_number",
+    "Name": "Question_number",
+    "Position": 19,
+    "IsPrintable": false
+  },
+  {
+    "Code": "appeal_receipt_source",
+    "Name": "appeal_receipt_source",
+    "Position": 20,
     "IsPrintable": false
   }
 ]

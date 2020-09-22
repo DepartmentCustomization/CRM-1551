@@ -70,4 +70,4 @@
   GROUP BY sector_id, sector_name
   --#sort_columns#
   ORDER BY 1
-  offset @pageOffsetRows rows fetch next @pageLimitRows rows only
+  --offset @pageOffsetRows rows fetch next @pageLimitRows rows only

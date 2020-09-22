@@ -194,7 +194,7 @@
             });
         },
         myCreateExcel: function(data) {
-            if(data.rows.length > 0) {
+            if (data.rows.length > 0) {
                 this.showPagePreloader('Зачекайте, формується документ');
                 this.indexArr = [];
                 let columns = this.config.columns;
@@ -202,7 +202,7 @@
                     let elDataField = el.dataField;
                     let elCaption = el.caption;
                     for (let i = 0; i < data.columns.length; i++) {
-                        if(elDataField === data.columns[i].code) {
+                        if (elDataField === data.columns[i].code) {
                             let obj = {
                                 name: elDataField,
                                 index: i,
@@ -214,21 +214,21 @@
                 });
                 const workbook = this.createExcel();
                 const worksheet = workbook.addWorksheet('«Топ питань', {
-                    pageSetup:{orientation: 'landscape', fitToPage: false, fitToWidth: true}
+                    pageSetup: { orientation: 'landscape', fitToPage: false, fitToWidth: true }
                 });
                 /*TITLE*/
                 let cellInfoCaption = worksheet.getCell('A1');
                 cellInfoCaption.value = 'ТОП-10 найпроблемніших питань в розрізі районів';
                 let cellPeriod = worksheet.getCell('A2');
                 cellPeriod.value = 'Період вводу з (включно) : дата з ' + this.changeDateTimeValues(this.dateFrom) +
-                                        ' дата по ' + this.changeDateTimeValues(this.dateTo);
+                    ' дата по ' + this.changeDateTimeValues(this.dateTo);
                 worksheet.mergeCells('A1:M1');
                 worksheet.mergeCells('A2:M2');
-                worksheet.getRow(1).font = { name: 'Times New Roman', family: 4, size: 10, underline: false, bold: true , italic: false};
+                worksheet.getRow(1).font = { name: 'Times New Roman', family: 4, size: 10, underline: false, bold: true, italic: false };
                 worksheet.getRow(1).alignment = { vertical: 'middle', horizontal: 'center' };
-                worksheet.getRow(2).font = { name: 'Times New Roman', family: 4, size: 10, underline: false, bold: true , italic: false};
+                worksheet.getRow(2).font = { name: 'Times New Roman', family: 4, size: 10, underline: false, bold: true, italic: false };
                 worksheet.getRow(2).alignment = { vertical: 'middle', horizontal: 'center' };
-                worksheet.getRow(4).font = { name: 'Times New Roman', family: 4, size: 10, underline: false, bold: true , italic: false};
+                worksheet.getRow(4).font = { name: 'Times New Roman', family: 4, size: 10, underline: false, bold: true, italic: false };
                 worksheet.getRow(4).alignment = { vertical: 'middle', horizontal: 'center' };
                 let indexArr = this.indexArr;
                 let rows = [];
@@ -242,21 +242,21 @@
                 }
                 columnsHeader.push(columnNumber);
                 indexArr.forEach(el => {
-                    if(el.name === 'questionType') {
+                    if (el.name === 'questionType') {
                         let obj = {
                             key: el.name,
                             width: 28
                         };
                         columnsHeader.push(obj);
                         captions.push('Тип питання');
-                    }else if(el.name === 'Golosiivsky') {
+                    } else if (el.name === 'Golosiivsky') {
                         let obj = {
                             key: el.name,
                             width: 8
                         };
                         columnsHeader.push(obj);
                         captions.push('Голосіївський');
-                    }else if(el.name === 'Darnitsky') {
+                    } else if (el.name === 'Darnitsky') {
                         let obj = {
                             key: el.name,
                             width: 8
@@ -270,56 +270,56 @@
                         };
                         columnsHeader.push(obj);
                         captions.push('Деснянський');
-                    }else if(el.name === 'Dnirovsky') {
+                    } else if (el.name === 'Dnirovsky') {
                         let obj = {
                             key: el.name,
                             width: 8
                         };
                         columnsHeader.push(obj);
                         captions.push('Дніпровський');
-                    }else if(el.name === 'Obolonsky') {
+                    } else if (el.name === 'Obolonsky') {
                         let obj = {
                             key: el.name,
                             width: 8
                         };
                         columnsHeader.push(obj);
                         captions.push('Оболонський');
-                    }else if(el.name === 'Pechersky') {
+                    } else if (el.name === 'Pechersky') {
                         let obj = {
                             key: el.name,
                             width: 8
                         };
                         columnsHeader.push(obj);
                         captions.push('Печерський');
-                    }else if(el.name === 'Podilsky') {
+                    } else if (el.name === 'Podilsky') {
                         let obj = {
                             key: el.name,
                             width: 8
                         };
                         columnsHeader.push(obj);
                         captions.push('Подільський');
-                    }else if(el.name === 'Svyatoshinsky') {
+                    } else if (el.name === 'Svyatoshinsky') {
                         let obj = {
                             key: el.name,
                             width: 8
                         };
                         columnsHeader.push(obj);
                         captions.push('Святошинський');
-                    }else if(el.name === 'Solomiansky') {
+                    } else if (el.name === 'Solomiansky') {
                         let obj = {
                             key: el.name,
                             width: 8
                         };
                         columnsHeader.push(obj);
                         captions.push('Солом`янський');
-                    }else if(el.name === 'Shevchenkovsky') {
+                    } else if (el.name === 'Shevchenkovsky') {
                         let obj = {
                             key: el.name,
                             width: 8
                         };
                         columnsHeader.push(obj);
                         captions.push('Шевченківський');
-                    }else if(el.name === 'allQuestionsQty') {
+                    } else if (el.name === 'allQuestionsQty') {
                         let obj = {
                             key: el.name,
                             width: 8
@@ -343,34 +343,34 @@
                 let indexSolomiansky = data.columns.findIndex(el => el.code.toLowerCase() === 'solomiansky');
                 let indexShevchenkovsky = data.columns.findIndex(el => el.code.toLowerCase() === 'shevchenkovsky');
                 let indexAllQuestionsQty = data.columns.findIndex(el => el.code.toLowerCase() === 'allquestionsqty');
-                for(let j = 0; j < data.rows.length; j++) {
+                for (let j = 0; j < data.rows.length; j++) {
                     let row = data.rows[j];
                     let rowItem = { number: j + 1 };
-                    for(let i = 0; i < indexArr.length; i++) {
+                    for (let i = 0; i < indexArr.length; i++) {
                         let el = indexArr[i];
-                        if(el.name === 'questionType') {
+                        if (el.name === 'questionType') {
                             rowItem.questionType = row.values[indexQuestionType];
-                        }else if(el.name === 'Golosiivsky') {
+                        } else if (el.name === 'Golosiivsky') {
                             rowItem.Golosiivsky = row.values[indexGolosiivsky];
-                        }else if(el.name === 'Darnitsky') {
+                        } else if (el.name === 'Darnitsky') {
                             rowItem.Darnitsky = row.values[indexDarnitsky];
-                        }else if(el.name === 'Desnyansky') {
+                        } else if (el.name === 'Desnyansky') {
                             rowItem.Desnyansky = row.values[indexDesnyansky];
-                        }else if(el.name === 'Dnirovsky') {
+                        } else if (el.name === 'Dnirovsky') {
                             rowItem.Dnirovsky = row.values[indexDnirovsky];
-                        }else if(el.name === 'Obolonsky') {
+                        } else if (el.name === 'Obolonsky') {
                             rowItem.Obolonsky = row.values[indexObolonsky];
-                        }else if(el.name === 'Pechersky') {
+                        } else if (el.name === 'Pechersky') {
                             rowItem.Pechersky = row.values[indexPechersky];
-                        }else if(el.name === 'Podilsky') {
+                        } else if (el.name === 'Podilsky') {
                             rowItem.Podilsky = row.values[indexPodilsky];
-                        }else if(el.name === 'Svyatoshinsky') {
+                        } else if (el.name === 'Svyatoshinsky') {
                             rowItem.Svyatoshinsky = row.values[indexSvyatoshinsky];
-                        }else if(el.name === 'Solomiansky') {
+                        } else if (el.name === 'Solomiansky') {
                             rowItem.Solomiansky = row.values[indexSolomiansky];
-                        }else if(el.name === 'Shevchenkovsky') {
+                        } else if (el.name === 'Shevchenkovsky') {
                             rowItem.Shevchenkovsky = row.values[indexShevchenkovsky];
-                        }else if(el.name === 'allQuestionsQty') {
+                        } else if (el.name === 'allQuestionsQty') {
                             rowItem.allQuestionsQty = row.values[indexAllQuestionsQty];
                         }
                     }
@@ -400,15 +400,15 @@
                     top: 0.4, bottom: 0.4,
                     header: 0.0, footer: 0.0
                 };
-                for(let i = 0; i < rows.length + 1; i++) {
+                for (let i = 0; i < rows.length + 1; i++) {
                     let number = i + 4;
                     let row = worksheet.getRow(number);
                     row.height = number === 4 ? 100 : 50;
                     worksheet.getRow(number).border = {
-                        top: {style:'thin'},
-                        left: {style:'thin'},
-                        bottom: {style:'thin'},
-                        right: {style:'thin'}
+                        top: { style: 'thin' },
+                        left: { style: 'thin' },
+                        bottom: { style: 'thin' },
+                        right: { style: 'thin' }
                     };
                     worksheet.getRow(number).alignment = {
                         vertical: 'middle',
@@ -419,15 +419,15 @@
                         name: 'Times New Roman',
                         family: 4, size: 10,
                         underline: false,
-                        bold: false ,
+                        bold: false,
                         italic: false
                     };
                 }
                 worksheet.getRow(3).border = {
-                    bottom: {style:'thin'}
+                    bottom: { style: 'thin' }
                 };
                 worksheet.getRow(4).font = {
-                    vertAlign: 'subscript', name: 'Times New Roman', family: 4, size: 10, underline: false, bold: true , italic: false
+                    vertAlign: 'subscript', name: 'Times New Roman', family: 4, size: 10, underline: false, bold: true, italic: false
                 };
                 worksheet.getRow(4).alignment = { textRotation: +90, vertical: 'middle', horizontal: 'center', wrapText: true };
                 let numberTitle = worksheet.getCell('A4');
@@ -438,7 +438,7 @@
             }
         },
         changeDateTimeValues: function(value) {
-            if(value !== null) {
+            if (value !== null) {
                 let date = new Date(value);
                 let dd = date.getDate().toString();
                 let mm = (date.getMonth() + 1).toString();
@@ -457,7 +457,7 @@
         },
         getAllIndexes: function(arr, val) {
             let indexes = [];
-            for(let i = 0; i < arr.length; i++) {
+            for (let i = 0; i < arr.length; i++) {
                 let cellValue = arr[i].textContent;
                 if (Number(cellValue) === val) {
                     indexes.push(i);
@@ -466,7 +466,7 @@
             return indexes;
         },
         afterRenderTable: function() {
-            if(this.data.length > 0) {
+            if (this.data.length > 0) {
                 const data = this.data;
                 this.sortArray = [];
                 let rows = document.querySelectorAll('.dx-row');
@@ -475,7 +475,7 @@
                 rowsAll.pop();
                 data.forEach(row => {
                     let arrRow = [];
-                    for(let i = 2; i < row.length; i++) {
+                    for (let i = 2; i < row.length; i++) {
                         let value = row[i];
                         arrRow.push(value)
                     }
@@ -484,15 +484,15 @@
                 });
                 for (let k = 0; k < this.sortArray.length; k++) {
                     let row = this.sortArray[k];
-                    for(let j = 0; j < row.length; j++) {
+                    for (let j = 0; j < row.length; j++) {
                         let value = row[j];
                         let color = this.arrayColor[j];
-                        if(rowsAll[k]) {
-                            if(rowsAll[k].children) {
+                        if (rowsAll[k]) {
+                            if (rowsAll[k].children) {
                                 let array = Array.prototype.slice.call(rowsAll[k].children);
                                 array.pop();
                                 let indexes = this.getAllIndexes(array, value);
-                                for(let i = 0; i < indexes.length; i++) {
+                                for (let i = 0; i < indexes.length; i++) {
                                     let index = indexes[i];
                                     let cell = array[index];
                                     cell.style.backgroundColor = '#' + color;
@@ -509,26 +509,38 @@
             let questionType = message.package.value.values.find(f => f.name === 'questionType').value;
             let organization = message.package.value.values.find(f => f.name === 'organization').value;
             let organizationGroup = message.package.value.values.find(f => f.name === 'organizationGroup').value;
-            if(period !== null) {
-                if(period.dateFrom !== '' && period.dateTo !== '') {
+            let sources = message.package.value.values.find(f => f.name === 'sources').value;
+            if (period !== null) {
+                if (period.dateFrom !== '' && period.dateTo !== '') {
+                    this.sources = this.extractValues(sources);
                     this.dateFrom = period.dateFrom;
                     this.dateTo = period.dateTo;
                     this.questionGroup = questionGroup === null ? 0 : questionGroup === '' ? 0 : questionGroup.value;
                     this.questionType = questionType === null ? 0 : questionType === '' ? 0 : questionType.value;
                     this.organization = organization === null ? 0 : organization === '' ? 0 : organization.value;
                     this.organizationGroup = organizationGroup === null ? 0 : organizationGroup === '' ? 0 : organizationGroup.value;
-                    if(this.questionType !== 0) {
+                    this.sources = sources.toString() === '' ? '0' : this.sources.toString();
+                    if (this.questionType !== 0) {
                         this.config.query.parameterValues = [
-                            {key: '@dateFrom' , value: this.dateFrom },
-                            {key: '@dateTo', value: this.dateTo },
-                            {key: '@questionGroup', value: this.questionGroup },
-                            {key: '@questionType', value: this.questionType },
-                            {key: '@organization', value: this.organization },
-                            {key: '@organizationGroup', value: this.organizationGroup }
+                            { key: '@dateFrom', value: this.dateFrom },
+                            { key: '@dateTo', value: this.dateTo },
+                            { key: '@questionGroup', value: this.questionGroup },
+                            { key: '@questionType', value: this.questionType },
+                            { key: '@organization', value: this.organization },
+                            { key: '@organizationGroup', value: this.organizationGroup },
+                            { key: '@sourceId', value: this.sources.toString() }
                         ];
                     }
                 }
             }
+        },
+        extractValues: function(items) {
+            if (items.length && items !== '') {
+                const valuesList = [];
+                items.forEach(item => valuesList.push(item.value));
+                return valuesList;
+            }
+            return [];
         },
         applyChanges: function() {
             const msg = {

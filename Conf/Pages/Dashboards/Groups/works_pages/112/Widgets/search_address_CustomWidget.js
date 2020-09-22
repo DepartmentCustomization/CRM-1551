@@ -191,26 +191,26 @@
         },
         setTextInput: function(id, input) {
             switch (id) {
-            case 'houseEntrance':
-                this.houseEntrance = input;
-                break;
-            case 'houseEntranceCode':
-                this.houseEntranceCode = input;
-                break;
-            case 'houseFloorsCounter':
-                this.houseFloorsCounter = input;
-                break;
-            case 'flatFloor':
-                this.flatFloor = input;
-                break;
-            case 'flatApartmentOffice':
-                this.flatApartmentOffice = input;
-                break;
-            case 'flatExit':
-                this.flatExit = input;
-                break;
-            default:
-                break;
+                case 'houseEntrance':
+                    this.houseEntrance = input;
+                    break;
+                case 'houseEntranceCode':
+                    this.houseEntranceCode = input;
+                    break;
+                case 'houseFloorsCounter':
+                    this.houseFloorsCounter = input;
+                    break;
+                case 'flatFloor':
+                    this.flatFloor = input;
+                    break;
+                case 'flatApartmentOffice':
+                    this.flatApartmentOffice = input;
+                    break;
+                case 'flatExit':
+                    this.flatExit = input;
+                    break;
+                default:
+                    break;
             }
         },
         createSearchAddInfoWrapper: function() {
@@ -389,32 +389,32 @@
         setAddressProps: function(id, value) {
             if(this.viewAddress) {
                 switch (id) {
-                case 'houseEntrance':
-                    this.houseEntranceValue = 'під\'їзд ' + value;
-                    this.address.houseEntrance = Number(value);
-                    break;
-                case 'houseEntranceCode':
-                    this.houseEntranceCodeValue = ' (код ' + value + ') ';
-                    this.address.houseEntranceCode = Number(value);
-                    break;
-                case 'houseFloorsCounter':
-                    this.houseFloorsCounterValue = '/' + value;
-                    this.address.houseFloorsCounter = Number(value);
-                    break;
-                case 'flatFloor':
-                    this.flatFloorValue = ', поверх: ' + value;
-                    this.address.flatFloor = Number(value);
-                    break;
-                case 'flatApartmentOffice':
-                    this.flatApartmentOfficeValue = 'кв. ' + value + ', ';
-                    this.address.flatApartmentOffice = value;
-                    break;
-                case 'flatExit':
-                    this.flatExitValue = ', ' + value;
-                    this.address.flatExit = value;
-                    break;
-                default:
-                    break;
+                    case 'houseEntrance':
+                        this.houseEntranceValue = 'під\'їзд ' + value;
+                        this.address.houseEntrance = Number(value);
+                        break;
+                    case 'houseEntranceCode':
+                        this.houseEntranceCodeValue = ' (код ' + value + ') ';
+                        this.address.houseEntranceCode = Number(value);
+                        break;
+                    case 'houseFloorsCounter':
+                        this.houseFloorsCounterValue = '/' + value;
+                        this.address.houseFloorsCounter = Number(value);
+                        break;
+                    case 'flatFloor':
+                        this.flatFloorValue = ', поверх: ' + value;
+                        this.address.flatFloor = Number(value);
+                        break;
+                    case 'flatApartmentOffice':
+                        this.flatApartmentOfficeValue = 'кв. ' + value + ', ';
+                        this.address.flatApartmentOffice = value;
+                        break;
+                    case 'flatExit':
+                        this.flatExitValue = ', ' + value;
+                        this.address.flatExit = value;
+                        break;
+                    default:
+                        break;
                 }
             }
             this.setFullAddress();

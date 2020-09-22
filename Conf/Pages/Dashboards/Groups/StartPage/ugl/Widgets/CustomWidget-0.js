@@ -49,11 +49,23 @@
             this.createSearchInput(filtersWrapper);
         },
         createSearchInput: function(filtersWrapper) {
-            const searchContainer__input = this.createElement('input', {id: 'searchContainer__input', type: 'search', placeholder: 'Пошук доручення за номером', className: 'searchContainer__input'});
-            const searchContainer = this.createElement('div', {id: 'searchContainer', className: 'searchContainer'}, searchContainer__input);
+            const searchContainer__input = this.createElement('input',
+                {
+                    id: 'searchContainer__input',
+                    type: 'search',
+                    placeholder: 'Пошук доручення за номером',
+                    className: 'searchContainer__input'
+                }
+            );
+            const searchContainer = this.createElement('div',
+                {
+                    id: 'searchContainer', className: 'searchContainer'
+                },
+                searchContainer__input
+            );
             filtersWrapper.appendChild(searchContainer);
             searchContainer__input.addEventListener('input', () => {
-                if(searchContainer__input.value.length == 0) {
+                if(searchContainer__input.value.length === 0) {
                     this.resultSearch('clearInput', 0);
                     this.showTable(searchContainer__input);
                 }
@@ -219,15 +231,33 @@
             this.showPreloader = false;
         },
         createTabs: function() {
-            let tabPhone__title = this.createElement('div', { className: 'tabPhone tabTitle', innerText: 'ВХІДНИЙ ДЗВІНОК'});
             let tabAppeal__title = this.createElement('div', { className: 'tabAppeal tabTitle', innerText: 'РЕЄСТРАЦІЯ ЗВЕРНЕНЬ'});
             let tabAssigment__title = this.createElement('div', { className: 'tabAssigment tabTitle', innerText: 'ОБРОБКА ДОРУЧЕНЬ'});
             let tabFinder__title = this.createElement('div', { className: ' tabTitle', innerText: 'Розширений пошук'});
-            this.createElement('div', { id: 'tabPhone', location: 'dashboard', url: 'StartPage_operator', className: 'tabPhone tab tabTo'}, tabPhone__title);
-            const tabAppeal = this.createElement('div', { id: 'tabAppeal', location: 'dashboard', url: 'import_appeals_ugl', className: 'tabAppeal tab tabTo'}, tabAppeal__title);
-            const tabAssigment = this.createElement('div', { id: 'tabAssigment', location: 'dashboard', url: 'curator', className: 'tabAssigment tab tabHover'}, tabAssigment__title);
-            const tabFinder = this.createElement('div', { id: 'tabFinder', location: 'dashboard', url: 'poshuk_table', className: 'tabFinder tab tabTo'}, tabFinder__title);
-            const tabsContainer = this.createElement('div', { id: 'tabsContainer', className: 'tabsContainer'},tabAppeal ,tabAssigment, tabFinder);
+            const tabAppeal = this.createElement('div',
+                {
+                    id: 'tabAppeal', location: 'dashboard', url: 'import_appeals_ugl', className: 'tabAppeal tab tabTo'
+                },
+                tabAppeal__title
+            );
+            const tabAssigment = this.createElement('div',
+                {
+                    id: 'tabAssigment', location: 'dashboard', url: 'curator', className: 'tabAssigment tab tabHover'
+                },
+                tabAssigment__title
+            );
+            const tabFinder = this.createElement('div',
+                {
+                    id: 'tabFinder', location: 'dashboard', url: 'poshuk_table', className: 'tabFinder tab tabTo'
+                },
+                tabFinder__title
+            );
+            const tabsContainer = this.createElement('div',
+                {
+                    id: 'tabsContainer', className: 'tabsContainer'
+                },
+                tabAppeal ,tabAssigment, tabFinder
+            );
             let tabsWrapper = document.getElementById('tabsWrapper');
             tabsWrapper.appendChild(tabsContainer);
             let tabs = document.querySelectorAll('.tabTo');
@@ -235,10 +265,10 @@
             tabs.forEach(function(el) {
                 el.addEventListener('click', event => {
                     let target = event.currentTarget;
-                    if(target.location == 'section') {
+                    if(target.location === 'section') {
                         document.getElementById('container').style.display = 'none';
                         this.goToSection(target.url);
-                    }else if(target.location == 'dashboard') {
+                    }else if(target.location === 'dashboard') {
                         document.getElementById('container').style.display = 'none';
                         this.goToDashboard(target.url);
                     }
@@ -257,21 +287,35 @@
         createTable: function(reloadTable ,data) {
             for(let i = 2; i < data.columns.length; i++) {
                 let item = data.columns[i];
-                let columnHeader = this.createElement('div', { id: String('columnHeader_' + i), code: String(String(item.code)), className: 'columnHeader', innerText: String(String(item.name))});
-                if(i == 2) {
+                let columnHeader = this.createElement('div',
+                    {
+                        id: String('columnHeader_' + i),
+                        code: String(String(item.code)),
+                        className: 'columnHeader',
+                        innerText: String(String(item.name))
+                    }
+                );
+                if(i === 2) {
                     columnHeader.style.backgroundColor = 'rgb(248, 195, 47)';
-                }else if(i == 3) {
+                }else if(i === 3) {
                     columnHeader.style.backgroundColor = 'rgb(74, 193, 197)';
-                }else if(i == 4) {
+                }else if(i === 4) {
                     columnHeader.style.backgroundColor = 'rgb(132, 199, 96)';
-                }else if(i == 5) {
+                }else if(i === 5) {
                     columnHeader.style.backgroundColor = 'rgb(86 162 78)';
-                }else if(i == 6) {
+                }else if(i === 6) {
                     columnHeader.style.backgroundColor = 'rgb(240, 114, 93)';
-                }else if(i == 7) {
+                }else if(i === 7) {
                     columnHeader.style.backgroundColor = 'rgb(238, 123, 54)';
                 }
-                let column = this.createElement('div', { id: String('column_' + i), code: String(String(item.code)), className: 'column'}, columnHeader);
+                let column = this.createElement('div',
+                    {
+                        id: String('column_' + i),
+                        code: String(String(item.code)),
+                        className: 'column'
+                    },
+                    columnHeader
+                );
                 let tableContainer = document.getElementById('tableContainer');
                 tableContainer.appendChild(column);
             }
@@ -280,11 +324,25 @@
                 let navigationIndex = data.columns.findIndex(el => el.code.toLowerCase() === 'navigation');
                 for(let j = 2; j < elRow.values.length; j++) {
                     let el = elRow.values[j];
-                    if(el != 0) {
-                        let columnCategorie__value = this.createElement('div', { className: 'columnCategorie__value', innerText: '(' + el + ')'});
-                        let columnCategorie__title = this.createElement('div', { className: 'columnCategorie__title', code: String(String(elRow.values[navigationIndex])), innerText: String(String(elRow.values[navigationIndex]))});
-                        let columnCategorie = this.createElement('div', { className: 'columnCategorie', code: String(String(elRow.values[navigationIndex]))}, columnCategorie__title, columnCategorie__value);
-                        if(j == 2) {
+                    if(el !== 0) {
+                        let columnCategorie__value = this.createElement('div',
+                            { className: 'columnCategorie__value', innerText: '(' + el + ')' }
+                        );
+                        let columnCategorie__title = this.createElement('div',
+                            {
+                                className: 'columnCategorie__title',
+                                code: String(String(elRow.values[navigationIndex])),
+                                innerText: String(String(elRow.values[navigationIndex]))
+                            }
+                        );
+                        let columnCategorie = this.createElement('div',
+                            {
+                                className: 'columnCategorie',
+                                code: String(String(elRow.values[navigationIndex]))
+                            },
+                            columnCategorie__title, columnCategorie__value
+                        );
+                        if(j === 2) {
                             columnCategorie.classList.add('columnCategorie__yellow');
                         }
                         document.getElementById(String('column_' + j)).appendChild(columnCategorie);
@@ -306,7 +364,7 @@
             categories = Array.from(categories);
             let headers = document.querySelectorAll('.columnHeader');
             headers = Array.from(headers);
-            if(reloadTable == true) {
+            if(reloadTable === true) {
                 categories.forEach(el => {
                     el.style.display = 'none';
                 });
@@ -340,17 +398,17 @@
         },
         columnName: function(target) {
             let column = '';
-            if(target.code == 'rozyasneno') {
+            if(target.code === 'rozyasneno') {
                 column = 'Роз`яcнено'
-            }else if(target.code == 'neVKompetentsii') {
+            }else if(target.code === 'neVKompetentsii') {
                 column = 'Не в компетенції'
-            }else if(target.code == 'doopratsiovani') {
+            }else if(target.code === 'doopratsiovani') {
                 column = 'Доопрацьовані'
-            }else if(target.code == 'prostrocheni') {
+            }else if(target.code === 'prostrocheni') {
                 column = 'Прострочені'
-            }else if(target.code == 'neVykonNeMozhl') {
+            }else if(target.code === 'neVykonNeMozhl') {
                 column = 'План / Програма'
-            }else if(target.code == 'vykon') {
+            }else if(target.code === 'vykon') {
                 column = 'Виконано'
             }
             return column
@@ -358,7 +416,7 @@
         showTable: function(target, columnName, navigator) {
             let headers = document.querySelectorAll('.columnHeader');
             headers = Array.from(headers);
-            if(target.classList.contains('check') || target.classList.contains('hover') || target.id == 'searchContainer__input') {
+            if(target.classList.contains('check') || target.classList.contains('hover') || target.id === 'searchContainer__input') {
                 document.getElementById('columnHeader_2').style.backgroundColor = 'rgb(248, 195, 47)';
                 document.getElementById('columnHeader_3').style.backgroundColor = 'rgb(74, 193, 197)';
                 document.getElementById('columnHeader_4').style.backgroundColor = 'rgb(132, 199, 96)';
@@ -383,7 +441,7 @@
                 target.classList.add('hover');
                 for(let i = 0; i < headers.length; i++) {
                     let header = headers[i];
-                    if(target.id != header.id) {
+                    if(target.id !== header.id) {
                         header.firstElementChild.classList.remove(String('triangle' + (i + 2)));
                         header.firstElementChild.classList.add('triangle');
                         header.style.backgroundColor = '#d3d3d3';
@@ -397,11 +455,11 @@
         hideAllItems: function(value) {
             let categories = document.querySelectorAll('.columnCategorie');
             categories = Array.from(categories);
-            if(value == 0) {
+            if(value === 0) {
                 categories.forEach(el => {
                     el.style.display = 'none';
                 });
-            }else if(value == 1) {
+            }else if(value === 1) {
                 categories.forEach(el => {
                     el.style.display = 'flex';
                 });

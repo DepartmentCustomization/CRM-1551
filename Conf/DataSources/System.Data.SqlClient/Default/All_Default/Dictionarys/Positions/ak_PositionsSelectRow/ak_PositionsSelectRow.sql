@@ -12,7 +12,7 @@ SELECT [Positions].[Id]
       ,[Positions].[edit_date]
       ,[Positions].[user_edit_id]
 	  ,[Workers].name [user_name]
-	  ,[Positions2].position [position_parent]
+	  ,ISNULL([Positions2].name, N'')+N' ('+[Positions2].position+N')' [position_parent]
 	  ,[Positions].[organizations_id] [organization_id]
 	  ,[Organizations].short_name
       ,[Positions].[role_id]

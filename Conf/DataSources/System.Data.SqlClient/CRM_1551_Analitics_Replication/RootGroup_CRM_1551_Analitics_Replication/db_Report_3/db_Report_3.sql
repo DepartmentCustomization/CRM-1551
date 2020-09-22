@@ -1,13 +1,15 @@
--- DECLARE @questionType INT = 2;
--- DECLARE @questionGroup INT = 11;
--- DECLARE @organization INT = 3;
--- DECLARE @organizationGroup INT = 0;
--- DECLARE @dateFrom DATE = '2019-12-01';
--- DECLARE @dateTo DATE = cast(CURRENT_TIMESTAMP AS DATE); 
+--   DECLARE @questionType INT = 0;
+--   DECLARE @questionGroup INT = NULL;
+--   DECLARE @organization INT = 0;
+--   DECLARE @organizationGroup INT = 0;
+--   DECLARE @dateFrom DATE = '2020-04-01';
+--   DECLARE @dateTo DATE = cast(CURRENT_TIMESTAMP AS DATE); 
+--   DECLARE @sourceId NVARCHAR(50) = N'2';
 
 DECLARE @question_t TABLE (typeQ INT);
 DECLARE @question_g TABLE (typeG INT);
 DECLARE @organization_t TABLE (questionOrg INT);
+DECLARE @source_t TABLE (Id INT);
 
 SET @organization = IIF(@organization = 0, 1, @organization);
 SET @organizationGroup = IIF(@organizationGroup = 0, NULL, @organization);
@@ -150,7 +152,8 @@ SELECT
 FROM
 	dbo.QuestionTypes ;
 END
-ELSE BEGIN -- НАХОДИМ ИД QuestionTypes которые входят в выбранную QuestionGroups
+ELSE 
+BEGIN -- НАХОДИМ ИД QuestionTypes которые входят в выбранную QuestionGroups
 INSERT INTO
 	@question_g(typeG)
 SELECT
@@ -163,6 +166,22 @@ WHERE
 	qg.report_code = 'Analitica_spheres'
 	AND qg.Id = @questionGroup ;
 END
+
+IF(@sourceId = N'0')
+BEGIN
+INSERT INTO @source_t(Id)
+SELECT
+	Id
+FROM dbo.[ReceiptSources] ;
+END
+ELSE IF(@sourceId != N'0')
+BEGIN
+INSERT INTO @source_t(Id)
+SELECT 
+	value 
+FROM STRING_SPLIT(@sourceId, ',');
+END
+
 SELECT
 	TOP 10 ROW_NUMBER() OVER(
 		ORDER BY
@@ -193,14 +212,16 @@ FROM
 					d.[name] AS district,
 					isnull(count(q.Id), 0) AS questionQty
 				FROM
-					dbo.Questions q
-					INNER JOIN dbo.QuestionTypes qt ON qt.Id = q.question_type_id
-					INNER JOIN dbo.Assignments ass ON ass.Id = q.last_assignment_for_execution_id
+					dbo.[Questions] q
+					INNER JOIN dbo.[Appeals] a ON a.Id = q.appeal_id
+					INNER JOIN dbo.[Assignments] ass ON ass.Id = q.last_assignment_for_execution_id
+					INNER JOIN dbo.[ReceiptSources] rs ON rs.Id = a.receipt_source_id
+					INNER JOIN dbo.[QuestionTypes] qt ON qt.Id = q.question_type_id
 					INNER JOIN dbo.[Objects] o ON o.Id = q.[object_id]
-					INNER JOIN dbo.[Buildings] b ON b.Id = o.builbing_id
-					INNER JOIN dbo.[Districts] d ON d.Id = b.district_id 
-				WHERE
-					q.registration_date BETWEEN @filterFrom
+					INNER JOIN dbo.[Districts] d ON d.Id = o.district_id
+				WHERE 
+					rs.Id IN (SELECT Id FROM @source_t)
+					AND q.registration_date BETWEEN @filterFrom
 					AND @filterTo
 					AND qt.Id IN (
 						SELECT
@@ -211,8 +232,7 @@ FROM
 					AND ass.executor_organization_id IN (SELECT 
 														 DISTINCT 
 															questionOrg
-														FROM @organization_t)
-														
+														FROM @organization_t)							
 				GROUP BY
 					qt.[name],
 					d.[name]

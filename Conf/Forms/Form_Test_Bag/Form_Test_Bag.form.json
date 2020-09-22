@@ -1,0 +1,13 @@
+{
+  "ModelType": "Form",
+  "Code": "Form_TestBag",
+  "Name": "Тестування",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\Group_TestBag.fieldgroup.json"
+    ],
+    "DefaultFields": [],
+    "Script": "string:Form_TestBag.form.js"
+  }
+}

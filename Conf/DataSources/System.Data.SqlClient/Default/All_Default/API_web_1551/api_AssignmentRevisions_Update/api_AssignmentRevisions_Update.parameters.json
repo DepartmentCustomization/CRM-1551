@@ -22,6 +22,11 @@
     "ParameterType": "Integer"
   },
   {
+    "Code": "@question_id",
+    "Name": "question_id",
+    "ParameterType": "Integer"
+  },
+  {
     "Code": "@grade_comment",
     "Name": "grade_comment"
   },

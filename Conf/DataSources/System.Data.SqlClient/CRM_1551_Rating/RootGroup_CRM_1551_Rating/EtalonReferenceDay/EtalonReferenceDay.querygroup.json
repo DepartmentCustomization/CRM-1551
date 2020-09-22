@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "EtalonReferenceDay",
+  "Name": "Керування еталонними днями",
+  "ConnectionCode": "CRM_1551_Rating"
+}

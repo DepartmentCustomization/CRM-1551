@@ -1,0 +1,9 @@
+{
+  "Add": {},
+  "ModelType": "Section",
+  "Code": "test_create_user_section",
+  "Name": "Создать пользователя в модальном окне на форме ввода",
+  "FormCode": "test_create_user_in_form",
+  "SelectRowsQueryCode": "cx_Applicants_SelectsRows",
+  "SelectRowQueryCode": "cx_Applicants_SelectsRow"
+}

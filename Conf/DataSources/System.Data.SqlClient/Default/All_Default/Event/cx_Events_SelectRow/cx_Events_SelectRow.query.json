@@ -10,6 +10,11 @@
       "Name": "Id",
       "ParameterType": "Integer",
       "IsPrimaryKey": true
+    },
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
     }
   ]
 }

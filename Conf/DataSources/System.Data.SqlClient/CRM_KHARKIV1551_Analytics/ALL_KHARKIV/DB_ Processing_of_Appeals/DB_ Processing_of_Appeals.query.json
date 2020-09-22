@@ -1,0 +1,6 @@
+{
+    "ModelType": "QueryGroup",
+    "Code": "DB_ Processing_of_Appeals",
+    "Name": "ДБ Опрацювання звернень",
+    "ConnectionCode": "CRM_KHARKIV1551_Analytics"
+  }

@@ -1,0 +1,22 @@
+{
+  "ModelType": "Query",
+  "Code": "Rating_SELECTROWS",
+  "Name": "Rating_SELECTROWS",
+  "ConnectionCode": "CRM_1551_Rating",
+  "IsUsedForRightsFilter": false,
+  "IsAnonymousAccess": false,
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

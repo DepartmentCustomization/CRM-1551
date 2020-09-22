@@ -22,6 +22,12 @@
       "Name": "AssignmentConsDocFile",
       "Position": 2,
       "IsPrintable": false
+    },
+    {
+      "Code": "Question_id",
+      "Name": "Question_id",
+      "Position": 3,
+      "IsPrintable": false
     }
   ],
   "Parameters": [
@@ -34,6 +40,11 @@
     {
       "Code": "@appeal_id",
       "Name": "appeal_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@question_id",
+      "Name": "question_id",
       "ParameterType": "Integer"
     },
     {

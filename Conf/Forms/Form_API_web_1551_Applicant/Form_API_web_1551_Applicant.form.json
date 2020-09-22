@@ -2,7 +2,9 @@
   "ModelType": "Form",
   "Code": "Form_API_web_1551_Applicant",
   "Name": "Form_API_web_1551_Applicant",
-  "Details": [],
+  "Details": [
+    "string:Details\\api_ApplicantsFromSite_phone.detail.json"
+  ],
   "Config": {
     "FieldGroups": [
       "string:FieldGroups\\Group_API_web_1551_Applicant_Basic_Information.fieldgroup.json"

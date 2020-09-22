@@ -1,0 +1,27 @@
+[
+  {
+    "Code": "@QuestionTypes_Id",
+    "Name": "QuestionTypes_Id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@DateStart",
+    "Name": "@DateStart",
+    "ParameterType": "DateTime"
+  },
+  {
+    "Code": "@avg_EtalonDaysToExplain_change",
+    "Name": "avg_EtalonDaysToExplain_change",
+    "ParameterType": "Decimal"
+  },
+  {
+    "Code": "@avg_EtalonDaysToExecution_change",
+    "Name": "avg_EtalonDaysToExecution_change",
+    "ParameterType": "Decimal"
+  },
+  {
+    "Code": "@user_id",
+    "Name": "user_id",
+    "ParameterType": "CurrentUserId"
+  }
+]

@@ -68,17 +68,17 @@
         setWidgetsElements: function(message) {
             const widget = message.widget;
             switch (widget) {
-            case 'caller':
-                this.callerWidget = message.elements;
-                break;
-            case 'event':
-                this.event = message.elements;
-                break;
-            case 'patient':
-                this.patient = message.elements;
-                break;
-            default:
-                break;
+                case 'caller':
+                    this.callerWidget = message.elements;
+                    break;
+                case 'event':
+                    this.event = message.elements;
+                    break;
+                case 'patient':
+                    this.patient = message.elements;
+                    break;
+                default:
+                    break;
             }
         },
         showHideAddressContent: function(message) {
@@ -184,6 +184,7 @@
         },
         getCardFullInfo: function(data) {
             if(data.rows.length) {
+                /*
                 const indexId = data.columns.findIndex(el => el.code.toLowerCase() === 'id');
                 const indexEventId = data.columns.findIndex(el => el.code.toLowerCase() === 'event_id');
                 const indexReceiptDate = data.columns.findIndex(el => el.code.toLowerCase() === 'event_receipt_date');
@@ -247,6 +248,7 @@
                 const indexBtnMedical = data.columns.findIndex(el => el.code.toLowerCase() === 'pacient_birth_date');
                 const indexBtnGas = data.columns.findIndex(el => el.code.toLowerCase() === 'pacient_birth_date');
                 const indexCallerStatusId = data.columns.findIndex(el => el.code.toLowerCase() === 'applicant_classes_names');
+                */
             }
         },
         setDateTimeValues: function(receiptDateValue) {

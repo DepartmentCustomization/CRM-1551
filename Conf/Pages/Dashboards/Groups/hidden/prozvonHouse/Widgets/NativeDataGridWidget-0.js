@@ -183,45 +183,45 @@
             let sortingArr = this.sortingArr;
             if(args.fullName !== undefined) {
                 let columnCode;
-                switch(args.fullName) {
-                case('columns[0].sortOrder'):
-                    columnCode = 'registration_number'
-                    break;
-                case('columns[1].sortOrder'):
-                    columnCode = 'QuestionType'
-                    break;
-                case('columns[2].sortOrder'):
-                    columnCode = 'states'
-                    break;
-                case('columns[3].sortOrder'):
-                    columnCode = 'full_name'
-                    break;
-                case('columns[4].sortOrder'):
-                    columnCode = 'phone_number'
-                    break;
-                case('columns[5].sortOrder'):
-                    columnCode = 'cc_nedozvon'
-                    break;
-                case('columns[6].sortOrder'):
-                    columnCode = 'District'
-                    break;
-                case('columns[7].sortOrder'):
-                    columnCode = 'house'
-                    break;
-                case('columns[8].sortOrder'):
-                    columnCode = 'entrance'
-                    break;
-                case('columns[9].sortOrder'):
-                    columnCode = 'place_problem'
-                    break;
-                case('columns[10].sortOrder'):
-                    columnCode = 'vykon'
-                    break;
-                case('dataSource'):
-                    columnCode = 'dataSource'
-                    break;
-                default:
-                    break;
+                switch (args.fullName) {
+                    case('columns[0].sortOrder'):
+                        columnCode = 'registration_number'
+                        break;
+                    case('columns[1].sortOrder'):
+                        columnCode = 'QuestionType'
+                        break;
+                    case('columns[2].sortOrder'):
+                        columnCode = 'states'
+                        break;
+                    case('columns[3].sortOrder'):
+                        columnCode = 'full_name'
+                        break;
+                    case('columns[4].sortOrder'):
+                        columnCode = 'phone_number'
+                        break;
+                    case('columns[5].sortOrder'):
+                        columnCode = 'cc_nedozvon'
+                        break;
+                    case('columns[6].sortOrder'):
+                        columnCode = 'District'
+                        break;
+                    case('columns[7].sortOrder'):
+                        columnCode = 'house'
+                        break;
+                    case('columns[8].sortOrder'):
+                        columnCode = 'entrance'
+                        break;
+                    case('columns[9].sortOrder'):
+                        columnCode = 'place_problem'
+                        break;
+                    case('columns[10].sortOrder'):
+                        columnCode = 'vykon'
+                        break;
+                    case('dataSource'):
+                        columnCode = 'dataSource'
+                        break;
+                    default:
+                        break;
                 }
                 if(columnCode !== undefined) {
                     if(columnCode !== 'dataSource') {
@@ -340,25 +340,16 @@
         },
         changeDateTimeValues: function(value) {
             let date = new Date(value);
-            let dd = date.getDate();
-            let MM = date.getMonth();
-            let yyyy = date.getFullYear();
-            let HH = date.getHours();
-            let mm = date.getMinutes();
-            MM += 1;
-            if((dd.toString()).length === 1) {
-                dd = '0' + dd;
-            }
-            if((MM.toString()).length === 1) {
-                MM = '0' + MM;
-            }
-            if((HH.toString()).length === 1) {
-                HH = '0' + HH;
-            }
-            if((mm.toString()).length === 1) {
-                mm = '0' + mm;
-            }
-            return dd + '.' + MM + '.' + yyyy + ' ' + HH + ':' + mm;
+            let dd = date.getDate().toString();
+            let mm = (date.getMonth() + 1).toString();
+            let yyyy = date.getFullYear().toString();
+            let HH = date.getHours().toString();
+            let MM = date.getMinutes().toString();
+            dd = dd.length === 1 ? '0' + dd : dd;
+            mm = mm.length === 1 ? '0' + mm : mm;
+            HH = HH.length === 1 ? '0' + HH : HH;
+            MM = MM.length === 1 ? '0' + MM : MM;
+            return `${dd}.${mm}.${yyyy} ${HH}:${MM}`;
         },
         reloadMainTable: function(message) {
             this.config.query.parameterValues = [

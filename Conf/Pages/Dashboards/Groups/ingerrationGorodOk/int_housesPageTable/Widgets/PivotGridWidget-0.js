@@ -105,8 +105,7 @@
                 pageSize: 10
             },
             export: {
-                enabled: true,
-                fileName: 'File_name'
+                fileName: 'Excel'
             },
             editing: {
                 mode: 'batch',
@@ -129,7 +128,6 @@
                 visible: false,
                 applyFilter: 'auto'
             },
-            height: '550',
             keyExpr: 'Id',
             showBorders: true,
             showColumnLines: true,
@@ -149,15 +147,15 @@
             groupingAutoExpandAll: null,
             toolbarPreparing: function(data) {
                 let indexSaveButton = data.toolbarOptions.items.indexOf(data.toolbarOptions.items.find(function(item) {
-                    return item.name == 'saveButton';
+                    return item.name === 'saveButton';
                 }));
-                if (indexSaveButton != -1) {
+                if (indexSaveButton !== -1) {
                     data.toolbarOptions.items.splice(indexSaveButton, 1);
                 }
                 let indexRevertButton = data.toolbarOptions.items.indexOf(data.toolbarOptions.items.find(function(item) {
-                    return item.name == 'revertButton';
+                    return item.name === 'revertButton';
                 }));
-                if (indexRevertButton != -1) {
+                if (indexRevertButton !== -1) {
                     data.toolbarOptions.items.splice(indexRevertButton, 1);
                 }
             }
@@ -171,19 +169,27 @@
         },
         elements: [],
         init: function() {
-            this.loadData(this.afterLoadDataHandler);
-            let executeQuery_dis = {
-                queryCode: 'int_list_district_1551',
-                parameterValues: [],
-                limit: -1
-            };
-            this.queryExecutor(executeQuery_dis, this.lookupFoo_dis, this);
-            let executeQuery = {
-                queryCode: 'int_list_houses_1551',
-                parameterValues: [],
-                limit: -1
-            };
-            this.queryExecutor(executeQuery, this.lookupFoo, this);
+            this.dataGridInstance.height = window.innerHeight - 100;
+            this.promiseAll = [];
+            const promiseDistrict = new Promise((resolve) => {
+                let executeQuery = {
+                    queryCode: 'int_list_district_1551',
+                    parameterValues: [],
+                    limit: -1
+                };
+                this.queryExecutor(executeQuery, this.lookupFoo_dis.bind(this, resolve), this);
+            });
+            this.promiseAll.push(promiseDistrict);
+            const promiseHouse = new Promise((resolve) => {
+                let executeQuery = {
+                    queryCode: 'int_list_houses_1551',
+                    parameterValues: [],
+                    limit: -1
+                };
+                this.queryExecutor(executeQuery, this.lookupFoo.bind(this, resolve), this);
+            });
+            this.promiseAll.push(promiseHouse);
+            this.afterApplyAllRequests();
             this.dataGridInstance.onRowUpdating.subscribe(function(e) {
                 let is_done = e.newData.is_done;
                 let key = e.key;
@@ -218,8 +224,9 @@
                 };
                 this.queryExecutor(saveChange);
             }.bind(this));
+            this.config.onToolbarPreparing = this.createTableButton.bind(this);
         },
-        lookupFoo_dis: function(data) {
+        lookupFoo_dis: function(resolve, data) {
             this.elements_dis = [];
             for(let i = 0; i < data.rows.length; i++) {
                 let el = data.rows[i];
@@ -230,9 +237,9 @@
                 this.elements_dis.push(obj);
             }
             this.config.columns[2].columns[0].lookup.dataSource.store = this.elements_dis;
-            this.loadData(this.afterLoadDataHandler);
+            resolve(data);
         },
-        lookupFoo: function(data) {
+        lookupFoo: function(resolve, data) {
             this.elements = [];
             for(let i = 0; i < data.rows.length; i++) {
                 let el = data.rows[i];
@@ -245,16 +252,32 @@
             }
             this.config.columns[2].columns[1].lookup.dataSource.store = this.elements;
             this.config.columns[2].columns[1].lookup.dataSource = this.myFunc.bind(this);
-            this.loadData(this.afterLoadDataHandler);
+            resolve(data);
+        },
+        afterApplyAllRequests: function() {
+            Promise.all(this.promiseAll).then(() => {
+                this.promiseAll = [];
+                this.dataGridInstance.instance.deselectAll();
+                this.loadData(this.afterLoadDataHandler);
+            });
+        },
+        createTableButton: function(e) {
+            let toolbarItems = e.toolbarOptions.items;
+            toolbarItems.push({
+                widget: 'dxButton',
+                options: {
+                    icon: 'exportxlsx',
+                    type: 'default',
+                    text: 'Excel',
+                    onClick: function() {
+                        this.dataGridInstance.instance.exportToExcel();
+                    }.bind(this)
+                },
+                location: 'after'
+            });
         },
         afterLoadDataHandler: function() {
             this.render();
-        },
-        subscribeToDataGridActions: function() {
-        },
-        onDataGridEditorPreparing: function() {
-        },
-        destroy: function() {
         }
     };
 }());

@@ -1,0 +1,9 @@
+{
+  "ModelType": "Detail",
+  "Code": "api_ApplicantsFromSite_phone",
+  "Name": "api_ApplicantsFromSite_phone",
+  "SelectRowsQueryCode": "api_ApplicantsFromSite_phone",
+  "SectionCode": "",
+  "Position": 1,
+  "QueryParameters": []
+}

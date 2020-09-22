@@ -177,5 +177,10 @@
     "Name": "ObjectTypesName",
     "Position": 33,
     "ReferenceKeyCode": "ObjectTypesId"
+  },
+  {
+    "Code": "attention_val",
+    "Name": "attention_val",
+    "Position": 33
   }
 ]

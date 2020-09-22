@@ -1,0 +1,9 @@
+{
+  "DashboardGroupCode": "reports",
+  "Position": 200,
+  "Description": "",
+  "DescriptionUrl": "",
+  "ModelType": "Dashboard",
+  "Code": "landscaping_report",
+  "Name": "Звіт для КП Благоустрій"
+}

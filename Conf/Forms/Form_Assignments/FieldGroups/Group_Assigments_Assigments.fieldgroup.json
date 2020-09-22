@@ -137,6 +137,21 @@
             "Width": "100%"
         },
         {
+            "Code": "btn_Attention",
+            "Name": "Контроль",
+            "FieldType": "button",
+            "Position": 15,
+            "Width": "40%"
+        },
+        {
+            "Code": "attention_val",
+            "Name": "attention_val",
+            "FieldType": "number",
+            "Position": 455,
+            "Width": "15%",
+            "IsHidden": true
+        },
+        {
             "Code": "assignmentConsiderations_id",
             "Name": "assignmentConsiderations_id",
             "FieldType": "number",

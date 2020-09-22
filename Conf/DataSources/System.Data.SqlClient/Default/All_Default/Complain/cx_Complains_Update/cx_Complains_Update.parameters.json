@@ -21,5 +21,20 @@
   {
     "Code": "@culpritname",
     "Name": "culpritname"
+  },
+  {
+    "Code": "@complain_state_id",
+    "Name": "complain_state_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@revision_comment",
+    "Name": "revision_comment",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@user_edit_id",
+    "Name": "user_edit_id",
+    "ParameterType": "CurrentUserId"
   }
 ]

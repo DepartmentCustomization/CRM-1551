@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "DB_Operator_Statistics",
+  "Name": "Статистика по операторах",
+  "ConnectionCode": "CRM_1551_Analitics_Replication"
+}

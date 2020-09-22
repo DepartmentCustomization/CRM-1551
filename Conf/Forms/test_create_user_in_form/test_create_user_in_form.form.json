@@ -1,0 +1,13 @@
+{
+  "ModelType": "Form",
+  "Code": "test_create_user_in_form",
+  "Name": "test_create_user_in_form",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\user.fieldgroup.json"
+    ],
+    "DefaultFields": [],
+    "Script": "string:test_create_user_in_form.form.js"
+  }
+}

@@ -1,5 +1,5 @@
-(function() {
-    return {
+(function () {
+  return {
         init: function() {
         }
     };

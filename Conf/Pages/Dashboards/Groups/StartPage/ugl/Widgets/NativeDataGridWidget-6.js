@@ -115,25 +115,51 @@
         },
         createMasterDetail: function(container, options) {
             let currentEmployeeData = options.data;
-            if(currentEmployeeData.short_answer == null) {
+            if(currentEmployeeData.short_answer === null) {
                 currentEmployeeData.short_answer = '';
             }
-            if(currentEmployeeData.adressZ == null) {
+            if(currentEmployeeData.adressZ === null) {
                 currentEmployeeData.adressZ = '';
             }
-            if(currentEmployeeData.question_content == null) {
+            if(currentEmployeeData.question_content === null) {
                 currentEmployeeData.question_content = '';
             }
-            let elementAdress__content = this.createElement('div', { className: 'elementAdress__content content', innerText: String(String(currentEmployeeData.adressZ))});
-            let elementAdress__caption = this.createElement('div', { className: 'elementAdress__caption caption', innerText: 'Адреса заявника'});
-            let elementAdress = this.createElement('div', { className: 'elementAdress element'}, elementAdress__caption, elementAdress__content);
-            let elementСontent__content = this.createElement('div', { className: 'elementСontent__content content', innerText: String(String(currentEmployeeData.question_content))});
-            let elementСontent__caption = this.createElement('div', { className: 'elementСontent__caption caption', innerText: 'Зміст'});
-            let elementСontent = this.createElement('div', { className: 'elementСontent element'}, elementСontent__caption, elementСontent__content);
-            let elementComment__content = this.createElement('div', { className: 'elementComment__content content', innerText: String(String(currentEmployeeData.short_answer))});
-            let elementComment__caption = this.createElement('div', { className: 'elementComment__caption caption', innerText: 'Коментар виконавця'});
-            let elementComment = this.createElement('div', { className: 'elementСontent element'}, elementComment__caption, elementComment__content);
-            let elementsWrapper = this.createElement('div', { className: 'elementsWrapper'}, elementAdress, elementСontent, elementComment);
+            let elementAddress__content = this.createElement('div',
+                {
+                    className: 'elementAdress__content content', innerText: String(String(currentEmployeeData.adressZ))
+                }
+            );
+            let elementAddress__caption = this.createElement('div',
+                {
+                    className: 'elementAdress__caption caption', innerText: 'Адреса заявника'
+                }
+            );
+            let elementAddress = this.createElement('div',
+                { className: 'elementAdress element' },
+                elementAddress__caption, elementAddress__content
+            );
+            let elementContent__content = this.createElement('div',
+                { className: 'elementСontent__content content', innerText: String(String(currentEmployeeData.question_content))}
+            );
+            let elementContent__caption = this.createElement('div', { className: 'elementСontent__caption caption', innerText: 'Зміст'});
+            let elementContent = this.createElement('div',
+                { className: 'elementСontent element' },
+                elementContent__caption, elementContent__content
+            );
+            let elementComment__content = this.createElement('div',
+                { className: 'elementComment__content content', innerText: String(String(currentEmployeeData.short_answer)) }
+            );
+            let elementComment__caption = this.createElement('div',
+                { className: 'elementComment__caption caption', innerText: 'Коментар виконавця' }
+            );
+            let elementComment = this.createElement('div',
+                { className: 'elementСontent element' },
+                elementComment__caption, elementComment__content
+            );
+            let elementsWrapper = this.createElement('div',
+                {className: 'elementsWrapper'},
+                elementAddress, elementContent, elementComment
+            );
             container.appendChild(elementsWrapper);
             let elementsAll = document.querySelectorAll('.element');
             elementsAll = Array.from(elementsAll);
@@ -149,7 +175,7 @@
         },
         changeOnTable: function(message) {
             document.getElementById('allTables').style.display = 'none';
-            if(message.value != '') {
+            if(message.value !== '') {
                 document.getElementById('searchTable').style.display = 'block';
                 this.config.query.queryCode = 'Coordinator_Poshuk';
                 this.config.query.parameterValues = [{ key: '@appealNum', value: message.value}];
@@ -157,7 +183,12 @@
                 this.dataGridInstance.onCellClick.subscribe(e => {
                     if(e.column) {
                         if(e.column.dataField === 'registration_number' && e.row !== undefined) {
-                            window.open(String(location.origin + localStorage.getItem('VirtualPath') + '/sections/Assignments/edit/' + e.key));
+                            window.open(
+                                location.origin +
+                                localStorage.getItem('VirtualPath') +
+                                '/sections/Assignments/edit/' +
+                                e.key
+                            );
                         }
                     }
                 });

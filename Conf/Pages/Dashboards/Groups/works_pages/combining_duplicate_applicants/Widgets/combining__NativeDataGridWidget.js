@@ -14,6 +14,9 @@
                     dataField: 'Phone_number',
                     caption: 'Номер телефону'
                 }, {
+                    dataField: 'Main_number',
+                    caption: 'додатковий телефон'
+                }, {
                     dataField: 'Full_name',
                     caption: 'ПІБ'
                 }, {
@@ -25,6 +28,9 @@
                 }, {
                     dataField: 'SocialState',
                     caption: 'Соц. стан'
+                }, {
+                    dataField: 'Email',
+                    caption: 'e-mail'
                 }, {
                     dataField: 'Years',
                     caption: 'Вік'

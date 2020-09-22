@@ -33,12 +33,6 @@
       "IsPrintable": false
     },
     {
-      "Code": "EventsName",
-      "Name": "Номер Заходу/заявки Городок/статті БЗ",
-      "Position": 5,
-      "IsPrintable": false
-    },
-    {
       "Code": "registration_date",
       "Name": "Дата реєстрації",
       "Position": 6,

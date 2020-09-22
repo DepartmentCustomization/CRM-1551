@@ -48,7 +48,7 @@
   ,[Organizations].Id organization
   ,[QuestionTypes].Id question_type
   ,[Rating].Id [question_list_state]
-  ,[Assignments].registration_date
+  ,[Questions].registration_date
   ,[AssignmentStates].code AssignmentStates_code
   ,[AssignmentStates].name states
   ,[AssignmentRevisions].[edit_date]

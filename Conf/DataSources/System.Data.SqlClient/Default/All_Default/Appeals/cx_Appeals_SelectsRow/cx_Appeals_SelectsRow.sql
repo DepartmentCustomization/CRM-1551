@@ -1,75 +1,134 @@
-	SELECT
-	   [Appeals].[Id]
-      ,[Applicants].Id as applicant_id
-	  ,[Applicants].[full_name]
-      ,[Appeals].[registration_date]
-      ,[Appeals].[registration_number]
-      ,ReceiptSources.Name as receipt_source_name
-		,ReceiptSources.Id as receipt_source_id
-      ,[Appeals].[phone_number]
-      ,[Appeals].[mail]
-      ,[Appeals].[enter_number]
-      ,[Appeals].[submission_date]
-      ,[Appeals].[receipt_date]
-      ,[Appeals].[start_date]
-      ,[Appeals].[end_date]
-      ,[Appeals].[article]
-      ,[Appeals].[sender_name]
-      ,[Appeals].[sender_post_adrress]
-      ,[Appeals].[city_receipt]
-      ,Workers.name as [user_id]
-      ,[Appeals].[edit_date]
-      ,w.name as [user_edit_id]
-      ,IIF(Streets.name is null, null, concat(Districts.name, ' р-н., ', StreetTypes.shortname,' ', Streets.name, ' ', Buildings.number, Buildings.letter, ', ',
-		IIF(LiveAddress.[entrance] is null, null, concat('п. ',LiveAddress.[entrance],',' )), ' ',
-			IIF(LiveAddress.flat is null, null, concat('кв. ',LiveAddress.flat) )
-		)) as adress
-      ,ApplicantPhones.phone_number as app_phone
-	  ,REVERSE(STUFF(REVERSE(
-  case
-  when [ApplicantPrivilege].Name is not null then N'пільги- '+[ApplicantPrivilege].Name+N', ' else N''
-  end+
-  case 
-  when [SocialStates].Name is not null then N'соц. стан- '+[SocialStates].Name+N', ' else N''
-  end+
-  case 
-  when [CategoryType].Name is not null then N'категорія- '+[CategoryType].Name+N', ' else N''
-  end+
-  case 
-  when [Applicants].sex=2 then N'стать- чоловіча, ' when [Applicants].sex=1 then N'стать- жіноча, ' else N''
-  end+
-  case
-  when [Applicants].[birth_date] is not null then N'дата народження- '+ convert(nvarchar(200), [Applicants].[birth_date])+N', ' else N''
-  end+
+--  DECLARE @Id INT = 5393466;
 
-  --case
-  --when [Applicants].age is not null then N'вік- '+ convert(nvarchar(5),[Applicants].[age])+N', ' else N''
-  --end
+DECLARE @Archive NVARCHAR(400) = '['+(SELECT TOP 1 [IP]+'].['+[DatabaseName]+'].' FROM [dbo].[SetingConnetDatabase] WHERE Code = N'Archive');
 
-  case
-  when [birth_date] is null and [birth_year] is null then N''
-  when [birth_date] is not null
-  then 
-	case when month([birth_date])>month(getdate()) or (month([birth_date])=month(getdate()) and day([birth_date])>=day(getdate()))
-	then N'вік- '+ltrim(year(GETDATE())-YEAR([birth_date])-1)+N', ' else N'вік- '+ltrim(year(GETDATE())-YEAR([birth_date]))+N', ' end
+DECLARE @IsHere BIT = IIF(
+   (
+      SELECT
+         COUNT(1)
+      FROM
+         dbo.Appeals
+      WHERE
+         Id = @Id
+   ) = 0,
+   0,
+   1
+);
 
-  else N'вік- '+ltrim(year(GETDATE())-[birth_year])+N', '
-  end
+IF(@IsHere = 1)
+BEGIN
+	SET @Archive = SPACE(1);
+END
 
+DECLARE @Part1 NVARCHAR(MAX) = 
+N'SELECT
+   [Appeals].[Id],
+   [Applicants].Id AS applicant_id,
+   [Applicants].[full_name],
+   [Appeals].[registration_date],
+   [Appeals].[registration_number],
+   ReceiptSources.Name AS receipt_source_name,
+   ReceiptSources.Id AS receipt_source_id,
+   [Appeals].[phone_number],
+   [Appeals].[mail],
+   [Appeals].[enter_number],
+   [Appeals].[submission_date],
+   [Appeals].[receipt_date],
+   [Appeals].[start_date],
+   [Appeals].[end_date],
+   [Appeals].[article],
+   [Appeals].[sender_name],
+   [Appeals].[sender_post_adrress],
+   [Appeals].[city_receipt],
+   Workers.name AS [user_id],
+   [Appeals].[edit_date],
+   w.name AS [user_edit_id],
+   IIF(
+      Streets.name IS NULL,
+      NULL,
+      concat(
+         Districts.name,
+         N'' р-н., '',
+         StreetTypes.shortname,
+         '' '',
+         Streets.name,
+         '' '',
+         Buildings.number,
+         Buildings.letter,
+         '', '',
+         IIF(
+            LiveAddress.[entrance] IS NULL,
+            NULL,
+            concat(N''п. '', LiveAddress.[entrance], '','')
+         ),
+         '' '',
+         IIF(
+            LiveAddress.flat IS NULL,
+            NULL,
+            concat(N''кв. '', LiveAddress.flat)
+         )
+      )
+   ) AS adress,
+   ApplicantPhones.phone_number AS app_phone,
+   REVERSE(
+      STUFF(
+         REVERSE(
+            CASE
+               WHEN [ApplicantPrivilege].Name IS NOT NULL THEN N''пільги- '' + [ApplicantPrivilege].Name + N'', ''
+               ELSE N''''
+            END + CASE
+               WHEN [SocialStates].Name IS NOT NULL THEN N''соц. стан- '' + [SocialStates].Name + N'', ''
+               ELSE N''''
+            END + + CASE
+               WHEN [CategoryType].Name IS NOT NULL THEN N''категорія- '' + [CategoryType].Name + N'', ''
+               ELSE N''''
+            END + CASE
+               WHEN [Applicants].sex = 2 THEN N''стать- чоловіча, ''
+               WHEN [Applicants].sex = 1 THEN N''стать- жіноча, ''
+               ELSE N''''
+            END + CASE
+               WHEN [Applicants].[birth_date] IS NOT NULL 
+               THEN N''дата народження- '' + CONVERT(NVARCHAR(200), [Applicants].[birth_date]) + N'', ''
+               ELSE N''''
+            END + 
+            CASE
+               WHEN [birth_date] IS NULL
+               AND [birth_year] IS NULL THEN N''''
+               WHEN [birth_date] IS NOT NULL THEN CASE
+                  WHEN MONTH([birth_date]) > MONTH(getdate())
+                  OR (
+                     MONTH([birth_date]) = MONTH(getdate())
+                     AND DAY([birth_date]) >= DAY(getdate())
+                  ) THEN N''вік- '' + ltrim(year(GETDATE()) - YEAR([birth_date]) -1) + N'', ''
+                  ELSE N''вік- '' + ltrim(year(GETDATE()) - YEAR([birth_date])) + N'', ''
+               END
+               ELSE N''вік- '' + ltrim(year(GETDATE()) - [birth_year]) + N'', ''
+            END
+         ),
+         1,
+         2,
+         ''''
+      )
+   ) q ';
+DECLARE @Part2 NVARCHAR(MAX) =
+N'FROM
+   '+@Archive+N'[dbo].[Appeals] Appeals
+   LEFT JOIN [dbo].ReceiptSources ReceiptSources ON ReceiptSources.Id = Appeals.receipt_source_id
+   LEFT JOIN [dbo].Applicants Applicants ON Applicants.Id = Appeals.applicant_id
+   LEFT JOIN [dbo].LiveAddress LiveAddress ON LiveAddress.applicant_id = Applicants.Id 
+   AND LiveAddress.main = 1
+   LEFT JOIN [dbo].Buildings Buildings ON Buildings.Id = LiveAddress.building_id
+   LEFT JOIN [dbo].Districts Districts ON Districts.Id = Buildings.district_id
+   LEFT JOIN [dbo].Streets Streets ON Streets.Id = Buildings.street_id
+   LEFT JOIN [dbo].StreetTypes StreetTypes ON StreetTypes.Id = Streets.street_type_id
+   LEFT JOIN [dbo].ApplicantPhones ApplicantPhones ON ApplicantPhones.applicant_id = Applicants.Id
+   LEFT JOIN [dbo].Workers Workers ON Workers.worker_user_id = Appeals.user_id
+   LEFT JOIN [dbo].Workers w ON w.worker_user_id = Appeals.user_edit_id
+   LEFT JOIN [dbo].[ApplicantPrivilege] ApplicantPrivilege ON [Applicants].applicant_privilage_id = [ApplicantPrivilege].Id
+   LEFT JOIN [dbo].[SocialStates] SocialStates ON [Applicants].social_state_id = [SocialStates].Id
+   LEFT JOIN [dbo].[CategoryType] CategoryType ON [Applicants].category_type_id = [CategoryType].Id
+WHERE
+   [Appeals].[Id] = @Id ; ' ;
 
-  ),1,2,'')) q
-  FROM [dbo].[Appeals]
-	left join ReceiptSources on ReceiptSources.Id = Appeals.receipt_source_id
-	left join Applicants on Applicants.Id = Appeals.applicant_id
-	left join LiveAddress on LiveAddress.applicant_id = Applicants.Id and LiveAddress.main = 1
-	left join Buildings on Buildings.Id = LiveAddress.building_id
-	left join Districts on Districts.Id = Buildings.district_id
-	left join Streets on Streets.Id = Buildings.street_id
-	left join StreetTypes on StreetTypes.Id = Streets.street_type_id
-	left join ApplicantPhones on ApplicantPhones.applicant_id = Applicants.Id
-	left join Workers on Workers.worker_user_id = Appeals.user_id
-	left join Workers  w on w.worker_user_id = Appeals.user_edit_id
-	left join [CRM_1551_Analitics].[dbo].[ApplicantPrivilege] on [Applicants].applicant_privilage_id=[ApplicantPrivilege].Id
-	left join [CRM_1551_Analitics].[dbo].[SocialStates] on [Applicants].social_state_id=[SocialStates].Id
-    left join [CRM_1551_Analitics].[dbo].[CategoryType] on [Applicants].category_type_id=[CategoryType].Id
-WHERE [Appeals].[Id] = @Id
+DECLARE @Query NVARCHAR(MAX) = (SELECT @Part1 + @Part2);
+EXEC sp_executesql @Query, N'@Id INT', @Id = @Id;

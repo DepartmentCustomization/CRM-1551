@@ -1,4 +1,4 @@
- -- DECLARE @Id INT = 15;
+--   DECLARE @Id INT = 3313;
 
 SELECT
 	TOP 1
@@ -212,8 +212,8 @@ CASE
 	) AS [Applicant_Id],
 	afs.[geolocation_lat] AS [AppealFromSite_geolocation_lat],
 	afs.[geolocation_lon] AS [AppealFromSite_geolocation_lon],
-	applicantObj.Id	AS ApplicantFromSite_Address_Building,
-	applicantObj.name AS ApplicantFromSite_Address_BuildingName,
+	b.Id AS ApplicantFromSite_Address_Building,
+	aa.Flat AS ApplicantFromSite_Address_Flat,
 	abi.is_verified AS isVerify,
 	afs.Content AS question_content,
 	afs.ObjectId AS Question_Building,

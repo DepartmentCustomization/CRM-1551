@@ -34,6 +34,13 @@
                 backgroundColor: 'rgb(74, 193, 197)'
             },
             {
+                name: 'not_competence',
+                id: 'headerItem__notCompetent',
+                innerText: 'Не в компетенції',
+                colorIndex: 1,
+                backgroundColor: 'rgb(173, 118, 205);'
+            },
+            {
                 name: 'in_work',
                 id: 'headerItem__inWork',
                 innerText: 'В роботі',
@@ -82,16 +89,9 @@
             header1.parentElement.style.flexFlow = 'column nowrap';
             header1.firstElementChild.style.overflow = 'visible';
             header1.firstElementChild.firstElementChild.firstElementChild.style.overflow = 'visible';
-            /*
-            Version 2.2
             this.subscribers.push(this.messageService.subscribe('reloadMainTable', this.reloadMainTable, this));
-            */
-            this.sub = this.messageService.subscribe('reloadMainTable', this.reloadMainTable, this);
             this.executeMainTableQuery(false, null);
             this.executeOrganizationQuery();
-        },
-        destroy: function() {
-            this.sub.unsubscribe();
         },
         executeOrganizationQuery: function() {
             let executeQuery = {

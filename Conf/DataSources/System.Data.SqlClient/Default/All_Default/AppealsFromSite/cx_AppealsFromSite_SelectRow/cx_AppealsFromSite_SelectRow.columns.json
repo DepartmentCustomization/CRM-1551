@@ -169,13 +169,6 @@
     "IsPrintable": false
   },
   {
-    "Code": "ApplicantFromSite_Address_BuildingName",
-    "Name": "ApplicantFromSite_Address_BuildingName",
-    "Position": 28,
-    "IsPrintable": false,
-    "ReferenceKeyCode": "ApplicantFromSite_Address_Building"
-  },
-  {
     "Code": "isVerify",
     "Name": "isVerify",
     "Position": 29
@@ -197,5 +190,11 @@
     "Position": 32,
     "IsPrintable": false,
     "ReferenceKeyCode": "Question_Building"
+  },
+  {
+    "Code": "ApplicantFromSite_Address_Flat",
+    "Name": "ApplicantFromSite_Address_Flat",
+    "Position": 33,
+    "IsPrintable": false
   }
 ]

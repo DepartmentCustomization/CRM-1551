@@ -135,6 +135,16 @@
       "KeyColumnCode": "id",
       "DisplayColumnCode": "name",
       "QueryParameters": []
+    },
+    {
+      "Code": "api_ExternalDataSources",
+      "Name": "api_ExternalDataSources",
+      "FieldType": "select",
+      "Position": 13,
+      "QueryCode": "api_ExternalDataSources",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Name",
+      "QueryParameters": []
     }
   ]
 }

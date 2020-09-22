@@ -132,32 +132,32 @@
         },
         setTextInputValue: function(id, input) {
             switch (id) {
-            case 'patientAge':
-                this.patientAge = input;
-                this.patientAgeValue = input.value;
-                break;
-            case 'patientBirthday':
-                this.patientBirthday = input;
-                this.patientBirthdayValue = input.value;
-                break;
-            case 'patientPhoneNumber':
-                this.patientPhoneNumber = input;
-                this.patientPhoneNumberValue = input.value;
-                break;
-            case 'patientSecondName':
-                this.patientSecondName = input;
-                this.patientSecondNameValue = input.value;
-                break;
-            case 'patientName':
-                this.patientName = input;
-                this.patientNameValue = input.value;
-                break;
-            case 'patientFatherName':
-                this.patientFatherName = input;
-                this.patientFatherNameValue = input.value;
-                break;
-            default:
-                break;
+                case 'patientAge':
+                    this.patientAge = input;
+                    this.patientAgeValue = input.value;
+                    break;
+                case 'patientBirthday':
+                    this.patientBirthday = input;
+                    this.patientBirthdayValue = input.value;
+                    break;
+                case 'patientPhoneNumber':
+                    this.patientPhoneNumber = input;
+                    this.patientPhoneNumberValue = input.value;
+                    break;
+                case 'patientSecondName':
+                    this.patientSecondName = input;
+                    this.patientSecondNameValue = input.value;
+                    break;
+                case 'patientName':
+                    this.patientName = input;
+                    this.patientNameValue = input.value;
+                    break;
+                case 'patientFatherName':
+                    this.patientFatherName = input;
+                    this.patientFatherNameValue = input.value;
+                    break;
+                default:
+                    break;
             }
         },
         createPatientSexWrapper: function() {
@@ -198,14 +198,14 @@
         },
         setCheckBoxValue: function(id, checkBox) {
             switch (id) {
-            case 'Male':
-                this.checkBoxMale = checkBox;
-                break;
-            case 'Female':
-                this.checkBoxFemale = checkBox;
-                break;
-            default:
-                break;
+                case 'Male':
+                    this.checkBoxMale = checkBox;
+                    break;
+                case 'Female':
+                    this.checkBoxFemale = checkBox;
+                    break;
+                default:
+                    break;
             }
         },
         createPatientNameWrapper: function() {

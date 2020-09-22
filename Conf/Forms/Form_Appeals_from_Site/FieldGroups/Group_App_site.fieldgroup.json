@@ -44,7 +44,7 @@
       "Name": "Стать",
       "FieldType": "radio",
       "Position": 5,
-      "Width": "20%",
+      "Width": "30%",
       "Items": [
         {
           "Code": "ч",
@@ -61,14 +61,14 @@
       "Name": "Дата народження",
       "FieldType": "date",
       "Position": 6,
-      "Width": "20%"
+      "Width": "40%"
     },
     {
       "Code": "ApplicantFromSite_Age",
       "Name": "Вік",
       "FieldType": "number",
       "Position": 7,
-      "Width": "20%"
+      "Width": "30%"
     },
     {
       "Code": "ApplicantFromSite_SocialState",
@@ -100,6 +100,22 @@
       "Width": "30%",
       "Icon": "search",
       "IconHint": "Пошук та створення заявника в системі"
+    },
+    {
+      "Code": "ApplicantFromSite_Address_Building",
+      "Name": "Будинок заявника з сайту",
+      "FieldType": "number",
+      "Position": 13,
+      "Width": "30%",
+      "IsHidden": true
+    },
+    {
+      "Code": "ApplicantFromSite_Address_Flat",
+      "Name": "Квартира заявника з сайту",
+      "FieldType": "number",
+      "Position": 15,
+      "Width": "30%",
+      "IsHidden": true
     }
   ]
 }

@@ -42,6 +42,12 @@
       "Name": "name",
       "FieldType": "text",
       "Position": 12
+    },
+    {
+      "Code": "phone",
+      "Name": "phone",
+      "FieldType": "text",
+      "Position": 13
     }
   ]
 }

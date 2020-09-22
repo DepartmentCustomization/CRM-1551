@@ -1,9 +1,10 @@
-  --  DECLARE @RegistrationDateFrom DATETIME = '2020-03-10 00:00';
-  --  DECLARE @RegistrationDateTo DATETIME = '2020-03-11 00:00';
-  --  DECLARE @OrganizationExecId INT = NULL;
-  --  DECLARE @OrganizationExecGroupId INT = NULL;
-  --  DECLARE @ReceiptSourcesId INT = NULL;
-  --  DECLARE @QuestionGroupId INT = NULL;
+    --DECLARE @RegistrationDateFrom DATETIME = '2020-02-01 00:00';
+    --DECLARE @RegistrationDateTo DATETIME = '2020-02-19 00:00';
+    --DECLARE @OrganizationExecId INT = 3;
+    --DECLARE @OrganizationExecGroupId INT = NULL;
+    --DECLARE @ReceiptSourcesId INT = NULL;
+    --DECLARE @QuestionGroupId INT = NULL;
+
 
  SET @RegistrationDateFrom = Dateadd(hh, Datediff(hh, Getutcdate(), Getdate()), @RegistrationDateFrom);
  SET @RegistrationDateTo = Dateadd(hh, Datediff(hh, Getutcdate(), Getdate()), @RegistrationDateTo);
@@ -27,7 +28,7 @@ WITH OrganizationsH (ParentId, Id, [Name], LEVEL, Label, Label2) AS (
     CAST(rtrim(Id) + '/' AS NVARCHAR(MAX)) AS Label,
     CAST((short_name) + N' / ' AS NVARCHAR(MAX)) AS Label2
   FROM
-    [dbo].[Organizations]
+    [dbo].[Organizations] with (nolock)
   WHERE
     Id = @OrganizationExecId
   UNION
@@ -44,7 +45,7 @@ WITH OrganizationsH (ParentId, Id, [Name], LEVEL, Label, Label2) AS (
       (h.Label2) + (o.short_name) + ' / ' AS NVARCHAR(MAX)
     ) AS Label2
   FROM
-    [dbo].[Organizations] o
+    [dbo].[Organizations] o with (nolock)
     JOIN OrganizationsH h ON o.parent_organization_id = h.Id
 )
 INSERT INTO
@@ -61,7 +62,7 @@ INSERT INTO
 SELECT
   organization_id
 FROM
-  [dbo].[OGroupIncludeOrganizations]
+  [dbo].[OGroupIncludeOrganizations] with (nolock)
 WHERE
   organization_group_id = @OrganizationExecGroupId;
 END 
@@ -79,7 +80,7 @@ INSERT INTO
 SELECT
   Id
 FROM
-  [dbo].[Organizations];
+  [dbo].[Organizations] with (nolock);
 END 
 IF object_id('tempdb..#temp_OUT_QuestionGroup') IS NOT NULL 
 BEGIN
@@ -94,7 +95,7 @@ INSERT INTO
 SELECT
   type_question_id
 FROM
-  dbo.[QGroupIncludeQTypes] 
+  dbo.[QGroupIncludeQTypes] with (nolock) 
 WHERE
   group_question_id = @QuestionGroupId;
 END
@@ -104,7 +105,7 @@ INSERT INTO
 SELECT
   Id
 FROM
-  dbo.[QuestionTypes];
+  dbo.[QuestionTypes] with (nolock);
 END 
 
 DECLARE @targettimezone AS sysname = 'E. Europe Standard Time';
@@ -191,19 +192,21 @@ SELECT
   END AS stateClose,
   [Obj].[name] AS objectName,
   isnull([Resolution].[name], N'Невідомо') AS resolution,
-  isnull([Result].[name], N'Невідомо') AS result
+  isnull([Result].[name], N'Невідомо') AS result,
+  [Que].question_content,
+  [Que].[registration_number]
 FROM
- dbo.[Assignments] AS [Ass]   
-  INNER JOIN dbo.[Questions] AS [Que] ON [Que].Id = [Ass].question_id
-  LEFT JOIN dbo.[QuestionTypes] AS [QueTypes] ON [Que].question_type_id = [QueTypes].Id
-  LEFT JOIN dbo.[QuestionStates] AS [QuesStates] ON [QuesStates].Id = [Que].question_state_id
-  LEFT JOIN dbo.[AssignmentStates] AS [AssState] ON Ass.assignment_state_id = [AssState].Id
-  LEFT JOIN dbo.[Appeals] ON [Que].appeal_id = [Appeals].Id
-  LEFT JOIN dbo.[ReceiptSources] ON [Appeals].receipt_source_id = [ReceiptSources].Id
+ dbo.[Assignments] AS [Ass] with (nolock)   
+  INNER JOIN dbo.[Questions] AS [Que] with (nolock) ON [Que].Id = [Ass].question_id
+  LEFT JOIN dbo.[QuestionTypes] AS [QueTypes] with (nolock) ON [Que].question_type_id = [QueTypes].Id
+  LEFT JOIN dbo.[QuestionStates] AS [QuesStates] with (nolock) ON [QuesStates].Id = [Que].question_state_id
+  LEFT JOIN dbo.[AssignmentStates] AS [AssState] with (nolock) ON Ass.assignment_state_id = [AssState].Id
+  LEFT JOIN dbo.[Appeals] with (nolock) ON [Que].appeal_id = [Appeals].Id
+  LEFT JOIN dbo.[ReceiptSources] with (nolock) ON [Appeals].receipt_source_id = [ReceiptSources].Id
 
-  LEFT JOIN dbo.[Objects] AS [Obj] ON [Que].[object_id] = [Obj].Id
-  LEFT JOIN dbo.[AssignmentResolutions] AS [Resolution] ON [Resolution].Id = [Ass].AssignmentResolutionsId
-  LEFT JOIN dbo.[AssignmentResults] AS [Result] ON [Result].Id = [Ass].AssignmentResultsId
+  LEFT JOIN dbo.[Objects] AS [Obj] with (nolock) ON [Que].[object_id] = [Obj].Id
+  LEFT JOIN dbo.[AssignmentResolutions] AS [Resolution] with (nolock) ON [Resolution].Id = [Ass].AssignmentResolutionsId
+  LEFT JOIN dbo.[AssignmentResults] AS [Result] with (nolock) ON [Result].Id = [Ass].AssignmentResultsId
   LEFT JOIN (
     SELECT
       [Id],
@@ -245,7 +248,7 @@ FROM
               ) n,
               Log_Date
             FROM
-              dbo.[Assignment_History] 
+              dbo.[Assignment_History]  with (nolock)
             WHERE
               assignment_state_id = 3
               /*На перевірці*/
@@ -268,7 +271,7 @@ FROM
               ) n,
               Log_Date
             FROM
-              dbo.[Assignment_History]
+              dbo.[Assignment_History] with (nolock)
             WHERE
               assignment_state_id = 5 
               /*Закрито*/
@@ -296,4 +299,5 @@ FROM
               FROM
                 #temp_OUT_QuestionGroup)
              AND  #filter_columns#
+			 option (OPTIMIZE FOR UNKNOWN)
 			  ;

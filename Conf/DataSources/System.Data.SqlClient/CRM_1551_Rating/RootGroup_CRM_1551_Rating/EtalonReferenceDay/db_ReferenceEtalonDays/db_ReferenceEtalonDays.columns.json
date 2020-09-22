@@ -1,0 +1,62 @@
+[
+  {
+    "Code": "Id",
+    "Name": "Id",
+    "Position": 0,
+    "IsPrintable": false
+  },
+  {
+    "Code": "QuestionTypes_Id",
+    "Name": "QuestionTypes_Id",
+    "Position": 1,
+    "IsPrintable": false
+  },
+  {
+    "Code": "QuestionTypes_Name",
+    "Name": "QuestionTypes_Name",
+    "Position": 2,
+    "IsPrintable": false
+  },
+  {
+    "Code": "EtalonDaysToExecution",
+    "Name": "EtalonDaysToExecution",
+    "Position": 3,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_EtalonDaysToExecution",
+    "Name": "avg_EtalonDaysToExecution",
+    "Position": 4,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_EtalonDaysToExecution_change",
+    "Name": "avg_EtalonDaysToExecution_change",
+    "Position": 5,
+    "IsPrintable": false
+  },
+  {
+    "Code": "EtalonDaysToExplain",
+    "Name": "EtalonDaysToExplain",
+    "Position": 6,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_EtalonDaysToExplain",
+    "Name": "avg_EtalonDaysToExplain",
+    "Position": 7,
+    "IsPrintable": false
+  },
+  {
+    "Code": "avg_EtalonDaysToExplain_change",
+    "Name": "avg_EtalonDaysToExplain_change",
+    "Position": 8,
+    "IsPrintable": false
+  },
+  {
+    "Code": "DateStart",
+    "Name": "DateStart",
+    "Position": 9,
+    "IsPrintable": false
+  }
+]

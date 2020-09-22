@@ -1,0 +1,6 @@
+{
+  "ModelType": "QueryGroup",
+  "Code": "DynamicsRatingRDA",
+  "Name": "Динаміка показників рейтингу РДА",
+  "ConnectionCode": "CRM_1551_Rating"
+}

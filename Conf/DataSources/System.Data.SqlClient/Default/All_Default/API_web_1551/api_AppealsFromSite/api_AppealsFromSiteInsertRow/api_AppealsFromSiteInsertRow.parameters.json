@@ -1,27 +1,5 @@
 [
   {
-    "Code": "@pageLimitRows",
-    "Name": "pageLimitRows",
-    "ParameterType": "Integer",
-    "IsPageLimitRows": true
-  },
-  {
-    "Code": "@pageOffsetRows",
-    "Name": "pageOffsetRows",
-    "ParameterType": "Integer",
-    "IsPageOffsetRows": true
-  },
-  {
-    "Code": "@object_id",
-    "Name": "object_id",
-    "ParameterType": "Integer"
-  },
-  {
-    "Code": "@appeal_content",
-    "Name": "appeal_content",
-    "ParameterType": "Text"
-  },
-  {
     "Code": "@work_direction_type_id",
     "Name": "work_direction_type_id",
     "ParameterType": "Integer"
@@ -32,18 +10,51 @@
     "ParameterType": "Integer"
   },
   {
-    "Code": "@geolocation_lat",
-    "Name": "geolocation_lat",
-    "ParameterType": "Text"
+    "Code": "@appeal_content",
+    "Name": "appeal_content"
+  },
+  {
+    "Code": "@object_id",
+    "Name": "object_id",
+    "ParameterType": "Integer"
   },
   {
     "Code": "@geolocation_lon",
-    "Name": "geolocation_lon",
-    "ParameterType": "Text"
+    "Name": "geolocation_lon"
+  },
+  {
+    "Code": "@pageOffsetRows",
+    "Name": "pageOffsetRows",
+    "ParameterType": "Integer",
+    "IsPageOffsetRows": true
+  },
+  {
+    "Code": "@geolocation_lat",
+    "Name": "geolocation_lat"
   },
   {
     "Code": "@SystemIP",
-    "Name": "SystemIP",
-    "ParameterType": "Text"
+    "Name": "SystemIP"
+  },
+  {
+    "Code": "@external_data_sources_id",
+    "Name": "external_data_sources_id",
+    "ParameterType": "Integer"
+  },
+  {
+    "Code": "@pageLimitRows",
+    "Name": "pageLimitRows",
+    "ParameterType": "Integer",
+    "IsPageLimitRows": true
+  },
+  {
+    "Code": "@user_id",
+    "Name": "user_id",
+    "ParameterType": "CurrentUserId"
+  },
+  {
+    "Code": "@external_id",
+    "Name": "external_id",
+    "ParameterType": "Integer"
   }
 ]

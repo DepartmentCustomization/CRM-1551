@@ -190,16 +190,18 @@
         },
         findAllSelectRows: function(status) {
             let queryCodeValue;
-            switch(status) {
-            case 'noCompetence':
-                queryCodeValue = 'ak_EditAssigmentsNoCompetence';
-                break
-            case 'understand':
-                queryCodeValue = 'ak_EditAssigmentsClarified';
-                break
-            case 'delete':
-                queryCodeValue = 'ak_EditAssigmentsDeleteRow';
-                break
+            switch (status) {
+                case 'noCompetence':
+                    queryCodeValue = 'ak_EditAssigmentsNoCompetence';
+                    break
+                case 'understand':
+                    queryCodeValue = 'ak_EditAssigmentsClarified';
+                    break
+                case 'delete':
+                    queryCodeValue = 'ak_EditAssigmentsDeleteRow';
+                    break
+                default:
+                    break
             }
             let keys = this.dataGridInstance.selectedRowKeys;
             let self = this;
