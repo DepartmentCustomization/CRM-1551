@@ -9,7 +9,9 @@
       "Name": "Зміст*",
       "FieldType": "textarea",
       "Position": 1,
-      "Width": "100%"
+      "Width": "100%",
+      "Icon": "content_paste",
+      "IconHint": "Вставити текст з замітки"
     },
     {
       "Code": "Question_TypeId",
@@ -28,6 +30,15 @@
       "SearchKeyColumnCode": "Id",
       "SearchDisplayColumnCode": "Name",
       "HasChildrenColumnCode": "has_child"
+    },
+    {
+      "Code": "Question_Type_Content",
+      "Name": "Опис Типу питання",
+      "FieldType": "textarea",
+      "Position": 2,
+      "Rows": 5,      
+      "Width": "100%",
+      "IsHidden": true
     },
     {
       "Code": "Question_Building",

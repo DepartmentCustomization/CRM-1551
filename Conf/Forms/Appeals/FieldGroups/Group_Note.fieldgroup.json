@@ -1,0 +1,15 @@
+{
+  "Code": "Group_Note",
+  "Name": "Замітки",
+  "Position": 1,
+  "IsWithClosing": false,
+  "Fields": [
+    {
+      "Code": "NoteText",
+      "Name": "Замітки по дзвінку",
+      "FieldType": "textarea",
+      "Position": 1,
+      "Width": "100%"
+    }
+  ]
+}

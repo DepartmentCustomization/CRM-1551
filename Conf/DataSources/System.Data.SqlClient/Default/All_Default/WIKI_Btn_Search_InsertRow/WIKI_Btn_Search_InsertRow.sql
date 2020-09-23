@@ -7,7 +7,8 @@ INSERT INTO
 		[appeal_id],
 		[consultation_type_id],
 		[object_id],
-		[user_id]
+		[user_id],
+		[knowledge_base_id]
 	) 
 OUTPUT inserted.Id INTO @Info(Id)
 VALUES
@@ -18,14 +19,15 @@ VALUES
 		3,
 		/*За Базою Знань (БЗ)*/
 		@Applicant_Building,
-		@CreatedUser
+		@CreatedUser,
+		@knowledge_base_id
 	);
 
 IF(@applicant_id IS NOT NULL) 
 BEGIN 
 ----- add Artem
 UPDATE
-	[CRM_1551_Analitics].[dbo].[Appeals]
+	  [dbo].[Appeals]
 SET
 	applicant_id = @applicant_id
 WHERE

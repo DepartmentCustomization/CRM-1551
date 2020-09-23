@@ -19,6 +19,7 @@
   "Config": {
     "FieldGroups": [
       "string:FieldGroups\\Group_Appeal.fieldgroup.json",
+      "string:FieldGroups\\Group_Note.fieldgroup.json",
       "string:FieldGroups\\Group_Aplicant.fieldgroup.json",
       "string:FieldGroups\\Group_CreateQuestion.fieldgroup.json",
       "string:FieldGroups\\Group_Preview_Question.fieldgroup.json",

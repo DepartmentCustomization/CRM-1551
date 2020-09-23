@@ -22,5 +22,10 @@
     "Code": "@applicant_id",
     "Name": "applicant_id",
     "ParameterType": "Integer"
+  },
+  {
+    "Code": "@knowledge_base_id",
+    "Name": "knowledge_base_id",
+    "ParameterType": "Integer"
   }
 ]

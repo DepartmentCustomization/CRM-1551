@@ -1,4 +1,4 @@
--- DECLARE @object_id INT = 16415;
+--  DECLARE @object_id INT = 51068;
 
 SELECT
     [Id],
@@ -54,7 +54,7 @@ FROM
             LEFT JOIN [dbo].[EventTypes] ON [EventTypes].Id = [Event_Class].[event_type_id]
             LEFT JOIN [CRM_1551_GORODOK_Integrartion].[dbo].[AllObjectInClaim] AS aoc ON aoc.claims_number_id = lcg.claim_number
 			LEFT JOIN [CRM_1551_GORODOK_Integrartion].[dbo].[Gorodok_1551_houses] gh ON gh.[gorodok_houses_id] = aoc.[object_id]
-			LEFT JOIN [dbo].[Objects] obj ON obj.[Id] = gh.[1551_houses_id]
+			LEFT JOIN [dbo].[Buildings] obj ON obj.Id = gh.[1551_houses_id]
         WHERE
             obj.Id = @object_id
             AND lcg.[status] IN (
@@ -66,6 +66,6 @@ FROM
             )
     ) AS t1
 WHERE
-   #filter_columns#
-   #sort_columns#
-   OFFSET @pageOffsetRows ROWS FETCH NEXT @pageLimitRows ROWS ONLY;
+  #filter_columns#
+  #sort_columns#
+  OFFSET @pageOffsetRows ROWS FETCH NEXT @pageLimitRows ROWS ONLY;

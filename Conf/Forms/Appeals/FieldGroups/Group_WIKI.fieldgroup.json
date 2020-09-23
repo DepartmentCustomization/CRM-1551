@@ -5,16 +5,27 @@
   "IsWithClosing": true,
   "Fields": [
     {
+      "Code": "WIKI_KnowledgeBaseState",
+      "Name": "Стаття в БЗ",
+      "FieldType": "select",
+      "Position": 1,
+      "Width": "100%",
+      "QueryCode": "List_KnowledgeBaseStates",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "Name",
+      "QueryParameters": []
+    },
+    {
       "Code": "WIKI_Btn_Search",
       "Name": "Шукати в БЗ",
       "FieldType": "button",
-      "Position": 1
+      "Position": 2
     },
     {
       "Code": "WIKI_Btn_Consultation",
       "Name": "Консультація за БЗ",
       "FieldType": "button",
-      "Position": 2
+      "Position": 3
     }
   ]
 }
