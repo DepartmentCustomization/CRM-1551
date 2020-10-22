@@ -24,6 +24,11 @@
       "Code": "@phone_type_id",
       "Name": "phone_type_id",
       "ParameterType": "Integer"
+    },
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
     }
   ]
 }

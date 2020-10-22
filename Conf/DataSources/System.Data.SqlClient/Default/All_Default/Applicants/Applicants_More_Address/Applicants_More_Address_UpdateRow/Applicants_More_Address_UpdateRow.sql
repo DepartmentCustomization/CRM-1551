@@ -6,4 +6,6 @@ UPDATE [dbo].[LiveAddress]
       ,[flat] = @flat
       ,[main] = @main
       ,[active] = @active
- WHERE Id = @Id
+	  ,[edit_date] = GETUTCDATE()
+	  ,[user_edit_id] = @user_id
+ WHERE Id = @Id;

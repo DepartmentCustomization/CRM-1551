@@ -22,5 +22,10 @@
     "Code": "@Applicant_id",
     "Name": "Applicant_id",
     "ParameterType": "Integer"
+  },
+  {
+    "Code": "@user_id",
+    "Name": "user_id",
+    "ParameterType": "CurrentUserId"
   }
 ]

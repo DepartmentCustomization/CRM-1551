@@ -1,212 +1,202 @@
+DECLARE @output TABLE (Id INT);
+DECLARE @interval FLOAT(53) = 0.2;
+DECLARE @valid_date_birth DATETIME;
+DECLARE @birth_date2 DATETIME;
 
-declare @output table (Id int);
-  DECLARE @interval float= 0.2;
-  declare @valid_date_birth datetime;
-  declare @birth_date2 datetime;
-  --set  @valid_date_birth = IIF( @birth_date is not null, @birth_date + @interval, null )
+--set  @valid_date_birth = IIF( @birth_date is not null, @birth_date + @interval, null )
+SET
+  @birth_date2 =(
+    SELECT
+      CASE
+        WHEN @day_month IS NOT NULL
+        AND @birth_year IS NOT NULL
+        AND RIGHT(@day_month, 2) * 1 <= 12
+        AND LEFT(@day_month, 2) * 1 <= 31
+        AND substring(@day_month, 3, 1) = N'-' THEN CONVERT(
+          DATE,
+          LTRIM(@birth_year) + N'-' + RIGHT(@day_month, 2) + N'-' + LEFT(@day_month, 2)
+        )
+        ELSE NULL
+      END
+  );
 
-set @birth_date2=(select 
-  case 
-  when @day_month is not null and @birth_year is not null and RIGHT(@day_month,2)*1<=12 and LEFT(@day_month,2)*1<=31 and substring(@day_month,3,1)=N'-'
-  then convert(date,LTRIM(@birth_year)+N'-'+RIGHT(@day_month,2)+N'-'+LEFT(@day_month,2))
-  else null end)
+SET
+  @valid_date_birth = IIF(
+    @birth_date2 IS NOT NULL,
+    @birth_date2 + @interval,
+    NULL
+  );
 
-  set  @valid_date_birth = IIF( @birth_date2 is not null, @birth_date2 + @interval, null )
-
-  insert into [dbo].[Applicants]
+INSERT INTO
+  [dbo].[Applicants] (
+    [registration_date],
+    [full_name],
+    [applicant_type_id],
+    [category_type_id],
+    [social_state_id],
+    [mail],
+    [sex],
+    [birth_date],
+    [comment],
+    [user_id],
+    [edit_date],
+    [user_edit_id],
+    [applicant_privilage_id],
+    [birth_year]
+  ) output [inserted].[Id] INTO @output (Id)
+VALUES
   (
-  [registration_date]
-      ,[full_name]
-      ,[applicant_type_id]
-      ,[category_type_id]
-      ,[social_state_id]
-      ,[mail]
-      ,[sex]
-      ,[birth_date]
-      --,[age]
-      ,[comment]
-      ,[user_id]
-      ,[edit_date]
-      ,[user_edit_id]
-      ,[applicant_privilage_id]
-	  ,[birth_year]
-  )
+    getutcdate(),
+    @full_name,
+    @applicant_type_id,
+    @category_type_id,
+    @social_state_id,
+    @mail,
+    @sex,
+    @valid_date_birth,
+    @comment,
+    @user_id,
+    getutcdate(),
+    @user_id,
+    @applicant_privilage_id,
+    @birth_year
+  );
 
-  output [inserted].[Id] into @output (Id)
-  values
+DECLARE @applicant_id INT;
+
+SET
+  @applicant_id =(
+    SELECT
+      TOP 1 Id
+    FROM
+      @output
+  );
+
+INSERT INTO
+  [dbo].[ApplicantPhones] (
+    [applicant_id],
+    [phone_type_id],
+    [phone_number],
+    [IsMain],
+    [CreatedAt],
+    [user_id],
+    [edit_date],
+    [user_edit_id]
+  )
+VALUES
   (
-       getutcdate()
-      ,@full_name
-      ,@applicant_type_id
-      ,@category_type_id
-      ,@social_state_id
-      ,@mail
-      ,@sex
-      ,@valid_date_birth 
-      --,@age
-      ,@comment
-      ,@user_id
-      ,getutcdate()
-      ,@user_id
-      ,@applicant_privilage_id
-	  ,@birth_year
-  )
-  
-  declare @applicant_id int;
-  set @applicant_id =(select top 1 id from @output)
+    @applicant_id,
+    @phone_type_id,
+    REPLACE(
+      REPLACE(REPLACE(@phone_number, N'(', ''), N')', N''),
+      N'-',
+      N''
+    ),
+    N'true',
+    getutcdate(),
+    @user_id,
+    getutcdate(),
+    @user_id
+  );
 
-  insert into [dbo].[ApplicantPhones]
+IF @phone_type_id2 IS NOT NULL
+OR @phone_number2 IS NOT NULL 
+BEGIN
+INSERT INTO
+  [dbo].[ApplicantPhones] (
+    [applicant_id],
+    [phone_type_id],
+    [phone_number],
+    [IsMain],
+    [CreatedAt],
+    [user_id],
+    [edit_date],
+    [user_edit_id]
+  )
+VALUES
   (
-  [applicant_id]
-      ,[phone_type_id]
-      ,[phone_number]
-	  ,[IsMain]
-      ,[CreatedAt]
-  )
+    @applicant_id,
+    @phone_type_id2,
+    REPLACE(
+      REPLACE(REPLACE(@phone_number2, N'(', ''), N')', N''),
+      N'-',
+      N''
+    ),
+    N'false',
+    getutcdate(),
+    @user_id,
+    getutcdate(),
+    @user_id
+  );
 
-  values
+END
+INSERT INTO
+  [dbo].[LiveAddress] (
+    [applicant_id],
+    [building_id],
+    [house_block],
+    [entrance],
+    [flat],
+    [main],
+    [active],
+    [create_date],
+    [user_id],
+    [edit_date],
+    [user_edit_id]
+  )
+VALUES
   (
-  @applicant_id
-      ,@phone_type_id
-      ,replace(replace(REPLACE(@phone_number, N'(', ''), N')', N''), N'-', N'')
-	  ,N'true'
-	  ,getdate()
+    @applicant_id,
+    @building_id,
+    @house_block,
+    @entrance,
+    @flat,
+    N'true',
+    N'true',
+    getutcdate(),
+    @user_id,
+    getutcdate(),
+    @user_id
+  );
+
+UPDATE
+  [dbo].[Applicants]
+SET
+  [ApplicantAdress] =(
+    SELECT
+      DISTINCT isnull([Districts].name + N' р-н., ', N'') + isnull([StreetTypes].shortname + N' ', N'') + isnull([Streets].name + N' ', N'') + isnull([Buildings].name + N', ', N'') + isnull(
+        N'п. ' + ltrim([LiveAddress].[entrance]) + N', ',
+        N''
+      ) + isnull(N'кв. ' + ltrim([LiveAddress].flat) + N', ', N'') + N'телефони: ' + isnull(
+        stuff(
+          (
+            SELECT
+              N', ' + lower(SUBSTRING([PhoneTypes].name, 1, 3)) + N'.: ' + [ApplicantPhones].phone_number
+            FROM
+              [dbo].[ApplicantPhones]
+              LEFT JOIN [dbo].[PhoneTypes] ON [ApplicantPhones].phone_type_id = [PhoneTypes].Id
+            WHERE
+              [ApplicantPhones].applicant_id = [LiveAddress].applicant_id FOR XML PATH('')
+          ),
+          1,
+          2,
+          N''
+        ),
+        N''
+      ) phone
+    FROM
+      [dbo].[LiveAddress] [LiveAddress]
+      LEFT JOIN [dbo].[Buildings] [Buildings] ON [LiveAddress].building_id = [Buildings].Id
+      LEFT JOIN [dbo].[Streets] [Streets] ON [Buildings].street_id = [Streets].Id
+      LEFT JOIN [dbo].[StreetTypes] [StreetTypes] ON [Streets].street_type_id = [StreetTypes].Id
+      LEFT JOIN [dbo].[Districts] [Districts] ON [Buildings].district_id = [Districts].Id
+    WHERE
+      applicant_id = @applicant_id
   )
+WHERE
+  Id = @applicant_id;
 
-  if @phone_type_id2 is not null or @phone_number2 is not null
-  begin
-  insert into [dbo].[ApplicantPhones]
-  (
-  [applicant_id]
-      ,[phone_type_id]
-      ,[phone_number]
-	  ,[IsMain]
-      ,[CreatedAt]
-  )
+SELECT
+  @applicant_id AS [Id];
 
-  values
-  (
-  @applicant_id
-      ,@phone_type_id2
-      ,replace(replace(REPLACE(@phone_number2, N'(', ''), N')', N''), N'-', N'')
-	  ,N'false'
-	  ,getdate()
-  )
-  end
-
-
-
-  insert into [dbo].[LiveAddress]
-  (
-       [applicant_id]
-      ,[building_id]
-      ,[house_block]
-      ,[entrance]
-      ,[flat]
-      ,[main]
-      ,[active]
-  )
-  values
-  (
-       @applicant_id
-      ,@building_id
-      ,@house_block
-      ,@entrance
-      ,@flat
-      ,N'true'
-      ,N'true'
-  )
-  
-    update [CRM_1551_Analitics].[dbo].[Applicants]
-  set [ApplicantAdress]=(select distinct
-  isnull([Districts].name+N' р-н., ', N'')+
-  isnull([StreetTypes].shortname+N' ',N'')+
-  isnull([Streets].name+N' ',N'')+
-  isnull([Buildings].name+N', ',N'')+
-  isnull(N'п. '+ltrim([LiveAddress].[entrance])+N', ', N'')+
-  isnull(N'кв. '+ltrim([LiveAddress].flat)+N', ', N'')+
-  N'телефони: '+isnull(stuff((select N', '+lower(SUBSTRING([PhoneTypes].name, 1, 3))+N'.: '+[ApplicantPhones].phone_number
-  from [CRM_1551_Analitics].[dbo].[ApplicantPhones]
-  left join [CRM_1551_Analitics].[dbo].[PhoneTypes] on [ApplicantPhones].phone_type_id=[PhoneTypes].Id
-  where [ApplicantPhones].applicant_id=[LiveAddress].applicant_id
-  for xml path('')), 1, 2,N''), N'') phone
-  from [CRM_1551_Analitics].[dbo].[LiveAddress] 
-  left join [CRM_1551_Analitics].[dbo].[Buildings] on [LiveAddress].building_id=[Buildings].Id
-  left join [CRM_1551_Analitics].[dbo].[Streets] on [Buildings].street_id=[Streets].Id
-  left join [CRM_1551_Analitics].[dbo].[StreetTypes] on [Streets].street_type_id=[StreetTypes].Id
-  left join [CRM_1551_Analitics].[dbo].[Districts] on [Buildings].district_id=[Districts].Id
-  where applicant_id=@applicant_id)
-  where Id=@applicant_id
-  
-  select @applicant_id	as [Id]
-  return;
-
-/*declare @output table (Id int)
-
-INSERT INTO [dbo].[Applicants]
-           (
-		    [registration_date]
-           ,[full_name]
-           ,[applicant_type_id]
-           ,[applicant_category_id]
-           ,[social_state_id]
-           ,[mail]
-           ,[sex]
-           ,[birth_date]
-           ,[age]
-           ,[comment]
-           ,[user_id]
-           ,[edit_date]
-           ,[user_edit_id]
-		   )
-output [inserted].[Id] into @output (Id)
-     VALUES
-           (
-		    GETUTCDATE()
-           ,@full_name
-           ,@types_id
-           ,@category_id
-           ,@states_id
-           ,@mail
-           ,@sex
-           ,@birth_date
-           ,isnull(@age, DATEDIFF(year,isnull(@birth_date, null),getutcdate()) )
-           ,@comment
-           ,@user_id
-           ,GETUTCDATE()
-           ,@user_edit_id
-		   )
-declare @app_id int;
-set @app_id = (select top 1 Id from @output )
-
-insert into [dbo].[ApplicantPhones]
-			([applicant_id]
-           ,[phone_type_id]
-           ,[phone_number])
-	output [inserted].[Id]
-     VALUES
-           (@app_id
-           ,@phone_type_id
-           ,@phone_number 
-		   )
-
-INSERT INTO [dbo].[LiveAddress]
-           ([applicant_id]
-           ,[building_id]
-           ,[house_block]
-           ,[entrance]
-           ,[flat]
-           ,[main]
-           ,[active])
-     VALUES
-           (@app_id
-           ,@building_id
-           ,@house_block
-           ,@entrance
-           ,@flat
-           ,@main
-           ,@active
-		   )
-
-select @app_id	as [Id]
-return;*/
+RETURN;

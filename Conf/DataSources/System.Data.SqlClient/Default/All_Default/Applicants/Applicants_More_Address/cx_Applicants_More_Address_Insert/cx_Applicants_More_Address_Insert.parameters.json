@@ -37,5 +37,10 @@
     "Code": "@active",
     "Name": "active",
     "ParameterType": "Boolean"
+  },
+  {
+    "Code": "@user_id",
+    "Name": "user_id",
+    "ParameterType": "CurrentUserId"
   }
 ]

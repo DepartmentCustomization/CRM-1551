@@ -1,28 +1,29 @@
 DECLARE @building_id2 INT;
-
 DECLARE @interval FLOAT(25) = 0.2;
-
 DECLARE @valid_date_birth DATETIME;
-
 DECLARE @birth_date2 DATETIME;
 
 IF EXISTS (
   SELECT
     *
   FROM
-    dbo.LiveAddress 
+    dbo.LiveAddress
   WHERE
     applicant_id = @applicant_id
-) BEGIN
+) 
+BEGIN
 UPDATE
   [dbo].[LiveAddress]
 SET
   [building_id] = @building_id,
   [house_block] = @house_block,
   [entrance] = @entrance,
-  [flat] = @flat
+  [flat] = @flat,
+  [edit_date] = GETUTCDATE(),
+  [user_edit_id] = @user_id
 WHERE
-  [applicant_id] = @applicant_id ;
+  [applicant_id] = @applicant_id;
+
 END
 ELSE 
 BEGIN
@@ -34,7 +35,11 @@ INSERT INTO
     [entrance],
     [flat],
     [main],
-    [active]
+    [active],
+    [create_date],
+    [user_id],
+    [edit_date],
+    [user_edit_id]
   )
 VALUES
   (
@@ -44,8 +49,13 @@ VALUES
     @entrance,
     @flat,
     N'true',
-    N'true'
+    N'true',
+    GETUTCDATE(),
+    @user_id,
+    GETUTCDATE(),
+    @user_id
   );
+
 END
 SET
   @birth_date2 =(
@@ -62,33 +72,38 @@ SET
         ELSE NULL
       END
   );
+
 SET
   @valid_date_birth = IIF(
     @birth_date2 IS NOT NULL,
     @birth_date2 + @interval,
     NULL
   );
-   IF @building_id IN (N'', N' ', N'  ')
-    BEGIN
+
+IF @building_id IN (N'', N' ', N'  ') 
+BEGIN
 SET
-  @building_id2 = NULL ;
+  @building_id2 = NULL;
+
 END;
 
 ELSE 
 BEGIN
 SET
-  @building_id2 = @building_id ;
-END
+  @building_id2 = @building_id;
 
+END
 UPDATE
   dbo.LiveAddress
 SET
   building_id = @building_id,
   entrance = @entrance,
-  flat = @flat
+  flat = @flat,
+  edit_date = GETUTCDATE(),
+  user_edit_id = @user_id
 WHERE
   applicant_id = @applicant_id
-  AND main = 1 ;
+  AND main = 1;
 
 UPDATE
   [dbo].[Applicants]
@@ -116,8 +131,8 @@ SET
             SELECT
               N', ' + lower(SUBSTRING([PhoneTypes].name, 1, 3)) + N'.: ' + [ApplicantPhones].phone_number
             FROM
-              [CRM_1551_Analitics].[dbo].[ApplicantPhones]
-              LEFT JOIN [CRM_1551_Analitics].[dbo].[PhoneTypes] ON [ApplicantPhones].phone_type_id = [PhoneTypes].Id
+              [dbo].[ApplicantPhones]
+              LEFT JOIN [dbo].[PhoneTypes] ON [ApplicantPhones].phone_type_id = [PhoneTypes].Id
             WHERE
               [ApplicantPhones].applicant_id = la.applicant_id FOR XML PATH('')
           ),
@@ -128,13 +143,13 @@ SET
         N''
       ) phone
     FROM
-      [CRM_1551_Analitics].[dbo].[LiveAddress] la
-      LEFT JOIN [CRM_1551_Analitics].[dbo].[Buildings] b ON la.building_id = b.Id
-      LEFT JOIN [CRM_1551_Analitics].[dbo].[Streets] s ON b.street_id = s.Id
-      LEFT JOIN [CRM_1551_Analitics].[dbo].[StreetTypes] st ON s.street_type_id = st.Id
-      LEFT JOIN [CRM_1551_Analitics].[dbo].[Districts] d ON b.district_id = d.Id
+      [dbo].[LiveAddress] la
+      LEFT JOIN [dbo].[Buildings] b ON la.building_id = b.Id
+      LEFT JOIN [dbo].[Streets] s ON b.street_id = s.Id
+      LEFT JOIN [dbo].[StreetTypes] st ON s.street_type_id = st.Id
+      LEFT JOIN [dbo].[Districts] d ON b.district_id = d.Id
     WHERE
       applicant_id = @applicant_id
   )
 WHERE
-  id = @applicant_id ;
+  id = @applicant_id;

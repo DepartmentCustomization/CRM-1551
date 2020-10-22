@@ -37,10 +37,7 @@ DECLARE @QuestionForSiteAppeal INT = (SELECT
 IF(@AppealForSiteAppeal IS NOT NULL)
 AND (@QuestionForSiteAppeal IS NOT NULL) 
 BEGIN 
-  RAISERROR(
-  N'У зверненні відбулися зміни, необхідно перезавантажити сторінку',
-  16,
-  1);
+  RAISERROR(N'У зверненні відбулися зміни, необхідно перезавантажити сторінку',16,1);
   RETURN; 
 END 
 
@@ -97,24 +94,6 @@ case when not exists(
     FROM
       @output_Appeal
   );
-
---  UPDATE
---  [dbo].[Appeals]
---SET
---  registration_number = concat(
---    SUBSTRING (rtrim(YEAR(getdate())), 4, 1),
---    '-',
---    (
---      SELECT
---        count(Id)
---      FROM
---        dbo.Appeals
---      WHERE
---        year(Appeals.registration_date) = year(getutcdate())
---    )
---  )
---WHERE
---  Id = @AppealId;
 
 UPDATE
   [CRM_1551_Site_Integration].[dbo].[AppealsFromSite]
@@ -208,7 +187,11 @@ INSERT INTO
     [entrance],
     [flat],
     [main],
-    [active]
+    [active],
+	  [create_date],
+	  [user_id],
+	  [edit_date],
+	  [user_edit_id] 
   )
 VALUES
   (
@@ -218,7 +201,11 @@ VALUES
     @1551_ApplicantFromSite_Address_Entrance,
     @1551_ApplicantFromSite_Address_Flat,
     1,
-    1
+    1,
+	  GETUTCDATE(),
+	  @CreatedByUserId,
+	  GETUTCDATE(),
+	  @CreatedByUserId
   );
 
 END 
@@ -262,21 +249,27 @@ IF (
         count(1)
       FROM
         #temp_OUT WHERE MoreContactTypeId = 1) > 0
-        BEGIN
+     BEGIN
       INSERT INTO
         [dbo].[ApplicantPhones] (
           [applicant_id],
           [phone_type_id],
           [phone_number],
           [IsMain],
-          [CreatedAt]
+          [CreatedAt],
+		      [user_id],
+		      [edit_date],
+		      [user_edit_id]
         )
       SELECT
         @Applicant_Id AS [applicant_id],
         1 AS [phone_type_id],
         PhoneNumber AS [phone_number],
         1 AS [IsMain],
-        getutcdate() AS [CreatedAt]
+        getutcdate() AS [CreatedAt],
+		@CreatedByUserId AS [user_id],
+		getutcdate() AS [edit_date],
+		@CreatedByUserId AS [user_edit_id]
       FROM
         #temp_OUT 
       WHERE
@@ -291,14 +284,20 @@ INSERT INTO
     [phone_type_id],
     [phone_number],
     [IsMain],
-    [CreatedAt]
+    [CreatedAt],
+	[user_id],
+	[edit_date],
+	[user_edit_id]
   )
 SELECT
   @Applicant_Id AS [applicant_id],
   1 AS [phone_type_id],
   PhoneNumber AS [phone_number],
   1 AS [IsMain],
-  getutcdate() AS [CreatedAt]
+  getutcdate() AS [CreatedAt],
+  @CreatedByUserId AS [user_id],
+  getutcdate() AS [edit_date],
+  @CreatedByUserId AS [user_edit_id]
 FROM
   #temp_OUT 
 WHERE
@@ -311,14 +310,20 @@ INSERT INTO
     [phone_type_id],
     [phone_number],
     [IsMain],
-    [CreatedAt]
+    [CreatedAt],
+	[user_id],
+	[edit_date],
+	[user_edit_id]
   )
 SELECT
   @Applicant_Id AS [applicant_id],
   1 AS [phone_type_id],
   PhoneNumber COLLATE Ukrainian_CI_AS AS [phone_number],
   0 AS [IsMain],
-  getutcdate() AS [CreatedAt]
+  getutcdate() AS [CreatedAt],
+  @CreatedByUserId AS [user_id],
+  getutcdate() AS [edit_date],
+  @CreatedByUserId AS [user_edit_id]
 FROM
   #temp_OUT WHERE PhoneNumber COLLATE Ukrainian_CI_AS NOT IN (SELECT [phone_number] FROM [dbo].[ApplicantPhones] WHERE [applicant_id] = @Applicant_Id);
 END

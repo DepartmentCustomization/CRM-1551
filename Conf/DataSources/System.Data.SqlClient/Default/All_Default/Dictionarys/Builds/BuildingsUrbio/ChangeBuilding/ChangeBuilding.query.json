@@ -22,6 +22,11 @@
       "Code": "@Id",
       "Name": "Id",
       "ParameterType": "Integer"
+    },
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
     }
   ]
 }

@@ -1,22 +1,24 @@
--- DECLARE @Applicant_Id INT = null ;
--- DECLARE @Applicant_PIB NVARCHAR(100) = 'ШВЕЦЬ МАКСИМ ОЛЕКСАНДРОВИЧ';
--- DECLARE @Applicant_Privilege INT = null;
--- DECLARE @Applicant_SocialStates INT = 2;
--- DECLARE @Applicant_CategoryType INT = null;
--- DECLARE @Applicant_Type INT = null;
--- DECLARE @Applicant_Sex INT = 2;
--- DECLARE @Application_BirthDate INT = null;
--- DECLARE @Applicant_Age INT = null;
--- DECLARE @Applicant_Comment INT = null;
--- DECLARE @Applicant_Building INT = 6108;
--- DECLARE @Applicant_HouseBlock INT = null;
--- DECLARE @Applicant_Entrance INT = null;
--- DECLARE @Applicant_Flat INT = 144;
--- DECLARE @AppealId INT = 5399962;
--- DECLARE @Applicant_Phone NVARCHAR(200) = '0634385429, 0965262445, 0445137276';
--- DECLARE @Applicant_Email INT = null;
--- DECLARE @Applicant_TypePhone INT = 1;
--- DECLARE @CreatedUser NVARCHAR(128) = (SELECT TOP 1 UserId FROM [#system_database_name#].dbo.[User] );
+/*
+DECLARE @Applicant_Id INT = null ;
+DECLARE @Applicant_PIB NVARCHAR(100) = 'ШВЕЦЬ МАКСИМ ОЛЕКСАНДРОВИЧ';
+DECLARE @Applicant_Privilege INT = null;
+DECLARE @Applicant_SocialStates INT = 2;
+DECLARE @Applicant_CategoryType INT = null;
+DECLARE @Applicant_Type INT = null;
+DECLARE @Applicant_Sex INT = 2;
+DECLARE @Application_BirthDate INT = null;
+DECLARE @Applicant_Age INT = null;
+DECLARE @Applicant_Comment INT = null;
+DECLARE @Applicant_Building INT = 6108;
+DECLARE @Applicant_HouseBlock INT = null;
+DECLARE @Applicant_Entrance INT = null;
+DECLARE @Applicant_Flat INT = 144;
+DECLARE @AppealId INT = 5399962;
+DECLARE @Applicant_Phone NVARCHAR(200) = '0634385429, 0965262445, 0445137276';
+DECLARE @Applicant_Email INT = null;
+DECLARE @Applicant_TypePhone INT = 1;
+DECLARE @CreatedUser NVARCHAR(128) = (SELECT TOP 1 UserId FROM CRM_1551_System.dbo.[User]);
+*/
 
 DECLARE @output TABLE (Id INT);
 
@@ -86,13 +88,17 @@ WHERE
     applicant_id = @Applicant_Id;
 INSERT INTO
     [dbo].[LiveAddress] (
-        applicant_id,
-        building_id,
-        house_block,
-        entrance,
-        flat,
-        main,
-        active
+        [applicant_id],
+        [building_id],
+        [house_block],
+        [entrance],
+        [flat],
+        [main],
+        [active],
+		[create_date],
+		[user_id],
+		[edit_date],
+		[user_edit_id]
     )
 VALUES
     (
@@ -102,7 +108,11 @@ VALUES
         @Applicant_Entrance,
         @Applicant_Flat,
         1,
-        1
+        1,
+		GETUTCDATE(),
+		@CreatedUser,
+		GETUTCDATE(),
+		@CreatedUser
     );
 UPDATE
     [dbo].[Appeals]
@@ -168,11 +178,14 @@ SET @app_id = (
     BEGIN
     INSERT INTO
     [dbo].[ApplicantPhones] (
-        applicant_id,
-        phone_type_id,
-        IsMain,
-        CreatedAt,
-        phone_number
+        [applicant_id],
+        [phone_type_id],
+        [IsMain],
+        [CreatedAt],
+        [phone_number],
+		[user_id],
+		[edit_date],
+		[user_edit_id]
     )
 VALUES(
     @app_id,
@@ -181,20 +194,27 @@ VALUES(
     GETUTCDATE(),
    (SELECT num
     FROM @numbers 
-    WHERE pos = @step )
+    WHERE pos = @step ),
+	@CreatedUser,
+	GETUTCDATE(),
+	@CreatedUser
 );
 SET @step += 1;
 END 
 
 INSERT INTO
     [dbo].[LiveAddress] (
-        applicant_id,
-        building_id,
-        house_block,
-        entrance,
-        flat,
-        main,
-        active
+        [applicant_id],
+        [building_id],
+        [house_block],
+        [entrance],
+        [flat],
+        [main],
+        [active],
+		[create_date],
+		[user_id],
+		[edit_date],
+		[user_edit_id]
     )
 VALUES
     (
@@ -204,7 +224,11 @@ VALUES
         @Applicant_Entrance,
         @Applicant_Flat,
         1,
-        1
+        1,
+		GETUTCDATE(),
+		@CreatedUser,
+		GETUTCDATE(),
+		@CreatedUser
     );
 UPDATE
     [dbo].[Appeals]
@@ -217,7 +241,7 @@ SELECT
     @app_id AS ApplicantId;
 END 
 UPDATE
-    [CRM_1551_Analitics].[dbo].[Applicants]
+      [dbo].[Applicants]
 SET
     [ApplicantAdress] =(
         SELECT
@@ -230,8 +254,8 @@ SET
                         SELECT
                             N', ' + lower(SUBSTRING([PhoneTypes].name, 1, 3)) + N'.: ' + [ApplicantPhones].phone_number
                         FROM
-                            [CRM_1551_Analitics].[dbo].[ApplicantPhones]
-                            LEFT JOIN [CRM_1551_Analitics].[dbo].[PhoneTypes] ON [ApplicantPhones].phone_type_id = [PhoneTypes].Id
+                              [dbo].[ApplicantPhones]
+                            LEFT JOIN   [dbo].[PhoneTypes] ON [ApplicantPhones].phone_type_id = [PhoneTypes].Id
                         WHERE
                             [ApplicantPhones].applicant_id = [LiveAddress].applicant_id FOR XML Path('')
                     ),
@@ -242,14 +266,14 @@ SET
                 N''
             ) phone
         FROM 
-        [CRM_1551_Analitics].[dbo].[LiveAddress] LiveAddress
-            LEFT JOIN [CRM_1551_Analitics].[dbo].[Buildings] Buildings
+          [dbo].[LiveAddress] LiveAddress
+            LEFT JOIN   [dbo].[Buildings] Buildings
                 ON [LiveAddress].building_id = [Buildings].Id
-            LEFT JOIN [CRM_1551_Analitics].[dbo].[Streets] Streets
+            LEFT JOIN   [dbo].[Streets] Streets
                 ON [Buildings].street_id = [Streets].Id
-            LEFT JOIN [CRM_1551_Analitics].[dbo].[StreetTypes] StreetTypes
+            LEFT JOIN   [dbo].[StreetTypes] StreetTypes
                 ON [Streets].street_type_id = [StreetTypes].Id
-            LEFT JOIN [CRM_1551_Analitics].[dbo].[Districts] Districts
+            LEFT JOIN   [dbo].[Districts] Districts
             ON [Buildings].district_id = [Districts].Id
         WHERE
             applicant_id = @app_id

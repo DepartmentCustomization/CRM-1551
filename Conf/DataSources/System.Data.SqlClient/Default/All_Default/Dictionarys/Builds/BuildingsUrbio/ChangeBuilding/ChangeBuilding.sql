@@ -1,45 +1,115 @@
-declare @updated table (prevId int);
+DECLARE @updated TABLE (prevId INT);
 
-update Questions 
-set [object_id] = (select Id from [Objects] where builbing_id = @building),
-[CodeOperation] = N'ChangeFromFormBuilding'
-,[edit_date]=GETUTCDATE()
-OUTPUT deleted.Id
-into @updated
-where Id in (
-select distinct q.Id as question
-from Questions q
-join Assignments ass on ass.question_id = q.Id
-join [Objects] obj on obj.Id = q.[object_id]
-join Buildings b on b.Id = obj.builbing_id
-join Organizations o on ass.executor_organization_id = o.Id
-where b.Id = @Id
-);
+UPDATE
+    dbo.[Questions]
+SET
+    [object_id] = (
+        SELECT
+            Id
+        FROM
+            dbo.[Objects]
+        WHERE
+            builbing_id = @building
+    ),
+    [CodeOperation] = N'ChangeFromFormBuilding',
+    [edit_date] = GETUTCDATE() 
+    OUTPUT deleted.Id INTO @updated
+WHERE
+    Id IN (
+        SELECT
+            DISTINCT q.Id AS question
+        FROM
+            dbo.[Questions] q
+            JOIN dbo.[Assignments] ass ON ass.question_id = q.Id
+            JOIN dbo.[Objects] obj ON obj.Id = q.[object_id]
+            JOIN dbo.[Buildings] b ON b.Id = obj.builbing_id
+            JOIN dbo.[Organizations] o ON ass.executor_organization_id = o.Id
+        WHERE
+            b.Id = @Id
+    );
 
-update EventObjects 
-set object_id = (select Id from [Objects] where builbing_id = @building)
-where object_id = (select Id from [Objects] where builbing_id = @Id);
+UPDATE
+    dbo.[EventObjects]
+SET
+    object_id = (
+        SELECT
+            Id
+        FROM
+            dbo.[Objects]
+        WHERE
+            builbing_id = @building
+    )
+WHERE
+    object_id = (
+        SELECT
+            Id
+        FROM
+            dbo.[Objects]
+        WHERE
+            builbing_id = @Id
+    );
 
-update LiveAddress
-set building_id = @building
-OUTPUT deleted.Id
-into @updated
-where applicant_id in 
-(
-select a.Id as applicant
-from Applicants a
-join LiveAddress la on la.applicant_id = a.Id 
-where la.building_id = @Id
-);
+UPDATE
+    dbo.[LiveAddress]
+SET
+    building_id = @building,
+	edit_date = GETUTCDATE(),
+	user_edit_id = @user_id
+	OUTPUT deleted.Id INTO @updated
+WHERE
+    applicant_id IN (
+        SELECT
+            a.Id AS applicant
+        FROM
+            dbo.[Applicants] a
+            JOIN dbo.[LiveAddress] la ON la.applicant_id = a.Id
+        WHERE
+            la.building_id = @Id
+    );
 
-update ExecutorInRoleForObject
-set object_id = (select Id from [Objects] where builbing_id = @building)
--- building_id = @building 
-where Id in (select Id from ExecutorInRoleForObject ex where object_id = @Id
-);
+UPDATE
+    dbo.[ExecutorInRoleForObject]
+SET
+    object_id = (
+        SELECT
+            Id
+        FROM
+            dbo.[Objects]
+        WHERE
+            builbing_id = @building
+    ) -- building_id = @building 
+WHERE
+    Id IN (
+        SELECT
+            Id
+        FROM
+            dbo.[ExecutorInRoleForObject] ex
+        WHERE
+            object_id = @Id
+    );
 
-update ValuesParamsObjects
-set object_id = (select Id from [Objects] where builbing_id = @building)
-where object_id = (select Id from [Objects] where builbing_id = @Id);
+UPDATE
+    dbo.[ValuesParamsObjects]
+SET
+    object_id = (
+        SELECT
+            Id
+        FROM
+            dbo.[Objects]
+        WHERE
+            builbing_id = @building
+    )
+WHERE
+    object_id = (
+        SELECT
+            Id
+        FROM
+            dbo.[Objects]
+        WHERE
+            builbing_id = @Id
+    );
 
-    select * from @updated
+SELECT
+    *
+FROM
+    @updated;
