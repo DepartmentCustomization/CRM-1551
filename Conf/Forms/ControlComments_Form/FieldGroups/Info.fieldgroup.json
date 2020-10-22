@@ -1,0 +1,61 @@
+{
+  "Code": "Info",
+  "Name": " ",
+  "Position": 1,
+  "Fields": [
+    {
+      "Code": "template_name",
+      "Name": "Назва",
+      "FieldType": "text",
+      "Position": 1,
+      "Width": "100%"
+    },
+    {
+      "Code": "name",
+      "Name": "Зміст",
+      "FieldType": "textarea",
+      "Position": 2,
+      "Rows": 10,
+      "Width": "100%"
+    },
+    {
+      "Code": "control_type_id",
+      "Name": "Тип контролю",
+      "FieldType": "select",
+      "Position": 3,
+      "Width": "50%",
+      "QueryCode": "list_ControlTypes",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "name",
+      "QueryParameters": []
+    },
+    {
+      "Code": "user_create",
+      "Name": "Зареєстрував",
+      "FieldType": "text",
+      "Position": 4,
+      "Width": "70%"
+    },
+    {
+      "Code": "create_date",
+      "Name": "Дата створення",
+      "FieldType": "date",
+      "Position": 5,
+      "Width": "30%"
+    },
+    {
+      "Code": "user_edit",
+      "Name": "Відредагував",
+      "FieldType": "text",
+      "Position": 6,
+      "Width": "70%"
+    },
+    {
+      "Code": "edit_date",
+      "Name": "Дата редагування",
+      "FieldType": "date",
+      "Position": 7,
+      "Width": "30%"
+    }
+  ]
+}

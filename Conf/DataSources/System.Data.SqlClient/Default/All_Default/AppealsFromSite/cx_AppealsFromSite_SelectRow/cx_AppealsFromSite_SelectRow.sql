@@ -1,4 +1,10 @@
---   DECLARE @Id INT = 3313;
+
+
+
+
+
+
+  --DECLARE @Id INT = 67551;
 
 SELECT
 	TOP 1
@@ -167,7 +173,7 @@ CASE
 		ELSE N''
 	END AS [ApplicantFromSite_Mail],
 
-   IIF(aa.BuildingId IS NULL, 	
+   --IIF(aa.BuildingId IS NULL, 	
    stuff(
 			(
 							SELECT TOP 1
@@ -177,14 +183,21 @@ CASE
 							FROM
 								[CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteAddresses] aa
 							WHERE
-								aa.ApplicantFromSiteId = abi.Id FOR XML PATH('')
+								aa.ApplicantFromSiteId = abi.Id 
+							--order by case when [AddressTypeId]=4 then [AddressTypeId]
+							--else aa.Id*(-1) end 
+							order by case when [AddressTypeId]=4 then 1 else 2 end,
+							aa.Id desc
+								FOR XML PATH('')
 						),
 						1,
 						1,
 						N''
-					),
-			 d.name + N' р-н, ' + st.name + N' ' + s.name + N', буд. ' + b.name  + isnull(N', кв. ' +aa.flat, N'')
-			) AS ApplicantFromSite_Address,
+					)
+			--		,
+			-- d.name + N' р-н, ' + st.name + N' ' + s.name + N', буд. ' + b.name  + isnull(N', кв. ' +aa.flat, N'')
+			--) AS 
+			ApplicantFromSite_Address,
 	aa.ApplicantFromSiteId,
 	abi.sex AS [ApplicantFromSite_Sex],
 	abi.birthdate AS [ApplicantFromSite_Birthdate],
@@ -221,17 +234,17 @@ CASE
 FROM
 	[CRM_1551_Site_Integration].[dbo].[AppealsFromSite] afs
 	LEFT JOIN [CRM_1551_Site_Integration].[dbo].[ApplicantsFromSite] abi ON abi.Id = afs.ApplicantFromSiteId
-	LEFT JOIN [CRM_1551_Analitics].[dbo].[SocialStates] ss ON ss.Id = abi.SocialStateId
-	LEFT JOIN [CRM_1551_Analitics].[dbo].[ApplicantPrivilege] ap ON ap.Id = abi.ApplicantPrivilegeId
+	LEFT JOIN   [dbo].[SocialStates] ss ON ss.Id = abi.SocialStateId
+	LEFT JOIN   [dbo].[ApplicantPrivilege] ap ON ap.Id = abi.ApplicantPrivilegeId
 	LEFT JOIN [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteAddresses] aa ON aa.ApplicantFromSiteId = abi.Id
-	LEFT JOIN [CRM_1551_Analitics].[dbo].[SiteAppealsResults] res ON res.id = afs.AppealFromSiteResultId
+	LEFT JOIN   [dbo].[SiteAppealsResults] res ON res.id = afs.AppealFromSiteResultId
 	LEFT JOIN [CRM_1551_Site_Integration].[dbo].[WorkDirectionTypes] wdt ON wdt.id = afs.WorkDirectionTypeId
-	LEFT JOIN [CRM_1551_Analitics].[dbo].[Objects] obj ON obj.Id = afs.ObjectId
-	LEFT JOIN [CRM_1551_Analitics].[dbo].[Objects] applicantObj ON applicantObj.builbing_id = aa.BuildingId
-	LEFT JOIN CRM_1551_Analitics.dbo.Buildings b ON b.Id = aa.BuildingId
-	LEFT JOIN CRM_1551_Analitics.dbo.Streets s ON s.Id = b.street_id
-	LEFT JOIN CRM_1551_Analitics.dbo.StreetTypes st ON st.Id = s.street_type_id
-	LEFT JOIN CRM_1551_Analitics.dbo.Districts d ON d.Id = s.district_id
+	LEFT JOIN   [dbo].[Objects] obj ON obj.Id = afs.ObjectId
+	LEFT JOIN   [dbo].[Objects] applicantObj ON applicantObj.builbing_id = aa.BuildingId
+	LEFT JOIN dbo.Buildings b ON b.Id = aa.BuildingId
+	LEFT JOIN dbo.Streets s ON s.Id = b.street_id
+	LEFT JOIN dbo.StreetTypes st ON st.Id = s.street_type_id
+	LEFT JOIN dbo.Districts d ON d.Id = s.district_id
 WHERE
 	afs.Id = @Id
 	ORDER BY 5 DESC ;

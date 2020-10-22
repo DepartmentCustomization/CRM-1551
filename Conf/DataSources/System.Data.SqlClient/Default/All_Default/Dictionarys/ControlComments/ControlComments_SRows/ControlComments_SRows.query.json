@@ -1,0 +1,72 @@
+{
+  "ModelType": "Query",
+  "Code": "ControlComments_SRows",
+  "Name": "ControlComments_SRows",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "IsAnonymousAccess": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false,
+      "SqlName": "[ControlComments].Id",
+      "FilterParameterCode": "@Id"
+    },
+    {
+      "Code": "template_name",
+      "Name": "Назва",
+      "Position": 1,
+      "IsPrintable": false,
+      "SqlName": "[ControlComments].[template_name]",
+      "FilterParameterCode": "@template_name"
+    },
+    {
+      "Code": "name",
+      "Name": "Зміст",
+      "Position": 2,
+      "IsPrintable": false,
+      "SqlName": "[ControlComments].[name]",
+      "FilterParameterCode": "@name"
+    },
+    {
+      "Code": "control_type_name",
+      "Name": "Назва типу контролю",
+      "Position": 3,
+      "IsPrintable": false,
+      "SqlName": "[ControlTypes].name",
+      "FilterParameterCode": "@control_type_name"
+    },
+    {
+      "Code": "user_name",
+      "Name": "Зареєстрував",
+      "Position": 4,
+      "IsPrintable": false,
+      "SqlName": "ISNULL([User].FirstName,N'')+ISNULL(N' '+[User].LastName, N'')",
+      "FilterParameterCode": "@user_name"
+    },
+    {
+      "Code": "create_date",
+      "Name": "Дата реєстрації",
+      "Position": 5,
+      "IsPrintable": false,
+      "SqlName": "create_date",
+      "FilterParameterCode": "@create_date"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@pageOffsetRows",
+      "Name": "pageOffsetRows",
+      "ParameterType": "Integer",
+      "IsPageOffsetRows": true
+    },
+    {
+      "Code": "@pageLimitRows",
+      "Name": "pageLimitRows",
+      "ParameterType": "Integer",
+      "IsPageLimitRows": true
+    }
+  ]
+}

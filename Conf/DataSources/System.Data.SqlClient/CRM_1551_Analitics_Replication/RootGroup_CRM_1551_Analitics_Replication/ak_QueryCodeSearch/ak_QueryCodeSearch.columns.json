@@ -244,6 +244,16 @@
   {
     "Code": "control_date",
     "Name": "control_date",
-    "Position": 41
+    "Position": 42
+  },
+  {
+    "Code": "rework_counter",
+    "Name": "rework_counter",
+    "Position": 43
+  },
+  {
+    "Code": "plan_program",
+    "Name": "plan_program",
+    "Position": 44
   }
 ]

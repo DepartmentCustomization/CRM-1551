@@ -1,0 +1,13 @@
+{
+  "ModelType": "Form",
+  "Code": "ControlComments_Form",
+  "Name": "Довідник шаблонів",
+  "Details": [],
+  "Config": {
+    "FieldGroups": [
+      "string:FieldGroups\\Info.fieldgroup.json"
+    ],
+    "DefaultFields": [],
+    "Script": "string:ControlComments_Form.form.js"
+  }
+}

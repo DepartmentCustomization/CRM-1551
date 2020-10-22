@@ -4,7 +4,7 @@ declare @CalcDate date = N'2019-10-16',
 */
 
 --------------------------------
-declare @StartDate_IN date = rtrim(left(dateadd(day,-1,cast(@CalcDate as date)), 7))+ '-01',
+declare @StartDate_IN date = rtrim(left(dateadd(day,-1,cast(@CalcDate as date)), 7))+ '-02',
         @EndDate_IN  date = @CalcDate
 --select  @StartDate_IN, @CalcDate
 
@@ -18,6 +18,7 @@ set @toDate =@EndDate_IN
 set @str=''
 select @str = @str + '[' + cast(DateCalc as varchar) + '],'
 from (select distinct DateCalc from [dbo].[Rating_IntegratedMetric_PerformanceLevel] where DateCalc between @fromDate and @toDate) as A
+order by DateCalc
 --select @str
 
 set @q =

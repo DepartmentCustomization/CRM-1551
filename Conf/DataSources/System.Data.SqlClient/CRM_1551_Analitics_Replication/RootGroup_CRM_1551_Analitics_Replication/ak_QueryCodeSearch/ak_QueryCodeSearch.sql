@@ -1,9 +1,13 @@
 
 
+
+
+
 ----------после 2019 11 28 , согласно задачи 545 с файла
 
 
-/*
+/* 
+
  declare @user_id nvarchar(300)=N'd0da1bfc-438a-45ec-bc75-f1c8d05f0d9a';
  --d0da1bfc-438a-45ec-bc75-f1c8d05f0d9a
  --aa4c1f84-df33-452c-88e7-5a58dfd0b2d3
@@ -11,7 +15,7 @@
 
  declare @zayavnyk_phone_number nvarchar(max);--=N'062'; --0442859062 0631388062
 
-  declare @param1 nvarchar(max)=N'timeliness in (1, 2)'; --appeals_district in (1, 2, 3, 4, 5)
+  declare @param1 nvarchar(max)=N'timeliness in (1, 2) and rework_counter in (1) and plan_program=''true'''; --appeals_district in (1, 2, 3, 4, 5)
  declare @pageOffsetRows int =0;
  declare @pageLimitRows int =10;
 
@@ -33,8 +37,10 @@
  declare @control_date_from datetime;--='2019-07-21 21:00:00.000';
 declare @control_date_to datetime;--='2019-07-21 21:00:00.000';
 
+declare @registration_date_question_from datetime;--='2019-07-21 21:00:00.000';
+declare @registration_date_question_to datetime;--='2019-07-21 21:00:00.000';
+ 
  */
-
 ---------
 --set @DateStart1=getdate();
 
@@ -620,7 +626,8 @@ select distinct --top 5000
 
   ,[ConsDocumentContent]
   ,[control_date]
-
+  ,[rework_counter_true] [rework_counter] 
+  ,case when plan_program=''true'' then N''так'' else N''ні'' end plan_program
  from
  (
   select distinct [Assignments].Id,
@@ -706,7 +713,10 @@ when [Applicants].[birth_date] is null then year(getdate())-[Applicants].birth_y
   --,case when [Assignments].assignment_state_id=3
   --then [AssignmentConsiderations].consideration_date end [state_changed_date] -- good
 
-  ,case when convert(date, [AssignmentConsiderations].consideration_date)<>convert(date, [AssignmentConsiderations].[create_date])
+  --,case when convert(date, [AssignmentConsiderations].consideration_date)<>convert(date, [AssignmentConsiderations].[create_date])
+  --then [AssignmentConsiderations].consideration_date end [state_changed_date] 
+
+  ,case when abs(datediff(ss, [AssignmentConsiderations].consideration_date,[AssignmentConsiderations].[create_date]))>5
   then [AssignmentConsiderations].consideration_date end [state_changed_date] -- good
 
   ,case when [Assignments].assignment_state_id=3 and [AssignmentConsiderations].assignment_result_id=4
@@ -727,6 +737,12 @@ when [Applicants].[birth_date] is null then year(getdate())-[Applicants].birth_y
 
  ,case when [AssignmentStates].Id in (1,2) and [Assignments].[execution_date]<getutcdate()
  then ''true'' end overdue
+
+ ,case when [rework_counter]>=5 then 5 else [rework_counter] end [rework_counter] 
+
+ ,[rework_counter] [rework_counter_true]
+
+ ,case when [Questions].[event_id] is not null then ''true'' end plan_program
  
  /*
  ,case when timeliness_table.min_date<=[Assignments].[execution_date] then 1
@@ -745,8 +761,12 @@ when [Applicants].[birth_date] is null then year(getdate())-[Applicants].birth_y
   '+@filter_zayavnyk_phone_number+N' App_phone on [Applicants].Id=App_phone.applicant_id
   '+@filter_transfer_date+N' [AssignmentConsiderations] with (nolock) on [AssignmentConsiderations].Id = Assignments.current_assignment_consideration_id
   '+@filter_assigm_assignment_state+N' [AssignmentStates] with (nolock) on [Assignments].assignment_state_id=[AssignmentStates].Id
-  '+@filter_assigm_assignment_result+N' [AssignmentResults] with (nolock) on [AssignmentConsiderations].assignment_result_id=[AssignmentResults].Id
-  '+@filter_assigm_assignment_resolution+N' [AssignmentResolutions] with (nolock) on [AssignmentConsiderations].assignment_resolution_id=[AssignmentResolutions].id
+  '+@filter_assigm_assignment_result+N' [AssignmentResults] with (nolock) on [Assignments].AssignmentResultsId=[AssignmentResults].Id
+  --[AssignmentResults] with (nolock) on [AssignmentConsiderations].assignment_result_id=[AssignmentResults].Id
+  --[AssignmentResults] with (nolock) on [Assignments].AssignmentResultsId=[AssignmentResults].Id
+  '+@filter_assigm_assignment_resolution+N' [AssignmentResolutions] with (nolock) on [Assignments].AssignmentResolutionsId=[AssignmentResolutions].Id
+  --[AssignmentResolutions] with (nolock) on [AssignmentConsiderations].assignment_resolution_id=[AssignmentResolutions].id
+  --[AssignmentResolutions] with (nolock) on [Assignments].AssignmentResolutionsId=[AssignmentResolutions].Id
   left join [AssignmentRevisions] with (nolock) on [AssignmentConsiderations].Id=[AssignmentRevisions].assignment_consideration_іd
   inner join [Organizations] [Organizations2] with (nolock) on [Assignments].executor_organization_id=[Organizations2].Id
   '+@filter_assigm_user_reviewed+N' [Workers] [Workers2] with (nolock) on [AssignmentConsiderations].user_edit_id=[Workers2].worker_user_id
@@ -772,8 +792,8 @@ when [Applicants].[birth_date] is null then year(getdate())-[Applicants].birth_y
   left join [AssignmentConsDocuments] with (nolock) on [AssignmentConsiderations].Id=[AssignmentConsDocuments].assignment_сons_id
 
   --left join (select distinct [AssignmentConsDocuments].assignment_сons_id, [content]
-  --from [10.192.200.82].[CRM_1551_Analitics].[dbo].[AssignmentConsDocuments] with (nolock)
-  --right join [10.192.200.82].[CRM_1551_Analitics].[dbo].[AssignmentConsDocFiles] with (nolock) on [AssignmentConsDocuments].Id=[AssignmentConsDocFiles].assignment_cons_doc_id
+  --from [dbo].[AssignmentConsDocuments] with (nolock)
+  --right join [dbo].[AssignmentConsDocFiles] with (nolock) on [AssignmentConsDocuments].Id=[AssignmentConsDocFiles].assignment_cons_doc_id
   --where [AssignmentConsDocuments].[doc_type_id] in (3,4) or [AssignmentConsDocuments].Id is not null) files_check on [AssignmentConsiderations].Id=files_check.assignment_сons_id
 
   --изменения по фильтрации
@@ -783,8 +803,9 @@ when [Applicants].[birth_date] is null then year(getdate())-[Applicants].birth_y
 
 
   ) a
-  where '+@param_new+ N'  and '+@organizations+N' 
+  where  '+@param_new+ N'  and '+@organizations+N'
 '
+--'+@param_new+ N'  and '+@organizations+N'
 -------
  -- and #filter_columns#
  -- #sort_columns#
@@ -794,3 +815,5 @@ when [Applicants].[birth_date] is null then year(getdate())-[Applicants].birth_y
  --comment
   EXEC(@query);
 
+
+  --select @param_new

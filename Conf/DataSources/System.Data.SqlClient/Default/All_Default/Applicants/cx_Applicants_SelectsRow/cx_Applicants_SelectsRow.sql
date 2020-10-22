@@ -1,4 +1,4 @@
--- DECLARE @applicant_id INT = 4;
+ --DECLARE @applicant_id INT = 1515914; ee
 ----------------> GET APPLICANT PHONES IN ROW <-----------------
 IF OBJECT_ID('tempdb.dbo.#ApplicantPhones') IS NOT NULL 
 BEGIN 
@@ -38,7 +38,7 @@ CLOSE cur;
 DEALLOCATE cur;
 ---------------------> END GETTING PHONES <---------------------
 DECLARE @birthYear INT = (SELECT LEFT(birth_date, 4) FROM dbo.[Applicants] WHERE Id = @applicant_id);
-SELECT
+SELECT TOP 1
     [Applicants].Id,
     [Applicants].full_name,
     [Applicants].mail,
@@ -89,6 +89,9 @@ SELECT
     END day_month,
     [Applicants].comment,
     [ApplicantPhones].phone_number
+
+	--,[LiveAddress].[main]
+	--,[LiveAddress].[active]
 FROM
     [dbo].[Applicants] [Applicants] 
     LEFT JOIN #ApplicantPhones [ApplicantPhones] ON [ApplicantPhones].applicant_id = [Applicants].Id 
@@ -102,4 +105,5 @@ FROM
     LEFT JOIN [dbo].[ApplicantPrivilege] [ApplicantPrivilege] ON [Applicants].applicant_privilage_id = [ApplicantPrivilege].Id
     LEFT JOIN [dbo].[SocialStates] [SocialStates] ON [Applicants].social_state_id = [SocialStates].Id
 WHERE
-    [Applicants].Id = @applicant_id;
+    [Applicants].Id = @applicant_id
+order by [LiveAddress].[main] desc

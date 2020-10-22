@@ -1,0 +1,22 @@
+{
+  "ModelType": "Query",
+  "Code": "GetContentTextByQTypeId",
+  "Name": "GetContentTextByQTypeId",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "comments",
+      "Name": "comments",
+      "Position": 1
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

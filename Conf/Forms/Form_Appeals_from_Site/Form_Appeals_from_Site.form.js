@@ -57,6 +57,7 @@
                 this.form.getControlValue('ApplicantFromSite_Address_Flat'));
         },
         init: function() {
+            this.form.onControlValueChanged('ControlComments_Id', this.shablon.bind(this));
             this.set1551_building();
             let btn_newQuestion = document.getElementById('Question_Btn_Add');
             btn_newQuestion.disabled = true;
@@ -263,6 +264,20 @@
             }];
             this.details.setActionMenu('Site_Applicant', menuDetail_Aplicant);
         },
+        shablon: function() {
+            const queryForGetValue = {
+                queryCode: 'list_ControlComments_param',
+                parameterValues: [
+                    {
+                        key: '@Id',
+                        value: this.form.getControlValue('ControlComments_Id')
+                    }
+                ]
+            };
+            this.queryExecutor.getValues(queryForGetValue).subscribe(data => {
+                this.form.setControlValue('AppealFromSite_CommentModerator', data.rows[0].values);
+            })
+        },
         Dublicate_Aplicant: function() {
             const queryForGetValueDublicate = {
                 queryCode: 'ApplicantDublicateInsertRow',
@@ -423,6 +438,34 @@
                 this.onQuestionControlDate(questionType);
                 this.questionObjectOrg();
             }
+
+            if (questionType) {
+                this.GetContentTextByQTypeId(questionType);
+            } else {
+                this.form.setControlVisibility('Question_Type_Content', false);
+                this.form.setControlValue('Question_Type_Content', '');
+            }
+        },
+        GetContentTextByQTypeId: function(value) {
+            const ContentTextByQTypeId = {
+                queryCode: 'GetContentTextByQTypeId',
+                parameterValues: [
+                    {
+                        key: '@Id',
+                        value: value
+                    }
+                ]
+            };
+            this.queryExecutor.getValue(ContentTextByQTypeId).subscribe(data => {
+                this.form.disableControl('Question_Type_Content');
+                if(data) {
+                    this.form.setControlVisibility('Question_Type_Content', true);
+                    this.form.setControlValue('Question_Type_Content', data);
+                } else {
+                    this.form.setControlVisibility('Question_Type_Content', false);
+                    this.form.setControlValue('Question_Type_Content', '');
+                }
+            });
         },
         onChanged_Question_Building_Input: function(value) {
             if (value) {

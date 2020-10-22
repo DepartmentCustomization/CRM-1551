@@ -1,0 +1,66 @@
+{
+  "ModelType": "Query",
+  "Code": "db_ConsultationStatistic_Result",
+  "Name": "db_ConsultationStatistic_Result",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "article_qty",
+      "Name": "article_qty",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "article_percent",
+      "Name": "article_percent",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "talk_all",
+      "Name": "talk_all",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "talk_consultations_only",
+      "Name": "talk_consultations_only",
+      "Position": 4,
+      "IsPrintable": false
+    },
+    {
+      "Code": "talk_consultation_average",
+      "Name": "talk_consultation_average",
+      "Position": 5,
+      "IsPrintable": false
+    },
+    {
+      "Code": "UserId",
+      "Name": "UserId",
+      "Position": 6,
+      "ViewState": "Hidden",
+      "IsPrintable": false,
+      "SqlName": "u.[UserId]",
+      "FilterParameterCode": "@UserId"
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@dateTo",
+      "Name": "dateTo",
+      "ParameterType": "DateTime"
+    },
+    {
+      "Code": "@dateFrom",
+      "Name": "dateFrom",
+      "ParameterType": "DateTime"
+    }
+  ]
+}

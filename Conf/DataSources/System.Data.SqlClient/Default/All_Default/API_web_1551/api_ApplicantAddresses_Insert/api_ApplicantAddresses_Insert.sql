@@ -1,4 +1,27 @@
-IF NOT EXISTS
+
+
+if exists (select top 1 Id from [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteAddresses]
+ where [ApplicantFromSiteId]=@applicant_id and [AddressTypeId]=4)
+
+ begin
+	update [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteAddresses]
+	set [AddressTypeId]=@addresstype_id
+           ,[Index]=@index
+           ,[Country]=@country
+           ,[Region]=@region
+           ,[District]=@district
+           ,[Cityname]=@cityname
+           ,[Streetid]=@street_id
+           ,[StreetName]=@street
+           ,[BuildingId]=@building_id
+           ,[BuildingName]=@building
+           ,[flat]=@flat
+	where [ApplicantFromSiteId]=@applicant_id and [AddressTypeId]=4
+ end 
+
+
+
+ELSE IF NOT EXISTS
   (SELECT Id FROM [CRM_1551_Site_Integration].[dbo].[ApplicantFromSiteAddresses]
   WHERE ISNULL([ApplicantFromSiteId],0)=ISNULL(@applicant_id,0)
             AND ISNULL([AddressTypeId],0)=ISNULL(@addresstype_id,0)
@@ -44,3 +67,4 @@ IF NOT EXISTS
            ,@flat);
 
 	END
+

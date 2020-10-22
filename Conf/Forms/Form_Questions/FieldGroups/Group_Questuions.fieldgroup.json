@@ -57,6 +57,7 @@
             "QueryCode": "list_QuestionTypes_for_select",
             "KeyColumnCode": "Id",
             "DisplayColumnCode": "name",
+            "IsRequired": true,
             "QueryParameters": []
         },
         {
@@ -189,6 +190,13 @@
             "Name": "question_id",
             "FieldType": "number",
             "Position": 345,
+            "IsHidden": true
+        },
+        {
+            "Code": "Object_is",
+            "Name": "Object_is",
+            "FieldType": "number",
+            "Position": 346,
             "IsHidden": true
         }
     ]

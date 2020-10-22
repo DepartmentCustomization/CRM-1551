@@ -1565,6 +1565,14 @@
                 document.getElementById('WIKI_Btn_Search').disabled = false;
                 document.getElementById('WIKI_Btn_Consultation').disabled = false;
             }
+
+            if (value === 1) {
+                this.form.setControlValue('WIKI_KnowledgeBaseState', []);
+                this.form.setControlValue('WIKI_KnowledgeBaseState', null);
+                document.getElementById('WIKI_Btn_Search').disabled = true;
+                document.getElementById('WIKI_Btn_Consultation').disabled = true;
+            }
+            
         },
         onChangedApplicant_Id: function(value) {
             if (!value || value === '') {

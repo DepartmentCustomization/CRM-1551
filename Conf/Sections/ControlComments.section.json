@@ -1,0 +1,13 @@
+{
+  "Add": {
+    "InsertQueryCode": "ControlComments_IRow"
+  },
+  "ModelType": "Section",
+  "Code": "ControlComments",
+  "Name": "Довідник: Шаблон",
+  "FormCode": "ControlComments_Form",
+  "SelectRowsQueryCode": "ControlComments_SRows",
+  "SelectRowQueryCode": "ControlComments_SRow",
+  "UpdateQueryCode": "ControlComments_URow",
+  "DeleteQueryCode": "ControlComments_DRow"
+}

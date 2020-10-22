@@ -1,0 +1,73 @@
+{
+  "ModelType": "Query",
+  "Code": "ControlComments_SRow",
+  "Name": "ControlComments_SRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "IsAnonymousAccess": false,
+  "Columns": [
+    {
+      "Code": "Id",
+      "Name": "Id",
+      "Position": 0,
+      "IsPrintable": false
+    },
+    {
+      "Code": "template_name",
+      "Name": "template_name",
+      "Position": 1,
+      "IsPrintable": false
+    },
+    {
+      "Code": "name",
+      "Name": "name",
+      "Position": 2,
+      "IsPrintable": false
+    },
+    {
+      "Code": "control_type_id",
+      "Name": "control_type_id",
+      "Position": 3,
+      "IsPrintable": false
+    },
+    {
+      "Code": "control_type_name",
+      "Name": "control_type_name",
+      "Position": 4,
+      "IsPrintable": false,
+      "ReferenceKeyCode": "control_type_id"
+    },
+    {
+      "Code": "user_create",
+      "Name": "user_create",
+      "Position": 5,
+      "IsPrintable": false
+    },
+    {
+      "Code": "create_date",
+      "Name": "create_date",
+      "Position": 6,
+      "IsPrintable": false
+    },
+    {
+      "Code": "user_edit",
+      "Name": "user_edit",
+      "Position": 7,
+      "IsPrintable": false
+    },
+    {
+      "Code": "edit_date",
+      "Name": "edit_date",
+      "Position": 8,
+      "IsPrintable": false
+    }
+  ],
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

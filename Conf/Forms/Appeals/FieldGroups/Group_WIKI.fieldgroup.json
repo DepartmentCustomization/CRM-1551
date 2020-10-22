@@ -7,13 +7,19 @@
     {
       "Code": "WIKI_KnowledgeBaseState",
       "Name": "Стаття в БЗ",
-      "FieldType": "select",
+      "FieldType": "lookup",
       "Position": 1,
-      "Width": "100%",
-      "QueryCode": "List_KnowledgeBaseStates",
+      "QueryCode": "ListTree_KnowledgeBaseStates_SelectRows",
       "KeyColumnCode": "Id",
       "DisplayColumnCode": "Name",
-      "QueryParameters": []
+      "QueryParameters": [],
+      "LookupType": "tree",
+      "ParentColumnCode": "ParentId",
+      "PathColumnCode": "Path",
+      "SearchQueryCode": "ListTree_KnowledgeBaseStates_SelectRows_Search",
+      "SearchKeyColumnCode": "Id",
+      "SearchDisplayColumnCode": "Name",
+      "Width": "100%"
     },
     {
       "Code": "WIKI_Btn_Search",

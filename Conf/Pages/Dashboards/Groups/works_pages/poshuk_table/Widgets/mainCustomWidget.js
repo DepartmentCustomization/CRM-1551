@@ -420,9 +420,24 @@
             const group1__element4 = this.createElement('div', {
                 className: 'group__element'
             }, group1__element4_checkBox, group1__element4_title);
+            const group1__element6_checkBox = this.createElement('input', {
+                type: 'checkbox',
+                className: 'group__element_checkBox',
+                columnWidth: 90,
+                value: 'rework_counter',
+                id: 'rework_counter'
+            });
+            const group1__element6_title = this.createElement('div', {
+                className: 'group__element_title',
+                innerText: 'Лічильник'
+            });
+            const group1__element6 = this.createElement('div', {
+                className: 'group__element'
+            }, group1__element6_checkBox, group1__element6_title);
+
             const group1__container = this.createElement('div', {
                 className: 'groupContainer'
-            }, group1__title, group1__element1, group1__element5, group1__element2, group1__element3, group1__element4);
+            }, group1__title, group1__element1, group1__element5, group1__element2, group1__element3, group1__element4, group1__element6);
             const group2__element2_checkBox = this.createElement('input', {
                 type: 'checkbox',
                 className: 'group__element_checkBox',
@@ -711,6 +726,25 @@
             const group4__element9 = this.createElement('div', {
                 className: 'group__element'
             }, group4__element9_checkBox, group4__element9_title);
+
+
+            const group4__element12_checkBox = this.createElement('input', {
+                type: 'checkbox',
+                className: 'group__element_checkBox',
+                columnWidth: 100,
+                value: 'plan_program',
+                id: 'plan_program',
+                textAlign:'center'
+            });
+            const group4__element12_title = this.createElement('div', {
+                className: 'group__element_title',
+                innerText: 'План/Програма'
+            });
+            const group4__element12 = this.createElement('div', {
+                className: 'group__element'
+            }, group4__element12_checkBox, group4__element12_title);
+
+
             const group4__element10_checkBox = this.createElement('input', {
                 type: 'checkbox',
                 className: 'group__element_checkBox',
@@ -744,7 +778,7 @@
             },
             group4__title, group4__element2, group4__element3, group4__element4, group4__element5,
             group4__element6, group4__element7, group4__element8 , group4__element9,
-            group4__element11, group4__element10);
+            group4__element11, group4__element10, group4__element12);
             const group5__element2_checkBox = this.createElement('input', {
                 type: 'checkbox',
                 className: 'group__element_checkBox',

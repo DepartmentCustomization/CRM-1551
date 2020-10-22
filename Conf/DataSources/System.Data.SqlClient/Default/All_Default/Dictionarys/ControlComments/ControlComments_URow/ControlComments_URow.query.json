@@ -1,0 +1,8 @@
+{
+  "ModelType": "Query",
+  "Code": "ControlComments_URow",
+  "Name": "ControlComments_URow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "IsAnonymousAccess": false
+}

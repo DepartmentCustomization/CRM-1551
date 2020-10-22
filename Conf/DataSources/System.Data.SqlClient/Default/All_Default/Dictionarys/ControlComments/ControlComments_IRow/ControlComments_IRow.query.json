@@ -1,0 +1,34 @@
+{
+  "ModelType": "Query",
+  "Code": "ControlComments_IRow",
+  "Name": "ControlComments_IRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "IsAnonymousAccess": false,
+  "Parameters": [
+    {
+      "Code": "@control_type_id",
+      "Name": "control_type_id",
+      "ParameterType": "Integer"
+    },
+    {
+      "Code": "@name",
+      "Name": "name"
+    },
+    {
+      "Code": "@template_name",
+      "Name": "template_name"
+    },
+    {
+      "Code": "@user_id",
+      "Name": "user_id",
+      "ParameterType": "CurrentUserId"
+    },
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}

@@ -39,6 +39,15 @@
       "SearchDisplayColumnCode": "Name"
     },
     {
+      "Code": "Question_Type_Content",
+      "Name": "Опис Типу питання",
+      "FieldType": "textarea",
+      "Position": 2,
+      "Rows": 5,      
+      "Width": "100%",
+      "IsHidden": true
+    },
+    {
       "Code": "Question_Building",
       "Name": "Об'єкт",
       "FieldType": "select",

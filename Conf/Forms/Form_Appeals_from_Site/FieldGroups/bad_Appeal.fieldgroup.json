@@ -5,6 +5,17 @@
   "IsWithClosing": true,
   "Fields": [
     {
+      "Code": "ControlComments_Id",
+      "Name": "Шаблон",
+      "FieldType": "select",
+      "Position": 0,
+      "Width": "100%",
+      "QueryCode": "list_ControlComments",
+      "KeyColumnCode": "Id",
+      "DisplayColumnCode": "template_name",
+      "QueryParameters": []
+    },
+    {
       "Code": "AppealFromSite_CommentModerator",
       "Name": "Коментар модератора",
       "FieldType": "textarea",

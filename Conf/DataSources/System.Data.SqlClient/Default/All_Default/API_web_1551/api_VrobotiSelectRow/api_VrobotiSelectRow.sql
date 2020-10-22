@@ -96,12 +96,13 @@ WHERE
 		OR (
 			[Questions].[question_state_id] = 3
 			/*На перевірці*/
-			AND [Assignments].AssignmentResolutionsId = 7
+			AND [MainAss].AssignmentResolutionsId = 7
 			/*Роз'яснено*/
-			AND [Assignments].AssignmentResultsId = 8
+			AND [MainAss].AssignmentResultsId = 8
 			/*Неможливо виконати*/
 		)
 		/*END CRM1551-395*/
+		OR ( [Appeals].receipt_source_id IN (1,8) and [Questions].[question_state_id] = 1)
 	)
 GROUP BY 
 	[Appeals].Id,
@@ -200,12 +201,13 @@ WHERE
 		OR (
 			[Questions].[question_state_id] = 3
 			/*На перевірці*/
-			AND [Assignments].AssignmentResolutionsId = 7
+			AND [MainAss].AssignmentResolutionsId = 7
 			/*Роз'яснено*/
-			AND [Assignments].AssignmentResultsId = 8
+			AND [MainAss].AssignmentResultsId = 8
 			/*Неможливо виконати*/
 		)
 		/*END CRM1551-395*/
+		OR ( [Appeals].receipt_source_id IN (1,8) and [Questions].[question_state_id] = 1)
 	)
 GROUP BY 
 	[Appeals].Id,

@@ -1,3 +1,18 @@
+
+
+
+
+--сообщение начало
+IF(isnull(@object_id, 0)< (SELECT case when [Object_is]='true' then 1 else 0 end [Object_is] 
+from [dbo].[QuestionTypes] where Id=@question_type_id))
+  BEGIN
+    RAISERROR(N'Збереження змін неможливе. Внесіть необхідну інформацію', 16, 1);
+    RETURN;
+  END
+--сообщение конец
+ELSE
+	BEGIN
+
 DECLARE @zoneVal SMALLINT = DATEPART(TZOffset, SYSDATETIMEOFFSET());
 IF(CAST(@control_date AS TIME) = '23:59:59')
 BEGIN
@@ -239,5 +254,6 @@ SET
 	[edit_date] = getutcdate()
 WHERE
 	Id = @assigment ;
+END
 END
 END

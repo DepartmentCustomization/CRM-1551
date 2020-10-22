@@ -1,0 +1,16 @@
+{
+  "ModelType": "Query",
+  "Code": "ControlComments_DRow",
+  "Name": "ControlComments_DRow",
+  "ConnectionCode": "Default",
+  "IsUsedForRightsFilter": false,
+  "IsAnonymousAccess": false,
+  "Parameters": [
+    {
+      "Code": "@Id",
+      "Name": "Id",
+      "ParameterType": "Integer",
+      "IsPrimaryKey": true
+    }
+  ]
+}
