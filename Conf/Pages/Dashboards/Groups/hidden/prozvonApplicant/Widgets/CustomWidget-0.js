@@ -226,7 +226,7 @@
         sendResult: function(modalContainer) {
             if (this.sortingArr) {
                 const a = [];
-                this.sortingArr.forEach(el => a.push(`${el.name} ${el.value}`));
+                this.sortingArr.forEach(el => a.push(`${el.fullName} ${el.value}`));
                 this.sendSortValue = a.join(', ');
             } else {
                 this.sendSortValue = '1=1';
