@@ -1,6 +1,6 @@
---   DECLARE @applicant_id INT = null;
---   DECLARE @type NVARCHAR(100) = N'Усі';
---   DECLARE @object_id INT = 15754;
+-- DECLARE @applicant_id INT = NULL;
+-- DECLARE @type NVARCHAR(100) = N'Зареєстровано';
+-- DECLARE @object_id INT = 34521;
 
 IF object_id('tempdb..#ClaimsResult') IS NOT NULL
 BEGIN
@@ -197,7 +197,7 @@ FROM
 	LEFT JOIN [CRM_1551_GORODOK_Integrartion].[dbo].[Lokal_copy_gorodok_claims] [Lokal_copy_gorodok_claims] ON [Lokal_copy_gorodok_claims].[object_id] = [Gorodok_1551_houses].gorodok_houses_id
 	LEFT JOIN [CRM_1551_GORODOK_Integrartion].[dbo].Claims_states Claims_states ON Claims_states.[name] = [Lokal_copy_gorodok_claims].[status]
 	LEFT JOIN [dbo].[QuestionStates] [QuestionStates] ON [QuestionStates].Id = Claims_states.[1551_state]
-WHERE [Gorodok_1551_houses].[1551_houses_id] = @object_id
+WHERE [Gorodok_1551_houses].[1551_houses_id] = @object_id;
 END 
 ELSE IF @type = N'Зареєстровано' 
 BEGIN
@@ -301,12 +301,19 @@ WHERE [Gorodok_1551_houses].[1551_houses_id] = @object_id
 	) ;
 END 
 END
+/*
+Час в БД Городка зберігається реальний час, а ми при виводі Глобалок Городка додаємо +3 години чи +2 години. Потрібно в деталі Заходи та 
+ЗАЯВКИ ЗА ГОРОДКОМ відображати час як є в БД.
+Task 1006
+*/
+DECLARE @zoneVal SMALLINT = DATEPART(TZOffset, SYSDATETIMEOFFSET());
 	SELECT 
 		[Номер питання],
 		[Стан питання],
 		[Тип питання],
 		[Виконавець],
-		[Планова дата виконання],
+		-- что-бы отобразить в детали дату-время с бд городка уменьшаем на текущее значение от разницы UTC
+		DATEADD(MINUTE,-@zoneVal,[Планова дата виконання]) AS [Планова дата виконання],
 		[Id]
 	FROM #ClaimsResult
 	WHERE 

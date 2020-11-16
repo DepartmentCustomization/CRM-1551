@@ -1549,9 +1549,14 @@
             this.form.setControlValue('Event_Prew_Name', row.values[0]);
             this.form.setControlValue('Event_Prew_EventOrganizers', row.values[3]);
             this.form.setControlValue('Event_Prew_Comment', row.values[4]);
-            this.form.setControlValue('Event_Prew_StartDate', new Date(row.values[5]));
-            this.form.setControlValue('Event_Prew_PlanEndDate', new Date(row.values[6]));
+            this.form.setControlValue('Event_Prew_StartDate', this.avoidUTConDate(new Date(row.values[5])));
+            this.form.setControlValue('Event_Prew_PlanEndDate', this.avoidUTConDate(new Date(row.values[6])));
             this.scrollTopMainForm();
+        },
+        avoidUTConDate: function(date) {
+            let ms = 60000;
+            let offset = Math.abs(date.getTimezoneOffset());
+            return new Date(date.getTime() + offset * ms);
         },
         onChangedWIKI_KnowledgeBaseState: function(value) {
             if (typeof value === 'string') {

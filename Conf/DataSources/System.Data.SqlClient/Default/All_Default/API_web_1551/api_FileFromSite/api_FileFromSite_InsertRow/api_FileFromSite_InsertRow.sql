@@ -1,27 +1,23 @@
 IF(@appeal_from_site_id) IS NOT NULL 
+AND LEN(@appeal_from_site_id) > 0
 BEGIN
 INSERT INTO
     [CRM_1551_Site_Integration].[dbo].[AppealFromSiteFiles] (
         [AppealFromSiteId],
         [File],
         [Name]
-    ) OUTPUT [inserted].[Id]
+    )
 SELECT
     @appeal_from_site_id,
     @file,
     @name;
-
 END 
 
-IF (
-    (@appeal_id IS NULL 
-    OR 
-	 @question_id IS NOT NULL 
-     OR
-	 @appeal_from_site_id IS NOT NULL)
-	 AND @is_revision = 'true'
-)
-OR (
+IF ((@appeal_id IS NOT NULL
+    OR @question_id IS NOT NULL
+    OR @appeal_from_site_id IS NOT NULL)
+    AND @is_revision = 'true')
+    OR (
     SELECT
         WorkDirectionTypeId
     FROM
@@ -31,7 +27,7 @@ OR (
 ) = 20 
 BEGIN
 INSERT INTO
-    [CRM_1551_Analitics].[dbo].[QuestionDocFiles] (
+    [dbo].[QuestionDocFiles] (
         [link],
         [create_date],
         [user_id],
@@ -56,13 +52,13 @@ SELECT
         SELECT
             TOP 1 [Questions].Id
         FROM
-            [CRM_1551_Site_Integration].[dbo].[AppealsFromSite] [AppealsFromSite]
-            INNER JOIN [CRM_1551_Analitics].[dbo].[Appeals] [Appeals] ON [AppealsFromSite].Appeal_Id = [Appeals].Id
-            INNER JOIN [CRM_1551_Analitics].[dbo].[Questions] [Questions] ON [Appeals].Id = [Questions].appeal_id
+            [dbo].[Appeals] [Appeals]
+            LEFT JOIN [CRM_1551_Site_Integration].[dbo].[AppealsFromSite] [AppealsFromSite] ON [AppealsFromSite].Appeal_Id = [Appeals].Id
+            INNER JOIN [dbo].[Questions] [Questions] ON [Appeals].Id = [Questions].appeal_id
         WHERE
-            [AppealsFromSite].Id = @appeal_from_site_id 
-			OR [Appeals].Id = @appeal_id 
-			OR [Questions].Id = @question_id 
+            [AppealsFromSite].Id = @appeal_from_site_id
+            OR [Appeals].Id = @appeal_id
+            OR [Questions].Id = @question_id
     ) [question_id],
     --,[GUID]
     NULL [IsArchive],

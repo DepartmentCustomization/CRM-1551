@@ -1,4 +1,11 @@
---  DECLARE @object_id INT = 51068;
+--   DECLARE @object_id INT = 34521;
+
+ /*
+Час в БД Городка зберігається реальний час, а ми при виводі Глобалок Городка додаємо +3 години чи +2 години. Потрібно в деталі Заходи та 
+ЗАЯВКИ ЗА ГОРОДКОМ відображати час як є в БД.
+Task 1006
+*/
+DECLARE @zoneVal SMALLINT = DATEPART(TZOffset, SYSDATETIMEOFFSET());
 
 SELECT
     [Id],
@@ -42,8 +49,9 @@ FROM
             [EventTypes].name AS [Тип Заходу],
             lcg.[executor] AS [Відповідальний за усунення],
             lcg.[content] AS [Зміст],
-            lcg.[registration_date] AS [Дата початку],
-            lcg.[plan_finish_date] AS [Планова дата завершення],
+			-- что-бы отобразить в детали дату-время с бд городка уменьшаем на текущее значение от разницы UTC
+			DATEADD(MINUTE,-@zoneVal,lcg.[start_date]) AS [Дата початку],
+            DATEADD(MINUTE,-@zoneVal,lcg.[plan_finish_date]) AS [Планова дата завершення],
             [EventTypes].Id AS [EventTypesId],
             [Event_Class].[name] AS eventClassName,
             'GORODOK' AS [BaseType]
@@ -66,6 +74,6 @@ FROM
             )
     ) AS t1
 WHERE
-  #filter_columns#
-  #sort_columns#
-  OFFSET @pageOffsetRows ROWS FETCH NEXT @pageLimitRows ROWS ONLY;
+ #filter_columns#
+ #sort_columns#
+ OFFSET @pageOffsetRows ROWS FETCH NEXT @pageLimitRows ROWS ONLY;

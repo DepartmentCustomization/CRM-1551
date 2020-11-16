@@ -9,55 +9,70 @@
 
 DECLARE @assignments_table TABLE (Id INT);
 
-INSERT INTO
-  @assignments_table (Id)
 
-SELECT
-  [Assignments].Id
-FROM
-  dbo.[Appeals] [Appeals] 
-  INNER JOIN [Questions] [Questions] ON [Appeals].Id = [Questions].appeal_id
-  INNER JOIN [Assignments] [Assignments] ON [Questions].Id = [Assignments].question_id
-WHERE
-  [Appeals].Id = @appeal_id 
+if @question_id  is NULL
+begin
+  INSERT INTO
+    @assignments_table (Id)
+  SELECT
+    [Assignments].Id
+  FROM
+    dbo.[Appeals] [Appeals] 
+    INNER JOIN [Questions] [Questions] ON [Appeals].Id = [Questions].appeal_id
+    INNER JOIN [Assignments] [Assignments] ON [Questions].Id = [Assignments].question_id
+  WHERE
+    [Appeals].Id = @appeal_id 
+end
+else 
+begin
+  INSERT INTO
+    @assignments_table (Id)
+  SELECT
+    [Assignments].Id
+  FROM
+    dbo.[Appeals] [Appeals] 
+    INNER JOIN [Questions] [Questions] ON [Appeals].Id = [Questions].appeal_id
+    INNER JOIN [Assignments] [Assignments] ON [Questions].Id = [Assignments].question_id
+  WHERE
+    [Questions].Id = @question_id ;
+end;
 
-UNION 
-
-SELECT
-  [Assignments].Id
-FROM
-  dbo.[Appeals] [Appeals] 
-  INNER JOIN [Questions] [Questions] ON [Appeals].Id = [Questions].appeal_id
-  INNER JOIN [Assignments] [Assignments] ON [Questions].Id = [Assignments].question_id
-WHERE
-  [Questions].Id = @question_id ;
 
   -- select * from @assignments_table
   -- таблица с нужными вопросами
 DECLARE @questions_table TABLE (Id INT);
 
-INSERT INTO
+if @question_id  is NULL
+begin
+  INSERT INTO
   @questions_table (Id)
+  SELECT
+    [Questions].Id
+  FROM
+    [Appeals]
+    INNER JOIN [Questions] ON [Appeals].Id = [Questions].appeal_id
+  WHERE
+    [Appeals].Id = @appeal_id
+end
+else 
+begin
+  INSERT INTO
+  @questions_table (Id)
+  SELECT
+    [Questions].Id
+  FROM
+    [Appeals]
+    INNER JOIN [Questions] ON [Appeals].Id = [Questions].appeal_id
+  WHERE
+    [Questions].Id = @question_id ;
+end;
 
-SELECT
-  [Questions].Id
-FROM
-  [Appeals]
-  INNER JOIN [Questions] ON [Appeals].Id = [Questions].appeal_id
-WHERE
-  [Appeals].Id = @appeal_id
 
-  UNION 
 
-SELECT
-  [Questions].Id
-FROM
-  [Appeals]
-  INNER JOIN [Questions] ON [Appeals].Id = [Questions].appeal_id
-WHERE
-	[Questions].Id = @question_id ;
 
   DECLARE @output TABLE ([Id] INT);
+
+  
 
   IF @result IN (4, 11) 
   BEGIN
@@ -158,7 +173,20 @@ END
 IF @result IN (5) -- на доопрацюванні
 BEGIN
 DECLARE @lastAssignmentId INT = (SELECT TOP 1 last_assignment_for_execution_id FROM  dbo.[Questions] WHERE Id IN (SELECT Id FROM @questions_table));
-
+DECLARE @question_state INT;  
+SELECT 
+	@question_state = q.[question_state_id]
+FROM dbo.[Questions] q 
+INNER JOIN dbo.[Assignments] ass ON ass.Id = q.[last_assignment_for_execution_id]
+WHERE ass.Id = @lastAssignmentId;
+								
+	IF (SELECT [assignment_state_id] FROM dbo.[Assignments] WHERE Id = @lastAssignmentId) = 5
+	AND @question_state = 5
+	BEGIN
+		RAISERROR(N'Помилка! Дане звернення неможливо відправити на доопрацювання', 16, 1);
+		RETURN;
+	END
+	 
 UPDATE
   [AssignmentRevisions]
 SET

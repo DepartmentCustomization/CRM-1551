@@ -1,5 +1,5 @@
 -- DECLARE @dateFrom DATETIME = '2020-08-31T21:00:00.000Z';
--- DECLARE @dateTo DATETIME = GETDATE(); 
+-- DECLARE @dateTo DATETIME = GETDATE();
 
 IF OBJECT_ID ('tempdb..#Knowledge') IS NOT NULL
 BEGIN
@@ -34,8 +34,8 @@ SELECT
 	SUM(ISNULL(cs.number_by_day,0)) AS [article_qty], 
     CASE WHEN SUM(cs.number_by_day) > 0 
 		 THEN 
-		 CAST(CAST(SUM(cs.number_by_day) AS NUMERIC(5,2))
-		 / CAST(@Knowledge_AllVal AS NUMERIC(5,2)) AS NUMERIC(5,2)) * 100
+		 CAST(CAST(SUM(cs.number_by_day) AS NUMERIC(10,2))
+		 / CAST(@Knowledge_AllVal AS NUMERIC(10,2)) AS NUMERIC(10,2)) * 100
 		 ELSE 0 END 
   		AS [article_percent], 
     CONVERT(VARCHAR(15), DATEADD(SECOND,SUM(ISNULL(cs.duration,0)),0),108) 

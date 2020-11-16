@@ -121,7 +121,7 @@
 										 [user_id],
 										 [edit_date],
 										 [user_edit_id])
-			VALUES (@Applicant_Id, 
+			VALUES (@app_id, 
 					@Applicant_Building, 
 					@Applicant_HouseBlock, 
 					@Applicant_Entrance, 

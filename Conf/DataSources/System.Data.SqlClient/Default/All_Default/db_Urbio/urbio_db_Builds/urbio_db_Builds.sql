@@ -13,10 +13,10 @@ select ISNULL(LTRIM(b.Id),N'')+ISNULL(LTRIM(ao.Id),N'') Id, b.Id buid_Id, ao.Id 
   , ao.is_done is_done_filter
   , ao.Id name_fullName_filter
   from [CRM_1551_URBIO_Integrartion].[dbo].[addressObject] ao
-  LEFT join [CRM_1551_Analitics].[dbo].[Buildings] b on ao.id=b.urbio_id
-  left join [CRM_1551_Analitics].[dbo].[Streets] s on b.street_id=s.Id
-  left join [CRM_1551_Analitics].[dbo].[StreetTypes] st on s.street_type_id=st.Id
-  left join [CRM_1551_Analitics].[dbo].[Districts] d on b.district_id=d.Id
+  LEFT join   [dbo].[Buildings] b on ao.id=b.urbio_id
+  left join   [dbo].[Streets] s on b.street_id=s.Id
+  left join   [dbo].[StreetTypes] st on s.street_type_id=st.Id
+  left join   [dbo].[Districts] d on b.district_id=d.Id
   where --b.urbio_id is null
   ao.is_add= 'true' and
   ao.is_change='false' and
@@ -33,11 +33,11 @@ select ISNULL(LTRIM(b.Id),N'')+ISNULL(LTRIM(ao.Id),N'') Id, b.Id buid_Id, ao.Id 
   , ao.is_done is_done_filter
   , ao.Id name_fullName_filter
   from [CRM_1551_URBIO_Integrartion].[dbo].[addressObject] ao
-  INNER JOIN [CRM_1551_Analitics].[dbo].[Buildings] b on ao.id=b.urbio_id
-  LEFT JOIN [CRM_1551_Analitics].[dbo].[Objects] o ON b.Id=o.builbing_id
-  left join [CRM_1551_Analitics].[dbo].[Streets] s on b.street_id=s.Id
-  left join [CRM_1551_Analitics].[dbo].[StreetTypes] st on s.street_type_id=st.Id
-  left join [CRM_1551_Analitics].[dbo].[Districts] d on b.district_id=d.Id
+  INNER JOIN   [dbo].[Buildings] b on ao.id=b.urbio_id
+  LEFT JOIN   [dbo].[Objects] o ON b.Id=o.builbing_id
+  left join   [dbo].[Streets] s on b.street_id=s.Id
+  left join   [dbo].[StreetTypes] st on s.street_type_id=st.Id
+  left join   [dbo].[Districts] d on b.district_id=d.Id
   where 
   --b.urbio_id is null
   --where ISNULL(convert(nvarchar(128),ao.ofDistrict_id), N'')<>ISNULL(d.urbio_id, N'')
@@ -51,7 +51,7 @@ select ISNULL(LTRIM(b.Id),N'')+ISNULL(LTRIM(ao.Id),N'') Id, b.Id buid_Id, ao.Id 
 and ao.is_change='true' 
 and ao.is_delete='false' 
 and ao.[is_done]='false' 
-and ao.[done_date]=null 
+and ao.[done_date] is null 
 
   --удаление
   UNION
@@ -63,17 +63,17 @@ and ao.[done_date]=null
   , ao.is_done is_done_filter
   , ao.Id name_fullName_filter
   from [CRM_1551_URBIO_Integrartion].[dbo].[addressObject] ao
-  INNER JOIN [CRM_1551_Analitics].[dbo].[Buildings] b on ao.id=b.urbio_id
-  LEFT JOIN [CRM_1551_Analitics].[dbo].[Objects] o ON b.Id=o.builbing_id
-  left join [CRM_1551_Analitics].[dbo].[Streets] s on b.street_id=s.Id
-  left join [CRM_1551_Analitics].[dbo].[StreetTypes] st on s.street_type_id=st.Id
-  left join [CRM_1551_Analitics].[dbo].[Districts] d on b.district_id=d.Id--ao.DistrictId_1551=d.Id
+  INNER JOIN   [dbo].[Buildings] b on ao.id=b.urbio_id
+  LEFT JOIN   [dbo].[Objects] o ON b.Id=o.builbing_id
+  left join   [dbo].[Streets] s on b.street_id=s.Id
+  left join   [dbo].[StreetTypes] st on s.street_type_id=st.Id
+  left join   [dbo].[Districts] d on b.district_id=d.Id--ao.DistrictId_1551=d.Id
   where 
   ao.is_add='false'
 and ao.is_change='false'
 and ao.is_delete='true'
 and ao.[is_done]='false' 
-and ao.[done_date]=null 
+and ao.[done_date] is null 
   ) t
   where #filter_columns#
 --  #sort_columns#
